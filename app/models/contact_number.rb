@@ -1,0 +1,2 @@
+class ContactNumber < ApplicationRecord
+end

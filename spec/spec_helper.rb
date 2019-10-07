@@ -11,6 +11,8 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
+require 'webmock/rspec'
+require_relative './support/fake_common_platform'
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -93,4 +95,7 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
+  config.before(:each) do
+    stub_request(:any, /justice.gov.uk/).to_rack(FakeCommonPlatform)
+  end
 end

@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-ecr: circleci/aws-ecr@4.0.1
+
 jobs:
   test:
     docker:
@@ -57,3 +60,8 @@ workflows:
  test_and_build:
     jobs:
       - test
+      - aws-ecr/build_and_push_image:
+          requires:
+            - test
+          repo: laa-crime-apps-team/hmcts-common-platform-mock-api
+          tag: ${CIRCLE_SHA1}

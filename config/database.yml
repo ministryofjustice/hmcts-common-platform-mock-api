@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: hmcts_common_platform_api_production
-  username: hmcts_common_platform_api
-  password: <%= ENV['HMCTS_COMMON_PLATFORM_API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

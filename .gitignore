@@ -12,7 +12,6 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-spec/examples.txt
 
 # Ignore uploaded files in development.
 /storage/*

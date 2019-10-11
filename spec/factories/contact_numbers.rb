@@ -6,13 +6,5 @@ FactoryBot.define do
     primaryEmail { 'christian_renner@wildermanswift.name' }
     secondaryEmail { 'delbert@keeling.org' }
     fax { '024 0862 0169' }
-    factory :contact_number_faker do
-      home { Faker::PhoneNumber.phone_number }
-      work { Faker::PhoneNumber.phone_number }
-      mobile { Faker::PhoneNumber.cell_phone }
-      primaryEmail { Faker::Internet.email }
-      secondaryEmail { Faker::Internet.email }
-      fax { Faker::PhoneNumber.phone_number }
-    end
   end
 end

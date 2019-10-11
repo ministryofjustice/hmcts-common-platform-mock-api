@@ -2,6 +2,9 @@ version: 2.1
 
 orbs:
   aws-ecr: circleci/aws-ecr@4.0.1
+  aws-eks: circleci/aws-eks@0.2.1
+  kubernetes: circleci/kubernetes@0.7.0
+  helm: circleci/helm@0.2.0
 
 jobs:
   test:
@@ -55,13 +58,37 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
+  install_on_cluster:
+    executor: aws-eks/python
+    steps:
+      - checkout
+      - kubernetes/install-kubeconfig:
+          kubeconfig: ENCODED_KUBECONFIG
+      - kubernetes/install-kubectl
+      - helm/upgrade-helm-chart:
+          tiller-namespace: hmcts-mock-api-dev
+          chart: ./helm_deploy/hmcts-common-platform-mock-api
+          release-name: hmcts-common-platform-mock-api
+          values-to-override: image.tag=$CIRCLE_SHA1
+
 workflows:
- version: 2
- test_and_build:
+  version: 2
+  test_and_build:
     jobs:
       - test
       - aws-ecr/build_and_push_image:
           requires:
             - test
           repo: laa-crime-apps-team/hmcts-common-platform-mock-api
-          tag: ${CIRCLE_SHA1}
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only:
+                - master
+      - install_on_cluster:
+          requires:
+          - aws-ecr/build_and_push_image
+          filters:
+            branches:
+              only:
+                - master

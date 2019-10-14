@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_141944) do
+ActiveRecord::Schema.define(version: 2019_10_14_151856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -97,6 +97,25 @@ ActiveRecord::Schema.define(version: 2019_10_14_141944) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "jurors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "numberOfJurors"
+    t.integer "numberOfSplitJurors"
+    t.boolean "unanimous"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lesser_or_alternative_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "offenceDefinitionId"
+    t.string "offenceCode"
+    t.string "offenceTitle"
+    t.string "offenceTitleWelsh"
+    t.string "offenceLegislation"
+    t.string "offenceLegislationWelsh"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "notified_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "offenceId"
     t.datetime "notifiedPleaDate"
@@ -161,8 +180,34 @@ ActiveRecord::Schema.define(version: 2019_10_14_141944) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "verdict_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "sequence"
+    t.string "description"
+    t.string "category"
+    t.string "categoryType"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "verdicts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "originatingHearingId"
+    t.uuid "offenceId"
+    t.datetime "verdictDate"
+    t.uuid "verdict_type_id", null: false
+    t.uuid "jurors_id"
+    t.uuid "lesser_or_alternative_offence_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["jurors_id"], name: "index_verdicts_on_jurors_id"
+    t.index ["lesser_or_alternative_offence_id"], name: "index_verdicts_on_lesser_or_alternative_offence_id"
+    t.index ["verdict_type_id"], name: "index_verdicts_on_verdict_type_id"
+  end
+
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "people", "ethnicities"
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "police_officer_in_cases", "people"
+  add_foreign_key "verdicts", "jurors", column: "jurors_id"
+  add_foreign_key "verdicts", "lesser_or_alternative_offences"
+  add_foreign_key "verdicts", "verdict_types"
 end

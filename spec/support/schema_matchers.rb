@@ -16,4 +16,5 @@ RSpec.configure do |config|
   config.json_schemas[:verdict_type] = 'spec/support/schemas/verdictType.json'
   config.json_schemas[:jurors] = 'spec/support/schemas/jurors.json'
   config.json_schemas[:lesser_or_alternative_offence] = 'spec/support/schemas/lesserOrAlternativeOffence.json'
+  config.json_schemas[:verdict] = 'spec/support/schemas/verdict.json'
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_122723) do
+ActiveRecord::Schema.define(version: 2019_10_14_124612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -28,6 +28,23 @@ ActiveRecord::Schema.define(version: 2019_10_14_122723) do
     t.uuid "addressable_id"
     t.string "addressable_type"
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
+  end
+
+  create_table "allocation_decisions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "originatingHearingId"
+    t.uuid "offenceId"
+    t.uuid "motReasonId"
+    t.string "motReasonDescription"
+    t.integer "motReasonCode"
+    t.datetime "allocationDecisionDate"
+    t.boolean "isSection22ALowValueShoplifting", default: false, null: false
+    t.boolean "isDamageValueUnder5000", default: false, null: false
+    t.boolean "isTreatedAsIndictableOnly", default: false, null: false
+    t.boolean "sentencingIndicationRequested", default: false, null: false
+    t.uuid "court_indicated_sentence_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_indicated_sentence_id"], name: "index_allocation_decisions_on_court_indicated_sentence_id"
   end
 
   create_table "contact_numbers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -125,6 +142,7 @@ ActiveRecord::Schema.define(version: 2019_10_14_122723) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "people", "ethnicities"
   add_foreign_key "police_officer_in_cases", "people"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_134514) do
+ActiveRecord::Schema.define(version: 2019_10_14_134927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(version: 2019_10_14_134514) do
     t.string "lastName"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "delegated_powerable_id"
+    t.string "delegated_powerable_type"
+    t.index ["delegated_powerable_type", "delegated_powerable_id"], name: "index_delegated_powers_on_delegated_powerable"
   end
 
   create_table "ethnicities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

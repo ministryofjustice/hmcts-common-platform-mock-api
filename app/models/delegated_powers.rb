@@ -3,6 +3,7 @@ class DelegatedPowers < ApplicationRecord
   validates :firstName, presence: true
   validates :lastName, presence: true
 
+  belongs_to :delegated_powerable, polymorphic: true, optional: true
 
   def to_builder
     Jbuilder.new do |delegated_powers|

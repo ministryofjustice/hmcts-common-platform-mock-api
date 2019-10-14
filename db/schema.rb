@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_111812) do
+ActiveRecord::Schema.define(version: 2019_10_07_143139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(version: 2019_10_07_111812) do
     t.string "postcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "addressable_id"
+    t.string "addressable_type"
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
   end
 
   create_table "contact_numbers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -36,6 +39,9 @@ ActiveRecord::Schema.define(version: 2019_10_07_111812) do
     t.string "fax"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "contactable_id"
+    t.string "contactable_type"
+    t.index ["contactable_type", "contactable_id"], name: "index_contact_numbers_on_contactable_type_and_contactable_id"
   end
 
   create_table "ethnicities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -49,6 +55,32 @@ ActiveRecord::Schema.define(version: 2019_10_07_111812) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.string "firstName"
+    t.string "middleName"
+    t.string "lastName"
+    t.datetime "dateOfBirth"
+    t.uuid "nationalityId"
+    t.string "nationalityCode"
+    t.string "nationalityDescription"
+    t.uuid "additionalNationalityId"
+    t.string "additionalNationalityCode"
+    t.string "additionalNationalityDescription"
+    t.string "disabilityStatus"
+    t.uuid "ethnicity_id"
+    t.string "gender"
+    t.string "interpreterLanguageNeeds"
+    t.string "documentationLanguageNeeds"
+    t.string "nationalInsuranceNumber"
+    t.string "occupation"
+    t.string "occupationCode"
+    t.string "specificRequirements"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ethnicity_id"], name: "index_people_on_ethnicity_id"
+  end
+
   create_table "prosecution_case_identifiers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "caseURN"
     t.string "prosecutionAuthorityReference"
@@ -58,4 +90,5 @@ ActiveRecord::Schema.define(version: 2019_10_07_111812) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "people", "ethnicities"
 end

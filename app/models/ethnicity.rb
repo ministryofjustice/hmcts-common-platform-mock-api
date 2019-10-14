@@ -1,4 +1,6 @@
 class Ethnicity < ApplicationRecord
+  has_one :person
+
   def to_builder
     Jbuilder.new do |ethnicity|
       ethnicity.observedEthnicityId observedEthnicityId

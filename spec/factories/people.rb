@@ -15,7 +15,7 @@ FactoryBot.define do
     ethnicity { nil }
     gender { 'NOT_SPECIFIED' }
     interpreterLanguageNeeds { 'Swedish' }
-    documentationLanguageNeeds { 'English' }
+    documentationLanguageNeeds { 'ENGLISH' }
     nationalInsuranceNumber { 'BN102966C' }
     occupation { 'Global Real-Estate Strategist' }
     occupationCode { '4033' }

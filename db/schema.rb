@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_115841) do
+ActiveRecord::Schema.define(version: 2019_10_14_121043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 2019_10_14_115841) do
     t.uuid "selfDefinedEthnicityId"
     t.string "selfDefinedEthnicityCode"
     t.string "selfDefinedEthnicityDescription"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "indicated_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "offenceId"
+    t.uuid "originatingHearingId"
+    t.datetime "indicatedPleaDate"
+    t.string "indicatedPleaValue"
+    t.string "source"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

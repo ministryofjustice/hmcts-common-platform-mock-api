@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_135941) do
+ActiveRecord::Schema.define(version: 2019_10_14_141944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -74,9 +74,6 @@ ActiveRecord::Schema.define(version: 2019_10_14_135941) do
     t.string "lastName"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "delegated_powerable_id"
-    t.string "delegated_powerable_type"
-    t.index ["delegated_powerable_type", "delegated_powerable_id"], name: "index_delegated_powers_on_delegated_powerable"
   end
 
   create_table "ethnicities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -141,6 +138,8 @@ ActiveRecord::Schema.define(version: 2019_10_14_135941) do
     t.string "pleaValue"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "delegated_powers_id"
+    t.index ["delegated_powers_id"], name: "index_pleas_on_delegated_powers_id"
   end
 
   create_table "police_officer_in_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -164,5 +163,6 @@ ActiveRecord::Schema.define(version: 2019_10_14_135941) do
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "people", "ethnicities"
+  add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "police_officer_in_cases", "people"
 end

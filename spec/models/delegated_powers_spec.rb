@@ -5,8 +5,6 @@ RSpec.describe DelegatedPowers, type: :model do
   it { should validate_presence_of(:firstName) }
   it { should validate_presence_of(:lastName) }
 
-  it { should belong_to(:delegated_powerable).optional }
-
   let(:delegated_powers) { FactoryBot.create(:delegated_powers) }
 
   it 'matches the given schema' do

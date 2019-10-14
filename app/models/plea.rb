@@ -1,7 +1,7 @@
 class Plea < ApplicationRecord
   VALUES = %w(GUILTY NOT_GUILTY)
 
-  has_one :delegated_powers, as: :delegated_powerable
+  belongs_to :delegated_powers, optional: true
 
   validates :originatingHearingId, presence: true
   validates :offenceId, presence: true

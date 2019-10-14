@@ -10,7 +10,7 @@ RSpec.describe Plea, type: :model do
       in_array(['GUILTY', 'NOT_GUILTY'])
   end
 
-  it { should have_one(:delegated_powers).class_name('DelegatedPowers') }
+  it { should belong_to(:delegated_powers).class_name('DelegatedPowers').optional }
 
   let(:plea) { FactoryBot.create(:plea) }
 

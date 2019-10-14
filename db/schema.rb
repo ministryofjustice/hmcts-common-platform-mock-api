@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_145740) do
+ActiveRecord::Schema.define(version: 2019_10_14_150742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -101,6 +101,17 @@ ActiveRecord::Schema.define(version: 2019_10_14_145740) do
     t.integer "numberOfJurors"
     t.integer "numberOfSplitJurors"
     t.boolean "unanimous"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lesser_or_alternative_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "offenceDefinitionId"
+    t.string "offenceCode"
+    t.string "offenceTitle"
+    t.string "offenceTitleWelsh"
+    t.string "offenceLegislation"
+    t.string "offenceLegislationWelsh"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

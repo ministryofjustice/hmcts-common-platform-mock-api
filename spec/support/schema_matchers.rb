@@ -13,4 +13,5 @@ RSpec.configure do |config|
   config.json_schemas[:allocation_decision] = 'spec/support/schemas/allocationDecision.json'
   config.json_schemas[:delegated_powers] = 'spec/support/schemas/delegatedPowers.json'
   config.json_schemas[:plea] = 'spec/support/schemas/plea.json'
+  config.json_schemas[:verdict_type] = 'spec/support/schemas/verdictType.json'
 end

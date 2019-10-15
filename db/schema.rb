@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_155750) do
+ActiveRecord::Schema.define(version: 2019_10_15_160833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -142,7 +142,9 @@ ActiveRecord::Schema.define(version: 2019_10_15_155750) do
     t.boolean "isBenchChairman"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "next_hearing_id"
     t.index ["judicial_role_type_id"], name: "index_judicial_roles_on_judicial_role_type_id"
+    t.index ["next_hearing_id"], name: "index_judicial_roles_on_next_hearing_id"
   end
 
   create_table "jurors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -167,6 +169,8 @@ ActiveRecord::Schema.define(version: 2019_10_15_155750) do
   create_table "next_hearing_court_applications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "next_hearing_id"
+    t.index ["next_hearing_id"], name: "index_next_hearing_court_applications_on_next_hearing_id"
   end
 
   create_table "next_hearing_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -186,6 +190,8 @@ ActiveRecord::Schema.define(version: 2019_10_15_155750) do
   create_table "next_hearing_prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "next_hearing_id"
+    t.index ["next_hearing_id"], name: "index_next_hearing_prosecution_cases_on_next_hearing_id"
   end
 
   create_table "next_hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -307,8 +313,11 @@ ActiveRecord::Schema.define(version: 2019_10_15_155750) do
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "judicial_roles", "judicial_role_types"
+  add_foreign_key "judicial_roles", "next_hearings"
+  add_foreign_key "next_hearing_court_applications", "next_hearings"
   add_foreign_key "next_hearing_defendants", "next_hearing_prosecution_cases"
   add_foreign_key "next_hearing_offences", "next_hearing_defendants"
+  add_foreign_key "next_hearing_prosecution_cases", "next_hearings"
   add_foreign_key "next_hearings", "court_centres"
   add_foreign_key "next_hearings", "hearing_types"
   add_foreign_key "people", "addresses"

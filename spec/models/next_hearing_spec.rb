@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe NextHearing, type: :model do
+  describe 'associations' do
+    it { should have_many(:judicial_roles).class_name('JudicialRole') }
+    it { should have_many(:next_hearing_prosecution_cases).class_name('NextHearingProsecutionCase') }
+    it { should have_many(:next_hearing_court_applications).class_name('NextHearingCourtApplication') }
+  end
   describe 'validations' do
     it { should validate_presence_of(:hearing_type) }
     it { should validate_presence_of(:court_centre) }

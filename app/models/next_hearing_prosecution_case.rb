@@ -1,6 +1,8 @@
 class NextHearingProsecutionCase < ApplicationRecord
   has_many :next_hearing_defendants
 
+  belongs_to :next_hearing, optional: true, inverse_of: :next_hearing_prosecution_cases
+
   validates :next_hearing_defendants, presence: true
 
   def to_builder

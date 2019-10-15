@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe JudicialRole, type: :model do
+  describe 'associations' do
+    it { should belong_to(:next_hearing).class_name('NextHearing').optional }
+  end
+
   it { should validate_presence_of(:judicialId) }
   it { should validate_presence_of(:judicial_role_type) }
 

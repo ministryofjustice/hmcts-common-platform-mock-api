@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_103242) do
+ActiveRecord::Schema.define(version: 2019_10_15_121532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -106,6 +106,20 @@ ActiveRecord::Schema.define(version: 2019_10_15_103242) do
     t.datetime "indicatedPleaDate"
     t.string "indicatedPleaValue"
     t.string "source"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "judicial_result_prompt_duration_elements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "primaryDurationUnit"
+    t.integer "primaryDurationValue"
+    t.string "primaryLabel"
+    t.string "secondaryDurationUnit"
+    t.integer "secondaryDurationValue"
+    t.string "tertiaryDurationUnit"
+    t.string "tertiaryDurationValue"
+    t.datetime "durationStartDate"
+    t.datetime "durationEndDate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

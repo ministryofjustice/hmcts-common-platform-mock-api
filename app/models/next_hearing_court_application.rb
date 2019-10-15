@@ -1,0 +1,2 @@
+class NextHearingCourtApplication < ApplicationRecord
+end

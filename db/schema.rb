@@ -138,6 +138,16 @@ ActiveRecord::Schema.define(version: 2019_10_15_102401) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "offence_facts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "vehicleRegistration"
+    t.integer "alcoholReadingAmount"
+    t.string "alcoholReadingMethodCode"
+    t.string "alcoholReadingMethodDescription"
+    t.string "vehicleCode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "firstName"

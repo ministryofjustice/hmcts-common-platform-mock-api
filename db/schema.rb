@@ -164,6 +164,11 @@ ActiveRecord::Schema.define(version: 2019_10_15_145306) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "next_hearing_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "notified_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "offenceId"
     t.datetime "notifiedPleaDate"

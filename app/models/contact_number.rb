@@ -1,6 +1,4 @@
 class ContactNumber < ApplicationRecord
-  belongs_to :contactable, polymorphic: true, optional: true
-
   def to_builder
     Jbuilder.new do |contact_number|
       contact_number.home home

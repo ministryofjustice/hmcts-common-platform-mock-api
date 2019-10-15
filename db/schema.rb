@@ -25,9 +25,6 @@ ActiveRecord::Schema.define(version: 2019_10_15_102401) do
     t.string "postcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "addressable_id"
-    t.string "addressable_type"
-    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
   end
 
   create_table "allocation_decisions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -56,9 +53,6 @@ ActiveRecord::Schema.define(version: 2019_10_15_102401) do
     t.string "fax"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "contactable_id"
-    t.string "contactable_type"
-    t.index ["contactable_type", "contactable_id"], name: "index_contact_numbers_on_contactable_type_and_contactable_id"
   end
 
   create_table "court_indicated_sentences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -161,6 +155,10 @@ ActiveRecord::Schema.define(version: 2019_10_15_102401) do
     t.string "specificRequirements"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "address_id"
+    t.uuid "contact_number_id"
+    t.index ["address_id"], name: "index_people_on_address_id"
+    t.index ["contact_number_id"], name: "index_people_on_contact_number_id"
     t.index ["ethnicity_id"], name: "index_people_on_ethnicity_id"
   end
 
@@ -218,6 +216,8 @@ ActiveRecord::Schema.define(version: 2019_10_15_102401) do
   end
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
+  add_foreign_key "people", "addresses"
+  add_foreign_key "people", "contact_numbers"
   add_foreign_key "people", "ethnicities"
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "police_officer_in_cases", "people"

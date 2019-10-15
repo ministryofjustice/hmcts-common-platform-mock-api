@@ -1,5 +1,4 @@
 class Address < ApplicationRecord
-  belongs_to :addressable, polymorphic: true, optional: true
   validates :address1, presence: true
 
   def to_builder

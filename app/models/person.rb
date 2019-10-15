@@ -5,8 +5,8 @@ class Person < ApplicationRecord
   TITLES = %w(MR MRS MISS MS)
 
   belongs_to :ethnicity, optional: true
-  has_one :address, as: :addressable
-  has_one :contact_number, as: :contactable
+  belongs_to :address, optional: true
+  belongs_to :contact_number, optional: true
 
   validates :lastName, presence: true
   validates :title, inclusion: TITLES

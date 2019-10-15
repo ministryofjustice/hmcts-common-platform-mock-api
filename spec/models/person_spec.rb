@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Person, type: :model do
   describe 'associations' do
     it { should belong_to(:ethnicity).class_name('Ethnicity').optional }
-    it { should have_one(:address).class_name('Address') }
-    it { should have_one(:contact_number).class_name('ContactNumber') }
+    it { should belong_to(:address).class_name('Address').optional }
+    it { should belong_to(:contact_number).class_name('ContactNumber').optional }
   end
   describe 'validations' do
     it { should validate_presence_of(:lastName) }

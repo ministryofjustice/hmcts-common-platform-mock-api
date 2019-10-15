@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_121532) do
+ActiveRecord::Schema.define(version: 2019_10_15_145306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -129,6 +129,20 @@ ActiveRecord::Schema.define(version: 2019_10_15_121532) do
     t.string "judiciaryType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "judicial_roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "judicialId"
+    t.string "title"
+    t.string "firstName"
+    t.string "middleName"
+    t.string "lastName"
+    t.uuid "judicial_role_type_id", null: false
+    t.boolean "isDeputy"
+    t.boolean "isBenchChairman"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["judicial_role_type_id"], name: "index_judicial_roles_on_judicial_role_type_id"
   end
 
   create_table "jurors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -253,6 +267,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_121532) do
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "court_centres", "addresses"
+  add_foreign_key "judicial_roles", "judicial_role_types"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "contact_numbers"
   add_foreign_key "people", "ethnicities"

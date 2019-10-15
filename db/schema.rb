@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_145306) do
+ActiveRecord::Schema.define(version: 2019_10_15_151405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -167,6 +167,8 @@ ActiveRecord::Schema.define(version: 2019_10_15_145306) do
   create_table "next_hearing_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "next_hearing_prosecution_case_id"
+    t.index ["next_hearing_prosecution_case_id"], name: "index_next_hearing_defendants_on_prosecution_case_id"
   end
 
   create_table "next_hearing_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -174,6 +176,11 @@ ActiveRecord::Schema.define(version: 2019_10_15_145306) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "next_hearing_defendant_id"
     t.index ["next_hearing_defendant_id"], name: "index_next_hearing_offences_on_next_hearing_defendant_id"
+  end
+
+  create_table "next_hearing_prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "notified_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -280,6 +287,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_145306) do
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "judicial_roles", "judicial_role_types"
+  add_foreign_key "next_hearing_defendants", "next_hearing_prosecution_cases"
   add_foreign_key "next_hearing_offences", "next_hearing_defendants"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "contact_numbers"

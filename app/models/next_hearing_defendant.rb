@@ -1,6 +1,7 @@
 class NextHearingDefendant < ApplicationRecord
 
   has_many :next_hearing_offences
+  belongs_to :next_hearing_prosecution_case, optional: true, inverse_of: :next_hearing_defendants
 
   validates :next_hearing_offences, presence: true
 

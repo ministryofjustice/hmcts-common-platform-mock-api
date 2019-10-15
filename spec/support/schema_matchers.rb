@@ -24,4 +24,5 @@ RSpec.configure do |config|
   config.json_schemas[:judicial_result_prompt_duration_element] = 'spec/support/schemas/judicialResultPromptDurationElement.json'
   config.json_schemas[:judicial_role] = 'spec/support/schemas/judicialRole.json'
   config.json_schemas[:next_hearing_offence] = 'spec/support/schemas/nextHearingOffence.json'
+  config.json_schemas[:next_hearing_defendant] = 'spec/support/schemas/nextHearingDefendant.json'
 end

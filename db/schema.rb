@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_102401) do
+ActiveRecord::Schema.define(version: 2019_10_15_103242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(version: 2019_10_15_102401) do
     t.string "fax"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "court_centres", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "welshName"
+    t.uuid "roomId"
+    t.string "roomName"
+    t.string "welshRoomName"
+    t.uuid "address_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["address_id"], name: "index_court_centres_on_address_id"
   end
 
   create_table "court_indicated_sentences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -216,6 +228,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_102401) do
   end
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
+  add_foreign_key "court_centres", "addresses"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "contact_numbers"
   add_foreign_key "people", "ethnicities"

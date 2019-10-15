@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_155310) do
+ActiveRecord::Schema.define(version: 2019_10_15_155750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -188,6 +188,21 @@ ActiveRecord::Schema.define(version: 2019_10_15_155310) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "next_hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "hearing_type_id", null: false
+    t.string "jurisdictionType"
+    t.string "reportingRestrictionReason"
+    t.string "adjournmentReason"
+    t.string "hearingLanguage"
+    t.datetime "listedStartDateTime"
+    t.integer "estimatedMinutes"
+    t.uuid "court_centre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_centre_id"], name: "index_next_hearings_on_court_centre_id"
+    t.index ["hearing_type_id"], name: "index_next_hearings_on_hearing_type_id"
+  end
+
   create_table "notified_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "offenceId"
     t.datetime "notifiedPleaDate"
@@ -294,6 +309,8 @@ ActiveRecord::Schema.define(version: 2019_10_15_155310) do
   add_foreign_key "judicial_roles", "judicial_role_types"
   add_foreign_key "next_hearing_defendants", "next_hearing_prosecution_cases"
   add_foreign_key "next_hearing_offences", "next_hearing_defendants"
+  add_foreign_key "next_hearings", "court_centres"
+  add_foreign_key "next_hearings", "hearing_types"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "contact_numbers"
   add_foreign_key "people", "ethnicities"

@@ -1,0 +1,24 @@
+require 'rails_helper'
+
+RSpec.describe NextHearing, type: :model do
+  describe 'validations' do
+    it { should validate_presence_of(:hearing_type) }
+    it { should validate_presence_of(:court_centre) }
+    it { should validate_presence_of(:estimatedMinutes) }
+    it { should validate_presence_of(:listedStartDateTime) }
+    it do
+      should validate_inclusion_of(:jurisdictionType).
+        in_array(['MAGISTRATES', 'CROWN'])
+    end
+    it do
+      should validate_inclusion_of(:hearingLanguage).
+        in_array(['ENGLISH', 'WELSH'])
+    end
+  end
+
+  let(:next_hearing) { FactoryBot.create(:next_hearing) }
+
+  it 'matches the given schema' do
+    expect(next_hearing.to_builder.target!).to match_json_schema(:next_hearing)
+  end
+end

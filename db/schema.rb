@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_16_082900) do
+ActiveRecord::Schema.define(version: 2019_10_16_084141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -120,6 +120,21 @@ ActiveRecord::Schema.define(version: 2019_10_16_082900) do
     t.string "tertiaryDurationValue"
     t.datetime "durationStartDate"
     t.datetime "durationEndDate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "judicial_result_prompts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "label"
+    t.boolean "isAvailableForCourtExtract", null: false
+    t.string "welshLabel"
+    t.string "value"
+    t.string "qualifier"
+    t.integer "durationSequence"
+    t.integer "promptSequence"
+    t.string "promptReference"
+    t.integer "totalPenaltyPoints"
+    t.boolean "isFinancialImposition"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -291,6 +306,8 @@ ActiveRecord::Schema.define(version: 2019_10_16_082900) do
     t.string "group"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "judicial_result_prompt_id"
+    t.index ["judicial_result_prompt_id"], name: "index_user_groups_on_judicial_result_prompt_id"
   end
 
   create_table "verdict_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -331,6 +348,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_082900) do
   add_foreign_key "people", "ethnicities"
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "police_officer_in_cases", "people"
+  add_foreign_key "user_groups", "judicial_result_prompts"
   add_foreign_key "verdicts", "jurors", column: "jurors_id"
   add_foreign_key "verdicts", "lesser_or_alternative_offences"
   add_foreign_key "verdicts", "verdict_types"

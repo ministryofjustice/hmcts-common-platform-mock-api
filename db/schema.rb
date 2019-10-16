@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_16_084141) do
+ActiveRecord::Schema.define(version: 2019_10_16_115516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -137,6 +137,51 @@ ActiveRecord::Schema.define(version: 2019_10_16_084141) do
     t.boolean "isFinancialImposition"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "judicial_result_id"
+    t.index ["judicial_result_id"], name: "index_judicial_result_prompts_on_judicial_result_id"
+  end
+
+  create_table "judicial_results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "judicialResultId"
+    t.uuid "orderedHearingId"
+    t.string "label"
+    t.string "welshLabel"
+    t.boolean "isAdjournmentResult", null: false
+    t.boolean "isFinancialResult", null: false
+    t.boolean "isConvictedResult", null: false
+    t.boolean "isAvailableForCourtExtract", null: false
+    t.boolean "isDeleted"
+    t.uuid "amendmentReasonId"
+    t.string "amendmentReason"
+    t.datetime "amendmentDate"
+    t.string "qualifier"
+    t.string "resultText"
+    t.string "cjsCode"
+    t.string "postHearingCustodyStatus"
+    t.integer "rank"
+    t.datetime "orderedDate"
+    t.string "lastSharedDateTime"
+    t.boolean "terminatesOffenceProceedings", null: false
+    t.boolean "isLifeDuration", null: false
+    t.boolean "isPublishedAsAPrompt", null: false
+    t.boolean "isExcludedFromResults", null: false
+    t.boolean "isAlwaysPublished", null: false
+    t.boolean "isUrgent", null: false
+    t.boolean "isD20", null: false
+    t.uuid "court_clerk_id"
+    t.uuid "delegated_powers_id"
+    t.uuid "four_eyes_approval_id"
+    t.datetime "approvedDate"
+    t.string "category"
+    t.uuid "next_hearing_id"
+    t.uuid "duration_element_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_clerk_id"], name: "index_judicial_results_on_court_clerk_id"
+    t.index ["delegated_powers_id"], name: "index_judicial_results_on_delegated_powers_id"
+    t.index ["duration_element_id"], name: "index_judicial_results_on_duration_element_id"
+    t.index ["four_eyes_approval_id"], name: "index_judicial_results_on_four_eyes_approval_id"
+    t.index ["next_hearing_id"], name: "index_judicial_results_on_next_hearing_id"
   end
 
   create_table "judicial_role_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -307,6 +352,8 @@ ActiveRecord::Schema.define(version: 2019_10_16_084141) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "judicial_result_prompt_id"
+    t.uuid "judicial_result_id"
+    t.index ["judicial_result_id"], name: "index_user_groups_on_judicial_result_id"
     t.index ["judicial_result_prompt_id"], name: "index_user_groups_on_judicial_result_prompt_id"
   end
 
@@ -335,6 +382,12 @@ ActiveRecord::Schema.define(version: 2019_10_16_084141) do
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "court_centres", "addresses"
+  add_foreign_key "judicial_result_prompts", "judicial_results"
+  add_foreign_key "judicial_results", "delegated_powers", column: "court_clerk_id"
+  add_foreign_key "judicial_results", "delegated_powers", column: "delegated_powers_id"
+  add_foreign_key "judicial_results", "delegated_powers", column: "four_eyes_approval_id"
+  add_foreign_key "judicial_results", "judicial_result_prompt_duration_elements", column: "duration_element_id"
+  add_foreign_key "judicial_results", "next_hearings"
   add_foreign_key "judicial_roles", "judicial_role_types"
   add_foreign_key "judicial_roles", "next_hearings"
   add_foreign_key "next_hearing_court_applications", "next_hearings"
@@ -349,6 +402,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_084141) do
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "police_officer_in_cases", "people"
   add_foreign_key "user_groups", "judicial_result_prompts"
+  add_foreign_key "user_groups", "judicial_results"
   add_foreign_key "verdicts", "jurors", column: "jurors_id"
   add_foreign_key "verdicts", "lesser_or_alternative_offences"
   add_foreign_key "verdicts", "verdict_types"

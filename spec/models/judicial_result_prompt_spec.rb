@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe JudicialResultPrompt, type: :model do
   describe 'associations' do
     it { should have_many(:user_groups).class_name('UserGroup') }
+    it { should belong_to(:judicial_result).class_name('JudicialResult').optional }
   end
   describe 'validations' do
     it { should validate_presence_of(:label) }

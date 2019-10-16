@@ -1,6 +1,6 @@
 class JudicialResultPrompt < ApplicationRecord
   has_many :user_groups
-
+  belongs_to :judicial_result, optional: true
 
   validates :label, presence: true
   validates :isAvailableForCourtExtract, inclusion: [true, false]

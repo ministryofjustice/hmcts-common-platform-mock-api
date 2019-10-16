@@ -299,6 +299,12 @@ ActiveRecord::Schema.define(version: 2019_10_16_132626) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "group"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "verdict_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "sequence"
     t.string "description"

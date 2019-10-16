@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_160833) do
+ActiveRecord::Schema.define(version: 2019_10_16_132626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -151,6 +151,18 @@ ActiveRecord::Schema.define(version: 2019_10_15_160833) do
     t.integer "numberOfJurors"
     t.integer "numberOfSplitJurors"
     t.boolean "unanimous"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "laa_references", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "applicationReference"
+    t.uuid "statusId"
+    t.string "statusCode"
+    t.string "statusDescription"
+    t.datetime "statusDate"
+    t.datetime "effectiveStartDate"
+    t.datetime "effectiveEndDate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

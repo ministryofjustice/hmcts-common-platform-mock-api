@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_143858) do
+ActiveRecord::Schema.define(version: 2019_10_17_151042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -253,6 +253,13 @@ ActiveRecord::Schema.define(version: 2019_10_17_143858) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "offence_id"
     t.index ["offence_id"], name: "index_laa_references_on_offence_id"
+  end
+
+  create_table "legal_entity_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "organisation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organisation_id"], name: "index_legal_entity_defendants_on_organisation_id"
   end
 
   create_table "lesser_or_alternative_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -511,6 +518,7 @@ ActiveRecord::Schema.define(version: 2019_10_17_143858) do
   add_foreign_key "judicial_roles", "judicial_role_types"
   add_foreign_key "judicial_roles", "next_hearings"
   add_foreign_key "laa_references", "offences"
+  add_foreign_key "legal_entity_defendants", "organisations"
   add_foreign_key "next_hearing_court_applications", "next_hearings"
   add_foreign_key "next_hearing_defendants", "next_hearing_prosecution_cases"
   add_foreign_key "next_hearing_offences", "next_hearing_defendants"

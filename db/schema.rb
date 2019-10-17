@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_16_134504) do
+ActiveRecord::Schema.define(version: 2019_10_17_112948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -314,6 +314,18 @@ ActiveRecord::Schema.define(version: 2019_10_16_134504) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "incorporationNumber"
+    t.string "registeredCharityNumber"
+    t.uuid "address_id"
+    t.uuid "contact_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["address_id"], name: "index_organisations_on_address_id"
+    t.index ["contact_id"], name: "index_organisations_on_contact_id"
+  end
+
   create_table "people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "firstName"
@@ -424,6 +436,8 @@ ActiveRecord::Schema.define(version: 2019_10_16_134504) do
   add_foreign_key "next_hearing_prosecution_cases", "next_hearings"
   add_foreign_key "next_hearings", "court_centres"
   add_foreign_key "next_hearings", "hearing_types"
+  add_foreign_key "organisations", "addresses"
+  add_foreign_key "organisations", "contact_numbers", column: "contact_id"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "contact_numbers"
   add_foreign_key "people", "ethnicities"

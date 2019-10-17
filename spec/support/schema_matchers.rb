@@ -10,6 +10,7 @@ RSpec.configure do |config|
   config.json_schemas[:indicated_plea] = 'spec/support/schemas/indicatedPlea.json'
   config.json_schemas[:notified_plea] = 'spec/support/schemas/notifiedPlea.json'
   config.json_schemas[:person] = 'spec/support/schemas/person.json'
+  config.json_schemas[:person_defendant] = 'spec/support/schemas/personDefendant.json'
   config.json_schemas[:police_officer_in_case] = 'spec/support/schemas/policeOfficerInCase.json'
   config.json_schemas[:prosecution_case_identifier] = 'spec/support/schemas/prosecutionCaseIdentifier.json'
   config.json_schemas[:court_indicated_sentence] = 'spec/support/schemas/courtIndicatedSentence.json'

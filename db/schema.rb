@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_131950) do
+ActiveRecord::Schema.define(version: 2019_10_17_142541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2019_10_17_131950) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["person_id"], name: "index_associated_people_on_person_id"
+  end
+
+  create_table "bail_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.string "description"
+    t.uuid "custody_time_limit_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["custody_time_limit_id"], name: "index_bail_statuses_on_custody_time_limit_id"
   end
 
   create_table "contact_numbers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -469,6 +478,7 @@ ActiveRecord::Schema.define(version: 2019_10_17_131950) do
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "associated_people", "people"
+  add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "judicial_result_prompts", "judicial_results"
   add_foreign_key "judicial_results", "delegated_powers", column: "court_clerk_id"

@@ -3,6 +3,7 @@ RSpec.configure do |config|
   config.include JSON::SchemaMatchers
   config.json_schemas[:address] = 'spec/support/schemas/address.json'
   config.json_schemas[:associated_person] = 'spec/support/schemas/associatedPerson.json'
+  config.json_schemas[:bail_status] = 'spec/support/schemas/bailStatus.json'
   config.json_schemas[:contact_number] = 'spec/support/schemas/contactNumber.json'
   config.json_schemas[:custody_time_limit] = 'spec/support/schemas/custodyTimeLimit.json'
   config.json_schemas[:ethnicity] = 'spec/support/schemas/ethnicity.json'

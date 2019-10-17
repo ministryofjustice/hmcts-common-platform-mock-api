@@ -44,6 +44,20 @@ ActiveRecord::Schema.define(version: 2019_10_17_154807) do
     t.index ["court_indicated_sentence_id"], name: "index_allocation_decisions_on_court_indicated_sentence_id"
   end
 
+  create_table "associated_defence_organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "organisation_id", null: false
+    t.string "sraNumber"
+    t.string "laaContractNumber"
+    t.string "barCouncilMembershipNumber"
+    t.datetime "associationStartDate"
+    t.datetime "associationEndDate"
+    t.string "fundingType"
+    t.boolean "isAssociatedByLAA"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organisation_id"], name: "index_associated_defence_organisations_on_organisation_id"
+  end
+
   create_table "associated_people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id", null: false
     t.string "role"
@@ -548,6 +562,7 @@ ActiveRecord::Schema.define(version: 2019_10_17_154807) do
   end
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
+  add_foreign_key "associated_defence_organisations", "organisations"
   add_foreign_key "associated_people", "people"
   add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_centres", "addresses"

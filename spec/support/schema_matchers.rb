@@ -23,6 +23,7 @@ RSpec.configure do |config|
   config.json_schemas[:lesser_or_alternative_offence] = 'spec/support/schemas/lesserOrAlternativeOffence.json'
   config.json_schemas[:offence] = 'spec/support/schemas/offence.json'
   config.json_schemas[:legal_entity_defendant] = 'spec/support/schemas/legalEntityDefendant.json'
+  config.json_schemas[:marker] = 'spec/support/schemas/marker.json'
   config.json_schemas[:offence_facts] = 'spec/support/schemas/offenceFacts.json'
   config.json_schemas[:organisation] = 'spec/support/schemas/organisation.json'
   config.json_schemas[:verdict] = 'spec/support/schemas/verdict.json'

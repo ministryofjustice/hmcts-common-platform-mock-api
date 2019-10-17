@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_153117) do
+ActiveRecord::Schema.define(version: 2019_10_17_153902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -297,6 +297,13 @@ ActiveRecord::Schema.define(version: 2019_10_17_153117) do
     t.string "markerTypeLabel"
     t.string "markerTypeName"
     t.string "splitProsecutorCaseReference"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "merged_prosecution_case_targets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecutionCaseId"
+    t.string "prosecutionCaseReference"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

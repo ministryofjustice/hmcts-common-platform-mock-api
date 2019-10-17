@@ -32,7 +32,7 @@ RSpec.describe JudicialResult, type: :model do
   end
 
   context 'hmcts schema' do
-    let(:judicial_result) { FactoryBot.create(:judicial_result) }
+    let(:judicial_result) { FactoryBot.create(:judicial_result_with_prompt) }
 
     before do
       judicial_result.court_clerk = FactoryBot.create(:delegated_powers)
@@ -40,8 +40,6 @@ RSpec.describe JudicialResult, type: :model do
       judicial_result.four_eyes_approval = FactoryBot.create(:delegated_powers)
       judicial_result.next_hearing = FactoryBot.create(:next_hearing)
       judicial_result.duration_element = FactoryBot.create(:judicial_result_prompt_duration_element)
-      judicial_result.judicial_result_prompts << FactoryBot.create(:judicial_result_prompt)
-      # judicial_result.user_group << FactoryBot.create(:user_group)
       judicial_result.save!
     end
 

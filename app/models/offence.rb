@@ -44,12 +44,12 @@ class Offence < ApplicationRecord
       offence.verdict verdict.to_builder if verdict.present?
       offence.offenceFacts offence_facts.to_builder if offence_facts.present?
       offence.aquittalDate aquittalDate.to_date
-      offence.victims Jbuilder.new.array! victims_builder
-      offence.judicialResults Jbuilder.new.array! judicial_results_builder
+      offence.victims Jbuilder.new.array! victims_builder if victims.present?
+      offence.judicialResults Jbuilder.new.array! judicial_results_builder if judicial_results.present?
       offence.isDisposed isDisposed
       offence.isDiscontinued isDiscontinued
       offence.isIntroduceAfterInitialProceedings isIntroduceAfterInitialProceedings
-      offence.laaApplnReferences Jbuilder.new.array! laa_references_builder
+      offence.laaApplnReferences Jbuilder.new.array! laa_references_builder if laa_references.present?
       offence.custodyTimeLimit custody_time_limit.to_builder if custody_time_limit.present?
       offence.splitProsecutorCaseReference splitProsecutorCaseReference
       offence.mergedProsecutionCaseReference mergedProsecutionCaseReference

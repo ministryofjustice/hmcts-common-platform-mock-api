@@ -22,17 +22,25 @@ RSpec.describe Offence, type: :model do
   end
 
   context 'hmcts schema' do
-    let(:offence) { FactoryBot.create(:offence) }
 
-    before do
-      offence.victims << FactoryBot.create(:person)
-      offence.judicial_results << FactoryBot.create(:judicial_result_with_prompt)
-      offence.laa_references << FactoryBot.create(:laa_reference)
-      offence.save!
-    end
+    let(:offence) { FactoryBot.create(:offence) }
 
     it 'matches the given schema' do
       expect(offence.to_builder.target!).to match_json_schema(:offence)
+    end
+
+
+    context 'with relationships' do
+      before do
+        offence.victims << FactoryBot.create(:person)
+        offence.judicial_results << FactoryBot.create(:judicial_result_with_prompt)
+        offence.laa_references << FactoryBot.create(:laa_reference)
+        offence.save!
+      end
+
+      it 'matches the given schema' do
+        expect(offence.to_builder.target!).to match_json_schema(:offence)
+      end
     end
   end
 

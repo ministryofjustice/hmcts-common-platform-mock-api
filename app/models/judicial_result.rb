@@ -76,5 +76,4 @@ class JudicialResult < ApplicationRecord
     def user_groups_builder
       user_groups.map(&:group)
     end
-
 end

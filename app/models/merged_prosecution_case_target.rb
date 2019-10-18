@@ -9,5 +9,4 @@ class MergedProsecutionCaseTarget < ApplicationRecord
       merged_prosecution_case_target.prosecutionCaseReference prosecutionCaseReference
     end
   end
-
 end

@@ -15,6 +15,5 @@ class Marker < ApplicationRecord
       marker.markerTypeName markerTypeName
       marker.splitProsecutorCaseReference splitProsecutorCaseReference
     end
-
   end
 end

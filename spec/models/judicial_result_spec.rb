@@ -47,5 +47,4 @@ RSpec.describe JudicialResult, type: :model do
       expect(judicial_result.to_builder.target!).to match_json_schema(:judicial_result)
     end
   end
-
 end

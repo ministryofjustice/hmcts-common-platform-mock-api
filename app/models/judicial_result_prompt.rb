@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JudicialResultPrompt < ApplicationRecord
   has_many :user_groups
   belongs_to :judicial_result, optional: true
@@ -23,7 +25,7 @@ class JudicialResultPrompt < ApplicationRecord
 
   private
 
-    def user_groups_builder
-      user_groups.map(&:group)
-    end
+  def user_groups_builder
+    user_groups.map(&:group)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CustodyTimeLimit < ApplicationRecord
   validates :timeLimit, presence: true
   validates :daysSpent, presence: true

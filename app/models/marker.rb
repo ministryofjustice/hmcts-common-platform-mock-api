@@ -1,5 +1,6 @@
-class Marker < ApplicationRecord
+# frozen_string_literal: true
 
+class Marker < ApplicationRecord
   validates :markerTypeid, presence: true
   validates :markerTypeCode, presence: true
   validates :markerTypeLabel, presence: true

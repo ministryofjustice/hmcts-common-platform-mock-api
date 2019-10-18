@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NextHearingProsecutionCase < ApplicationRecord
   has_many :next_hearing_defendants
 
@@ -13,9 +15,10 @@ class NextHearingProsecutionCase < ApplicationRecord
   end
 
   private
-    def defendants_builder
-      next_hearing_defendants.map do |next_hearing_offence|
-        next_hearing_offence.to_builder.attributes!
-      end
+
+  def defendants_builder
+    next_hearing_defendants.map do |next_hearing_offence|
+      next_hearing_offence.to_builder.attributes!
     end
+  end
 end

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 
 class FakeCommonPlatform < Sinatra::Base
-
   get '/' do
     'fake common platform running'
   end

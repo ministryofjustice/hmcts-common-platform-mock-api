@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe NextHearing, type: :model do
@@ -12,12 +14,12 @@ RSpec.describe NextHearing, type: :model do
     it { should validate_presence_of(:estimatedMinutes) }
     it { should validate_presence_of(:listedStartDateTime) }
     it do
-      should validate_inclusion_of(:jurisdictionType).
-        in_array(['MAGISTRATES', 'CROWN'])
+      should validate_inclusion_of(:jurisdictionType)
+        .in_array(%w[MAGISTRATES CROWN])
     end
     it do
-      should validate_inclusion_of(:hearingLanguage).
-        in_array(['ENGLISH', 'WELSH'])
+      should validate_inclusion_of(:hearingLanguage)
+        .in_array(%w[ENGLISH WELSH])
     end
   end
 

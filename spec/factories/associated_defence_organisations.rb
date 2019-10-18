@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :associated_defence_organisation do
     organisation
-    sraNumber { "MyString" }
+    sraNumber { 'MyString' }
     laaContractNumber { nil }
     barCouncilMembershipNumber { nil }
-    associationStartDate { "2019-10-17 15:20:09" }
-    associationEndDate { "2019-10-17 15:20:09" }
-    fundingType { "COURT_APPOINTED" }
+    associationStartDate { '2019-10-17 15:20:09' }
+    associationEndDate { '2019-10-17 15:20:09' }
+    fundingType { 'COURT_APPOINTED' }
     isAssociatedByLAA { false }
   end
 end

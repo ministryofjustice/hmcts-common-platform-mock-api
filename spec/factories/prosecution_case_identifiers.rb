@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :prosecution_case_identifier do
     caseURN { '3658e889-e050-4608-8f21-8bdaa529f8d0' }

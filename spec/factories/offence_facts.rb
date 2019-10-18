@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :offence_facts do
     vehicleRegistration { 'Random String' }

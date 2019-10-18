@@ -1,5 +1,6 @@
-class MergedProsecutionCase < ApplicationRecord
+# frozen_string_literal: true
 
+class MergedProsecutionCase < ApplicationRecord
   has_many :merged_prosecution_case_targets
 
   validates :prosecutionCaseReference, presence: true
@@ -13,9 +14,10 @@ class MergedProsecutionCase < ApplicationRecord
   end
 
   private
-    def merged_prosecution_case_targets_builder
-      merged_prosecution_case_targets.map do |merged_prosecution_case_target|
-        merged_prosecution_case_target.to_builder.attributes!
-      end
+
+  def merged_prosecution_case_targets_builder
+    merged_prosecution_case_targets.map do |merged_prosecution_case_target|
+      merged_prosecution_case_target.to_builder.attributes!
     end
+  end
 end

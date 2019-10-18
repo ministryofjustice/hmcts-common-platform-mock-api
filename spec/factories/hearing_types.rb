@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :hearing_type do
-    description { "This is a description" }
-    code { "12D10JAS" }
+    description { 'This is a description' }
+    code { '12D10JAS' }
   end
 end

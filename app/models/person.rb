@@ -1,8 +1,9 @@
-class Person < ApplicationRecord
+# frozen_string_literal: true
 
-  LANGUAGES = %w(ENGLISH WELSH)
-  GENDERS = %w(MALE FEMALE NOT_KNOWN NOT_SPECIFIED)
-  TITLES = %w(MR MRS MISS MS)
+class Person < ApplicationRecord
+  LANGUAGES = %w[ENGLISH WELSH].freeze
+  GENDERS = %w[MALE FEMALE NOT_KNOWN NOT_SPECIFIED].freeze
+  TITLES = %w[MR MRS MISS MS].freeze
 
   belongs_to :ethnicity, optional: true
   belongs_to :address, optional: true
@@ -12,7 +13,6 @@ class Person < ApplicationRecord
   validates :title, inclusion: TITLES
   validates :gender, presence: true, inclusion: GENDERS
   validates :documentationLanguageNeeds, inclusion: LANGUAGES
-
 
   def to_builder
     Jbuilder.new do |person|

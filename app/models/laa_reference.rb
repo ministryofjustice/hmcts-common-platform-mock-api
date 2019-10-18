@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LaaReference < ApplicationRecord
   validates :applicationReference, presence: true
   validates :statusId, presence: true

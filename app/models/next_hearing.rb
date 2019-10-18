@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NextHearing < ApplicationRecord
   belongs_to :hearing_type
   belongs_to :court_centre
@@ -10,8 +12,8 @@ class NextHearing < ApplicationRecord
   validates :court_centre, presence: true
   validates :estimatedMinutes, presence: true
   validates :listedStartDateTime, presence: true
-  validates :jurisdictionType, inclusion: %w(MAGISTRATES CROWN)
-  validates :hearingLanguage, inclusion: %w(ENGLISH WELSH)
+  validates :jurisdictionType, inclusion: %w[MAGISTRATES CROWN]
+  validates :hearingLanguage, inclusion: %w[ENGLISH WELSH]
 
   def to_builder
     Jbuilder.new do |next_hearing|
@@ -26,19 +28,20 @@ class NextHearing < ApplicationRecord
   end
 
   private
-    def judicial_roles_builder
-      judicial_roles.map do |judicial_role|
-        judicial_role.to_builder.attributes!
-      end
-    end
 
-    def next_hearing_prosecution_cases_builder
-      next_hearing_prosecution_cases.map do |next_hearing_prosecution_case|
-        next_hearing_prosecution_case.to_builder.attributes!
-      end
+  def judicial_roles_builder
+    judicial_roles.map do |judicial_role|
+      judicial_role.to_builder.attributes!
     end
+  end
 
-    def next_hearing_court_applications_builder
-      next_hearing_court_applications.ids
+  def next_hearing_prosecution_cases_builder
+    next_hearing_prosecution_cases.map do |next_hearing_prosecution_case|
+      next_hearing_prosecution_case.to_builder.attributes!
     end
+  end
+
+  def next_hearing_court_applications_builder
+    next_hearing_court_applications.ids
+  end
 end

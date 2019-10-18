@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :offence do
     offenceDefinitionId { SecureRandom.uuid }
@@ -9,21 +11,21 @@ FactoryBot.define do
     modeOfTrial { 'Random string' }
     wording { 'Random string' }
     wordingWelsh { 'Llinyn ar hap' }
-    startDate { "2019-10-17 14:06:13" }
-    endDate { "2019-10-17 14:06:13" }
-    arrestDate { "2019-10-17 14:06:13" }
-    chargeDate { "2019-10-17 14:06:13" }
-    dateOfInformation { "2019-10-17 14:06:13" }
+    startDate { '2019-10-17 14:06:13' }
+    endDate { '2019-10-17 14:06:13' }
+    arrestDate { '2019-10-17 14:06:13' }
+    chargeDate { '2019-10-17 14:06:13' }
+    dateOfInformation { '2019-10-17 14:06:13' }
     orderIndex { 1 }
     count { 1 }
-    convictionDate { "2019-10-17 14:06:13" }
+    convictionDate { '2019-10-17 14:06:13' }
     notified_plea { nil }
     indicated_plea { nil }
     allocation_decision { nil }
     plea { nil }
     verdict { nil }
     offence_facts { nil }
-    aquittalDate { "2019-10-17 14:06:13" }
+    aquittalDate { '2019-10-17 14:06:13' }
     isDisposed { false }
     isDiscontinued { false }
     isIntroduceAfterInitialProceedings { false }

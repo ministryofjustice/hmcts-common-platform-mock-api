@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :next_hearing do
     hearing_type
@@ -5,7 +7,7 @@ FactoryBot.define do
     reportingRestrictionReason { 'Random string' }
     adjournmentReason { 'Random string' }
     hearingLanguage { 'WELSH' }
-    listedStartDateTime { "2019-10-15 16:57:50" }
+    listedStartDateTime { '2019-10-15 16:57:50' }
     estimatedMinutes { 1 }
     court_centre
 

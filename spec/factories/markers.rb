@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :marker do
     markerTypeid { SecureRandom.uuid }

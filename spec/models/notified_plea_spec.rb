@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe NotifiedPlea, type: :model do
@@ -6,8 +8,8 @@ RSpec.describe NotifiedPlea, type: :model do
     it { should validate_presence_of(:notifiedPleaDate) }
     it { should validate_presence_of(:notifiedPleaValue) }
     it do
-      should validate_inclusion_of(:notifiedPleaValue).
-        in_array(['NOTIFIED_GUILTY', 'NOTIFIED_NOT_GUILTY', 'NO_NOTIFICATION'])
+      should validate_inclusion_of(:notifiedPleaValue)
+        .in_array(%w[NOTIFIED_GUILTY NOTIFIED_NOT_GUILTY NO_NOTIFICATION])
     end
   end
 

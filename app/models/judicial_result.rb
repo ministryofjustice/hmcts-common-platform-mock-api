@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JudicialResult < ApplicationRecord
   belongs_to :court_clerk, class_name: 'DelegatedPowers', optional: true
   belongs_to :delegated_powers, optional: true
@@ -8,7 +10,6 @@ class JudicialResult < ApplicationRecord
   has_many :user_groups
   has_many :judicial_result_prompts
 
-
   validates :orderedHearingId, presence: true
   validates :label, presence: true
   validates :isAdjournmentResult, inclusion: [true, false]
@@ -16,7 +17,7 @@ class JudicialResult < ApplicationRecord
   validates :isConvictedResult, inclusion: [true, false]
   validates :isAvailableForCourtExtract, inclusion: [true, false]
   validates :orderedDate, presence: true
-  validates :category, presence: true, inclusion: %w(FINAL INTERMEDIARY ANCILLARY)
+  validates :category, presence: true, inclusion: %w[FINAL INTERMEDIARY ANCILLARY]
   validates :resultText, presence: true
   validates :terminatesOffenceProceedings, inclusion: [true, false]
   validates :isLifeDuration, inclusion: [true, false]
@@ -67,13 +68,14 @@ class JudicialResult < ApplicationRecord
   end
 
   private
-    def judicial_result_prompts_builder
-      judicial_result_prompts.map do |judicial_result_prompt|
-        judicial_result_prompt.to_builder.attributes!
-      end
-    end
 
-    def user_groups_builder
-      user_groups.map(&:group)
+  def judicial_result_prompts_builder
+    judicial_result_prompts.map do |judicial_result_prompt|
+      judicial_result_prompt.to_builder.attributes!
     end
+  end
+
+  def user_groups_builder
+    user_groups.map(&:group)
+  end
 end

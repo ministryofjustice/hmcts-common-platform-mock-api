@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe MergedProsecutionCase, type: :model do
@@ -28,7 +30,6 @@ RSpec.describe MergedProsecutionCase, type: :model do
         it { should be_valid }
       end
     end
-
   end
 
   it 'matches the given schema' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
@@ -33,7 +35,7 @@ RSpec.describe JudicialResult, type: :model do
     it { should validate_inclusion_of(:isAlwaysPublished).in_array([true, false]) }
     it { should validate_inclusion_of(:isUrgent).in_array([true, false]) }
     it { should validate_inclusion_of(:isD20).in_array([true, false]) }
-    it { should validate_inclusion_of(:category).in_array(['FINAL', 'INTERMEDIARY', 'ANCILLARY']) }
+    it { should validate_inclusion_of(:category).in_array(%w[FINAL INTERMEDIARY ANCILLARY]) }
   end
 
   it_has_behaviour 'conforming to valid schema'

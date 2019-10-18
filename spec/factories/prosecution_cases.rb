@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :prosecution_case do
     prosecution_case_identifier
@@ -12,7 +14,7 @@ FactoryBot.define do
     merged_prosecution_case { nil }
 
     after(:build) do |prosecution_case|
-        prosecution_case.defendants << FactoryBot.build(:defendant, prosecution_case: nil)
+      prosecution_case.defendants << FactoryBot.build(:defendant, prosecution_case: nil)
     end
   end
 end

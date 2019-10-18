@@ -1,5 +1,6 @@
-class NextHearingOffence < ApplicationRecord
+# frozen_string_literal: true
 
+class NextHearingOffence < ApplicationRecord
   belongs_to :next_hearing_defendant, optional: true, inverse_of: :next_hearing_offences
 
   def to_builder

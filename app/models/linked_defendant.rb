@@ -7,6 +7,5 @@ class LinkedDefendant < ApplicationRecord
       linked_defendant.prosecutionCaseId prosecutionCaseId
       linked_defendant.defendantId defendantId
     end
-
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_153117) do
+ActiveRecord::Schema.define(version: 2019_10_17_154807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -301,6 +301,21 @@ ActiveRecord::Schema.define(version: 2019_10_17_153117) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "merged_prosecution_case_targets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecutionCaseId"
+    t.string "prosecutionCaseReference"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "merged_prosecution_case_id"
+    t.index ["merged_prosecution_case_id"], name: "index_merged_prosecution_case_targets_on_case_id"
+  end
+
+  create_table "merged_prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "prosecutionCaseReference"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "next_hearing_court_applications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -547,6 +562,7 @@ ActiveRecord::Schema.define(version: 2019_10_17_153117) do
   add_foreign_key "judicial_roles", "next_hearings"
   add_foreign_key "laa_references", "offences"
   add_foreign_key "legal_entity_defendants", "organisations"
+  add_foreign_key "merged_prosecution_case_targets", "merged_prosecution_cases"
   add_foreign_key "next_hearing_court_applications", "next_hearings"
   add_foreign_key "next_hearing_defendants", "next_hearing_prosecution_cases"
   add_foreign_key "next_hearing_offences", "next_hearing_defendants"

@@ -25,6 +25,8 @@ RSpec.configure do |config|
   config.json_schemas[:legal_entity_defendant] = 'spec/support/schemas/legalEntityDefendant.json'
   config.json_schemas[:marker] = 'spec/support/schemas/marker.json'
   config.json_schemas[:linked_defendant] = 'spec/support/schemas/linkedDefendant.json'
+  config.json_schemas[:merged_prosecution_case] = 'spec/support/schemas/mergedProsecutionCase.json'
+  config.json_schemas[:merged_prosecution_case_target] = 'spec/support/schemas/mergedProsecutionCaseTarget.json'
   config.json_schemas[:offence_facts] = 'spec/support/schemas/offenceFacts.json'
   config.json_schemas[:organisation] = 'spec/support/schemas/organisation.json'
   config.json_schemas[:verdict] = 'spec/support/schemas/verdict.json'

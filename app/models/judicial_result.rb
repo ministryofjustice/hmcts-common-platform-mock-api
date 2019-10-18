@@ -62,7 +62,7 @@ class JudicialResult < ApplicationRecord
       judicial_result.category category
       judicial_result.nextHearing next_hearing.to_builder if next_hearing.present?
       judicial_result.durationElement duration_element.to_builder if duration_element.present?
-      judicial_result.judicialResultPrompts Jbuilder.new.array! judicial_result_prompts_builder
+      judicial_result.judicialResultPrompts Jbuilder.new.array! judicial_result_prompts_builder if judicial_result_prompts.present?
     end
   end
 

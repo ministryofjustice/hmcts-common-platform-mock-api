@@ -1,4 +1,5 @@
 # set up schema matchers
+# rubocop:disable Metrics/BlockLength
 RSpec.configure do |config|
   config.include JSON::SchemaMatchers
   config.json_schemas[:address] = 'spec/support/schemas/address.json'
@@ -6,6 +7,7 @@ RSpec.configure do |config|
   config.json_schemas[:bail_status] = 'spec/support/schemas/bailStatus.json'
   config.json_schemas[:contact_number] = 'spec/support/schemas/contactNumber.json'
   config.json_schemas[:custody_time_limit] = 'spec/support/schemas/custodyTimeLimit.json'
+  config.json_schemas[:defendant] = 'spec/support/schemas/defendant.json'
   config.json_schemas[:defendant_alias] = 'spec/support/schemas/defendantAlias.json'
   config.json_schemas[:ethnicity] = 'spec/support/schemas/ethnicity.json'
   config.json_schemas[:indicated_plea] = 'spec/support/schemas/indicatedPlea.json'
@@ -44,3 +46,4 @@ RSpec.configure do |config|
   config.json_schemas[:judicial_result] = 'spec/support/schemas/judicialResult.json'
   config.json_schemas[:associated_defence_organisation] = 'spec/support/schemas/associatedDefenceOrganisation.json'
 end
+# rubocop:enable Metrics/BlockLength

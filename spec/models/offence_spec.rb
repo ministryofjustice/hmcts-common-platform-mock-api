@@ -9,6 +9,7 @@ RSpec.describe Offence, type: :model do
     it { should belong_to(:verdict).class_name('Verdict').optional }
     it { should belong_to(:offence_facts).class_name('OffenceFacts').optional }
     it { should belong_to(:custody_time_limit).class_name('CustodyTimeLimit').optional }
+    it { should belong_to(:defendant).class_name('Defendant').optional }
     it { should have_many(:victims).class_name('Person') }
     it { should have_many(:judicial_results).class_name('JudicialResult') }
     it { should have_many(:laa_references).class_name('LaaReference') }
@@ -33,7 +34,7 @@ RSpec.describe Offence, type: :model do
     context 'with relationships' do
       before do
         offence.victims << FactoryBot.create(:person)
-        offence.judicial_results << FactoryBot.create(:judicial_result_with_prompt)
+        offence.judicial_results << FactoryBot.create(:judicial_result)
         offence.laa_references << FactoryBot.create(:laa_reference)
         offence.save!
       end

@@ -6,6 +6,7 @@ class Offence < ApplicationRecord
   belongs_to :verdict, optional: true
   belongs_to :offence_facts, optional: true
   belongs_to :custody_time_limit, optional: true
+  belongs_to :defendant, optional: true
 
   has_many :victims, class_name: 'Person'
   has_many :judicial_results

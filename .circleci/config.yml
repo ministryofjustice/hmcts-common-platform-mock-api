@@ -58,6 +58,10 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
+      - run:
+          name: run rubocop
+          command: bundle exec rubocop
+
   install_on_cluster:
     executor: aws-eks/python
     steps:

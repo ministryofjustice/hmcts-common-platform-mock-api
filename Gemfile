@@ -34,6 +34,7 @@ group :development, :test do
   gem 'webmock'
   gem 'sinatra'
   gem 'pry-rails'
+  gem 'rubocop', require: false
 end
 
 group :development do

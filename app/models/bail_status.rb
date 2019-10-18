@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BailStatus < ApplicationRecord
   belongs_to :custody_time_limit, optional: true
 
@@ -11,6 +13,5 @@ class BailStatus < ApplicationRecord
       bail_status.description description
       bail_status.custodyTimeLimit custody_time_limit.to_builder if custody_time_limit.present?
     end
-
   end
 end

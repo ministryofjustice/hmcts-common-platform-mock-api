@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DefendantAlias < ApplicationRecord
-  TITLES = %w(MR MRS MISS MS)
+  TITLES = %w[MR MRS MISS MS].freeze
 
   validates :title, inclusion: TITLES
 

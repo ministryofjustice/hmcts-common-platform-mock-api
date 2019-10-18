@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContactNumber < ApplicationRecord
   def to_builder
     Jbuilder.new do |contact_number|

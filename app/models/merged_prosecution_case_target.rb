@@ -1,5 +1,6 @@
-class MergedProsecutionCaseTarget < ApplicationRecord
+# frozen_string_literal: true
 
+class MergedProsecutionCaseTarget < ApplicationRecord
   validates :prosecutionCaseId, presence: true
   validates :prosecutionCaseReference, presence: true
 

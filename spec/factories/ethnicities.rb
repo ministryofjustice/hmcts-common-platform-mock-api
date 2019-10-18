@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :ethnicity do
     observedEthnicityId { '785ed93c-afbd-45a5-9dbb-e7d0e2206fcf' }

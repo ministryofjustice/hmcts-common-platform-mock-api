@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProsecutionCase < ApplicationRecord
   INITIATION_CODES = %w[J Q S C R O Z].freeze
   CASE_STATUSES = %w[ACTIVE INACTIVE].freeze

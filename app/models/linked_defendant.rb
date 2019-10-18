@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LinkedDefendant < ApplicationRecord
   validates :prosecutionCaseId, presence: true
   validates :defendantId, presence: true

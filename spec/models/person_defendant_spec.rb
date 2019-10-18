@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe PersonDefendant, type: :model do
@@ -9,8 +11,8 @@ RSpec.describe PersonDefendant, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:person) }
     it do
-      should validate_inclusion_of(:driverLicenceCode).
-        in_array(['FULL', 'PROVISIONAL'])
+      should validate_inclusion_of(:driverLicenceCode)
+        .in_array(%w[FULL PROVISIONAL])
     end
   end
 

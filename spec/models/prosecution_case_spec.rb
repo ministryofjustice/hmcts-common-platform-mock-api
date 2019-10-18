@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
@@ -30,7 +32,7 @@ RSpec.describe ProsecutionCase, type: :model do
 
     it do
       should validate_inclusion_of(:caseStatus)
-        .in_array(['ACTIVE', 'INACTIVE'])
+        .in_array(%w[ACTIVE INACTIVE])
     end
   end
 

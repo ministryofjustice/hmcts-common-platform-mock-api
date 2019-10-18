@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CourtCentre < ApplicationRecord
   belongs_to :address, optional: true
 

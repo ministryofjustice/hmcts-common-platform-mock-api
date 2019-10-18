@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class IndicatedPlea < ApplicationRecord
-  VALUES = %w(INDICATED_GUILTY INDICATED_NOT_GUILTY NO_INDICATION)
-  SOURCES = %w(ONLINE IN_COURT)
+  VALUES = %w[INDICATED_GUILTY INDICATED_NOT_GUILTY NO_INDICATION].freeze
+  SOURCES = %w[ONLINE IN_COURT].freeze
 
   validates :offenceId, presence: true
   validates :indicatedPleaDate, presence: true

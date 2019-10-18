@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Plea, type: :model do
@@ -6,8 +8,8 @@ RSpec.describe Plea, type: :model do
   it { should validate_presence_of(:pleaDate) }
   it { should validate_presence_of(:pleaValue) }
   it do
-    should validate_inclusion_of(:pleaValue).
-      in_array(['GUILTY', 'NOT_GUILTY'])
+    should validate_inclusion_of(:pleaValue)
+      .in_array(%w[GUILTY NOT_GUILTY])
   end
 
   it { should belong_to(:delegated_powers).class_name('DelegatedPowers').optional }

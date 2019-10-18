@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DelegatedPowers < ApplicationRecord
   validates :userId, presence: true
   validates :firstName, presence: true

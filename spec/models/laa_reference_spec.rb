@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LaaReference, type: :model do
   describe 'validations' do
-
     it { should validate_presence_of(:applicationReference) }
     it { should validate_presence_of(:statusId) }
     it { should validate_presence_of(:statusCode) }

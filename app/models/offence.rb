@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Offence < ApplicationRecord
   belongs_to :notified_plea, optional: true
   belongs_to :indicated_plea, optional: true
@@ -58,21 +60,22 @@ class Offence < ApplicationRecord
   end
 
   private
-    def victims_builder
-      victims.map do |victim|
-        victim.to_builder.attributes!
-      end
-    end
 
-    def judicial_results_builder
-      judicial_results.map do |judicial_result|
-        judicial_result.to_builder.attributes!
-      end
+  def victims_builder
+    victims.map do |victim|
+      victim.to_builder.attributes!
     end
+  end
 
-    def laa_references_builder
-      laa_references.map do |laa_reference|
-        laa_reference.to_builder.attributes!
-      end
+  def judicial_results_builder
+    judicial_results.map do |judicial_result|
+      judicial_result.to_builder.attributes!
     end
+  end
+
+  def laa_references_builder
+    laa_references.map do |laa_reference|
+      laa_reference.to_builder.attributes!
+    end
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe JudicialRoleType, type: :model do
@@ -8,5 +10,4 @@ RSpec.describe JudicialRoleType, type: :model do
   it 'matches the given schema' do
     expect(judicial_role_type.to_builder.target!).to match_json_schema(:judicial_role_type)
   end
-
 end

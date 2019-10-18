@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ethnicity < ApplicationRecord
   has_one :person
 

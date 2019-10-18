@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Plea < ApplicationRecord
-  VALUES = %w(GUILTY NOT_GUILTY)
+  VALUES = %w[GUILTY NOT_GUILTY].freeze
 
   belongs_to :delegated_powers, optional: true
 

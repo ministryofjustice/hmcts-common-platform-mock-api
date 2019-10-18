@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProsecutionCaseIdentifier < ApplicationRecord
   validates :prosecutionAuthorityId, presence: true
   validates :prosecutionAuthorityCode, presence: true

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class NotifiedPlea < ApplicationRecord
-  VALUES = %w(NOTIFIED_GUILTY NOTIFIED_NOT_GUILTY NO_NOTIFICATION)
+  VALUES = %w[NOTIFIED_GUILTY NOTIFIED_NOT_GUILTY NO_NOTIFICATION].freeze
 
   validates :offenceId, presence: true
   validates :notifiedPleaDate, presence: true

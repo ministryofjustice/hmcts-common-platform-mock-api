@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class PersonDefendant < ApplicationRecord
   belongs_to :person
   belongs_to :bail_status, optional: true
   belongs_to :employer_organisation, class_name: 'Organisation', optional: true
 
   validates :person, presence: true
-  validates :driverLicenceCode, inclusion: %w(FULL PROVISIONAL)
+  validates :driverLicenceCode, inclusion: %w[FULL PROVISIONAL]
 
   def to_builder
     Jbuilder.new do |person_defendant|

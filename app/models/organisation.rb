@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Organisation < ApplicationRecord
   belongs_to :address, optional: true
   belongs_to :contact, class_name: 'ContactNumber', optional: true

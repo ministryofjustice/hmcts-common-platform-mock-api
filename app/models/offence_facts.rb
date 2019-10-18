@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OffenceFacts < ApplicationRecord
-  VEHICLE_CODES = %w(LARGE_GOODS_VEHICLE PASSENGER_CARRYING_VEHICLE OTHER)
+  VEHICLE_CODES = %w[LARGE_GOODS_VEHICLE PASSENGER_CARRYING_VEHICLE OTHER].freeze
 
   validates :vehicleCode, inclusion: VEHICLE_CODES
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Defendant < ApplicationRecord
   belongs_to :defendable, polymorphic: true
   belongs_to :prosecution_case, optional: true, inverse_of: :defendants

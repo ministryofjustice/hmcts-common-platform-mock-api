@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PoliceOfficerInCase < ApplicationRecord
   belongs_to :person
   validates :person, presence: true

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Verdict < ApplicationRecord
   belongs_to :verdict_type
   belongs_to :jurors, optional: true
@@ -15,6 +17,5 @@ class Verdict < ApplicationRecord
       verdict.verdictDate verdictDate.to_date
       verdict.verdictType verdict_type.to_builder
     end
-    
   end
 end

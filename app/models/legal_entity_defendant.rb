@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LegalEntityDefendant < ApplicationRecord
   belongs_to :organisation
   validates :organisation, presence: true
@@ -6,6 +8,5 @@ class LegalEntityDefendant < ApplicationRecord
     Jbuilder.new do |legal_entity_defendant|
       legal_entity_defendant.organisation organisation.to_builder
     end
-
   end
 end

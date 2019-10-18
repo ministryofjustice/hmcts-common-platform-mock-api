@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_112948) do
+ActiveRecord::Schema.define(version: 2019_10_17_131950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -192,11 +192,13 @@ ActiveRecord::Schema.define(version: 2019_10_17_112948) do
     t.uuid "duration_element_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "offence_id"
     t.index ["court_clerk_id"], name: "index_judicial_results_on_court_clerk_id"
     t.index ["delegated_powers_id"], name: "index_judicial_results_on_delegated_powers_id"
     t.index ["duration_element_id"], name: "index_judicial_results_on_duration_element_id"
     t.index ["four_eyes_approval_id"], name: "index_judicial_results_on_four_eyes_approval_id"
     t.index ["next_hearing_id"], name: "index_judicial_results_on_next_hearing_id"
+    t.index ["offence_id"], name: "index_judicial_results_on_offence_id"
   end
 
   create_table "judicial_role_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -240,6 +242,8 @@ ActiveRecord::Schema.define(version: 2019_10_17_112948) do
     t.datetime "effectiveEndDate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "offence_id"
+    t.index ["offence_id"], name: "index_laa_references_on_offence_id"
   end
 
   create_table "lesser_or_alternative_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -314,6 +318,48 @@ ActiveRecord::Schema.define(version: 2019_10_17_112948) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "offenceDefinitionId"
+    t.string "offenceCode"
+    t.string "offenceTitle"
+    t.string "offenceTitleWelsh"
+    t.string "offenceLegislation"
+    t.string "offenceLegislationWelsh"
+    t.string "modeOfTrial"
+    t.string "wording"
+    t.string "wordingWelsh"
+    t.datetime "startDate"
+    t.datetime "endDate"
+    t.datetime "arrestDate"
+    t.datetime "chargeDate"
+    t.datetime "dateOfInformation"
+    t.integer "orderIndex"
+    t.integer "count"
+    t.datetime "convictionDate"
+    t.uuid "notified_plea_id"
+    t.uuid "indicated_plea_id"
+    t.uuid "allocation_decision_id"
+    t.uuid "plea_id"
+    t.uuid "verdict_id"
+    t.uuid "offence_facts_id"
+    t.datetime "aquittalDate"
+    t.boolean "isDisposed"
+    t.boolean "isDiscontinued"
+    t.boolean "isIntroduceAfterInitialProceedings"
+    t.uuid "custody_time_limit_id"
+    t.string "splitProsecutorCaseReference"
+    t.string "mergedProsecutionCaseReference"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["allocation_decision_id"], name: "index_offences_on_allocation_decision_id"
+    t.index ["custody_time_limit_id"], name: "index_offences_on_custody_time_limit_id"
+    t.index ["indicated_plea_id"], name: "index_offences_on_indicated_plea_id"
+    t.index ["notified_plea_id"], name: "index_offences_on_notified_plea_id"
+    t.index ["offence_facts_id"], name: "index_offences_on_offence_facts_id"
+    t.index ["plea_id"], name: "index_offences_on_plea_id"
+    t.index ["verdict_id"], name: "index_offences_on_verdict_id"
+  end
+
   create_table "organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "incorporationNumber"
@@ -351,9 +397,11 @@ ActiveRecord::Schema.define(version: 2019_10_17_112948) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "address_id"
     t.uuid "contact_number_id"
+    t.uuid "offence_id"
     t.index ["address_id"], name: "index_people_on_address_id"
     t.index ["contact_number_id"], name: "index_people_on_contact_number_id"
     t.index ["ethnicity_id"], name: "index_people_on_ethnicity_id"
+    t.index ["offence_id"], name: "index_people_on_offence_id"
   end
 
   create_table "pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -428,19 +476,29 @@ ActiveRecord::Schema.define(version: 2019_10_17_112948) do
   add_foreign_key "judicial_results", "delegated_powers", column: "four_eyes_approval_id"
   add_foreign_key "judicial_results", "judicial_result_prompt_duration_elements", column: "duration_element_id"
   add_foreign_key "judicial_results", "next_hearings"
+  add_foreign_key "judicial_results", "offences"
   add_foreign_key "judicial_roles", "judicial_role_types"
   add_foreign_key "judicial_roles", "next_hearings"
+  add_foreign_key "laa_references", "offences"
   add_foreign_key "next_hearing_court_applications", "next_hearings"
   add_foreign_key "next_hearing_defendants", "next_hearing_prosecution_cases"
   add_foreign_key "next_hearing_offences", "next_hearing_defendants"
   add_foreign_key "next_hearing_prosecution_cases", "next_hearings"
   add_foreign_key "next_hearings", "court_centres"
   add_foreign_key "next_hearings", "hearing_types"
+  add_foreign_key "offences", "allocation_decisions"
+  add_foreign_key "offences", "custody_time_limits"
+  add_foreign_key "offences", "indicated_pleas"
+  add_foreign_key "offences", "notified_pleas"
+  add_foreign_key "offences", "offence_facts", column: "offence_facts_id"
+  add_foreign_key "offences", "pleas"
+  add_foreign_key "offences", "verdicts"
   add_foreign_key "organisations", "addresses"
   add_foreign_key "organisations", "contact_numbers", column: "contact_id"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "contact_numbers"
   add_foreign_key "people", "ethnicities"
+  add_foreign_key "people", "offences"
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "police_officer_in_cases", "people"
   add_foreign_key "user_groups", "judicial_result_prompts"

@@ -33,5 +33,10 @@ FactoryBot.define do
     category { 'INTERMEDIARY' }
     next_hearing { nil }
     duration_element { nil }
+    factory :judicial_result_with_prompt do
+        after(:build) do |judicial_result|
+            judicial_result.judicial_result_prompts << FactoryBot.build(:judicial_result_prompt, judicial_result: nil)
+        end
+    end
   end
 end

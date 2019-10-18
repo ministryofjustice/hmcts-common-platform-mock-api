@@ -54,14 +54,14 @@ class JudicialResult < ApplicationRecord
       judicial_result.isAlwaysPublished isAlwaysPublished
       judicial_result.isUrgent isUrgent
       judicial_result.isD20 isD20
-      judicial_result.courtClerk court_clerk.to_builder
-      judicial_result.delegatedPowers delegated_powers.to_builder
-      judicial_result.fourEyesApproval four_eyes_approval.to_builder
+      judicial_result.courtClerk court_clerk.to_builder if court_clerk.present?
+      judicial_result.delegatedPowers delegated_powers.to_builder if delegated_powers.present?
+      judicial_result.fourEyesApproval four_eyes_approval.to_builder if four_eyes_approval.present?
       judicial_result.approvedDate approvedDate.to_date
       judicial_result.usergroups Jbuilder.new.array! user_groups_builder
       judicial_result.category category
-      judicial_result.nextHearing next_hearing.to_builder
-      judicial_result.durationElement duration_element.to_builder
+      judicial_result.nextHearing next_hearing.to_builder if next_hearing.present?
+      judicial_result.durationElement duration_element.to_builder if duration_element.present?
       judicial_result.judicialResultPrompts Jbuilder.new.array! judicial_result_prompts_builder
     end
   end

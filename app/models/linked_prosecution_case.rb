@@ -1,0 +1,2 @@
+class LinkedProsecutionCase < ApplicationRecord
+end

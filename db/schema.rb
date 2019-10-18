@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_113358) do
+ActiveRecord::Schema.define(version: 2019_10_18_152420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -143,7 +143,9 @@ ActiveRecord::Schema.define(version: 2019_10_18_113358) do
     t.string "mergedProsecutionCaseReference"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "prosecution_case_id"
     t.index ["defendable_type", "defendable_id"], name: "index_defendants_on_defendable_type_and_defendable_id"
+    t.index ["prosecution_case_id"], name: "index_defendants_on_prosecution_case_id"
   end
 
   create_table "delegated_powers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -332,6 +334,13 @@ ActiveRecord::Schema.define(version: 2019_10_18_113358) do
     t.index ["defendant_id"], name: "index_linked_defendants_on_defendant_id"
   end
 
+  create_table "linked_prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "prosecution_case_id"
+    t.index ["prosecution_case_id"], name: "index_linked_prosecution_cases_on_prosecution_case_id"
+  end
+
   create_table "markers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "markerTypeid"
     t.string "sequenceNumber"
@@ -342,7 +351,9 @@ ActiveRecord::Schema.define(version: 2019_10_18_113358) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "defendant_id"
+    t.uuid "prosecution_case_id"
     t.index ["defendant_id"], name: "index_markers_on_defendant_id"
+    t.index ["prosecution_case_id"], name: "index_markers_on_prosecution_case_id"
   end
 
   create_table "merged_prosecution_case_targets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -560,12 +571,32 @@ ActiveRecord::Schema.define(version: 2019_10_18_113358) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecution_case_identifier_id", null: false
+    t.string "originatingOrganisation"
+    t.string "initiationCode"
+    t.string "caseStatus"
+    t.uuid "police_officer_in_case_id"
+    t.string "statementOfFacts"
+    t.string "statementOfFactsWelsh"
+    t.boolean "breachProceedingsPending"
+    t.boolean "appealProceedingsPending"
+    t.uuid "merged_prosecution_case_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["merged_prosecution_case_id"], name: "index_prosecution_cases_on_merged_prosecution_case_id"
+    t.index ["police_officer_in_case_id"], name: "index_prosecution_cases_on_police_officer_in_case_id"
+    t.index ["prosecution_case_identifier_id"], name: "index_prosecution_cases_on_prosecution_case_identifier_id"
+  end
+
   create_table "split_prosecutor_case_references", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "split"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "defendant_id"
+    t.uuid "prosecution_case_id"
     t.index ["defendant_id"], name: "index_split_prosecutor_case_references_on_defendant_id"
+    t.index ["prosecution_case_id"], name: "index_split_prosecutor_case_references_on_prosecution_case_id"
   end
 
   create_table "user_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -609,6 +640,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_113358) do
   add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "defendant_aliases", "defendants"
+  add_foreign_key "defendants", "prosecution_cases"
   add_foreign_key "judicial_result_prompts", "judicial_results"
   add_foreign_key "judicial_results", "defendants"
   add_foreign_key "judicial_results", "delegated_powers", column: "court_clerk_id"
@@ -622,7 +654,9 @@ ActiveRecord::Schema.define(version: 2019_10_18_113358) do
   add_foreign_key "laa_references", "offences"
   add_foreign_key "legal_entity_defendants", "organisations"
   add_foreign_key "linked_defendants", "defendants"
+  add_foreign_key "linked_prosecution_cases", "prosecution_cases"
   add_foreign_key "markers", "defendants"
+  add_foreign_key "markers", "prosecution_cases"
   add_foreign_key "merged_prosecution_case_targets", "merged_prosecution_cases"
   add_foreign_key "next_hearing_court_applications", "next_hearings"
   add_foreign_key "next_hearing_defendants", "next_hearing_prosecution_cases"
@@ -649,7 +683,11 @@ ActiveRecord::Schema.define(version: 2019_10_18_113358) do
   add_foreign_key "person_defendants", "people"
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "police_officer_in_cases", "people"
+  add_foreign_key "prosecution_cases", "merged_prosecution_cases"
+  add_foreign_key "prosecution_cases", "police_officer_in_cases"
+  add_foreign_key "prosecution_cases", "prosecution_case_identifiers"
   add_foreign_key "split_prosecutor_case_references", "defendants"
+  add_foreign_key "split_prosecutor_case_references", "prosecution_cases"
   add_foreign_key "user_groups", "judicial_result_prompts"
   add_foreign_key "user_groups", "judicial_results"
   add_foreign_key "verdicts", "jurors", column: "jurors_id"

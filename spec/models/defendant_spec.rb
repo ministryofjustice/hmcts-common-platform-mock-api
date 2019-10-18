@@ -9,6 +9,7 @@ RSpec.describe Defendant, type: :model do
 
   describe 'associations' do
     it { should belong_to(:defendable) }
+    it { should belong_to(:prosecution_case).class_name('ProsecutionCase').optional }
     it { should have_many(:offences).class_name('Offence') }
     it { should have_many(:associated_people).class_name('AssociatedPerson') }
     it { should have_many(:associated_defence_organisations).class_name('AssociatedDefenceOrganisation') }

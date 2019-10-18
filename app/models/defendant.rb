@@ -1,5 +1,6 @@
 class Defendant < ApplicationRecord
   belongs_to :defendable, polymorphic: true
+  belongs_to :prosecution_case, optional: true, inverse_of: :defendants
   has_many :offences
   has_many :associated_people
   has_many :associated_defence_organisations

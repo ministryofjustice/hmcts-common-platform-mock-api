@@ -15,7 +15,6 @@ class AssociatedDefenceOrganisation < ApplicationRecord
       associated_defence_organisation.associationStartDate associationStartDate.to_date
       associated_defence_organisation.associationEndDate associationEndDate.to_date
       associated_defence_organisation.isAssociatedByLAA isAssociatedByLAA
-      associated_defence_organisation.sraNumber sraNumber 
       associated_defence_organisation.laaContractNumber laaContractNumber if sraNumber.blank? && barCouncilMembershipNumber.blank? 
       associated_defence_organisation.sraNumber sraNumber if laaContractNumber.blank? && barCouncilMembershipNumber.blank?
       associated_defence_organisation.barCouncilMembershipNumber barCouncilMembershipNumber if  sraNumber.blank? && laaContractNumber.blank?

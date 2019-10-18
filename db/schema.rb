@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_131950) do
+ActiveRecord::Schema.define(version: 2019_10_17_143858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2019_10_17_131950) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["person_id"], name: "index_associated_people_on_person_id"
+  end
+
+  create_table "bail_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.string "description"
+    t.uuid "custody_time_limit_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["custody_time_limit_id"], name: "index_bail_statuses_on_custody_time_limit_id"
   end
 
   create_table "contact_numbers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -404,6 +413,27 @@ ActiveRecord::Schema.define(version: 2019_10_17_131950) do
     t.index ["offence_id"], name: "index_people_on_offence_id"
   end
 
+  create_table "person_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "person_id", null: false
+    t.uuid "bail_status_id"
+    t.string "bailConditions"
+    t.string "bailReasons"
+    t.datetime "custodyTimeLimit"
+    t.integer "perceivedBirthYear"
+    t.string "driverNumber"
+    t.string "driverLicenceCode"
+    t.string "driverLicenseIssue"
+    t.string "vehicleOperatorLicenceNumber"
+    t.string "arrestSummonsNumber"
+    t.uuid "employer_organisation_id"
+    t.string "employerPayrollReference"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bail_status_id"], name: "index_person_defendants_on_bail_status_id"
+    t.index ["employer_organisation_id"], name: "index_person_defendants_on_employer_organisation_id"
+    t.index ["person_id"], name: "index_person_defendants_on_person_id"
+  end
+
   create_table "pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "originatingHearingId"
     t.uuid "offenceId"
@@ -469,6 +499,7 @@ ActiveRecord::Schema.define(version: 2019_10_17_131950) do
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "associated_people", "people"
+  add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "judicial_result_prompts", "judicial_results"
   add_foreign_key "judicial_results", "delegated_powers", column: "court_clerk_id"
@@ -499,6 +530,9 @@ ActiveRecord::Schema.define(version: 2019_10_17_131950) do
   add_foreign_key "people", "contact_numbers"
   add_foreign_key "people", "ethnicities"
   add_foreign_key "people", "offences"
+  add_foreign_key "person_defendants", "bail_statuses"
+  add_foreign_key "person_defendants", "organisations", column: "employer_organisation_id"
+  add_foreign_key "person_defendants", "people"
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "police_officer_in_cases", "people"
   add_foreign_key "user_groups", "judicial_result_prompts"

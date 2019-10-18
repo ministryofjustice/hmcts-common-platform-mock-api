@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Defendant, type: :model do
   let(:defendant) { FactoryBot.create(:defendant) }
   let(:json_schema) { :defendant }
@@ -18,10 +19,12 @@ RSpec.describe Defendant, type: :model do
     it { should have_many(:linked_defendants).class_name('LinkedDefendant') }
   end
 
-  it { should validate_presence_of(:prosecutionCaseId) }
-  it { should validate_presence_of(:offences) }
-  it { should validate_presence_of(:defendable) }
-  it { should be_valid }
+  describe 'validations' do
+    it { should validate_presence_of(:prosecutionCaseId) }
+    it { should validate_presence_of(:offences) }
+    it { should validate_presence_of(:defendable) }
+    it { should be_valid }
+  end
 
   context 'when only one SplitProsecutorCaseReference exists' do
     before do
@@ -61,3 +64,4 @@ RSpec.describe Defendant, type: :model do
     it_has_behaviour 'conforming to valid schema'
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -26,7 +26,9 @@ class Defendant < ApplicationRecord
       defendant.mitigationWelsh mitigationWelsh
       defendant.offences Jbuilder.new.array! offences_builder
       defendant.associatedPersons Jbuilder.new.array! associated_people_builder if associated_people.present?
-      defendant.associatedDefenceOrganisations Jbuilder.new.array! associated_defence_organisations_builder if associated_defence_organisations.present?
+      if associated_defence_organisations.present?
+        defendant.associatedDefenceOrganisations Jbuilder.new.array! associated_defence_organisations_builder
+      end
       defendant.personDefendant defendable.to_builder if person_defendant?
       defendant.legalEntityDefendant defendable.to_builder if legal_entity_defendant?
       defendant.aliases Jbuilder.new.array! defendant_aliases_builder if defendant_aliases.present?
@@ -34,64 +36,67 @@ class Defendant < ApplicationRecord
       defendant.croNumber croNumber
       defendant.pncId pncId
       defendant.defendantMarkers Jbuilder.new.array! markers_builder if markers.present?
-      defendant.splitProsecutorCaseReferences Jbuilder.new.array! split_prosecutor_case_references_builder if split_prosecutor_case_references.present?
+      if split_prosecutor_case_references.present?
+        defendant.splitProsecutorCaseReferences Jbuilder.new.array! split_prosecutor_case_references_builder
+      end
       defendant.mergedProsecutionCaseReference mergedProsecutionCaseReference
       defendant.linkedDefendants Jbuilder.new.array! linked_defendants_builder if linked_defendants.present?
     end
   end
 
   private
-    def offences_builder
-      offences.map do |offence|
-        offence.to_builder.attributes!
-      end
-    end
 
-    def associated_people_builder
-      associated_people.map do |associated_person|
-        associated_person.to_builder.attributes!
-      end
+  def offences_builder
+    offences.map do |offence|
+      offence.to_builder.attributes!
     end
+  end
 
-    def associated_defence_organisations_builder
-      associated_defence_organisations.map do |associated_defence_organisation|
-        associated_defence_organisation.to_builder.attributes!
-      end
+  def associated_people_builder
+    associated_people.map do |associated_person|
+      associated_person.to_builder.attributes!
     end
+  end
 
-    def defendant_aliases_builder
-      defendant_aliases.map do |defendant_alias|
-        defendant_alias.to_builder.attributes!
-      end
+  def associated_defence_organisations_builder
+    associated_defence_organisations.map do |associated_defence_organisation|
+      associated_defence_organisation.to_builder.attributes!
     end
+  end
 
-    def judicial_results_builder
-      judicial_results.map do |judicial_result|
-        judicial_result.to_builder.attributes!
-      end
+  def defendant_aliases_builder
+    defendant_aliases.map do |defendant_alias|
+      defendant_alias.to_builder.attributes!
     end
+  end
 
-    def markers_builder
-      markers.map do |marker|
-        marker.to_builder.attributes!
-      end
+  def judicial_results_builder
+    judicial_results.map do |judicial_result|
+      judicial_result.to_builder.attributes!
     end
+  end
 
-    def split_prosecutor_case_references_builder
-      split_prosecutor_case_references.map(&:split)
+  def markers_builder
+    markers.map do |marker|
+      marker.to_builder.attributes!
     end
+  end
 
-    def linked_defendants_builder
-      linked_defendants.map do |linked_defendant|
-        linked_defendant.to_builder.attributes!
-      end
-    end
+  def split_prosecutor_case_references_builder
+    split_prosecutor_case_references.map(&:split)
+  end
 
-    def person_defendant?
-      defendable.is_a? PersonDefendant
+  def linked_defendants_builder
+    linked_defendants.map do |linked_defendant|
+      linked_defendant.to_builder.attributes!
     end
+  end
 
-    def legal_entity_defendant?
-      defendable.is_a? LegalEntityDefendant
-    end
+  def person_defendant?
+    defendable.is_a? PersonDefendant
+  end
+
+  def legal_entity_defendant?
+    defendable.is_a? LegalEntityDefendant
+  end
 end

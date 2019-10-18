@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe JudicialResult, type: :model do
+  let(:judicial_result) { FactoryBot.create(:judicial_result) }
+
   describe 'associations' do
     it { should belong_to(:court_clerk).class_name('DelegatedPowers').optional }
     it { should belong_to(:delegated_powers).class_name('DelegatedPowers').optional }
@@ -31,15 +33,19 @@ RSpec.describe JudicialResult, type: :model do
     it { should validate_inclusion_of(:category).in_array(['FINAL', 'INTERMEDIARY', 'ANCILLARY']) }
   end
 
-  context 'hmcts schema' do
-    let(:judicial_result) { FactoryBot.create(:judicial_result_with_prompt) }
 
+  it 'matches the given schema' do
+    expect(judicial_result.to_builder.target!).to match_json_schema(:judicial_result)
+  end
+
+  context 'hmcts schema' do
     before do
       judicial_result.court_clerk = FactoryBot.create(:delegated_powers)
       judicial_result.delegated_powers = FactoryBot.create(:delegated_powers)
       judicial_result.four_eyes_approval = FactoryBot.create(:delegated_powers)
       judicial_result.next_hearing = FactoryBot.create(:next_hearing)
       judicial_result.duration_element = FactoryBot.create(:judicial_result_prompt_duration_element)
+      judicial_result.judicial_result_prompts << FactoryBot.build(:judicial_result_prompt)
       judicial_result.save!
     end
 

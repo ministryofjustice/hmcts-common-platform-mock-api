@@ -1,0 +1,2 @@
+class SplitProsecutorCaseReference < ApplicationRecord
+end

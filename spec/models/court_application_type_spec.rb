@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CourtApplicationType, type: :model do
-
   describe 'validations' do
     it { should validate_presence_of(:applicationCategory) }
     it { should validate_presence_of(:applicationJurisdictionType) }
@@ -10,22 +11,22 @@ RSpec.describe CourtApplicationType, type: :model do
 
     it do
       should validate_inclusion_of(:applicationJurisdictionType)
-        .in_array(%W[MAGISTRATES CROWN EITHER])
+        .in_array(%w[MAGISTRATES CROWN EITHER])
     end
 
     it do
       should validate_inclusion_of(:applicationSummonsRecipientType)
-        .in_array(%W[APPLICANT RESPONDENT])
+        .in_array(%w[APPLICANT RESPONDENT])
     end
 
     it do
       should validate_inclusion_of(:applicationSummonsTemplateType)
-        .in_array(%W[GENERIC_SUMMONS])
+        .in_array(%w[GENERIC_SUMMONS])
     end
 
     it do
       should validate_inclusion_of(:linkType)
-        .in_array(%W[ STANDALONE LINKED NEITHER ])
+        .in_array(%w[STANDALONE LINKED NEITHER])
     end
   end
 

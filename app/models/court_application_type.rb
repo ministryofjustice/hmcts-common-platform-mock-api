@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class CourtApplicationType < ApplicationRecord
-  JURISDICTION_TYPES = %W[MAGISTRATES CROWN EITHER].freeze
-  LINK_TYPES = %W[ STANDALONE LINKED NEITHER ].freeze
-  RECIPIENT_TYPES = %W[APPLICANT RESPONDENT].freeze
-  TEMPLATE_TYPES = %W[GENERIC_SUMMONS].freeze
+  JURISDICTION_TYPES = %w[MAGISTRATES CROWN EITHER].freeze
+  LINK_TYPES = %w[STANDALONE LINKED NEITHER].freeze
+  RECIPIENT_TYPES = %w[APPLICANT RESPONDENT].freeze
+  TEMPLATE_TYPES = %w[GENERIC_SUMMONS].freeze
 
   validates :applicationCategory, presence: true
   validates :applicationJurisdictionType, presence: true, inclusion: JURISDICTION_TYPES
@@ -13,7 +15,6 @@ class CourtApplicationType < ApplicationRecord
 
   def to_builder
     Jbuilder.new do |court_application_type|
-
       court_application_type.id id
       court_application_type.applicantSynonym applicantSynonym
       court_application_type.applicationCategory applicationCategory
@@ -30,7 +31,6 @@ class CourtApplicationType < ApplicationRecord
       court_application_type.isBreachApplication isBreachApplication
       court_application_type.linkType linkType
       court_application_type.respondentSynonym respondentSynonym
-
     end
   end
 end

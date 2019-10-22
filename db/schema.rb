@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_152420) do
+ActiveRecord::Schema.define(version: 2019_10_22_092547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -86,6 +86,26 @@ ActiveRecord::Schema.define(version: 2019_10_18_152420) do
     t.string "primaryEmail"
     t.string "secondaryEmail"
     t.string "fax"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "court_application_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "applicationCode"
+    t.string "applicationType"
+    t.string "applicationTypeWelsh"
+    t.string "applicationLegislation"
+    t.string "applicationLegislationWelsh"
+    t.string "applicationCategory"
+    t.boolean "isAppealApplication"
+    t.boolean "isBreachApplication"
+    t.boolean "isApplicationToRecordCourtOfAppealDecision"
+    t.string "linkType"
+    t.string "applicantSynonym"
+    t.string "respondentSynonym"
+    t.string "applicationJurisdictionType"
+    t.string "applicationSummonsRecipientType"
+    t.string "applicationSummonsTemplateType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

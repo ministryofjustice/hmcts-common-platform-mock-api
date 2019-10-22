@@ -50,6 +50,7 @@ RSpec.configure do |config|
   config.json_schemas[:judicial_result_prompt] = 'spec/support/schemas/global/judicialResultPrompt.json'
   config.json_schemas[:judicial_result] = 'spec/support/schemas/global/judicialResult.json'
   config.json_schemas[:associated_defence_organisation] = 'spec/support/schemas/global/associatedDefenceOrganisation.json'
+  config.json_schemas[:court_application_type] = 'spec/support/schemas/global/courtApplicationType.json'
 
   # Search
   config.json_schemas[:prosecution_case_summary] = 'spec/support/schemas/global/search/prosecutionCaseSummary.json'

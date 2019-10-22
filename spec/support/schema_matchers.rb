@@ -53,6 +53,7 @@ RSpec.configure do |config|
   config.json_schemas[:verdict_type] = 'spec/support/schemas/global/verdictType.json'
 
   # Search
+  config.json_schemas[:offence_summary] = 'spec/support/schemas/global/search/offenceSummary.json'
   config.json_schemas[:prosecution_case_summary] = 'spec/support/schemas/global/search/prosecutionCaseSummary.json'
 
   # Responses

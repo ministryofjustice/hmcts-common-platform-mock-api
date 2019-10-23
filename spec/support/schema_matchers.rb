@@ -12,6 +12,7 @@ RSpec.configure do |config|
   config.json_schemas[:associated_person] = 'spec/support/schemas/global/associatedPerson.json'
   config.json_schemas[:bail_status] = 'spec/support/schemas/global/bailStatus.json'
   config.json_schemas[:contact_number] = 'spec/support/schemas/global/contactNumber.json'
+  config.json_schemas[:court_application_payment] = 'spec/support/schemas/global/courtApplicationPayment.json'
   config.json_schemas[:court_application_type] = 'spec/support/schemas/global/courtApplicationType.json'
   config.json_schemas[:court_centre] = 'spec/support/schemas/global/courtCentre.json'
   config.json_schemas[:court_indicated_sentence] = 'spec/support/schemas/global/courtIndicatedSentence.json'

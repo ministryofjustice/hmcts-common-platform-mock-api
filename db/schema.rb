@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_084306) do
+ActiveRecord::Schema.define(version: 2019_10_23_085246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -582,6 +582,19 @@ ActiveRecord::Schema.define(version: 2019_10_23_084306) do
     t.index ["person_id"], name: "index_police_officer_in_cases_on_person_id"
   end
 
+  create_table "prosecuting_authorities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecutionAuthorityId"
+    t.string "prosecutionAuthorityCode"
+    t.string "name"
+    t.string "accountCode"
+    t.uuid "address_id"
+    t.uuid "contact_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["address_id"], name: "index_prosecuting_authorities_on_address_id"
+    t.index ["contact_id"], name: "index_prosecuting_authorities_on_contact_id"
+  end
+
   create_table "prosecution_case_identifiers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "caseURN"
     t.string "prosecutionAuthorityReference"
@@ -710,6 +723,8 @@ ActiveRecord::Schema.define(version: 2019_10_23_084306) do
   add_foreign_key "person_defendants", "people"
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "police_officer_in_cases", "people"
+  add_foreign_key "prosecuting_authorities", "addresses"
+  add_foreign_key "prosecuting_authorities", "contact_numbers", column: "contact_id"
   add_foreign_key "prosecution_cases", "merged_prosecution_cases"
   add_foreign_key "prosecution_cases", "police_officer_in_cases"
   add_foreign_key "prosecution_cases", "prosecution_case_identifiers"

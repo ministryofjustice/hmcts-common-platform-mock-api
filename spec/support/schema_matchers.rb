@@ -23,6 +23,7 @@ RSpec.configure do |config|
   config.json_schemas[:defendant_alias] = 'spec/support/schemas/global/defendantAlias.json'
   config.json_schemas[:delegated_powers] = 'spec/support/schemas/global/delegatedPowers.json'
   config.json_schemas[:ethnicity] = 'spec/support/schemas/global/ethnicity.json'
+  config.json_schemas[:hearing_case_note] = 'spec/support/schemas/global/hearingCaseNote.json'
   config.json_schemas[:hearing_type] = 'spec/support/schemas/global/hearingType.json'
   config.json_schemas[:indicated_plea] = 'spec/support/schemas/global/indicatedPlea.json'
   config.json_schemas[:judicial_result] = 'spec/support/schemas/global/judicialResult.json'

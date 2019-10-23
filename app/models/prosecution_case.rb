@@ -12,6 +12,8 @@ class ProsecutionCase < ApplicationRecord
   has_many :markers
   has_many :split_prosecutor_case_references
   has_many :linked_prosecution_cases
+  has_many :prosecution_case_hearing_case_notes
+  has_many :hearing_case_notes, through: :prosecution_case_hearing_case_notes
 
   validates :prosecution_case_identifier, presence: true
   validates :initiationCode, presence: true, inclusion: INITIATION_CODES

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 # set up schema matchers
+
+# rubocop:disable Metrics/BlockLength
 RSpec.configure do |config|
   config.include JSON::SchemaMatchers
 

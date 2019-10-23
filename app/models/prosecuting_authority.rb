@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class ProsecutingAuthority < ApplicationRecord
   belongs_to :address, optional: true
   belongs_to :contact, class_name: 'ContactNumber', optional: true
-
 
   validates :prosecutionAuthorityCode, presence: true
 
@@ -16,4 +17,3 @@ class ProsecutingAuthority < ApplicationRecord
     end
   end
 end
-

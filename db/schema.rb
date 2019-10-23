@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_130111) do
+ActiveRecord::Schema.define(version: 2019_10_23_143956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -201,6 +201,17 @@ ActiveRecord::Schema.define(version: 2019_10_23_130111) do
     t.string "selfDefinedEthnicityDescription"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "hearing_case_notes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "originatingHearingId"
+    t.uuid "court_clerk_id", null: false
+    t.datetime "noteDateTime"
+    t.string "noteType"
+    t.string "note"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_clerk_id"], name: "index_hearing_case_notes_on_court_clerk_id"
   end
 
   create_table "hearing_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -611,6 +622,15 @@ ActiveRecord::Schema.define(version: 2019_10_23_130111) do
     t.index ["contact_id"], name: "index_prosecuting_authorities_on_contact_id"
   end
 
+  create_table "prosecution_case_hearing_case_notes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecution_case_id", null: false
+    t.uuid "hearing_case_note_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hearing_case_note_id"], name: "prosecution_case_hearing_case_notes_on_hearing_case_note_id"
+    t.index ["prosecution_case_id"], name: "prosecution_case_hearing_case_notes_on_prosecution_case_id"
+  end
+
   create_table "prosecution_case_identifiers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "caseURN"
     t.string "prosecutionAuthorityReference"
@@ -697,6 +717,7 @@ ActiveRecord::Schema.define(version: 2019_10_23_130111) do
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "defendant_aliases", "defendants"
   add_foreign_key "defendants", "prosecution_cases"
+  add_foreign_key "hearing_case_notes", "delegated_powers", column: "court_clerk_id"
   add_foreign_key "judicial_result_prompts", "judicial_results"
   add_foreign_key "judicial_results", "defendants"
   add_foreign_key "judicial_results", "delegated_powers", column: "court_clerk_id"
@@ -741,6 +762,8 @@ ActiveRecord::Schema.define(version: 2019_10_23_130111) do
   add_foreign_key "police_officer_in_cases", "people"
   add_foreign_key "prosecuting_authorities", "addresses"
   add_foreign_key "prosecuting_authorities", "contact_numbers", column: "contact_id"
+  add_foreign_key "prosecution_case_hearing_case_notes", "hearing_case_notes"
+  add_foreign_key "prosecution_case_hearing_case_notes", "prosecution_cases"
   add_foreign_key "prosecution_cases", "merged_prosecution_cases"
   add_foreign_key "prosecution_cases", "police_officer_in_cases"
   add_foreign_key "prosecution_cases", "prosecution_case_identifiers"

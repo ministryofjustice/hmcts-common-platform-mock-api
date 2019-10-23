@@ -6,6 +6,5 @@ FactoryBot.define do
     prosecutionAuthorityCode { 'MyString' }
     name { 'MyString' }
     accountCode { 'MyString' }
-    address
   end
 end

@@ -49,6 +49,7 @@ RSpec.configure do |config|
   config.json_schemas[:police_officer_in_case] = 'spec/support/schemas/global/policeOfficerInCase.json'
   config.json_schemas[:prosecution_case] = 'spec/support/schemas/global/prosecutionCase.json'
   config.json_schemas[:prosecution_case_identifier] = 'spec/support/schemas/global/prosecutionCaseIdentifier.json'
+  config.json_schemas[:referral_reason] = 'spec/support/schemas/global/referralReason.json'
   config.json_schemas[:verdict] = 'spec/support/schemas/global/verdict.json'
   config.json_schemas[:verdict_type] = 'spec/support/schemas/global/verdictType.json'
 

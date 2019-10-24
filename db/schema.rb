@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_141222) do
+ActiveRecord::Schema.define(version: 2019_10_24_142102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -97,8 +97,10 @@ ActiveRecord::Schema.define(version: 2019_10_24_141222) do
     t.uuid "applicant_counsel_id"
     t.uuid "prosecution_counsel_id"
     t.uuid "defence_counsel_id"
+    t.uuid "defendant_attendance_id"
     t.index ["applicant_counsel_id"], name: "index_attendance_days_on_applicant_counsel_id"
     t.index ["defence_counsel_id"], name: "index_attendance_days_on_defence_counsel_id"
+    t.index ["defendant_attendance_id"], name: "index_attendance_days_on_defendant_attendance_id"
     t.index ["prosecution_counsel_id"], name: "index_attendance_days_on_prosecution_counsel_id"
   end
 
@@ -230,6 +232,13 @@ ActiveRecord::Schema.define(version: 2019_10_24_141222) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "defendant_id"
     t.index ["defendant_id"], name: "index_defendant_aliases_on_defendant_id"
+  end
+
+  create_table "defendant_attendances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "defendant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["defendant_id"], name: "index_defendant_attendances_on_defendant_id"
   end
 
   create_table "defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -807,6 +816,7 @@ ActiveRecord::Schema.define(version: 2019_10_24_141222) do
   add_foreign_key "associated_people", "people"
   add_foreign_key "attendance_days", "applicant_counsels"
   add_foreign_key "attendance_days", "defence_counsels"
+  add_foreign_key "attendance_days", "defendant_attendances"
   add_foreign_key "attendance_days", "prosecution_counsels"
   add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_application_outcomes", "court_application_outcome_types", column: "application_outcome_type_id"
@@ -817,6 +827,7 @@ ActiveRecord::Schema.define(version: 2019_10_24_141222) do
   add_foreign_key "court_application_parties", "prosecuting_authorities"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "defendant_aliases", "defendants"
+  add_foreign_key "defendant_attendances", "defendants"
   add_foreign_key "defendants", "defence_counsels"
   add_foreign_key "defendants", "prosecution_cases"
   add_foreign_key "hearing_case_notes", "delegated_powers", column: "court_clerk_id"

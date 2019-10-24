@@ -2,6 +2,7 @@
 
 class AssociatedPerson < ApplicationRecord
   belongs_to :person
+  belongs_to :court_application_party, optional: true, inverse_of: :associated_people
 
   validates :person, presence: true
 

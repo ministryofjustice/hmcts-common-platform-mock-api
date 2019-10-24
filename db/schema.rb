@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_150211) do
+ActiveRecord::Schema.define(version: 2019_10_24_151609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -98,7 +98,9 @@ ActiveRecord::Schema.define(version: 2019_10_24_150211) do
     t.uuid "prosecution_counsel_id"
     t.uuid "defence_counsel_id"
     t.uuid "defendant_attendance_id"
+    t.uuid "court_application_party_attendance_id"
     t.index ["applicant_counsel_id"], name: "index_attendance_days_on_applicant_counsel_id"
+    t.index ["court_application_party_attendance_id"], name: "index_attendance_days_on_court_application_party_attendance_id"
     t.index ["defence_counsel_id"], name: "index_attendance_days_on_defence_counsel_id"
     t.index ["defendant_attendance_id"], name: "index_attendance_days_on_defendant_attendance_id"
     t.index ["prosecution_counsel_id"], name: "index_attendance_days_on_prosecution_counsel_id"
@@ -155,6 +157,13 @@ ActiveRecord::Schema.define(version: 2019_10_24_150211) do
     t.index ["person_id"], name: "index_court_application_parties_on_person_id"
     t.index ["prosecuting_authority_id"], name: "index_court_application_parties_on_prosecuting_authority_id"
     t.index ["representation_organisation_id"], name: "court_application_parties_on_rep_org_id"
+  end
+
+  create_table "court_application_party_attendances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "court_application_party_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_application_party_id"], name: "attendances_on_court_application_party_id"
   end
 
   create_table "court_application_payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -834,6 +843,7 @@ ActiveRecord::Schema.define(version: 2019_10_24_150211) do
   add_foreign_key "associated_people", "defendants"
   add_foreign_key "associated_people", "people"
   add_foreign_key "attendance_days", "applicant_counsels"
+  add_foreign_key "attendance_days", "court_application_party_attendances"
   add_foreign_key "attendance_days", "defence_counsels"
   add_foreign_key "attendance_days", "defendant_attendances"
   add_foreign_key "attendance_days", "prosecution_counsels"
@@ -844,6 +854,7 @@ ActiveRecord::Schema.define(version: 2019_10_24_150211) do
   add_foreign_key "court_application_parties", "organisations", column: "representation_organisation_id"
   add_foreign_key "court_application_parties", "people"
   add_foreign_key "court_application_parties", "prosecuting_authorities"
+  add_foreign_key "court_application_party_attendances", "court_application_parties"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "defendant_aliases", "defendants"
   add_foreign_key "defendant_attendances", "defendants"

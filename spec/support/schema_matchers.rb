@@ -26,6 +26,7 @@ RSpec.configure do |config|
   config.json_schemas[:court_indicated_sentence] = 'spec/support/schemas/global/courtIndicatedSentence.json'
   config.json_schemas[:custody_time_limit] = 'spec/support/schemas/global/custodyTimeLimit.json'
   config.json_schemas[:defence_counsel] = 'spec/support/schemas/global/defenceCounsel.json'
+  config.json_schemas[:cracked_ineffective_trial] = 'spec/support/schemas/global/crackedIneffectiveTrial.json'
   config.json_schemas[:defendant] = 'spec/support/schemas/global/defendant.json'
   config.json_schemas[:defendant_alias] = 'spec/support/schemas/global/defendantAlias.json'
   config.json_schemas[:defendant_attendance] = 'spec/support/schemas/global/defendantAttendance.json'

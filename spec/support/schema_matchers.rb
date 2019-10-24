@@ -11,6 +11,7 @@ RSpec.configure do |config|
   config.json_schemas[:allocation_decision] = 'spec/support/schemas/global/allocationDecision.json'
   config.json_schemas[:associated_defence_organisation] = 'spec/support/schemas/global/associatedDefenceOrganisation.json'
   config.json_schemas[:associated_person] = 'spec/support/schemas/global/associatedPerson.json'
+  config.json_schemas[:attendance_day] = 'spec/support/schemas/global/attendanceDay.json'
   config.json_schemas[:bail_status] = 'spec/support/schemas/global/bailStatus.json'
   config.json_schemas[:contact_number] = 'spec/support/schemas/global/contactNumber.json'
   config.json_schemas[:court_application_payment] = 'spec/support/schemas/global/courtApplicationPayment.json'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_100720) do
+ActiveRecord::Schema.define(version: 2019_10_24_104331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -44,6 +44,23 @@ ActiveRecord::Schema.define(version: 2019_10_24_100720) do
     t.index ["court_indicated_sentence_id"], name: "index_allocation_decisions_on_court_indicated_sentence_id"
   end
 
+  create_table "applicant_counsels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.string "firstName"
+    t.string "middleName"
+    t.string "lastName"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "applicants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "applicant_counsel_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["applicant_counsel_id"], name: "index_applicants_on_applicant_counsel_id"
+  end
+
   create_table "associated_defence_organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "organisation_id", null: false
     t.string "sraNumber"
@@ -75,6 +92,8 @@ ActiveRecord::Schema.define(version: 2019_10_24_100720) do
     t.boolean "isInAttendance", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "applicant_counsel_id"
+    t.index ["applicant_counsel_id"], name: "index_attendance_days_on_applicant_counsel_id"
   end
 
   create_table "bail_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -734,10 +753,12 @@ ActiveRecord::Schema.define(version: 2019_10_24_100720) do
   end
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
+  add_foreign_key "applicants", "applicant_counsels"
   add_foreign_key "associated_defence_organisations", "defendants"
   add_foreign_key "associated_defence_organisations", "organisations"
   add_foreign_key "associated_people", "defendants"
   add_foreign_key "associated_people", "people"
+  add_foreign_key "attendance_days", "applicant_counsels"
   add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_application_outcomes", "court_application_outcome_types", column: "application_outcome_type_id"
   add_foreign_key "court_centres", "addresses"

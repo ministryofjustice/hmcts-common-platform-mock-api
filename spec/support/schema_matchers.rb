@@ -9,6 +9,7 @@ RSpec.configure do |config|
   # Models
   config.json_schemas[:address] = 'spec/support/schemas/global/address.json'
   config.json_schemas[:allocation_decision] = 'spec/support/schemas/global/allocationDecision.json'
+  config.json_schemas[:applicant_counsel] = 'spec/support/schemas/global/applicantCounsel.json'
   config.json_schemas[:associated_defence_organisation] = 'spec/support/schemas/global/associatedDefenceOrganisation.json'
   config.json_schemas[:associated_person] = 'spec/support/schemas/global/associatedPerson.json'
   config.json_schemas[:attendance_day] = 'spec/support/schemas/global/attendanceDay.json'

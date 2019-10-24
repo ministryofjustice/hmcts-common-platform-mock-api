@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_142102) do
+ActiveRecord::Schema.define(version: 2019_10_24_150211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -239,6 +239,18 @@ ActiveRecord::Schema.define(version: 2019_10_24_142102) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["defendant_id"], name: "index_defendant_attendances_on_defendant_id"
+  end
+
+  create_table "defendant_hearing_youth_markers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecution_case_id", null: false
+    t.uuid "defendant_id", null: false
+    t.uuid "hearing_id"
+    t.uuid "marker_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["defendant_id"], name: "index_defendant_hearing_youth_markers_on_defendant_id"
+    t.index ["marker_id"], name: "index_defendant_hearing_youth_markers_on_marker_id"
+    t.index ["prosecution_case_id"], name: "index_defendant_hearing_youth_markers_on_prosecution_case_id"
   end
 
   create_table "defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -828,6 +840,9 @@ ActiveRecord::Schema.define(version: 2019_10_24_142102) do
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "defendant_aliases", "defendants"
   add_foreign_key "defendant_attendances", "defendants"
+  add_foreign_key "defendant_hearing_youth_markers", "defendants"
+  add_foreign_key "defendant_hearing_youth_markers", "markers"
+  add_foreign_key "defendant_hearing_youth_markers", "prosecution_cases"
   add_foreign_key "defendants", "defence_counsels"
   add_foreign_key "defendants", "prosecution_cases"
   add_foreign_key "hearing_case_notes", "delegated_powers", column: "court_clerk_id"

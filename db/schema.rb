@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_151915) do
+ActiveRecord::Schema.define(version: 2019_10_23_152751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -95,6 +95,16 @@ ActiveRecord::Schema.define(version: 2019_10_23_151915) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "court_application_outcomes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "originatingHearingId"
+    t.uuid "applicationId"
+    t.datetime "applicationOutcomeDate"
+    t.uuid "application_outcome_type_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["application_outcome_type_id"], name: "index_court_application_outcomes_on_application_outcome_type_id"
   end
 
   create_table "court_application_payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -722,6 +732,7 @@ ActiveRecord::Schema.define(version: 2019_10_23_151915) do
   add_foreign_key "associated_people", "defendants"
   add_foreign_key "associated_people", "people"
   add_foreign_key "bail_statuses", "custody_time_limits"
+  add_foreign_key "court_application_outcomes", "court_application_outcome_types", column: "application_outcome_type_id"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "defendant_aliases", "defendants"
   add_foreign_key "defendants", "prosecution_cases"

@@ -166,6 +166,13 @@ ActiveRecord::Schema.define(version: 2019_10_24_150211) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "court_application_response_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "sequence"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "court_application_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "applicationCode"
     t.string "applicationType"

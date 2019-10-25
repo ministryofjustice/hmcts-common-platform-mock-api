@@ -17,10 +17,12 @@ RSpec.describe IndicatedPlea, type: :model do
         .in_array(%w[ONLINE IN_COURT])
     end
   end
-
   let(:indicated_plea) { FactoryBot.create(:indicated_plea) }
 
-  it 'matches the given schema' do
-    expect(indicated_plea.to_builder.target!).to match_json_schema(:indicated_plea)
-  end
+  let(:json_schema) { :indicated_plea }
+
+  subject { indicated_plea }
+
+  it_has_behaviour 'conforming to valid schema'
+
 end

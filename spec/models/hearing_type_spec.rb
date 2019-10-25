@@ -3,12 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe HearingType, type: :model do
+  let(:hearing_type) { FactoryBot.create(:hearing_type) }
+
+  let(:json_schema) { :hearing_type }
+
+  subject { hearing_type }
+
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:code) }
 
-  let(:hearing_type) { FactoryBot.create(:hearing_type) }
+  it_has_behaviour 'conforming to valid schema'
 
-  it 'matches the given schema' do
-    expect(hearing_type.to_builder.target!).to match_json_schema(:hearing_type)
-  end
 end

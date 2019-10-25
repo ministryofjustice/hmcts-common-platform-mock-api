@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe PersonDefendant, type: :model do
+  let(:person_defendant) { FactoryBot.create(:person_defendant) }
+  let(:json_schema) { :person_defendant }
+
+  subject { person_defendant }
+
   describe 'associations' do
     it { should belong_to(:person).class_name('Person') }
     it { should belong_to(:bail_status).class_name('BailStatus').optional }
@@ -17,20 +22,16 @@ RSpec.describe PersonDefendant, type: :model do
   end
 
   context 'hmcts schema' do
-    let(:person_defendant) { FactoryBot.create(:person_defendant) }
 
-    it 'matches the given schema' do
-      expect(person_defendant.to_builder.target!).to match_json_schema(:person_defendant)
-    end
+    it_has_behaviour 'conforming to valid schema'
 
     context 'with relationships' do
       before do
         person_defendant.update! bail_status: FactoryBot.create(:bail_status), employer_organisation: FactoryBot.create(:organisation)
       end
 
-      it 'matches the given schema' do
-        expect(person_defendant.to_builder.target!).to match_json_schema(:person_defendant)
-      end
+     it_has_behaviour 'conforming to valid schema'
+
     end
   end
 end

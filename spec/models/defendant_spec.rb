@@ -29,6 +29,14 @@ RSpec.describe Defendant, type: :model do
     it { should be_valid }
   end
 
+  describe '#person?' do
+    it { expect(subject.person?).to eq(true) }
+  end
+
+  describe '#legal_entity?' do
+    it { expect(subject.legal_entity?).to eq(false) }
+  end
+
   context 'when only one SplitProsecutorCaseReference exists' do
     before do
       defendant.split_prosecutor_case_references << FactoryBot.build(:split_prosecutor_case_reference)
@@ -47,6 +55,14 @@ RSpec.describe Defendant, type: :model do
 
   context 'when defendant is a legal entity' do
     let(:defendant) { FactoryBot.create(:defendant_as_legal_entity) }
+
+    describe '#person?' do
+      it { expect(subject.person?).to eq(false) }
+    end
+
+    describe '#legal_entity?' do
+      it { expect(subject.legal_entity?).to eq(true) }
+    end
 
     it_has_behaviour 'conforming to valid schema'
   end

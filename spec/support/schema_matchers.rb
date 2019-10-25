@@ -21,6 +21,7 @@ RSpec.configure do |config|
   config.json_schemas[:court_application_respondent] = 'spec/support/schemas/global/courtApplicationRespondent.json'
   config.json_schemas[:court_application_response_type] = 'spec/support/schemas/global/courtApplicationResponseType.json'
   config.json_schemas[:court_application_party] = 'spec/support/schemas/global/courtApplicationParty.json'
+  config.json_schemas[:court_application_party_counsel] = 'spec/support/schemas/global/courtApplicationPartyCounsel.json'
   config.json_schemas[:court_application_party_attendance] = 'spec/support/schemas/global/courtApplicationPartyAttendance.json'
   config.json_schemas[:court_application_payment] = 'spec/support/schemas/global/courtApplicationPayment.json'
   config.json_schemas[:court_application_type] = 'spec/support/schemas/global/courtApplicationType.json'

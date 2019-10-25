@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe NextHearingDefendant, type: :model do
+  let(:next_hearing_defendant) { FactoryBot.create(:next_hearing_defendant) }
+
+  let(:json_schema) { :next_hearing_defendant }
+
+  subject { next_hearing_defendant }
+
   describe 'associations' do
     it { should have_many(:next_hearing_offences).class_name('NextHearingOffence') }
   end
@@ -11,9 +17,5 @@ RSpec.describe NextHearingDefendant, type: :model do
     it { should validate_presence_of(:next_hearing_offences) }
   end
 
-  let(:next_hearing_defendant) { FactoryBot.create(:next_hearing_defendant) }
-
-  it 'matches the given schema' do
-    expect(next_hearing_defendant.to_builder.target!).to match_json_schema(:next_hearing_defendant)
-  end
+  it_has_behaviour 'conforming to valid schema'
 end

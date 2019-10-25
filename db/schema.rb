@@ -312,6 +312,16 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "defence_organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "organisation_id", null: false
+    t.string "laaContractNumber"
+    t.string "sraNumber"
+    t.string "barCouncilMembershipNumber"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organisation_id"], name: "index_defence_organisations_on_organisation_id"
+  end
+
   create_table "defendant_aliases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "firstName"
@@ -955,6 +965,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
   add_foreign_key "court_applications", "court_application_types", column: "application_type_id"
   add_foreign_key "court_applications", "court_centres"
   add_foreign_key "court_centres", "addresses"
+  add_foreign_key "defence_organisations", "organisations"
   add_foreign_key "defendant_aliases", "defendants"
   add_foreign_key "defendant_attendances", "defendants"
   add_foreign_key "defendant_hearing_youth_markers", "defendants"

@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Offence, type: :model do
+  let(:offence) { FactoryBot.create(:offence) }
+  let(:json_schema) { :offence }
+
+  subject { offence }
+
   describe 'associations' do
     it { should belong_to(:notified_plea).class_name('NotifiedPlea').optional }
     it { should belong_to(:indicated_plea).class_name('IndicatedPlea').optional }
@@ -27,9 +32,7 @@ RSpec.describe Offence, type: :model do
   context 'hmcts schema' do
     let(:offence) { FactoryBot.create(:offence) }
 
-    it 'matches the given schema' do
-      expect(offence.to_builder.target!).to match_json_schema(:offence)
-    end
+    it_has_behaviour 'conforming to valid schema'
 
     context 'with relationships' do
       before do
@@ -39,9 +42,8 @@ RSpec.describe Offence, type: :model do
         offence.save!
       end
 
-      it 'matches the given schema' do
-        expect(offence.to_builder.target!).to match_json_schema(:offence)
-      end
+      it_has_behaviour 'conforming to valid schema'
+
     end
   end
 end

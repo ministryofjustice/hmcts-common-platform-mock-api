@@ -13,5 +13,4 @@ RSpec.describe HearingType, type: :model do
   it { should validate_presence_of(:code) }
 
   it_has_behaviour 'conforming to valid schema'
-
 end

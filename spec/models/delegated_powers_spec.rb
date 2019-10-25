@@ -14,5 +14,4 @@ RSpec.describe DelegatedPowers, type: :model do
   it { should validate_presence_of(:lastName) }
 
   it_has_behaviour 'conforming to valid schema'
-
 end

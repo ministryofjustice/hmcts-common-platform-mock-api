@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe BailStatus, type: :model do
-
   let(:bail_status) { FactoryBot.create(:bail_status) }
 
   let(:json_schema) { :bail_status }
@@ -19,7 +18,6 @@ RSpec.describe BailStatus, type: :model do
   end
 
   context 'hmcts schema' do
-
     it_has_behaviour 'conforming to valid schema'
 
     context 'with relationships' do
@@ -28,7 +26,6 @@ RSpec.describe BailStatus, type: :model do
       end
 
       it_has_behaviour 'conforming to valid schema'
-
     end
   end
 end

@@ -36,5 +36,4 @@ RSpec.describe CourtApplicationType, type: :model do
   end
 
   it_has_behaviour 'conforming to valid schema'
-
 end

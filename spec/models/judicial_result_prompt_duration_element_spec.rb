@@ -26,5 +26,4 @@ RSpec.describe JudicialResultPromptDurationElement, type: :model do
     it { should validate_presence_of(:durationEndDate) }
     it_has_behaviour 'conforming to valid schema'
   end
-
 end

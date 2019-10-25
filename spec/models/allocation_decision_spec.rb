@@ -21,5 +21,4 @@ RSpec.describe AllocationDecision, type: :model do
   subject { allocation_decision }
 
   it_has_behaviour 'conforming to valid schema'
-
 end

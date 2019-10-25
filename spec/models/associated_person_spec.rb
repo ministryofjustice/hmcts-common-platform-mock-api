@@ -18,5 +18,4 @@ RSpec.describe AssociatedPerson, type: :model do
   end
 
   it_has_behaviour 'conforming to valid schema'
-
 end

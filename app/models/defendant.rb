@@ -17,6 +17,14 @@ class Defendant < ApplicationRecord
   validates :defendable, presence: true
   validates :split_prosecutor_case_references, length: { minimum: 2 }, if: -> { split_prosecutor_case_references.present? }
 
+  def person?
+    defendable.is_a? PersonDefendant
+  end
+
+  def legal_entity?
+    defendable.is_a? LegalEntityDefendant
+  end
+
   def to_builder
     Jbuilder.new do |defendant|
       defendant.id id
@@ -32,8 +40,8 @@ class Defendant < ApplicationRecord
       if associated_defence_organisations.present?
         defendant.associatedDefenceOrganisations Jbuilder.new.array! associated_defence_organisations_builder
       end
-      defendant.personDefendant defendable.to_builder if person_defendant?
-      defendant.legalEntityDefendant defendable.to_builder if legal_entity_defendant?
+      defendant.personDefendant defendable.to_builder if person?
+      defendant.legalEntityDefendant defendable.to_builder if legal_entity?
       defendant.aliases Jbuilder.new.array! defendant_aliases_builder if defendant_aliases.present?
       defendant.judicialResults Jbuilder.new.array! judicial_results_builder if judicial_results.present?
       defendant.croNumber croNumber
@@ -93,13 +101,5 @@ class Defendant < ApplicationRecord
     linked_defendants.map do |linked_defendant|
       linked_defendant.to_builder.attributes!
     end
-  end
-
-  def person_defendant?
-    defendable.is_a? PersonDefendant
-  end
-
-  def legal_entity_defendant?
-    defendable.is_a? LegalEntityDefendant
   end
 end

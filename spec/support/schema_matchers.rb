@@ -17,6 +17,7 @@ RSpec.configure do |config|
   config.json_schemas[:contact_number] = 'spec/support/schemas/global/contactNumber.json'
   config.json_schemas[:court_application_outcome] = 'spec/support/schemas/global/courtApplicationOutcome.json'
   config.json_schemas[:court_application_outcome_type] = 'spec/support/schemas/global/courtApplicationOutcomeType.json'
+  config.json_schemas[:court_application_response] = 'spec/support/schemas/global/courtApplicationResponse.json'
   config.json_schemas[:court_application_response_type] = 'spec/support/schemas/global/courtApplicationResponseType.json'
   config.json_schemas[:court_application_party] = 'spec/support/schemas/global/courtApplicationParty.json'
   config.json_schemas[:court_application_party_attendance] = 'spec/support/schemas/global/courtApplicationPartyAttendance.json'

@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe OffenceFacts, type: :model do
+  let(:offence_facts) { FactoryBot.create(:offence_facts) }
+  let(:json_schema) { :offence_facts }
+
+  subject { offence_facts }
+
   describe 'validations' do
     it do
       should validate_inclusion_of(:vehicleCode)
@@ -10,9 +15,6 @@ RSpec.describe OffenceFacts, type: :model do
     end
   end
 
-  let(:offence_facts) { FactoryBot.create(:offence_facts) }
+  it_has_behaviour 'conforming to valid schema'
 
-  it 'matches the given schema' do
-    expect(offence_facts.to_builder.target!).to match_json_schema(:offence_facts)
-  end
 end

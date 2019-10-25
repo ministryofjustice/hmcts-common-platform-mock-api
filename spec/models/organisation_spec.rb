@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Organisation, type: :model do
+  let(:organisation) { FactoryBot.create(:organisation) }
+  let(:json_schema) { :organisation }
+
+  subject { organisation }
+
   describe 'associations' do
     it { should belong_to(:address).class_name('Address').optional }
     it { should belong_to(:contact).class_name('ContactNumber').optional }
@@ -11,9 +16,6 @@ RSpec.describe Organisation, type: :model do
     it { should validate_presence_of(:name) }
   end
 
-  let(:organisation) { FactoryBot.create(:organisation) }
+  it_has_behaviour 'conforming to valid schema'
 
-  it 'matches the given schema' do
-    expect(organisation.to_builder.target!).to match_json_schema(:organisation)
-  end
 end

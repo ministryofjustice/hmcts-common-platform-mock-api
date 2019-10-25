@@ -11,5 +11,4 @@ RSpec.describe JudicialRoleType, type: :model do
   it { should validate_presence_of(:judiciaryType) }
 
   it_has_behaviour 'conforming to valid schema'
-
 end

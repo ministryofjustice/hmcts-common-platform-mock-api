@@ -22,7 +22,6 @@ RSpec.describe PersonDefendant, type: :model do
   end
 
   context 'hmcts schema' do
-
     it_has_behaviour 'conforming to valid schema'
 
     context 'with relationships' do
@@ -30,8 +29,7 @@ RSpec.describe PersonDefendant, type: :model do
         person_defendant.update! bail_status: FactoryBot.create(:bail_status), employer_organisation: FactoryBot.create(:organisation)
       end
 
-     it_has_behaviour 'conforming to valid schema'
-
+      it_has_behaviour 'conforming to valid schema'
     end
   end
 end

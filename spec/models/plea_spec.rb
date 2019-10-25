@@ -20,5 +20,4 @@ RSpec.describe Plea, type: :model do
   it { should belong_to(:delegated_powers).class_name('DelegatedPowers').optional }
 
   it_has_behaviour 'conforming to valid schema'
-
 end

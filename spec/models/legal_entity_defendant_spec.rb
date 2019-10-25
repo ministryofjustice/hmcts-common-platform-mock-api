@@ -17,6 +17,6 @@ RSpec.describe LegalEntityDefendant, type: :model do
   end
 
   context 'hmcts schema' do
-  it_has_behaviour 'conforming to valid schema'
+    it_has_behaviour 'conforming to valid schema'
   end
 end

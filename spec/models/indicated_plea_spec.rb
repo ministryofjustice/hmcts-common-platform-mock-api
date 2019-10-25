@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe IndicatedPlea, type: :model do
+  let(:indicated_plea) { FactoryBot.create(:indicated_plea) }
+
+  let(:json_schema) { :indicated_plea }
+
+  subject { indicated_plea }
+
   describe 'validations' do
     it { should validate_presence_of(:offenceId) }
     it { should validate_presence_of(:indicatedPleaDate) }
@@ -17,11 +23,6 @@ RSpec.describe IndicatedPlea, type: :model do
         .in_array(%w[ONLINE IN_COURT])
     end
   end
-  let(:indicated_plea) { FactoryBot.create(:indicated_plea) }
-
-  let(:json_schema) { :indicated_plea }
-
-  subject { indicated_plea }
 
   it_has_behaviour 'conforming to valid schema'
 

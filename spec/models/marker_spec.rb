@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Marker, type: :model do
+  let(:marker) { FactoryBot.create(:marker) }
+
+  let(:json_schema) { :marker }
+
+  subject { marker }
+
   describe 'validations' do
     it { should validate_presence_of(:markerTypeid) }
     it { should validate_presence_of(:markerTypeCode) }
@@ -10,9 +16,5 @@ RSpec.describe Marker, type: :model do
     it { should validate_presence_of(:markerTypeName) }
   end
 
-  let(:marker) { FactoryBot.create(:marker) }
-
-  it 'matches the given schema' do
-    expect(marker.to_builder.target!).to match_json_schema(:marker)
-  end
+  it_has_behaviour 'conforming to valid schema'
 end

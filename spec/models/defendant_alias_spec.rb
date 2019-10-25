@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe DefendantAlias, type: :model do
+  let(:defendant_alias) { FactoryBot.create(:defendant_alias) }
+
+  let(:json_schema) { :defendant_alias }
+
+  subject { defendant_alias }
+
   describe 'validations' do
     it do
       should validate_inclusion_of(:title)
@@ -10,9 +16,5 @@ RSpec.describe DefendantAlias, type: :model do
     end
   end
 
-  let(:defendant_alias) { FactoryBot.create(:defendant_alias) }
-
-  it 'matches the given schema' do
-    expect(defendant_alias.to_builder.target!).to match_json_schema(:defendant_alias)
-  end
+  it_has_behaviour 'conforming to valid schema'
 end

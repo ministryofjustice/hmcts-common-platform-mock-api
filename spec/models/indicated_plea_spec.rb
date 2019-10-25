@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe IndicatedPlea, type: :model do
+  let(:indicated_plea) { FactoryBot.create(:indicated_plea) }
+
+  let(:json_schema) { :indicated_plea }
+
+  subject { indicated_plea }
+
   describe 'validations' do
     it { should validate_presence_of(:offenceId) }
     it { should validate_presence_of(:indicatedPleaDate) }
@@ -18,9 +24,5 @@ RSpec.describe IndicatedPlea, type: :model do
     end
   end
 
-  let(:indicated_plea) { FactoryBot.create(:indicated_plea) }
-
-  it 'matches the given schema' do
-    expect(indicated_plea.to_builder.target!).to match_json_schema(:indicated_plea)
-  end
+  it_has_behaviour 'conforming to valid schema'
 end

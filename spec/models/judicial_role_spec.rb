@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe JudicialRole, type: :model do
+  let(:judicial_role) { FactoryBot.create(:judicial_role) }
+
+  let(:json_schema) { :judicial_role }
+
+  subject { judicial_role }
+
   describe 'associations' do
     it { should belong_to(:next_hearing).class_name('NextHearing').optional }
   end
@@ -10,9 +16,5 @@ RSpec.describe JudicialRole, type: :model do
   it { should validate_presence_of(:judicialId) }
   it { should validate_presence_of(:judicial_role_type) }
 
-  let(:judicial_role) { FactoryBot.create(:judicial_role) }
-
-  it 'matches the given schema' do
-    expect(judicial_role.to_builder.target!).to match_json_schema(:judicial_role)
-  end
+  it_has_behaviour 'conforming to valid schema'
 end

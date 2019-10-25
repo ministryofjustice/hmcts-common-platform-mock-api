@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe AssociatedPerson, type: :model do
+  let(:associated_person) { FactoryBot.create(:associated_person) }
+
+  let(:json_schema) { :associated_person }
+
+  subject { associated_person }
+
   describe 'associations' do
     it { should belong_to(:person).class_name('Person') }
   end
@@ -11,9 +17,5 @@ RSpec.describe AssociatedPerson, type: :model do
     it { should validate_presence_of(:person) }
   end
 
-  let(:associated_person) { FactoryBot.create(:associated_person) }
-
-  it 'matches the given schema' do
-    expect(associated_person.to_builder.target!).to match_json_schema(:associated_person)
-  end
+  it_has_behaviour 'conforming to valid schema'
 end

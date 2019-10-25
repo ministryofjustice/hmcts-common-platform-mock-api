@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe BailStatus, type: :model do
+  let(:bail_status) { FactoryBot.create(:bail_status) }
+
+  let(:json_schema) { :bail_status }
+
+  subject { bail_status }
+
   describe 'associations' do
     it { should belong_to(:custody_time_limit).class_name('CustodyTimeLimit').optional }
   end
@@ -12,20 +18,14 @@ RSpec.describe BailStatus, type: :model do
   end
 
   context 'hmcts schema' do
-    let(:bail_status) { FactoryBot.create(:bail_status) }
-
-    it 'matches the given schema' do
-      expect(bail_status.to_builder.target!).to match_json_schema(:bail_status)
-    end
+    it_has_behaviour 'conforming to valid schema'
 
     context 'with relationships' do
       before do
-        bail_status.update! custody_time_limit: FactoryBot.create(:custody_time_limit)
+        subject.update! custody_time_limit: FactoryBot.create(:custody_time_limit)
       end
 
-      it 'matches the given schema' do
-        expect(bail_status.to_builder.target!).to match_json_schema(:bail_status)
-      end
+      it_has_behaviour 'conforming to valid schema'
     end
   end
 end

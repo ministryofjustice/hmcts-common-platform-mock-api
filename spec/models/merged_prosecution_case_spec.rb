@@ -5,9 +5,16 @@ require 'rails_helper'
 RSpec.describe MergedProsecutionCase, type: :model do
   let(:merged_prosecution_case) { FactoryBot.create(:merged_prosecution_case) }
 
+  let(:json_schema) { :merged_prosecution_case }
+
+  subject { merged_prosecution_case }
+
+  let(:merged_prosecution_case) { FactoryBot.create(:merged_prosecution_case) }
+
   describe 'associations' do
     it { should have_many(:merged_prosecution_case_targets).class_name('MergedProsecutionCaseTarget') }
   end
+
   describe 'validations' do
     it { should validate_presence_of(:prosecutionCaseReference) }
     it { should validate_presence_of(:merged_prosecution_case_targets) }
@@ -32,7 +39,5 @@ RSpec.describe MergedProsecutionCase, type: :model do
     end
   end
 
-  it 'matches the given schema' do
-    expect(merged_prosecution_case.to_builder.target!).to match_json_schema(:merged_prosecution_case)
-  end
+  it_has_behaviour 'conforming to valid schema'
 end

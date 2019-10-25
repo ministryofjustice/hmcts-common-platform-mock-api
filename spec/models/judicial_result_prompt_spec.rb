@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe JudicialResultPrompt, type: :model do
+  let(:judicial_result_prompt) { FactoryBot.create(:judicial_result_prompt) }
+
+  let(:json_schema) { :judicial_result_prompt }
+
+  subject { judicial_result_prompt }
+
   describe 'associations' do
     it { should have_many(:user_groups).class_name('UserGroup') }
     it { should belong_to(:judicial_result).class_name('JudicialResult').optional }
@@ -12,9 +18,5 @@ RSpec.describe JudicialResultPrompt, type: :model do
     it { should validate_inclusion_of(:isAvailableForCourtExtract).in_array([true, false]) }
   end
 
-  let(:judicial_result_prompt) { FactoryBot.create(:judicial_result_prompt) }
-
-  it 'matches the given schema' do
-    expect(judicial_result_prompt.to_builder.target!).to match_json_schema(:judicial_result_prompt)
-  end
+  it_has_behaviour 'conforming to valid schema'
 end

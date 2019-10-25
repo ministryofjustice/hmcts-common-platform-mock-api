@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe CourtApplicationType, type: :model do
+  let(:court_application_type) { FactoryBot.create(:court_application_type) }
+  let(:json_schema) { :court_application_type }
+
+  subject { court_application_type }
+
   describe 'validations' do
     it { should validate_presence_of(:applicationCategory) }
     it { should validate_presence_of(:applicationJurisdictionType) }
@@ -30,9 +35,5 @@ RSpec.describe CourtApplicationType, type: :model do
     end
   end
 
-  let(:court_application_type) { FactoryBot.create(:court_application_type) }
-
-  it 'matches the given schema' do
-    expect(court_application_type.to_builder.target!).to match_json_schema(:court_application_type)
-  end
+  it_has_behaviour 'conforming to valid schema'
 end

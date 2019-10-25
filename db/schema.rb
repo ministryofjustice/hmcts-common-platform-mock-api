@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_122449) do
+ActiveRecord::Schema.define(version: 2019_10_25_151843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -198,7 +198,9 @@ ActiveRecord::Schema.define(version: 2019_10_25_122449) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "respondent_counsel_id"
+    t.uuid "court_application_id"
     t.index ["application_response_id"], name: "index_court_application_respondents_on_application_response_id"
+    t.index ["court_application_id"], name: "index_court_application_respondents_on_court_application_id"
     t.index ["party_details_id"], name: "index_court_application_respondents_on_party_details_id"
     t.index ["respondent_counsel_id"], name: "index_court_application_respondents_on_respondent_counsel_id"
   end
@@ -238,6 +240,32 @@ ActiveRecord::Schema.define(version: 2019_10_25_122449) do
     t.string "applicationSummonsTemplateType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "court_applications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "application_type_id", null: false
+    t.datetime "applicationReceivedDate"
+    t.string "applicationReference"
+    t.uuid "court_application_party_id", null: false
+    t.uuid "court_application_outcome_id"
+    t.uuid "linkedCaseId"
+    t.string "linkedSplitProsecutorCaseReference"
+    t.uuid "parentApplicationId"
+    t.string "applicationParticulars"
+    t.uuid "court_application_payment_id"
+    t.datetime "applicationDecisionSoughtByDate"
+    t.string "applicationStatus"
+    t.string "outOfTimeReasons"
+    t.string "breachedOrder"
+    t.string "breachedOrderDate"
+    t.uuid "court_centre_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["application_type_id"], name: "index_court_applications_on_application_type_id"
+    t.index ["court_application_outcome_id"], name: "index_court_applications_on_court_application_outcome_id"
+    t.index ["court_application_party_id"], name: "index_court_applications_on_court_application_party_id"
+    t.index ["court_application_payment_id"], name: "index_court_applications_on_court_application_payment_id"
+    t.index ["court_centre_id"], name: "index_court_applications_on_court_centre_id"
   end
 
   create_table "court_centres", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -461,6 +489,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_122449) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "offence_id"
     t.uuid "defendant_id"
+    t.uuid "court_application_id"
+    t.index ["court_application_id"], name: "index_judicial_results_on_court_application_id"
     t.index ["court_clerk_id"], name: "index_judicial_results_on_court_clerk_id"
     t.index ["defendant_id"], name: "index_judicial_results_on_defendant_id"
     t.index ["delegated_powers_id"], name: "index_judicial_results_on_delegated_powers_id"
@@ -916,8 +946,14 @@ ActiveRecord::Schema.define(version: 2019_10_25_122449) do
   add_foreign_key "court_application_party_attendances", "court_application_parties"
   add_foreign_key "court_application_respondents", "court_application_parties", column: "party_details_id"
   add_foreign_key "court_application_respondents", "court_application_responses", column: "application_response_id"
+  add_foreign_key "court_application_respondents", "court_applications"
   add_foreign_key "court_application_respondents", "respondent_counsels"
   add_foreign_key "court_application_responses", "court_application_response_types", column: "application_response_type_id"
+  add_foreign_key "court_applications", "court_application_outcomes"
+  add_foreign_key "court_applications", "court_application_parties"
+  add_foreign_key "court_applications", "court_application_payments"
+  add_foreign_key "court_applications", "court_application_types", column: "application_type_id"
+  add_foreign_key "court_applications", "court_centres"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "defendant_aliases", "defendants"
   add_foreign_key "defendant_attendances", "defendants"
@@ -928,6 +964,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_122449) do
   add_foreign_key "defendants", "prosecution_cases"
   add_foreign_key "hearing_case_notes", "delegated_powers", column: "court_clerk_id"
   add_foreign_key "judicial_result_prompts", "judicial_results"
+  add_foreign_key "judicial_results", "court_applications"
   add_foreign_key "judicial_results", "defendants"
   add_foreign_key "judicial_results", "delegated_powers", column: "court_clerk_id"
   add_foreign_key "judicial_results", "delegated_powers", column: "delegated_powers_id"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_105242) do
+ActiveRecord::Schema.define(version: 2019_10_25_122449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -100,12 +100,14 @@ ActiveRecord::Schema.define(version: 2019_10_25_105242) do
     t.uuid "defendant_attendance_id"
     t.uuid "court_application_party_attendance_id"
     t.uuid "court_application_party_counsel_id"
+    t.uuid "respondent_counsel_id"
     t.index ["applicant_counsel_id"], name: "index_attendance_days_on_applicant_counsel_id"
     t.index ["court_application_party_attendance_id"], name: "index_attendance_days_on_court_application_party_attendance_id"
     t.index ["court_application_party_counsel_id"], name: "index_attendance_days_on_court_application_party_counsel_id"
     t.index ["defence_counsel_id"], name: "index_attendance_days_on_defence_counsel_id"
     t.index ["defendant_attendance_id"], name: "index_attendance_days_on_defendant_attendance_id"
     t.index ["prosecution_counsel_id"], name: "index_attendance_days_on_prosecution_counsel_id"
+    t.index ["respondent_counsel_id"], name: "index_attendance_days_on_respondent_counsel_id"
   end
 
   create_table "bail_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -195,8 +197,10 @@ ActiveRecord::Schema.define(version: 2019_10_25_105242) do
     t.uuid "application_response_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "respondent_counsel_id"
     t.index ["application_response_id"], name: "index_court_application_respondents_on_application_response_id"
     t.index ["party_details_id"], name: "index_court_application_respondents_on_party_details_id"
+    t.index ["respondent_counsel_id"], name: "index_court_application_respondents_on_respondent_counsel_id"
   end
 
   create_table "court_application_response_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -834,6 +838,16 @@ ActiveRecord::Schema.define(version: 2019_10_25_105242) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "respondent_counsels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.string "firstName"
+    t.string "middleName"
+    t.string "lastName"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "split_prosecutor_case_references", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "split"
     t.datetime "created_at", precision: 6, null: false
@@ -890,6 +904,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_105242) do
   add_foreign_key "attendance_days", "defence_counsels"
   add_foreign_key "attendance_days", "defendant_attendances"
   add_foreign_key "attendance_days", "prosecution_counsels"
+  add_foreign_key "attendance_days", "respondent_counsels"
   add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_application_outcomes", "court_application_outcome_types", column: "application_outcome_type_id"
   add_foreign_key "court_application_parties", "court_application_party_counsels"
@@ -901,6 +916,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_105242) do
   add_foreign_key "court_application_party_attendances", "court_application_parties"
   add_foreign_key "court_application_respondents", "court_application_parties", column: "party_details_id"
   add_foreign_key "court_application_respondents", "court_application_responses", column: "application_response_id"
+  add_foreign_key "court_application_respondents", "respondent_counsels"
   add_foreign_key "court_application_responses", "court_application_response_types", column: "application_response_type_id"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "defendant_aliases", "defendants"

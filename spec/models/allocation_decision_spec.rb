@@ -16,7 +16,10 @@ RSpec.describe AllocationDecision, type: :model do
 
   let(:allocation_decision) { FactoryBot.create(:allocation_decision) }
 
-  it 'matches the given schema' do
-    expect(allocation_decision.to_builder.target!).to match_json_schema(:allocation_decision)
-  end
+  let(:json_schema) { :allocation_decision }
+
+  subject { allocation_decision }
+
+  it_has_behaviour 'conforming to valid schema'
+
 end

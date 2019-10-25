@@ -9,7 +9,5 @@ FactoryBot.define do
     secondaryDurationValue { 1 }
     tertiaryDurationUnit { 'MyString' }
     tertiaryDurationValue { 'MyString' }
-    durationStartDate { '2019-10-15 13:15:32' }
-    durationEndDate { '2019-10-15 13:15:32' }
   end
 end

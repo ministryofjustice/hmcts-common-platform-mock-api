@@ -77,6 +77,7 @@ RSpec.configure do |config|
 
   # Search
   config.json_schemas[:defendant_name] = 'spec/support/schemas/global/search/defendantName.json'
+  config.json_schemas[:defendant_summary] = 'spec/support/schemas/global/search/defendantSummary.json'
   config.json_schemas[:offence_summary] = 'spec/support/schemas/global/search/offenceSummary.json'
   config.json_schemas[:prosecution_case_summary] = 'spec/support/schemas/global/search/prosecutionCaseSummary.json'
 

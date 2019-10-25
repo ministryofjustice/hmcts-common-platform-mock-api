@@ -17,7 +17,6 @@ class Defendant < ApplicationRecord
   validates :defendable, presence: true
   validates :split_prosecutor_case_references, length: { minimum: 2 }, if: -> { split_prosecutor_case_references.present? }
 
-
   def person?
     defendable.is_a? PersonDefendant
   end

@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Person, type: :model do
+  let(:person) { FactoryBot.create(:person) }
+  let(:json_schema) { :person }
+
+  subject { person }
+
   describe 'associations' do
     it { should belong_to(:ethnicity).class_name('Ethnicity').optional }
     it { should belong_to(:address).class_name('Address').optional }
@@ -27,9 +32,6 @@ RSpec.describe Person, type: :model do
     end
   end
 
-  let(:person) { FactoryBot.create(:person) }
+  it_has_behaviour 'conforming to valid schema'
 
-  it 'matches the given schema' do
-    expect(person.to_builder.target!).to match_json_schema(:person)
-  end
 end

@@ -13,5 +13,17 @@ RSpec.describe ProsecutionCaseIdentifier, type: :model do
     it { should validate_presence_of(:prosecutionAuthorityCode) }
   end
 
-  it_has_behaviour 'conforming to valid schema'
+  context 'when caseURN is present' do
+    it { should validate_presence_of(:caseURN) }
+
+    it_has_behaviour 'conforming to valid schema'
+  end
+
+  context 'when prosecutionAuthorityReference is present' do
+    let(:prosecution_case_identifier) { FactoryBot.create(:prosecution_case_identifier_with_reference) }
+
+    it { should validate_presence_of(:prosecutionAuthorityReference) }
+
+    it_has_behaviour 'conforming to valid schema'
+  end
 end

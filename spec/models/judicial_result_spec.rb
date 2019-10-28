@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 # rubocop:disable Metrics/BlockLength
+require 'rails_helper'
 RSpec.describe JudicialResult, type: :model do
   let(:judicial_result) { FactoryBot.create(:judicial_result) }
   let(:json_schema) { :judicial_result }
@@ -40,16 +39,16 @@ RSpec.describe JudicialResult, type: :model do
 
   it_has_behaviour 'conforming to valid schema'
 
-  context 'hmcts schema' do
+  context 'with relationships' do
     before do
       judicial_result.court_clerk = FactoryBot.create(:delegated_powers)
       judicial_result.delegated_powers = FactoryBot.create(:delegated_powers)
       judicial_result.four_eyes_approval = FactoryBot.create(:delegated_powers)
       judicial_result.next_hearing = FactoryBot.create(:next_hearing)
       judicial_result.duration_element = FactoryBot.create(:judicial_result_prompt_duration_element)
-      judicial_result.judicial_result_prompts << FactoryBot.build(:judicial_result_prompt)
       judicial_result.save!
     end
+
     it_has_behaviour 'conforming to valid schema'
   end
 end

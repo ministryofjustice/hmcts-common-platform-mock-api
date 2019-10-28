@@ -19,12 +19,6 @@ FactoryBot.define do
     orderIndex { 1 }
     count { 1 }
     convictionDate { '2019-10-17 14:06:13' }
-    notified_plea { nil }
-    indicated_plea { nil }
-    allocation_decision { nil }
-    plea { nil }
-    verdict { nil }
-    offence_facts { nil }
     aquittalDate { '2019-10-17 14:06:13' }
     isDisposed { false }
     isDiscontinued { false }

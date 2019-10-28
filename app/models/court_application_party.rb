@@ -12,11 +12,12 @@ class CourtApplicationParty < ApplicationRecord
   def to_builder
     Jbuilder.new do |court_application_party|
       court_application_party.id id
+      court_application_party.synonym synonym
       court_application_party.personDetails person.to_builder
-      court_application_party.organisationPersons Jbuilder.new.array! associated_people_builder if associated_people.present?
-      court_application_party.defendant defendant.to_builder
       court_application_party.organisation organisation.to_builder
+      court_application_party.organisationPersons Jbuilder.new.array! associated_people_builder if associated_people.present?
       court_application_party.prosecutingAuthority prosecuting_authority.to_builder
+      court_application_party.defendant defendant.to_builder
       court_application_party.representationOrganisation representation_organisation.to_builder
     end
   end

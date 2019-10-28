@@ -21,6 +21,10 @@ class NextHearing < ApplicationRecord
       next_hearing.courtCentre court_centre.to_builder
       next_hearing.estimatedMinutes estimatedMinutes
       next_hearing.listedStartDateTime listedStartDateTime
+      next_hearing.jurisdictionType jurisdictionType
+      next_hearing.reportingRestrictionReason reportingRestrictionReason
+      next_hearing.adjournmentReason adjournmentReason
+      next_hearing.hearingLanguage hearingLanguage
       next_hearing.judiciary Jbuilder.new.array! judicial_roles_builder
       next_hearing.nextHearingProsecutionCases Jbuilder.new.array! next_hearing_prosecution_cases_builder
       next_hearing.nextHearingCourtApplicationId Jbuilder.new.array! next_hearing_court_applications_builder

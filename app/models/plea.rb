@@ -16,6 +16,7 @@ class Plea < ApplicationRecord
       plea.offenceId offenceId
       plea.pleaDate pleaDate.to_date
       plea.pleaValue pleaValue
+      plea.delegatedPowers delegated_powers.to_builder if delegated_powers.present?
     end
   end
 end

@@ -11,7 +11,9 @@ class LesserOrAlternativeOffence < ApplicationRecord
       lesser_or_alternative_offence.offenceDefinitionId offenceDefinitionId
       lesser_or_alternative_offence.offenceCode offenceCode
       lesser_or_alternative_offence.offenceTitle offenceTitle
+      lesser_or_alternative_offence.offenceTitleWelsh offenceTitleWelsh
       lesser_or_alternative_offence.offenceLegislation offenceLegislation
+      lesser_or_alternative_offence.offenceLegislationWelsh offenceLegislationWelsh
     end
   end
 end

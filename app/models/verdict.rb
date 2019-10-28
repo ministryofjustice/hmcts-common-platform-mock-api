@@ -16,6 +16,8 @@ class Verdict < ApplicationRecord
       verdict.offenceId offenceId
       verdict.verdictDate verdictDate.to_date
       verdict.verdictType verdict_type.to_builder
+      verdict.jurors jurors.to_builder if jurors.present?
+      verdict.lesserOrAlternativeOffence lesser_or_alternative_offence.to_builder if lesser_or_alternative_offence.present?
     end
   end
 end

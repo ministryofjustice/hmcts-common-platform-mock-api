@@ -20,4 +20,13 @@ RSpec.describe Plea, type: :model do
   it { should belong_to(:delegated_powers).class_name('DelegatedPowers').optional }
 
   it_has_behaviour 'conforming to valid schema'
+
+  context 'with relationships' do
+    before do
+      plea.delegated_powers = FactoryBot.create(:delegated_powers)
+      plea.save!
+    end
+
+    it_has_behaviour 'conforming to valid schema'
+  end
 end

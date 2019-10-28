@@ -12,6 +12,5 @@ FactoryBot.define do
     isDamageValueUnder5000 { false }
     isTreatedAsIndictableOnly { false }
     sentencingIndicationRequested { false }
-    court_indicated_sentence
   end
 end

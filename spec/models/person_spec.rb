@@ -33,4 +33,15 @@ RSpec.describe Person, type: :model do
   end
 
   it_has_behaviour 'conforming to valid schema'
+
+  context 'with relationships' do
+    before do
+      person.contact_number = FactoryBot.create(:contact_number)
+      person.address = FactoryBot.create(:address)
+      person.ethnicity = FactoryBot.create(:ethnicity)
+      person.save!
+    end
+
+    it_has_behaviour 'conforming to valid schema'
+  end
 end

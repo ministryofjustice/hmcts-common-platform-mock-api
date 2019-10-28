@@ -22,4 +22,14 @@ RSpec.describe Verdict, type: :model do
   end
 
   it_has_behaviour 'conforming to valid schema'
+
+  context 'with relationships' do
+    before do
+      verdict.jurors = FactoryBot.create(:jurors)
+      verdict.lesser_or_alternative_offence = FactoryBot.create(:lesser_or_alternative_offence)
+      verdict.save!
+    end
+
+    it_has_behaviour 'conforming to valid schema'
+  end
 end

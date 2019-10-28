@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AllocationDecision < ApplicationRecord
-  belongs_to :court_indicated_sentence
+  belongs_to :court_indicated_sentence, optional: true
 
   validates :originatingHearingId, presence: true
   validates :offenceId, presence: true
@@ -26,6 +26,7 @@ class AllocationDecision < ApplicationRecord
       allocation_decision.isDamageValueUnder5000 isDamageValueUnder5000
       allocation_decision.isTreatedAsIndictableOnly isTreatedAsIndictableOnly
       allocation_decision.sentencingIndicationRequested sentencingIndicationRequested
+      allocation_decision.courtIndicatedSentence court_indicated_sentence.to_builder if court_indicated_sentence.present?
     end
- end
+  end
 end

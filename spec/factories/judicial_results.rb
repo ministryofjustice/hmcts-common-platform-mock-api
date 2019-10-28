@@ -28,12 +28,7 @@ FactoryBot.define do
     isAlwaysPublished { false }
     isUrgent { false }
     isD20 { false }
-    court_clerk { nil }
-    delegated_powers { nil }
-    four_eyes_approval { nil }
     approvedDate { '2019-10-16 10:11:02' }
     category { 'INTERMEDIARY' }
-    next_hearing { nil }
-    duration_element { nil }
   end
 end

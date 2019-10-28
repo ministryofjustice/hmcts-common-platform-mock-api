@@ -38,6 +38,7 @@ RSpec.configure do |config|
   config.json_schemas[:defendant_hearing_youth_marker] = 'spec/support/schemas/global/defendantHearingYouthMarker.json'
   config.json_schemas[:delegated_powers] = 'spec/support/schemas/global/delegatedPowers.json'
   config.json_schemas[:ethnicity] = 'spec/support/schemas/global/ethnicity.json'
+  config.json_schemas[:hearing] = 'spec/support/schemas/global/hearing.json'
   config.json_schemas[:hearing_case_note] = 'spec/support/schemas/global/hearingCaseNote.json'
   config.json_schemas[:hearing_day] = 'spec/support/schemas/global/hearingDay.json'
   config.json_schemas[:hearing_type] = 'spec/support/schemas/global/hearingType.json'

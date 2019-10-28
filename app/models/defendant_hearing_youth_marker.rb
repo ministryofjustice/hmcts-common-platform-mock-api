@@ -4,10 +4,11 @@ class DefendantHearingYouthMarker < ApplicationRecord
   belongs_to :prosecution_case
   belongs_to :defendant
   belongs_to :marker
+  belongs_to :hearing, inverse_of: :defendant_hearing_youth_markers
 
   validates :prosecution_case, presence: true
   validates :defendant, presence: true
-  validates :hearing_id, presence: true
+  validates :hearing, presence: true
   validates :marker, presence: true
 
   def to_builder

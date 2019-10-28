@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_151843) do
+ActiveRecord::Schema.define(version: 2019_10_28_095223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
+    t.index ["hearing_id"], name: "index_applicant_counsels_on_hearing_id"
   end
 
   create_table "applicants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -169,7 +171,9 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.uuid "court_application_party_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
     t.index ["court_application_party_id"], name: "attendances_on_court_application_party_id"
+    t.index ["hearing_id"], name: "index_court_application_party_attendances_on_hearing_id"
   end
 
   create_table "court_application_party_counsels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -181,6 +185,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
+    t.index ["hearing_id"], name: "index_court_application_party_counsels_on_hearing_id"
   end
 
   create_table "court_application_payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -261,11 +267,13 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.uuid "court_centre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
     t.index ["application_type_id"], name: "index_court_applications_on_application_type_id"
     t.index ["court_application_outcome_id"], name: "index_court_applications_on_court_application_outcome_id"
     t.index ["court_application_party_id"], name: "index_court_applications_on_court_application_party_id"
     t.index ["court_application_payment_id"], name: "index_court_applications_on_court_application_payment_id"
     t.index ["court_centre_id"], name: "index_court_applications_on_court_centre_id"
+    t.index ["hearing_id"], name: "index_court_applications_on_hearing_id"
   end
 
   create_table "court_centres", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -310,6 +318,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
+    t.index ["hearing_id"], name: "index_defence_counsels_on_hearing_id"
   end
 
   create_table "defence_organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -338,7 +348,9 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.uuid "defendant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
     t.index ["defendant_id"], name: "index_defendant_attendances_on_defendant_id"
+    t.index ["hearing_id"], name: "index_defendant_attendances_on_hearing_id"
   end
 
   create_table "defendant_hearing_youth_markers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -349,6 +361,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["defendant_id"], name: "index_defendant_hearing_youth_markers_on_defendant_id"
+    t.index ["hearing_id"], name: "index_defendant_hearing_youth_markers_on_hearing_id"
     t.index ["marker_id"], name: "index_defendant_hearing_youth_markers_on_marker_id"
     t.index ["prosecution_case_id"], name: "index_defendant_hearing_youth_markers_on_prosecution_case_id"
   end
@@ -402,7 +415,9 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.string "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
     t.index ["court_clerk_id"], name: "index_hearing_case_notes_on_court_clerk_id"
+    t.index ["hearing_id"], name: "index_hearing_case_notes_on_hearing_id"
   end
 
   create_table "hearing_days", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -411,6 +426,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.integer "listedDurationMinutes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
+    t.index ["hearing_id"], name: "index_hearing_days_on_hearing_id"
   end
 
   create_table "hearing_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -418,6 +435,23 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "jurisdictionType"
+    t.string "reportingRestrictionReason"
+    t.uuid "court_centre_id", null: false
+    t.string "hearingLanguage"
+    t.boolean "hasSharedResults"
+    t.uuid "hearing_type_id", null: false
+    t.uuid "cracked_ineffective_trial_id"
+    t.boolean "isEffectiveTrial"
+    t.boolean "isBoxHearing"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_centre_id"], name: "index_hearings_on_court_centre_id"
+    t.index ["cracked_ineffective_trial_id"], name: "index_hearings_on_cracked_ineffective_trial_id"
+    t.index ["hearing_type_id"], name: "index_hearings_on_hearing_type_id"
   end
 
   create_table "indicated_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -529,6 +563,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "next_hearing_id"
+    t.uuid "hearing_id"
+    t.index ["hearing_id"], name: "index_judicial_roles_on_hearing_id"
     t.index ["judicial_role_type_id"], name: "index_judicial_roles_on_judicial_role_type_id"
     t.index ["next_hearing_id"], name: "index_judicial_roles_on_next_hearing_id"
   end
@@ -855,6 +891,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "prosecution_counsel_id"
+    t.uuid "hearing_id"
+    t.index ["hearing_id"], name: "index_prosecution_cases_on_hearing_id"
     t.index ["merged_prosecution_case_id"], name: "index_prosecution_cases_on_merged_prosecution_case_id"
     t.index ["police_officer_in_case_id"], name: "index_prosecution_cases_on_police_officer_in_case_id"
     t.index ["prosecution_case_identifier_id"], name: "index_prosecution_cases_on_prosecution_case_identifier_id"
@@ -869,6 +907,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
+    t.index ["hearing_id"], name: "index_prosecution_counsels_on_hearing_id"
   end
 
   create_table "referral_reasons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -876,6 +916,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.uuid "defendantId"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
+    t.index ["hearing_id"], name: "index_referral_reasons_on_hearing_id"
   end
 
   create_table "respondent_counsels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -886,6 +928,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hearing_id"
+    t.index ["hearing_id"], name: "index_respondent_counsels_on_hearing_id"
   end
 
   create_table "split_prosecutor_case_references", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -932,6 +976,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
   end
 
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
+  add_foreign_key "applicant_counsels", "hearings"
   add_foreign_key "applicants", "applicant_counsels"
   add_foreign_key "associated_defence_organisations", "defendants"
   add_foreign_key "associated_defence_organisations", "organisations"
@@ -954,6 +999,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
   add_foreign_key "court_application_parties", "people"
   add_foreign_key "court_application_parties", "prosecuting_authorities"
   add_foreign_key "court_application_party_attendances", "court_application_parties"
+  add_foreign_key "court_application_party_attendances", "hearings"
+  add_foreign_key "court_application_party_counsels", "hearings"
   add_foreign_key "court_application_respondents", "court_application_parties", column: "party_details_id"
   add_foreign_key "court_application_respondents", "court_application_responses", column: "application_response_id"
   add_foreign_key "court_application_respondents", "court_applications"
@@ -964,16 +1011,25 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
   add_foreign_key "court_applications", "court_application_payments"
   add_foreign_key "court_applications", "court_application_types", column: "application_type_id"
   add_foreign_key "court_applications", "court_centres"
+  add_foreign_key "court_applications", "hearings"
   add_foreign_key "court_centres", "addresses"
+  add_foreign_key "defence_counsels", "hearings"
   add_foreign_key "defence_organisations", "organisations"
   add_foreign_key "defendant_aliases", "defendants"
   add_foreign_key "defendant_attendances", "defendants"
+  add_foreign_key "defendant_attendances", "hearings"
   add_foreign_key "defendant_hearing_youth_markers", "defendants"
+  add_foreign_key "defendant_hearing_youth_markers", "hearings"
   add_foreign_key "defendant_hearing_youth_markers", "markers"
   add_foreign_key "defendant_hearing_youth_markers", "prosecution_cases"
   add_foreign_key "defendants", "defence_counsels"
   add_foreign_key "defendants", "prosecution_cases"
   add_foreign_key "hearing_case_notes", "delegated_powers", column: "court_clerk_id"
+  add_foreign_key "hearing_case_notes", "hearings"
+  add_foreign_key "hearing_days", "hearings"
+  add_foreign_key "hearings", "court_centres"
+  add_foreign_key "hearings", "cracked_ineffective_trials"
+  add_foreign_key "hearings", "hearing_types"
   add_foreign_key "judicial_result_prompts", "judicial_results"
   add_foreign_key "judicial_results", "court_applications"
   add_foreign_key "judicial_results", "defendants"
@@ -983,6 +1039,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
   add_foreign_key "judicial_results", "judicial_result_prompt_duration_elements", column: "duration_element_id"
   add_foreign_key "judicial_results", "next_hearings"
   add_foreign_key "judicial_results", "offences"
+  add_foreign_key "judicial_roles", "hearings"
   add_foreign_key "judicial_roles", "judicial_role_types"
   add_foreign_key "judicial_roles", "next_hearings"
   add_foreign_key "laa_references", "offences"
@@ -1021,10 +1078,14 @@ ActiveRecord::Schema.define(version: 2019_10_25_151843) do
   add_foreign_key "prosecuting_authorities", "contact_numbers", column: "contact_id"
   add_foreign_key "prosecution_case_hearing_case_notes", "hearing_case_notes"
   add_foreign_key "prosecution_case_hearing_case_notes", "prosecution_cases"
+  add_foreign_key "prosecution_cases", "hearings"
   add_foreign_key "prosecution_cases", "merged_prosecution_cases"
   add_foreign_key "prosecution_cases", "police_officer_in_cases"
   add_foreign_key "prosecution_cases", "prosecution_case_identifiers"
   add_foreign_key "prosecution_cases", "prosecution_counsels"
+  add_foreign_key "prosecution_counsels", "hearings"
+  add_foreign_key "referral_reasons", "hearings"
+  add_foreign_key "respondent_counsels", "hearings"
   add_foreign_key "split_prosecutor_case_references", "defendants"
   add_foreign_key "split_prosecutor_case_references", "prosecution_cases"
   add_foreign_key "user_groups", "judicial_result_prompts"

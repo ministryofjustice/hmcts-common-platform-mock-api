@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_28_135623) do
+ActiveRecord::Schema.define(version: 2019_10_30_125213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -367,7 +367,6 @@ ActiveRecord::Schema.define(version: 2019_10_28_135623) do
   end
 
   create_table "defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "prosecutionCaseId"
     t.integer "numberOfPreviousConvictionsCited"
     t.string "prosecutionAuthorityReference"
     t.string "witnessStatement"
@@ -408,7 +407,6 @@ ActiveRecord::Schema.define(version: 2019_10_28_135623) do
   end
 
   create_table "hearing_case_notes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "originatingHearingId"
     t.uuid "court_clerk_id", null: false
     t.datetime "noteDateTime"
     t.string "noteType"

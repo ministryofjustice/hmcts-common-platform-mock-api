@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :hearing_case_note do
-    originatingHearingId { SecureRandom.uuid }
+    hearing
     association :court_clerk, factory: :delegated_powers
     noteDateTime { '2019-10-23 11:32:36' }
     noteType { 'HMCTS' }

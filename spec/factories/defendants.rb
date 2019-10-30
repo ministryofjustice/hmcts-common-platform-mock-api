@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :defendant do
-    prosecutionCaseId { SecureRandom.uuid }
+    prosecution_case
     numberOfPreviousConvictionsCited { 1 }
     prosecutionAuthorityReference { 'MyString' }
     witnessStatement { 'MyString' }

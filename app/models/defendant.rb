@@ -2,7 +2,7 @@
 
 class Defendant < ApplicationRecord
   belongs_to :defendable, polymorphic: true
-  belongs_to :prosecution_case, optional: true, inverse_of: :defendants
+  belongs_to :prosecution_case, inverse_of: :defendants
   has_many :offences
   has_many :associated_people
   has_many :associated_defence_organisations
@@ -12,7 +12,7 @@ class Defendant < ApplicationRecord
   has_many :split_prosecutor_case_references
   has_many :linked_defendants
 
-  validates :prosecutionCaseId, presence: true
+  validates :prosecution_case, presence: true
   validates :offences, presence: true
   validates :defendable, presence: true
   validates :split_prosecutor_case_references, length: { minimum: 2 }, if: -> { split_prosecutor_case_references.present? }
@@ -28,7 +28,7 @@ class Defendant < ApplicationRecord
   def to_builder
     Jbuilder.new do |defendant|
       defendant.id id
-      defendant.prosecutionCaseId prosecutionCaseId
+      defendant.prosecutionCaseId prosecution_case_id
       defendant.numberOfPreviousConvictionsCited numberOfPreviousConvictionsCited
       defendant.prosecutionAuthorityReference prosecutionAuthorityReference
       defendant.witnessStatement witnessStatement

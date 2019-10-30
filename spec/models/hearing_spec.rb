@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Hearing, type: :model do
   let(:hearing) { FactoryBot.create(:hearing) }
   let(:json_schema) { :hearing }
@@ -12,6 +13,20 @@ RSpec.describe Hearing, type: :model do
     it { should belong_to(:court_centre).class_name('CourtCentre') }
     it { should belong_to(:hearing_type).class_name('HearingType') }
     it { should belong_to(:cracked_ineffective_trial).class_name('CrackedIneffectiveTrial').optional }
+    it { should have_many(:prosecution_cases).class_name('ProsecutionCase') }
+    it { should have_many(:court_applications).class_name('CourtApplication') }
+    it { should have_many(:referral_reasons).class_name('ReferralReason') }
+    it { should have_many(:hearing_case_notes).class_name('HearingCaseNote') }
+    it { should have_many(:hearing_days).class_name('HearingDay') }
+    it { should have_many(:judicial_roles).class_name('JudicialRole') }
+    it { should have_many(:applicant_counsels).class_name('ApplicantCounsel') }
+    it { should have_many(:respondent_counsels).class_name('RespondentCounsel') }
+    it { should have_many(:prosecution_counsels).class_name('ProsecutionCounsel') }
+    it { should have_many(:defence_counsels).class_name('DefenceCounsel') }
+    it { should have_many(:court_application_party_counsels).class_name('CourtApplicationPartyCounsel') }
+    it { should have_many(:defendant_attendances).class_name('DefendantAttendance') }
+    it { should have_many(:court_application_party_attendances).class_name('CourtApplicationPartyAttendance') }
+    it { should have_many(:defendant_hearing_youth_markers).class_name('DefendantHearingYouthMarker') }
   end
   describe 'validations' do
     it { should validate_presence_of(:jurisdictionType) }
@@ -45,3 +60,4 @@ RSpec.describe Hearing, type: :model do
     it_has_behaviour 'conforming to valid schema'
   end
 end
+# rubocop:enable Metrics/BlockLength

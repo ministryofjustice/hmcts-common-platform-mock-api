@@ -10,6 +10,7 @@ RSpec.describe ProsecutionCase, type: :model do
   subject { prosecution_case }
 
   describe 'associations' do
+    it { should belong_to(:hearing).class_name('Hearing').optional }
     it { should belong_to(:prosecution_case_identifier).class_name('ProsecutionCaseIdentifier') }
     it { should belong_to(:police_officer_in_case).class_name('PoliceOfficerInCase').optional }
     it { should belong_to(:merged_prosecution_case).class_name('MergedProsecutionCase').optional }

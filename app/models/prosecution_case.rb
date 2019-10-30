@@ -7,6 +7,7 @@ class ProsecutionCase < ApplicationRecord
   belongs_to :prosecution_case_identifier
   belongs_to :police_officer_in_case, optional: true
   belongs_to :merged_prosecution_case, optional: true
+  belongs_to :hearing, optional: true, inverse_of: :prosecution_cases
 
   has_many :defendants
   has_many :markers

@@ -11,7 +11,7 @@ RSpec.describe Defendant, type: :model do
 
   describe 'associations' do
     it { should belong_to(:defendable) }
-    it { should belong_to(:prosecution_case).class_name('ProsecutionCase').optional }
+    it { should belong_to(:prosecution_case).class_name('ProsecutionCase') }
     it { should have_many(:offences).class_name('Offence') }
     it { should have_many(:associated_people).class_name('AssociatedPerson') }
     it { should have_many(:associated_defence_organisations).class_name('AssociatedDefenceOrganisation') }
@@ -23,7 +23,7 @@ RSpec.describe Defendant, type: :model do
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:prosecutionCaseId) }
+    it { should validate_presence_of(:prosecution_case) }
     it { should validate_presence_of(:offences) }
     it { should validate_presence_of(:defendable) }
     it { should be_valid }

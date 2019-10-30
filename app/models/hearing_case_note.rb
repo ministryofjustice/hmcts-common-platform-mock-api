@@ -2,10 +2,11 @@
 
 class HearingCaseNote < ApplicationRecord
   belongs_to :court_clerk, class_name: 'DelegatedPowers'
+  belongs_to :hearing
   has_many :prosecution_case_hearing_case_notes
   has_many :prosecution_cases, through: :prosecution_case_hearing_case_notes
 
-  validates :originatingHearingId, presence: true
+  validates :hearing, presence: true
   validates :prosecution_cases, presence: true
   validates :noteDateTime, presence: true
   validates :noteType, presence: true, inclusion: %w[HMCTS LEGAL]
@@ -14,7 +15,7 @@ class HearingCaseNote < ApplicationRecord
 
   def to_builder
     Jbuilder.new do |hearing_case_note|
-      hearing_case_note.originatingHearingId originatingHearingId
+      hearing_case_note.originatingHearingId hearing_id
       hearing_case_note.id id
       hearing_case_note.courtClerk court_clerk.to_builder
       hearing_case_note.prosecutionCases prosecution_cases_builder

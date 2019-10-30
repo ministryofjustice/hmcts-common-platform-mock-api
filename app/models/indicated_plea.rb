@@ -12,6 +12,7 @@ class IndicatedPlea < ApplicationRecord
   def to_builder
     Jbuilder.new do |indicated_plea|
       indicated_plea.offenceId offenceId
+      indicated_plea.originatingHearingId originatingHearingId
       indicated_plea.indicatedPleaDate indicatedPleaDate.to_date
       indicated_plea.indicatedPleaValue indicatedPleaValue
       indicated_plea.source source

@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Offence, type: :model do
   let(:offence) { FactoryBot.create(:offence) }
   let(:json_schema) { :offence }
@@ -29,20 +30,23 @@ RSpec.describe Offence, type: :model do
     it { should validate_presence_of(:startDate) }
   end
 
-  context 'hmcts schema' do
-    let(:offence) { FactoryBot.create(:offence) }
+  it_has_behaviour 'conforming to valid schema'
+
+  context 'with relationships' do
+    before do
+      offence.notified_plea = FactoryBot.create(:notified_plea)
+      offence.indicated_plea = FactoryBot.create(:indicated_plea)
+      offence.allocation_decision = FactoryBot.create(:allocation_decision)
+      offence.plea = FactoryBot.create(:plea)
+      offence.verdict = FactoryBot.create(:verdict)
+      offence.offence_facts = FactoryBot.create(:offence_facts)
+      offence.victims << FactoryBot.create(:person)
+      offence.judicial_results << FactoryBot.create(:judicial_result)
+      offence.laa_references << FactoryBot.create(:laa_reference)
+      offence.save!
+    end
 
     it_has_behaviour 'conforming to valid schema'
-
-    context 'with relationships' do
-      before do
-        offence.victims << FactoryBot.create(:person)
-        offence.judicial_results << FactoryBot.create(:judicial_result)
-        offence.laa_references << FactoryBot.create(:laa_reference)
-        offence.save!
-      end
-
-      it_has_behaviour 'conforming to valid schema'
-    end
   end
 end
+# rubocop:enable Metrics/BlockLength

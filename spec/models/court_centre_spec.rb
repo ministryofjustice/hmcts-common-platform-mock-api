@@ -14,4 +14,13 @@ RSpec.describe CourtCentre, type: :model do
   end
 
   it_has_behaviour 'conforming to valid schema'
+
+  context 'with relationships' do
+    before do
+      court_centre.address = FactoryBot.create(:address)
+      court_centre.save!
+    end
+
+    it_has_behaviour 'conforming to valid schema'
+  end
 end

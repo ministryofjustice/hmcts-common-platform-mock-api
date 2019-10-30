@@ -8,6 +8,6 @@ FactoryBot.define do
     secondaryDurationUnit { 'MyString' }
     secondaryDurationValue { 1 }
     tertiaryDurationUnit { 'MyString' }
-    tertiaryDurationValue { 'MyString' }
+    tertiaryDurationValue { 1 }
   end
 end

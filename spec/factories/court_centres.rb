@@ -7,6 +7,5 @@ FactoryBot.define do
     roomId { SecureRandom.uuid }
     roomName { 'Grand Hall' }
     welshRoomName { 'Neuadd y Grand' }
-    address { nil }
   end
 end

@@ -7,6 +7,8 @@ class VerdictType < ApplicationRecord
   def to_builder
     Jbuilder.new do |verdict_type|
       verdict_type.id id
+      verdict_type.sequence sequence
+      verdict_type.description description
       verdict_type.category category
       verdict_type.categoryType categoryType
     end

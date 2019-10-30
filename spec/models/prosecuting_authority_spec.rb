@@ -18,7 +18,9 @@ RSpec.describe ProsecutingAuthority, type: :model do
     it { should validate_presence_of(:prosecutionAuthorityCode) }
   end
 
-  context 'hmcts schema' do
+  it_has_behaviour 'conforming to valid schema'
+
+  context 'with relationships' do
     before do
       prosecuting_authority.contact = FactoryBot.create(:contact_number)
       prosecuting_authority.address = FactoryBot.create(:address)

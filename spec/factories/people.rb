@@ -14,7 +14,6 @@ FactoryBot.define do
     additionalNationalityCode { 'Irish' }
     additionalNationalityDescription { 'The unexamined life is not worth living.' }
     disabilityStatus { 'blind' }
-    ethnicity { nil }
     gender { 'NOT_SPECIFIED' }
     interpreterLanguageNeeds { 'Swedish' }
     documentationLanguageNeeds { 'ENGLISH' }
@@ -22,7 +21,5 @@ FactoryBot.define do
     occupation { 'Global Real-Estate Strategist' }
     occupationCode { '4033' }
     specificRequirements { 'Unleash back-end relationships' }
-    address { nil }
-    contact_number { nil }
   end
 end

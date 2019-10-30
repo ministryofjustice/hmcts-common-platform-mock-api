@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_28_095223) do
+ActiveRecord::Schema.define(version: 2019_10_28_135623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2019_10_28_095223) do
     t.boolean "isDamageValueUnder5000", default: false, null: false
     t.boolean "isTreatedAsIndictableOnly", default: false, null: false
     t.boolean "sentencingIndicationRequested", default: false, null: false
-    t.uuid "court_indicated_sentence_id", null: false
+    t.uuid "court_indicated_sentence_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["court_indicated_sentence_id"], name: "index_allocation_decisions_on_court_indicated_sentence_id"
@@ -471,7 +471,7 @@ ActiveRecord::Schema.define(version: 2019_10_28_095223) do
     t.string "secondaryDurationUnit"
     t.integer "secondaryDurationValue"
     t.string "tertiaryDurationUnit"
-    t.string "tertiaryDurationValue"
+    t.integer "tertiaryDurationValue"
     t.datetime "durationStartDate"
     t.datetime "durationEndDate"
     t.datetime "created_at", precision: 6, null: false

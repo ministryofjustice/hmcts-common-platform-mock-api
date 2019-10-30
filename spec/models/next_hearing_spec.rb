@@ -30,4 +30,13 @@ RSpec.describe NextHearing, type: :model do
   end
 
   it_has_behaviour 'conforming to valid schema'
+
+  context 'with relationships' do
+    before do
+      next_hearing.court_centre = FactoryBot.create(:court_centre)
+      next_hearing.save!
+    end
+
+    it_has_behaviour 'conforming to valid schema'
+  end
 end

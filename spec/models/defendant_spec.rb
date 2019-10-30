@@ -69,14 +69,13 @@ RSpec.describe Defendant, type: :model do
 
   context 'with relationships' do
     before do
-      defendant.offences << FactoryBot.create(:offence)
-      defendant.associated_people << FactoryBot.create(:associated_person)
-      defendant.associated_defence_organisations << FactoryBot.create(:associated_defence_organisation)
-      defendant.defendant_aliases << FactoryBot.create(:defendant_alias)
-      defendant.judicial_results << FactoryBot.create(:judicial_result)
-      defendant.markers << FactoryBot.create(:marker)
-      defendant.split_prosecutor_case_references << FactoryBot.create_list(:split_prosecutor_case_reference, 2)
-      defendant.linked_defendants << FactoryBot.create(:linked_defendant)
+      defendant.associated_people << FactoryBot.build(:associated_person)
+      defendant.associated_defence_organisations << FactoryBot.build(:associated_defence_organisation)
+      defendant.defendant_aliases << FactoryBot.build(:defendant_alias)
+      defendant.judicial_results << FactoryBot.build(:judicial_result)
+      defendant.markers << FactoryBot.build(:marker)
+      defendant.split_prosecutor_case_references << FactoryBot.build_list(:split_prosecutor_case_reference, 2)
+      defendant.linked_defendants << FactoryBot.build(:linked_defendant)
       defendant.save!
     end
 

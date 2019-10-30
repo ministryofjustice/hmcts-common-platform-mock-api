@@ -19,6 +19,14 @@ class FakeCommonPlatform < Sinatra::Base
     json_response(200, '/schemas/global/search/', params[:file_name])
   end
 
+  get '/unified_search_query/global/search/:file_name' do
+    json_response(200, '/schemas/global/search/', params[:file_name])
+  end
+
+  get '/unified_search_query/global/:file_name' do
+    json_response(200, '/schemas/global/', params[:file_name])
+  end
+
   private
 
   def json_response(response_code, file_path, file_name)

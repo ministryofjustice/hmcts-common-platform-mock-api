@@ -99,7 +99,7 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
-  config.before(:each) do
+  config.before(:each, type: ->(spec_type) { %i[model request].include? spec_type }) do
     stub_request(:any, /justice.gov.uk/).to_rack(FakeCommonPlatform)
   end
 end

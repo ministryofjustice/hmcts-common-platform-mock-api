@@ -2,7 +2,7 @@
 
 class ProsecutionCasesController < ApplicationController
   def index
-    @prosecution_cases = ProsecutionCase.all
+    @prosecution_cases = ProsecutionCaseSearch.call(params)
     render json: { prosecutionCases: Jbuilder.new.array!(prosecution_cases_builder) }
   end
 

@@ -3,7 +3,7 @@
 class ProsecutionCaseSearch < ApplicationService
   def initialize(params)
     @params = params
-    @schema = JSON.parse(File.open(Rails.root.join('spec/support/schemas/api/search-prosecutionCaseRequest.json')).read)
+    @schema = JSON.parse(File.open(Rails.root.join('lib/schemas/api/search-prosecutionCaseRequest.json')).read)
   end
 
   def call

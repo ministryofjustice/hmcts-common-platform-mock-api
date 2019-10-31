@@ -4,7 +4,11 @@ require 'rails_helper'
 
 RSpec.describe 'ProsecutionCases', type: :request do
   describe 'GET /prosecution_cases' do
-    let!(:prosecution_case) { FactoryBot.create(:prosecution_case) }
+    let!(:prosecution_case) do
+      FactoryBot.create(:prosecution_case,
+                        prosecution_case_identifier: FactoryBot.create(:prosecution_case_identifier,
+                                                                       caseURN: 'some-reference'))
+    end
 
     it 'matches the response schema' do
       get '/prosecutionCases?prosecutionCaseReference=some-reference'

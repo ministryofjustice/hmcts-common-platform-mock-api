@@ -11,12 +11,18 @@ class ProsecutionCaseSearch < ApplicationService
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
     raise Errors::InvalidParams, errors if errors.present?
 
-    ProsecutionCase.all
+    prosecution_cases_by_reference if permitted_params['prosecutionCaseReference'].present?
   end
 
   private
 
   attr_reader :params, :schema
+
+  def prosecution_cases_by_reference
+    ProsecutionCase
+      .joins(:prosecution_case_identifier)
+      .where('"caseURN" = :search OR "prosecutionAuthorityReference" = :search', search: permitted_params['prosecutionCaseReference'])
+  end
 
   def permitted_params
     params.permit(schema['properties'].keys)

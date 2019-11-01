@@ -40,7 +40,7 @@ RSpec.describe ProsecutionCaseSearch do
 
     context 'with a non matching reference' do
       let(:params_hash) do
-        { prosecutionCaseReference: 'NOT EXISTENT' }
+        { prosecutionCaseReference: 'NON EXISTENT' }
       end
 
       it { is_expected.to be_empty }
@@ -71,6 +71,35 @@ RSpec.describe ProsecutionCaseSearch do
     context 'with a non matching reference' do
       let(:params_hash) do
         { nationalInsuranceNumber: 'XJ812213C' }
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  context 'when searching by arrestSummonsNumber' do
+    let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
+    let(:defendant) do
+      FactoryBot.build(:defendant,
+                       prosecution_case: nil,
+                       defendable: FactoryBot.create(:person_defendant, arrestSummonsNumber: '3.1428'))
+    end
+
+    before do
+      cases.first.defendants << defendant
+      cases.first.save!
+    end
+
+    let(:params_hash) do
+      { arrestSummonsNumber: '3.1428' }
+    end
+
+    it { is_expected.to include(cases.first) }
+    it { is_expected.not_to include(cases.second) }
+
+    context 'with a non matching reference' do
+      let(:params_hash) do
+        { arrestSummonsNumber: 'NON EXISTENT' }
       end
 
       it { is_expected.to be_empty }

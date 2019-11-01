@@ -13,7 +13,9 @@ class ProsecutionCaseSearch < ApplicationService
 
     return prosecution_cases_by_reference if permitted_params['prosecutionCaseReference'].present?
 
-    prosecution_cases_by_nino if permitted_params['nationalInsuranceNumber'].present?
+    return prosecution_cases_by_nino if permitted_params['nationalInsuranceNumber'].present?
+
+    prosecution_cases_by_summons if permitted_params['arrestSummonsNumber'].present?
   end
 
   private
@@ -32,6 +34,14 @@ class ProsecutionCaseSearch < ApplicationService
 
   def person_defendant_by_nino
     PersonDefendant.joins(:person).where(people: { nationalInsuranceNumber: permitted_params[:nationalInsuranceNumber] })
+  end
+
+  def prosecution_cases_by_summons
+    ProsecutionCase.joins(:defendants).where(defendants: { defendable_type: 'PersonDefendant', defendable_id: person_defendant_by_summons })
+  end
+
+  def person_defendant_by_summons
+    PersonDefendant.where(arrestSummonsNumber: permitted_params[:arrestSummonsNumber])
   end
 
   def permitted_params

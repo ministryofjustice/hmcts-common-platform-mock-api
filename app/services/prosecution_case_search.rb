@@ -31,7 +31,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def prosecution_cases_by_nino
-    ProsecutionCase.joins(:defendants).where(defendants: { defendable_type: 'PersonDefendant', defendable_id: person_defendant_by_nino })
+    ProsecutionCase.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_nino)
   end
 
   def person_defendant_by_nino
@@ -39,7 +39,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def prosecution_cases_by_summons
-    ProsecutionCase.joins(:defendants).where(defendants: { defendable_type: 'PersonDefendant', defendable_id: person_defendant_by_summons })
+    ProsecutionCase.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_summons)
   end
 
   def person_defendant_by_summons
@@ -47,10 +47,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def prosecution_cases_by_name_and_dob
-    ProsecutionCase.joins(:defendants).where(defendants: {
-                                               defendable_type: 'PersonDefendant',
-                                               defendable_id: person_defendant_by_name_and_dob
-                                             })
+    ProsecutionCase.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_name_and_dob)
   end
 
   def person_defendant_by_name_and_dob

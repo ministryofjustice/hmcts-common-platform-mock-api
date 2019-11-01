@@ -12,10 +12,25 @@ class Defendant < ApplicationRecord
   has_many :split_prosecutor_case_references
   has_many :linked_defendants
 
+  belongs_to :person_defendant,
+             -> { where(defendants: { defendable_type: 'PersonDefendant' }) },
+             class_name: 'PersonDefendant',
+             foreign_key: 'defendable_id',
+             optional: true
+
+  belongs_to :legal_entity_defendant,
+             -> { where(defendants: { defendable_type: 'LegalEntityDefendant' }) },
+             class_name: 'LegalEntityDefendant',
+             foreign_key: 'defendable_id',
+             optional: true
+
   validates :prosecution_case, presence: true
   validates :offences, presence: true
   validates :defendable, presence: true
   validates :split_prosecutor_case_references, length: { minimum: 2 }, if: -> { split_prosecutor_case_references.present? }
+
+  scope :people_only, -> { joins(:person_defendant) }
+  scope :legal_entity_only, -> { joins(:legal_entity_defendant) }
 
   def person?
     defendable.is_a? PersonDefendant

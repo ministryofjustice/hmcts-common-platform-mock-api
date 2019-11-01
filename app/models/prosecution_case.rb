@@ -10,6 +10,8 @@ class ProsecutionCase < ApplicationRecord
   belongs_to :hearing, optional: true, inverse_of: :prosecution_cases
 
   has_many :defendants
+  has_many :person_only_defendants, -> { people_only }, class_name: 'Defendant'
+  has_many :legal_entity_only_defendants, -> { legal_entity_only }, class_name: 'Defendant'
   has_many :markers
   has_many :split_prosecutor_case_references
   has_many :linked_prosecution_cases

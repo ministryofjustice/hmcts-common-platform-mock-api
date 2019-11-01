@@ -15,6 +15,8 @@ RSpec.describe ProsecutionCase, type: :model do
     it { should belong_to(:police_officer_in_case).class_name('PoliceOfficerInCase').optional }
     it { should belong_to(:merged_prosecution_case).class_name('MergedProsecutionCase').optional }
     it { should have_many(:defendants).class_name('Defendant') }
+    it { should have_many(:person_only_defendants).class_name('Defendant') }
+    it { should have_many(:legal_entity_only_defendants).class_name('Defendant') }
     it { should have_many(:markers).class_name('Marker') }
     it { should have_many(:split_prosecutor_case_references).class_name('SplitProsecutorCaseReference') }
     it { should have_many(:linked_prosecution_cases).class_name('LinkedProsecutionCase') }

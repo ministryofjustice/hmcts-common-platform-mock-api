@@ -9,8 +9,29 @@ RSpec.describe Defendant, type: :model do
 
   subject { defendant }
 
+  describe 'scopes' do
+    let!(:defendant_as_person) { FactoryBot.create(:defendant) }
+    let!(:defendant_as_legal_entity) { FactoryBot.create(:defendant_as_legal_entity) }
+
+    describe '.people_only' do
+      subject { described_class.people_only }
+
+      it { is_expected.to include(defendant_as_person) }
+      it { is_expected.not_to include(defendant_as_legal_entity) }
+    end
+
+    describe '.legal_entity_only' do
+      subject { described_class.legal_entity_only }
+
+      it { is_expected.not_to include(defendant_as_person) }
+      it { is_expected.to include(defendant_as_legal_entity) }
+    end
+  end
+
   describe 'associations' do
     it { should belong_to(:defendable) }
+    it { should belong_to(:person_defendant).class_name('PersonDefendant').optional }
+    it { should belong_to(:legal_entity_defendant).class_name('LegalEntityDefendant').optional }
     it { should belong_to(:prosecution_case).class_name('ProsecutionCase') }
     it { should have_many(:offences).class_name('Offence') }
     it { should have_many(:associated_people).class_name('AssociatedPerson') }

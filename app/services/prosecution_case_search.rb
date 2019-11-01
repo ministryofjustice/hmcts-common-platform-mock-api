@@ -13,7 +13,11 @@ class ProsecutionCaseSearch < ApplicationService
 
     return prosecution_cases_by_reference if permitted_params['prosecutionCaseReference'].present?
 
-    prosecution_cases_by_nino if permitted_params['nationalInsuranceNumber'].present?
+    return prosecution_cases_by_nino if permitted_params['nationalInsuranceNumber'].present?
+
+    return prosecution_cases_by_summons if permitted_params['arrestSummonsNumber'].present?
+
+    prosecution_cases_by_name_and_dob if permitted_params['dateOfBirth'].present?
   end
 
   private
@@ -27,15 +31,36 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def prosecution_cases_by_nino
-    ProsecutionCase.joins(:defendants).where(defendants: { defendable_type: 'PersonDefendant', defendable_id: person_defendant_by_nino })
+    ProsecutionCase.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_nino)
   end
 
   def person_defendant_by_nino
     PersonDefendant.joins(:person).where(people: { nationalInsuranceNumber: permitted_params[:nationalInsuranceNumber] })
   end
 
+  def prosecution_cases_by_summons
+    ProsecutionCase.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_summons)
+  end
+
+  def person_defendant_by_summons
+    PersonDefendant.where(arrestSummonsNumber: permitted_params[:arrestSummonsNumber])
+  end
+
+  def prosecution_cases_by_name_and_dob
+    ProsecutionCase.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_name_and_dob)
+  end
+
+  def person_defendant_by_name_and_dob
+    PersonDefendant.by_name_and_dob(permitted_params.slice(:name, :dateOfBirth))
+  end
+
   def permitted_params
-    params.permit(schema['properties'].keys)
+    params.permit(:prosecutionCaseReference,
+                  :nationalInsuranceNumber,
+                  :arrestSummonsNumber,
+                  :dateOfBirth,
+                  :dateOfNextHearing,
+                  name: %i[firstName middleName lastName])
   end
 
   def register_dependant_schemas!

@@ -2,11 +2,58 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Person, type: :model do
   let(:person) { FactoryBot.create(:person) }
   let(:json_schema) { :person }
 
   subject { person }
+
+  describe 'scopes' do
+    describe '.by_name' do
+      let(:name_object) { { firstName: 'John', middleName: 'JD', lastName: 'Doe' } }
+
+      subject { described_class.by_name(name_object) }
+
+      let!(:person_one) { FactoryBot.create(:person, firstName: 'John') }
+      let!(:person_two) { FactoryBot.create(:person, firstName: 'John', lastName: 'Doe') }
+      let!(:person_three) { FactoryBot.create(:person, firstName: 'John', middleName: 'JD', lastName: 'Doe') }
+
+      it { is_expected.not_to include(person_one) }
+      it { is_expected.not_to include(person_two) }
+      it { is_expected.to include(person_three) }
+
+      context 'allows omitting middleName' do
+        let(:name_object) { { firstName: 'John', lastName: 'Doe' } }
+
+        it { is_expected.not_to include(person_one) }
+        it { is_expected.to include(person_two) }
+        it { is_expected.to include(person_three) }
+      end
+
+      context 'excludes additonal attributes' do
+        let(:name_object) { { firstName: 'John', lastName: 'Doe', gender: 'MALE' } }
+
+        before { Person.update_all(gender: 'FEMALE') }
+
+        it { is_expected.not_to include(person_one) }
+        it { is_expected.to include(person_two) }
+        it { is_expected.to include(person_three) }
+      end
+    end
+
+    describe '.by_date_of_birth' do
+      let(:date_of_birth) { '2000-05-12' }
+
+      subject { described_class.by_date_of_birth(date_of_birth) }
+
+      let!(:person_one) { FactoryBot.create(:person, dateOfBirth: '2000-05-12') }
+      let!(:person_two) { FactoryBot.create(:person, dateOfBirth: '2012-05-12') }
+
+      it { is_expected.to include(person_one) }
+      it { is_expected.not_to include(person_two) }
+    end
+  end
 
   describe 'associations' do
     it { should belong_to(:ethnicity).class_name('Ethnicity').optional }
@@ -45,3 +92,4 @@ RSpec.describe Person, type: :model do
     it_has_behaviour 'conforming to valid schema'
   end
 end
+# rubocop:enable Metrics/BlockLength

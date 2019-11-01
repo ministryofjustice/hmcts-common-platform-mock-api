@@ -2,11 +2,31 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe PersonDefendant, type: :model do
   let(:person_defendant) { FactoryBot.create(:person_defendant) }
   let(:json_schema) { :person_defendant }
 
   subject { person_defendant }
+
+  describe 'scopes' do
+    describe '.by_name_and_dob' do
+      let(:params) { { name: { firstName: 'John', lastName: 'Doe' }, dateOfBirth: '2000-05-12' } }
+
+      subject { described_class.by_name_and_dob(params) }
+
+      before do
+        allow(Person).to receive(:by_name).and_call_original
+        allow(Person).to receive(:by_date_of_birth).and_call_original
+      end
+
+      it 'calls the by_name and by_date_of_birth scopes on Person' do
+        expect(Person).to receive(:by_name).with(params[:name])
+        expect(Person).to receive(:by_date_of_birth).with(params[:dateOfBirth])
+        subject
+      end
+    end
+  end
 
   describe 'associations' do
     it { should belong_to(:person).class_name('Person') }
@@ -33,3 +53,4 @@ RSpec.describe PersonDefendant, type: :model do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

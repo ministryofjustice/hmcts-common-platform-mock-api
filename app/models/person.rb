@@ -5,6 +5,9 @@ class Person < ApplicationRecord
   GENDERS = %w[MALE FEMALE NOT_KNOWN NOT_SPECIFIED].freeze
   TITLES = %w[MR MRS MISS MS].freeze
 
+  scope :by_name, ->(full_name) { where(full_name.slice(:firstName, :lastName, :middleName)) }
+  scope :by_date_of_birth, ->(date) { where(dateOfBirth: date) }
+
   belongs_to :ethnicity, optional: true
   belongs_to :address, optional: true
   belongs_to :contact_number, optional: true

@@ -105,5 +105,38 @@ RSpec.describe ProsecutionCaseSearch do
       it { is_expected.to be_empty }
     end
   end
+
+  context 'when searching by name and dateOfBirth' do
+    let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
+    let(:defendant) do
+      FactoryBot.build(:defendant,
+                       prosecution_case: nil,
+                       defendable: FactoryBot.create(:person_defendant,
+                                                     person: FactoryBot.create(:person,
+                                                                               firstName: 'John',
+                                                                               lastName: 'Doe',
+                                                                               dateOfBirth: '2000-01-10')))
+    end
+
+    before do
+      cases.first.defendants << defendant
+      cases.first.save!
+    end
+
+    let(:params_hash) do
+      { dateOfBirth: '2000-01-10', name: { firstName: 'John', lastName: 'Doe' } }
+    end
+
+    it { is_expected.to include(cases.first) }
+    it { is_expected.not_to include(cases.second) }
+
+    context 'with a non matching reference' do
+      let(:params_hash) do
+        { dateOfBirth: '2012-12-12', name: { firstName: 'John', lastName: 'Doe' } }
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
 end
 # rubocop:enable Metrics/BlockLength

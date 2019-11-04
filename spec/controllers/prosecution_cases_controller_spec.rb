@@ -9,4 +9,11 @@ RSpec.describe ProsecutionCasesController, type: :controller do
       expect(response).to be_successful
     end
   end
+
+  describe 'PUT #laa_reference' do
+    it 'returns a success response' do
+      put :laa_reference
+      expect(response).to be_successful
+    end
+  end
 end

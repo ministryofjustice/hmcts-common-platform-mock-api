@@ -27,6 +27,10 @@ class FakeCommonPlatform < Sinatra::Base
     json_response(200, '/global/', params[:file_name])
   end
 
+  get '/results/global/:file_name' do
+    json_response(200, '/global/', params[:file_name])
+  end
+
   private
 
   def json_response(response_code, file_path, file_name)

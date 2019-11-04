@@ -15,4 +15,17 @@ RSpec.describe ApplicationController, type: :controller do
       expect(response).to have_http_status(:bad_request)
     end
   end
+
+  describe 'handling ActiveRecord::RecordNotFound' do
+    controller do
+      def index
+        raise ActiveRecord::RecordNotFound
+      end
+    end
+
+    it 'returns http not_found' do
+      get :index
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end

@@ -8,5 +8,13 @@ FactoryBot.define do
     markerTypeLabel { 'Random string' }
     markerTypeName { 'Random string' }
     splitProsecutorCaseReference { 'Random string' }
+    factory :realistic_marker do
+      markerTypeid { SecureRandom.uuid }
+      sequenceNumber { Faker::Alphanumeric.alpha(number: 10).upcase }
+      markerTypeCode { Faker::Alphanumeric.alpha(number: 10).upcase }
+      markerTypeLabel { Faker::Alphanumeric.alpha(number: 10).upcase }
+      markerTypeName { Faker::Lorem.word }
+      splitProsecutorCaseReference { Faker::Lorem.word }
+    end
   end
 end

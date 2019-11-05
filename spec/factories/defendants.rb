@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :defendant do
+  factory :defendant, aliases: [:realistic_defendant] do
     trait :with_next_hearing do
       transient do
         next_hearing_date { '2025-05-04' }

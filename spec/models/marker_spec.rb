@@ -14,5 +14,7 @@ RSpec.describe Marker, type: :model do
     it { should validate_presence_of(:markerTypeName) }
   end
 
+  it_has_a 'realistic factory'
+
   it_has_behaviour 'conforming to valid schema'
 end

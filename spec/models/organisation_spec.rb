@@ -28,6 +28,8 @@ RSpec.describe Organisation, type: :model do
     it { should validate_presence_of(:name) }
   end
 
+  it_has_a 'realistic factory'
+
   it_has_behaviour 'conforming to valid schema'
 
   context 'with relationships' do

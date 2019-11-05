@@ -8,7 +8,7 @@ FactoryBot.define do
     selfDefinedEthnicityId { '34bb463d-2937-4daf-8eac-ec28ba486dc7' }
     selfDefinedEthnicityCode { 'A2' }
     selfDefinedEthnicityDescription { 'British' }
-    factory :random_ethnicity do
+    factory :realistic_ethnicity do
       observedEthnicityId { SecureRandom.uuid }
       observedEthnicityCode { Ethnicity::CODES.keys.sample }
       observedEthnicityDescription { Ethnicity::CODES[observedEthnicityCode] }

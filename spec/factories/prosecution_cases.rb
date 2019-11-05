@@ -17,8 +17,8 @@ FactoryBot.define do
       prosecution_case.defendants << FactoryBot.build(:defendant, prosecution_case: nil)
     end
 
-    factory :random_prosecution_case do
-      association :prosecution_case_identifier, factory: :random_prosecution_case_identifier
+    factory :realistic_prosecution_case do
+      association :prosecution_case_identifier, factory: :realistic_prosecution_case_identifier
       originatingOrganisation { Faker::Company.name }
       initiationCode { ProsecutionCase::INITIATION_CODES.sample }
       caseStatus { ProsecutionCase::CASE_STATUSES.sample }

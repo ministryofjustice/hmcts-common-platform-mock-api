@@ -23,7 +23,7 @@ FactoryBot.define do
     occupationCode { '4033' }
     specificRequirements { 'Unleash back-end relationships' }
 
-    factory :random_person do
+    factory :realistic_person do
       title { Person::TITLES.sample }
       firstName { Faker::Name.first_name }
       middleName { Faker::Name.middle_name }
@@ -43,9 +43,9 @@ FactoryBot.define do
       occupation { Faker::Company.profession }
       occupationCode { Faker::Company.sic_code }
       specificRequirements { Faker::Lorem.word }
-      association :address, factory: :random_address
-      association :contact_number, factory: :random_contact_number
-      association :ethnicity, factory: :random_ethnicity
+      association :address, factory: :realistic_address
+      association :contact_number, factory: :realistic_contact_number
+      association :ethnicity, factory: :realistic_ethnicity
     end
   end
 end

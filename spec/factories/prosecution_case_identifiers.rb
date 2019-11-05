@@ -10,7 +10,7 @@ FactoryBot.define do
       prosecutionAuthorityReference { 'S5589083J' }
     end
 
-    factory :random_prosecution_case_identifier do
+    factory :realistic_prosecution_case_identifier do
       transient do
         has_case_urn { [true, false].sample }
       end

@@ -23,11 +23,11 @@ FactoryBot.define do
       initiationCode { ProsecutionCase::INITIATION_CODES.sample }
       caseStatus { ProsecutionCase::CASE_STATUSES.sample }
       police_officer_in_case
-      statementOfFacts { 'Random String' }
-      statementOfFactsWelsh { 'Random String' }
-      breachProceedingsPending { false }
-      appealProceedingsPending { false }
-      merged_prosecution_case { nil }
+      statementOfFacts { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
+      statementOfFactsWelsh { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
+      breachProceedingsPending { [true, false].sample }
+      appealProceedingsPending { [true, false].sample }
+      association :merged_prosecution_case, factory: :realistic_merged_prosecution_case
     end
   end
 end

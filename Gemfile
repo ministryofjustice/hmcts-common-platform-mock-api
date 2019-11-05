@@ -20,11 +20,11 @@ gem 'jbuilder', '~> 2.10'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'json-schema'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 gem 'faraday_middleware'
-gem 'json-schema'
 
 group :development, :test do
   gem 'dotenv-rails'

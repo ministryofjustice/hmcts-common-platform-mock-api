@@ -53,6 +53,8 @@ RSpec.describe ProsecutionCase, type: :model do
     it { should be_valid }
   end
 
+  it_has_a 'realistic factory'
+
   it_has_behaviour 'conforming to valid schema'
 
   context 'with relationships' do

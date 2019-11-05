@@ -10,6 +10,7 @@ RSpec.describe Ethnicity, type: :model do
   describe 'associations' do
     it { should have_one(:person).class_name('Person') }
   end
+  it_has_a 'realistic factory'
 
   it_has_behaviour 'conforming to valid schema'
 end

@@ -11,6 +11,8 @@ RSpec.describe ProsecutionCaseIdentifier, type: :model do
     it { should validate_presence_of(:prosecutionAuthorityCode) }
   end
 
+  it_has_a 'realistic factory'
+
   context 'when caseURN is present' do
     it { should validate_presence_of(:caseURN) }
 

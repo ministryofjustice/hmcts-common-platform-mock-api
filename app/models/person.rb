@@ -4,6 +4,7 @@ class Person < ApplicationRecord
   LANGUAGES = %w[ENGLISH WELSH].freeze
   GENDERS = %w[MALE FEMALE NOT_KNOWN NOT_SPECIFIED].freeze
   TITLES = %w[MR MRS MISS MS].freeze
+  NINO_REGEXP = /^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-DFM]{1}$/.freeze
 
   scope :by_name, ->(full_name) { where(full_name.slice(:firstName, :lastName, :middleName)) }
   scope :by_date_of_birth, ->(date) { where(dateOfBirth: date) }

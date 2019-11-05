@@ -9,5 +9,16 @@ FactoryBot.define do
       caseURN { nil }
       prosecutionAuthorityReference { 'S5589083J' }
     end
+
+    factory :random_prosecution_case_identifier do
+      transient do
+        has_case_urn { [true, false].sample }
+      end
+
+      prosecutionAuthorityId { SecureRandom.uuid }
+      prosecutionAuthorityCode { Faker::Alphanumeric.alpha(number: 10).upcase }
+      caseURN { has_case_urn ? SecureRandom.uuid : nil }
+      prosecutionAuthorityReference { has_case_urn ? nil : Faker::Alphanumeric.alpha(number: 10).upcase }
+    end
   end
 end

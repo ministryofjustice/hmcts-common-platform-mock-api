@@ -21,5 +21,30 @@ FactoryBot.define do
     occupation { 'Global Real-Estate Strategist' }
     occupationCode { '4033' }
     specificRequirements { 'Unleash back-end relationships' }
+
+    factory :random_person do
+      title { Person::TITLES.sample }
+      firstName { Faker::Name.first_name }
+      middleName { Faker::Name.middle_name }
+      lastName { Faker::Name.last_name }
+      dateOfBirth { Faker::Date.birthday(min_age: 18, max_age: 65) }
+      nationalityId { SecureRandom.uuid }
+      nationalityCode { Faker::Address.country_code }
+      nationalityDescription { Faker::Address.country_by_code(code: nationalityCode) }
+      additionalNationalityId { SecureRandom.uuid }
+      additionalNationalityCode { Faker::Address.country_code }
+      additionalNationalityDescription { Faker::Address.country_by_code(code: additionalNationalityCode) }
+      disabilityStatus { Faker::Lorem.word }
+      gender { Person::GENDERS.sample }
+      interpreterLanguageNeeds { Faker::Nation.language }
+      documentationLanguageNeeds { Person::LANGUAGES.sample }
+      nationalInsuranceNumber { Faker::Base.regexify(Person::NINO_REGEXP) }
+      occupation { Faker::Company.profession }
+      occupationCode { Faker::Company.sic_code }
+      specificRequirements { Faker::Lorem.word }
+      association :address, factory: :random_address
+      association :contact_number, factory: :random_contact_number
+      association :ethnicity, factory: :random_ethnicity
+    end
   end
 end

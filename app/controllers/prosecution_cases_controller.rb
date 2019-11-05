@@ -6,10 +6,6 @@ class ProsecutionCasesController < ApplicationController
     render json: { prosecutionCases: Jbuilder.new.array!(prosecution_cases_builder) }
   end
 
-  def laa_reference
-    head :ok
-  end
-
   private
 
   def prosecution_cases_builder

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :prosecution_cases, path: 'prosecutionCases', only: [:index] do
     collection do
-      put 'laaReference' => 'prosecution_cases#laa_reference'
+      put 'laaReference/:id' => 'laa_references#record', as: :laa_reference
     end
   end
   resources :hearings, path: 'hearing/results', only: [:show], param: :hearingId

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class LaaReference < ApplicationRecord
+  belongs_to :offence, inverse_of: :laa_references, optional: true
+
   validates :applicationReference, presence: true
   validates :statusId, presence: true
   validates :statusCode, presence: true

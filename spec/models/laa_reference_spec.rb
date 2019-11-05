@@ -9,6 +9,9 @@ RSpec.describe LaaReference, type: :model do
 
   subject { laa_reference }
 
+  describe 'associations' do
+    it { should belong_to(:offence).class_name('Offence').optional }
+  end
   describe 'validations' do
     it { should validate_presence_of(:applicationReference) }
     it { should validate_presence_of(:statusId) }

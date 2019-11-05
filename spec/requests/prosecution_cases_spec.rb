@@ -16,11 +16,4 @@ RSpec.describe 'ProsecutionCases', type: :request do
       expect(response.body).to match_json_schema(:search_prosecution_case_response)
     end
   end
-
-  describe 'GET /prosecutionCases/laaReference' do
-    it 'matches the response schema' do
-      put '/prosecutionCases/laaReference'
-      expect(response).to have_http_status(200)
-    end
-  end
 end

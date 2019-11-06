@@ -11,5 +11,7 @@ RSpec.describe VerdictType, type: :model do
     it { should validate_presence_of(:categoryType) }
   end
 
+  it_has_a 'realistic factory'
+
   it_has_behaviour 'conforming to valid schema'
 end

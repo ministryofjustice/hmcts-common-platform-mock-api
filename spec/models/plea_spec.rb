@@ -27,4 +27,6 @@ RSpec.describe Plea, type: :model do
 
     it_has_behaviour 'conforming to valid schema'
   end
+
+  it_has_a 'realistic factory'
 end

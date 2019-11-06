@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-
-# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :prosecution_case do
     prosecution_case_identifier

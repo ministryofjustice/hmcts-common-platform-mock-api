@@ -18,4 +18,5 @@ RSpec.describe NotifiedPlea, type: :model do
   end
 
   it_has_behaviour 'conforming to valid schema'
+  it_has_a 'realistic factory'
 end

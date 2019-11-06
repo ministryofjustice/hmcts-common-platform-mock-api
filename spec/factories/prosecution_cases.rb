@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 FactoryBot.define do
   factory :prosecution_case do
     prosecution_case_identifier
@@ -32,10 +33,10 @@ FactoryBot.define do
     after(:build) do |prosecution_case|
       prosecution_case.defendants << FactoryBot.build(:realistic_defendant, prosecution_case: nil)
       prosecution_case.markers << FactoryBot.build_list(:realistic_marker, (0..3).to_a.sample)
-      prosecution_case.split_prosecutor_case_references << FactoryBot.build_list(:realistic_split_prosecutor_case_reference, [0, 2, 3, 4, 5].sample)
+      prosecution_case.split_prosecutor_case_references << FactoryBot.build_list(:realistic_split_prosecutor_case_reference,
+                                                                                 [0, 2, 3, 4, 5].sample)
       prosecution_case.linked_prosecution_cases << FactoryBot.build_list(:realistic_linked_prosecution_case,
                                                                          (0..3).to_a.sample)
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

@@ -14,7 +14,6 @@ FactoryBot.define do
     sentencingIndicationRequested { false }
 
     factory :realistic_allocation_decision do
-      association :court_indicated_sentence, factory: :realistic_court_indicated_sentence
       originatingHearingId { SecureRandom.uuid }
       offenceId { SecureRandom.uuid }
       motReasonId { SecureRandom.uuid }

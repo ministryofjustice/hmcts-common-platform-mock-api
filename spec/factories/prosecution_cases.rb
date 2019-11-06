@@ -26,8 +26,8 @@ FactoryBot.define do
     police_officer_in_case
     statementOfFacts { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
     statementOfFactsWelsh { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
-    breachProceedingsPending { [true, false].sample }
-    appealProceedingsPending { [true, false].sample }
+    breachProceedingsPending { Faker::Boolean.boolean }
+    appealProceedingsPending { Faker::Boolean.boolean }
     association :merged_prosecution_case, factory: :realistic_merged_prosecution_case
 
     after(:build) do |prosecution_case|

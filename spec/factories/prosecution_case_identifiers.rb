@@ -12,7 +12,7 @@ FactoryBot.define do
 
     factory :realistic_prosecution_case_identifier do
       transient do
-        has_case_urn { [true, false].sample }
+        has_case_urn { Faker::Boolean.boolean }
       end
 
       prosecutionAuthorityId { SecureRandom.uuid }

@@ -15,5 +15,21 @@ FactoryBot.define do
     arrestSummonsNumber { 'Random string' }
     employer_organisation { nil }
     employerPayrollReference { 'Random string' }
+
+    factory :realistic_person_defendant do
+      association :person, factory: :realistic_person
+      association :bail_status, factory: :realistic_bail_status
+      association :custodyTimeLimit, factory: :realistic_custody_time_limit
+      association :employer_organisation, factory: :realistic_organisation
+      bailConditions { Faker::Lorem.sentence }
+      bailReasons { Faker::Lorem.sentence }
+      perceivedBirthYear { Faker::Number.between(1, 75) }
+      driverNumber { Faker::Lorem.sentence }
+      driverLicenceCode { PersonDefendant::LICENCE_CODES.sample }
+      driverLicenseIssue { Faker::Lorem.sentence }
+      vehicleOperatorLicenceNumber { Faker::Alphanumeric.alphanumeric(7).upcase }
+      arrestSummonsNumber { Faker::Alphanumeric.alphanumeric(12).upcase }
+      employerPayrollReference { Faker::Alphanumeric.alphanumeric(9).upcase }
+    end
   end
 end

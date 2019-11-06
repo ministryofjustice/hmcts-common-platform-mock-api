@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class PersonDefendant < ApplicationRecord
+  LICENCE_CODES = %w[FULL PROVISIONAL].freeze
+
   belongs_to :person
   belongs_to :bail_status, optional: true
   belongs_to :employer_organisation, class_name: 'Organisation', optional: true
 
   validates :person, presence: true
-  validates :driverLicenceCode, inclusion: %w[FULL PROVISIONAL]
+  validates :driverLicenceCode, inclusion: LICENCE_CODES
 
   scope :by_name_and_dob, ->(params) { joins(:person).merge(Person.by_name(params[:name]).by_date_of_birth(params[:dateOfBirth])) }
 

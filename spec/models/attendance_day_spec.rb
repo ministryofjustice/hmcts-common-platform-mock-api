@@ -11,5 +11,7 @@ RSpec.describe AttendanceDay, type: :model do
     it { should validate_inclusion_of(:isInAttendance).in_array([true, false]) }
   end
 
+  it_has_a 'realistic factory'
+
   it_has_behaviour 'conforming to valid schema'
 end

@@ -12,4 +12,16 @@ FactoryBot.define do
       defence_counsel.attendance_days << FactoryBot.build(:attendance_day)
     end
   end
+
+  factory :realistic_defence_counsel, class: 'DefenceCounsel' do
+    title { Person::TITLES.sample }
+    firstName { Faker::Name.first_name }
+    middleName { Faker::Name.middle_name }
+    lastName { Faker::Name.last_name }
+    status { Faker::Demographic.race }
+    after(:build) do |defence_counsel|
+      defence_counsel.defendants << FactoryBot.build(:realistic_defendant)
+      defence_counsel.attendance_days << FactoryBot.build(:realistic_attendance_day)
+    end
+  end
 end

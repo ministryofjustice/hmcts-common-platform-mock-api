@@ -19,11 +19,12 @@ FactoryBot.define do
       motReasonId { SecureRandom.uuid }
       motReasonDescription { Faker::Lorem.sentence }
       motReasonCode { Faker::Number.number(digits: 3) }
-      allocationDecisionDate { Date.today - Faker::Number.number(digits: 3).to_i.days }
+      allocationDecisionDate { Faker::Date.forward(30) }
       isSection22ALowValueShoplifting { Faker::Boolean.boolean }
       isDamageValueUnder5000 { Faker::Boolean.boolean }
       isTreatedAsIndictableOnly { Faker::Boolean.boolean }
       sentencingIndicationRequested { Faker::Boolean.boolean }
+      association :court_indicated_sentence, factory: :realistic_court_indicated_sentence
     end
   end
 end

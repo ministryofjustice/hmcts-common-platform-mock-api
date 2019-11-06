@@ -21,6 +21,8 @@ RSpec.describe AllocationDecision, type: :model do
     it { should belong_to(:court_indicated_sentence).class_name('CourtIndicatedSentence').optional }
   end
 
+  it_has_a 'realistic factory'
+
   it_has_behaviour 'conforming to valid schema'
 
   context 'with relationships' do

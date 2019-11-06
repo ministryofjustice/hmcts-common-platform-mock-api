@@ -16,5 +16,7 @@ RSpec.describe ApplicantCounsel, type: :model do
     it { should validate_presence_of(:attendance_days) }
   end
 
+  it_has_a 'realistic factory'
+
   it_has_behaviour 'conforming to valid schema'
 end

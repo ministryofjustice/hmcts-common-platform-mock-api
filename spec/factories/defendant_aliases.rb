@@ -7,5 +7,13 @@ FactoryBot.define do
     middleName { 'St' }
     lastName { 'Parker' }
     legalEntityName { 'Bot' }
+
+    factory :realistic_defendant_alias do
+      title { Person::TITLES.sample }
+      firstName { Faker::Name.first_name }
+      middleName { Faker::Name.middle_name }
+      lastName { Faker::Name.last_name }
+      legalEntityName { Faker::Company.name }
+    end
   end
 end

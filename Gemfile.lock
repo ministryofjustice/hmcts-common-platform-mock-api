@@ -247,7 +247,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   dotenv-rails
   factory_bot_rails
-  faker (= 2.7.0)
+  faker
   faraday_middleware
   jbuilder (~> 2.10)
   json-schema

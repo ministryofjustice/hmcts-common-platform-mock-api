@@ -23,13 +23,13 @@ FactoryBot.define do
       association :employer_organisation, factory: :realistic_organisation
       bailConditions { Faker::Lorem.sentence }
       bailReasons { Faker::Lorem.sentence }
-      perceivedBirthYear { Faker::Number.between(1, 75) }
+      perceivedBirthYear { Faker::Number.between(from: 1, to: 75) }
       driverNumber { Faker::Lorem.sentence }
       driverLicenceCode { PersonDefendant::LICENCE_CODES.sample }
       driverLicenseIssue { Faker::Lorem.sentence }
-      vehicleOperatorLicenceNumber { Faker::Alphanumeric.alphanumeric(7).upcase }
-      arrestSummonsNumber { Faker::Alphanumeric.alphanumeric(12).upcase }
-      employerPayrollReference { Faker::Alphanumeric.alphanumeric(9).upcase }
+      vehicleOperatorLicenceNumber { Faker::Alphanumeric.alphanumeric(number: 7).upcase }
+      arrestSummonsNumber { Faker::Alphanumeric.alphanumeric(number: 12).upcase }
+      employerPayrollReference { Faker::Alphanumeric.alphanumeric(number: 9).upcase }
     end
   end
 end

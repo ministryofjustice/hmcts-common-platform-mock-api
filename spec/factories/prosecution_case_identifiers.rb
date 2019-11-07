@@ -17,7 +17,7 @@ FactoryBot.define do
 
       prosecutionAuthorityId { SecureRandom.uuid }
       prosecutionAuthorityCode { Faker::Alphanumeric.alpha(number: 10).upcase }
-      caseURN { has_case_urn ? SecureRandom.uuid : nil }
+      caseURN { has_case_urn ? Faker::Alphanumeric.alpha(number: 10).upcase : nil }
       prosecutionAuthorityReference { has_case_urn ? nil : Faker::Alphanumeric.alpha(number: 10).upcase }
     end
   end

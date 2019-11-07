@@ -6,7 +6,7 @@ FactoryBot.define do
     isInAttendance { false }
 
     factory :realistic_attendance_day do
-      day { Faker::Date.forward(30) }
+      day { Faker::Date.forward(days: 30) }
       isInAttendance { Faker::Boolean.boolean }
     end
   end

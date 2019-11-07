@@ -6,7 +6,7 @@ FactoryBot.define do
     role { 'Main man' }
     factory :realistic_associated_person do
       association :person, factory: :realistic_person
-      role { Faker::Relationship.familial('extended') }
+      role { Faker::Relationship.familial(connection: 'extended') }
     end
   end
 end

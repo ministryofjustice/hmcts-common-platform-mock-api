@@ -7,8 +7,8 @@ FactoryBot.define do
     unanimous { false }
 
     factory :realistic_jurors do
-      numberOfJurors { Faker::Number.between(1, 12) }
-      numberOfSplitJurors { Faker::Number.between(1, 12) }
+      numberOfJurors { Faker::Number.between(from: 1, to: 12) }
+      numberOfSplitJurors { Faker::Number.between(from: 1, to: 12) }
       unanimous { Faker::Boolean.boolean }
     end
   end

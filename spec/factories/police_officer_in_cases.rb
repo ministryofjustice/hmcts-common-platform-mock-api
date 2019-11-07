@@ -10,8 +10,8 @@ FactoryBot.define do
     factory :realistic_police_officer_in_case do
       association :person, factory: :realistic_person
       policeOfficerRank { Faker::Military.army_rank }
-      policeWorkerReferenceNumber { Faker::Alphanumeric.alphanumeric(10) }
-      policeWorkerLocationCode { Faker::Alphanumeric.alpha(2) }
+      policeWorkerReferenceNumber { Faker::Alphanumeric.alphanumeric(number: 10) }
+      policeWorkerLocationCode { Faker::Alphanumeric.alpha(number: 2) }
     end
   end
 end

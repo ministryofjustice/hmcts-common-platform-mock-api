@@ -8,7 +8,7 @@ FactoryBot.define do
 
     factory :realistic_bail_status do
       association :custody_time_limit, factory: :realistic_custody_time_limit
-      code { Faker::Alphanumeric.alphanumeric(10) }
+      code { Faker::Alphanumeric.alphanumeric(number: 10) }
       description { Faker::Lorem.sentence }
     end
   end

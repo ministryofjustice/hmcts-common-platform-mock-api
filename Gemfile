@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.10'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'factory_bot_rails'
-gem 'faker', '2.7.0'
+gem 'faker'
 gem 'faraday_middleware'
 gem 'json-schema'
 

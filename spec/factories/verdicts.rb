@@ -15,8 +15,10 @@ FactoryBot.define do
       verdictDate { Faker::Date.forward(30) }
       association :verdict_type, factory: :realistic_verdict_type
       association :jurors, factory: :realistic_jurors if has_jurors
-      association :lesser_or_alternative_offence,
-        factory: :realistic_lesser_or_alternative_offence if has_lesser_or_alternative_offence
+      if has_lesser_or_alternative_offence
+        association :lesser_or_alternative_offence,
+                    factory: :realistic_lesser_or_alternative_offence
+      end
     end
   end
 end

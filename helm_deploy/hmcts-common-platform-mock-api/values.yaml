@@ -24,8 +24,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: hmcts-common-platform-mock-api.apps.live-1.cloud-platform.service.justice.gov.uk
-      paths:
-        - path: /
+      paths: ["/"]
 
   tls: []
   #  - secretName: chart-example-tls

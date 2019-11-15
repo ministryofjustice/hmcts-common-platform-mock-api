@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'ProsecutionCases', type: :request do
-  describe 'GET /prosecution_cases' do
+  describe 'GET /prosecutionCases' do
     let!(:prosecution_case) do
       FactoryBot.create(:prosecution_case,
                         prosecution_case_identifier: FactoryBot.create(:prosecution_case_identifier,

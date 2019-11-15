@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<LAA_ADAPTOR_URL>/hearings"
+    body:
+      encoding: UTF-8
+      string: '{"hearing":{"id":"764a06dc-2dbe-4efc-9b12-6baf1611e971","jurisdictionType":"CROWN","reportingRestrictionReason":"MyString","courtCentre":{"id":"e3091ff6-056e-4011-a637-e0e7233b4af9","name":"Random
+        string","welshName":"Llinyn ar hap","roomId":"45f823fe-f83b-473c-9b73-7763df65d5fe","roomName":"Grand
+        Hall","welshRoomName":"Neuadd y Grand"},"hearingLanguage":"WELSH","hasSharedResults":false,"type":{"id":"3ad0d917-63c5-42a8-b520-e4f8f181f678","description":"This
+        is a description","code":"12D10JAS"},"isEffectiveTrial":false,"isBoxHearing":false,"hearingDays":[{"sittingDay":"2019-10-23
+        16:19:15 UTC","listingSequence":1,"listedDurationMinutes":1}]},"sharedTime":"2019-12-12T00:00:00+00:00"}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      server:
+      - openresty/1.15.8.2
+      date:
+      - Fri, 15 Nov 2019 17:11:03 GMT
+      content-type:
+      - text/html
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      cache-control:
+      - no-cache
+      x-request-id:
+      - 390dde910c4048a7fa10d090a12712e9
+      x-runtime:
+      - '0.134618'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 15 Nov 2019 17:11:03 GMT
+recorded_with: VCR 5.0.0

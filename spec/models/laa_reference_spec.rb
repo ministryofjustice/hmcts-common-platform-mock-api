@@ -39,6 +39,8 @@ RSpec.describe LaaReference, type: :model do
       it 'returns a JBuilder object' do
         expect(subject.to_builder).to be_an_instance_of(Jbuilder)
       end
+
+      it_has_behaviour 'conforming to valid schema'
     end
   end
 end

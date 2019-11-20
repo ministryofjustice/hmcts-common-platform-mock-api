@@ -24,9 +24,14 @@ jobs:
             - v1-dependencies-
 
       - run:
+          name: install bundle
+          command: |
+            gem install bundler -N
+
+      - run:
           name: install dependencies
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle check --path vendor/bundle || bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:

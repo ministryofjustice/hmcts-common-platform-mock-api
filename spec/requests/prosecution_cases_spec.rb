@@ -15,5 +15,13 @@ RSpec.describe 'ProsecutionCases', type: :request do
       expect(response).to have_http_status(200)
       expect(response.body).to match_json_schema(:search_prosecution_case_response)
     end
+
+    context 'when the search returns no results' do
+      it 'matches the response schema' do
+        get '/prosecutionCases?prosecutionCaseReference=incorrect-reference'
+        expect(response).to have_http_status(200)
+        expect(response.body).to match_json_schema(:search_prosecution_case_response)
+      end
+    end
   end
 end

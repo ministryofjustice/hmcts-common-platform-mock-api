@@ -16,8 +16,8 @@ class LaaReference < ApplicationRecord
       laa_reference.statusCode statusCode
       laa_reference.statusDescription statusDescription
       laa_reference.statusDate statusDate.to_date
-      laa_reference.effectiveStartDate effectiveStartDate&.to_date
-      laa_reference.effectiveEndDate effectiveEndDate&.to_date
+      laa_reference.effectiveStartDate effectiveStartDate.to_date if effectiveStartDate.present?
+      laa_reference.effectiveEndDate effectiveEndDate.to_date if effectiveEndDate.present?
     end
   end
 end

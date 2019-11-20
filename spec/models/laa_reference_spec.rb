@@ -21,4 +21,24 @@ RSpec.describe LaaReference, type: :model do
   end
 
   it_has_behaviour 'conforming to valid schema'
+
+  describe '#to_builder' do
+    context 'when all the dates are present' do
+      it 'returns a JBuilder object' do
+        expect(subject.to_builder).to be_an_instance_of(Jbuilder)
+      end
+    end
+
+    context 'when there are missing dates' do
+      let(:laa_reference) do
+        FactoryBot.create(:laa_reference,
+                          effectiveStartDate: nil,
+                          effectiveEndDate: nil)
+      end
+
+      it 'returns a JBuilder object' do
+        expect(subject.to_builder).to be_an_instance_of(Jbuilder)
+      end
+    end
+  end
 end

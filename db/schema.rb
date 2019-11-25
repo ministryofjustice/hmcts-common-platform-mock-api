@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_111424) do
+ActiveRecord::Schema.define(version: 2019_11_22_142442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -61,22 +61,6 @@ ActiveRecord::Schema.define(version: 2019_11_07_111424) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["applicant_counsel_id"], name: "index_applicants_on_applicant_counsel_id"
-  end
-
-  create_table "associated_defence_organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "organisation_id", null: false
-    t.string "sraNumber"
-    t.string "laaContractNumber"
-    t.string "barCouncilMembershipNumber"
-    t.datetime "associationStartDate"
-    t.datetime "associationEndDate"
-    t.string "fundingType"
-    t.boolean "isAssociatedByLAA"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.uuid "defendant_id"
-    t.index ["defendant_id"], name: "index_associated_defence_organisations_on_defendant_id"
-    t.index ["organisation_id"], name: "index_associated_defence_organisations_on_organisation_id"
   end
 
   create_table "associated_people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -329,6 +313,12 @@ ActiveRecord::Schema.define(version: 2019_11_07_111424) do
     t.string "barCouncilMembershipNumber"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "associationStartDate"
+    t.datetime "associationEndDate"
+    t.string "fundingType"
+    t.boolean "isAssociatedByLAA", default: false, null: false
+    t.uuid "defendant_id"
+    t.index ["defendant_id"], name: "index_defence_organisations_on_defendant_id"
     t.index ["organisation_id"], name: "index_defence_organisations_on_organisation_id"
   end
 
@@ -976,8 +966,6 @@ ActiveRecord::Schema.define(version: 2019_11_07_111424) do
   add_foreign_key "allocation_decisions", "court_indicated_sentences"
   add_foreign_key "applicant_counsels", "hearings"
   add_foreign_key "applicants", "applicant_counsels"
-  add_foreign_key "associated_defence_organisations", "defendants"
-  add_foreign_key "associated_defence_organisations", "organisations"
   add_foreign_key "associated_people", "court_application_parties"
   add_foreign_key "associated_people", "defendants"
   add_foreign_key "associated_people", "people"
@@ -1012,6 +1000,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_111424) do
   add_foreign_key "court_applications", "hearings"
   add_foreign_key "court_centres", "addresses"
   add_foreign_key "defence_counsels", "hearings"
+  add_foreign_key "defence_organisations", "defendants"
   add_foreign_key "defence_organisations", "organisations"
   add_foreign_key "defendant_aliases", "defendants"
   add_foreign_key "defendant_attendances", "defendants"

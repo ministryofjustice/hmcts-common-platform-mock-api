@@ -5,7 +5,7 @@ class Defendant < ApplicationRecord
   belongs_to :prosecution_case, inverse_of: :defendants
   has_many :offences
   has_many :associated_people
-  has_many :associated_defence_organisations
+  has_many :defence_organisations
   has_many :defendant_aliases
   has_many :judicial_results
   has_many :markers
@@ -52,9 +52,7 @@ class Defendant < ApplicationRecord
       defendant.mitigationWelsh mitigationWelsh
       defendant.offences Jbuilder.new.array! offences_builder
       defendant.associatedPersons Jbuilder.new.array! associated_people_builder if associated_people.present?
-      if associated_defence_organisations.present?
-        defendant.associatedDefenceOrganisations Jbuilder.new.array! associated_defence_organisations_builder
-      end
+      defendant.associatedDefenceOrganisations Jbuilder.new.array! defence_organisations_builder if defence_organisations.present?
       defendant.personDefendant defendable.to_builder if person?
       defendant.legalEntityDefendant defendable.to_builder if legal_entity?
       defendant.aliases Jbuilder.new.array! defendant_aliases_builder if defendant_aliases.present?
@@ -84,9 +82,9 @@ class Defendant < ApplicationRecord
     end
   end
 
-  def associated_defence_organisations_builder
-    associated_defence_organisations.map do |associated_defence_organisation|
-      associated_defence_organisation.to_builder.attributes!
+  def defence_organisations_builder
+    defence_organisations.map do |defence_organisation|
+      defence_organisation.to_builder.attributes!
     end
   end
 

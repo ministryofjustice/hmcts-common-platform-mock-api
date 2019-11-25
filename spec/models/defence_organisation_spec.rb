@@ -10,6 +10,7 @@ RSpec.describe DefenceOrganisation, type: :model do
 
   describe 'associations' do
     it { should belong_to(:organisation).class_name('Organisation') }
+    it { should belong_to(:defendant).class_name('Defendant').optional }
   end
   it { should validate_presence_of(:organisation) }
 
@@ -34,6 +35,16 @@ RSpec.describe DefenceOrganisation, type: :model do
       defence_organisation.barCouncilMembershipNumber = 'Random Number'
     end
     it { should validate_presence_of(:barCouncilMembershipNumber) }
+    it_has_behaviour 'conforming to valid schema'
+  end
+
+  context 'when associated with a Defendant' do
+    let(:defence_organisation) { FactoryBot.create(:associated_defence_organisation) }
+    let(:json_schema) { :associated_defence_organisation }
+
+    it { should validate_presence_of(:fundingType) }
+    it { should validate_presence_of(:associationStartDate) }
+
     it_has_behaviour 'conforming to valid schema'
   end
 end

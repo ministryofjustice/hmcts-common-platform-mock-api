@@ -35,7 +35,7 @@ RSpec.describe Defendant, type: :model do
     it { should belong_to(:prosecution_case).class_name('ProsecutionCase') }
     it { should have_many(:offences).class_name('Offence') }
     it { should have_many(:associated_people).class_name('AssociatedPerson') }
-    it { should have_many(:associated_defence_organisations).class_name('AssociatedDefenceOrganisation') }
+    it { should have_many(:defence_organisations).class_name('DefenceOrganisation') }
     it { should have_many(:defendant_aliases).class_name('DefendantAlias') }
     it { should have_many(:judicial_results).class_name('JudicialResult') }
     it { should have_many(:markers).class_name('Marker') }
@@ -91,7 +91,7 @@ RSpec.describe Defendant, type: :model do
   context 'with relationships' do
     before do
       defendant.associated_people << FactoryBot.build(:associated_person)
-      defendant.associated_defence_organisations << FactoryBot.build(:associated_defence_organisation)
+      defendant.defence_organisations << FactoryBot.build(:associated_defence_organisation, defendant: nil)
       defendant.defendant_aliases << FactoryBot.build(:defendant_alias)
       defendant.judicial_results << FactoryBot.build(:judicial_result)
       defendant.markers << FactoryBot.build(:marker)

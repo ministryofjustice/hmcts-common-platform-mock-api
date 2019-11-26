@@ -17,7 +17,9 @@ class ProsecutionCaseSearch < ApplicationService
 
     return prosecution_cases_by_summons if permitted_params['arrestSummonsNumber'].present?
 
-    prosecution_cases_by_name_and_dob if permitted_params['dateOfBirth'].present?
+    return prosecution_cases_by_name_and_dob if permitted_params['dateOfBirth'].present?
+
+    prosecution_cases_by_name_and_date_of_next_hearing
   end
 
   private
@@ -52,6 +54,16 @@ class ProsecutionCaseSearch < ApplicationService
 
   def person_defendant_by_name_and_dob
     PersonDefendant.by_name_and_dob(permitted_params.slice(:name, :dateOfBirth))
+  end
+
+  def prosecution_cases_by_name_and_date_of_next_hearing
+    ProsecutionCase.joins(:defendants)
+                   .merge(defendant_by_name_and_date_of_next_hearing)
+  end
+
+  def defendant_by_name_and_date_of_next_hearing
+    Defendant.by_name(permitted_params[:name])
+             .by_date_of_next_hearing(permitted_params[:dateOfNextHearing])
   end
 
   def permitted_params

@@ -6,6 +6,8 @@ class Organisation < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :by_name, ->(params) { where(name: params[:organisationName]) }
+
   def to_builder
     Jbuilder.new do |organisation|
       organisation.name name

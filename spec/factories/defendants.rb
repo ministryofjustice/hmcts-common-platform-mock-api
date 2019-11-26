@@ -2,6 +2,16 @@
 
 FactoryBot.define do
   factory :defendant do
+    trait :with_next_hearing do
+      transient do
+        next_hearing_date { '2025-05-04' }
+      end
+      after(:build) do |defendant, evaluator|
+        next_hearing = FactoryBot.build(:next_hearing, listedStartDateTime: evaluator.next_hearing_date)
+        defendant.judicial_results << FactoryBot.build(:judicial_result,
+                                                       next_hearing: next_hearing)
+      end
+    end
     prosecution_case
     numberOfPreviousConvictionsCited { 1 }
     prosecutionAuthorityReference { 'MyString' }

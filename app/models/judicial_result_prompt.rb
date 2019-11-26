@@ -19,13 +19,7 @@ class JudicialResultPrompt < ApplicationRecord
       judicial_result_prompt.promptReference promptReference
       judicial_result_prompt.totalPenaltyPoints totalPenaltyPoints
       judicial_result_prompt.isFinancialImposition isFinancialImposition
-      judicial_result_prompt.usergroups Jbuilder.new.array! user_groups_builder
+      judicial_result_prompt.usergroups user_groups.map(&:group)
     end
-  end
-
-  private
-
-  def user_groups_builder
-    user_groups.map(&:group)
   end
 end

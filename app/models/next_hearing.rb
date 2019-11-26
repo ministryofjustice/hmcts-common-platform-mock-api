@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class NextHearing < ApplicationRecord
+  include BuilderMappable
   belongs_to :hearing_type
   belongs_to :court_centre
 
@@ -25,27 +26,9 @@ class NextHearing < ApplicationRecord
       next_hearing.reportingRestrictionReason reportingRestrictionReason
       next_hearing.adjournmentReason adjournmentReason
       next_hearing.hearingLanguage hearingLanguage
-      next_hearing.judiciary Jbuilder.new.array! judicial_roles_builder
-      next_hearing.nextHearingProsecutionCases Jbuilder.new.array! next_hearing_prosecution_cases_builder
-      next_hearing.nextHearingCourtApplicationId Jbuilder.new.array! next_hearing_court_applications_builder
+      next_hearing.judiciary array_builder(judicial_roles)
+      next_hearing.nextHearingProsecutionCases array_builder(next_hearing_prosecution_cases)
+      next_hearing.nextHearingCourtApplicationId next_hearing_court_applications.ids
     end
-  end
-
-  private
-
-  def judicial_roles_builder
-    judicial_roles.map do |judicial_role|
-      judicial_role.to_builder.attributes!
-    end
-  end
-
-  def next_hearing_prosecution_cases_builder
-    next_hearing_prosecution_cases.map do |next_hearing_prosecution_case|
-      next_hearing_prosecution_case.to_builder.attributes!
-    end
-  end
-
-  def next_hearing_court_applications_builder
-    next_hearing_court_applications.ids
   end
 end

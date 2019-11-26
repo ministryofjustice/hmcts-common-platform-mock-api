@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class JudicialResult < ApplicationRecord
+  include BuilderMappable
   belongs_to :court_clerk, class_name: 'DelegatedPowers', optional: true
   belongs_to :delegated_powers, optional: true
   belongs_to :four_eyes_approval, class_name: 'DelegatedPowers', optional: true
@@ -59,23 +60,11 @@ class JudicialResult < ApplicationRecord
       judicial_result.delegatedPowers delegated_powers.to_builder if delegated_powers.present?
       judicial_result.fourEyesApproval four_eyes_approval.to_builder if four_eyes_approval.present?
       judicial_result.approvedDate approvedDate.to_date
-      judicial_result.usergroups Jbuilder.new.array! user_groups_builder
+      judicial_result.usergroups user_groups.map(&:group)
       judicial_result.category category
       judicial_result.nextHearing next_hearing.to_builder if next_hearing.present?
       judicial_result.durationElement duration_element.to_builder if duration_element.present?
-      judicial_result.judicialResultPrompts Jbuilder.new.array! judicial_result_prompts_builder if judicial_result_prompts.present?
+      judicial_result.judicialResultPrompts array_builder(judicial_result_prompts)
     end
-  end
-
-  private
-
-  def judicial_result_prompts_builder
-    judicial_result_prompts.map do |judicial_result_prompt|
-      judicial_result_prompt.to_builder.attributes!
-    end
-  end
-
-  def user_groups_builder
-    user_groups.map(&:group)
   end
 end

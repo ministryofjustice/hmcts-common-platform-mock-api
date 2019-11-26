@@ -15,8 +15,8 @@ class RespondentCounsel < ApplicationRecord
       respondent_counsel.middleName middleName
       respondent_counsel.lastName lastName
       respondent_counsel.status status
-      respondent_counsel.respondents Jbuilder.new.array! court_application_respondents.ids
-      respondent_counsel.attendanceDays Jbuilder.new.array! attendance_days_builder
+      respondent_counsel.respondents court_application_respondents.ids
+      respondent_counsel.attendanceDays attendance_days_builder
     end
   end
 

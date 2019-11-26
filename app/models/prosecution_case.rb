@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ProsecutionCase < ApplicationRecord
+  include BuilderMappable
   INITIATION_CODES = %w[J Q S C R O Z].freeze
   CASE_STATUSES = %w[ACTIVE INACTIVE].freeze
 
@@ -36,35 +37,13 @@ class ProsecutionCase < ApplicationRecord
       prosecution_case.statementOfFactsWelsh statementOfFactsWelsh
       prosecution_case.breachProceedingsPending breachProceedingsPending
       prosecution_case.appealProceedingsPending appealProceedingsPending
-      prosecution_case.defendants Jbuilder.new.array! defendants_builder
-      prosecution_case.caseMarkers Jbuilder.new.array! markers_builder if markers.present?
+      prosecution_case.defendants array_builder(defendants)
+      prosecution_case.caseMarkers array_builder(markers)
       if split_prosecutor_case_references.present?
-        prosecution_case.splitProsecutorCaseReferences Jbuilder.new.array! split_prosecutor_case_references_builder
+        prosecution_case.splitProsecutorCaseReferences split_prosecutor_case_references.map(&:split)
       end
       prosecution_case.mergedProsecutionCase merged_prosecution_case.to_builder if merged_prosecution_case.present?
-      prosecution_case.linkedProsecutionCases Jbuilder.new.array! linked_prosecution_cases_builder if linked_prosecution_cases.present?
+      prosecution_case.linkedProsecutionCases linked_prosecution_cases.ids if linked_prosecution_cases.present?
     end
-  end
-
-  private
-
-  def defendants_builder
-    defendants.map do |defendant|
-      defendant.to_builder.attributes!
-    end
-  end
-
-  def markers_builder
-    markers.map do |marker|
-      marker.to_builder.attributes!
-    end
-  end
-
-  def split_prosecutor_case_references_builder
-    split_prosecutor_case_references.map(&:split)
-  end
-
-  def linked_prosecution_cases_builder
-    linked_prosecution_cases.ids
   end
 end

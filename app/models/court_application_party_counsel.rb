@@ -16,8 +16,8 @@ class CourtApplicationPartyCounsel < ApplicationRecord
       defence_counsel.middleName middleName
       defence_counsel.lastName lastName
       defence_counsel.status status
-      defence_counsel.applicationRespondents Jbuilder.new.array! court_application_parties.ids if court_application_parties.present?
-      defence_counsel.attendanceDays Jbuilder.new.array! attendance_days_builder
+      defence_counsel.applicationRespondents court_application_parties.ids if court_application_parties.present?
+      defence_counsel.attendanceDays attendance_days_builder
     end
   end
 

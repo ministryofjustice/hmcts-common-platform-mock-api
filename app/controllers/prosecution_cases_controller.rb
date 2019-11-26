@@ -12,7 +12,7 @@ class ProsecutionCasesController < ApplicationController
   def prosecution_cases_response
     return {} if @prosecution_cases.empty?
 
-    { prosecutionCases: Jbuilder.new.array!(prosecution_cases_builder) }
+    { prosecutionCases: prosecution_cases_builder }
   end
 
   def prosecution_cases_builder

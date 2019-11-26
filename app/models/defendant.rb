@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
 class Defendant < ApplicationRecord
+  include BuilderMappable
   belongs_to :defendable, polymorphic: true
   belongs_to :prosecution_case, inverse_of: :defendants
   has_many :offences
@@ -61,70 +61,25 @@ class Defendant < ApplicationRecord
       defendant.witnessStatementWelsh witnessStatementWelsh
       defendant.mitigation mitigation
       defendant.mitigationWelsh mitigationWelsh
-      defendant.offences Jbuilder.new.array! offences_builder
-      defendant.associatedPersons Jbuilder.new.array! associated_people_builder if associated_people.present?
-      defendant.associatedDefenceOrganisations Jbuilder.new.array! defence_organisations_builder if defence_organisations.present?
+      defendant.offences array_builder(offences)
+      defendant.associatedPersons array_builder(associated_people)
+      defendant.associatedDefenceOrganisations array_builder(defence_organisations)
       defendant.personDefendant defendable.to_builder if person?
       defendant.legalEntityDefendant defendable.to_builder if legal_entity?
-      defendant.aliases Jbuilder.new.array! defendant_aliases_builder if defendant_aliases.present?
-      defendant.judicialResults Jbuilder.new.array! judicial_results_builder if judicial_results.present?
+      defendant.aliases array_builder(defendant_aliases)
+      defendant.judicialResults array_builder(judicial_results)
       defendant.croNumber croNumber
       defendant.pncId pncId
-      defendant.defendantMarkers Jbuilder.new.array! markers_builder if markers.present?
-      if split_prosecutor_case_references.present?
-        defendant.splitProsecutorCaseReferences Jbuilder.new.array! split_prosecutor_case_references_builder
-      end
+      defendant.defendantMarkers array_builder(markers)
+      defendant.splitProsecutorCaseReferences split_prosecutor_case_references_builder
       defendant.mergedProsecutionCaseReference mergedProsecutionCaseReference
-      defendant.linkedDefendants Jbuilder.new.array! linked_defendants_builder if linked_defendants.present?
+      defendant.linkedDefendants array_builder(linked_defendants)
     end
   end
 
   private
 
-  def offences_builder
-    offences.map do |offence|
-      offence.to_builder.attributes!
-    end
-  end
-
-  def associated_people_builder
-    associated_people.map do |associated_person|
-      associated_person.to_builder.attributes!
-    end
-  end
-
-  def defence_organisations_builder
-    defence_organisations.map do |defence_organisation|
-      defence_organisation.to_builder.attributes!
-    end
-  end
-
-  def defendant_aliases_builder
-    defendant_aliases.map do |defendant_alias|
-      defendant_alias.to_builder.attributes!
-    end
-  end
-
-  def judicial_results_builder
-    judicial_results.map do |judicial_result|
-      judicial_result.to_builder.attributes!
-    end
-  end
-
-  def markers_builder
-    markers.map do |marker|
-      marker.to_builder.attributes!
-    end
-  end
-
   def split_prosecutor_case_references_builder
-    split_prosecutor_case_references.map(&:split)
-  end
-
-  def linked_defendants_builder
-    linked_defendants.map do |linked_defendant|
-      linked_defendant.to_builder.attributes!
-    end
+    split_prosecutor_case_references.map(&:split) if split_prosecutor_case_references.present?
   end
 end
-# rubocop:enable Metrics/ClassLength

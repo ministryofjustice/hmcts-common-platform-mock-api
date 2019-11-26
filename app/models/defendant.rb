@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class Defendant < ApplicationRecord
   belongs_to :defendable, polymorphic: true
   belongs_to :prosecution_case, inverse_of: :defendants
@@ -31,6 +32,16 @@ class Defendant < ApplicationRecord
 
   scope :people_only, -> { joins(:person_defendant) }
   scope :legal_entity_only, -> { joins(:legal_entity_defendant) }
+
+  scope :by_name, lambda { |params|
+    return joins(legal_entity_defendant: :organisation).merge(Organisation.by_name(params)) if params.dig(:organisationName).present?
+
+    joins(person_defendant: :person).merge(Person.by_name(params))
+  }
+
+  scope :by_date_of_next_hearing, lambda { |date|
+    joins(judicial_results: :next_hearing).where(next_hearings: { listedStartDateTime: date })
+  }
 
   def person?
     defendable.is_a? PersonDefendant
@@ -116,3 +127,4 @@ class Defendant < ApplicationRecord
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

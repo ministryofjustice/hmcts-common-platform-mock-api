@@ -26,6 +26,54 @@ RSpec.describe Defendant, type: :model do
       it { is_expected.not_to include(defendant_as_person) }
       it { is_expected.to include(defendant_as_legal_entity) }
     end
+
+    describe '.by_name' do
+      subject { described_class.by_name(name_object) }
+
+      context 'by person defendant' do
+        let(:name_object) do
+          { firstName: 'John', lastName: 'Doe' }
+        end
+
+        before do
+          allow(Person).to receive(:by_name).and_call_original
+        end
+
+        it 'calls the by_name on Person' do
+          expect(Person).to receive(:by_name).with(name_object)
+          expect(Organisation).not_to receive(:by_name)
+          subject
+        end
+      end
+
+      context 'by legal_entity_defendant' do
+        let(:name_object) do
+          { organisationName: 'Altenwerth' }
+        end
+
+        before do
+          allow(Organisation).to receive(:by_name).and_call_original
+        end
+
+        it 'calls the by_name on Organisation' do
+          expect(Organisation).to receive(:by_name).with(name_object)
+          expect(Person).not_to receive(:by_name)
+          subject
+        end
+      end
+    end
+
+    describe '.by_date_of_next_hearing' do
+      let(:next_hearing_date) { '2020-01-10' }
+
+      subject { described_class.by_date_of_next_hearing(next_hearing_date) }
+
+      let!(:defendant_one) { FactoryBot.create(:defendant, :with_next_hearing, next_hearing_date: '2020-01-10') }
+      let!(:defendant_two) { FactoryBot.create(:defendant) }
+
+      it { is_expected.to include(defendant_one) }
+      it { is_expected.not_to include(defendant_two) }
+    end
   end
 
   describe 'associations' do

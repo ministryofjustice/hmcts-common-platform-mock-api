@@ -15,8 +15,8 @@ class DefenceCounsel < ApplicationRecord
       defence_counsel.middleName middleName
       defence_counsel.lastName lastName
       defence_counsel.status status
-      defence_counsel.defendants Jbuilder.new.array! defendants.ids
-      defence_counsel.attendanceDays Jbuilder.new.array! attendance_days_builder
+      defence_counsel.defendants defendants.ids
+      defence_counsel.attendanceDays attendance_days_builder
     end
   end
 

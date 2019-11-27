@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CourtApplicationPartyAttendance < ApplicationRecord
+  include BuilderMappable
   belongs_to :court_application_party
   has_many :attendance_days
 
@@ -10,15 +11,7 @@ class CourtApplicationPartyAttendance < ApplicationRecord
   def to_builder
     Jbuilder.new do |court_application_party_attendance|
       court_application_party_attendance.courtApplicationPartyId court_application_party_id
-      court_application_party_attendance.attendanceDays attendance_days_builder
-    end
-  end
-
-  private
-
-  def attendance_days_builder
-    attendance_days.map do |attendance_day|
-      attendance_day.to_builder.attributes!
+      court_application_party_attendance.attendanceDays array_builder(attendance_days)
     end
   end
 end

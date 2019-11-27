@@ -17,7 +17,7 @@ class HearingSummary
       hearing_summary.jurisdictionType hearing.jurisdictionType
       hearing_summary.courtCentre hearing.court_centre.to_builder
       hearing_summary.type hearing.hearing_type.to_builder
-      hearing_summary.defendants Jbuilder.new.array! defendants_builder
+      hearing_summary.defendants defendants_builder
     end
   end
 

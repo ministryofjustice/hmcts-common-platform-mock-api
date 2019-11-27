@@ -18,16 +18,10 @@ class HearingCaseNote < ApplicationRecord
       hearing_case_note.originatingHearingId hearing_id
       hearing_case_note.id id
       hearing_case_note.courtClerk court_clerk.to_builder
-      hearing_case_note.prosecutionCases prosecution_cases_builder
+      hearing_case_note.prosecutionCases prosecution_cases.ids
       hearing_case_note.noteDateTime noteDateTime
       hearing_case_note.noteType noteType
       hearing_case_note.note note
     end
-  end
-
-  private
-
-  def prosecution_cases_builder
-    prosecution_cases.ids
   end
 end

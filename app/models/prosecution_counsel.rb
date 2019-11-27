@@ -15,8 +15,8 @@ class ProsecutionCounsel < ApplicationRecord
       applicant_counsel.middleName middleName
       applicant_counsel.lastName lastName
       applicant_counsel.status status
-      applicant_counsel.prosecutionCases Jbuilder.new.array! prosecution_cases.ids
-      applicant_counsel.attendanceDays Jbuilder.new.array! attendance_days_builder
+      applicant_counsel.prosecutionCases prosecution_cases.ids
+      applicant_counsel.attendanceDays attendance_days_builder
     end
   end
 

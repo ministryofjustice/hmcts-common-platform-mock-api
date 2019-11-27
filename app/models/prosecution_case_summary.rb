@@ -16,8 +16,8 @@ class ProsecutionCaseSummary
       prosecution_case_summary.prosecutionCaseId prosecution_case_id
       prosecution_case_summary.prosecutionCaseReference prosecution_case_reference
       prosecution_case_summary.caseStatus prosecution_case.caseStatus
-      prosecution_case_summary.defendants Jbuilder.new.array! defendants_builder
-      prosecution_case_summary.hearings Jbuilder.new.array! hearings_builder if prosecution_case.hearing_id.present?
+      prosecution_case_summary.defendants defendants_builder
+      prosecution_case_summary.hearings hearings_builder if prosecution_case.hearing_id.present?
     end
   end
 

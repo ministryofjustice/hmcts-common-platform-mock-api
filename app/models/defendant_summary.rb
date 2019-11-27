@@ -20,7 +20,7 @@ class DefendantSummary
       defendant_summary.dateOfBirth defendant.defendable.person.dateOfBirth.to_date if defendant.person?
       defendant_summary.dateOfNextHearing date_of_next_hearing
       defendant_summary.proceedingsConcluded proceedings_concluded?
-      defendant_summary.offences Jbuilder.new.array! offences_builder
+      defendant_summary.offences offences_builder
     end
   end
 

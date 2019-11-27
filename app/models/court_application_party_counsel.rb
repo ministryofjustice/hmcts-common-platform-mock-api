@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CourtApplicationPartyCounsel < ApplicationRecord
+  include BuilderMappable
   has_many :court_application_parties
   has_many :attendance_days
 
@@ -16,7 +17,7 @@ class CourtApplicationPartyCounsel < ApplicationRecord
       defence_counsel.middleName middleName
       defence_counsel.lastName lastName
       defence_counsel.status status
-      defence_counsel.applicationRespondents court_application_parties.ids if court_application_parties.present?
+      defence_counsel.applicationRespondents collection_ids(court_application_parties)
       defence_counsel.attendanceDays attendance_days_builder
     end
   end

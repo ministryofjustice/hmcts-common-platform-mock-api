@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class DefenceCounsel < ApplicationRecord
+  include BuilderMappable
   has_many :defendants
   has_many :attendance_days
 
@@ -15,7 +16,7 @@ class DefenceCounsel < ApplicationRecord
       defence_counsel.middleName middleName
       defence_counsel.lastName lastName
       defence_counsel.status status
-      defence_counsel.defendants defendants.ids
+      defence_counsel.defendants collection_ids(defendants)
       defence_counsel.attendanceDays attendance_days_builder
     end
   end

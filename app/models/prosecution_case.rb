@@ -39,11 +39,9 @@ class ProsecutionCase < ApplicationRecord
       prosecution_case.appealProceedingsPending appealProceedingsPending
       prosecution_case.defendants array_builder(defendants)
       prosecution_case.caseMarkers array_builder(markers)
-      if split_prosecutor_case_references.present?
-        prosecution_case.splitProsecutorCaseReferences split_prosecutor_case_references.map(&:split)
-      end
+      prosecution_case.splitProsecutorCaseReferences split_prosecutor_case_references_builder
       prosecution_case.mergedProsecutionCase merged_prosecution_case.to_builder if merged_prosecution_case.present?
-      prosecution_case.linkedProsecutionCases linked_prosecution_cases.ids if linked_prosecution_cases.present?
+      prosecution_case.linkedProsecutionCases collection_ids(linked_prosecution_cases)
     end
   end
 end

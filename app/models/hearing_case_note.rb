@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class HearingCaseNote < ApplicationRecord
+  include BuilderMappable
   belongs_to :court_clerk, class_name: 'DelegatedPowers'
   belongs_to :hearing
   has_many :prosecution_case_hearing_case_notes
@@ -18,7 +19,7 @@ class HearingCaseNote < ApplicationRecord
       hearing_case_note.originatingHearingId hearing_id
       hearing_case_note.id id
       hearing_case_note.courtClerk court_clerk.to_builder
-      hearing_case_note.prosecutionCases prosecution_cases.ids
+      hearing_case_note.prosecutionCases collection_ids(prosecution_cases)
       hearing_case_note.noteDateTime noteDateTime
       hearing_case_note.noteType noteType
       hearing_case_note.note note

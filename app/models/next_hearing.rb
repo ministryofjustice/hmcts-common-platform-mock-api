@@ -28,7 +28,7 @@ class NextHearing < ApplicationRecord
       next_hearing.hearingLanguage hearingLanguage
       next_hearing.judiciary array_builder(judicial_roles)
       next_hearing.nextHearingProsecutionCases array_builder(next_hearing_prosecution_cases)
-      next_hearing.nextHearingCourtApplicationId next_hearing_court_applications.ids
+      next_hearing.nextHearingCourtApplicationId collection_ids(next_hearing_court_applications)
     end
   end
 end

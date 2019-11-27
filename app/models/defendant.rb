@@ -76,10 +76,4 @@ class Defendant < ApplicationRecord
       defendant.linkedDefendants array_builder(linked_defendants)
     end
   end
-
-  private
-
-  def split_prosecutor_case_references_builder
-    split_prosecutor_case_references.map(&:split) if split_prosecutor_case_references.present?
-  end
 end

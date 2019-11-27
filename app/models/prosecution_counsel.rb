@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ProsecutionCounsel < ApplicationRecord
+  include BuilderMappable
   has_many :prosecution_cases
   has_many :attendance_days
 
@@ -15,7 +16,7 @@ class ProsecutionCounsel < ApplicationRecord
       applicant_counsel.middleName middleName
       applicant_counsel.lastName lastName
       applicant_counsel.status status
-      applicant_counsel.prosecutionCases prosecution_cases.ids
+      applicant_counsel.prosecutionCases collection_ids(prosecution_cases)
       applicant_counsel.attendanceDays attendance_days_builder
     end
   end

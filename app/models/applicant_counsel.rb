@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicantCounsel < ApplicationRecord
+  include BuilderMappable
   has_many :applicants
   has_many :attendance_days
 
@@ -15,7 +16,7 @@ class ApplicantCounsel < ApplicationRecord
       applicant_counsel.middleName middleName
       applicant_counsel.lastName lastName
       applicant_counsel.status status
-      applicant_counsel.applicants applicants.ids
+      applicant_counsel.applicants collection_ids(applicants)
       applicant_counsel.attendanceDays attendance_days_builder
     end
   end

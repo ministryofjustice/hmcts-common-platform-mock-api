@@ -22,3 +22,13 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Publish HearingResulted to LAA
+
+Run the rake task by passing in the hearing id as an argument
+
+```
+bundle exec rails 'publish:hearing[HEARING_ID]'
+```
+
+This will trigger a publish to the LAA Adaptor service defined by the environment variable `LAA_ADAPTOR_URL`

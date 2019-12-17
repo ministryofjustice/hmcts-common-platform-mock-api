@@ -1,27 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Set up
 
-Things you may want to cover:
+This is a standard 6 Rails API application using Postgres 12.1 as a database.
 
-* Ruby version
+Clone the repo, then run:
 
-* System dependencies
+```
+$ bundle install
+$ rails db:setup
+```
 
-* Configuration
+You can then start the application server by running:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ rails s
+```
 
 ## Publish HearingResulted to LAA
 

@@ -11,4 +11,13 @@ RSpec.describe ProsecutionCaseSummary, type: :model do
   subject { prosecution_case_summary }
 
   it_has_behaviour 'conforming to valid schema'
+
+  context 'with a hearing relationship' do
+    before do
+      prosecution_case.hearing = FactoryBot.create(:hearing)
+      prosecution_case.save!
+    end
+
+    it_has_behaviour 'conforming to valid schema'
+  end
 end

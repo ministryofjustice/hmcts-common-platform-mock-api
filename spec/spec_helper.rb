@@ -13,8 +13,16 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
+require 'simplecov'
 require 'webmock/rspec'
 require_relative './support/fake_common_platform'
+
+SimpleCov.minimum_coverage 100
+unless ENV['NOCOVERAGE']
+  SimpleCov.start do
+    add_filter 'spec/'
+  end
+end
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

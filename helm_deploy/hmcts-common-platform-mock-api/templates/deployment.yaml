@@ -56,6 +56,11 @@ spec:
                 secretKeyRef:
                   name: mock-api-secrets
                   key: laa-adaptor-auth-token
+            - name: COMMON_PLATFORM_SHARED_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mock-api-secrets
+                  key: common-platform-shared-secret-key
             - name: LAA_ADAPTOR_URL
               value: {{ .Values.laa.adaptor_url }}
           resources:

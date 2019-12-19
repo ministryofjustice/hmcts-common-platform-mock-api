@@ -17,6 +17,9 @@ service:
   type: ClusterIP
   port: 3000
 
+laa:
+  adaptor_url: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk
+
 ingress:
   enabled: true
   annotations: {}

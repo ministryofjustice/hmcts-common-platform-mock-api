@@ -23,10 +23,20 @@ RSpec.describe HearingResultedPublisher do
       WebMock.disable_net_connect!(allow: ENV.fetch('LAA_ADAPTOR_URL'))
     end
 
-    it 'POSTs to hearings endpoint on the LAA adaptor' do
+    it 'creates a record on the LAA hearings endpoint' do
       VCR.use_cassette('hearings/resulted/success') do
         expect(subject.status).to eq(201)
       end
+    end
+  end
+
+  context 'connection' do
+    let(:connection) { double('LaaConnector') }
+    subject { described_class.call(hearing_id: hearing.id, shared_time: shared_time, connection: connection) }
+
+    it 'makes a POST request' do
+      expect(connection).to receive(:post)
+      subject
     end
   end
 end

@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class HearingResultedPublisher < ApplicationService
-  def initialize(hearing_id:, shared_time:)
+  def initialize(hearing_id:, shared_time:, connection: LaaConnector.call)
     @hearing = Hearing.find(hearing_id)
     @shared_time = shared_time
+    @connection = connection
     @schema = JSON.parse(File.open(Rails.root.join('lib/schemas/api/hearing-resulted.json')).read)
     @url = 'hearings'
     register_dependant_schemas!
@@ -18,15 +19,7 @@ class HearingResultedPublisher < ApplicationService
 
   private
 
-  def connection
-    @connection ||= Faraday.new ENV.fetch('LAA_ADAPTOR_URL') do |connection|
-      connection.request :json
-      connection.response :json, content_type: 'application/json'
-      connection.adapter Faraday.default_adapter
-    end
-  end
-
-  attr_reader :hearing, :shared_time, :schema, :url
+  attr_reader :hearing, :connection, :shared_time, :schema, :url
 
   def permitted_params
     { hearing: hearing.to_builder.attributes!, sharedTime: shared_time }

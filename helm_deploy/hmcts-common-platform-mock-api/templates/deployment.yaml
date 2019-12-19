@@ -51,6 +51,13 @@ spec:
                 secretKeyRef:
                   name: mock-api-secrets
                   key: mock-api-master-key
+            - name: LAA_ADAPTOR_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: mock-api-secrets
+                  key: laa-adaptor-auth-token
+            - name: LAA_ADAPTOR_URL
+              value: {{ .Values.laa.adaptor_url }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

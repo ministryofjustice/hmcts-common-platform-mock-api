@@ -12,6 +12,8 @@ require_relative './support/factory_bot'
 require_relative './support/factory_bot'
 require_relative './support/schema_matchers'
 require_relative './support/shared_contexts'
+require_relative './support/unauthorised_request'
+require_relative './support/authorised_request_helper'
 require_relative './support/vcr'
 # Add additional requires below this line. Rails is not loaded until this point!
 

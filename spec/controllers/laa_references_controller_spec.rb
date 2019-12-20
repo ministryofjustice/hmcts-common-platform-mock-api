@@ -4,6 +4,10 @@ require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe LaaReferencesController, type: :controller do
+  include AuthorisedRequestHelper
+
+  before { authorise_requests! }
+
   describe 'PUT #record' do
     let(:defendant) { FactoryBot.create(:defendant) }
     let(:offence) { defendant.offences.first }

@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe HearingsController, type: :controller do
+  include AuthorisedRequestHelper
+
+  before { authorise_requests! }
+
   let(:hearing) { FactoryBot.create(:hearing) }
   describe 'GET #show' do
     it 'returns a success response' do

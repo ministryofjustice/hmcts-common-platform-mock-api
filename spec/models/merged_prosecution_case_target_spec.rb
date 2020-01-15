@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe MergedProsecutionCaseTarget, type: :model do
   let(:merged_prosecution_case_target) { FactoryBot.create(:merged_prosecution_case_target) }
 

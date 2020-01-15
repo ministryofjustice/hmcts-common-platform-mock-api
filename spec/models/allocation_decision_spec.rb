@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe AllocationDecision, type: :model do
   let(:allocation_decision) { FactoryBot.create(:allocation_decision) }
   let(:json_schema) { :allocation_decision }

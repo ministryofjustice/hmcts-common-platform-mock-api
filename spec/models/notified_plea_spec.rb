@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe NotifiedPlea, type: :model do
   let(:notified_plea) { FactoryBot.create(:notified_plea) }
 

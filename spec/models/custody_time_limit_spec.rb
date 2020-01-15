@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe CustodyTimeLimit, type: :model do
   let(:custody_time_limit) { FactoryBot.create(:custody_time_limit) }
 

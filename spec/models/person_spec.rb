@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 # rubocop:disable Metrics/BlockLength
 RSpec.describe Person, type: :model do
   let(:person) { FactoryBot.create(:person) }

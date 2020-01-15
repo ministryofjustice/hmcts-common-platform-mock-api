@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe NextHearingDefendant, type: :model do
   let(:next_hearing_defendant) { FactoryBot.create(:next_hearing_defendant) }
 

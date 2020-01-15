@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe LaaReference, type: :model do
   let(:laa_reference) { FactoryBot.create(:laa_reference) }
 

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'ProsecutionCases', type: :request do
   let(:headers) { { 'LAASearchCase-Subscription-Key': ENV.fetch('SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE') } }
 

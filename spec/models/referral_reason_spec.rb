@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe ReferralReason, type: :model do
   let(:referral_reason) { FactoryBot.create(:referral_reason) }
   let(:json_schema) { :referral_reason }

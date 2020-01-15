@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe LaaConnector do
   let(:laa_adaptor_url) { 'https://example.org' }
   let(:auth_token) { 'AUTH TOKEN' }

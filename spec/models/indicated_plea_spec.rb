@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe IndicatedPlea, type: :model do
   let(:indicated_plea) { FactoryBot.create(:indicated_plea) }
 

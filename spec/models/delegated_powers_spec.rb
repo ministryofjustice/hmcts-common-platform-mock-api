@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe DelegatedPowers, type: :model do
   let(:delegated_powers) { FactoryBot.create(:delegated_powers) }
 

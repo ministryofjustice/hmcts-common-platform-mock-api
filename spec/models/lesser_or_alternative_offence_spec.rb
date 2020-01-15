@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe LesserOrAlternativeOffence, type: :model do
   let(:lesser_or_alternative_offence) { FactoryBot.create(:lesser_or_alternative_offence) }
 

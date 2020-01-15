@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe LegalEntityDefendant, type: :model do
   let(:legal_entity_defendant) { FactoryBot.create(:legal_entity_defendant) }
 

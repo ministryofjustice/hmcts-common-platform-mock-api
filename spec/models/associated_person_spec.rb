@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe AssociatedPerson, type: :model do
   let(:associated_person) { FactoryBot.create(:associated_person) }
 

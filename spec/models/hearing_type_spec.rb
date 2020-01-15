@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe HearingType, type: :model do
   let(:hearing_type) { FactoryBot.create(:hearing_type) }
 

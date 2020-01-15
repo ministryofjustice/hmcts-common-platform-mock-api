@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'Hearings', type: :request do
   describe 'GET /hearing/result-sit/LAAGetHearingHttpTrigger' do
     let(:hearing) { FactoryBot.create(:hearing) }

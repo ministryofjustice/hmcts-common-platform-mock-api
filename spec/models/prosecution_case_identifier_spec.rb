@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe ProsecutionCaseIdentifier, type: :model do
   let(:prosecution_case_identifier) { FactoryBot.create(:prosecution_case_identifier) }
   let(:json_schema) { :prosecution_case_identifier }

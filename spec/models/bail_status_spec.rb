@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe BailStatus, type: :model do
   let(:bail_status) { FactoryBot.create(:bail_status) }
 

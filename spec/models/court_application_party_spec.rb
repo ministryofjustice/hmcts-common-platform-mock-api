@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe CourtApplicationParty, type: :model do
   let(:court_application_party) { FactoryBot.create(:court_application_party) }
 

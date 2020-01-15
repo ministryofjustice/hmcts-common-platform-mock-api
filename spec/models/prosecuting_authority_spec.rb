@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe ProsecutingAuthority, type: :model do
   let(:prosecuting_authority) { FactoryBot.create(:prosecuting_authority) }
 

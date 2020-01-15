@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe Organisation, type: :model do
   let(:organisation) { FactoryBot.create(:organisation) }
   let(:json_schema) { :organisation }

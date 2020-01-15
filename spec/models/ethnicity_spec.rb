@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe Ethnicity, type: :model do
   let(:ethnicity) { FactoryBot.create(:ethnicity) }
 

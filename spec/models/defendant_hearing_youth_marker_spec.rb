@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe DefendantHearingYouthMarker, type: :model do
   let(:defendant_hearing_youth_marker) { FactoryBot.create(:defendant_hearing_youth_marker) }
   let(:json_schema) { :defendant_hearing_youth_marker }

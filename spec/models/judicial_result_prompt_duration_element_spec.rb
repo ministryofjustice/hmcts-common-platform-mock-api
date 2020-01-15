@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe JudicialResultPromptDurationElement, type: :model do
   let(:judicial_result_prompt_duration_element) { FactoryBot.create(:judicial_result_prompt_duration_element) }
 

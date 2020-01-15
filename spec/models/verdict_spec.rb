@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe Verdict, type: :model do
   let(:verdict) { FactoryBot.create(:verdict) }
   let(:json_schema) { :verdict }

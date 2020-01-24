@@ -14,4 +14,10 @@ class ApplicationController < ActionController::API
       render json: { error: error }, status: status
     end
   end
+
+  private
+
+  def authenticate
+    raise StandardError, 'authenticate must be defined by the controller'
+  end
 end

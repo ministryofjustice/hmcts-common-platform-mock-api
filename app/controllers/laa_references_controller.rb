@@ -23,7 +23,7 @@ class LaaReferencesController < ApplicationController
 
   def authenticate_record_reference
     authenticated = ActiveSupport::SecurityUtils.secure_compare(
-      request.headers['LAAReference-Subscription-Key'],
+      request.headers.fetch('LAAReference-Subscription-Key', ''),
       ENV.fetch('SHARED_SECRET_KEY_LAA_REFERENCE')
     )
 
@@ -32,7 +32,7 @@ class LaaReferencesController < ApplicationController
 
   def authenticate_record_representation_order
     authenticated = ActiveSupport::SecurityUtils.secure_compare(
-      request.headers['LAARepresent-Subscription-Key'],
+      request.headers.fetch('LAARepresent-Subscription-Key', ''),
       ENV.fetch('SHARED_SECRET_KEY_REPRESENTATION_ORDER')
     )
 

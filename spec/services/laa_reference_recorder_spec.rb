@@ -10,7 +10,13 @@ RSpec.describe LaaReferenceRecorder do
   let(:status_code) { 'STATUS CODE 999' }
   let(:application_reference) { 'APPLICATION REFERENCE 998' }
   let(:status_date) { '2019-12-12' }
-  let(:laa_reference) { FactoryBot.create(:laa_reference, offence: offence) }
+  let(:laa_reference) do
+    FactoryBot.create(:laa_reference,
+                      statusCode: status_code,
+                      applicationReference: application_reference,
+                      statusDate: status_date,
+                      offence: offence)
+  end
 
   subject { described_class.call(params) }
 
@@ -29,7 +35,6 @@ RSpec.describe LaaReferenceRecorder do
   context 'with valid params' do
     let(:params_hash) do
       {
-        id: laa_reference_id,
         prosecutionCaseId: defendant.prosecution_case.id,
         defendantId: defendant.id,
         offenceId: offence.id,
@@ -40,19 +45,13 @@ RSpec.describe LaaReferenceRecorder do
     end
 
     context 'when an LaaReference does not exist' do
-      let(:laa_reference_id) { SecureRandom.uuid }
-
       it 'creates the LaaReference' do
         expect { subject }.to change(LaaReference, :count).by(1)
       end
     end
 
     context 'when the LaaReference exists' do
-      let(:laa_reference_id) { laa_reference.id }
-
-      before do
-        laa_reference.save!
-      end
+      before { laa_reference.save! }
 
       it 'does not create a new LaaReference' do
         expect { subject }.to change(LaaReference, :count).by(0)
@@ -64,7 +63,6 @@ RSpec.describe LaaReferenceRecorder do
         expect(laa_reference.applicationReference).to eq(application_reference)
         expect(laa_reference.statusCode).to eq(status_code)
         expect(laa_reference.statusDate).to eq(status_date)
-        expect(laa_reference.statusId).to eq(laa_reference_id)
         expect(laa_reference.statusDescription).to eq('FAKE NEWS')
       end
 

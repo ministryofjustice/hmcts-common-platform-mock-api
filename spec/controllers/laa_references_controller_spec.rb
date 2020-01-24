@@ -37,7 +37,7 @@ RSpec.describe LaaReferencesController, type: :controller do
     end
 
     context 'when the LaaReference exists' do
-      before { laa_reference }
+      before { laa_reference.save! }
 
       it 'returns a no_content status' do
         request.headers['LAAReference-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_LAA_REFERENCE')
@@ -80,7 +80,7 @@ RSpec.describe LaaReferencesController, type: :controller do
     end
 
     context 'when the LaaReference exists' do
-      before { laa_reference }
+      before { laa_reference.save! }
 
       it 'returns a no_content status' do
         request.headers['LAARepresent-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_REPRESENTATION_ORDER')

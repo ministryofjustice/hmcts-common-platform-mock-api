@@ -13,7 +13,11 @@ class LaaRepresentationOrderRecorder < ApplicationService
 
     offence = Offence.find(params[:offenceId])
 
-    laa_reference = offence.laa_references.find_or_initialize_by(id: params[:id])
+    laa_reference = offence.laa_references.find_or_initialize_by(
+      statusCode: params[:statusCode],
+      applicationReference: params[:applicationReference],
+      statusDate: params[:statusDate]
+    )
     laa_reference.update!(laa_reference_params)
     laa_reference
   end
@@ -42,7 +46,7 @@ class LaaRepresentationOrderRecorder < ApplicationService
                            :statusDate,
                            :effectiveStartDate,
                            :effectiveEndDate)
-                    .merge(statusId: params[:id],
+                    .merge(statusId: SecureRandom.uuid,
                            statusDescription: 'FAKE NEWS')
   end
 

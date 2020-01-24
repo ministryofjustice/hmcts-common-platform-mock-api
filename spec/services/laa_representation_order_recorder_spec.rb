@@ -12,8 +12,14 @@ RSpec.describe LaaRepresentationOrderRecorder do
   let(:status_date) { '2019-12-10' }
   let(:effective_start_date) { '2019-12-12' }
   let(:effective_end_date) { '2019-12-20' }
-  let(:laa_reference) { FactoryBot.create(:laa_reference, offence: offence) }
   let(:defence_organisation) { FactoryBot.create(:defence_organisation) }
+  let(:laa_reference) do
+    FactoryBot.create(:laa_reference,
+                      statusCode: status_code,
+                      applicationReference: application_reference,
+                      statusDate: status_date,
+                      offence: offence)
+  end
 
   subject { described_class.call(params) }
 
@@ -32,7 +38,6 @@ RSpec.describe LaaRepresentationOrderRecorder do
   context 'with valid params' do
     let(:params_hash) do
       {
-        id: laa_reference_id,
         prosecutionCaseId: defendant.prosecution_case.id,
         defendantId: defendant.id,
         offenceId: offence.id,
@@ -46,19 +51,13 @@ RSpec.describe LaaRepresentationOrderRecorder do
     end
 
     context 'when an LaaReference does not exist' do
-      let(:laa_reference_id) { SecureRandom.uuid }
-
       it 'creates the LaaReference' do
         expect { subject }.to change(LaaReference, :count).by(1)
       end
     end
 
     context 'when the LaaReference exists' do
-      let(:laa_reference_id) { laa_reference.id }
-
-      before do
-        laa_reference.save!
-      end
+      before { laa_reference.save! }
 
       it 'does not create a new LaaReference' do
         expect { subject }.to change(LaaReference, :count).by(0)

@@ -18,10 +18,6 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate
-    authenticated = authenticate_with_http_token do |token|
-      ActiveSupport::SecurityUtils.secure_compare(token, ENV.fetch('COMMON_PLATFORM_SHARED_SECRET_KEY'))
-    end
-
-    head :unauthorized unless authenticated
+    raise StandardError, 'authenticate must be defined by the controller'
   end
 end

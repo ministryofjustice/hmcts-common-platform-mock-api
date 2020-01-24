@@ -3,11 +3,17 @@
 Rails.application.routes.draw do
   resources :status, only: [:index]
 
-  resources :prosecution_cases, path: 'prosecutionCases', only: [:index] do
-    collection do
-      put 'laaReference/:id' => 'laa_references#record_reference', as: :laa_reference
-      put 'representationOrder/:id' => 'laa_references#record_representation_order', as: :representation_order
-    end
-  end
-  resources :hearings, path: 'hearing/results', only: [:show], param: :hearingId
+  resources :prosecution_cases, path: '/search/case-sit/prosecutionCases', only: [:index]
+
+  post '/record/laareference-sit/progression-command-api'\
+    '/command/api/rest/progression/laaReference'\
+    '/cases/:prosecutionCaseId'\
+    '/defendants/:defendantId'\
+    '/offences/:offenceId' => 'laa_references#record_reference', as: :laa_reference
+  post '/receive/representation-sit/progression-command-api'\
+    '/command/api/rest/progression/representationOrder' \
+    '/cases/:prosecutionCaseId' \
+    '/defendants/:defendantId' \
+    '/offences/:offenceId' => 'laa_references#record_representation_order', as: :representation_order
+  get '/hearing/result-sit/LAAGetHearingHttpTrigger' => 'hearings#show', as: :hearing
 end

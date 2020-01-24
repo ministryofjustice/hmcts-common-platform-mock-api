@@ -14,14 +14,4 @@ class ApplicationController < ActionController::API
       render json: { error: error }, status: status
     end
   end
-
-  private
-
-  def authenticate
-    authenticated = authenticate_with_http_token do |token|
-      ActiveSupport::SecurityUtils.secure_compare(token, ENV.fetch('COMMON_PLATFORM_SHARED_SECRET_KEY'))
-    end
-
-    head :unauthorized unless authenticated
-  end
 end

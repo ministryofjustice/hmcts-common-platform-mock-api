@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # rubocop:disable Metrics/BlockLength
-require 'rails_helper'
 RSpec.describe JudicialResult, type: :model do
   let(:judicial_result) { FactoryBot.create(:judicial_result) }
   let(:json_schema) { :judicial_result }

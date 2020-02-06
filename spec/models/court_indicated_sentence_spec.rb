@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe CourtIndicatedSentence, type: :model do
   let(:court_indicated_sentence) { FactoryBot.create(:court_indicated_sentence) }
 

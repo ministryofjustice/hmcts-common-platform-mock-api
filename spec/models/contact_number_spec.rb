@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe ContactNumber, type: :model do
   let(:contact_number) { FactoryBot.create(:contact_number) }
 

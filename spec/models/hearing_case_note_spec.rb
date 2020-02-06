@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe HearingCaseNote, type: :model do
   let(:hearing_case_note) { FactoryBot.create(:hearing_case_note) }
   let(:json_schema) { :hearing_case_note }

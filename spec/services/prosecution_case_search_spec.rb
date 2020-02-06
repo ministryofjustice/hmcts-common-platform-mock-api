@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
 # rubocop:disable Metrics/BlockLength
 RSpec.describe ProsecutionCaseSearch do
   let(:params) { ActionController::Parameters.new(params_hash) }

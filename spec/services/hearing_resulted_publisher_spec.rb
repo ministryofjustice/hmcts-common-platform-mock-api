@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe HearingResultedPublisher do
   let(:hearing) { FactoryBot.create(:hearing) }
   let(:shared_time) { '2019-12-12T00:00:00+00:00' }

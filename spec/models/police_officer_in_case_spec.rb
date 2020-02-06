@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe PoliceOfficerInCase, type: :model do
   let(:police_officer_in_case) { FactoryBot.create(:police_officer_in_case) }
   let(:json_schema) { :police_officer_in_case }

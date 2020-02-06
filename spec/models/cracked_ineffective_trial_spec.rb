@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe CrackedIneffectiveTrial, type: :model do
   let(:cracked_ineffective_trial) { FactoryBot.create(:cracked_ineffective_trial) }
   let(:json_schema) { :cracked_ineffective_trial }

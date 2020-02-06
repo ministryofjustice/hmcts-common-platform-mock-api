@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe LinkedDefendant, type: :model do
   let(:linked_defendant) { FactoryBot.create(:linked_defendant) }
 

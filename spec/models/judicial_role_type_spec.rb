@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe JudicialRoleType, type: :model do
   let(:judicial_role_type) { FactoryBot.create(:judicial_role_type) }
   let(:json_schema) { :judicial_role_type }

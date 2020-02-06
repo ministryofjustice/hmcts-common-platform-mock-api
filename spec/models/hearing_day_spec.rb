@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe HearingDay, type: :model do
   let(:hearing_day) { FactoryBot.create(:hearing_day) }
 

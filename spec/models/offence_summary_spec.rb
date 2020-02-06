@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe OffenceSummary, type: :model do
   let(:offence) { FactoryBot.create(:offence) }
   let(:offence_summary) { described_class.new(offence_id: offence.id) }

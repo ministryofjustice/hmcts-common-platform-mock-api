@@ -8,7 +8,7 @@ FactoryBot.define do
     noteType { 'HMCTS' }
     note { 'Random' }
     after(:build) do |hearing_case_note|
-      hearing_case_note.prosecution_cases << FactoryBot.build(:prosecution_case)
+      hearing_case_note.prosecution_cases << build(:prosecution_case)
     end
   end
 end

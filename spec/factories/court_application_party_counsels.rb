@@ -9,7 +9,7 @@ FactoryBot.define do
     lastName { 'Rob' }
     status { 'Random' }
     after(:build) do |applicant_counsel|
-      applicant_counsel.attendance_days << FactoryBot.build(:attendance_day)
+      applicant_counsel.attendance_days << build(:attendance_day)
     end
   end
 end

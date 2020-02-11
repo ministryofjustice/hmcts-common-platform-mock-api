@@ -41,14 +41,14 @@ RSpec.describe ProsecutionCase, type: :model do
 
   context 'when only one SplitProsecutorCaseReference exists' do
     before do
-      prosecution_case.split_prosecutor_case_references << FactoryBot.build(:split_prosecutor_case_reference)
+      prosecution_case.split_prosecutor_case_references << build(:split_prosecutor_case_reference)
     end
     it { should_not be_valid }
   end
 
   context 'when at least two SplitProsecutorCaseReferences exist' do
     before do
-      prosecution_case.split_prosecutor_case_references << FactoryBot.build_list(:split_prosecutor_case_reference, 2)
+      prosecution_case.split_prosecutor_case_references << build_list(:split_prosecutor_case_reference, 2)
     end
     it { should be_valid }
   end
@@ -59,10 +59,10 @@ RSpec.describe ProsecutionCase, type: :model do
 
   context 'with relationships' do
     before do
-      prosecution_case.defendants << FactoryBot.build(:defendant)
-      prosecution_case.markers << FactoryBot.build(:marker)
-      prosecution_case.split_prosecutor_case_references << FactoryBot.build_list(:split_prosecutor_case_reference, 2)
-      prosecution_case.linked_prosecution_cases << FactoryBot.build(:linked_prosecution_case)
+      prosecution_case.defendants << build(:defendant)
+      prosecution_case.markers << build(:marker)
+      prosecution_case.split_prosecutor_case_references << build_list(:split_prosecutor_case_reference, 2)
+      prosecution_case.linked_prosecution_cases << build(:linked_prosecution_case)
       prosecution_case.save!
     end
 

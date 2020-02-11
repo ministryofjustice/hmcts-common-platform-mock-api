@@ -20,13 +20,13 @@ RSpec.describe ProsecutionCaseSearch do
   end
 
   context 'when searching by prosecutionCaseReference' do
-    let(:cases) { FactoryBot.build_list(:prosecution_case, 3) }
+    let(:cases) { build_list(:prosecution_case, 3) }
 
     before do
-      cases.first.prosecution_case_identifier = FactoryBot.build(:prosecution_case_identifier,
-                                                                 caseURN: 'XXYYZZ')
-      cases.second.prosecution_case_identifier = FactoryBot.build(:prosecution_case_identifier_with_reference,
-                                                                  prosecutionAuthorityReference: 'XXYYZZ')
+      cases.first.prosecution_case_identifier = build(:prosecution_case_identifier,
+                                                      caseURN: 'XXYYZZ')
+      cases.second.prosecution_case_identifier = build(:prosecution_case_identifier_with_reference,
+                                                       prosecutionAuthorityReference: 'XXYYZZ')
       cases.map(&:save!)
     end
 
@@ -50,10 +50,10 @@ RSpec.describe ProsecutionCaseSearch do
   context 'when searching by nationalInsuranceNumber' do
     let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
     let(:defendant) do
-      FactoryBot.build(:defendant,
-                       prosecution_case: nil,
-                       defendable: FactoryBot.create(:person_defendant,
-                                                     person: FactoryBot.create(:person, nationalInsuranceNumber: 'NH489223C')))
+      build(:defendant,
+            prosecution_case: nil,
+            defendable: FactoryBot.create(:person_defendant,
+                                          person: FactoryBot.create(:person, nationalInsuranceNumber: 'NH489223C')))
     end
 
     before do
@@ -80,9 +80,9 @@ RSpec.describe ProsecutionCaseSearch do
   context 'when searching by arrestSummonsNumber' do
     let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
     let(:defendant) do
-      FactoryBot.build(:defendant,
-                       prosecution_case: nil,
-                       defendable: FactoryBot.create(:person_defendant, arrestSummonsNumber: '3.1428'))
+      build(:defendant,
+            prosecution_case: nil,
+            defendable: FactoryBot.create(:person_defendant, arrestSummonsNumber: '3.1428'))
     end
 
     before do
@@ -109,10 +109,10 @@ RSpec.describe ProsecutionCaseSearch do
   context 'when searching by name and dateOfBirth' do
     let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
     let(:defendant) do
-      FactoryBot.build(:defendant,
-                       prosecution_case: nil,
-                       defendable: FactoryBot.create(:person_defendant,
-                                                     person: john_doe))
+      build(:defendant,
+            prosecution_case: nil,
+            defendable: FactoryBot.create(:person_defendant,
+                                          person: john_doe))
     end
 
     before do
@@ -139,10 +139,10 @@ RSpec.describe ProsecutionCaseSearch do
   context 'when searching by name and dateOfNextHearing' do
     let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
     let(:defendant) do
-      FactoryBot.build(:defendant, :with_next_hearing,
-                       next_hearing_date: '2019-01-10',
-                       prosecution_case: nil,
-                       defendable: FactoryBot.create(:person_defendant, person: john_doe))
+      build(:defendant, :with_next_hearing,
+            next_hearing_date: '2019-01-10',
+            prosecution_case: nil,
+            defendable: FactoryBot.create(:person_defendant, person: john_doe))
     end
 
     before do

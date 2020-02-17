@@ -38,7 +38,7 @@ RSpec.describe LaaReferencesController, type: :controller do
       before { laa_reference.save! }
 
       it 'returns a no_content status' do
-        request.headers['LAAReference-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_LAA_REFERENCE')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_LAA_REFERENCE')
         put :record_reference, params: laa_reference_params
         expect(response).to have_http_status(:no_content)
       end
@@ -46,7 +46,7 @@ RSpec.describe LaaReferencesController, type: :controller do
 
     context 'when the LaaReference is new' do
       it 'returns a created status' do
-        request.headers['LAAReference-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_LAA_REFERENCE')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_LAA_REFERENCE')
         put :record_reference, params: laa_reference_params
         expect(response).to have_http_status(:created)
       end
@@ -81,7 +81,7 @@ RSpec.describe LaaReferencesController, type: :controller do
       before { laa_reference.save! }
 
       it 'returns a no_content status' do
-        request.headers['LAARepresent-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_REPRESENTATION_ORDER')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_REPRESENTATION_ORDER')
         put :record_representation_order, params: laa_reference_params
         expect(response).to have_http_status(:no_content)
       end
@@ -89,7 +89,7 @@ RSpec.describe LaaReferencesController, type: :controller do
 
     context 'when the LaaReference is new' do
       it 'returns a created status' do
-        request.headers['LAARepresent-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_REPRESENTATION_ORDER')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_REPRESENTATION_ORDER')
         put :record_representation_order, params: laa_reference_params
         expect(response).to have_http_status(:created)
       end

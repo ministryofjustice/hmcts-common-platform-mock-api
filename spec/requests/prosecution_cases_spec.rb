@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'ProsecutionCases', type: :request do
-  let(:headers) { { 'LAASearchCase-Subscription-Key': ENV.fetch('SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE') } }
+  let(:headers) { { 'Ocp-Apim-Subscription-Key': ENV.fetch('SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE') } }
 
   describe 'GET /search/case/prosecutionCases' do
     let!(:prosecution_case) do

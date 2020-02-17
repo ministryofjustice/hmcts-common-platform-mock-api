@@ -3,7 +3,7 @@
 RSpec.describe 'Hearings', type: :request do
   describe 'GET /hearing/result/LAAGetHearingHttpTrigger' do
     let(:hearing) { FactoryBot.create(:hearing) }
-    let(:headers) { { 'LAHearing-Subscription-Key': ENV.fetch('SHARED_SECRET_KEY_HEARING') } }
+    let(:headers) { { 'Ocp-Apim-Subscription-Key': ENV.fetch('SHARED_SECRET_KEY_HEARING') } }
 
     it 'matches the response schema' do
       get "/hearing/result/LAAGetHearingHttpTrigger?hearingId=#{hearing.id}", headers: headers

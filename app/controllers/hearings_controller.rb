@@ -11,7 +11,7 @@ class HearingsController < ApplicationController
 
   def authenticate
     authenticated = ActiveSupport::SecurityUtils.secure_compare(
-      request.headers.fetch('LAHearing-Subscription-Key', ''),
+      request.headers.fetch('Ocp-Apim-Subscription-Key', ''),
       ENV.fetch('SHARED_SECRET_KEY_HEARING')
     )
 

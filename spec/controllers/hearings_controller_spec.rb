@@ -10,7 +10,7 @@ RSpec.describe HearingsController, type: :controller do
 
     context 'with the correct auth header' do
       it 'returns a success response' do
-        request.headers['LAHearing-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_HEARING')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_HEARING')
         get :show, params: { hearingId: hearing.id }
         expect(response).to be_successful
       end

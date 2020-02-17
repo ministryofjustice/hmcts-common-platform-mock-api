@@ -9,7 +9,7 @@ RSpec.describe ProsecutionCasesController, type: :controller do
 
     context 'with the correct auth header' do
       it 'returns a success response' do
-        request.headers['LAASearchCase-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE')
         get :index, params: { prosecutionCaseReference: 'some reference' }
         expect(response).to be_successful
       end

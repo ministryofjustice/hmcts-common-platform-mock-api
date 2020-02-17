@@ -23,7 +23,7 @@ class ProsecutionCasesController < ApplicationController
 
   def authenticate
     authenticated = ActiveSupport::SecurityUtils.secure_compare(
-      request.headers.fetch('LAASearchCase-Subscription-Key', ''),
+      request.headers.fetch('Ocp-Apim-Subscription-Key', ''),
       ENV.fetch('SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE')
     )
 

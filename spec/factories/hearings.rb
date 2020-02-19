@@ -14,5 +14,11 @@ FactoryBot.define do
     after(:build) do |hearing|
       hearing.hearing_days << FactoryBot.create(:hearing_day)
     end
+
+    trait :with_prosecution_case do
+      after(:build) do |hearing|
+        hearing.prosecution_cases << FactoryBot.build(:prosecution_case)
+      end
+    end
   end
 end

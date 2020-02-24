@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :offence do
+  factory :offence, aliases: [:realistic_offence] do
     offenceDefinitionId { SecureRandom.uuid }
     offenceCode { 'Random string' }
     offenceTitle { 'Random string' }

@@ -8,8 +8,8 @@ FactoryBot.define do
     lastName { 'Rob' }
     status { 'Random' }
     after(:build) do |prosecution_counsel|
-      prosecution_counsel.prosecution_cases << FactoryBot.build(:prosecution_case)
-      prosecution_counsel.attendance_days << FactoryBot.build(:attendance_day)
+      prosecution_counsel.prosecution_cases << build(:prosecution_case)
+      prosecution_counsel.attendance_days << build(:attendance_day)
     end
   end
 end

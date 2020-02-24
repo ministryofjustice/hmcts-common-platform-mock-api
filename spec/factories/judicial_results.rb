@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :judicial_result do
+  factory :judicial_result, aliases: [:realistic_judicial_result] do
     judicialResultId { SecureRandom.uuid }
     orderedHearingId { SecureRandom.uuid }
     label { 'Random String' }

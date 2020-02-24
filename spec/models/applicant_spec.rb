@@ -8,4 +8,6 @@ RSpec.describe Applicant, type: :model do
   describe 'associations' do
     it { should belong_to(:applicant_counsel).class_name('ApplicantCounsel').optional }
   end
+
+  it_has_a 'realistic factory'
 end

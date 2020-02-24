@@ -79,6 +79,8 @@ RSpec.describe Person, type: :model do
 
   it_has_behaviour 'conforming to valid schema'
 
+  it_has_a 'realistic factory'
+
   context 'with relationships' do
     before do
       person.contact_number = FactoryBot.create(:contact_number)

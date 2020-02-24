@@ -50,6 +50,7 @@ RSpec.configure do |config|
   end
 
   config.alias_it_should_behave_like_to :it_has_behaviour, 'has behaviour:'
+  config.alias_it_should_behave_like_to :it_has_a, 'has a'
 
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards

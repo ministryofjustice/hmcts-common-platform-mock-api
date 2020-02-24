@@ -8,5 +8,13 @@ FactoryBot.define do
     address4 { 'Suite 825' }
     address5 { 'Apt 922' }
     postcode { 'W0T 6JB' }
+    factory :realistic_address do
+      address1 { Faker::Address.street_address }
+      address2 { Faker::Address.secondary_address }
+      address3 { Faker::Address.building_number }
+      address4 { Faker::Address.city }
+      address5 { Faker::Address.country }
+      postcode { Faker::Address.postcode }
+    end
   end
 end

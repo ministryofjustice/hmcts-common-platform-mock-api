@@ -2,5 +2,7 @@
 
 FactoryBot.define do
   factory :next_hearing_offence do
+    factory :realistic_next_hearing_offence do
+    end
   end
 end

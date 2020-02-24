@@ -106,14 +106,14 @@ RSpec.describe Defendant, type: :model do
 
   context 'when only one SplitProsecutorCaseReference exists' do
     before do
-      defendant.split_prosecutor_case_references << FactoryBot.build(:split_prosecutor_case_reference)
+      defendant.split_prosecutor_case_references << build(:split_prosecutor_case_reference)
     end
     it { should_not be_valid }
   end
 
   context 'when at least two SplitProsecutorCaseReferences exist' do
     before do
-      defendant.split_prosecutor_case_references << FactoryBot.build_list(:split_prosecutor_case_reference, 2)
+      defendant.split_prosecutor_case_references << build_list(:split_prosecutor_case_reference, 2)
     end
     it { should be_valid }
   end
@@ -136,17 +136,19 @@ RSpec.describe Defendant, type: :model do
 
   context 'with relationships' do
     before do
-      defendant.associated_people << FactoryBot.build(:associated_person)
-      defendant.defence_organisations << FactoryBot.build(:associated_defence_organisation, defendant: nil)
-      defendant.defendant_aliases << FactoryBot.build(:defendant_alias)
-      defendant.judicial_results << FactoryBot.build(:judicial_result)
-      defendant.markers << FactoryBot.build(:marker)
-      defendant.split_prosecutor_case_references << FactoryBot.build_list(:split_prosecutor_case_reference, 2)
-      defendant.linked_defendants << FactoryBot.build(:linked_defendant)
+      defendant.associated_people << build(:associated_person)
+      defendant.defence_organisations << build(:associated_defence_organisation, defendant: nil)
+      defendant.defendant_aliases << build(:defendant_alias)
+      defendant.judicial_results << build(:judicial_result)
+      defendant.markers << build(:marker)
+      defendant.split_prosecutor_case_references << build_list(:split_prosecutor_case_reference, 2)
+      defendant.linked_defendants << build(:linked_defendant)
       defendant.save!
     end
 
     it_has_behaviour 'conforming to valid schema'
   end
+
+  it_has_a 'realistic factory'
 end
 # rubocop:enable Metrics/BlockLength

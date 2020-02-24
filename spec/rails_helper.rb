@@ -14,6 +14,7 @@ require_relative './support/schema_matchers'
 require_relative './support/shared_contexts'
 require_relative './support/unauthorised_request'
 require_relative './support/vcr'
+require_relative './support/realistic_factory'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

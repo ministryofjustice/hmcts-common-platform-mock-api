@@ -7,7 +7,7 @@ FactoryBot.define do
     bailConditions { 'Random string' }
     bailReasons { 'Random string' }
     custodyTimeLimit { '2019-10-17 15:38:58' }
-    perceivedBirthYear { 1 }
+    perceivedBirthYear { 1999 }
     driverNumber { 'Random string' }
     driverLicenceCode { 'PROVISIONAL' }
     driverLicenseIssue { 'Random string' }
@@ -23,7 +23,7 @@ FactoryBot.define do
       association :employer_organisation, factory: :realistic_organisation
       bailConditions { Faker::Lorem.sentence }
       bailReasons { Faker::Lorem.sentence }
-      perceivedBirthYear { Faker::Number.between(from: 1, to: 75) }
+      perceivedBirthYear { Faker::Number.between(from: 1950, to: 2010) }
       driverNumber { Faker::Lorem.sentence }
       driverLicenceCode { PersonDefendant::LICENCE_CODES.sample }
       driverLicenseIssue { Faker::Lorem.sentence }

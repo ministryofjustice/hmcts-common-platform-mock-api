@@ -6,7 +6,7 @@ FactoryBot.define do
     firstName { 'John' }
     middleName { 'Random' }
     lastName { 'Rob' }
-    status { 'Random' }
+    status { 'Leading counsel' }
     after(:build) do |applicant_counsel|
       applicant_counsel.applicants << build(:applicant)
       applicant_counsel.attendance_days << build(:attendance_day)
@@ -18,7 +18,7 @@ FactoryBot.define do
     firstName { Faker::Name.first_name }
     middleName { Faker::Name.middle_name }
     lastName { Faker::Name.last_name }
-    status { Faker::Demographic.race }
+    status { "#{Faker::Job.seniority} counsel" }
     after(:build) do |applicant_counsel|
       applicant_counsel.applicants << build(:realistic_applicant, applicant_counsel: nil)
       applicant_counsel.attendance_days << build(:realistic_attendance_day)

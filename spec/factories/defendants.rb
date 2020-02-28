@@ -40,13 +40,17 @@ FactoryBot.define do
     witnessStatementWelsh { Faker::Lorem.paragraph }
     mitigation { Faker::Lorem.paragraph }
     mitigationWelsh { Faker::Lorem.paragraph }
-    association :defendable, factory: %i[realistic_person_defendant realistic_legal_entity_defendant].sample
     croNumber { Faker::Code.asin }
     pncId { Faker::Code.rut }
     mergedProsecutionCaseReference { Faker::Lorem.word }
+
+    association :defendable, factory: :realistic_person_defendant
+    trait :with_legal_entity_defendant do
+      association :defendable, factory: :realistic_legal_entity_defendant
+    end
+
     after(:build) do |defendant|
       defendant.offences << build(:realistic_offence, defendant: nil)
-
       defendant.associated_people << build_list(:realistic_associated_person,
                                                 Faker::Number.between(from: 0, to: 3))
       defendant.defence_organisations << build_list(:realistic_associated_defence_organisation,

@@ -1,61 +1,61 @@
 {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"id": "http://justice.gov.uk/unified_search_query/courts/public/prosecutionCaseRequest.json",
-	"type": "object",
-	"properties": {
-		"prosecutionCaseReference": {
-			"description": "The prosecuting authorities reference for their prosecution case that is layed before court.  For example PTI-URN from police/cps cases",
-			"type": "string"
-		},
-		"nationalInsuranceNumber": {
-		  "description": "The person nino when the defendant is a person",
-		  "$ref": "../../global/courtsDefinitions.json#/definitions/nino"
-		},
-		"arrestSummonsNumber": {
-		  "description": "The police arrest summons number when the defendant is a person",
-		  "type": "string"
-		},
-		"name": {
-			"description": "The name of the defendant",
-			"$ref": "../../global/search/defendantName.json#"
-		},
-		"dateOfBirth": {
-		  "description": "The person date of birth when the defendant is a person",
-		  "$ref": "../../global/courtsDefinitions.json#/definitions/datePattern"
-		},
-		"dateOfNextHearing": {
-		  "description": "The date of the next hearing for the defendant",
-		  "$ref": "../../global/courtsDefinitions.json#/definitions/datePattern"
-		}
-	},
-	"oneOf": [
-		{
-		  "required": [
-			"prosecutionCaseReference"
-		  ]
-		},
-		{
-		  "required": [
-			"nationalInsuranceNumber"
-		  ]
-		},
-		{
-		  "required": [
-			"arrestSummonsNumber"
-		  ]
-		},
-		{
-		  "required": [
-			"name",
-			"dateOfBirth"
-		  ]
-		},
-		{
-		  "required": [
-			"name",
-			"dateOfNextHearing"
-		  ]
-		}
-	  ],
-	"additionalProperties": false
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://justice.gov.uk/unified_search_query/courts/external/prosecutionCaseRequest.json",
+    "type": "object",
+    "properties": {
+        "prosecutionCaseReference": {
+            "description": "The prosecuting authorities reference for their prosecution case that is layed before court.  For example PTI-URN from police/cps cases",
+            "type": "string"
+        },
+        "nationalInsuranceNumber": {
+          "description": "The person nino when the defendant is a person",
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/nino"
+        },
+        "arrestSummonsNumber": {
+          "description": "The police arrest summons number when the defendant is a person",
+          "type": "string"
+        },
+        "name": {
+            "description": "The name of the defendant",
+            "$ref": "../../external/global/search/apiDefendantName.json#"
+        },
+        "dateOfBirth": {
+          "description": "The person date of birth when the defendant is a person",
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "dateOfNextHearing": {
+          "description": "The date of the next hearing for the defendant",
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+        }
+    },
+    "oneOf": [
+        {
+          "required": [
+            "prosecutionCaseReference"
+          ]
+        },
+        {
+          "required": [
+            "nationalInsuranceNumber"
+          ]
+        },
+        {
+          "required": [
+            "arrestSummonsNumber"
+          ]
+        },
+        {
+          "required": [
+            "name",
+            "dateOfBirth"
+          ]
+        },
+        {
+          "required": [
+            "name",
+            "dateOfNextHearing"
+          ]
+        }
+      ],
+    "additionalProperties": false
 }

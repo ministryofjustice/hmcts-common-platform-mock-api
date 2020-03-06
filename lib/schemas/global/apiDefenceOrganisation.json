@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiDefenceOrganisation.json",
+  "description": "The details of a defence organisation",
+  "type": "object",
+  "properties": {
+    "organisation": {
+      "description": "The organisation details",
+      "$ref": "../../external/global/apiOrganisation.json#"
+    },
+    "laaContractNumber": {
+      "description": "When the organisation is a defence organisation that is authorised to conduct legal aid work; the contract reference that firm has with Legal Aid Agency",
+      "type": "string"
+    },
+    "sraNumber": {
+      "description": "When the organisation is a defence organisation, the registration number of that firm with the Solicitors Regulation Authority",
+      "type": "string"
+    },
+    "barCouncilMembershipNumber": {
+      "description": "When the organisation is a defence organisation, the firms membership reference with teh bar council",
+      "type": "string"
+    }
+  },
+  "required": [
+    "organisation",
+    "laaContractNumber"
+  ],
+  "additionalProperties": false
+}

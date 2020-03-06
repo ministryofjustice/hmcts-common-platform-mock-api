@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apipersonDefendant.json",
+  "type": "object",
+  "properties": {
+    "personDetails": {
+      "$ref": "../global/apiperson.json"
+    },
+    "bailStatus": {
+      "$ref": "apibailStatus.json"
+    },
+    "bailConditions": {
+      "description": "Defines the conditions that have been applied to the Order of Bail, or Order of Remand into the care of the Local Authority",
+      "type": "string"
+    },
+	"bailReasons": {
+      "description": "Defines the reasons for setting bail conditions or the reasons for custody",
+      "type": "string"
+    },
+    "custodyTimeLimit": {
+      "description": "The custody time limit for the given case when the bail status is remanded-in-custody",
+      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
+    },
+    "perceivedBirthYear": {
+      "$ref": "../global/apicourtsDefinitions.json#/definitions/positiveInteger"
+    },
+    "driverNumber": {
+      "type": "string"
+    },
+    "driverLicenceCode": {
+      "$ref": "../global/apicourtsDefinitions.json#/definitions/driverLicenseCode"
+    },
+    "driverLicenseIssue": {
+      "description": "identifies the license issue no.",
+      "type": "string"
+    },
+    "vehicleOperatorLicenceNumber": {
+      "description": "You need an operator's licence to operate vehicles above 3.5 tonnes gross vehicle weight (gvw) that are used to carry goods (ie anything not permanently attached to the vehicle) on public roads for trade or business purposes.",
+      "type": "string"
+    },
+    "arrestSummonsNumber": {
+      "type": "string"
+    },
+    "defendantCustodyLocation": {
+      "$ref": "apidefendantCustodyLocation.json#"
+    },
+    "employerOrganisation": {
+      "$ref": "apiorganisation.json#"
+    },
+    "employerPayrollReference": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "personDetails"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiCourtApplicationResponse.json",
+  "description": "The response from a respondent regarding an application",
+  "type": "object",
+  "properties": {
+    "originatingHearingId": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "applicationId": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "applicationResponseDate": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+    },
+    "applicationResponseType": {
+        "$ref": "../../external/global/apiCourtApplicationResponseType.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": ["originatingHearingId", "applicationId", "applicationResponseDate", "applicationResponseType"]
+}

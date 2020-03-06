@@ -1,0 +1,42 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://justice.gov.uk/core/courts/external/apicourtCentre.json",
+	"type": "object",
+	"properties": {
+		"id": {
+			"$ref": "../global/apicourtsDefinitions.json#/definitions/uuid"
+		},
+		"ouCode": {
+			"description": "The reference data ou code for the court centre",
+			"type": "string"
+		},
+		"name": {
+			"type": "string"
+		},
+		"welshName": {
+			"type": "string"
+		},
+		"roomId": {
+			"$ref": "../global/apicourtsDefinitions.json#/definitions/uuid"
+		},
+		"roomName": {
+			"type": "string"
+		},
+		"welshRoomName": {
+			"type": "string"
+		},
+		"address": {
+			"$ref": "apiaddress.json"
+		},
+		"courtHearingLocation": {
+			"type": "string"
+		},
+		"lja": {
+			"$ref": "apiljaDetails.json#"
+		}
+	},
+	"required": [
+		"id", "ouCode", "name"
+	],
+	"additionalProperties": false
+}

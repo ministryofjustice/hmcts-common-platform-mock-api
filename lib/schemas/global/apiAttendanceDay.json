@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://justice.gov.uk/core/courts/external/apiattendanceDay.json",
+	"description": "Attendance date recorded with or without delegated powers",
+	"type": "object",
+	"properties": {
+		"day": {
+			"$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
+		},
+		"isInAttendance": {
+			"type": "boolean"
+		},
+		"byVideoLinkFromCustodyLocation": {
+			"description": "Signals that attendance is by video link from custody location.  The custody location is provided on the defendant record.  When this is null or false the attendance is assumed to be in person when isInAttendance has been set",
+			"type": "boolean"
+		}		
+	},
+	"required": [
+		"day",
+		"isInAttendance"
+	],
+	"additionalProperties": false
+}

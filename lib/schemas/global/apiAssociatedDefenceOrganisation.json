@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiAssociatedDefenceOrganisation.json",
+  "description": "The details of a defence organisation associted to a individual defendant",
+  "type": "object",
+  "properties": {
+    "defenceOrganisation": {
+      "description": "The organisation details",
+      "$ref": "../../external/global/apiDefenceOrganisation.json#"
+    },
+    "laaContractNumber": {
+      "description": "When the organisation is a defence organisation that is authorised to conduct legal aid work; the contract reference that firm has with Legal Aid Agency",
+      "type": "string"
+    },
+    "sraNumber": {
+      "description": "When the organisation is a defence organisation, the registration number of that firm with the Solicitors Regulation Authority",
+      "type": "string"
+    },
+    "barCouncilMembershipNumber": {
+      "description": "When the organisation is a defence organisation, the firms membership reference with teh bar council",
+      "type": "string"
+    },
+    "associationStartDate": {
+      "description": "The start date of association",
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+    },
+    "associationEndDate": {
+      "description": "The end date of association",
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+    },
+    "fundingType": {
+      "description": "Indicates if probono, rep order, etc",
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/defenceRepresentationFundingType"
+    },
+    "isAssociatedByLAA": {
+      "description": "Indicates if the association is by way of a represntation order from LAA",
+      "type": "boolean"
+    },
+    "applicationReference": {
+      "description": "The human readable reference to the application supplied by legal aid agency",
+      "type": "string"
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "organisation",
+        "fundingType",
+        "associationStartDate",
+        "laaContractNumber"
+      ]
+    },
+    {
+      "required": [
+        "organisation",
+        "fundingType",
+        "associationStartDate",
+        "sraNumber"
+      ]
+    },
+    {
+      "required": [
+        "organisation",
+        "fundingType",
+        "associationStartDate",
+        "barCouncilMembershipNumber"
+      ]
+    }
+  ],
+  "additionalProperties": false
+}

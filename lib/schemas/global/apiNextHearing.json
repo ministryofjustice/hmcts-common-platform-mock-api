@@ -1,0 +1,61 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://justice.gov.uk/core/courts/external/apiNextHearing.json",
+    "type": "object",
+    "properties": {
+        "type": {
+             "$ref": "../../external/global/apiHearingType.json#"
+        },
+        "jurisdictionType": {
+             "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/jurisdictionType"
+        },
+        "reportingRestrictionReason": {
+            "type": "string"
+        },
+        "adjournmentReason": {
+            "type": "string"
+        },
+        "hearingLanguage": {
+             "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/hearingLanguage"
+        },
+        "listedStartDateTime": {
+            "description": "The date and time that has been pre-arranged and therefore must be listed accordingly.  Since the Police grant bail, Police requests will arrive at court with a pre-agreed date and time as per the bail arrangements.  Similarly adjournments will result in a pre-arranged date and time",
+             "type": "string",
+             "format": "date-time"
+        },
+        "estimatedMinutes": {
+             "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
+        },
+        "courtCentre": {
+             "$ref": "../../external/global/apiCourtCentre.json#"
+        },
+        "judiciary": {
+             "type": "array",
+             "minItems": 1,
+             "items": {
+                 "$ref": "../../external/global/apiJudicialRole.json#"
+            }
+        },
+        "nextHearingProsecutionCases": {
+             "type": "array",
+             "minItems": 1,
+             "items": {
+                 "$ref": "../../external/global/apiNextHearingProsecutionCase.json#"
+            }
+        },
+        "nextHearingCourtApplicationId": {
+             "type": "array",
+             "minItems": 1,
+             "items": {
+                 "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+            }
+        }
+    },
+     "required": [
+        "type",
+        "courtCentre",
+        "estimatedMinutes",
+        "listedStartDateTime"
+    ],
+     "additionalProperties": false
+}

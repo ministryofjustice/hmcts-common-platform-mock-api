@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiVerdictType.json",
+  "description": "The type of verdict i.e. the type of court decision",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The identifier of the verdict type from reference data",
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "sequence": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "categoryType": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "category",
+    "categoryType"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://justice.gov.uk/core/courts/external/apiHearingType.json",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "description": {
+            "type": "string"
+        },
+        "code": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "id", "description", "code"
+      ],
+    "additionalProperties": false
+}

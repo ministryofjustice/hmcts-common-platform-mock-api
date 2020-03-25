@@ -32,7 +32,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'json-schema-rspec'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', require: false
   gem 'sinatra'
   gem 'vcr'

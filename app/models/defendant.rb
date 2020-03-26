@@ -4,14 +4,14 @@ class Defendant < ApplicationRecord
   include BuilderMappable
   belongs_to :defendable, polymorphic: true
   belongs_to :prosecution_case, inverse_of: :defendants
-  has_many :offences
-  has_many :associated_people
-  has_many :defence_organisations
-  has_many :defendant_aliases
-  has_many :judicial_results
-  has_many :markers
-  has_many :split_prosecutor_case_references
-  has_many :linked_defendants
+  has_many :offences, dependent: :destroy
+  has_many :associated_people, dependent: :destroy
+  has_many :defence_organisations, dependent: :destroy
+  has_many :defendant_aliases, dependent: :destroy
+  has_many :judicial_results, dependent: :destroy
+  has_many :markers, dependent: :destroy
+  has_many :split_prosecutor_case_references, dependent: :destroy
+  has_many :linked_defendants, dependent: :destroy
 
   belongs_to :person_defendant,
              -> { where(defendants: { defendable_type: 'PersonDefendant' }) },

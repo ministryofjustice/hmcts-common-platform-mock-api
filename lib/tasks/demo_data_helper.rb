@@ -2,18 +2,18 @@
 
 module DemoDataHelper
   def prosecution_cases_by_reference(urn)
-    ProsecutionCase.
-      joins(:prosecution_case_identifier).
-      where('"caseURN" = :search OR "prosecutionAuthorityReference" = :search', search: urn)
+    ProsecutionCase
+      .joins(:prosecution_case_identifier)
+      .where('"caseURN" = :search OR "prosecutionAuthorityReference" = :search', search: urn)
   end
 
   def prosecution_cases_by_nino(nino)
-    ProsecutionCase.
-      joins(person_only_defendants: :person_defendant).
-      merge(
-        PersonDefendant.
-        joins(:person).
-        where(people: { nationalInsuranceNumber: nino} )
+    ProsecutionCase
+      .joins(person_only_defendants: :person_defendant)
+      .merge(
+        PersonDefendant
+          .joins(:person)
+          .where(people: { nationalInsuranceNumber: nino })
       )
   end
 

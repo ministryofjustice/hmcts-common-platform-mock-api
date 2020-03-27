@@ -33,3 +33,15 @@ Style/HashTransformKeys:
 
 Style/HashTransformValues:
   Enabled: true
+
+Style/MixinUsage:
+  Exclude:
+    - lib/tasks/*
+
+RSpec/BeforeAfterAll:
+  Exclude:
+    - spec/tasks/*
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/tasks/*

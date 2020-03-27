@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe JudicialResult, type: :model do
   let(:judicial_result) { FactoryBot.create(:judicial_result) }
   let(:json_schema) { :judicial_result }
@@ -40,4 +39,3 @@ RSpec.describe JudicialResult, type: :model do
     it_has_behaviour 'conforming to valid schema'
   end
 end
-# rubocop:enable Metrics/BlockLength

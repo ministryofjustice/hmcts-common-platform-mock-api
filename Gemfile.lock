@@ -201,6 +201,13 @@ GEM
       rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-performance (1.5.2)
+      rubocop (>= 0.71.0)
+    rubocop-rails (2.3.2)
+      rack (>= 1.1)
+      rubocop (>= 0.72.0)
+    rubocop-rspec (1.36.0)
+      rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
     ruby2_keywords (0.0.2)
     safe_yaml (1.0.5)
@@ -261,7 +268,10 @@ DEPENDENCIES
   rails (~> 6.0.2)
   rspec-rails (~> 4.0)
   rspec_junit_formatter
-  rubocop
+  rubocop (~> 0.80)
+  rubocop-performance
+  rubocop-rails
+  rubocop-rspec
   shoulda-matchers
   simplecov
   sinatra

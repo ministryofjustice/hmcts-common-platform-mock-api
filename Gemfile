@@ -33,7 +33,10 @@ group :development, :test do
   gem 'json-schema-rspec'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.80', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
   gem 'sinatra'
   gem 'vcr'
   gem 'webmock'

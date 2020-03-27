@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
+require 'faker/offence'
+
 FactoryBot.define do
   factory :offence, aliases: [:realistic_offence] do
     offenceDefinitionId { SecureRandom.uuid }
     offenceCode { 'Random string' }
-    offenceTitle { 'Random string' }
-    offenceTitleWelsh { 'Llinyn ar hap' }
-    offenceLegislation { 'Random string' }
-    offenceLegislationWelsh { 'Llinyn ar hap' }
+    offenceTitle { Faker::Offence.name }
+    offenceTitleWelsh { Faker::Offence.name }
+    offenceLegislation { Faker::Offence.act }
+    offenceLegislationWelsh { Faker::Offence.act }
     modeOfTrial { 'Random string' }
     wording { 'Random string' }
     wordingWelsh { 'Llinyn ar hap' }

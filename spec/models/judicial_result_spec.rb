@@ -19,20 +19,9 @@ RSpec.describe JudicialResult, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:orderedHearingId) }
     it { should validate_presence_of(:label) }
-    it { should validate_inclusion_of(:isAdjournmentResult).in_array([true, false]) }
-    it { should validate_inclusion_of(:isFinancialResult).in_array([true, false]) }
-    it { should validate_inclusion_of(:isConvictedResult).in_array([true, false]) }
-    it { should validate_inclusion_of(:isAvailableForCourtExtract).in_array([true, false]) }
     it { should validate_presence_of(:orderedDate) }
     it { should validate_presence_of(:category) }
     it { should validate_presence_of(:resultText) }
-    it { should validate_inclusion_of(:terminatesOffenceProceedings).in_array([true, false]) }
-    it { should validate_inclusion_of(:isLifeDuration).in_array([true, false]) }
-    it { should validate_inclusion_of(:isPublishedAsAPrompt).in_array([true, false]) }
-    it { should validate_inclusion_of(:isExcludedFromResults).in_array([true, false]) }
-    it { should validate_inclusion_of(:isAlwaysPublished).in_array([true, false]) }
-    it { should validate_inclusion_of(:isUrgent).in_array([true, false]) }
-    it { should validate_inclusion_of(:isD20).in_array([true, false]) }
     it { should validate_inclusion_of(:category).in_array(%w[FINAL INTERMEDIARY ANCILLARY]) }
   end
 

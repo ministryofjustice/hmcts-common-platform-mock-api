@@ -13,7 +13,6 @@ RSpec.describe JudicialResultPrompt, type: :model do
   end
   describe 'validations' do
     it { should validate_presence_of(:label) }
-    it { should validate_inclusion_of(:isAvailableForCourtExtract).in_array([true, false]) }
   end
 
   it_has_behaviour 'conforming to valid schema'

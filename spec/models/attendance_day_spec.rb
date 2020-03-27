@@ -8,7 +8,6 @@ RSpec.describe AttendanceDay, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:day) }
-    it { should validate_inclusion_of(:isInAttendance).in_array([true, false]) }
   end
 
   it_has_a 'realistic factory'

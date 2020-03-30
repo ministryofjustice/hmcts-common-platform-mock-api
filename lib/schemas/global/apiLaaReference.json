@@ -41,8 +41,7 @@
     "applicationReference",
     "statusId",
     "statusCode",
-    "statusDescription",
-    "statusDate"
+    "statusDescription"
   ],
   "additionalProperties": false
 }

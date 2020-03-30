@@ -8,19 +8,19 @@
             "description": "The identifier of the defendant",
             "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
-        "nationalInsuranceNumber": {
+        "defendantNINO": {
           "description": "The person nino when the defendant is a person",
           "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/nino"
         },
-        "arrestSummonsNumber": {
+        "defendantASN": {
           "description": "The police arrest summons number when the defendant is a person",
           "type": "string"
         },
-        "name": {
-            "description": "The name of the defendant",
-            "$ref": "../../../external/global/search/apiDefendantName.json#"
+        "defendantName": {
+          "description": "The name of the defendant",
+          "type": "string"
         },
-        "dateOfBirth": {
+        "defendantDOB": {
           "description": "The person date of birth when the defendant is a person",
           "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
@@ -39,11 +39,34 @@
             "items": {
              "$ref": "apiOffenceSummary.json#"
             }
-        }
+        },
+        "representationOrder": {
+           "type": "object",
+           "properties": {
+             "applicationReference": {
+               "type": "string"
+             },
+             "effectiveFromDate": {
+               "type": "string"
+             },
+             "effectiveToDate": {
+               "type": "string"
+             },
+             "laaContractNumber": {
+               "type": "string"
+             }
+           },
+           "required": [
+             "applicationReference",
+             "effectiveFromDate",
+             "effectiveToDate",
+             "laaContractNumber"
+           ]
+         }
     },
     "required": [
         "defendantId",
-        "name",
+        "defendantName",
         "offenceSummary"
     ],
     "additionalProperties": false

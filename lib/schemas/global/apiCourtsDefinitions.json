@@ -33,11 +33,7 @@
     },
     "prosecutionCaseStatus": {
       "description": "The defendants bail status",
-      "type": "string",
-      "enum": [
-        "ACTIVE",
-        "INACTIVE"
-      ]
+      "type": "string"
     },
     "defendantCustodyLocationType": {
       "description": "Describes the type of custody location",

@@ -49,5 +49,8 @@ RSpec/DescribeClass:
   Exclude:
     - spec/tasks/*
 
+RSpec/ImplicitSubject:
+  Enabled: false
+
 RSpec/MessageSpies:
   EnforcedStyle: receive

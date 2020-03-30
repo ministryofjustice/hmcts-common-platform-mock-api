@@ -14,7 +14,7 @@
         }
     },
     "required": [
-        "id", "description", "code"
+        "id", "description"
       ],
     "additionalProperties": false
 }

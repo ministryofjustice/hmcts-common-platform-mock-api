@@ -204,14 +204,8 @@
       ]
     },
     "personTitle": {
-      "type": "string",
       "description": "A person is the base type of a defendant.  Defendants title must be constrained to remain compliant with the GOB interface",
-      "enum": [
-        "MR",
-        "MRS",
-        "MISS",
-        "MS"
-      ]
+      "type": "string"
     },
     "judicialRoleType": {
       "type": "string",

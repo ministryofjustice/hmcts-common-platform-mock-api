@@ -77,8 +77,7 @@
 		"id",
 		"prosecutionCaseIdentifier",
 		"initiationCode",
-		"defendants",
-		"caseStatus"
+		"defendants"
 	],
 	"additionalProperties": false
 }

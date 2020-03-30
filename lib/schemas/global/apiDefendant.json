@@ -109,27 +109,10 @@
       "type": "boolean"
     }
   },
-  "oneOf": [
-    {
-      "required": [
-        "id",
-        "masterDefendantId",
-        "courtProceedingsInitiated",
-        "prosecutionCaseId",
-        "offences",
-        "personDefendant"
-      ]
-    },
-    {
-      "required": [
-        "id",
-        "masterDefendantId",
-        "courtProceedingsInitiated",
-        "prosecutionCaseId",
-        "offences",
-        "legalEntityDefendant"
-      ]
-    }
+  "required": [
+    "id",
+    "prosecutionCaseId",
+    "offences"
   ],
   "additionalProperties": false
 }

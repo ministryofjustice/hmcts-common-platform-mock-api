@@ -8,6 +8,10 @@
       "description": "The human readable reference to the application supplied by legal aid agency",
       "type": "string"
     },
+    "offenceLevelStatus": {
+      "description": "The description of the statusCode",
+      "type": "string"
+    },
     "statusId": {
       "description": "Reference data identifer for the agreed status",
       "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
@@ -32,7 +36,7 @@
       "description": "The end date for legal aid, set when the status represents an approved representation order",
       "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
     }
-  },  
+  },
   "required": [
     "applicationReference",
     "statusId",

@@ -161,17 +161,7 @@
         "isConvictedResult",
         "isAvailableForCourtExtract",
         "orderedDate",
-        "category",
-        "resultText",
-        "terminatesOffenceProceedings",
-        "isLifeDuration",
-        "isPublishedAsAPrompt",
-        "isExcludedFromResults",
-        "isAlwaysPublished",
-        "isUrgent",
-        "isD20",
-		"judicialResultId",
-		"judicialResultTypeId"
+        "category"
     ],
     "additionalProperties": false
 }

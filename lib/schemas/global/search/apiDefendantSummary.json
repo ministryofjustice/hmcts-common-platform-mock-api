@@ -32,7 +32,7 @@
           "description": "Indicates that proceedings for the defendant have been conckuded i.e. all offences have been disposed with final results or have been withdrawn by the prosecuting authority",
           "type": "boolean"
         },
-        "offences": {
+        "offenceSummary": {
             "description": "The offences for this defendant",
             "type": "array",
             "minItems": 1,
@@ -44,7 +44,7 @@
     "required": [
         "defendantId",
         "name",
-        "offences"
+        "offenceSummary"
     ],
     "additionalProperties": false
 }

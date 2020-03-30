@@ -4,9 +4,9 @@
   "description": "The details of a defence organisation associted to a individual defendant",
   "type": "object",
   "properties": {
-    "defenceOrganisation": {
+    "organisation": {
       "description": "The organisation details",
-      "$ref": "../../external/global/apiDefenceOrganisation.json#"
+      "$ref": "../../external/global/apiOrganisation.json#"
     },
     "laaContractNumber": {
       "description": "When the organisation is a defence organisation that is authorised to conduct legal aid work; the contract reference that firm has with Legal Aid Agency",

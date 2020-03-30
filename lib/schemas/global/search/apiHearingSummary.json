@@ -14,11 +14,11 @@
         },
         "courtCentre": {
             "description": "The court location details for the hearing",
-            "$ref": "../../../external/global/courtCentre.json#"
+            "$ref": "../../../external/global/apiCourtCentre.json#"
         },
         "type": {
             "description": "The type of hearing that has been listed",
-            "$ref": "../../../external/global/hearingType.json#"
+            "$ref": "../../../external/global/apiHearingType.json#"
         },
         "defendants": {
             "description": "The identifiers of the defendants that were heard",

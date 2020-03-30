@@ -58,7 +58,7 @@
         },
         "laaApplnReference": {
             "description": "A reference to the LAA application relevant for this offence",
-            "$ref": "../../../external/global/laaReference.json#"
+            "$ref": "../../../external/global/apiLaaReference.json#"
         }
     },
     "required": [

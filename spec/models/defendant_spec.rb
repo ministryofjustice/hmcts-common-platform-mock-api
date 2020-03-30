@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe Defendant, type: :model do
   let(:defendant) { FactoryBot.create(:defendant) }
   let(:json_schema) { :defendant }
@@ -151,4 +150,3 @@ RSpec.describe Defendant, type: :model do
 
   it_has_a 'realistic factory'
 end
-# rubocop:enable Metrics/BlockLength

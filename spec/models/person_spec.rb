@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe Person, type: :model do
   let(:person) { FactoryBot.create(:person) }
   let(:json_schema) { :person }
@@ -92,4 +91,3 @@ RSpec.describe Person, type: :model do
     it_has_behaviour 'conforming to valid schema'
   end
 end
-# rubocop:enable Metrics/BlockLength

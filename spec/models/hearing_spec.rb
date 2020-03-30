@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe Hearing, type: :model do
   let(:hearing) { FactoryBot.create(:hearing) }
   let(:json_schema) { :hearing }
@@ -58,4 +57,3 @@ RSpec.describe Hearing, type: :model do
     it_has_behaviour 'conforming to valid schema'
   end
 end
-# rubocop:enable Metrics/BlockLength

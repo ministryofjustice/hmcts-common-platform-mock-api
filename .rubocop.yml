@@ -24,6 +24,9 @@ AllCops:
     - "bin/**/*"
     - "log/**/*"
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
 
 Style/HashEachMethods:
   Enabled: true
@@ -45,3 +48,6 @@ RSpec/BeforeAfterAll:
 RSpec/DescribeClass:
   Exclude:
     - spec/tasks/*
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive

@@ -5,7 +5,7 @@ require 'rake'
 RSpec.describe 'Publish Task', type: :rake do
   include ActiveSupport::Testing::TimeHelpers
 
-  subject { Rake::Task['publish:hearing'].invoke(hearing.id) }
+  subject(:publish) { Rake::Task['publish:hearing'].invoke(hearing.id) }
 
   before(:all) { Rails.application.load_tasks if Rake::Task.tasks.empty? }
 
@@ -14,7 +14,7 @@ RSpec.describe 'Publish Task', type: :rake do
   it 'calls HearingResultedPublisher' do
     freeze_time do
       expect(HearingResultedPublisher).to receive(:call).with(hearing_id: hearing.id, shared_time: Time.zone.now)
-      subject
+      publish
     end
   end
 end

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe ProsecutionCase, type: :model do
   let(:prosecution_case) { FactoryBot.create(:prosecution_case) }
   let(:json_schema) { :prosecution_case }
@@ -69,4 +68,3 @@ RSpec.describe ProsecutionCase, type: :model do
     it_has_behaviour 'conforming to valid schema'
   end
 end
-# rubocop:enable Metrics/BlockLength

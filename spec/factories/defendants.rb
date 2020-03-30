@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :defendant do
     trait :with_next_hearing do
@@ -68,4 +67,3 @@ FactoryBot.define do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

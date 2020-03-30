@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe LaaReferencesController, type: :controller do
   let(:defendant) { FactoryBot.create(:defendant) }
   let(:offence) { defendant.offences.first }
@@ -96,4 +95,3 @@ RSpec.describe LaaReferencesController, type: :controller do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

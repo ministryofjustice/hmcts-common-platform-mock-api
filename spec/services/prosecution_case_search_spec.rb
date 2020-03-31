@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe ProsecutionCaseSearch do
   let(:params) { ActionController::Parameters.new(params_hash) }
   let(:john_doe) { FactoryBot.create(:person, firstName: 'John', lastName: 'Doe', dateOfBirth: '2000-01-10') }
@@ -166,4 +165,3 @@ RSpec.describe ProsecutionCaseSearch do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

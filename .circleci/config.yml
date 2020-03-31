@@ -11,10 +11,11 @@ jobs:
     docker:
       - image: circleci/ruby:2.6.3
         environment:
-          DATABASE_URL: postgres://postgres@localhost/hmcts_common_platform_api_development
+          DATABASE_URL: postgres://postgres@localhost/hmcts_common_platform_api_test
+          RAILS_ENV: test
       - image: circleci/postgres:11.5-alpine
         environment:
-          POSTGRES_DB: hmcts_common_platform_api_development
+          POSTGRES_DB: hmcts_common_platform_api_test
     steps:
       - checkout
 
@@ -41,7 +42,7 @@ jobs:
       - run:
           name: Database Setup
           command: |
-            bundle exec rake db:migrate
+            bundle exec rails db:migrate
 
       - run:
           name: run tests

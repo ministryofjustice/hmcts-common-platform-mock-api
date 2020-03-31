@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe Defendant, type: :model do
   let(:defendant) { FactoryBot.create(:defendant) }
   let(:json_schema) { :defendant }
@@ -79,14 +78,14 @@ RSpec.describe Defendant, type: :model do
     it { should belong_to(:person_defendant).class_name('PersonDefendant').optional }
     it { should belong_to(:legal_entity_defendant).class_name('LegalEntityDefendant').optional }
     it { should belong_to(:prosecution_case).class_name('ProsecutionCase') }
-    it { should have_many(:offences).class_name('Offence') }
-    it { should have_many(:associated_people).class_name('AssociatedPerson') }
-    it { should have_many(:defence_organisations).class_name('DefenceOrganisation') }
-    it { should have_many(:defendant_aliases).class_name('DefendantAlias') }
-    it { should have_many(:judicial_results).class_name('JudicialResult') }
-    it { should have_many(:markers).class_name('Marker') }
-    it { should have_many(:split_prosecutor_case_references).class_name('SplitProsecutorCaseReference') }
-    it { should have_many(:linked_defendants).class_name('LinkedDefendant') }
+    it { should have_many(:offences).class_name('Offence').dependent(:destroy) }
+    it { should have_many(:associated_people).class_name('AssociatedPerson').dependent(:destroy) }
+    it { should have_many(:defence_organisations).class_name('DefenceOrganisation').dependent(:destroy) }
+    it { should have_many(:defendant_aliases).class_name('DefendantAlias').dependent(:destroy) }
+    it { should have_many(:judicial_results).class_name('JudicialResult').dependent(:destroy) }
+    it { should have_many(:markers).class_name('Marker').dependent(:destroy) }
+    it { should have_many(:split_prosecutor_case_references).class_name('SplitProsecutorCaseReference').dependent(:destroy) }
+    it { should have_many(:linked_defendants).class_name('LinkedDefendant').dependent(:destroy) }
   end
 
   describe 'validations' do
@@ -151,4 +150,3 @@ RSpec.describe Defendant, type: :model do
 
   it_has_a 'realistic factory'
 end
-# rubocop:enable Metrics/BlockLength

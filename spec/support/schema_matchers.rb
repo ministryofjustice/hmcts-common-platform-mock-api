@@ -2,7 +2,6 @@
 
 # set up schema matchers
 
-# rubocop:disable Metrics/BlockLength
 RSpec.configure do |config|
   config.include JSON::SchemaMatchers
 
@@ -90,4 +89,3 @@ RSpec.configure do |config|
   config.json_schemas[:search_prosecution_case_response] = "#{schema_path}/api/search-prosecutionCaseResponse.json"
   config.json_schemas[:results_hearing_resulted_response] = "#{schema_path}/api/results.hearingResultedResponse.json"
 end
-# rubocop:enable Metrics/BlockLength

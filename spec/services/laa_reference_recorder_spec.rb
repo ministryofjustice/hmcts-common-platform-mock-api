@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe LaaReferenceRecorder do
   let(:params) { ActionController::Parameters.new(params_hash) }
   let(:defendant) { FactoryBot.create(:defendant) }
@@ -68,4 +67,3 @@ RSpec.describe LaaReferenceRecorder do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

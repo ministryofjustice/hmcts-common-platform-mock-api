@@ -10,13 +10,13 @@ class ProsecutionCase < ApplicationRecord
   belongs_to :merged_prosecution_case, optional: true
   belongs_to :hearing, optional: true, inverse_of: :prosecution_cases
 
-  has_many :defendants
+  has_many :defendants, dependent: :destroy, inverse_of: :prosecution_case
   has_many :person_only_defendants, -> { people_only }, class_name: 'Defendant'
   has_many :legal_entity_only_defendants, -> { legal_entity_only }, class_name: 'Defendant'
-  has_many :markers
-  has_many :split_prosecutor_case_references
-  has_many :linked_prosecution_cases
-  has_many :prosecution_case_hearing_case_notes
+  has_many :markers, dependent: :destroy
+  has_many :split_prosecutor_case_references, dependent: :destroy
+  has_many :linked_prosecution_cases, dependent: :destroy
+  has_many :prosecution_case_hearing_case_notes, dependent: :destroy
   has_many :hearing_case_notes, through: :prosecution_case_hearing_case_notes
 
   validates :prosecution_case_identifier, presence: true

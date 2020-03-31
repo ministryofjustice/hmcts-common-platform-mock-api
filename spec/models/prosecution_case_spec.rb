@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe ProsecutionCase, type: :model do
   let(:prosecution_case) { FactoryBot.create(:prosecution_case) }
   let(:json_schema) { :prosecution_case }
@@ -12,13 +11,13 @@ RSpec.describe ProsecutionCase, type: :model do
     it { should belong_to(:prosecution_case_identifier).class_name('ProsecutionCaseIdentifier') }
     it { should belong_to(:police_officer_in_case).class_name('PoliceOfficerInCase').optional }
     it { should belong_to(:merged_prosecution_case).class_name('MergedProsecutionCase').optional }
-    it { should have_many(:defendants).class_name('Defendant') }
+    it { should have_many(:defendants).class_name('Defendant').dependent(:destroy).inverse_of(:prosecution_case) }
     it { should have_many(:person_only_defendants).class_name('Defendant') }
     it { should have_many(:legal_entity_only_defendants).class_name('Defendant') }
-    it { should have_many(:markers).class_name('Marker') }
-    it { should have_many(:split_prosecutor_case_references).class_name('SplitProsecutorCaseReference') }
-    it { should have_many(:linked_prosecution_cases).class_name('LinkedProsecutionCase') }
-    it { should have_many(:prosecution_case_hearing_case_notes).class_name('ProsecutionCaseHearingCaseNote') }
+    it { should have_many(:markers).class_name('Marker').dependent(:destroy) }
+    it { should have_many(:split_prosecutor_case_references).class_name('SplitProsecutorCaseReference').dependent(:destroy) }
+    it { should have_many(:linked_prosecution_cases).class_name('LinkedProsecutionCase').dependent(:destroy) }
+    it { should have_many(:prosecution_case_hearing_case_notes).class_name('ProsecutionCaseHearingCaseNote').dependent(:destroy) }
     it { should have_many(:hearing_case_notes).class_name('HearingCaseNote') }
   end
 
@@ -69,4 +68,3 @@ RSpec.describe ProsecutionCase, type: :model do
     it_has_behaviour 'conforming to valid schema'
   end
 end
-# rubocop:enable Metrics/BlockLength

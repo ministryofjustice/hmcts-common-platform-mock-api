@@ -1,3 +1,8 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
 inherit_from: .rubocop_todo.yml
 
 # The behavior of RuboCop can be controlled via the .rubocop.yml
@@ -19,6 +24,9 @@ AllCops:
     - "bin/**/*"
     - "log/**/*"
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
 
 Style/HashEachMethods:
   Enabled: true
@@ -28,3 +36,21 @@ Style/HashTransformKeys:
 
 Style/HashTransformValues:
   Enabled: true
+
+Style/MixinUsage:
+  Exclude:
+    - lib/tasks/*
+
+RSpec/BeforeAfterAll:
+  Exclude:
+    - spec/tasks/*
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/tasks/*
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive

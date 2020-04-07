@@ -5,8 +5,9 @@ class Defendant < ApplicationRecord
   belongs_to :defendable, polymorphic: true
   belongs_to :prosecution_case, inverse_of: :defendants
   has_many :offences, dependent: :destroy
+  has_many :laa_references, through: :offences
   has_many :associated_people, dependent: :destroy
-  has_many :defence_organisations, dependent: :destroy
+  has_one :defence_organisation, dependent: :destroy
   has_many :defendant_aliases, dependent: :destroy
   has_many :judicial_results, dependent: :destroy
   has_many :markers, dependent: :destroy
@@ -55,6 +56,8 @@ class Defendant < ApplicationRecord
     Jbuilder.new do |defendant|
       defendant.id id
       defendant.prosecutionCaseId prosecution_case_id
+      defendant.masterDefendantId masterDefendantId
+      defendant.courtProceedingsInitiated courtProceedingsInitiated.to_datetime if courtProceedingsInitiated.present?
       defendant.numberOfPreviousConvictionsCited numberOfPreviousConvictionsCited
       defendant.prosecutionAuthorityReference prosecutionAuthorityReference
       defendant.witnessStatement witnessStatement
@@ -63,17 +66,25 @@ class Defendant < ApplicationRecord
       defendant.mitigationWelsh mitigationWelsh
       defendant.offences array_builder(offences)
       defendant.associatedPersons array_builder(associated_people)
-      defendant.associatedDefenceOrganisations array_builder(defence_organisations)
+      defendant.defenceOrganisation defence_organisation.organisation.to_builder if defence_organisation.present?
+      defendant.associatedDefenceOrganisation defence_organisation.to_builder if defence_organisation.present?
       defendant.personDefendant defendable.to_builder if person?
       defendant.legalEntityDefendant defendable.to_builder if legal_entity?
       defendant.aliases array_builder(defendant_aliases)
-      defendant.judicialResults array_builder(judicial_results)
+      defendant.defendantCaseJudicialResults array_builder(judicial_results)
       defendant.croNumber croNumber
       defendant.pncId pncId
       defendant.defendantMarkers array_builder(markers)
-      defendant.splitProsecutorCaseReferences split_prosecutor_case_references_builder
-      defendant.mergedProsecutionCaseReference mergedProsecutionCaseReference
-      defendant.linkedDefendants array_builder(linked_defendants)
+      defendant.laaApplnReference laa_reference_builder
+      defendant.defendantDetailsUpdated defendantDetailsUpdated
     end
+  end
+
+  private
+
+  def laa_reference_builder
+    return nil if laa_references.blank?
+
+    laa_references.first.to_builder
   end
 end

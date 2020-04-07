@@ -76,14 +76,16 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def register_dependant_schemas!
-    # Since courtsDefinitions.json does not map to the expected directory structure for both the api responses and the model schemas,
+    # Since apiCourtsDefinitions.json does not map to the expected directory structure for both the api responses and the model schemas,
     # we are overriding the id, to ensure that the validator can find the definitions without blowing up.
-    courts_definitions = JSON.parse(File.open(Rails.root.join('lib/schemas/global/courtsDefinitions.json')).read)
-    courts_definitions['id'] = 'http://justice.gov.uk/unified_search_query/global/courtsDefinitions.json'
+    courts_definitions = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiCourtsDefinitions.json')).read)
+    courts_definitions['id'] = 'http://justice.gov.uk/unified_search_query/external/global/apicourtsDefinitions.json'
+    JSON::Validator.add_schema(JSON::Schema.new(courts_definitions, Addressable::URI.parse(courts_definitions['id'])))
+    courts_definitions['id'] = 'http://justice.gov.uk/unified_search_query/external/global/apiCourtsDefinitions.json'
     JSON::Validator.add_schema(JSON::Schema.new(courts_definitions, Addressable::URI.parse(courts_definitions['id'])))
 
-    defendant_name = JSON.parse(File.open(Rails.root.join('lib/schemas/global/search/defendantName.json')).read)
-    defendant_name['id'] = 'http://justice.gov.uk/unified_search_query/global/search/defendantName.json'
+    defendant_name = JSON.parse(File.open(Rails.root.join('lib/schemas/global/search/apiDefendantName.json')).read)
+    defendant_name['id'] = 'http://justice.gov.uk/unified_search_query/external/global/search/apiDefendantName.json'
     JSON::Validator.add_schema(JSON::Schema.new(defendant_name, Addressable::URI.parse(defendant_name['id'])))
   end
 end

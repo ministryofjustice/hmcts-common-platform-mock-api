@@ -76,17 +76,30 @@ RSpec.describe Person, type: :model do
     end
   end
 
+  describe '#name' do
+    subject { person.name }
+
+    it { is_expected.to eq('Alfredine Treutel Parker') }
+
+    context 'missing first name' do
+      before { person.update!(middleName: nil) }
+
+      it { is_expected.to eq('Alfredine Parker') }
+    end
+
+    context 'missing first and middle name' do
+      before { person.update!(firstName: nil, middleName: nil) }
+
+      it { is_expected.to eq('Parker') }
+    end
+  end
+
   it_has_behaviour 'conforming to valid schema'
 
   it_has_a 'realistic factory'
 
   context 'with relationships' do
-    before do
-      person.contact_number = FactoryBot.create(:contact_number)
-      person.address = FactoryBot.create(:address)
-      person.ethnicity = FactoryBot.create(:ethnicity)
-      person.save!
-    end
+    let(:person) { FactoryBot.create(:person_with_relationships) }
 
     it_has_behaviour 'conforming to valid schema'
   end

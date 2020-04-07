@@ -19,10 +19,7 @@ RSpec.describe CourtApplicationPartyCounsel, type: :model do
   it_has_behaviour 'conforming to valid schema'
 
   context 'with relationships' do
-    before do
-      court_application_party_counsel.court_application_parties << FactoryBot.create(:court_application_party)
-      court_application_party_counsel.save!
-    end
+    let(:court_application_party_counsel) { FactoryBot.create(:court_application_party_counsel_with_relationships) }
 
     it_has_behaviour 'conforming to valid schema'
   end

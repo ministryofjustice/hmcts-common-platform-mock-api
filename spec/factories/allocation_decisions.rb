@@ -13,6 +13,10 @@ FactoryBot.define do
     isTreatedAsIndictableOnly { false }
     sentencingIndicationRequested { false }
 
+    factory :allocation_decision_with_relationships do
+      court_indicated_sentence
+    end
+
     factory :realistic_allocation_decision do
       originatingHearingId { SecureRandom.uuid }
       offenceId { SecureRandom.uuid }

@@ -22,10 +22,7 @@ RSpec.describe AllocationDecision, type: :model do
   it_has_behaviour 'conforming to valid schema'
 
   context 'with relationships' do
-    before do
-      allocation_decision.court_indicated_sentence = FactoryBot.create(:court_indicated_sentence)
-      allocation_decision.save!
-    end
+    let(:allocation_decision) { FactoryBot.create(:allocation_decision_with_relationships) }
 
     it_has_behaviour 'conforming to valid schema'
   end

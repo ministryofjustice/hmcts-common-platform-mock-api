@@ -9,6 +9,7 @@ class JudicialResultPrompt < ApplicationRecord
 
   def to_builder
     Jbuilder.new do |judicial_result_prompt|
+      judicial_result_prompt.judicialResultPromptTypeId judicialResultPromptTypeId
       judicial_result_prompt.label label
       judicial_result_prompt.isAvailableForCourtExtract isAvailableForCourtExtract
       judicial_result_prompt.welshLabel welshLabel

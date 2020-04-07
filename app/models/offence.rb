@@ -11,9 +11,9 @@ class Offence < ApplicationRecord
   belongs_to :custody_time_limit, optional: true
   belongs_to :defendant, optional: true
 
-  has_many :victims, class_name: 'Person'
-  has_many :judicial_results
-  has_many :laa_references
+  has_many :victims, class_name: 'Person', dependent: :destroy
+  has_many :judicial_results, dependent: :destroy
+  has_one :laa_reference, dependent: :destroy
 
   validates :offenceDefinitionId, presence: true
   validates :offenceCode, presence: true
@@ -21,11 +21,13 @@ class Offence < ApplicationRecord
   validates :wording, presence: true
   validates :startDate, presence: true
 
+  # rubocop:disable Metrics/MethodLength
   def to_builder
     Jbuilder.new do |offence|
       offence.id id
       offence.offenceDefinitionId offenceDefinitionId
       offence.offenceCode offenceCode
+      offence.dvlaCode dvlaCode
       offence.offenceTitle offenceTitle
       offence.offenceTitleWelsh offenceTitleWelsh
       offence.offenceLegislation offenceLegislation
@@ -37,26 +39,29 @@ class Offence < ApplicationRecord
       offence.endDate endDate.to_date
       offence.arrestDate arrestDate.to_date
       offence.chargeDate chargeDate.to_date
+      offence.laidDate laidDate.to_date
       offence.dateOfInformation dateOfInformation.to_date
       offence.orderIndex orderIndex
       offence.count count
       offence.convictionDate convictionDate.to_date
-      offence.notifiedPlea notified_plea.to_builder if notified_plea.present?
-      offence.indicatedPlea indicated_plea.to_builder if indicated_plea.present?
-      offence.allocationDecision allocation_decision.to_builder if allocation_decision.present?
-      offence.plea plea.to_builder if plea.present?
-      offence.verdict verdict.to_builder if verdict.present?
-      offence.offenceFacts offence_facts.to_builder if offence_facts.present?
       offence.aquittalDate aquittalDate.to_date
       offence.victims array_builder(victims)
       offence.judicialResults array_builder(judicial_results)
-      offence.isDisposed isDisposed
       offence.isDiscontinued isDiscontinued
-      offence.isIntroduceAfterInitialProceedings isIntroduceAfterInitialProceedings
-      offence.laaApplnReferences array_builder(laa_references)
-      offence.custodyTimeLimit custody_time_limit.to_builder if custody_time_limit.present?
+      offence.introducedAfterInitialProceedings isIntroduceAfterInitialProceedings
       offence.splitProsecutorCaseReference splitProsecutorCaseReference
-      offence.mergedProsecutionCaseReference mergedProsecutionCaseReference
+      offence.proceedingsConcluded proceedingsConcluded
+      offence.pendingCBPW pendingCBPW
+      offence.civilOffence civilOffence
+      offence.notifiedPlea notified_plea&.to_builder
+      offence.indicatedPlea indicated_plea&.to_builder
+      offence.allocationDecision allocation_decision&.to_builder
+      offence.plea plea&.to_builder
+      offence.verdict verdict&.to_builder
+      offence.offenceFacts offence_facts&.to_builder
+      offence.laaApplnReference laa_reference&.to_builder
+      offence.custodyTimeLimit custody_time_limit&.to_builder
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end

@@ -10,9 +10,7 @@ class ProsecutionCasesController < ApplicationController
   private
 
   def prosecution_cases_response
-    return {} if @prosecution_cases.empty?
-
-    prosecution_cases_builder
+    { totalResults: @prosecution_cases.size, cases: prosecution_cases_builder }
   end
 
   def prosecution_cases_builder

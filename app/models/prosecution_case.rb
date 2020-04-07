@@ -36,6 +36,7 @@ class ProsecutionCase < ApplicationRecord
       prosecution_case.statementOfFacts statementOfFacts
       prosecution_case.statementOfFactsWelsh statementOfFactsWelsh
       prosecution_case.breachProceedingsPending breachProceedingsPending
+      prosecution_case.removalReason removalReason
       prosecution_case.appealProceedingsPending appealProceedingsPending
       prosecution_case.defendants array_builder(defendants)
       prosecution_case.caseMarkers array_builder(markers)

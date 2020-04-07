@@ -26,13 +26,7 @@ class OffenceSummary
       offence_summary.startDate offence.startDate.to_date
       offence_summary.endDate offence.endDate.to_date
       offence_summary.proceedingsConcluded offence.isDisposed
-      offence_summary.laaApplnReference first_laa_reference.to_builder if first_laa_reference.present?
+      offence_summary.laaApplnReference offence.laa_reference.to_builder if offence.laa_reference.present?
     end
-  end
-
-  private
-
-  def first_laa_reference
-    offence.laa_references.first
   end
 end

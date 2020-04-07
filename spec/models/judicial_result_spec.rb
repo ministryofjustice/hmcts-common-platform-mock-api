@@ -27,14 +27,7 @@ RSpec.describe JudicialResult, type: :model do
   it_has_behaviour 'conforming to valid schema'
 
   context 'with relationships' do
-    before do
-      judicial_result.court_clerk = FactoryBot.create(:delegated_powers)
-      judicial_result.delegated_powers = FactoryBot.create(:delegated_powers)
-      judicial_result.four_eyes_approval = FactoryBot.create(:delegated_powers)
-      judicial_result.next_hearing = FactoryBot.create(:next_hearing)
-      judicial_result.duration_element = FactoryBot.create(:judicial_result_prompt_duration_element)
-      judicial_result.save!
-    end
+    let(:judicial_result) { FactoryBot.create(:judicial_result_with_relationships) }
 
     it_has_behaviour 'conforming to valid schema'
   end

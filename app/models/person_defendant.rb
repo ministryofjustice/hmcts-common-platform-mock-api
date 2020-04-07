@@ -4,6 +4,7 @@ class PersonDefendant < ApplicationRecord
   LICENCE_CODES = %w[FULL PROVISIONAL].freeze
 
   belongs_to :person
+  belongs_to :defendant_custody_location, optional: true
   belongs_to :bail_status, optional: true
   belongs_to :employer_organisation, class_name: 'Organisation', optional: true
 
@@ -15,6 +16,7 @@ class PersonDefendant < ApplicationRecord
   def to_builder
     Jbuilder.new do |person_defendant|
       person_defendant.personDetails person.to_builder
+      person_defendant.defendantCustodyLocation defendant_custody_location.to_builder if defendant_custody_location.present?
       person_defendant.bailStatus bail_status.to_builder if bail_status.present?
       person_defendant.bailConditions bailConditions
       person_defendant.bailReasons bailReasons

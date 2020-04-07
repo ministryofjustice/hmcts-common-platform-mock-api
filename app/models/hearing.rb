@@ -17,6 +17,9 @@ class Hearing < ApplicationRecord
   has_many :defence_counsels
   has_many :court_application_party_counsels
   has_many :defendant_attendances
+  has_many :defendant_judicial_results
+  has_many :interpreter_intermediaries
+  has_many :company_representatives
   has_many :court_application_party_attendances
   has_many :defendant_hearing_youth_markers
 
@@ -42,13 +45,16 @@ class Hearing < ApplicationRecord
       hearing.crackedIneffectiveTrial cracked_ineffective_trial.to_builder if cracked_ineffective_trial.present?
       hearing.isEffectiveTrial isEffectiveTrial
       hearing.isBoxHearing isBoxHearing
+      hearing.companyRepresentatives array_builder(company_representatives)
       hearing.prosecutionCases array_builder(prosecution_cases)
+      hearing.defendantJudicialResults array_builder(defendant_judicial_results)
       hearing.courtApplications array_builder(court_applications)
       hearing.defendantReferralReasons array_builder(referral_reasons)
       hearing.hearingCaseNotes array_builder(hearing_case_notes)
       hearing.hearingDays array_builder(hearing_days)
       hearing.judiciary array_builder(judicial_roles)
       hearing.defendantAttendance array_builder(defendant_attendances)
+      hearing.intermediaries array_builder(interpreter_intermediaries)
       hearing.defendantHearingYouthMarkers array_builder(defendant_hearing_youth_markers)
       hearing.courtApplicationPartyAttendance array_builder(court_application_party_attendances)
     end

@@ -8,8 +8,14 @@ FactoryBot.define do
     middleName { 'Random' }
     lastName { 'Rob' }
     status { 'Random' }
-    after(:build) do |applicant_counsel|
-      applicant_counsel.attendance_days << build(:attendance_day)
+    after(:build) do |court_application_party_counsel|
+      court_application_party_counsel.attendance_days << build(:attendance_day)
+    end
+
+    factory :court_application_party_counsel_with_relationships do
+      after(:build) do |court_application_party_counsel|
+        court_application_party_counsel.court_application_parties << FactoryBot.create(:court_application_party_with_relationships)
+      end
     end
   end
 end

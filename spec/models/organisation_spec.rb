@@ -33,11 +33,7 @@ RSpec.describe Organisation, type: :model do
   it_has_behaviour 'conforming to valid schema'
 
   context 'with relationships' do
-    before do
-      organisation.address = FactoryBot.create(:address)
-      organisation.contact = FactoryBot.create(:contact_number)
-      organisation.save!
-    end
+    let(:organisation) { FactoryBot.create(:organisation_with_relationships) }
 
     it_has_behaviour 'conforming to valid schema'
   end

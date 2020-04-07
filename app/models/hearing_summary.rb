@@ -16,12 +16,23 @@ class HearingSummary
       hearing_summary.hearingId hearing_id
       hearing_summary.jurisdictionType hearing.jurisdictionType
       hearing_summary.courtCentre hearing.court_centre.to_builder
-      hearing_summary.type hearing.hearing_type.to_builder
-      hearing_summary.defendants defendants_builder
+      hearing_summary.hearingType hearing.hearing_type.to_builder
+      hearing_summary.defendantIds defendants_builder
+      hearing_summary.hearingDays hearing_days_builder
     end
   end
 
   private
+
+  def hearing_days_builder
+    hearing.hearing_days.map do |hearing_day|
+      [
+        [:sittingDay, hearing_day.sittingDay],
+        [:listingSequence, hearing_day.listingSequence],
+        [:listedDurationMinutes, hearing_day.listedDurationMinutes]
+      ].to_h
+    end
+  end
 
   def defendants_builder
     # `defendants` is a required property on the schema, however, it is optional on Hearing.

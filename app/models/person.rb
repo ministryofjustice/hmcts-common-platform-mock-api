@@ -18,6 +18,10 @@ class Person < ApplicationRecord
   validates :gender, presence: true, inclusion: GENDERS
   validates :documentationLanguageNeeds, inclusion: LANGUAGES
 
+  def name
+    [firstName, middleName, lastName].compact.join(' ')
+  end
+
   def to_builder
     Jbuilder.new do |person|
       person.title title

@@ -3,6 +3,8 @@
 FactoryBot.define do
   factory :court_centre do
     name { 'Random string' }
+    ouCode { 'Random string' }
+    courtHearingLocation { 'Random string' }
     welshName { 'Llinyn ar hap' }
     roomId { SecureRandom.uuid }
     roomName { 'Grand Hall' }

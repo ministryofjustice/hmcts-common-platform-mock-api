@@ -58,6 +58,8 @@ RSpec.describe ProsecutionCase, type: :model do
 
   context 'with relationships' do
     before do
+      prosecution_case.police_officer_in_case = build(:police_officer_in_case)
+      prosecution_case.merged_prosecution_case = build(:merged_prosecution_case)
       prosecution_case.defendants << build(:defendant)
       prosecution_case.markers << build(:marker)
       prosecution_case.split_prosecutor_case_references << build_list(:split_prosecutor_case_reference, 2)

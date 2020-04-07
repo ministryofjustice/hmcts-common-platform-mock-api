@@ -13,9 +13,7 @@ RSpec.describe 'ProsecutionCases', type: :request do
     it 'matches the response schema' do
       get '/search/case/prosecutionCases?prosecutionCaseReference=some-reference', headers: headers
       expect(response).to have_http_status(200)
-      # For some odd reason the HMCTS results do not contain the prosecutionCases key as defined by the schema
-      # but only the array items instead
-      expect(response.body).to match_json_schema(:search_prosecution_case_response, fragment: '#/properties/prosecutionCases')
+      expect(response.body).to match_json_schema(:search_prosecution_case_response)
     end
 
     context 'when the search returns no results' do

@@ -22,6 +22,12 @@ FactoryBot.define do
     occupationCode { '4033' }
     specificRequirements { 'Unleash back-end relationships' }
 
+    factory :person_with_relationships do
+      contact_number
+      address
+      ethnicity
+    end
+
     factory :realistic_person do
       title { Person::TITLES.sample }
       firstName { Faker::Name.first_name }

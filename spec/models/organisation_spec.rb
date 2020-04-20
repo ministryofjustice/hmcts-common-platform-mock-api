@@ -8,9 +8,9 @@ RSpec.describe Organisation, type: :model do
 
   describe 'scopes' do
     describe '.by_name' do
-      let(:name_object) { { organisationName: 'Altenwerth and Sons' } }
+      let(:name) { 'Altenwerth and Sons' }
 
-      subject { described_class.by_name(name_object) }
+      subject { described_class.by_name(name) }
 
       let!(:organisation_one) { FactoryBot.create(:organisation, name: 'Altenwerth and Sons') }
       let!(:organisation_two) { FactoryBot.create(:organisation) }

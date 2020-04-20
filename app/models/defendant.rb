@@ -34,10 +34,15 @@ class Defendant < ApplicationRecord
   scope :people_only, -> { joins(:person_defendant) }
   scope :legal_entity_only, -> { joins(:legal_entity_defendant) }
 
-  scope :by_name, lambda { |params|
-    return joins(legal_entity_defendant: :organisation).merge(Organisation.by_name(params)) if params.dig(:organisationName).present?
-
-    joins(person_defendant: :person).merge(Person.by_name(params))
+  scope :by_name, lambda { |name|
+    left_outer_joins(:legal_entity_defendant, :person_defendant).where(
+      'legal_entity_defendants.organisation_id IN (:organisation_ids)
+      OR person_defendants.person_id IN (:person_ids)',
+      {
+        organisation_ids: Organisation.by_name(name).ids,
+        person_ids: Person.by_name(name).ids
+      }
+    )
   }
 
   scope :by_date_of_next_hearing, lambda { |date|

@@ -11,7 +11,9 @@ class PersonDefendant < ApplicationRecord
   validates :person, presence: true
   validates :driverLicenceCode, inclusion: LICENCE_CODES
 
-  scope :by_name_and_dob, ->(params) { joins(:person).merge(Person.by_name(params[:name]).by_date_of_birth(params[:dateOfBirth])) }
+  scope :by_name_and_dob, lambda { |params|
+    joins(:person).merge(Person.by_name(params[:defendantName]).by_date_of_birth(params[:dateOfBirth]))
+  }
 
   def to_builder
     Jbuilder.new do |person_defendant|

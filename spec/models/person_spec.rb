@@ -8,30 +8,28 @@ RSpec.describe Person, type: :model do
 
   describe 'scopes' do
     describe '.by_name' do
-      let(:name_object) { { firstName: 'John', middleName: 'JD', lastName: 'Doe' } }
+      let(:name) { 'John JD Doe' }
 
-      subject { described_class.by_name(name_object) }
+      subject { described_class.by_name(name) }
 
       let!(:person_one) { FactoryBot.create(:person, firstName: 'John') }
       let!(:person_two) { FactoryBot.create(:person, firstName: 'John', lastName: 'Doe') }
       let!(:person_three) { FactoryBot.create(:person, firstName: 'John', middleName: 'JD', lastName: 'Doe') }
 
-      it { is_expected.not_to include(person_one) }
-      it { is_expected.not_to include(person_two) }
+      it { is_expected.to include(person_one) }
+      it { is_expected.to include(person_two) }
       it { is_expected.to include(person_three) }
 
-      context 'allows omitting middleName' do
-        let(:name_object) { { firstName: 'John', lastName: 'Doe' } }
+      context 'omitting middleName' do
+        let(:name) { 'John Doe' }
 
-        it { is_expected.not_to include(person_one) }
+        it { is_expected.to include(person_one) }
         it { is_expected.to include(person_two) }
         it { is_expected.to include(person_three) }
       end
 
-      context 'excludes additonal attributes' do
-        let(:name_object) { { firstName: 'John', lastName: 'Doe', gender: 'MALE' } }
-
-        before { Person.update_all(gender: 'FEMALE') }
+      context 'Single name search' do
+        let(:name) { 'Doe' }
 
         it { is_expected.not_to include(person_one) }
         it { is_expected.to include(person_two) }

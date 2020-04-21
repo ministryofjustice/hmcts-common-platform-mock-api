@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :judicial_result_prompt do
     label { 'Random String' }
+    judicialResultPromptTypeId { SecureRandom.uuid }
     isAvailableForCourtExtract { false }
     welshLabel { 'Llinyn ar hap' }
     value { 'Random String' }

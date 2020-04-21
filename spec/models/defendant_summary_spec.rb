@@ -10,6 +10,15 @@ RSpec.describe DefendantSummary, type: :model do
 
   it_has_behaviour 'conforming to valid schema'
 
+  context 'with RepresentationOrder' do
+    before do
+      FactoryBot.create(:laa_reference, offence: defendant.offences.first)
+      FactoryBot.create(:associated_defence_organisation, defendant: defendant)
+    end
+
+    it_has_behaviour 'conforming to valid schema'
+  end
+
   context 'when defendant is a legal entity' do
     let(:defendant) { FactoryBot.create(:defendant_as_legal_entity) }
 

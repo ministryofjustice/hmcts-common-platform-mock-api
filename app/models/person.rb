@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class Person < ApplicationRecord
+  include PgSearch::Model
+
   LANGUAGES = %w[ENGLISH WELSH].freeze
   GENDERS = %w[MALE FEMALE NOT_KNOWN NOT_SPECIFIED].freeze
   TITLES = %w[MR MRS MISS MS].freeze
   NINO_REGEXP = /^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/.freeze
 
-  scope :by_name, ->(full_name) { where(full_name.slice(:firstName, :lastName, :middleName)) }
+  pg_search_scope :by_name, against: %i[firstName middleName lastName], using: { tsearch: { any_word: true } }
   scope :by_date_of_birth, ->(date) { where(dateOfBirth: date) }
 
   belongs_to :ethnicity, optional: true
@@ -17,6 +19,10 @@ class Person < ApplicationRecord
   validates :title, inclusion: TITLES
   validates :gender, presence: true, inclusion: GENDERS
   validates :documentationLanguageNeeds, inclusion: LANGUAGES
+
+  def name
+    [firstName, middleName, lastName].compact.join(' ')
+  end
 
   def to_builder
     Jbuilder.new do |person|

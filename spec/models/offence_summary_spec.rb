@@ -13,8 +13,7 @@ RSpec.describe OffenceSummary, type: :model do
 
     context 'with relationships' do
       before do
-        offence.laa_references << FactoryBot.create(:laa_reference)
-        offence.save!
+        offence.update!(laa_reference: FactoryBot.create(:laa_reference))
       end
 
       it_has_behaviour 'conforming to valid schema'

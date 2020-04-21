@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :laa_reference do
     applicationReference { 'Random string' }
+    offenceLevelStatus { 'Random string' }
     statusId { SecureRandom.uuid }
     statusCode { 'Random string' }
     statusDescription { 'Random string' }

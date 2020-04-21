@@ -13,13 +13,10 @@ class LaaReferenceRecorder < ApplicationService
 
     offence = Offence.find(params[:offenceId])
 
-    laa_reference = offence.laa_references.find_or_initialize_by(
-      statusCode: params[:statusCode],
-      applicationReference: params[:applicationReference],
-      statusDate: params[:statusDate]
-    )
-    laa_reference.update!(laa_reference_params)
-    laa_reference
+    offence.build_laa_reference if offence.laa_reference.blank?
+
+    offence.laa_reference.update!(laa_reference_params)
+    offence.laa_reference
   end
 
   private
@@ -38,10 +35,10 @@ class LaaReferenceRecorder < ApplicationService
   end
 
   def register_dependant_schemas!
-    # Since courtsDefinitions.json does not map to the expected directory structure for both the api responses and the model schemas,
+    # Since apiCourtsDefinitions.json does not map to the expected directory structure for both the api responses and the model schemas,
     # we are overriding the id, to ensure that the validator can find the definitions without blowing up.
-    courts_definitions = JSON.parse(File.open(Rails.root.join('lib/schemas/global/courtsDefinitions.json')).read)
-    courts_definitions['id'] = 'http://justice.gov.uk/progression/global/courtsDefinitions.json'
+    courts_definitions = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiCourtsDefinitions.json')).read)
+    courts_definitions['id'] = 'http://justice.gov.uk/progression/external/global/apiCourtsDefinitions.json'
     JSON::Validator.add_schema(JSON::Schema.new(courts_definitions, Addressable::URI.parse(courts_definitions['id'])))
   end
 end

@@ -46,7 +46,7 @@ RSpec.describe ProsecutionCaseSearch do
     end
   end
 
-  context 'when searching by nationalInsuranceNumber' do
+  context 'when searching by defendantNINO' do
     let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
     let(:defendant) do
       build(:defendant,
@@ -61,7 +61,7 @@ RSpec.describe ProsecutionCaseSearch do
     end
 
     let(:params_hash) do
-      { nationalInsuranceNumber: 'NH489223C' }
+      { defendantNINO: 'NH489223C' }
     end
 
     it { is_expected.to include(cases.first) }
@@ -69,14 +69,14 @@ RSpec.describe ProsecutionCaseSearch do
 
     context 'with a non matching reference' do
       let(:params_hash) do
-        { nationalInsuranceNumber: 'XJ812213C' }
+        { defendantNINO: 'XJ812213C' }
       end
 
       it { is_expected.to be_empty }
     end
   end
 
-  context 'when searching by arrestSummonsNumber' do
+  context 'when searching by defendantASN' do
     let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
     let(:defendant) do
       build(:defendant,
@@ -90,7 +90,7 @@ RSpec.describe ProsecutionCaseSearch do
     end
 
     let(:params_hash) do
-      { arrestSummonsNumber: '3.1428' }
+      { defendantASN: '3.1428' }
     end
 
     it { is_expected.to include(cases.first) }
@@ -98,14 +98,14 @@ RSpec.describe ProsecutionCaseSearch do
 
     context 'with a non matching reference' do
       let(:params_hash) do
-        { arrestSummonsNumber: 'NON EXISTENT' }
+        { defendantASN: 'NON EXISTENT' }
       end
 
       it { is_expected.to be_empty }
     end
   end
 
-  context 'when searching by name and dateOfBirth' do
+  context 'when searching by defendantName and dateOfBirth' do
     let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
     let(:defendant) do
       build(:defendant,
@@ -120,7 +120,7 @@ RSpec.describe ProsecutionCaseSearch do
     end
 
     let(:params_hash) do
-      { dateOfBirth: '2000-01-10', name: { firstName: 'John', lastName: 'Doe' } }
+      { dateOfBirth: '2000-01-10', defendantName: 'John Doe' }
     end
 
     it { is_expected.to include(cases.first) }
@@ -128,14 +128,14 @@ RSpec.describe ProsecutionCaseSearch do
 
     context 'with a non matching reference' do
       let(:params_hash) do
-        { dateOfBirth: '2012-12-12', name: { firstName: 'John', lastName: 'Doe' } }
+        { dateOfBirth: '2012-12-12', defendantName: 'John Doe' }
       end
 
       it { is_expected.to be_empty }
     end
   end
 
-  context 'when searching by name and dateOfNextHearing' do
+  context 'when searching by defendantName and dateOfNextHearing' do
     let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
     let(:defendant) do
       build(:defendant, :with_next_hearing,
@@ -150,7 +150,7 @@ RSpec.describe ProsecutionCaseSearch do
     end
 
     let(:params_hash) do
-      { dateOfNextHearing: '2019-01-10', name: { firstName: 'John', lastName: 'Doe' } }
+      { dateOfNextHearing: '2019-01-10', defendantName: 'John Doe' }
     end
 
     it { is_expected.to include(cases.first) }
@@ -158,7 +158,7 @@ RSpec.describe ProsecutionCaseSearch do
 
     context 'with a non matching reference' do
       let(:params_hash) do
-        { dateOfNextHearing: '2029-01-10', name: { firstName: 'John', lastName: 'Doe' } }
+        { dateOfNextHearing: '2029-01-10', defendantName: 'John Doe' }
       end
 
       it { is_expected.to be_empty }

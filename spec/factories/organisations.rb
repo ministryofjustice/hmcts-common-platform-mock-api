@@ -6,6 +6,11 @@ FactoryBot.define do
     incorporationNumber { 'Random string' }
     registeredCharityNumber { 'Random string' }
 
+    factory :organisation_with_relationships do
+      address
+      association :contact, factory: :contact_number
+    end
+
     factory :realistic_organisation do
       name { Faker::Company.name }
       incorporationNumber { Faker::Company.ein }

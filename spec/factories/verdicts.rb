@@ -9,6 +9,11 @@ FactoryBot.define do
     verdictDate { '2019-10-14 16:18:56' }
     verdict_type
 
+    factory :verdict_with_relationships do
+      jurors
+      lesser_or_alternative_offence
+    end
+
     factory :realistic_verdict do
       originatingHearingId { SecureRandom.uuid }
       offenceId { SecureRandom.uuid }

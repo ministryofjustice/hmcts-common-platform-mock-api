@@ -19,9 +19,7 @@ RSpec.describe BailStatus, type: :model do
     it_has_behaviour 'conforming to valid schema'
 
     context 'with relationships' do
-      before do
-        subject.update! custody_time_limit: FactoryBot.create(:custody_time_limit)
-      end
+      let(:bail_status) { FactoryBot.create(:bail_status_with_relationships) }
 
       it_has_behaviour 'conforming to valid schema'
     end

@@ -25,39 +25,21 @@ RSpec.describe Defendant, type: :model do
     end
 
     describe '.by_name' do
-      subject { described_class.by_name(name_object) }
-
-      context 'by person defendant' do
-        let(:name_object) do
-          { firstName: 'John', lastName: 'Doe' }
-        end
-
-        before do
-          allow(Person).to receive(:by_name).and_call_original
-        end
-
-        it 'calls the by_name on Person' do
-          expect(Person).to receive(:by_name).with(name_object)
-          expect(Organisation).not_to receive(:by_name)
-          subject
-        end
+      let(:organisation) { FactoryBot.create(:organisation, name: 'Altenwerth and Sons') }
+      let!(:organisation_defendant) do
+        FactoryBot.create(:defendant_as_legal_entity, defendable: FactoryBot.create(:legal_entity_defendant, organisation: organisation))
+      end
+      let(:person) { FactoryBot.create(:person, firstName: 'Altenwerth') }
+      let!(:person_defendant) do
+        FactoryBot.create(:defendant, defendable: FactoryBot.create(:person_defendant, person: person))
       end
 
-      context 'by legal_entity_defendant' do
-        let(:name_object) do
-          { organisationName: 'Altenwerth' }
-        end
+      let(:name) { 'Altenwerth' }
 
-        before do
-          allow(Organisation).to receive(:by_name).and_call_original
-        end
+      subject { described_class.by_name(name) }
 
-        it 'calls the by_name on Organisation' do
-          expect(Organisation).to receive(:by_name).with(name_object)
-          expect(Person).not_to receive(:by_name)
-          subject
-        end
-      end
+      it { is_expected.to include(organisation_defendant) }
+      it { is_expected.to include(person_defendant) }
     end
 
     describe '.by_date_of_next_hearing' do

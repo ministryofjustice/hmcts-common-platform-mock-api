@@ -120,7 +120,7 @@ RSpec.describe ProsecutionCaseSearch do
     end
 
     let(:params_hash) do
-      { dateOfBirth: '2000-01-10', defendantName: 'John Doe' }
+      { defendantDOB: '2000-01-10', defendantName: 'John Doe' }
     end
 
     it { is_expected.to include(cases.first) }
@@ -128,7 +128,7 @@ RSpec.describe ProsecutionCaseSearch do
 
     context 'with a non matching reference' do
       let(:params_hash) do
-        { dateOfBirth: '2012-12-12', defendantName: 'John Doe' }
+        { defendantDOB: '2012-12-12', defendantName: 'John Doe' }
       end
 
       it { is_expected.to be_empty }

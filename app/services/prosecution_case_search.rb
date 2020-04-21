@@ -17,7 +17,7 @@ class ProsecutionCaseSearch < ApplicationService
 
     return prosecution_cases_by_summons if permitted_params['defendantASN'].present?
 
-    return prosecution_cases_by_name_and_dob if permitted_params['dateOfBirth'].present?
+    return prosecution_cases_by_name_and_dob if permitted_params['defendantDOB'].present?
 
     prosecution_cases_by_name_and_date_of_next_hearing
   end
@@ -53,7 +53,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def person_defendant_by_name_and_dob
-    PersonDefendant.by_name_and_dob(permitted_params.slice(:defendantName, :dateOfBirth))
+    PersonDefendant.by_name_and_dob(defendantName: permitted_params[:defendantName], dateOfBirth: permitted_params[:defendantDOB])
   end
 
   def prosecution_cases_by_name_and_date_of_next_hearing
@@ -70,7 +70,7 @@ class ProsecutionCaseSearch < ApplicationService
     params.permit(:prosecutionCaseReference,
                   :defendantNINO,
                   :defendantASN,
-                  :dateOfBirth,
+                  :defendantDOB,
                   :dateOfNextHearing,
                   :defendantName)
   end

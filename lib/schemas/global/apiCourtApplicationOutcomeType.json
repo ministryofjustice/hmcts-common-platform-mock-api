@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiCourtApplicationOutcomeType.json",
+  "description": "The type of outcome regarding an application",
+  "type": "object",
+  "properties": {
+    "id": {
+	  "description": "The identifier of the application outcome type from reference data",
+	  "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+	},
+	"sequence": {
+	  "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
+	},
+	"description": {
+	  "description": "The value of the reference data",
+	  "type": "string"
+	}
+  },
+  "required": [
+	 "id",
+	 "sequence",
+	 "description"
+  ],
+  "additionalProperties": false
+}

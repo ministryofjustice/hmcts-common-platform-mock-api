@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://justice.gov.uk/core/courts/external/apiDefendantHearingYouthMarker.json",
+    "description": "For criminal courts a youth marker is set based on a calculation per hearing start date",
+    "type": "object",
+    "properties": {
+        "prosecutionCaseId": {
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "defendantId": {
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "hearingId": {
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "marker": {
+            "description": "The youth from reference data",
+            "$ref": "../../external/global/apiMarker.json#"
+        }
+    },
+    "required": [
+        "prosecutionCaseId",
+        "defendantId",
+        "hearingId",
+        "marker"
+    ],
+    "additionalProperties": false
+}

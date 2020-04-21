@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"id": "http://justice.gov.uk/core/courts/external/hearingEvent.json",
+	"properties": {
+		"hearingId": {
+			"description": "The identifier of the hearing for the hearing event",
+			"$ref": "apicourtsDefinitions.json#/definitions/uuid"
+		},
+		"hearingEventDefinitionId": {
+			"description": "The identifier in reference data for this type of event",
+			"$ref": "apicourtsDefinitions.json#/definitions/uuid"
+		},
+		"recordedLabel": {
+			"description": "The structured text recorded by CPP based on the user selected event type",
+			"type": "string"
+		},
+		"eventTime": {
+			"description": "The date and time of the event",
+			"type": "string",
+			"format": "date-time"
+		}
+	},
+	"required": [
+	    "hearingId",
+		"hearingEventDefinitionId",
+		"recordedLabel",
+		"eventTime"
+	],
+	"additionalProperties": false
+}

@@ -7,6 +7,10 @@ FactoryBot.define do
     pleaDate { '2019-10-14 14:59:41' }
     pleaValue { 'GUILTY' }
 
+    factory :plea_with_relationships do
+      delegated_powers
+    end
+
     factory :realistic_plea do
       originatingHearingId { SecureRandom.uuid }
       offenceId { SecureRandom.uuid }

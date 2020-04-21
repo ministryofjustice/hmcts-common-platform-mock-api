@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiProsecutionCaseIdentifier.json",
+  "type": "object",
+  "properties": {
+    "prosecutionAuthorityId": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "prosecutionAuthorityCode": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "prosecutionAuthorityId",
+    "prosecutionAuthorityCode"
+  ],
+  "additionalProperties": true,
+  "oneOf": [
+    {
+      "properties": {
+        "caseURN": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "caseURN"
+      ]
+    },
+    {
+      "properties": {
+        "prosecutionAuthorityReference": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "prosecutionAuthorityReference"
+      ]
+    }
+  ]
+}

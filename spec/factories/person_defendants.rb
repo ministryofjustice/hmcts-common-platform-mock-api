@@ -16,6 +16,13 @@ FactoryBot.define do
     employer_organisation { nil }
     employerPayrollReference { 'Random string' }
 
+    factory :person_defendant_with_relationships do
+      association :bail_status, factory: :bail_status_with_relationships
+      defendant_custody_location
+      association :employer_organisation, factory: :organisation_with_relationships
+      association :person, factory: :person_with_relationships
+    end
+
     factory :realistic_person_defendant do
       association :person, factory: :realistic_person
       association :bail_status, factory: :realistic_bail_status

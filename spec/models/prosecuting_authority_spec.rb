@@ -21,11 +21,7 @@ RSpec.describe ProsecutingAuthority, type: :model do
   it_has_a 'realistic factory'
 
   context 'with relationships' do
-    before do
-      prosecuting_authority.contact = FactoryBot.create(:contact_number)
-      prosecuting_authority.address = FactoryBot.create(:address)
-      prosecuting_authority.save!
-    end
+    let(:prosecuting_authority) { FactoryBot.create(:prosecuting_authority_with_relationships) }
 
     it_has_behaviour 'conforming to valid schema'
   end

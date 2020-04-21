@@ -1,0 +1,74 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://justice.gov.uk/core/courts/external/apiCourtApplicationType.json",
+    "description": "The type of application made to court for judicial decision. Taken from reference data",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "applicationCode": {
+            "description": "The CJS Code for the court application type",
+            "type": "string"
+        },
+        "applicationType": {
+            "description": "The CJS Title for the court application type",
+            "type": "string"
+        },
+        "applicationTypeWelsh": {
+            "type": "string"
+        },
+        "applicationLegislation": {
+            "type": "string"
+        },
+        "applicationLegislationWelsh": {
+            "type": "string"
+        },
+        "applicationCategory": {
+            "description": "The classification of the court application type",
+            "type": "string"
+        },
+        "isAppealApplication": {
+            "description": "Identifies the application as relating to appeal proceedings",
+            "type": "boolean"
+        },
+        "isBreachApplication": {
+            "description": "Identifies the application as relating to breach proceedings",
+            "type": "boolean"
+        },
+        "isApplicationToRecordCourtOfAppealDecision": {
+            "description": "Identifies the application as relating to the recording of court of appeal decisions",
+            "type": "boolean"
+        },
+        "linkType": {
+            "description": "Indicates if a type of application must be linked or must be standalone or can be either",
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/applicationLinkType"
+        },
+        "applicantSynonym": {
+            "type": "string"
+        },
+        "respondentSynonym": {
+            "type": "string"
+        },
+        "applicationJurisdictionType": {
+            "description": "Indicates the jurisdiction that is required to consider the application",
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/applicationJurisdictionType"
+        },
+        "applicationSummonsRecipientType": {
+            "description": "Indicates if a summons is required for the applicant or for each respondent.  If there is not a recipient type, a summons is not required.",
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/applicationSummonsRecipientType"
+        },
+        "applicationSummonsTemplateType": {
+            "description": "Indicates the type of summons required for each respondent. If value is 'N/A' then summons is not required.",
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/applicationSummonsTemplateType"
+        }
+    },
+    "required": [
+        "id",
+        "applicationType",
+        "applicationCategory",
+        "linkType",
+        "applicationJurisdictionType"
+    ],
+    "additionalProperties": false
+}

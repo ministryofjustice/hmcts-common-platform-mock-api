@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiCourtApplicationOutcome.json",
+  "description": "The court decision regarding an application",
+  "type": "object",
+  "properties": {
+    "originatingHearingId": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "applicationId": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "applicationOutcomeDate": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+    },
+    "applicationOutcomeType": {
+      "$ref": "../../external/global/apiCourtApplicationOutcomeType.json"
+    }
+  },
+  "required": [
+    "originatingHearingId",
+    "applicationId",
+    "applicationOutcomeDate",
+    "applicationOutcomeType"
+  ],
+  "additionalProperties": false
+}

@@ -32,6 +32,7 @@ RSpec.describe CourtApplication, type: :model do
       court_application.court_application_outcome = FactoryBot.create(:court_application_outcome)
       court_application.court_application_payment = FactoryBot.create(:court_application_payment)
       court_application.court_centre = FactoryBot.create(:court_centre)
+      court_application.judicial_results << FactoryBot.create(:judicial_result_with_relationships)
       court_application.save!
     end
     it_has_behaviour 'conforming to valid schema'

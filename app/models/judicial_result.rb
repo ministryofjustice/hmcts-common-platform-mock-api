@@ -28,9 +28,11 @@ class JudicialResult < ApplicationRecord
   validates :isUrgent, inclusion: [true, false]
   validates :isD20, inclusion: [true, false]
 
+  # rubocop:disable Metrics/MethodLength
   def to_builder
     Jbuilder.new do |judicial_result|
       judicial_result.judicialResultId judicialResultId
+      judicial_result.judicialResultTypeId judicialResultTypeId
       judicial_result.orderedHearingId orderedHearingId
       judicial_result.label label
       judicial_result.welshLabel welshLabel
@@ -66,5 +68,6 @@ class JudicialResult < ApplicationRecord
       judicial_result.durationElement duration_element.to_builder if duration_element.present?
       judicial_result.judicialResultPrompts array_builder(judicial_result_prompts)
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end

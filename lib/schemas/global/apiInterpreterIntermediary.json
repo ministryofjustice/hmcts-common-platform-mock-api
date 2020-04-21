@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiinterpreterIntermediary.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "apicourtsDefinitions.json#/definitions/uuid"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "INTERPRETER",
+        "INTERMEDIARY"
+      ]
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "attendant": {
+      "$ref": "apiattendant.json#"
+    },
+    "attendanceDays": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "apicourtsDefinitions.json#/definitions/datePattern"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "role",
+    "firstName",
+    "lastName",
+    "attendant",
+    "attendanceDays"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiCourtApplicationResponseType.json",
+  "description": "The type of response from the respondent regarding an application",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The identifier of the application response type from reference data",
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "sequence": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
+    },
+    "description": {
+      "description": "The value of the reference data",
+      "type": "string"
+    }
+  },
+  "required": [
+     "id",
+     "sequence",
+     "description"
+  ],
+  "additionalProperties": false
+}

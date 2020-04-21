@@ -1,0 +1,170 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://justice.gov.uk/core/courts/external/apihearing.json",
+	"type": "object",
+	"properties": {
+		"id": {
+			"$ref": "apiCourtsDefinitions.json#/definitions/uuid"
+		},
+		"jurisdictionType": {
+			"$ref": "apiCourtsDefinitions.json#/definitions/jurisdictionType"
+		},
+		"reportingRestrictionReason": {
+			"type": "string"
+		},
+		"courtCentre": {
+			"description": "The default scheduled courtCentre for the entire duration of a hearing",
+			"$ref": "apicourtCentre.json#"
+		},
+		"hearingLanguage": {
+			"$ref": "apiCourtsDefinitions.json#/definitions/hearingLanguage"
+		},
+		"prosecutionCases": {
+			"description": "The collection of cases to be heard or the case for a linked application with respect to an application hearing",
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apiprosecutionCase.json#"
+			}
+		},
+		"defendantJudicialResults": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apidefendantJudicialResult.json#"
+			}
+		},
+		"hasSharedResults": {
+			"description": "Indicates that the hearing has at least one result shared",
+			"type": "boolean"
+		},
+		"courtApplications": {
+			"description": "The collection of applications to be heard with respect to an application hearing or the applications for a case with respect to a hearing related to the case",
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apicourtApplication.json#"
+			}
+		},
+		"defendantReferralReasons": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apireferralReason.json#"
+			}
+		},
+		"hearingCaseNotes": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apihearingCaseNote.json#"
+			}
+		},
+		"type": {
+			"$ref": "apihearingType.json#"
+		},
+		"hearingDays": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apihearingDay.json#"
+			}
+		},
+		"judiciary": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apijudicialRole.json#"
+			}
+		},
+		"applicantCounsels": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apiapplicantCounsel.json#"
+			}
+		},
+		"respondentCounsels": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apirespondentCounsel.json#"
+			}
+		},
+		"prosecutionCounsels": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apiprosecutionCounsel.json#"
+			}
+		},
+		"defenceCounsels": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apidefenceCounsel.json#"
+			}
+		},
+		"applicationPartyCounsels": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apicourtApplicationPartyCounsel.json#"
+			}
+		},
+		"defendantAttendance": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apidefendantAttendance.json#"
+			}
+		},
+		"intermediaries": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apiinterpreterIntermediary.json#"
+			}
+		},
+		"defendantHearingYouthMarkers": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apidefendantHearingYouthMarker.json#"
+			}
+		},
+		"courtApplicationPartyAttendance": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apicourtApplicationPartyAttendance.json#"
+			}
+		},
+		"crackedIneffectiveTrial": {
+			"$ref": "apicrackedIneffectiveTrial.json#"
+		},
+		"isEffectiveTrial": {
+			"description": "Identifies a hearing as an effective trial",
+			"type": "boolean"
+		},
+		"isBoxHearing": {
+			"description": "Identifies a hearing as a box hearing",
+			"type": "boolean"
+		},
+		"companyRepresentatives": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apicompanyRepresentative.json#"
+			}
+		}
+	},
+	"required": [
+		"id",
+		"jurisdictionType",
+		"courtCentre",
+		"type",
+		"hearingDays"
+	],
+	"additionalProperties": false
+}

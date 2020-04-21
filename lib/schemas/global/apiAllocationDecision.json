@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://justice.gov.uk/core/courts/external/apiAllocationDecision.json",
+    "description": "The allocation decision made regarding the jurisdiction required or elected for dealing with the offence in question",
+    "type": "object",
+    "properties": {
+        "originatingHearingId": {
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "offenceId": {
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "motReasonId": {
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "motReasonDescription": {
+            "type": "string"
+        },
+        "motReasonCode": {
+            "type": "integer"
+        },
+        "allocationDecisionDate": {
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "isSection22ALowValueShoplifting": {
+            "type": "boolean"
+        },
+        "isDamageValueUnder5000": {
+            "type": "boolean"
+        },
+        "isTreatedAsIndictableOnly": {
+            "type": "boolean"
+        },
+        "sentencingIndicationRequested": {
+            "type": "boolean"
+        },
+        "courtIndicatedSentence": {
+            "$ref": "../../external/global/apiCourtIndicatedSentence.json#"
+        }
+    },
+    "required": [
+        "originatingHearingId",
+        "offenceId",
+        "motReasonId",
+        "motReasonDescription",
+        "motReasonCode",
+        "allocationDecisionDate",
+        "isSection22ALowValueShoplifting",
+        "isDamageValueUnder5000",
+        "isTreatedAsIndictableOnly",
+        "sentencingIndicationRequested"
+    ],
+    "additionalProperties": false
+}

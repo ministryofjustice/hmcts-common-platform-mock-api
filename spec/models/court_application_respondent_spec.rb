@@ -21,7 +21,7 @@ RSpec.describe CourtApplicationRespondent, type: :model do
 
     context 'with application_response' do
       before do
-        court_application_respondent.application_response = FactoryBot.create(:court_application_response)
+        court_application_respondent.update!(application_response: FactoryBot.create(:court_application_response))
       end
 
       it_has_behaviour 'conforming to valid schema'

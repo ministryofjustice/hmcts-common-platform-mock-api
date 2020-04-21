@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiCourtApplicationRespondent.json",
+  "description": "The respondent of an application",
+  "type": "object",
+  "properties": {
+    "partyDetails": {
+      "description": "The details of the respondent",
+      "$ref": "../../external/global/apiCourtApplicationParty.json"
+    },
+    "applicationResponse": {
+      "description": "The details of the response",
+      "$ref": "../../external/global/apiCourtApplicationResponse.json#"
+    }
+  },
+  "required": [
+    "partyDetails"
+  ],
+  "additionalProperties": false
+}

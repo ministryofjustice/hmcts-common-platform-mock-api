@@ -25,39 +25,21 @@ RSpec.describe Defendant, type: :model do
     end
 
     describe '.by_name' do
-      subject { described_class.by_name(name_object) }
-
-      context 'by person defendant' do
-        let(:name_object) do
-          { firstName: 'John', lastName: 'Doe' }
-        end
-
-        before do
-          allow(Person).to receive(:by_name).and_call_original
-        end
-
-        it 'calls the by_name on Person' do
-          expect(Person).to receive(:by_name).with(name_object)
-          expect(Organisation).not_to receive(:by_name)
-          subject
-        end
+      let(:organisation) { FactoryBot.create(:organisation, name: 'Altenwerth and Sons') }
+      let!(:organisation_defendant) do
+        FactoryBot.create(:defendant_as_legal_entity, defendable: FactoryBot.create(:legal_entity_defendant, organisation: organisation))
+      end
+      let(:person) { FactoryBot.create(:person, firstName: 'Altenwerth') }
+      let!(:person_defendant) do
+        FactoryBot.create(:defendant, defendable: FactoryBot.create(:person_defendant, person: person))
       end
 
-      context 'by legal_entity_defendant' do
-        let(:name_object) do
-          { organisationName: 'Altenwerth' }
-        end
+      let(:name) { 'Altenwerth' }
 
-        before do
-          allow(Organisation).to receive(:by_name).and_call_original
-        end
+      subject { described_class.by_name(name) }
 
-        it 'calls the by_name on Organisation' do
-          expect(Organisation).to receive(:by_name).with(name_object)
-          expect(Person).not_to receive(:by_name)
-          subject
-        end
-      end
+      it { is_expected.to include(organisation_defendant) }
+      it { is_expected.to include(person_defendant) }
     end
 
     describe '.by_date_of_next_hearing' do
@@ -79,8 +61,9 @@ RSpec.describe Defendant, type: :model do
     it { should belong_to(:legal_entity_defendant).class_name('LegalEntityDefendant').optional }
     it { should belong_to(:prosecution_case).class_name('ProsecutionCase') }
     it { should have_many(:offences).class_name('Offence').dependent(:destroy) }
+    it { should have_many(:laa_references).class_name('LaaReference') }
     it { should have_many(:associated_people).class_name('AssociatedPerson').dependent(:destroy) }
-    it { should have_many(:defence_organisations).class_name('DefenceOrganisation').dependent(:destroy) }
+    it { should have_one(:defence_organisation).class_name('DefenceOrganisation').dependent(:destroy) }
     it { should have_many(:defendant_aliases).class_name('DefendantAlias').dependent(:destroy) }
     it { should have_many(:judicial_results).class_name('JudicialResult').dependent(:destroy) }
     it { should have_many(:markers).class_name('Marker').dependent(:destroy) }
@@ -134,16 +117,7 @@ RSpec.describe Defendant, type: :model do
   end
 
   context 'with relationships' do
-    before do
-      defendant.associated_people << build(:associated_person)
-      defendant.defence_organisations << build(:associated_defence_organisation, defendant: nil)
-      defendant.defendant_aliases << build(:defendant_alias)
-      defendant.judicial_results << build(:judicial_result)
-      defendant.markers << build(:marker)
-      defendant.split_prosecutor_case_references << build_list(:split_prosecutor_case_reference, 2)
-      defendant.linked_defendants << build(:linked_defendant)
-      defendant.save!
-    end
+    let(:defendant) { FactoryBot.create(:defendant_with_relationships) }
 
     it_has_behaviour 'conforming to valid schema'
   end

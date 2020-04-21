@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiBailStatus.json",
+  "type": "object",
+  "properties": {
+    "id":  {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "code":  {
+      "type": "string"
+    },
+    "description":  {
+      "type": "string"
+    },
+    "custodyTimeLimit":  {
+      "$ref": "../../external/global/apiCustodyTimeLimit.json"
+    }
+  },
+  "required": [
+    "id",
+    "code",
+    "description"
+  ],
+  "additionalProperties": false
+}

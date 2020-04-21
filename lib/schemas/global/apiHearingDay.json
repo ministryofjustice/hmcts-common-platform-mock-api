@@ -1,0 +1,53 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://justice.gov.uk/core/courts/external/apihearingDay.json",
+	"type": "object",
+	"properties": {
+		"sittingDay": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"listingSequence": {
+			"$ref": "../global/apicourtsDefinitions.json#/definitions/positiveInteger"
+		},
+		"listedDurationMinutes": {
+			"description": "The listed duration in minutes",
+			"$ref": "../global/apicourtsDefinitions.json#/definitions/positiveInteger"
+		},
+		"startTime": {
+			"description": "The actual start time compared to the listed details",
+			"type": "string",
+			"format": "time"
+		},
+		"endTime": {
+			"description": "The recorded end time of the hearing for this sitting day",
+			"type": "string",
+			"format": "time"
+		},
+		"actualDurationMinutes": {
+			"description": "The actual duration in minutes",
+			"$ref": "../global/apicourtsDefinitions.json#/definitions/positiveInteger"
+		},
+		"onTheDayCourtRoomId": {
+			"description": "The on the day scheduled court room for when the default court centre applies but fo a different room.",
+			"$ref": "../global/apicourtsDefinitions.json#/definitions/uuid"
+		},
+		"onTheDayCourtCentre": {
+			"description": "The on the day scheduled courtCentre for when the default court centre does not apply.  This is only provided when the default does not apply to the day in question",
+			"$ref": "apicourtCentre.json#"
+		},
+		"onTheDayJudiciary": {
+			"description": "The on the day scheduled judiciary for when the default judiciary against the hearing does not apply on the day in question",
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"$ref": "apijudicialRole.json#"
+			}
+		}
+	},
+	"required": [
+		"sittingDay",
+		"listedDurationMinutes"
+	],
+	"additionalProperties": false
+}

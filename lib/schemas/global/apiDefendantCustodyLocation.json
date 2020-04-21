@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apidefendantCustodyLocation.json",
+  "description": "When the defendant is in custody, the details of the custody location",
+  "type": "object",
+  "properties": {
+  	"id": {
+      "description": "The technical identifer of the reference data item for the custody location, police cell, remand centre or prison",
+      "$ref": "../global/apicourtsDefinitions.json#/definitions/uuid"
+    },
+    "name": {
+      "description": "The name of the custody location e.g. HMP Bellmarsh",
+      "type": "string"
+    },
+    "address": {
+      "description": "The location address",
+      "$ref": "apiaddress.json#"
+    },
+    "emailAddress": {
+      "description": "The email address details of the custody location.  Required for NOWs purposes.",
+      "$ref": "../global/apicourtsDefinitions.json#/definitions/email"
+    },		
+    "locationType": {
+      "description": "The type of custody location",
+      "$ref": "../global/apicourtsDefinitions.json#/definitions/defendantCustodyLocationType"
+    }
+  },
+  "required": [
+    "id", "name", "address", "locationType", "emailAddress"
+  ],
+  "additionalProperties": false
+}

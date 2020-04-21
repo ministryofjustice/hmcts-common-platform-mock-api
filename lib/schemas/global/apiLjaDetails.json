@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiljaDetails.json",
+  "description": "Specific data items required when publishing results",
+  "type": "object",
+  "properties": {
+    "ljaCode": {
+      "type": "string"
+    },
+    "ljaName": {
+      "type": "string"
+    },
+    "welshLjaName": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "ljaCode",
+    "ljaName"
+  ],
+  "additionalProperties": false
+}

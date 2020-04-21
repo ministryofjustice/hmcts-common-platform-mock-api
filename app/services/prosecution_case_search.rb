@@ -13,9 +13,9 @@ class ProsecutionCaseSearch < ApplicationService
 
     return prosecution_cases_by_reference if permitted_params['prosecutionCaseReference'].present?
 
-    return prosecution_cases_by_nino if permitted_params['nationalInsuranceNumber'].present?
+    return prosecution_cases_by_nino if permitted_params['defendantNINO'].present?
 
-    return prosecution_cases_by_summons if permitted_params['arrestSummonsNumber'].present?
+    return prosecution_cases_by_summons if permitted_params['defendantASN'].present?
 
     return prosecution_cases_by_name_and_dob if permitted_params['dateOfBirth'].present?
 
@@ -37,7 +37,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def person_defendant_by_nino
-    PersonDefendant.joins(:person).where(people: { nationalInsuranceNumber: permitted_params[:nationalInsuranceNumber] })
+    PersonDefendant.joins(:person).where(people: { nationalInsuranceNumber: permitted_params[:defendantNINO] })
   end
 
   def prosecution_cases_by_summons
@@ -45,7 +45,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def person_defendant_by_summons
-    PersonDefendant.where(arrestSummonsNumber: permitted_params[:arrestSummonsNumber])
+    PersonDefendant.where(arrestSummonsNumber: permitted_params[:defendantASN])
   end
 
   def prosecution_cases_by_name_and_dob
@@ -53,7 +53,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def person_defendant_by_name_and_dob
-    PersonDefendant.by_name_and_dob(permitted_params.slice(:name, :dateOfBirth))
+    PersonDefendant.by_name_and_dob(permitted_params.slice(:defendantName, :dateOfBirth))
   end
 
   def prosecution_cases_by_name_and_date_of_next_hearing
@@ -62,28 +62,26 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def defendant_by_name_and_date_of_next_hearing
-    Defendant.by_name(permitted_params[:name])
+    Defendant.by_name(permitted_params[:defendantName])
              .by_date_of_next_hearing(permitted_params[:dateOfNextHearing])
   end
 
   def permitted_params
     params.permit(:prosecutionCaseReference,
-                  :nationalInsuranceNumber,
-                  :arrestSummonsNumber,
+                  :defendantNINO,
+                  :defendantASN,
                   :dateOfBirth,
                   :dateOfNextHearing,
-                  name: %i[firstName middleName lastName])
+                  :defendantName)
   end
 
   def register_dependant_schemas!
-    # Since courtsDefinitions.json does not map to the expected directory structure for both the api responses and the model schemas,
+    # Since apiCourtsDefinitions.json does not map to the expected directory structure for both the api responses and the model schemas,
     # we are overriding the id, to ensure that the validator can find the definitions without blowing up.
-    courts_definitions = JSON.parse(File.open(Rails.root.join('lib/schemas/global/courtsDefinitions.json')).read)
-    courts_definitions['id'] = 'http://justice.gov.uk/unified_search_query/global/courtsDefinitions.json'
+    courts_definitions = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiCourtsDefinitions.json')).read)
+    courts_definitions['id'] = 'http://justice.gov.uk/unified_search_query/external/global/apicourtsDefinitions.json'
     JSON::Validator.add_schema(JSON::Schema.new(courts_definitions, Addressable::URI.parse(courts_definitions['id'])))
-
-    defendant_name = JSON.parse(File.open(Rails.root.join('lib/schemas/global/search/defendantName.json')).read)
-    defendant_name['id'] = 'http://justice.gov.uk/unified_search_query/global/search/defendantName.json'
-    JSON::Validator.add_schema(JSON::Schema.new(defendant_name, Addressable::URI.parse(defendant_name['id'])))
+    courts_definitions['id'] = 'http://justice.gov.uk/unified_search_query/external/global/apiCourtsDefinitions.json'
+    JSON::Validator.add_schema(JSON::Schema.new(courts_definitions, Addressable::URI.parse(courts_definitions['id'])))
   end
 end

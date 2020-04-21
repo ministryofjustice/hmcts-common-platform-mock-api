@@ -7,6 +7,11 @@ FactoryBot.define do
     name { 'MyString' }
     accountCode { 'MyString' }
 
+    factory :prosecuting_authority_with_relationships do
+      address
+      association :contact, factory: :contact_number
+    end
+
     factory :realistic_prosecuting_authority do
       prosecutionAuthorityId { SecureRandom.uuid }
       prosecutionAuthorityCode { Faker::Code.npi }

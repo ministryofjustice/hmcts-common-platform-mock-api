@@ -8,7 +8,7 @@ RSpec.describe PersonDefendant, type: :model do
 
   describe 'scopes' do
     describe '.by_name_and_dob' do
-      let(:params) { { name: { firstName: 'John', lastName: 'Doe' }, dateOfBirth: '2000-05-12' } }
+      let(:params) { { defendantName: 'John Doe', dateOfBirth: '2000-05-12' } }
 
       subject { described_class.by_name_and_dob(params) }
 
@@ -18,7 +18,7 @@ RSpec.describe PersonDefendant, type: :model do
       end
 
       it 'calls the by_name and by_date_of_birth scopes on Person' do
-        expect(Person).to receive(:by_name).with(params[:name])
+        expect(Person).to receive(:by_name).with(params[:defendantName])
         expect(Person).to receive(:by_date_of_birth).with(params[:dateOfBirth])
         subject
       end
@@ -28,6 +28,7 @@ RSpec.describe PersonDefendant, type: :model do
   describe 'associations' do
     it { should belong_to(:person).class_name('Person') }
     it { should belong_to(:bail_status).class_name('BailStatus').optional }
+    it { should belong_to(:defendant_custody_location).class_name('DefendantCustodyLocation').optional }
     it { should belong_to(:employer_organisation).class_name('Organisation').optional }
   end
   describe 'validations' do
@@ -42,9 +43,7 @@ RSpec.describe PersonDefendant, type: :model do
     it_has_behaviour 'conforming to valid schema'
 
     context 'with relationships' do
-      before do
-        person_defendant.update! bail_status: FactoryBot.create(:bail_status), employer_organisation: FactoryBot.create(:organisation)
-      end
+      let(:person_defendant) { FactoryBot.create(:person_defendant_with_relationships) }
 
       it_has_behaviour 'conforming to valid schema'
     end

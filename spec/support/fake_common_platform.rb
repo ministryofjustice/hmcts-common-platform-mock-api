@@ -11,6 +11,34 @@ class FakeCommonPlatform < Sinatra::Base
     json_response(200, '/global/', params[:file_name])
   end
 
+  get '/core/courts/:file_name' do
+    json_response(200, '/global/', params[:file_name])
+  end
+
+  get '/core/external/:directory/:file_name' do
+    json_response(200, '/global/', params[:file_name])
+  end
+
+  get '/core/courts/search/external/:file_name' do
+    json_response(200, '/global/search/', params[:file_name])
+  end
+
+  get '/core/external/global/search/:file_name' do
+    json_response(200, '/global/search/', params[:file_name])
+  end
+
+  get '/core/external/global/:directory/:file_name' do
+    json_response(200, '/global/', params[:file_name])
+  end
+
+  get '/results/external/:directory/:file_name' do
+    json_response(200, '/global/', params[:file_name])
+  end
+
+  get '/hearing/external/:directory/:file_name' do
+    json_response(200, '/global/', params[:file_name])
+  end
+
   get '/core/courts/:directory/search/:file_name' do
     json_response(200, '/global/search/', params[:file_name])
   end
@@ -23,7 +51,11 @@ class FakeCommonPlatform < Sinatra::Base
     json_response(200, '/global/search/', params[:file_name])
   end
 
-  get '/unified_search_query/global/:file_name' do
+  get '/unified_search_query/external/global/search/:file_name' do
+    json_response(200, '/global/search/', params[:file_name])
+  end
+
+  get '/unified_search_query/external/global/:file_name' do
     json_response(200, '/global/', params[:file_name])
   end
 
@@ -36,6 +68,9 @@ class FakeCommonPlatform < Sinatra::Base
   def json_response(response_code, file_path, file_name)
     content_type :json
     status response_code
+
+    file_name = normalise_file_name(file_name)
+
     file_contents = JSON.parse(Rails.root.join("lib/schemas/#{file_path}/#{file_name}").read)
 
     # We need to rewrite /core/courts/search/public/whatever
@@ -47,5 +82,10 @@ class FakeCommonPlatform < Sinatra::Base
     # for the schema based on the requested path
     file_contents['id'] = url
     file_contents.to_json
+  end
+
+  def normalise_file_name(name)
+    # apicourtsDefinitions.json => apiCourtsDefinitions.json
+    name.chars.map.with_index { |x, i| (x.upcase if i == 3) || x }.join
   end
 end

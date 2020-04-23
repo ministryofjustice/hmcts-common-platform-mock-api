@@ -94,5 +94,6 @@ RSpec.configure do |config|
 
   # Responses
   config.json_schemas[:search_prosecution_case_response] = "#{schema_path}/api/search-prosecutionCaseResponse.json"
+  config.json_schemas[:results_hearing_event_log_response] = "#{schema_path}/api/hearing.api.hearingEventLogResponse.json"
   config.json_schemas[:results_hearing_resulted_response] = "#{schema_path}/api/results.api.hearingResultedResponse.json"
 end

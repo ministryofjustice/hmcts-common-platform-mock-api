@@ -22,6 +22,7 @@ class Hearing < ApplicationRecord
   has_many :company_representatives
   has_many :court_application_party_attendances
   has_many :defendant_hearing_youth_markers
+  has_many :events, class_name: 'HearingEvent', inverse_of: :hearing
 
   validates :jurisdictionType, presence: true, inclusion: %w[MAGISTRATES CROWN]
   validates :court_centre, presence: true

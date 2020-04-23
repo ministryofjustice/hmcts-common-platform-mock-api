@@ -31,7 +31,7 @@ RSpec.describe DemoDataHelper, type: :helper do
     end
 
     it 'returns matching prosecution cases' do
-      expect(results.map { |pc| pc.prosecution_case_identifier.caseURN }). to be_present.and be_all(eql('TESTURN123'))
+      expect(results.map { |pc| pc.prosecution_case_identifier.caseURN }).to be_present.and be_all(eql('TESTURN123'))
     end
   end
 
@@ -51,7 +51,7 @@ RSpec.describe DemoDataHelper, type: :helper do
     end
 
     it 'returns matching prosecution cases' do
-      expect(results.map { |pc| pc.prosecution_case_identifier.caseURN }). to be_present.and be_all(eql('TESTURN321'))
+      expect(results.map { |pc| pc.prosecution_case_identifier.caseURN }).to be_present.and be_all(eql('TESTURN321'))
     end
   end
 

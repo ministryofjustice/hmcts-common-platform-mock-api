@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_16_131756) do
+ActiveRecord::Schema.define(version: 2020_04_23_140547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -475,6 +475,16 @@ ActiveRecord::Schema.define(version: 2020_04_16_131756) do
     t.uuid "court_centre_id"
     t.index ["court_centre_id"], name: "index_hearing_days_on_court_centre_id"
     t.index ["hearing_id"], name: "index_hearing_days_on_hearing_id"
+  end
+
+  create_table "hearing_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "hearing_id", null: false
+    t.uuid "hearingEventDefinitionId"
+    t.string "recordedLabel"
+    t.datetime "eventTime"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hearing_id"], name: "index_hearing_events_on_hearing_id"
   end
 
   create_table "hearing_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1116,6 +1126,7 @@ ActiveRecord::Schema.define(version: 2020_04_16_131756) do
   add_foreign_key "hearing_case_notes", "hearings"
   add_foreign_key "hearing_days", "court_centres"
   add_foreign_key "hearing_days", "hearings"
+  add_foreign_key "hearing_events", "hearings"
   add_foreign_key "hearings", "court_centres"
   add_foreign_key "hearings", "cracked_ineffective_trials"
   add_foreign_key "hearings", "hearing_types"

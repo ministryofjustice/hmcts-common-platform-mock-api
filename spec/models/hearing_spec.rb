@@ -27,6 +27,7 @@ RSpec.describe Hearing, type: :model do
     it { should have_many(:company_representatives).class_name('CompanyRepresentative') }
     it { should have_many(:court_application_party_attendances).class_name('CourtApplicationPartyAttendance') }
     it { should have_many(:defendant_hearing_youth_markers).class_name('DefendantHearingYouthMarker') }
+    it { should have_many(:events).class_name('HearingEvent') }
   end
   describe 'validations' do
     it { should validate_presence_of(:jurisdictionType) }

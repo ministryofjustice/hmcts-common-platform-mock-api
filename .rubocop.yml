@@ -37,6 +37,9 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
@@ -52,6 +55,9 @@ Style/ExponentialNotation:
 Style/MixinUsage:
   Exclude:
     - lib/tasks/*
+
+Style/SlicingWithRange:
+  Enabled: true
 
 RSpec/BeforeAfterAll:
   Exclude:

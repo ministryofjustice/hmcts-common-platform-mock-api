@@ -38,10 +38,9 @@ RSpec.describe ApplicationController, type: :controller do
       end
     end
 
-    it 'raises a StandardError' do
-      expect do
-        get :index
-      end.to raise_error(StandardError, 'authenticate must be defined by the controller')
+    it 'returns unauthorized' do
+      get :index
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 end

@@ -11,7 +11,7 @@ class HearingLogFinder < ApplicationService
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
     raise Errors::InvalidParams, errors if errors.present?
 
-    Hearing.find(params[:hearingId])
+    Hearing.find(params[:hearingId]).events.where(eventTime: params[:date].to_date.all_day)
   end
 
   private
@@ -19,7 +19,7 @@ class HearingLogFinder < ApplicationService
   attr_reader :params, :schema
 
   def permitted_params
-    params.permit(:hearingId)
+    params.permit(:hearingId, :date)
   end
 
   def register_dependant_schemas!

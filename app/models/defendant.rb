@@ -46,7 +46,7 @@ class Defendant < ApplicationRecord
   }
 
   scope :by_date_of_next_hearing, lambda { |date|
-    joins(judicial_results: :next_hearing).where(next_hearings: { listedStartDateTime: date })
+    joins(judicial_results: :next_hearing).where(next_hearings: { listedStartDateTime: date.to_date.all_day })
   }
 
   def person?

@@ -37,7 +37,7 @@ RSpec.describe LaaReferencesController, type: :controller do
       before { laa_reference.save! }
 
       it 'returns an accepted status' do
-        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_LAA_REFERENCE')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY')
         put :record_reference, params: laa_reference_params
         expect(response).to have_http_status(:accepted)
       end
@@ -45,7 +45,7 @@ RSpec.describe LaaReferencesController, type: :controller do
 
     context 'when the LaaReference is new' do
       it 'returns an accepted status' do
-        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_LAA_REFERENCE')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY')
         put :record_reference, params: laa_reference_params
         expect(response).to have_http_status(:accepted)
       end
@@ -80,7 +80,7 @@ RSpec.describe LaaReferencesController, type: :controller do
       before { laa_reference.save! }
 
       it 'returns an accepted status' do
-        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_REPRESENTATION_ORDER')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY')
         put :record_representation_order, params: laa_reference_params
         expect(response).to have_http_status(:accepted)
       end
@@ -88,7 +88,7 @@ RSpec.describe LaaReferencesController, type: :controller do
 
     context 'when the LaaReference is new' do
       it 'returns an accepted status' do
-        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY_REPRESENTATION_ORDER')
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY')
         put :record_representation_order, params: laa_reference_params
         expect(response).to have_http_status(:accepted)
       end

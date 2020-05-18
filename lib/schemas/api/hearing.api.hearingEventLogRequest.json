@@ -6,10 +6,14 @@
         "hearingId": {
           "description": "The identifier of the hearing",
           "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "date": {
+          "description": "Date of the logs being requested",
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         }
     },
     "required": [
-        "hearingId"
+        "date"
       ],
     "additionalProperties": false
 }

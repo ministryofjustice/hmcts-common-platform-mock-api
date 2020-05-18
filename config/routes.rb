@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     '/defendants/:defendantId' \
     '/offences/:offenceId' => 'laa_references#record_representation_order', as: :representation_order
   get '/LAAGetHearingHttpTrigger' => 'hearings#show', as: :hearing
-  get '/LAAGetHearingLogHttpTrigger' => 'hearings#log', as: :hearing_log
+  get '/LAAGetHearingEventLogHttpTriggerFast' => 'hearings#log', as: :hearing_log
 end

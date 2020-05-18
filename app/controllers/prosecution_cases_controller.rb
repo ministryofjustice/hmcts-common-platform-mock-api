@@ -4,6 +4,7 @@ class ProsecutionCasesController < ApplicationController
   def index
     @prosecution_cases = ProsecutionCaseSearch.call(params)
 
+    headers['Content-Type'] = 'application/vnd.unifiedsearch.query.laa.cases+json'
     render json: prosecution_cases_response
   end
 
@@ -17,14 +18,5 @@ class ProsecutionCasesController < ApplicationController
     @prosecution_cases.ids.map do |prosecution_case_id|
       ProsecutionCaseSummary.new(prosecution_case_id: prosecution_case_id).to_builder.attributes!
     end
-  end
-
-  def authenticate
-    authenticated = ActiveSupport::SecurityUtils.secure_compare(
-      request.headers.fetch('Ocp-Apim-Subscription-Key', ''),
-      ENV.fetch('SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE')
-    )
-
-    head :unauthorized unless authenticated
   end
 end

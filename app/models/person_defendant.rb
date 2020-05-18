@@ -22,7 +22,7 @@ class PersonDefendant < ApplicationRecord
       person_defendant.bailStatus bail_status.to_builder if bail_status.present?
       person_defendant.bailConditions bailConditions
       person_defendant.bailReasons bailReasons
-      person_defendant.custodyTimeLimit custodyTimeLimit.to_date
+      person_defendant.custodyTimeLimit custodyTimeLimit&.to_date
       person_defendant.perceivedBirthYear perceivedBirthYear
       person_defendant.driverNumber driverNumber
       person_defendant.driverLicenceCode driverLicenceCode

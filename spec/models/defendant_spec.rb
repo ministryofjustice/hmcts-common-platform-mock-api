@@ -47,7 +47,7 @@ RSpec.describe Defendant, type: :model do
 
       subject { described_class.by_date_of_next_hearing(next_hearing_date) }
 
-      let!(:defendant_one) { FactoryBot.create(:defendant, :with_next_hearing, next_hearing_date: '2020-01-10') }
+      let!(:defendant_one) { FactoryBot.create(:defendant, :with_next_hearing, next_hearing_date: '2020-01-10 12:30') }
       let!(:defendant_two) { FactoryBot.create(:defendant) }
 
       it { is_expected.to include(defendant_one) }

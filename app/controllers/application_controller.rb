@@ -18,6 +18,11 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate
-    raise StandardError, 'authenticate must be defined by the controller'
+    authenticated = ActiveSupport::SecurityUtils.secure_compare(
+      request.headers.fetch('Ocp-Apim-Subscription-Key', ''),
+      ENV.fetch('SHARED_SECRET_KEY')
+    )
+
+    head :unauthorized unless authenticated
   end
 end

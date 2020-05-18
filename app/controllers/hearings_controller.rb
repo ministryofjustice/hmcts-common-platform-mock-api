@@ -24,13 +24,4 @@ class HearingsController < ApplicationController
       event.to_builder.attributes!
     end
   end
-
-  def authenticate
-    authenticated = ActiveSupport::SecurityUtils.secure_compare(
-      request.headers.fetch('Ocp-Apim-Subscription-Key', ''),
-      ENV.fetch('SHARED_SECRET_KEY_HEARING')
-    )
-
-    head :unauthorized unless authenticated
-  end
 end

@@ -56,26 +56,11 @@ spec:
                 secretKeyRef:
                   name: mock-api-secrets
                   key: laa-adaptor-auth-token
-            - name: SHARED_SECRET_KEY_LAA_REFERENCE
+            - name: SHARED_SECRET_KEY
               valueFrom:
                 secretKeyRef:
                   name: mock-api-secrets
-                  key: common-platform-laa-reference-key
-            - name: SHARED_SECRET_KEY_REPRESENTATION_ORDER
-              valueFrom:
-                secretKeyRef:
-                  name: mock-api-secrets
-                  key: common-platform-representation-order-key
-            - name: SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE
-              valueFrom:
-                secretKeyRef:
-                  name: mock-api-secrets
-                  key: common-platform-search-prosecution-case-key
-            - name: SHARED_SECRET_KEY_HEARING
-              valueFrom:
-                secretKeyRef:
-                  name: mock-api-secrets
-                  key: common-platform-hearing-key
+                  key: common-platform-key
             - name: LAA_ADAPTOR_URL
               value: {{ .Values.laa.adaptor_url }}
           resources:

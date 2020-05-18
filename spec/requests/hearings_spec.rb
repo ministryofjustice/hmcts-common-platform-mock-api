@@ -12,11 +12,11 @@ RSpec.describe 'Hearings', type: :request do
     end
   end
 
-  describe 'GET /LAAGetHearingLogHttpTrigger' do
-    before { FactoryBot.create(:hearing_event, hearing: hearing) }
+  describe 'GET /LAAGetHearingEventLogHttpTriggerFast' do
+    before { FactoryBot.create(:hearing_event, hearing: hearing, eventTime: '2020-12-12 03:30') }
 
     it 'matches the response schema' do
-      get "/LAAGetHearingLogHttpTrigger?hearingId=#{hearing.id}", headers: headers
+      get "/LAAGetHearingEventLogHttpTriggerFast?hearingId=#{hearing.id}&date=2020-12-12", headers: headers
       expect(response).to have_http_status(200)
       expect(response.body).to match_json_schema(:results_hearing_event_log_response)
     end

@@ -42,6 +42,12 @@ RSpec.describe PersonDefendant, type: :model do
   context 'hmcts schema' do
     it_has_behaviour 'conforming to valid schema'
 
+    context 'required attributes' do
+      before { person_defendant.update!(custodyTimeLimit: nil) }
+
+      it_has_behaviour 'conforming to valid schema'
+    end
+
     context 'with relationships' do
       let(:person_defendant) { FactoryBot.create(:person_defendant_with_relationships) }
 

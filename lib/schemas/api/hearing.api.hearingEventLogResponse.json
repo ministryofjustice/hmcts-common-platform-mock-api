@@ -2,22 +2,64 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "http://justice.gov.uk/hearing/courts/api/hearingEventLogResponse.json",
     "type": "object",
-    "properties": {
-        "hearingId": {
-            "description": "The identifier of the hearing",
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
-        },
-        "hasActiveHearing": {
-            "type": "boolean"
-        },
-        "events": {
-        	"description": "The collection of hearing events that constitute the log",
-			"type": "array",
-			"minItems": 1,
-			"items": {
-				"$ref": "../../external/global/apiHearingEvent.json#"
-			}
-        }
+  "properties": {
+    "hearingId": {
+      "$ref": "#/definitions/uuid"
     },
-    "additionalProperties": false
+    "hasActiveHearing": {
+      "type": "boolean"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/event"
+      }
+    }
+  },
+  "required": [
+    "hearingId",
+    "events",
+    "hasActiveHearing"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "event": {
+      "type": "object",
+      "properties": {
+        "hearingEventId": {
+          "$ref": "#/definitions/uuid"
+        },
+        "hearingEventDefinitionId": {
+          "$ref": "#/definitions/uuid"
+        },
+        "defenceCounselId": {
+          "$ref": "#/definitions/uuid"
+        },
+        "recordedLabel": {
+          "type": "string"
+        },
+        "eventTime": {
+          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/date-time"
+        },
+        "lastModifiedTime": {
+          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/date-time"
+        },
+        "alterable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "hearingEventId",
+        "hearingEventDefinitionId",
+        "recordedLabel",
+        "eventTime",
+        "lastModifiedTime",
+        "alterable"
+      ],
+      "additionalProperties": false
+    },
+    "uuid": {
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+    }
+  }
 }

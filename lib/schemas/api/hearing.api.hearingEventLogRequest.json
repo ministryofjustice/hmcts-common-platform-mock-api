@@ -13,6 +13,7 @@
         }
     },
     "required": [
+        "hearingId",
         "date"
       ],
     "additionalProperties": false

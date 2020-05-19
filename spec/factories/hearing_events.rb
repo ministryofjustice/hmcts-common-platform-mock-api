@@ -12,6 +12,7 @@ FactoryBot.define do
       hearingEventDefinitionId { SecureRandom.uuid }
       recordedLabel { Faker::Lorem.sentence }
       eventTime { DateTime.now }
+      alterable { Faker::Boolean.boolean }
     end
   end
 end

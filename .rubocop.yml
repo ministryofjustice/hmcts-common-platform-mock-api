@@ -28,19 +28,13 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
 
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
-
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
 
 Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
   Enabled: true
 
 Lint/RaiseException:
@@ -50,6 +44,15 @@ Lint/StructNewOverride:
   Enabled: true
 
 Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
   Enabled: true
 
 Style/MixinUsage:

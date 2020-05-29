@@ -52,6 +52,8 @@ spec:
               value: {{ .Values.common_platform_secret_key }}
             - name: LAA_ADAPTOR_URL
               value: {{ .Values.laa.adaptor_url }}
+            - name: SECRET_KEY_BASE
+              value: {{ .Values.rails.secret_key_base }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

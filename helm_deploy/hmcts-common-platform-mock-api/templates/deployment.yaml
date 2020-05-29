@@ -46,21 +46,10 @@ spec:
                 secretKeyRef:
                   name: hmcts-mock-api-instance-output
                   key: url
-            - name: RAILS_MASTER_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: mock-api-secrets
-                  key: mock-api-master-key
             - name: LAA_ADAPTOR_AUTH_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: mock-api-secrets
-                  key: laa-adaptor-auth-token
+              value: {{ .Values.laa.auth_token }}
             - name: SHARED_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: mock-api-secrets
-                  key: common-platform-key
+              value: {{ .Values.common_platform_secret_key }}
             - name: LAA_ADAPTOR_URL
               value: {{ .Values.laa.adaptor_url }}
           resources:

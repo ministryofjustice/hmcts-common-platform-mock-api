@@ -1,0 +1,2 @@
+# git-crypt kubernetes secrets
+helm_deploy/**/values.yaml filter=git-crypt diff=git-crypt

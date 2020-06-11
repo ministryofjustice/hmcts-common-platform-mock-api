@@ -25,6 +25,9 @@ class ProsecutionCase < ApplicationRecord
   validates :caseStatus, presence: true, inclusion: CASE_STATUSES
   validates :split_prosecutor_case_references, length: { minimum: 2 }, if: -> { split_prosecutor_case_references.present? }
 
+  accepts_nested_attributes_for :defendants, reject_if: :all_blank
+  accepts_nested_attributes_for :prosecution_case_identifier, reject_if: :all_blank
+
   def to_builder
     Jbuilder.new do |prosecution_case|
       prosecution_case.id id

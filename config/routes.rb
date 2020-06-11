@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :prosecution_cases
+  end
   resources :status, only: [:index]
 
   resources :prosecution_cases, path: '/prosecutionCases', only: [:index]

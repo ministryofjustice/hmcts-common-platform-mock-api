@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Prosecution Cases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prosecution_cases.each do |prosecution_case| %>
+      <tr>
+        <td><%= prosecution_case.prosecution_case_identifier.caseURN %></td>
+        <td><%= link_to 'Show', [:admin, prosecution_case] %></td>
+        <td><%= link_to 'Edit', edit_admin_prosecution_case_path(prosecution_case) %></td>
+        <td><%= link_to 'Destroy', [:admin, prosecution_case], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prosecution Case', new_admin_prosecution_case_path %>

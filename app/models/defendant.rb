@@ -49,6 +49,13 @@ class Defendant < ApplicationRecord
     joins(judicial_results: :next_hearing).where(next_hearings: { listedStartDateTime: date.to_date.all_day })
   }
 
+  accepts_nested_attributes_for :defendable, reject_if: :all_blank
+  accepts_nested_attributes_for :offences, reject_if: :all_blank
+
+  def build_defendable(params)
+    self.defendable = defendable_type.constantize.new(params)
+  end
+
   def person?
     defendable.is_a? PersonDefendant
   end

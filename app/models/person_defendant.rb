@@ -15,6 +15,8 @@ class PersonDefendant < ApplicationRecord
     joins(:person).merge(Person.by_name(params[:defendantName]).by_date_of_birth(params[:dateOfBirth]))
   }
 
+  accepts_nested_attributes_for :person, reject_if: :all_blank
+
   def to_builder
     Jbuilder.new do |person_defendant|
       person_defendant.personDetails person.to_builder

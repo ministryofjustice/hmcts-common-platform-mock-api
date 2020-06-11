@@ -1,0 +1,24 @@
+<hr>
+
+<h3> Prosecution Case Identifier: </h3>
+<%= form.fields_for :prosecution_case_identifier do |prosecution_case_identifier| %>
+  <div class="field">
+    <%= prosecution_case_identifier.label :caseURN, 'Case URN' %>
+    <%= prosecution_case_identifier.text_field :caseURN %>
+  </div>
+
+  <div class="field">
+    <%= prosecution_case_identifier.label :prosecutionAuthorityReference, 'Prosecution Authority Reference' %>
+    <%= prosecution_case_identifier.text_field :prosecutionAuthorityReference %>
+  </div>
+
+  <div class="field">
+    <%= prosecution_case_identifier.label :prosecutionAuthorityId, 'Prosecution Authority Id' %>
+    <%= prosecution_case_identifier.text_field :prosecutionAuthorityId %>
+  </div>
+
+  <div class="field">
+    <%= prosecution_case_identifier.label :prosecutionAuthorityCode, 'Prosecution Authority Code' %>
+    <%= prosecution_case_identifier.text_field :prosecutionAuthorityCode %>
+  </div>
+<% end %>

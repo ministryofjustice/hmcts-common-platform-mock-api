@@ -1,0 +1,66 @@
+<%= form_with(model: [:admin, prosecution_case], local: true) do |form| %>
+  <% if prosecution_case.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prosecution_case.errors.count, "error") %> prohibited this prosecution_case from being saved:</h2>
+
+      <ul>
+        <% prosecution_case.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :originatingOrganisation, 'Originating Organisation' %>
+    <%= form.text_field :originatingOrganisation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :initiationCode, 'Initiation Code' %>
+    <%= form.select :initiationCode, ProsecutionCase::INITIATION_CODES %>
+  </div>
+
+  <div class="field">
+    <%= form.label :caseStatus, 'Case Status' %>
+    <%= form.select :caseStatus, ProsecutionCase::CASE_STATUSES %>
+  </div>
+
+  <div class="field">
+    <%= form.label :statementOfFacts, 'Statement Of Facts' %>
+    <%= form.text_area :statementOfFacts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :statementOfFactsWelsh, 'Statement Of Facts Welsh' %>
+    <%= form.text_area :statementOfFactsWelsh %>
+  </div>
+
+  <div class="field">
+    <%= form.label :breachProceedingsPending, 'Breach Proceedings Pending' %>
+    <%= form.check_box :breachProceedingsPending %>
+  </div>
+
+  <div class="field">
+    <%= form.label :appealProceedingsPending, 'Appeal Proceedings Pending' %>
+    <%= form.check_box :appealProceedingsPending %>
+  </div>
+
+  <div class="field">
+    <%= form.label :removalReason, 'Removal Reason' %>
+    <%= form.text_area :removalReason %>
+  </div>
+
+  <%= render 'prosecution_case_identifier', form: form %>
+  <hr>
+
+  <h3>Defendants:</h3>
+
+    <%= form.fields_for :defendants do |defendant| %>
+      <%= render 'defendant', defendant: defendant %>
+    <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

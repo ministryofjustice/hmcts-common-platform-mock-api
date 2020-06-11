@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<% @prosecution_case.attributes.each do |key, value| %>
+  <p>
+    <strong><%= key.humanize %></strong>
+    <%= value %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_admin_prosecution_case_path(@prosecution_case) %> |
+<%= link_to 'Back', admin_prosecution_cases_path %>

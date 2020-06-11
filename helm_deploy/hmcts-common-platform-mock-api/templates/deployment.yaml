@@ -50,6 +50,10 @@ spec:
               value: {{ .Values.laa.auth_token }}
             - name: SHARED_SECRET_KEY
               value: {{ .Values.common_platform_secret_key }}
+            - name: ADMIN_USERNAME
+              value: {{ .Values.admin_username }}
+            - name: ADMIN_PASSWORD
+              value: {{ .Values.admin_password }}
             - name: LAA_ADAPTOR_URL
               value: {{ .Values.laa.adaptor_url }}
             - name: SECRET_KEY_BASE

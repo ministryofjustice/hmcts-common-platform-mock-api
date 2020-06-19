@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "hmcts-common-platform-mock-api.fullname" . }}
   labels:
-{{ include "hmcts-common-platform-mock-api.labels" . | indent 4 }}
+    {{- include "hmcts-common-platform-mock-api.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,5 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "hmcts-common-platform-mock-api.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "hmcts-common-platform-mock-api.selectorLabels" . | nindent 4 }}

@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: "{{ include "hmcts-common-platform-mock-api.fullname" . }}-test-connection"
   labels:
-{{ include "hmcts-common-platform-mock-api.labels" . | indent 4 }}
+    {{- include "hmcts-common-platform-mock-api.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "hmcts-common-platform-mock-api.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "hmcts-common-platform-mock-api.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never

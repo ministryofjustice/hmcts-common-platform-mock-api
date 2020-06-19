@@ -3,26 +3,35 @@ kind: Deployment
 metadata:
   name: {{ include "hmcts-common-platform-mock-api.fullname" . }}
   labels:
-{{ include "hmcts-common-platform-mock-api.labels" . | indent 4 }}
+    {{- include "hmcts-common-platform-mock-api.labels" . | nindent 4 }}
 spec:
+{{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+{{- end }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "hmcts-common-platform-mock-api.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "hmcts-common-platform-mock-api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      labels:
-        app.kubernetes.io/name: {{ include "hmcts-common-platform-mock-api.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-    spec:
-    {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
+    {{- with .Values.podAnnotations }}
+      annotations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+      labels:
+        {{- include "hmcts-common-platform-mock-api.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "hmcts-common-platform-mock-api.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -32,14 +41,10 @@ spec:
             httpGet:
               path: /status
               port: http
-            initialDelaySeconds: 30
-            timeoutSeconds: 10
           readinessProbe:
             httpGet:
               path: /status
               port: http
-            initialDelaySeconds: 30
-            timeoutSeconds: 10
           env:
             - name: DATABASE_URL
               valueFrom:
@@ -64,11 +69,11 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- with .Values.affinity }}
+      {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}

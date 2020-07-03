@@ -10,7 +10,8 @@ RSpec.describe Hearing, type: :model do
     it { should belong_to(:court_centre).class_name('CourtCentre') }
     it { should belong_to(:hearing_type).class_name('HearingType') }
     it { should belong_to(:cracked_ineffective_trial).class_name('CrackedIneffectiveTrial').optional }
-    it { should have_many(:prosecution_cases).class_name('ProsecutionCase') }
+    it { should have_many(:prosecution_case_hearings).class_name('ProsecutionCaseHearing') }
+    it { should have_many(:prosecution_cases).class_name('ProsecutionCase').through(:prosecution_case_hearings) }
     it { should have_many(:court_applications).class_name('CourtApplication') }
     it { should have_many(:referral_reasons).class_name('ReferralReason') }
     it { should have_many(:hearing_case_notes).class_name('HearingCaseNote') }

@@ -8,7 +8,8 @@ class ProsecutionCase < ApplicationRecord
   belongs_to :prosecution_case_identifier
   belongs_to :police_officer_in_case, optional: true
   belongs_to :merged_prosecution_case, optional: true
-  belongs_to :hearing, optional: true, inverse_of: :prosecution_cases
+  has_many :prosecution_case_hearings, dependent: :destroy
+  has_many :hearings, through: :prosecution_case_hearings
 
   has_many :defendants, dependent: :destroy, inverse_of: :prosecution_case
   has_many :person_only_defendants, -> { people_only }, class_name: 'Defendant'

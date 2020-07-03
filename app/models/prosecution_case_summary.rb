@@ -17,7 +17,7 @@ class ProsecutionCaseSummary
       prosecution_case_summary.prosecutionCaseReference prosecution_case_reference
       prosecution_case_summary.caseStatus prosecution_case.caseStatus
       prosecution_case_summary.defendantSummary defendants_builder
-      prosecution_case_summary.hearingSummary hearings_builder if prosecution_case.hearing_id.present?
+      prosecution_case_summary.hearingSummary hearings_builder if prosecution_case.hearings.present?
     end
   end
 
@@ -28,7 +28,7 @@ class ProsecutionCaseSummary
   end
 
   def hearings_builder
-    [HearingSummary.new(hearing_id: prosecution_case.hearing_id).to_builder.attributes!]
+    prosecution_case.hearings.map { |hearing| HearingSummary.new(hearing_id: hearing.id).to_builder.attributes! }
   end
 
   def defendants_builder

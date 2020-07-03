@@ -5,7 +5,8 @@ class Hearing < ApplicationRecord
   belongs_to :court_centre
   belongs_to :hearing_type
   belongs_to :cracked_ineffective_trial, optional: true
-  has_many :prosecution_cases
+  has_many :prosecution_case_hearings, dependent: :destroy
+  has_many :prosecution_cases, through: :prosecution_case_hearings
   has_many :court_applications
   has_many :referral_reasons
   has_many :hearing_case_notes

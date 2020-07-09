@@ -36,11 +36,11 @@ class Offence < ApplicationRecord
       offence.wording wording
       offence.wordingWelsh wordingWelsh
       offence.startDate startDate.to_date
-      offence.endDate endDate.to_date
-      offence.arrestDate arrestDate.to_date
-      offence.chargeDate chargeDate.to_date
-      offence.laidDate laidDate.to_date
-      offence.dateOfInformation dateOfInformation.to_date
+      offence.endDate endDate&.to_date
+      offence.arrestDate arrestDate&.to_date
+      offence.chargeDate chargeDate&.to_date
+      offence.laidDate laidDate&.to_date
+      offence.dateOfInformation dateOfInformation&.to_date
       offence.orderIndex orderIndex
       offence.count count
       offence.convictionDate convictionDate.to_date

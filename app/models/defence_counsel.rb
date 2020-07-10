@@ -2,8 +2,8 @@
 
 class DefenceCounsel < ApplicationRecord
   include BuilderMappable
-  has_many :defendants
-  has_many :attendance_days
+  has_many :defendants, dependent: :nullify
+  has_many :attendance_days, dependent: :destroy
 
   validates :defendants, presence: true
   validates :attendance_days, presence: true

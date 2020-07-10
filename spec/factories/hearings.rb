@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :hearing do
     jurisdictionType { 'CROWN' }
-    reportingRestrictionReason { 'MyString' }
+    reportingRestrictionReason { 'reporting restriction because...' }
     court_centre
     hearingLanguage { 'WELSH' }
     hasSharedResults { false }

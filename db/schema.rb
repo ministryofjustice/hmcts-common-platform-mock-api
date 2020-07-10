@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_112230) do
+ActiveRecord::Schema.define(version: 2020_07_03_152351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -958,6 +958,15 @@ ActiveRecord::Schema.define(version: 2020_05_19_112230) do
     t.index ["prosecution_case_id"], name: "prosecution_case_hearing_case_notes_on_prosecution_case_id"
   end
 
+  create_table "prosecution_case_hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecution_case_id", null: false
+    t.uuid "hearing_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hearing_id"], name: "index_prosecution_case_hearings_on_hearing_id"
+    t.index ["prosecution_case_id"], name: "index_prosecution_case_hearings_on_prosecution_case_id"
+  end
+
   create_table "prosecution_case_identifiers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "caseURN"
     t.string "prosecutionAuthorityReference"
@@ -981,9 +990,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_112230) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "prosecution_counsel_id"
-    t.uuid "hearing_id"
     t.string "removalReason"
-    t.index ["hearing_id"], name: "index_prosecution_cases_on_hearing_id"
     t.index ["merged_prosecution_case_id"], name: "index_prosecution_cases_on_merged_prosecution_case_id"
     t.index ["police_officer_in_case_id"], name: "index_prosecution_cases_on_police_officer_in_case_id"
     t.index ["prosecution_case_identifier_id"], name: "index_prosecution_cases_on_prosecution_case_identifier_id"
@@ -1183,7 +1190,8 @@ ActiveRecord::Schema.define(version: 2020_05_19_112230) do
   add_foreign_key "prosecuting_authorities", "contact_numbers", column: "contact_id"
   add_foreign_key "prosecution_case_hearing_case_notes", "hearing_case_notes"
   add_foreign_key "prosecution_case_hearing_case_notes", "prosecution_cases"
-  add_foreign_key "prosecution_cases", "hearings"
+  add_foreign_key "prosecution_case_hearings", "hearings"
+  add_foreign_key "prosecution_case_hearings", "prosecution_cases"
   add_foreign_key "prosecution_cases", "merged_prosecution_cases"
   add_foreign_key "prosecution_cases", "police_officer_in_cases"
   add_foreign_key "prosecution_cases", "prosecution_case_identifiers"

@@ -12,7 +12,8 @@ RSpec.describe ProsecutionCaseSummary, type: :model do
 
   context 'with a hearing relationship' do
     before do
-      prosecution_case.update!(hearing: FactoryBot.create(:hearing))
+      prosecution_case.hearings << FactoryBot.create(:hearing)
+      prosecution_case.save!
     end
 
     it_has_behaviour 'conforming to valid schema'

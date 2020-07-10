@@ -7,7 +7,8 @@ RSpec.describe ProsecutionCase, type: :model do
   subject { prosecution_case }
 
   describe 'associations' do
-    it { should belong_to(:hearing).class_name('Hearing').optional }
+    it { should have_many(:prosecution_case_hearings).class_name('ProsecutionCaseHearing') }
+    it { should have_many(:hearings).class_name('Hearing').through(:prosecution_case_hearings) }
     it { should belong_to(:prosecution_case_identifier).class_name('ProsecutionCaseIdentifier') }
     it { should belong_to(:police_officer_in_case).class_name('PoliceOfficerInCase').optional }
     it { should belong_to(:merged_prosecution_case).class_name('MergedProsecutionCase').optional }
@@ -58,6 +59,7 @@ RSpec.describe ProsecutionCase, type: :model do
 
   context 'with relationships' do
     before do
+      prosecution_case.hearings << build(:hearing)
       prosecution_case.police_officer_in_case = build(:police_officer_in_case)
       prosecution_case.merged_prosecution_case = build(:merged_prosecution_case)
       prosecution_case.defendants << build(:defendant)

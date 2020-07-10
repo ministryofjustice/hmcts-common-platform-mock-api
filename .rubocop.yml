@@ -84,3 +84,6 @@ RSpec/ImplicitSubject:
 
 RSpec/MessageSpies:
   EnforcedStyle: receive
+
+Style/RedundantFetchBlock:
+  Enabled: true

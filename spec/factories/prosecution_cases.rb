@@ -33,6 +33,7 @@ FactoryBot.define do
     association :merged_prosecution_case, factory: :realistic_merged_prosecution_case
 
     after(:build) do |prosecution_case|
+      prosecution_case.hearings << build_list(:hearing, (0..2).to_a.sample)
       prosecution_case.defendants << build(:realistic_defendant, prosecution_case: nil)
       prosecution_case.markers << build_list(:realistic_marker, (0..3).to_a.sample)
       prosecution_case.split_prosecutor_case_references << build_list(:realistic_split_prosecutor_case_reference,

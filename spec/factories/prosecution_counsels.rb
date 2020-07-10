@@ -2,11 +2,11 @@
 
 FactoryBot.define do
   factory :prosecution_counsel do
-    title { 'Mr' }
-    firstName { 'John' }
-    middleName { 'Random' }
-    lastName { 'Rob' }
-    status { 'Random' }
+    title { Faker::Name.prefix }
+    firstName { Faker::Name.first_name }
+    middleName { Faker::Name.first_name }
+    lastName { Faker::Name.last_name }
+    status { 'Prosecution counsel status' }
     after(:build) do |prosecution_counsel|
       prosecution_counsel.prosecution_cases << build(:prosecution_case)
       prosecution_counsel.attendance_days << build(:attendance_day)

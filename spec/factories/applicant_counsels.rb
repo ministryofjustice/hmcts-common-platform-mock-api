@@ -2,11 +2,11 @@
 
 FactoryBot.define do
   factory :applicant_counsel do
-    title { 'Mr' }
-    firstName { 'John' }
-    middleName { 'Random' }
-    lastName { 'Rob' }
-    status { 'Leading counsel' }
+    title { Faker::Name.prefix }
+    firstName { Faker::Name.first_name }
+    middleName { Faker::Name.first_name }
+    lastName { Faker::Name.last_name }
+    status { 'Appplicant counsel status' }
     after(:build) do |applicant_counsel|
       applicant_counsel.applicants << build(:applicant)
       applicant_counsel.attendance_days << build(:attendance_day)

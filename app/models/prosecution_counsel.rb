@@ -2,8 +2,8 @@
 
 class ProsecutionCounsel < ApplicationRecord
   include BuilderMappable
-  has_many :prosecution_cases
-  has_many :attendance_days
+  has_many :prosecution_cases, dependent: :nullify
+  has_many :attendance_days, dependent: :destroy
 
   validates :prosecution_cases, presence: true
   validates :attendance_days, presence: true

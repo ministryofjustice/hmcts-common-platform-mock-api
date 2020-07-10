@@ -7,8 +7,8 @@ RSpec.describe DefenceCounsel, type: :model do
   subject { defence_counsel }
 
   describe 'associations' do
-    it { should have_many(:defendants).class_name('Defendant') }
-    it { should have_many(:attendance_days).class_name('AttendanceDay') }
+    it { should have_many(:defendants).class_name('Defendant').dependent(:nullify) }
+    it { should have_many(:attendance_days).class_name('AttendanceDay').dependent(:destroy) }
   end
 
   describe 'validations' do

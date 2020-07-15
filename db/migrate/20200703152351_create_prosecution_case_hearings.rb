@@ -10,7 +10,9 @@ class CreateProsecutionCaseHearings < ActiveRecord::Migration[6.0]
       dir.up do
         execute <<-SQL
         INSERT INTO prosecution_case_hearings (prosecution_case_id, hearing_id, created_at, updated_at)
-        SELECT id, hearing_id, created_at, updated_at FROM prosecution_cases;
+        SELECT id, hearing_id, created_at, updated_at
+        FROM prosecution_cases
+        WHERE hearing_id IS NOT NULL;
         SQL
       end
     end

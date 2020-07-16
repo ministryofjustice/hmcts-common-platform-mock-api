@@ -22,7 +22,6 @@ RSpec.describe HearingDay, type: :model do
   end
 
   describe 'relationships' do
-    it { should belong_to(:court_centre).optional }
     it { should have_many(:judicial_roles) }
   end
 

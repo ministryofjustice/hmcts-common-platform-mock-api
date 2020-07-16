@@ -3,7 +3,6 @@
 class LjaDetails < ApplicationRecord
   validates :ljaCode, presence: true
   validates :ljaName, presence: true
-  has_one :court_centre
 
   def to_builder
     Jbuilder.new do |lja_details|

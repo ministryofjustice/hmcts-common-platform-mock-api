@@ -2,11 +2,11 @@
 
 class CourtApplication < ApplicationRecord
   include BuilderMappable
+  include CourtCentreRelatable
   belongs_to :application_type, class_name: 'CourtApplicationType'
   belongs_to :court_application_party
   belongs_to :court_application_outcome, optional: true
   belongs_to :court_application_payment, optional: true
-  belongs_to :court_centre, optional: true
   has_many :court_application_respondents
   has_many :judicial_results
 

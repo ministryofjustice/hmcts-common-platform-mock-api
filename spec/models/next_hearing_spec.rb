@@ -14,7 +14,7 @@ RSpec.describe NextHearing, type: :model do
   end
   describe 'validations' do
     it { should validate_presence_of(:hearing_type) }
-    it { should validate_presence_of(:court_centre) }
+    it { should validate_presence_of(:court_centre_id) }
     it { should validate_presence_of(:estimatedMinutes) }
     it { should validate_presence_of(:listedStartDateTime) }
     it do
@@ -31,8 +31,7 @@ RSpec.describe NextHearing, type: :model do
 
   context 'with relationships' do
     before do
-      next_hearing.court_centre = FactoryBot.create(:court_centre)
-      next_hearing.save!
+      next_hearing.update!(court_centre_id: 'bc4864ca-4b22-3449-9716-a8db1db89905')
     end
 
     it_has_behaviour 'conforming to valid schema'

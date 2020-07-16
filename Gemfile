@@ -23,6 +23,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'faraday_middleware'
+gem 'hmcts_common_platform', github: 'ministryofjustice/hmcts_common_platform', tag: '0.1.0'
 gem 'json-schema'
 gem 'pg_search'
 

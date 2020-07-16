@@ -2,7 +2,7 @@
 
 class Hearing < ApplicationRecord
   include BuilderMappable
-  belongs_to :court_centre
+  include CourtCentreRelatable
   belongs_to :hearing_type
   belongs_to :cracked_ineffective_trial, optional: true
   has_many :prosecution_case_hearings, dependent: :destroy
@@ -26,7 +26,7 @@ class Hearing < ApplicationRecord
   has_many :events, class_name: 'HearingEvent', inverse_of: :hearing
 
   validates :jurisdictionType, presence: true, inclusion: %w[MAGISTRATES CROWN]
-  validates :court_centre, presence: true
+  validates :court_centre_id, presence: true
   validates :hearing_type, presence: true
   validates :hearing_days, presence: true
   validates :hearingLanguage, inclusion: %w[ENGLISH WELSH]

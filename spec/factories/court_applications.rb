@@ -17,6 +17,5 @@ FactoryBot.define do
     outOfTimeReasons { 'MyString' }
     breachedOrder { 'MyString' }
     breachedOrderDate { 'MyString' }
-    court_centre { nil }
   end
 end

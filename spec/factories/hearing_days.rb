@@ -10,7 +10,7 @@ FactoryBot.define do
       startTime { '10:00' }
       endTime { '12:00' }
       onTheDayCourtRoomId { SecureRandom.uuid }
-      court_centre
+      court_centre_id { HmctsCommonPlatform::Reference::CourtCentre.all.sample.id }
       after(:build) do |hearing_day|
         hearing_day.judicial_roles << build(:judicial_role)
       end

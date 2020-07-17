@@ -9,7 +9,7 @@ FactoryBot.define do
     hearingLanguage { 'WELSH' }
     listedStartDateTime { '2019-10-15 16:57:50' }
     estimatedMinutes { 1 }
-    court_centre
+    court_centre_id { 'bc4864ca-4b22-3449-9716-a8db1db89905' }
 
     after(:build) do |next_hearing|
       next_hearing.judicial_roles << build(:judicial_role, next_hearing: nil)

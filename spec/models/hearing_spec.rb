@@ -7,7 +7,6 @@ RSpec.describe Hearing, type: :model do
   subject { hearing }
 
   describe 'associations' do
-    it { should belong_to(:court_centre).class_name('CourtCentre') }
     it { should belong_to(:hearing_type).class_name('HearingType') }
     it { should belong_to(:cracked_ineffective_trial).class_name('CrackedIneffectiveTrial').optional }
     it { should have_many(:prosecution_case_hearings).class_name('ProsecutionCaseHearing') }
@@ -32,7 +31,7 @@ RSpec.describe Hearing, type: :model do
   end
   describe 'validations' do
     it { should validate_presence_of(:jurisdictionType) }
-    it { should validate_presence_of(:court_centre) }
+    it { should validate_presence_of(:court_centre_id) }
     it { should validate_presence_of(:hearing_type) }
     it { should validate_presence_of(:hearing_days) }
     it { should validate_inclusion_of(:jurisdictionType).in_array(%w[MAGISTRATES CROWN]) }

@@ -2,15 +2,15 @@
 
 class NextHearing < ApplicationRecord
   include BuilderMappable
+  include CourtCentreRelatable
   belongs_to :hearing_type
-  belongs_to :court_centre
 
   has_many :judicial_roles
   has_many :next_hearing_prosecution_cases
   has_many :next_hearing_court_applications
 
   validates :hearing_type, presence: true
-  validates :court_centre, presence: true
+  validates :court_centre_id, presence: true
   validates :estimatedMinutes, presence: true
   validates :listedStartDateTime, presence: true
   validates :jurisdictionType, inclusion: %w[MAGISTRATES CROWN]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_152351) do
+ActiveRecord::Schema.define(version: 2020_07_16_140027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -283,22 +283,6 @@ ActiveRecord::Schema.define(version: 2020_07_03_152351) do
     t.index ["court_application_payment_id"], name: "index_court_applications_on_court_application_payment_id"
     t.index ["court_centre_id"], name: "index_court_applications_on_court_centre_id"
     t.index ["hearing_id"], name: "index_court_applications_on_hearing_id"
-  end
-
-  create_table "court_centres", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.string "welshName"
-    t.uuid "roomId"
-    t.string "roomName"
-    t.string "welshRoomName"
-    t.uuid "address_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.uuid "lja_details_id"
-    t.string "ouCode"
-    t.string "courtHearingLocation"
-    t.index ["address_id"], name: "index_court_centres_on_address_id"
-    t.index ["lja_details_id"], name: "index_court_centres_on_lja_details_id"
   end
 
   create_table "court_indicated_sentences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1110,10 +1094,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_152351) do
   add_foreign_key "court_applications", "court_application_parties"
   add_foreign_key "court_applications", "court_application_payments"
   add_foreign_key "court_applications", "court_application_types", column: "application_type_id"
-  add_foreign_key "court_applications", "court_centres"
   add_foreign_key "court_applications", "hearings"
-  add_foreign_key "court_centres", "addresses"
-  add_foreign_key "court_centres", "lja_details", column: "lja_details_id"
   add_foreign_key "defence_counsels", "hearings"
   add_foreign_key "defence_organisations", "defendants"
   add_foreign_key "defence_organisations", "organisations"
@@ -1132,10 +1113,8 @@ ActiveRecord::Schema.define(version: 2020_07_03_152351) do
   add_foreign_key "defendants", "prosecution_cases"
   add_foreign_key "hearing_case_notes", "delegated_powers", column: "court_clerk_id"
   add_foreign_key "hearing_case_notes", "hearings"
-  add_foreign_key "hearing_days", "court_centres"
   add_foreign_key "hearing_days", "hearings"
   add_foreign_key "hearing_events", "hearings"
-  add_foreign_key "hearings", "court_centres"
   add_foreign_key "hearings", "cracked_ineffective_trials"
   add_foreign_key "hearings", "hearing_types"
   add_foreign_key "interpreter_intermediaries", "attendants"
@@ -1164,7 +1143,6 @@ ActiveRecord::Schema.define(version: 2020_07_03_152351) do
   add_foreign_key "next_hearing_defendants", "next_hearing_prosecution_cases"
   add_foreign_key "next_hearing_offences", "next_hearing_defendants"
   add_foreign_key "next_hearing_prosecution_cases", "next_hearings"
-  add_foreign_key "next_hearings", "court_centres"
   add_foreign_key "next_hearings", "hearing_types"
   add_foreign_key "offences", "allocation_decisions"
   add_foreign_key "offences", "custody_time_limits"

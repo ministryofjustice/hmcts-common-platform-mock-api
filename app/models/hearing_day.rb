@@ -2,12 +2,12 @@
 
 class HearingDay < ApplicationRecord
   include BuilderMappable
+  include CourtCentreRelatable
 
   validates :sittingDay, presence: true
   validates :listedDurationMinutes, presence: true
   validate :end_time_cannot_be_before_start_time
 
-  belongs_to :court_centre, optional: true
   has_many :judicial_roles
 
   def to_builder

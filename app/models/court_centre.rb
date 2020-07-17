@@ -1,22 +1,55 @@
 # frozen_string_literal: true
 
-class CourtCentre < ApplicationRecord
-  belongs_to :address, optional: true
-  belongs_to :lja_details, optional: true
-  has_many :hearing_day
+class CourtCentre
+  include ActiveModel::Model
+
+  attr_accessor :id
 
   def to_builder
     Jbuilder.new do |court_centre|
       court_centre.id id
-      court_centre.name name
-      court_centre.ouCode ouCode
-      court_centre.courtHearingLocation courtHearingLocation
-      court_centre.welshName welshName
-      court_centre.roomId roomId
-      court_centre.roomName roomName
-      court_centre.welshRoomName welshRoomName
+      court_centre.name csv_row.oucode_l3_name
+      court_centre.ouCode csv_row.oucode
+      court_centre.courtHearingLocation csv_row.region
+      court_centre.welshName csv_row.oucode_l3_welsh_name
+      court_centre.roomId id # Using CourtCentre while we manage to get a list of rooms
+      court_centre.roomName csv_row.oucode_l3_name # Using CourtCentre while we manage to get a list of rooms
+      court_centre.welshRoomName csv_row.oucode_l3_welsh_name # Using CourtCentre while we manage to get a list of rooms
       court_centre.address address.to_builder if address.present?
       court_centre.lja lja_details.to_builder if lja_details.present?
+    end
+  end
+
+  private
+
+  def csv_row
+    @csv_row ||= HmctsCommonPlatform::Reference::CourtCentre.find(id)
+  end
+
+  def address
+    return if csv_row.address1.blank?
+
+    @address ||= begin
+      Address.new(
+        address1: csv_row.address1,
+        address2: csv_row.address2,
+        address3: csv_row.address3,
+        address4: csv_row.address4,
+        address5: csv_row.address5,
+        postcode: csv_row.postcode
+      )
+    end
+  end
+
+  def lja_details
+    return if csv_row.lja.blank?
+
+    @lja_details ||= begin
+      LjaDetails.new(
+        ljaCode: csv_row.lja,
+        ljaName: csv_row.lja,
+        welshLjaName: csv_row.lja
+      )
     end
   end
 end

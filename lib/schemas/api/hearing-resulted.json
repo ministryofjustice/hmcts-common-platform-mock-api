@@ -4,7 +4,7 @@
     "type": "object",
     "properties": {
         "hearing": {
-            "$ref": "../../external/global/apiHearing.json#"
+            "$ref": "http://justice.gov.uk/core/courts/external/hearing.json#"
         },
         "sharedTime": {
             "format": "date-time"

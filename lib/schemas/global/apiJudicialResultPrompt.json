@@ -4,10 +4,10 @@
   "description": "The prompts for the result that was ordered by the judiciary",
   "type": "object",
   "properties": {
-  	"judicialResultPromptTypeId": {
-		"description": "The result prompt type from reference data.  Required for rollup and Nows purposes",
-		"$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
-	},
+    "judicialResultPromptTypeId": {
+      "description": "The result prompt type from reference data.  Required for rollup and Nows purposes",
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+    },
     "label": {
       "description": "The result prompt label provided from reference data during the resulting process",
       "type": "string"
@@ -59,7 +59,7 @@
     }
   },
   "required": [
-    "label", "isAvailableForCourtExtract", "judicialResultPromptTypeId"
+    "label", "isAvailableForCourtExtract"
   ],
   "additionalProperties": false
 }

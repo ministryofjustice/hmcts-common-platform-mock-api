@@ -16,7 +16,7 @@
       "type": "string"
     },
     "vehicleCode": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/vehicleCode"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/vehicleCode"
     }
   },
   "additionalProperties": false

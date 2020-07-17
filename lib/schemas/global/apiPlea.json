@@ -5,22 +5,34 @@
   "type": "object",
   "properties": {
     "originatingHearingId": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "delegatedPowers": {
-      "$ref": "../../external/global/apiDelegatedPowers.json"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiDelegatedPowers.json"
     },
     "offenceId": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "pleaDate": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "pleaValue": {
       "type": "string",
       "enum": [
         "GUILTY",
-        "NOT_GUILTY"
+        "NOT_GUILTY",
+        "MCA_GUILTY",
+        "UNFIT_TO_PLEAD",
+        "AUTREFOIS_ACQUIT",
+        "AUTREFOIS_CONVICT",
+        "CONSENTS",
+        "OPPOSES",
+        "NO_PLEA",
+        "CHANGE_TO_NOT_GUILTY",
+        "CHANGE_TO_GUILTY_AFTER_SWORN_IN",
+        "CHANGE_TO_GUILTY_NO_SWORN_IN",
+        "CHANGE_TO_GUILTY_MAGISTRATES_COURT",
+        "PARDON"
       ]
     }
   },

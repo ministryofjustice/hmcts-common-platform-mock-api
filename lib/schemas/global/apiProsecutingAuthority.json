@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "prosecutionAuthorityId": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "prosecutionAuthorityCode": {
       "type": "string"
@@ -20,11 +20,11 @@
     },
     "address": {
       "description": "The authority address details",
-      "$ref": "../../external/global/apiAddress.json"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiAddress.json"
     },
     "contact": {
       "description": "The authority contact details",
-      "$ref": "../../external/global/apiContactNumber.json"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiContactNumber.json"
     }
   },
   "required": [

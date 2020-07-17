@@ -1,20 +1,20 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "id": "http://justice.gov.uk/hearing/courts/api/hearingEventLogRequest.json",
-    "type": "object",
-    "properties": {
-        "hearingId": {
-          "description": "The identifier of the hearing",
-          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
-        },
-        "date": {
-          "description": "Date of the logs being requested",
-          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
-        }
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/hearing/courts/api/hearingEventLogRequest.json",
+  "type": "object",
+  "properties": {
+    "hearingId": {
+      "description": "The identifier of the hearing",
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
-    "required": [
-        "hearingId",
-        "date"
-      ],
-    "additionalProperties": false
+    "date": {
+      "description": "date of hearing",
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+    }
+  },
+  "required": [
+    "hearingId",
+    "date"
+  ],
+  "additionalProperties": false
 }

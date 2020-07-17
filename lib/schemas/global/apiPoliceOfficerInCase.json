@@ -4,7 +4,7 @@
   "type": "object",
   "properties": {
     "personDetails": {
-      "$ref": "../../external/global/apiPerson.json"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiPerson.json"
     },
     "policeOfficerRank": {
       "description": "Indicates the rank of a police officer within a particular police force",

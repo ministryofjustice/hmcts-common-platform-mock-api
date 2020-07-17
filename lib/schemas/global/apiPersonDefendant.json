@@ -1,34 +1,35 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://justice.gov.uk/core/courts/external/apipersonDefendant.json",
+  "id": "http://justice.gov.uk/core/courts/external/apiPersonDefendant.json",
   "type": "object",
   "properties": {
     "personDetails": {
-      "$ref": "../global/apiperson.json"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiPerson.json"
     },
     "bailStatus": {
-      "$ref": "apibailStatus.json"
+      "description": "The defendant bail status for the given case",
+      "$ref": "http://justice.gov.uk/core/courts/external/apiBailStatus.json"
     },
     "bailConditions": {
       "description": "Defines the conditions that have been applied to the Order of Bail, or Order of Remand into the care of the Local Authority",
       "type": "string"
     },
-	"bailReasons": {
+    "bailReasons": {
       "description": "Defines the reasons for setting bail conditions or the reasons for custody",
       "type": "string"
     },
     "custodyTimeLimit": {
       "description": "The custody time limit for the given case when the bail status is remanded-in-custody",
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "perceivedBirthYear": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/positiveInteger"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
     },
     "driverNumber": {
       "type": "string"
     },
     "driverLicenceCode": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/driverLicenseCode"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/driverLicenseCode"
     },
     "driverLicenseIssue": {
       "description": "identifies the license issue no.",
@@ -41,11 +42,8 @@
     "arrestSummonsNumber": {
       "type": "string"
     },
-    "defendantCustodyLocation": {
-      "$ref": "apidefendantCustodyLocation.json#"
-    },
     "employerOrganisation": {
-      "$ref": "apiorganisation.json#"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiOrganisation.json"
     },
     "employerPayrollReference": {
       "type": "string"

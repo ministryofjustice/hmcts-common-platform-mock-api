@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://justice.gov.uk/core/courts/external/apicourtsDefinitions.json",
+  "id": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json",
   "definitions": {
     "positiveInteger": {
       "type": "integer",
@@ -22,6 +22,10 @@
         "COMPLETE"
       ]
     },
+    "prosecutionCaseStatus": {
+      "description": "The defendants bail status",
+      "type": "string"
+    },
     "resultLevel": {
       "description": "Available when the UI has resolved the result with the notepad parsing service i.e. is expected when result line isComplete is true",
       "type": "string",
@@ -29,19 +33,6 @@
         "DEFENDANT",
         "CASE",
         "OFFENCE"
-      ]
-    },
-    "prosecutionCaseStatus": {
-      "description": "The defendants bail status",
-      "type": "string"
-    },
-    "defendantCustodyLocationType": {
-      "description": "Describes the type of custody location",
-      "type": "string",
-      "enum": [
-        "POLICESTATION",
-        "PRISON",
-        "DETENTIONCENTRE"
       ]
     },
     "legacyReferralStatus": {
@@ -70,11 +61,8 @@
       "type": "string",
       "enum": [
         "DRAFT",
-        "UN_ALLOCATED",
         "LISTED",
-        "IN_PROGRESS",
-        "FINALISED",
-        "EJECTED"
+        "FINALISED"
       ]
     },
     "applicationJurisdictionType": {
@@ -200,8 +188,8 @@
       ]
     },
     "personTitle": {
-      "description": "A person is the base type of a defendant.  Defendants title must be constrained to remain compliant with the GOB interface",
-      "type": "string"
+      "type": "string",
+      "description": "A person is the base type of a defendant.  Defendants title must be constrained to remain compliant with the GOB interface"
     },
     "judicialRoleType": {
       "type": "string",
@@ -249,6 +237,10 @@
         "COURT_APPOINTED",
         "PRO_BONO"
       ]
+    },
+    "date-time": {
+      "type": "string",
+      "format": "date-time"
     }
   },
   "additionalProperties": false

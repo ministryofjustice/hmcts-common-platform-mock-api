@@ -1,147 +1,131 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://justice.gov.uk/core/courts/external/apioffence.json",
-  "type": "object",
-  "properties": {
-    "id": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/uuid"
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://justice.gov.uk/core/courts/external/apiOffence.json",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "offenceDefinitionId": {
+            "description": "The identifier of the offence from reference data",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "offenceCode": {
+            "type": "string"
+        },
+        "offenceTitle": {
+            "type": "string"
+        },
+        "offenceTitleWelsh": {
+            "type": "string"
+        },
+        "offenceLegislation": {
+            "type": "string"
+        },
+        "offenceLegislationWelsh": {
+            "type": "string"
+        },
+        "modeOfTrial": {
+            "type": "string"
+        },
+        "wording": {
+            "type": "string"
+        },
+        "wordingWelsh": {
+            "type": "string"
+        },
+        "startDate": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "endDate": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "arrestDate": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "chargeDate": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "laidDate": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "dateOfInformation": {
+            "description": "The date that the matter is brought to court attention for consideration and for proceeding",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "orderIndex": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
+        },
+        "count": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
+        },
+        "convictionDate": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "notifiedPlea": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiNotifiedPlea.json"
+        },
+        "indicatedPlea": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiIndicatedPlea.json"
+        },
+        "allocationDecision": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiAllocationDecision.json"
+        },
+        "plea": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiPlea.json"
+        },
+        "verdict": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiVerdict.json"
+        },
+        "offenceFacts": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiOffenceFacts.json"
+        },
+        "aquittalDate": {
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "victims": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "http://justice.gov.uk/core/courts/external/apiPerson.json#"
+            }
+        },
+        "judicialResults": {
+            "description": "A record of any judicial decisions and results made against the offence",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "http://justice.gov.uk/core/courts/external/apiJudicialResult.json"
+            }
+        },
+        "isDiscontinued": {
+            "description": "Determines that the offence has been discontinued by the prosecutor i.e. is no longer being proceeded with",
+            "type": "boolean"
+        },
+        "isIntroduceAfterInitialProceedings": {
+            "description": "Determines that the offence has been introduced by the prosecutor after proceeedings have already been initiated",
+            "type": "boolean"
+        },
+        "laaApplnReference": {
+            "description": "A record of legal aid applications for this offence",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiLaaReference.json"
+        },
+        "custodyTimeLimit": {
+            "description": "The custody time limit for the individual offence when a defendant has been ordered to be remanded in custody",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCustodyTimeLimit.json#"
+        },
+        "proceedingsConcluded": {
+            "description": "Indicates that proceedings for the defendant have been concluded i.e. all offences have been disposed with final results or have been withdrawn by the prosecuting authority",
+            "type": "boolean"
+        }
     },
-    "offenceDefinitionId": {
-      "description": "The identifier of the offence from reference data",
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/uuid"
-    },
-    "offenceCode": {
-      "type": "string"
-    },
-    "dvlaCode": {
-      "description": "describes the corresponding dvla code when the offence is motoring related e.g. SP50 etc",
-      "type": "string"
-    },
-    "offenceTitle": {
-      "type": "string"
-    },
-    "offenceTitleWelsh": {
-      "type": "string"
-    },
-    "offenceLegislation": {
-      "type": "string"
-    },
-    "offenceLegislationWelsh": {
-      "type": "string"
-    },
-    "modeOfTrial": {
-      "type": "string"
-    },
-    "wording": {
-      "type": "string"
-    },
-    "wordingWelsh": {
-      "type": "string"
-    },
-    "startDate": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
-    },
-    "endDate": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
-    },
-    "arrestDate": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
-    },
-    "chargeDate": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
-    },
-    "laidDate": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
-    },
-    "dateOfInformation": {
-      "description": "The date that the matter is brought to court attention for consideration and for proceeding",
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
-    },
-    "orderIndex": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/positiveInteger"
-    },
-    "count": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/positiveInteger"
-    },
-    "convictionDate": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
-    },
-    "notifiedPlea": {
-      "$ref": "../global/apinotifiedPlea.json"
-    },
-    "indicatedPlea": {
-      "$ref": "../global/apiindicatedPlea.json"
-    },
-    "allocationDecision": {
-      "$ref": "apiallocationDecision.json"
-    },
-    "plea": {
-      "$ref": "../global/apiplea.json"
-    },
-    "verdict": {
-      "$ref": "../global/apiverdict.json"
-    },
-    "offenceFacts": {
-      "$ref": "../global/apioffenceFacts.json"
-    },
-    "aquittalDate": {
-      "$ref": "../global/apicourtsDefinitions.json#/definitions/datePattern"
-    },
-    "victims": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "$ref": "../global/apiperson.json#"
-      }
-    },
-    "judicialResults": {
-      "description": "A record of any judicial decisions and results made against the offence",
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "$ref": "../global/apijudicialResult.json"
-      }
-    },
-    "laaApplnReference": {
-      "description": "A record of legal aid application for this offence",
-      "$ref": "../global/apilaaReference.json"
-    },
-    "custodyTimeLimit": {
-      "description": "The custody time limit for the individual offence when a defendant has been ordered to be remanded in custody",
-      "$ref": "apicustodyTimeLimit.json"
-    },
-    "proceedingsConcluded": {
-      "description": "Indicates that proceedings for the defendant have been concluded i.e. all offences have been disposed with final results or have been withdrawn by the prosecuting authority",
-      "type": "boolean"
-    },
-    "isDiscontinued": {
-      "description": "Determines that the offence has been discontinued by the prosecutor i.e. is no longer being proceeded with",
-      "type": "boolean"
-    },
-    "introducedAfterInitialProceedings": {
-      "description": "Determines that the offence has been introduced by the prosecutor after proceeedings have already been initiated",
-      "type": "boolean"
-    },
-    "splitProsecutorCaseReference": {
-      "description": "When the case has been split, indicates the split reference that the prosecutor has decided to assign to this offence i.e. which part of the split that this offence is now being prosecuted under",
-      "type": "string"
-    },
-    "pendingCBPW": {
-      "description": "Indicates that a Communit Penalty Breach Warrant has been issued against the offence and that it remains pending",
-      "type": "boolean"
-    },
-    "civilOffence": {
-      "description": "Indicates that the offence is a civil matter rather than criminal",
-      "type": "boolean"
-    }
-  },
-  "required": [
-    "id",
-    "offenceDefinitionId",
-    "offenceCode",
-    "offenceTitle",
-    "wording",
-    "startDate"
-  ],
-  "additionalProperties": false
+    "required": [
+        "id",
+        "offenceDefinitionId",
+        "offenceCode",
+        "offenceTitle",
+        "wording",
+        "startDate"
+    ],
+    "additionalProperties": false
 }

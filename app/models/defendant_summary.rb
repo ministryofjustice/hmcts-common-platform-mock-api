@@ -21,22 +21,10 @@ class DefendantSummary
       defendant_summary.dateOfNextHearing date_of_next_hearing
       defendant_summary.proceedingsConcluded proceedings_concluded?
       defendant_summary.offenceSummary offences_builder
-      defendant_summary.representationOrder representation_order
     end
   end
 
   private
-
-  def representation_order
-    return nil if defendant.defence_organisation.blank?
-
-    {
-      applicationReference: defendant.defence_organisation.application_reference,
-      effectiveFromDate: defendant.defence_organisation.associationStartDate,
-      effectiveToDate: defendant.defence_organisation.associationEndDate,
-      laaContractNumber: defendant.defence_organisation.laaContractNumber
-    }
-  end
 
   def date_of_next_hearing
     # This is one of the attributes used to make a search ProsecutionCase request (see prosecutionCaseRequest.json)

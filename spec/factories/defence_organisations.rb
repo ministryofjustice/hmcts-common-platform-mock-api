@@ -6,9 +6,7 @@ FactoryBot.define do
     laaContractNumber { 'Random String' }
 
     factory :realistic_defence_organisation do
-      sraNumber { Faker::Code.npi }
       laaContractNumber { Faker::Code.isbn }
-      barCouncilMembershipNumber { Faker::Code.ean }
     end
   end
 
@@ -27,19 +25,13 @@ FactoryBot.define do
     end
 
     factory :realistic_associated_defence_organisation do
-      transient do
-        has_sra_number { Faker::Boolean.boolean }
-      end
-
       association :organisation, factory: :realistic_organisation
       associationStartDate { Faker::Date.forward(days: 20) }
       associationEndDate { Faker::Date.forward(days: 60) }
       fundingType { DefenceOrganisation::FUNDING_TYPES.sample }
       isAssociatedByLAA { Faker::Boolean.boolean }
 
-      sraNumber { has_sra_number ? Faker::Code.npi : '' }
       laaContractNumber { Faker::Code.isbn }
-      barCouncilMembershipNumber { has_sra_number ? '' : Faker::Code.ean }
     end
   end
 end

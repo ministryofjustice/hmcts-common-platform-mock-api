@@ -20,14 +20,11 @@ class Offence < ApplicationRecord
   validates :offenceTitle, presence: true
   validates :wording, presence: true
   validates :startDate, presence: true
-
-  # rubocop:disable Metrics/MethodLength
   def to_builder
     Jbuilder.new do |offence|
       offence.id id
       offence.offenceDefinitionId offenceDefinitionId
       offence.offenceCode offenceCode
-      offence.dvlaCode dvlaCode
       offence.offenceTitle offenceTitle
       offence.offenceTitleWelsh offenceTitleWelsh
       offence.offenceLegislation offenceLegislation
@@ -48,11 +45,7 @@ class Offence < ApplicationRecord
       offence.victims array_builder(victims)
       offence.judicialResults array_builder(judicial_results)
       offence.isDiscontinued isDiscontinued
-      offence.introducedAfterInitialProceedings isIntroduceAfterInitialProceedings
-      offence.splitProsecutorCaseReference splitProsecutorCaseReference
       offence.proceedingsConcluded proceedingsConcluded
-      offence.pendingCBPW pendingCBPW
-      offence.civilOffence civilOffence
       offence.notifiedPlea notified_plea&.to_builder
       offence.indicatedPlea indicated_plea&.to_builder
       offence.allocationDecision allocation_decision&.to_builder
@@ -63,5 +56,4 @@ class Offence < ApplicationRecord
       offence.custodyTimeLimit custody_time_limit&.to_builder
     end
   end
-  # rubocop:enable Metrics/MethodLength
 end

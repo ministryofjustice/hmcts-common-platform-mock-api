@@ -22,9 +22,6 @@ RSpec.describe Hearing, type: :model do
     it { should have_many(:defence_counsels).class_name('DefenceCounsel') }
     it { should have_many(:court_application_party_counsels).class_name('CourtApplicationPartyCounsel') }
     it { should have_many(:defendant_attendances).class_name('DefendantAttendance') }
-    it { should have_many(:defendant_judicial_results).class_name('DefendantJudicialResult') }
-    it { should have_many(:interpreter_intermediaries).class_name('InterpreterIntermediary') }
-    it { should have_many(:company_representatives).class_name('CompanyRepresentative') }
     it { should have_many(:court_application_party_attendances).class_name('CourtApplicationPartyAttendance') }
     it { should have_many(:defendant_hearing_youth_markers).class_name('DefendantHearingYouthMarker') }
     it { should have_many(:events).class_name('HearingEvent') }
@@ -54,9 +51,6 @@ RSpec.describe Hearing, type: :model do
       hearing.defence_counsels << FactoryBot.create(:defence_counsel)
       hearing.court_application_party_counsels << FactoryBot.create(:court_application_party_counsel)
       hearing.defendant_attendances << FactoryBot.create(:defendant_attendance)
-      hearing.defendant_judicial_results << FactoryBot.create(:defendant_judicial_result)
-      hearing.interpreter_intermediaries << FactoryBot.create(:interpreter_intermediary)
-      hearing.company_representatives << FactoryBot.create(:company_representative)
       hearing.court_application_party_attendances << FactoryBot.create(:court_application_party_attendance)
       hearing.defendant_hearing_youth_markers << FactoryBot.create(:defendant_hearing_youth_marker)
       hearing.save!

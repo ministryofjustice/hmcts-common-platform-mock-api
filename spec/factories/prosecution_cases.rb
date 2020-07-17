@@ -10,7 +10,6 @@ FactoryBot.define do
     statementOfFacts { 'Random String' }
     statementOfFactsWelsh { 'Random String' }
     breachProceedingsPending { false }
-    removalReason { 'Failed to establish grounds' }
     appealProceedingsPending { false }
     merged_prosecution_case { nil }
 
@@ -28,7 +27,6 @@ FactoryBot.define do
     statementOfFacts { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
     statementOfFactsWelsh { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
     breachProceedingsPending { Faker::Boolean.boolean }
-    removalReason { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
     appealProceedingsPending { Faker::Boolean.boolean }
     association :merged_prosecution_case, factory: :realistic_merged_prosecution_case
 

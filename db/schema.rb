@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_140027) do
+ActiveRecord::Schema.define(version: 2020_07_17_140823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
     t.uuid "offenceId"
     t.uuid "motReasonId"
     t.string "motReasonDescription"
-    t.integer "motReasonCode"
+    t.string "motReasonCode"
     t.datetime "allocationDecisionDate"
     t.boolean "isSection22ALowValueShoplifting", default: false, null: false
     t.boolean "isDamageValueUnder5000", default: false, null: false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
     t.uuid "court_indicated_sentence_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "sequenceNumber", default: 0, null: false
     t.index ["court_indicated_sentence_id"], name: "index_allocation_decisions_on_court_indicated_sentence_id"
   end
 
@@ -77,7 +78,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
 
   create_table "attendance_days", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "day"
-    t.boolean "isInAttendance", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "applicant_counsel_id"
@@ -87,9 +87,9 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
     t.uuid "court_application_party_attendance_id"
     t.uuid "court_application_party_counsel_id"
     t.uuid "respondent_counsel_id"
-    t.boolean "byVideoLinkFromCustodyLocation", default: false, null: false
     t.uuid "company_representative_id"
     t.uuid "interpreter_intermediary_id"
+    t.string "attendanceType"
     t.index ["applicant_counsel_id"], name: "index_attendance_days_on_applicant_counsel_id"
     t.index ["company_representative_id"], name: "index_attendance_days_on_company_representative_id"
     t.index ["court_application_party_attendance_id"], name: "index_attendance_days_on_court_application_party_attendance_id"
@@ -101,15 +101,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
     t.index ["respondent_counsel_id"], name: "index_attendance_days_on_respondent_counsel_id"
   end
 
-  create_table "attendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "attendantType"
-    t.string "name"
-    t.uuid "defendant_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["defendant_id"], name: "index_attendants_on_defendant_id"
-  end
-
   create_table "bail_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "code"
     t.string "description"
@@ -117,17 +108,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["custody_time_limit_id"], name: "index_bail_statuses_on_custody_time_limit_id"
-  end
-
-  create_table "company_representatives", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "title"
-    t.string "firstName"
-    t.string "lastName"
-    t.string "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.uuid "hearing_id"
-    t.index ["hearing_id"], name: "index_company_representatives_on_hearing_id"
   end
 
   create_table "contact_numbers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -356,16 +336,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
     t.index ["hearing_id"], name: "index_defendant_attendances_on_hearing_id"
   end
 
-  create_table "defendant_custody_locations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.uuid "address_id", null: false
-    t.string "emailAddress"
-    t.string "locationType"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["address_id"], name: "index_defendant_custody_locations_on_address_id"
-  end
-
   create_table "defendant_hearing_youth_markers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "prosecution_case_id", null: false
     t.uuid "defendant_id", null: false
@@ -377,16 +347,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
     t.index ["hearing_id"], name: "index_defendant_hearing_youth_markers_on_hearing_id"
     t.index ["marker_id"], name: "index_defendant_hearing_youth_markers_on_marker_id"
     t.index ["prosecution_case_id"], name: "index_defendant_hearing_youth_markers_on_prosecution_case_id"
-  end
-
-  create_table "defendant_judicial_results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "masterDefendantId"
-    t.uuid "judicial_result_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.uuid "hearing_id"
-    t.index ["hearing_id"], name: "index_defendant_judicial_results_on_hearing_id"
-    t.index ["judicial_result_id"], name: "index_defendant_judicial_results_on_judicial_result_id"
   end
 
   create_table "defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -504,18 +464,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
     t.string "source"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "interpreter_intermediaries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "role"
-    t.string "firstName"
-    t.string "lastName"
-    t.uuid "attendant_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.uuid "hearing_id"
-    t.index ["attendant_id"], name: "index_interpreter_intermediaries_on_attendant_id"
-    t.index ["hearing_id"], name: "index_interpreter_intermediaries_on_hearing_id"
   end
 
   create_table "judicial_result_prompt_duration_elements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -682,14 +630,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "prosecution_case_id"
     t.index ["prosecution_case_id"], name: "index_linked_prosecution_cases_on_prosecution_case_id"
-  end
-
-  create_table "lja_details", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "ljaCode"
-    t.string "ljaName"
-    t.string "welshLjaName"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "markers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1064,17 +1004,13 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
   add_foreign_key "associated_people", "defendants"
   add_foreign_key "associated_people", "people"
   add_foreign_key "attendance_days", "applicant_counsels"
-  add_foreign_key "attendance_days", "company_representatives"
   add_foreign_key "attendance_days", "court_application_party_attendances"
   add_foreign_key "attendance_days", "court_application_party_counsels"
   add_foreign_key "attendance_days", "defence_counsels"
   add_foreign_key "attendance_days", "defendant_attendances"
-  add_foreign_key "attendance_days", "interpreter_intermediaries"
   add_foreign_key "attendance_days", "prosecution_counsels"
   add_foreign_key "attendance_days", "respondent_counsels"
-  add_foreign_key "attendants", "defendants"
   add_foreign_key "bail_statuses", "custody_time_limits"
-  add_foreign_key "company_representatives", "hearings"
   add_foreign_key "court_application_outcomes", "court_application_outcome_types", column: "application_outcome_type_id"
   add_foreign_key "court_application_parties", "court_application_party_counsels"
   add_foreign_key "court_application_parties", "defendants"
@@ -1101,14 +1037,10 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
   add_foreign_key "defendant_aliases", "defendants"
   add_foreign_key "defendant_attendances", "defendants"
   add_foreign_key "defendant_attendances", "hearings"
-  add_foreign_key "defendant_custody_locations", "addresses"
   add_foreign_key "defendant_hearing_youth_markers", "defendants"
   add_foreign_key "defendant_hearing_youth_markers", "hearings"
   add_foreign_key "defendant_hearing_youth_markers", "markers"
   add_foreign_key "defendant_hearing_youth_markers", "prosecution_cases"
-  add_foreign_key "defendant_judicial_results", "hearings"
-  add_foreign_key "defendant_judicial_results", "judicial_results"
-  add_foreign_key "defendants", "company_representatives"
   add_foreign_key "defendants", "defence_counsels"
   add_foreign_key "defendants", "prosecution_cases"
   add_foreign_key "hearing_case_notes", "delegated_powers", column: "court_clerk_id"
@@ -1117,8 +1049,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
   add_foreign_key "hearing_events", "hearings"
   add_foreign_key "hearings", "cracked_ineffective_trials"
   add_foreign_key "hearings", "hearing_types"
-  add_foreign_key "interpreter_intermediaries", "attendants"
-  add_foreign_key "interpreter_intermediaries", "hearings"
   add_foreign_key "judicial_result_prompts", "judicial_results"
   add_foreign_key "judicial_results", "court_applications"
   add_foreign_key "judicial_results", "defendants"
@@ -1159,7 +1089,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_140027) do
   add_foreign_key "people", "ethnicities"
   add_foreign_key "people", "offences"
   add_foreign_key "person_defendants", "bail_statuses"
-  add_foreign_key "person_defendants", "defendant_custody_locations"
   add_foreign_key "person_defendants", "organisations", column: "employer_organisation_id"
   add_foreign_key "person_defendants", "people"
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"

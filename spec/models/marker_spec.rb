@@ -11,7 +11,6 @@ RSpec.describe Marker, type: :model do
     it { should validate_presence_of(:markerTypeid) }
     it { should validate_presence_of(:markerTypeCode) }
     it { should validate_presence_of(:markerTypeLabel) }
-    it { should validate_presence_of(:markerTypeName) }
   end
 
   it_has_a 'realistic factory'

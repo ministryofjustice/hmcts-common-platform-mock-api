@@ -11,7 +11,6 @@ RSpec.describe JudicialResult, type: :model do
     it { should belong_to(:delegated_powers).class_name('DelegatedPowers').optional }
     it { should belong_to(:four_eyes_approval).class_name('DelegatedPowers').optional }
     it { should belong_to(:next_hearing).class_name('NextHearing').optional }
-    it { should belong_to(:duration_element).class_name('JudicialResultPromptDurationElement').optional }
     it { should have_many(:user_groups).class_name('UserGroup') }
     it { should have_many(:judicial_result_prompts).class_name('JudicialResultPrompt') }
   end

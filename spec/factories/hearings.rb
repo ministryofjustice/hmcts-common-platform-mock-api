@@ -12,7 +12,7 @@ FactoryBot.define do
     isEffectiveTrial { false }
     isBoxHearing { false }
     after(:build) do |hearing|
-      hearing.hearing_days << FactoryBot.create(:hearing_day_with_relationships)
+      hearing.hearing_days << FactoryBot.create(:hearing_day)
     end
   end
 end

@@ -83,20 +83,8 @@ class Defendant < ApplicationRecord
       defendant.personDefendant defendable.to_builder if person?
       defendant.legalEntityDefendant defendable.to_builder if legal_entity?
       defendant.aliases array_builder(defendant_aliases)
-      defendant.defendantCaseJudicialResults array_builder(judicial_results)
       defendant.croNumber croNumber
       defendant.pncId pncId
-      defendant.defendantMarkers array_builder(markers)
-      defendant.laaApplnReference laa_reference_builder
-      defendant.defendantDetailsUpdated defendantDetailsUpdated
     end
-  end
-
-  private
-
-  def laa_reference_builder
-    return nil if laa_references.blank?
-
-    laa_references.first.to_builder
   end
 end

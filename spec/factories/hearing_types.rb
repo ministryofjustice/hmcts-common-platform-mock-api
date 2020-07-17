@@ -11,7 +11,5 @@ FactoryBot.define do
         'Mention - Defendant to Attend (MDA)'
       ].sample
     end
-
-    code { '12D10JAS' }
   end
 end

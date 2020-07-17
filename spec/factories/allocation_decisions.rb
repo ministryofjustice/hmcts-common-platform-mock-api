@@ -6,7 +6,8 @@ FactoryBot.define do
     offenceId { SecureRandom.uuid }
     motReasonId { SecureRandom.uuid }
     motReasonDescription { 'This is a description' }
-    motReasonCode { 1 }
+    motReasonCode { 'ABCD' }
+    sequenceNumber { 1 }
     allocationDecisionDate { '2019-10-14 13:46:12' }
     isSection22ALowValueShoplifting { false }
     isDamageValueUnder5000 { false }
@@ -22,7 +23,8 @@ FactoryBot.define do
       offenceId { SecureRandom.uuid }
       motReasonId { SecureRandom.uuid }
       motReasonDescription { Faker::Lorem.sentence }
-      motReasonCode { Faker::Number.number(digits: 3) }
+      motReasonCode { Faker::Alphanumeric.alphanumeric(number: 4) }
+      sequenceNumber { Faker::Number.number(digits: 3) }
       allocationDecisionDate { Faker::Date.backward }
       isSection22ALowValueShoplifting { Faker::Boolean.boolean }
       isDamageValueUnder5000 { Faker::Boolean.boolean }

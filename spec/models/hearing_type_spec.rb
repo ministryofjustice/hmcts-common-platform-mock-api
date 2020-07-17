@@ -8,7 +8,6 @@ RSpec.describe HearingType, type: :model do
   subject { hearing_type }
 
   it { should validate_presence_of(:description) }
-  it { should validate_presence_of(:code) }
 
   it_has_behaviour 'conforming to valid schema'
 end

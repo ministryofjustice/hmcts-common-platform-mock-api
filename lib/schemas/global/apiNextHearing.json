@@ -4,10 +4,10 @@
     "type": "object",
     "properties": {
         "type": {
-             "$ref": "../../external/global/apiHearingType.json#"
+             "$ref": "http://justice.gov.uk/core/courts/external/apiHearingType.json#"
         },
         "jurisdictionType": {
-             "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/jurisdictionType"
+             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/jurisdictionType"
         },
         "reportingRestrictionReason": {
             "type": "string"
@@ -16,7 +16,7 @@
             "type": "string"
         },
         "hearingLanguage": {
-             "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/hearingLanguage"
+             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/hearingLanguage"
         },
         "listedStartDateTime": {
             "description": "The date and time that has been pre-arranged and therefore must be listed accordingly.  Since the Police grant bail, Police requests will arrive at court with a pre-agreed date and time as per the bail arrangements.  Similarly adjournments will result in a pre-arranged date and time",
@@ -24,30 +24,30 @@
              "format": "date-time"
         },
         "estimatedMinutes": {
-             "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
+             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
         },
         "courtCentre": {
-             "$ref": "../../external/global/apiCourtCentre.json#"
+             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtCentre.json#"
         },
         "judiciary": {
              "type": "array",
              "minItems": 1,
              "items": {
-                 "$ref": "../../external/global/apiJudicialRole.json#"
+                 "$ref": "http://justice.gov.uk/core/courts/external/apiJudicialRole.json#"
             }
         },
         "nextHearingProsecutionCases": {
              "type": "array",
              "minItems": 1,
              "items": {
-                 "$ref": "../../external/global/apiNextHearingProsecutionCase.json#"
+                 "$ref": "http://justice.gov.uk/core/courts/external/apiNextHearingProsecutionCase.json#"
             }
         },
         "nextHearingCourtApplicationId": {
              "type": "array",
              "minItems": 1,
              "items": {
-                 "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+                 "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
             }
         }
     },

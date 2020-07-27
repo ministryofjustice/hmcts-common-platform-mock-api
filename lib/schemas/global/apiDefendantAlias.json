@@ -5,7 +5,7 @@
   "properties": {
     "title": {
       "description": "The person title",
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/personTitle"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/personTitle"
     },
     "firstName": {
       "description": "The person fore name",

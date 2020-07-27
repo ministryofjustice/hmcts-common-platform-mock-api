@@ -22,30 +22,7 @@ RSpec.describe DefenceOrganisation, type: :model do
     it { should validate_presence_of(:fundingType) }
     it { should validate_presence_of(:associationStartDate) }
 
-    describe 'when laaContractNumber is present' do
-      it { should validate_presence_of(:laaContractNumber) }
-      it_has_behaviour 'conforming to valid schema'
-    end
-
-    describe 'when sraNumber is present' do
-      before do
-        defence_organisation.laaContractNumber = nil
-        defence_organisation.barCouncilMembershipNumber = nil
-        defence_organisation.sraNumber = 'Random Number'
-      end
-      it { should validate_presence_of(:sraNumber) }
-      it_has_behaviour 'conforming to valid schema'
-    end
-
-    describe 'when barCouncilMembershipNumber is present' do
-      before do
-        defence_organisation.laaContractNumber = nil
-        defence_organisation.sraNumber = nil
-        defence_organisation.barCouncilMembershipNumber = 'Random Number'
-      end
-      it { should validate_presence_of(:barCouncilMembershipNumber) }
-      it_has_behaviour 'conforming to valid schema'
-    end
+    it_has_behaviour 'conforming to valid schema'
   end
 
   describe '#application_reference' do

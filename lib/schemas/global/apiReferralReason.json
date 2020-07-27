@@ -6,14 +6,14 @@
     "properties": {
         "id": {
             "description": "The reference data identifier for the reason for referral",
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "description": {
             "description": "The reason for referral from reference data",
             "type": "string"
         },
         "defendantId": {
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         }
     },
     "required": [

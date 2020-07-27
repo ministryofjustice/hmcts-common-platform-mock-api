@@ -56,7 +56,6 @@ module Admin
                                                :statementOfFactsWelsh,
                                                :breachProceedingsPending,
                                                :appealProceedingsPending,
-                                               :removalReason,
                                                prosecution_case_identifier_attributes: prosecution_case_identifier_attributes,
                                                defendants_attributes: defendant_attributes)
     end

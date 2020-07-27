@@ -9,14 +9,11 @@ class CourtCentre
     Jbuilder.new do |court_centre|
       court_centre.id id
       court_centre.name csv_row.oucode_l3_name
-      court_centre.ouCode csv_row.oucode
-      court_centre.courtHearingLocation csv_row.region
       court_centre.welshName csv_row.oucode_l3_welsh_name
       court_centre.roomId id # Using CourtCentre while we manage to get a list of rooms
       court_centre.roomName csv_row.oucode_l3_name # Using CourtCentre while we manage to get a list of rooms
       court_centre.welshRoomName csv_row.oucode_l3_welsh_name # Using CourtCentre while we manage to get a list of rooms
       court_centre.address address.to_builder if address.present?
-      court_centre.lja lja_details.to_builder if lja_details.present?
     end
   end
 
@@ -37,18 +34,6 @@ class CourtCentre
         address4: csv_row.address4,
         address5: csv_row.address5,
         postcode: csv_row.postcode
-      )
-    end
-  end
-
-  def lja_details
-    return if csv_row.lja.blank?
-
-    @lja_details ||= begin
-      LjaDetails.new(
-        ljaCode: csv_row.lja,
-        ljaName: csv_row.lja,
-        welshLjaName: csv_row.lja
       )
     end
   end

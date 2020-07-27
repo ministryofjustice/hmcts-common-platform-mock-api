@@ -24,15 +24,6 @@ class HearingsController < ApplicationController
   end
 
   def hearing_events_builder
-    @hearing_events.map do |event|
-      {
-        "hearingEventId": event.id,
-        "hearingEventDefinitionId": event.hearingEventDefinitionId,
-        "recordedLabel": event.recordedLabel,
-        "eventTime": event.eventTime.to_datetime,
-        "lastModifiedTime": event.updated_at.to_datetime,
-        "alterable": event.alterable
-      }
-    end
+    @hearing_events.map { |event| event.to_builder.attributes! }
   end
 end

@@ -5,21 +5,21 @@
   "type": "object",
   "properties": {
     "id": {
-	  "description": "The identifier of the application outcome type from reference data",
-	  "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
-	},
-	"sequence": {
-	  "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
-	},
-	"description": {
-	  "description": "The value of the reference data",
-	  "type": "string"
-	}
+      "description": "The identifier of the application outcome type from reference data",
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "sequence": {
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
+    },
+    "description": {
+      "description": "The value of the reference data",
+      "type": "string"
+    }
   },
   "required": [
-	 "id",
-	 "sequence",
-	 "description"
+    "id",
+    "sequence",
+    "description"
   ],
   "additionalProperties": false
 }

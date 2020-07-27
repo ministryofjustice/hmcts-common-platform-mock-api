@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
         "id": {
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "applicationCode": {
             "description": "The CJS Code for the court application type",
@@ -42,7 +42,7 @@
         },
         "linkType": {
             "description": "Indicates if a type of application must be linked or must be standalone or can be either",
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/applicationLinkType"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/applicationLinkType"
         },
         "applicantSynonym": {
             "type": "string"
@@ -52,15 +52,15 @@
         },
         "applicationJurisdictionType": {
             "description": "Indicates the jurisdiction that is required to consider the application",
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/applicationJurisdictionType"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/applicationJurisdictionType"
         },
         "applicationSummonsRecipientType": {
             "description": "Indicates if a summons is required for the applicant or for each respondent.  If there is not a recipient type, a summons is not required.",
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/applicationSummonsRecipientType"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/applicationSummonsRecipientType"
         },
         "applicationSummonsTemplateType": {
             "description": "Indicates the type of summons required for each respondent. If value is 'N/A' then summons is not required.",
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/applicationSummonsTemplateType"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/applicationSummonsTemplateType"
         }
     },
     "required": [

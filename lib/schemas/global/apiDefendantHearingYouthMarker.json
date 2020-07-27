@@ -5,17 +5,17 @@
     "type": "object",
     "properties": {
         "prosecutionCaseId": {
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "defendantId": {
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "hearingId": {
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "marker": {
             "description": "The youth from reference data",
-            "$ref": "../../external/global/apiMarker.json#"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiMarker.json#"
         }
     },
     "required": [

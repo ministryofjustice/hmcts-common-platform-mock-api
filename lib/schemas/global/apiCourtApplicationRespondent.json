@@ -6,11 +6,11 @@
   "properties": {
     "partyDetails": {
       "description": "The details of the respondent",
-      "$ref": "../../external/global/apiCourtApplicationParty.json"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtApplicationParty.json"
     },
     "applicationResponse": {
       "description": "The details of the response",
-      "$ref": "../../external/global/apiCourtApplicationResponse.json#"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtApplicationResponse.json#"
     }
   },
   "required": [

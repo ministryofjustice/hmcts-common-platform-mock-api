@@ -8,13 +8,9 @@
       "description": "The human readable reference to the application supplied by legal aid agency",
       "type": "string"
     },
-    "offenceLevelStatus": {
-      "description": "The description of the statusCode",
-      "type": "string"
-    },
     "statusId": {
       "description": "Reference data identifer for the agreed status",
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "statusCode": {
       "description": "The status code from reference data",
@@ -26,22 +22,31 @@
     },
     "statusDate": {
       "description": "The date that the status was recorded",
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "effectiveStartDate": {
       "description": "The start date for legal aid, set when the status represents an approved representation order",
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "effectiveEndDate": {
       "description": "The end date for legal aid, set when the status represents an approved representation order",
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+    },
+    "offenceLevelStatus": {
+      "description": "The defendant level status coming from legal status ref data table",
+      "type": "string"
+    },
+    "laaContractNumber": {
+      "description": "this will be null when LAA reference is recorded and will be set when representation order is received",
+      "type": "string"
     }
   },
   "required": [
     "applicationReference",
     "statusId",
     "statusCode",
-    "statusDescription"
+    "statusDescription",
+    "statusDate"
   ],
   "additionalProperties": false
 }

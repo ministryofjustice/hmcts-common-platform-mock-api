@@ -14,9 +14,8 @@
       "minimum": 1,
       "maximum": 999
     },
-    "primaryLabel":
-    {
-        "type": "string"
+    "primaryLabel": {
+      "type": "string"
     },
     "secondaryDurationUnit": {
       "description": "The result prompt secondary duration unit provided from reference data during the resulting process",
@@ -51,11 +50,17 @@
   },
   "oneOf": [
     {
-        "required": ["primaryDurationUnit", "primaryDurationValue"]
+      "required": [
+        "primaryDurationUnit",
+        "primaryDurationValue"
+      ]
     },
     {
-        "required": ["durationStartDate", "durationEndDate"]
+      "required": [
+        "durationStartDate",
+        "durationEndDate"
+      ]
     }
-  ],  
+  ],
   "additionalProperties": false
 }

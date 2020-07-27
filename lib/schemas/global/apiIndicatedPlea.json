@@ -5,13 +5,13 @@
   "type": "object",
   "properties": {
     "offenceId": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "originatingHearingId": {
-        "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "indicatedPleaDate": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "indicatedPleaValue": {
       "type": "string",

@@ -18,7 +18,6 @@ FactoryBot.define do
 
     factory :person_defendant_with_relationships do
       association :bail_status, factory: :bail_status_with_relationships
-      defendant_custody_location
       association :employer_organisation, factory: :organisation_with_relationships
       association :person, factory: :person_with_relationships
     end

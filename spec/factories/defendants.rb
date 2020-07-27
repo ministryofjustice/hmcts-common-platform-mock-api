@@ -25,7 +25,6 @@ FactoryBot.define do
     croNumber { 'MyString' }
     pncId { 'MyString' }
     mergedProsecutionCaseReference { 'MyString' }
-    defendantDetailsUpdated { false }
     factory :defendant_as_legal_entity do
       association :defendable, factory: :legal_entity_defendant
     end
@@ -59,7 +58,6 @@ FactoryBot.define do
     croNumber { Faker::Code.asin }
     pncId { Faker::Code.rut }
     mergedProsecutionCaseReference { Faker::Lorem.word }
-    defendantDetailsUpdated { Faker::Boolean.boolean }
 
     association :defendable, factory: :realistic_person_defendant
     trait :with_legal_entity_defendant do

@@ -39,10 +39,10 @@
           "type": "string"
         },
         "eventTime": {
-          "type": "date-time"
+          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/date-time"
         },
         "lastModifiedTime": {
-          "type": "date-time"
+          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/date-time"
         },
         "alterable": {
           "type": "boolean"
@@ -59,7 +59,7 @@
       "additionalProperties": false
     },
     "uuid": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     }
   }
 }

@@ -7,7 +7,7 @@
             "description": "The prosecution cases matched by the search query",
             "type": "array",
             "items": {
-                "$ref": "../../external/global/search/apiProsecutionCaseSummary.json#"
+                "$ref": "http://justice.gov.uk/core/courts/external/search/prosecutionCaseSummary.json#"
             }
         },
         "totalResults": {

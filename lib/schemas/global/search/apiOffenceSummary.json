@@ -6,7 +6,7 @@
     "properties": {
         "offenceId": {
             "description": "The identifier of the offence",
-            "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "offenceCode": {
             "description": "The offence code from reference data",
@@ -14,7 +14,7 @@
         },
         "orderIndex": {
             "description": "The offence sequence provided by the Police",
-            "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
         },
         "offenceTitle": {
             "description": "The offence title from reference data",
@@ -30,15 +30,15 @@
         },
         "arrestDate": {
             "description": "The date that the defendant was arrested in relation to this matter",
-            "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "chargeDate": {
             "description": "The date that the defendant was charged in relation to this matter",
-            "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "dateOfInformation": {
             "description": "The date that the matter is brought to court attention for consideration and for proceeding",
-            "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "modeOfTrial": {
             "description": "Indicates if the offence is either way, indictable only or summary only",
@@ -46,11 +46,11 @@
         },
         "startDate": {
             "description": "The date that the defendant is accused to have started committing this charge",
-            "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "endDate": {
             "description": "The date that the defendant is accused to have stopped commiting this charge",
-            "$ref": "../../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "proceedingsConcluded": {
           "description": "Indicates that proceedings for this offence have been conckuded i.e. it has been disposed with final results or withdrawn by the prosecuting authority",
@@ -58,7 +58,7 @@
         },
         "laaApplnReference": {
             "description": "A reference to the LAA application relevant for this offence",
-            "$ref": "../../../external/global/apiLaaReference.json#"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiLaaReference.json#"
         }
     },
     "required": [

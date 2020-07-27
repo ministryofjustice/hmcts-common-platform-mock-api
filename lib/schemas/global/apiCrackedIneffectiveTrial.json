@@ -6,7 +6,7 @@
     "properties": {
         "id": {
             "description": "The reference data id of the reason for the cracked or ineffective trail",
-            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "code": {
             "description": "The reason code for the cracked or ineffective trail",

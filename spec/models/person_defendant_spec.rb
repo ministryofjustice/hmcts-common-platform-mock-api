@@ -28,7 +28,6 @@ RSpec.describe PersonDefendant, type: :model do
   describe 'associations' do
     it { should belong_to(:person).class_name('Person') }
     it { should belong_to(:bail_status).class_name('BailStatus').optional }
-    it { should belong_to(:defendant_custody_location).class_name('DefendantCustodyLocation').optional }
     it { should belong_to(:employer_organisation).class_name('Organisation').optional }
   end
   describe 'validations' do

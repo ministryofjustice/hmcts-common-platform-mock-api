@@ -6,10 +6,10 @@
   "properties": {
     "id": {
       "description": "The identifier of the application response type from reference data",
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "sequence": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
     },
     "description": {
       "description": "The value of the reference data",

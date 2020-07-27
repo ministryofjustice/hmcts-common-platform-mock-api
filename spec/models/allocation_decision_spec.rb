@@ -12,6 +12,7 @@ RSpec.describe AllocationDecision, type: :model do
   it { should validate_presence_of(:motReasonDescription) }
   it { should validate_presence_of(:motReasonCode) }
   it { should validate_presence_of(:allocationDecisionDate) }
+  it { should validate_presence_of(:sequenceNumber) }
 
   describe 'associations' do
     it { should belong_to(:court_indicated_sentence).class_name('CourtIndicatedSentence').optional }

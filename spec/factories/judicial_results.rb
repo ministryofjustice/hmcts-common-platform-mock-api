@@ -37,7 +37,6 @@ FactoryBot.define do
       association :delegated_powers, factory: :delegated_powers
       association :four_eyes_approval, factory: :delegated_powers
       association :next_hearing, factory: :next_hearing
-      association :duration_element, factory: :judicial_result_prompt_duration_element
       after(:build) do |judicial_result, _evaluator|
         judicial_result.judicial_result_prompts << build(:judicial_result_prompt)
       end

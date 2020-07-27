@@ -85,6 +85,8 @@ class FakeCommonPlatform < Sinatra::Base
   end
 
   def normalise_file_name(name)
+    name = "api#{name}" unless name.starts_with? 'api'
+
     # apicourtsDefinitions.json => apiCourtsDefinitions.json
     name.chars.map.with_index { |x, i| (x.upcase if i == 3) || x }.join
   end

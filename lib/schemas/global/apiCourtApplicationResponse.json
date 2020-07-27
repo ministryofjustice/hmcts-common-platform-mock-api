@@ -5,16 +5,16 @@
   "type": "object",
   "properties": {
     "originatingHearingId": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "applicationId": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "applicationResponseDate": {
-      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "applicationResponseType": {
-        "$ref": "../../external/global/apiCourtApplicationResponseType.json"
+        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtApplicationResponseType.json"
     }
   },
   "additionalProperties": false,

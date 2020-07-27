@@ -29,7 +29,7 @@ class ProsecutionCaseSearch < ApplicationService
   def prosecution_cases_by_reference
     ProsecutionCase
       .joins(:prosecution_case_identifier)
-      .where('"caseURN" = :search OR "prosecutionAuthorityReference" = :search', search: permitted_params[:prosecutionCaseReference])
+      .merge(ProsecutionCaseIdentifier.by_reference(permitted_params[:prosecutionCaseReference]))
   end
 
   def prosecution_cases_by_nino
@@ -37,7 +37,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def person_defendant_by_nino
-    PersonDefendant.joins(:person).where(people: { nationalInsuranceNumber: permitted_params[:defendantNINO] })
+    PersonDefendant.joins(:person).where('"nationalInsuranceNumber" ILIKE :search', search: permitted_params[:defendantNINO])
   end
 
   def prosecution_cases_by_summons
@@ -45,7 +45,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def person_defendant_by_summons
-    PersonDefendant.where(arrestSummonsNumber: permitted_params[:defendantASN])
+    PersonDefendant.where('"arrestSummonsNumber" ILIKE :search', search: permitted_params[:defendantASN])
   end
 
   def prosecution_cases_by_name_and_dob

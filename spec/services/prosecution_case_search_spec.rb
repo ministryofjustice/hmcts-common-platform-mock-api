@@ -23,7 +23,7 @@ RSpec.describe ProsecutionCaseSearch do
 
     before do
       cases.first.prosecution_case_identifier = build(:prosecution_case_identifier,
-                                                      caseURN: 'XXYYZZ')
+                                                      caseURN: 'xxyyzz')
       cases.second.prosecution_case_identifier = build(:prosecution_case_identifier_with_reference,
                                                        prosecutionAuthorityReference: 'XXYYZZ')
       cases.map(&:save!)
@@ -33,8 +33,7 @@ RSpec.describe ProsecutionCaseSearch do
       { prosecutionCaseReference: 'XXYYZZ' }
     end
 
-    it { is_expected.to include(cases.first) }
-    it { is_expected.to include(cases.second) }
+    it { is_expected.to include(cases.first, cases.second) }
     it { is_expected.not_to include(cases.third) }
 
     context 'with a non matching reference' do
@@ -52,7 +51,7 @@ RSpec.describe ProsecutionCaseSearch do
       build(:defendant,
             prosecution_case: nil,
             defendable: FactoryBot.create(:person_defendant,
-                                          person: FactoryBot.create(:person, nationalInsuranceNumber: 'NH489223C')))
+                                          person: FactoryBot.create(:person, nationalInsuranceNumber: 'nh489223c')))
     end
 
     before do
@@ -81,7 +80,7 @@ RSpec.describe ProsecutionCaseSearch do
     let(:defendant) do
       build(:defendant,
             prosecution_case: nil,
-            defendable: FactoryBot.create(:person_defendant, arrestSummonsNumber: '3.1428'))
+            defendable: FactoryBot.create(:person_defendant, arrestSummonsNumber: '3.1428r'))
     end
 
     before do
@@ -90,7 +89,7 @@ RSpec.describe ProsecutionCaseSearch do
     end
 
     let(:params_hash) do
-      { defendantASN: '3.1428' }
+      { defendantASN: '3.1428R' }
     end
 
     it { is_expected.to include(cases.first) }

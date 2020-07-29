@@ -18,18 +18,18 @@ RSpec.describe HearingLogFinder do
   end
 
   context 'when finding by hearingId' do
-    let(:hearing_event) { FactoryBot.create(:hearing_event) }
-    let(:hearing) { hearing_event.hearing }
+    let(:hearing) { FactoryBot.create(:hearing) }
+    let(:hearing_event) { FactoryBot.create(:hearing_event, hearing_day: hearing.hearing_days.first) }
 
     let(:params_hash) do
-      { hearingId: hearing.id, date: '2020-04-23' }
+      { hearingId: hearing.id, date: '2019-10-23' }
     end
 
     it { is_expected.to eq([hearing_event]) }
 
     context 'with an incorrect id' do
       let(:params_hash) do
-        { hearingId: '6c0b7068-d4a7-4adc-a7a0-7bd5715b501d', date: '2020-04-23' }
+        { hearingId: '6c0b7068-d4a7-4adc-a7a0-7bd5715b501d', date: '2019-10-23' }
       end
 
       it 'raises a RecordNotFound error' do

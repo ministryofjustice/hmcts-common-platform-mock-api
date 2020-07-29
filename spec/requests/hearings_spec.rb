@@ -13,10 +13,10 @@ RSpec.describe 'Hearings', type: :request do
   end
 
   describe 'GET /hearing/hearingLog' do
-    before { FactoryBot.create(:hearing_event, hearing: hearing, eventTime: '2020-12-12 03:30') }
+    before { FactoryBot.create(:hearing_event, hearing_day: hearing.hearing_days.first) }
 
     it 'matches the response schema' do
-      get "/hearing/hearingLog?hearingId=#{hearing.id}&date=2020-12-12", headers: headers
+      get "/hearing/hearingLog?hearingId=#{hearing.id}&date=2019-10-23", headers: headers
       expect(response).to have_http_status(200)
       expect(response.body).to match_json_schema(:results_hearing_event_log_response)
     end

@@ -7,6 +7,9 @@ class HearingDay < ApplicationRecord
   validates :sittingDay, presence: true
   validates :listedDurationMinutes, presence: true
 
+  has_many :events, class_name: 'HearingEvent', inverse_of: :hearing_day
+  belongs_to :hearing, optional: true
+
   def to_builder
     Jbuilder.new do |hearing_day|
       hearing_day.sittingDay sittingDay

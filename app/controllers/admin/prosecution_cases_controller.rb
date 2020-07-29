@@ -75,8 +75,8 @@ module Admin
        :courtProceedingsInitiated,
        :defendantDetailsUpdated,
        :defendable_type,
-       defendable_attributes: defendable_attributes,
-       offences_attributes: offences_attributes]
+       { defendable_attributes: defendable_attributes,
+         offences_attributes: offences_attributes }]
     end
 
     def prosecution_case_identifier_attributes
@@ -94,7 +94,7 @@ module Admin
        :vehicleOperatorLicenceNumber,
        :arrestSummonsNumber,
        :employerPayrollReference,
-       person_attributes: person_attributes]
+       { person_attributes: person_attributes }]
     end
 
     def person_attributes

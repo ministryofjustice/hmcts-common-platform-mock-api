@@ -19,17 +19,19 @@ RSpec.describe HearingsController, type: :controller do
   end
 
   describe 'GET #log' do
-    before { FactoryBot.create(:hearing_event, hearing: hearing, eventTime: '2020-12-12 03:30') }
+    let(:hearing_day) { hearing.hearing_days.first }
+
+    before { FactoryBot.create(:hearing_event, hearing_day: hearing_day) }
 
     it 'returns unauthorized' do
-      get :log, params: { hearingId: hearing.id, date: '2020-12-12' }
+      get :log, params: { hearingId: hearing.id, date: '2019-10-23' }
       expect(response).to be_unauthorized
     end
 
     context 'with the correct auth header' do
       it 'returns a success response' do
         request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY')
-        get :log, params: { hearingId: hearing.id, date: '2020-12-12' }
+        get :log, params: { hearingId: hearing.id, date: '2019-10-23' }
         expect(response).to be_successful
       end
     end

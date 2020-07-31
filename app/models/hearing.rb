@@ -10,7 +10,7 @@ class Hearing < ApplicationRecord
   has_many :court_applications
   has_many :referral_reasons
   has_many :hearing_case_notes
-  has_many :hearing_days
+  has_many :hearing_days, inverse_of: :hearing
   has_many :judicial_roles
   has_many :applicant_counsels
   has_many :respondent_counsels
@@ -20,7 +20,6 @@ class Hearing < ApplicationRecord
   has_many :defendant_attendances
   has_many :court_application_party_attendances
   has_many :defendant_hearing_youth_markers
-  has_many :events, class_name: 'HearingEvent', inverse_of: :hearing
 
   validates :jurisdictionType, presence: true, inclusion: %w[MAGISTRATES CROWN]
   validates :court_centre_id, presence: true

@@ -12,6 +12,11 @@ RSpec.describe HearingDay, type: :model do
     it { should validate_presence_of(:listedDurationMinutes) }
   end
 
+  describe 'relationships' do
+    it { should have_many(:events).class_name('HearingEvent') }
+    it { should belong_to(:hearing).optional }
+  end
+
   context 'hmcts schema' do
     it_has_behaviour 'conforming to valid schema'
   end

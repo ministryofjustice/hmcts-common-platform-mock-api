@@ -13,6 +13,7 @@ class HearingDay < ApplicationRecord
   def to_builder
     Jbuilder.new do |hearing_day|
       hearing_day.sittingDay sittingDay
+      hearing_day.startTime startTime
       hearing_day.listingSequence listingSequence
       hearing_day.listedDurationMinutes listedDurationMinutes
     end

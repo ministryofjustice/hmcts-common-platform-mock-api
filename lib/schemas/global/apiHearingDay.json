@@ -7,6 +7,10 @@
             "type": "string",
             "format": "date-time"
         },
+        "startTime": {
+            "type": "string",
+            "format": "date-time"
+        },
         "listingSequence": {
             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
         },

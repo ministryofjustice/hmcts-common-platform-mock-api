@@ -20,4 +20,10 @@ RSpec.describe HearingDay, type: :model do
   context 'hmcts schema' do
     it_has_behaviour 'conforming to valid schema'
   end
+
+  describe '#to_builder' do
+    subject { hearing_day.to_builder.attributes! }
+
+    it { is_expected.to include('sittingDay', 'startTime', 'listingSequence', 'listedDurationMinutes') }
+  end
 end

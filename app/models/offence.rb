@@ -16,7 +16,7 @@ class Offence < ApplicationRecord
   has_one :laa_reference, dependent: :destroy
 
   validates :offenceDefinitionId, presence: true
-  validates :offenceCode, presence: true
+  validates :offenceCode, presence: true, length: { maximum: 8 }
   validates :offenceTitle, presence: true
   validates :wording, presence: true
   validates :startDate, presence: true

@@ -2,7 +2,7 @@
 
 class LesserOrAlternativeOffence < ApplicationRecord
   validates :offenceDefinitionId, presence: true
-  validates :offenceCode, presence: true
+  validates :offenceCode, presence: true, length: { maximum: 8 }
   validates :offenceTitle, presence: true
   validates :offenceLegislation, presence: true
 

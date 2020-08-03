@@ -5,7 +5,7 @@ require 'faker/offence'
 FactoryBot.define do
   factory :offence, aliases: [:realistic_offence] do
     offenceDefinitionId { SecureRandom.uuid }
-    offenceCode { 'Random string' }
+    offenceCode { 'PT00011' }
     dvlaCode { 'Random string' }
     offenceTitle { Faker::Offence.name }
     offenceTitleWelsh { Faker::Offence.name }

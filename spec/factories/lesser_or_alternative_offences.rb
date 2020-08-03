@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :lesser_or_alternative_offence do
     offenceDefinitionId { SecureRandom.uuid }
-    offenceCode { 'MyString' }
+    offenceCode { 'RC86395' }
     offenceTitle { 'MyString' }
     offenceTitleWelsh { 'MyString' }
     offenceLegislation { 'MyString' }
@@ -11,7 +11,7 @@ FactoryBot.define do
 
     factory :realistic_lesser_or_alternative_offence do
       offenceDefinitionId { SecureRandom.uuid }
-      offenceCode { Faker::Lorem.sentence }
+      offenceCode { Faker::Alphanumeric.alphanumeric(number: 6).upcase }
       offenceTitle { Faker::Lorem.word }
       offenceTitleWelsh { Faker::Lorem.word }
       offenceLegislation { Faker::Lorem.sentence }

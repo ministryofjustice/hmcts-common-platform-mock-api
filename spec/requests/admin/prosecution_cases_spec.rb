@@ -6,7 +6,8 @@ RSpec.describe '/admin/prosecution_cases', type: :request do
   let(:valid_attributes) do
     FactoryBot.attributes_for(:prosecution_case,
                               prosecution_case_identifier_attributes: FactoryBot.attributes_for(:prosecution_case_identifier),
-                              defendants_attributes: [defendants_attributes])
+                              defendants_attributes: [defendants_attributes],
+                              hearings_attributes: [hearings_attributes])
   end
 
   let(:defendants_attributes) do
@@ -15,6 +16,12 @@ RSpec.describe '/admin/prosecution_cases', type: :request do
                               defendable_attributes: FactoryBot.attributes_for(:person_defendant,
                                                                                person_attributes: FactoryBot.attributes_for(:person)),
                               offences_attributes: [FactoryBot.attributes_for(:offence)])
+  end
+
+  let(:hearings_attributes) do
+    FactoryBot.attributes_for(:hearing,
+                              hearing_type_attributes: FactoryBot.attributes_for(:hearing_type),
+                              hearing_days_attributes: [FactoryBot.attributes_for(:hearing_day)])
   end
 
   let(:invalid_attributes) { FactoryBot.attributes_for(:prosecution_case, initiationCode: nil) }

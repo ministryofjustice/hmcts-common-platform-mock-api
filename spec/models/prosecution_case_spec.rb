@@ -24,6 +24,7 @@ RSpec.describe ProsecutionCase, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:prosecution_case_identifier) }
+    it { should validate_presence_of(:hearings) }
     it { should validate_presence_of(:initiationCode) }
     it { should validate_presence_of(:defendants) }
     it { should validate_presence_of(:caseStatus) }

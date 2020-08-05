@@ -9,7 +9,7 @@ class ProsecutionCase < ApplicationRecord
   belongs_to :police_officer_in_case, optional: true
   belongs_to :merged_prosecution_case, optional: true
   has_many :prosecution_case_hearings, dependent: :destroy
-  has_many :hearings, through: :prosecution_case_hearings
+  has_many :hearings, through: :prosecution_case_hearings, inverse_of: :prosecution_cases
 
   has_many :defendants, dependent: :destroy, inverse_of: :prosecution_case
   has_many :person_only_defendants, -> { people_only }, class_name: 'Defendant'
@@ -21,6 +21,7 @@ class ProsecutionCase < ApplicationRecord
   has_many :hearing_case_notes, through: :prosecution_case_hearing_case_notes
 
   validates :prosecution_case_identifier, presence: true
+  validates :hearings, presence: true, length: { minimum: 1 }
   validates :initiationCode, presence: true, inclusion: INITIATION_CODES
   validates :defendants, presence: true
   validates :caseStatus, presence: true, inclusion: CASE_STATUSES
@@ -28,6 +29,7 @@ class ProsecutionCase < ApplicationRecord
 
   accepts_nested_attributes_for :defendants, reject_if: :all_blank
   accepts_nested_attributes_for :prosecution_case_identifier, reject_if: :all_blank
+  accepts_nested_attributes_for :hearings, reject_if: :all_blank
 
   def to_builder
     Jbuilder.new do |prosecution_case|

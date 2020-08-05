@@ -1,0 +1,44 @@
+<div class="field">
+  <%= hearing.label :jurisdictionType, 'Jurisdiction Type' %>
+  <%= hearing.select :jurisdictionType, Hearing::JURISDICTION_TYPES %>
+</div>
+<div class="field">
+  <%= hearing.label :reportingRestrictionReason, 'Reporting Restriction Reason' %>
+  <%= hearing.text_field :reportingRestrictionReason %>
+</div>
+<div class="field">
+  <%= hearing.label :court_centre_id, 'Court Centre' %>
+  <%= hearing.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] } %>
+</div>
+<div class="field">
+  <%= hearing.label :hearingLanguage, 'Hearing Language' %>
+  <%= hearing.select :hearingLanguage, Hearing::LANGUAGES %>
+</div>
+<div class="field">
+  <%= hearing.label :hasSharedResults, 'Has shared results' %>
+  <%= hearing.check_box :hasSharedResults %>
+</div>
+<%= hearing.fields_for :hearing_type do |hearing_type| %>
+  <div class="field">
+    <%= hearing_type.label :description, 'Hearing Type description' %>
+    <%= hearing_type.text_field :description %>
+  </div>
+<% end %>
+<%= hearing.fields_for :hearing_days do |hearing_day| %>
+  <div class="field">
+    <%= hearing_day.label :sittingDay %>
+    <%= hearing_day.text_field :sittingDay %>
+  </div>
+  <div class="field">
+    <%= hearing_day.label :listedDurationMinutes %>
+    <%= hearing_day.text_field :listedDurationMinutes %>
+  </div>
+<% end %>
+<div class="field">
+  <%= hearing.label :isEffectiveTrial %>
+  <%= hearing.check_box :isEffectiveTrial %>
+</div>
+<div class="field">
+  <%= hearing.label :isBoxHearing %>
+  <%= hearing.check_box :isBoxHearing %>
+</div>

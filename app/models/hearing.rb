@@ -3,10 +3,14 @@
 class Hearing < ApplicationRecord
   include BuilderMappable
   include CourtCentreRelatable
+
+  JURISDICTION_TYPES = %w[MAGISTRATES CROWN].freeze
+  LANGUAGES = %w[ENGLISH WELSH].freeze
+
   belongs_to :hearing_type
   belongs_to :cracked_ineffective_trial, optional: true
   has_many :prosecution_case_hearings, dependent: :destroy
-  has_many :prosecution_cases, through: :prosecution_case_hearings
+  has_many :prosecution_cases, through: :prosecution_case_hearings, inverse_of: :hearings
   has_many :court_applications
   has_many :referral_reasons
   has_many :hearing_case_notes
@@ -21,11 +25,15 @@ class Hearing < ApplicationRecord
   has_many :court_application_party_attendances
   has_many :defendant_hearing_youth_markers
 
-  validates :jurisdictionType, presence: true, inclusion: %w[MAGISTRATES CROWN]
+  validates :jurisdictionType, presence: true, inclusion: JURISDICTION_TYPES
   validates :court_centre_id, presence: true
   validates :hearing_type, presence: true
   validates :hearing_days, presence: true
-  validates :hearingLanguage, inclusion: %w[ENGLISH WELSH]
+  validates :hearingLanguage, inclusion: LANGUAGES
+
+  accepts_nested_attributes_for :hearing_type, reject_if: :all_blank
+  accepts_nested_attributes_for :hearing_days, reject_if: :all_blank
+
   def to_builder
     Jbuilder.new do |hearing|
       hearing.id id

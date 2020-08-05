@@ -51,9 +51,16 @@
 
   <h3>Defendants:</h3>
 
-    <%= form.fields_for :defendants do |defendant| %>
-      <%= render 'defendant', defendant: defendant %>
-    <% end %>
+  <%= form.fields_for :defendants do |defendant| %>
+    <%= render 'defendant', defendant: defendant %>
+  <% end %>
+
+
+  <h3>Hearings:</h3>
+
+  <%= form.fields_for :hearings do |hearing| %>
+    <%= render 'hearing', hearing: hearing %>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

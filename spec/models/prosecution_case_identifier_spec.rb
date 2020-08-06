@@ -11,6 +11,28 @@ RSpec.describe ProsecutionCaseIdentifier, type: :model do
     it { should validate_presence_of(:prosecutionAuthorityCode) }
   end
 
+  describe '.by_reference' do
+    let(:search_term) { 'INHRBICZKQ' }
+
+    subject { described_class.by_reference(search_term) }
+
+    before { prosecution_case_identifier.save! }
+
+    it { is_expected.to eq([prosecution_case_identifier]) }
+
+    context 'non-exact matches' do
+      let(:search_term) { 'INHRBICZKQ&&!' }
+
+      it { is_expected.to be_empty }
+    end
+
+    context 'lowercase searches' do
+      let(:search_term) { 'inhrbiczkq' }
+
+      it { is_expected.to eq([prosecution_case_identifier]) }
+    end
+  end
+
   it_has_a 'realistic factory'
 
   context 'when caseURN is present' do

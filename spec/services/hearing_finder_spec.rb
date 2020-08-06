@@ -31,10 +31,8 @@ RSpec.describe HearingFinder do
         { hearingId: '6c0b7068-d4a7-4adc-a7a0-7bd5715b501d' }
       end
 
-      it 'raises a RecordNotFound error' do
-        expect do
-          subject
-        end.to raise_error(ActiveRecord::RecordNotFound)
+      it 'returns an empty value' do
+        expect(subject).to be empty
       end
     end
   end

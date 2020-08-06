@@ -32,7 +32,7 @@ RSpec.describe HearingFinder do
       end
 
       it 'returns an empty value' do
-        expect(subject).to be empty
+        expect(subject).to be_nil
       end
     end
   end

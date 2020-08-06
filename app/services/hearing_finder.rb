@@ -11,7 +11,7 @@ class HearingFinder < ApplicationService
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
     raise Errors::InvalidParams, errors if errors.present?
 
-    Hearing.find(params[:hearingId])
+    Hearing.find_by(id: params[:hearingId])
   end
 
   private

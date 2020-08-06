@@ -15,4 +15,18 @@ FactoryBot.define do
       hearing.hearing_days << FactoryBot.create(:hearing_day)
     end
   end
+
+  factory :realistic_hearing, class: 'Hearing' do
+    hasSharedResults { Faker::Boolean.boolean }
+    jurisdictionType { Hearing::JURISDICTION_TYPES.sample }
+    reportingRestrictionReason { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
+    court_centre_id { HmctsCommonPlatform::Reference::CourtCentre.all.sample.id }
+    hearingLanguage { Hearing::LANGUAGES.sample }
+    hearing_type
+    isEffectiveTrial { Faker::Boolean.boolean }
+    isBoxHearing { Faker::Boolean.boolean }
+    after(:build) do |hearing|
+      hearing.hearing_days << FactoryBot.build(:hearing_day)
+    end
+  end
 end

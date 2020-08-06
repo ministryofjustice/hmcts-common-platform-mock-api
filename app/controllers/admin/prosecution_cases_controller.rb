@@ -57,6 +57,7 @@ module Admin
                                                :breachProceedingsPending,
                                                :appealProceedingsPending,
                                                prosecution_case_identifier_attributes: prosecution_case_identifier_attributes,
+                                               hearings_attributes: hearings_attributes,
                                                defendants_attributes: defendant_attributes)
     end
 
@@ -81,6 +82,19 @@ module Admin
 
     def prosecution_case_identifier_attributes
       %i[id caseURN prosecutionAuthorityReference prosecutionAuthorityId prosecutionAuthorityCode]
+    end
+
+    def hearings_attributes
+      [:id,
+       :jurisdictionType,
+       :reportingRestrictionReason,
+       :court_centre_id,
+       :hearingLanguage,
+       :hasSharedResults,
+       :isEffectiveTrial,
+       :isBoxHearing,
+       { hearing_type_attributes: %i[id description] },
+       { hearing_days_attributes: %i[id sittingDay listedDurationMinutes] }]
     end
 
     def defendable_attributes

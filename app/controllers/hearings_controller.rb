@@ -4,7 +4,7 @@ class HearingsController < ApplicationController
   def show
     @hearing = HearingFinder.call(params)
 
-    render json: { hearing: @hearing.to_builder.attributes!, sharedTime: @hearing.created_at.to_datetime }
+    render json: hearing_response
   end
 
   def log
@@ -14,6 +14,12 @@ class HearingsController < ApplicationController
   end
 
   private
+
+  def hearing_response
+    return {} if @hearing.blank?
+
+    { hearing: @hearing.to_builder.attributes!, sharedTime: @hearing.created_at.to_datetime }
+  end
 
   def hearing_log_response
     {

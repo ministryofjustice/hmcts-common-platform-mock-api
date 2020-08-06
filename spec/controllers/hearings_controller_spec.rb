@@ -9,35 +9,19 @@ RSpec.describe HearingsController, type: :controller do
       expect(response).to be_unauthorized
     end
 
-    context 'with the correct auth header' do
-      before do
+    context 'with the correct auth header and the hearing exists' do
+      it 'returns a success response' do
         request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY')
+        get :show, params: { hearingId: hearing.id }
+        expect(response).to be_successful
       end
+    end
 
-      context 'the hearing exists' do
-        it 'returns an empty success response' do
-          get :show, params: { hearingId: hearing.id }
-          expect(response).to be_successful
-          expect(response.body).to eq('{}')
-        end
-      end
-
-      context 'the hearing does not exist' do
-        it 'returns an empty success response' do
-          get :show, params: { hearingId: 'c748bfa0-925a-450b-b4d5-a031c0ee3440' }
-          expect(response).to be_successful
-          expect(response.body).to eq('{}')
-        end
-      end
-
-      context 'when the hearing has resulted' do
-        before { hearing.update!(resulted: true) }
-
-        it 'returns a success response' do
-          get :show, params: { hearingId: hearing.id }
-          expect(response).to be_successful
-          expect(response).not_to be_empty
-        end
+    context 'when the hearing does not exist' do
+      it 'returns a success response' do
+        request.headers['Ocp-Apim-Subscription-Key'] = ENV.fetch('SHARED_SECRET_KEY')
+        get :show, params: { hearingId: 'c748bfa0-925a-450b-b4d5-a031c0ee3440' }
+        expect(response).to be_successful
       end
     end
   end

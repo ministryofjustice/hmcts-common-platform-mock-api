@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe HearingResultedPublisher do
-  let(:hearing) { FactoryBot.create(:hearing) }
+  let(:hearing) { FactoryBot.create(:hearing, resulted: true) }
   let(:shared_time) { '2019-12-12T00:00:00+00:00' }
 
   subject { described_class.call(hearing_id: hearing.id, shared_time: shared_time) }

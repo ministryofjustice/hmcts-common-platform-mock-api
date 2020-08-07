@@ -4,7 +4,7 @@ class HearingResultedPublisher < ApplicationService
   URL = '/api/external/v1/hearings'
 
   def initialize(hearing_id:, shared_time:, type: :dev)
-    @hearing = Hearing.find(hearing_id)
+    @hearing = Hearing.where(resulted: true).find(hearing_id)
     @shared_time = shared_time
     @type = type
     @schema = JSON.parse(File.open(Rails.root.join('lib/schemas/api/hearing-resulted.json')).read)

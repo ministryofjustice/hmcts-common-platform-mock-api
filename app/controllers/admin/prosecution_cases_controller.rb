@@ -3,7 +3,7 @@
 module Admin
   # rubocop:disable Metrics/ClassLength
   class ProsecutionCasesController < Admin::ApplicationController
-    before_action :set_prosecution_case, only: %i[show edit update destroy]
+    before_action :set_prosecution_case, only: %i[show edit update destroy result]
 
     def index
       @prosecution_cases = ProsecutionCase.all
@@ -38,6 +38,14 @@ module Admin
     def destroy
       @prosecution_case.destroy
       redirect_to admin_prosecution_cases_url, notice: 'Prosecution case was successfully destroyed.'
+    end
+
+    def result
+      if HearingResulter.call(hearing_id: params[:hearing_id], publish_to: params[:publish_to])
+        redirect_to [:admin, @prosecution_case], notice: 'Hearing was successfully resulted.'
+      else
+        render :edit
+      end
     end
 
     private

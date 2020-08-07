@@ -111,6 +111,34 @@ RSpec.describe '/admin/prosecution_cases', type: :request do
     end
   end
 
+  describe 'POST /result' do
+    let(:hearing) { FactoryBot.create(:hearing) }
+
+    before { prosecution_case.hearings << hearing }
+
+    context 'with valid parameters' do
+      it 'results the hearing' do
+        post result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers: headers
+        hearing.reload
+        expect(hearing.resulted).to eq(true)
+      end
+
+      it 'redirects to the prosecution_case' do
+        post result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers: headers
+        expect(response).to redirect_to(admin_prosecution_case_url(prosecution_case))
+      end
+    end
+
+    context 'with invalid parameters' do
+      before { allow(HearingResulter).to receive(:call).and_return(false) }
+
+      it "renders a successful response (i.e. to display the 'edit' template)" do
+        post result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers: headers
+        expect(response).to be_successful
+      end
+    end
+  end
+
   describe 'DELETE /destroy' do
     before { prosecution_case.save! }
 

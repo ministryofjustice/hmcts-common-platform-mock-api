@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Hearings', type: :request do
-  let(:hearing) { FactoryBot.create(:hearing) }
+  let(:hearing) { FactoryBot.create(:hearing, resulted: true) }
   let(:headers) { { 'Ocp-Apim-Subscription-Key': ENV.fetch('SHARED_SECRET_KEY') } }
 
   describe 'GET /hearing/results' do

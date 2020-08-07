@@ -1,30 +1,37 @@
 # frozen_string_literal: true
 
 RSpec.describe LaaConnector do
-  let(:laa_adaptor_url) { 'https://example.org' }
-  let(:auth_token) { 'AUTH TOKEN' }
-  let(:connection_double) { double('Faraday') }
+  let(:api_url) { 'API_URL' }
+  let(:client_id) { 'CLIENT_ID' }
+  let(:client_secret) { 'CLIENT_SECRET' }
+  let(:oauth_url) { 'OAUTH_URL' }
 
-  subject { described_class.call(connection_url: laa_adaptor_url, auth_token: auth_token) }
+  subject { described_class.call(api_url: api_url, client_id: client_id, client_secret: client_secret, oauth_url: oauth_url) }
 
-  it 'connects to the common platform url' do
-    expect(Faraday).to receive(:new).with(laa_adaptor_url)
+  it 'connects to the laa api url' do
+    expect(Faraday).to receive(:new).with(api_url)
     subject
   end
 
   context 'faraday configuration' do
     let(:connection) { double }
+    let(:oauth_client) { instance_double('OAuth2::Client', client_credentials: token_generator) }
+    let(:token_generator) { double(get_token: double(token: 'XYZ')) }
 
     before do
       allow(Faraday).to receive(:new).and_yield(connection)
+      allow(OAuth2::Client).to receive(:new).and_return(oauth_client)
     end
 
-    it 'authenticates with token auth' do
-      expect(connection).to receive(:token_auth).with(auth_token)
-      expect(connection).to receive(:request).with(:json)
+    # rubocop:disable RSpec/ExampleLength
+    it 'authenticates with generated oauth token' do
+      expect(OAuth2::Client).to receive(:new).with(client_id, client_secret, site: oauth_url)
+      expect(connection).to receive(:request).with(:oauth2, 'XYZ', token_type: :bearer)
+      expect(connection).to receive(:request)
       expect(connection).to receive(:response).with(:json, content_type: 'application/json')
       expect(connection).to receive(:adapter).with(:net_http)
       subject
     end
+    # rubocop:enable RSpec/ExampleLength
   end
 end

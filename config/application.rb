@@ -33,5 +33,7 @@ module HmctsCommonPlatformApi
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.laa_connection = config_for(:laa_connection)
   end
 end

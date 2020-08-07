@@ -2,38 +2,20 @@
 http_interactions:
 - request:
     method: post
-    uri: "<LAA_ADAPTOR_URL>/hearings"
+    uri: "<LAA_DEV_API_URL>/oauth/token"
     body:
       encoding: UTF-8
-      string: '{"hearing":{"id":"e5be9869-b84a-4bf2-81b8-a18a24fc9785","jurisdictionType":"CROWN","reportingRestrictionReason":"MyString","courtCentre":{"id":"aca8327b-b453-4c4c-94a2-4103b65eddc0","name":"Random
-        string","welshName":"Llinyn ar hap","roomId":"eead982f-134e-48ba-ac94-d30be1233fe5","roomName":"Grand
-        Hall","welshRoomName":"Neuadd y Grand"},"hearingLanguage":"WELSH","hasSharedResults":false,"type":{"id":"15331b98-3830-4bf8-8f14-56440871996b","description":"This
-        is a description","code":"12D10JAS"},"isEffectiveTrial":false,"isBoxHearing":false,"hearingDays":[{"sittingDay":"2019-10-23
-        16:19:15 UTC","listingSequence":1,"listedDurationMinutes":1}]},"sharedTime":"2019-12-12T00:00:00+00:00"}'
+      string: client_id=<LAA_DEV_CLIENT_ID>&client_secret=<LAA_DEV_CLIENT_SECRET>&grant_type=client_credentials
     headers:
-      Authorization:
-      - Token token="<LAA_ADAPTOR_AUTH_TOKEN>"
       User-Agent:
-      - Faraday v0.17.0
+      - Faraday v1.0.1
       Content-Type:
-      - application/json
+      - application/x-www-form-urlencoded
   response:
     status:
-      code: 201
-      message: Created
+      code: 200
+      message: OK
     headers:
-      server:
-      - openresty/1.15.8.2
-      date:
-      - Wed, 18 Dec 2019 17:00:12 GMT
-      content-type:
-      - text/html
-      transfer-encoding:
-      - chunked
-      connection:
-      - keep-alive
-      strict-transport-security:
-      - max-age=15724800; includeSubDomains
       x-frame-options:
       - SAMEORIGIN
       x-xss-protection:
@@ -47,14 +29,72 @@ http_interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       cache-control:
+      - private, no-store
+      pragma:
+      - no-cache
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"0895a41d4cf92472f98b5c1f4e40a2d0"
+      x-request-id:
+      - 2273660b-d277-4ee5-86a7-8803992d4bd2
+      x-runtime:
+      - '0.011147'
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"<ACCESS_TOKEN>","token_type":"Bearer","expires_in":7200,"created_at":1596803180}'
+  recorded_at: Fri, 07 Aug 2020 12:26:20 GMT
+- request:
+    method: post
+    uri: "<LAA_DEV_API_URL>/api/external/v1/hearings"
+    body:
+      encoding: UTF-8
+      string: '{"hearing":{"id":"18633508-8895-4176-ac2e-22cac661f010","jurisdictionType":"CROWN","reportingRestrictionReason":"reporting
+        restriction because...","courtCentre":{"id":"bc4864ca-4b22-3449-9716-a8db1db89905","name":"Warrington
+        CCU (Decom)","roomId":"bc4864ca-4b22-3449-9716-a8db1db89905","roomName":"Warrington
+        CCU (Decom)"},"hearingLanguage":"WELSH","hasSharedResults":false,"type":{"id":"a8d1f602-e939-459f-81c4-44737ed42c24","description":"Plea
+        and Trial Prepation (PTP)"},"isEffectiveTrial":false,"isBoxHearing":false,"hearingDays":[{"sittingDay":"2019-10-23
+        16:19:15 UTC","listingSequence":1,"listedDurationMinutes":1}]},"sharedTime":"2019-12-12T00:00:00+00:00"}'
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Authorization:
+      - "<BEARER_TOKEN>"
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      laa-transaction-id:
+      - 8f5cc44f-71f4-4711-8136-0a91565fd1c8
+      content-type:
+      - text/html
+      cache-control:
       - no-cache
       x-request-id:
-      - 3b5f586e33b66675f228e72b2d0a9e56
+      - 8f5cc44f-71f4-4711-8136-0a91565fd1c8
       x-runtime:
-      - '0.253596'
+      - '0.016585'
+      transfer-encoding:
+      - chunked
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
-  recorded_at: Wed, 18 Dec 2019 17:00:12 GMT
-recorded_with: VCR 5.0.0
+  recorded_at: Fri, 07 Aug 2020 12:26:20 GMT
+recorded_with: VCR 6.0.0

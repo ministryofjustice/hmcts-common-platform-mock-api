@@ -31,7 +31,7 @@ RSpec.describe Offence, type: :model do
   it_has_behaviour 'conforming to valid schema'
 
   context 'with relationships' do
-    let(:offence) { FactoryBot.create(:offence_with_relationships) }
+    let(:offence) { FactoryBot.create(:offence_with_relationships_and_laa_reference) }
 
     it_has_behaviour 'conforming to valid schema'
   end

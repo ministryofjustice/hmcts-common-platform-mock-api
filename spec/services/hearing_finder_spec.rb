@@ -24,18 +24,24 @@ RSpec.describe HearingFinder do
       { hearingId: hearing.id }
     end
 
-    it { is_expected.to eq(hearing) }
+    it 'returns an empty value' do
+      expect(subject).to be_nil
+    end
 
     context 'with an incorrect id' do
       let(:params_hash) do
         { hearingId: '6c0b7068-d4a7-4adc-a7a0-7bd5715b501d' }
       end
 
-      it 'raises a RecordNotFound error' do
-        expect do
-          subject
-        end.to raise_error(ActiveRecord::RecordNotFound)
+      it 'returns an empty value' do
+        expect(subject).to be_nil
       end
+    end
+
+    context 'with a resulted hearing' do
+      before { hearing.update!(resulted: true) }
+
+      it { is_expected.to eq(hearing) }
     end
   end
 end

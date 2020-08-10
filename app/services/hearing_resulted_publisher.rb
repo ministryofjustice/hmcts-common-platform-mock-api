@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class HearingResultedPublisher < ApplicationService
-  def initialize(hearing_id:, shared_time:, connection: LaaConnector.call)
-    @hearing = Hearing.find(hearing_id)
+  URL = '/api/external/v1/hearings'
+
+  def initialize(hearing_id:, shared_time:, type: :dev)
+    @hearing = Hearing.where(resulted: true).find(hearing_id)
     @shared_time = shared_time
-    @connection = connection
+    @type = type
     @schema = JSON.parse(File.open(Rails.root.join('lib/schemas/api/hearing-resulted.json')).read)
-    @url = 'hearings'
     register_dependant_schemas!
   end
 
@@ -14,15 +15,19 @@ class HearingResultedPublisher < ApplicationService
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
     raise Errors::InvalidParams, errors if errors.present?
 
-    connection.post(url, permitted_params)
+    connection.post(URL, permitted_params)
   end
 
   private
 
-  attr_reader :hearing, :connection, :shared_time, :schema, :url
+  attr_reader :hearing, :shared_time, :type, :schema
 
   def permitted_params
     { hearing: hearing.to_builder.attributes!, sharedTime: shared_time }
+  end
+
+  def connection
+    @connection ||= LaaConnector.call(**Rails.configuration.laa_connection[type])
   end
 
   def register_dependant_schemas!

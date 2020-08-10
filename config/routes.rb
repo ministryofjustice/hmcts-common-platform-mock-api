@@ -2,7 +2,11 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-    resources :prosecution_cases
+    resources :prosecution_cases do
+      member do
+        post 'result/:hearing_id(/:publish_to)' => 'prosecution_cases#result', as: :result_hearing
+      end
+    end
   end
   resources :status, only: [:index]
 

@@ -1,0 +1,28 @@
+production:
+  dev:
+    api_url: <%= ENV['LAA_DEV_API_URL'] %>
+    client_id: <%= ENV['LAA_DEV_CLIENT_ID'] %>
+    client_secret: <%= ENV['LAA_DEV_CLIENT_SECRET'] %>
+    oauth_url: <%= ENV['LAA_DEV_OAUTH_URL'] %>
+  test:
+    api_url: <%= ENV['LAA_TEST_API_URL'] %>
+    client_id: <%= ENV['LAA_TEST_CLIENT_ID'] %>
+    client_secret: <%= ENV['LAA_TEST_CLIENT_SECRET'] %>
+    oauth_url: <%= ENV['LAA_TEST_OAUTH_URL'] %>
+  stage:
+    api_url: <%= ENV['LAA_STAGE_API_URL'] %>
+    client_id: <%= ENV['LAA_STAGE_CLIENT_ID'] %>
+    client_secret: <%= ENV['LAA_STAGE_CLIENT_SECRET'] %>
+    oauth_url: <%= ENV['LAA_STAGE_OAUTH_URL'] %>
+development:
+  dev:
+    api_url: <%= ENV['LAA_DEV_API_URL'] %>
+    client_id: <%= ENV['LAA_DEV_CLIENT_ID'] %>
+    client_secret: <%= ENV['LAA_DEV_CLIENT_SECRET'] %>
+    oauth_url: <%= ENV['LAA_DEV_OAUTH_URL'] %>
+test:
+  dev:
+    api_url: <%= ENV['LAA_DEV_API_URL'] %>
+    client_id: <%= ENV['LAA_DEV_CLIENT_ID'] %>
+    client_secret: <%= ENV['LAA_DEV_CLIENT_SECRET'] %>
+    oauth_url: <%= ENV['LAA_DEV_OAUTH_URL'] %>

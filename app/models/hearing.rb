@@ -51,7 +51,6 @@ class Hearing < ApplicationRecord
       hearing.crackedIneffectiveTrial cracked_ineffective_trial.to_builder if cracked_ineffective_trial.present?
       hearing.isEffectiveTrial isEffectiveTrial
       hearing.isBoxHearing isBoxHearing
-      hearing.prosecutionCases array_builder(prosecution_cases)
       hearing.courtApplications array_builder(court_applications)
       hearing.defendantReferralReasons array_builder(referral_reasons)
       hearing.hearingCaseNotes array_builder(hearing_case_notes)

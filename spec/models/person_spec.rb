@@ -74,22 +74,22 @@ RSpec.describe Person, type: :model do
     end
   end
 
-  describe '#name' do
-    subject { person.name }
+  describe '#first_name' do
+    subject { person.first_name }
 
-    it { is_expected.to eq('Alfredine Treutel Parker') }
+    it { is_expected.to eq('Alfredine') }
+  end
 
-    context 'missing first name' do
-      before { person.update!(middleName: nil) }
+  describe '#middle_name' do
+    subject { person.middle_name }
 
-      it { is_expected.to eq('Alfredine Parker') }
-    end
+    it { is_expected.to eq('Treutel') }
+  end
 
-    context 'missing first and middle name' do
-      before { person.update!(firstName: nil, middleName: nil) }
+  describe '#last_name' do
+    subject { person.last_name }
 
-      it { is_expected.to eq('Parker') }
-    end
+    it { is_expected.to eq('Parker') }
   end
 
   it_has_behaviour 'conforming to valid schema'

@@ -20,8 +20,16 @@ class Person < ApplicationRecord
   validates :gender, presence: true, inclusion: GENDERS
   validates :documentationLanguageNeeds, inclusion: LANGUAGES
 
-  def name
-    [firstName, middleName, lastName].compact.join(' ')
+  def first_name
+    firstName
+  end
+
+  def middle_name
+    middleName
+  end
+
+  def last_name
+    lastName
   end
 
   def to_builder

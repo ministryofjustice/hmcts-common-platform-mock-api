@@ -16,8 +16,16 @@
           "description": "The police arrest summons number when the defendant is a person",
           "type": "string"
         },
-        "defendantName": {
-          "description": "The name of the defendant",
+        "defendantFirstName": {
+          "description": "The firstname of the defendant",
+          "type": "string"
+        },
+        "defendantMiddleName": {
+          "description": "The middle name of the defendant",
+          "type": "string"
+        },
+        "defendantLastName": {
+          "description": "The last name of the defendant",
           "type": "string"
         },
         "defendantDOB": {
@@ -43,7 +51,9 @@
     },
     "required": [
         "defendantId",
-        "defendantName",
+        "defendantFirstName",
+        "defendantMiddleName",
+        "defendantLastName",
         "offenceSummary"
     ],
     "additionalProperties": false

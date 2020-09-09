@@ -14,10 +14,17 @@ class DefendantSummary
   def to_builder
     Jbuilder.new do |defendant_summary|
       defendant_summary.defendantId defendant_id
-      defendant_summary.defendantNINO defendant.defendable.person.nationalInsuranceNumber if defendant.person?
-      defendant_summary.defendantASN defendant.defendable.arrestSummonsNumber if defendant.person?
-      defendant_summary.defendantName defendant_name
-      defendant_summary.defendantDOB defendant.defendable.person.dateOfBirth.to_date if defendant.person?
+      if defendant.person?
+        defendant_summary.defendantNINO defendant.defendable.person.nationalInsuranceNumber
+        defendant_summary.defendantASN defendant.defendable.arrestSummonsNumber
+        defendant_summary.defendantFirstName defendant_first_name
+        defendant_summary.defendantMiddleName defendant_middle_name
+        defendant_summary.defendantLastName defendant_last_name
+        defendant_summary.defendantDOB defendant.defendable.person.dateOfBirth.to_date
+      else
+        defendant_summary.defendantName defendant_name
+      end
+
       defendant_summary.dateOfNextHearing date_of_next_hearing
       defendant_summary.proceedingsConcluded proceedings_concluded?
       defendant_summary.offenceSummary offences_builder
@@ -37,9 +44,19 @@ class DefendantSummary
   end
 
   def defendant_name
-    return defendant.defendable.person.name if defendant.person?
-
     defendant.defendable.organisation.name
+  end
+
+  def defendant_first_name
+    defendant.defendable.person.first_name
+  end
+
+  def defendant_middle_name
+    defendant.defendable.person.middle_name
+  end
+
+  def defendant_last_name
+    defendant.defendable.person.last_name
   end
 
   def offences_builder

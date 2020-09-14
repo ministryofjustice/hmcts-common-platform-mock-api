@@ -17,6 +17,6 @@
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import "cocoon-js-vanilla";
+import "@kollegorna/cocoon-vanilla-js";
 
 console.log('Hello World from Webpacker')

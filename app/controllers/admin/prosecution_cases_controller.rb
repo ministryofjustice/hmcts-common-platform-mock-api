@@ -170,7 +170,8 @@ module Admin
          laidDate
          proceedingsConcluded
          pendingCBPW
-         civilOffence]
+         civilOffence
+         _destroy]
     end
   end
   # rubocop:enable Metrics/ClassLength

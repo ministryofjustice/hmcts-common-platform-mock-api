@@ -23,6 +23,7 @@ AllCops:
     - "vendor/**/*"
     - "bin/**/*"
     - "log/**/*"
+    - "node_modules/**/*"
 
 Metrics/BlockLength:
   Exclude:

@@ -170,8 +170,13 @@
   <% end %>
 
 
-  <h3> Offences: </h3>
-  <%= defendant.fields_for :offences do |offence| %>
-    <%= render 'offence', offence: offence %>
-  <% end %>
+  <h3>Offences</h3>
+  <div id="offences">
+    <%= defendant.fields_for :offences do |offence| %>
+      <%= render 'offence_fields', f: offence %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add offence', defendant, :offences %>
+    </div>
+  </div>
 <% end %>

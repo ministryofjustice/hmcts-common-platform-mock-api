@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.10'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'cocoon'
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'faraday_middleware'
@@ -27,6 +28,7 @@ gem 'hmcts_common_platform', github: 'ministryofjustice/hmcts_common_platform', 
 gem 'json-schema'
 gem 'oauth2'
 gem 'pg_search'
+gem 'webpacker'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

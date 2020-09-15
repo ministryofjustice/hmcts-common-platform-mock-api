@@ -7,12 +7,14 @@ RUN set -ex
 # build dependencies:
 # - virtual: create virtual package for later deletion
 # - build-base for alpine fundamentals
+# - yarn for js dependency management
 # - postgresql-dev for pg/activerecord gems
 # - tzdata for timezone data
 # - git for installing gems referred to use a git:// uri
 #
 RUN apk --no-cache add --virtual build-dependencies \
                     build-base \
+                    yarn \
                     postgresql-dev \
                     tzdata \
                     git

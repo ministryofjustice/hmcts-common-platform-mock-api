@@ -292,7 +292,6 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.4.0)
-    
 
 PLATFORMS
   ruby

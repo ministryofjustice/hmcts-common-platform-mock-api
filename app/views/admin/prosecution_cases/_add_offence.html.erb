@@ -1,0 +1,9 @@
+<%= fields_for @prosecution_case do |prosecution_case_form| %>
+  <%= prosecution_case_form.fields_for :defendants do |defendant_form| %>
+    <%= defendant_form.fields_for :offences do |form| %>
+
+      <%= render 'offence_fields', f: form %>
+
+    <% end %>
+  <% end %>
+<% end %>

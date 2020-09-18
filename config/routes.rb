@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       member do
         post 'result/:hearing_id(/:publish_to)' => 'prosecution_cases#result', as: :result_hearing
       end
+      collection do
+        get 'add_offence'
+      end
     end
   end
   resources :status, only: [:index]

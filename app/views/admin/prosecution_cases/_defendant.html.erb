@@ -175,8 +175,8 @@
     <%= defendant.fields_for :offences do |offence| %>
       <%= render 'offence_fields', f: offence %>
     <% end %>
-    <div class="links">
-      <%= link_to_add_association 'add offence', defendant, :offences %>
-    </div>
+  </div>
+  <div class="links">
+    <%= link_to 'add offence', add_offence_admin_prosecution_cases_path, remote: true %>
   </div>
 <% end %>

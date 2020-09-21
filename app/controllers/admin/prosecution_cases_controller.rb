@@ -48,6 +48,10 @@ module Admin
       end
     end
 
+    def add_offence
+      @prosecution_case = FactoryBot.build(:realistic_prosecution_case)
+    end
+
     private
 
     # Use callbacks to share common setup or constraints between actions.

@@ -848,6 +848,11 @@
   resolved "https://registry.yarnpkg.com/@kollegorna/cocoon-vanilla-js/-/cocoon-vanilla-js-1.0.6.tgz#37a54550936a57d8dcdb99e63340d379bb99589d"
   integrity sha512-DeGUU6GKdpE1QBz6FS35u4E5JPYcwiP8ZsrmUquhjCKNXNbQ7EKhBwprF9DyUpZ2NYGVgkwYof8b4iAPx0X9bg==
 
+"@rails/ujs@^6.0.3-3":
+  version "6.0.3-3"
+  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.0.3-3.tgz#5cf1e99c6fa1beaf73d4bcac6ab9b05702e92713"
+  integrity sha512-bXCbtpSwCtqhBXxxoD5FGiyeqJU1smf4DS15SCXRzzSaoee2Kk+lVV5q2dEIBdj0NBDiK/G1ShoM2wlPy7Tu5w==
+
 "@rails/webpacker@4.2.2":
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-4.2.2.tgz#b9dd3235fdf4d0badbda8e33f6ebee742a9f3abb"

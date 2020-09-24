@@ -5,11 +5,11 @@ require 'support/when_authenticated'
 RSpec.describe 'adding a new offence to prosecution case ', type: :feature do
   let(:prosecution_case) { FactoryBot.create(:realistic_prosecution_case) }
 
-  before do
-    WebMock.disable_net_connect!(allow_localhost: true)
-  end
-
   describe 'add offence' do
+    before do
+      WebMock.allow_net_connect!
+    end
+
     include_context 'When authenticated'
 
     it 'creates the new offence', js: true do

@@ -1,6 +1,6 @@
 <%= fields_for @prosecution_case do |prosecution_case_form| %>
   <%= prosecution_case_form.fields_for :defendants do |defendant_form| %>
-    <%= defendant_form.fields_for :offences do |form| %>
+    <%= defendant_form.fields_for :offences, child_index: Time.now.to_i do |form| %>
 
       <%= render 'offence_fields', f: form %>
 

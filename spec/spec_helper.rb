@@ -14,6 +14,7 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 
+require 'capybara/rspec'
 require 'webmock/rspec'
 require_relative 'simplecov_helper'
 require_relative './support/fake_common_platform'

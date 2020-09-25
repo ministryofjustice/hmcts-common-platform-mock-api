@@ -17,10 +17,6 @@ RSpec.describe HearingResultedPublisher do
   end
 
   context 'with valid params' do
-    before do
-      WebMock.disable_net_connect!(allow: ENV['LAA_DEV_API_URL'])
-    end
-
     it 'sends a payload to LAA hearings endpoint' do
       VCR.use_cassette('hearings/resulted/success') do
         expect(subject.status).to eq(202)

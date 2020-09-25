@@ -7,7 +7,7 @@ RSpec.describe 'adding a new offence to prosecution case ', type: :feature do
 
   describe 'add offence' do
     before do
-      WebMock.allow_net_connect!
+      WebMock.disable_net_connect!(allow_localhost: true)
     end
 
     include_context 'When authenticated'

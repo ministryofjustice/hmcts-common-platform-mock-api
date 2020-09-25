@@ -34,6 +34,7 @@ gem 'webpacker'
 # gem 'rack-cors'
 
 group :development, :test do
+  gem 'capybara'
   gem 'dotenv-rails'
   gem 'json-schema-rspec'
   gem 'pry-byebug'
@@ -59,4 +60,5 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'shoulda-matchers'
   gem 'simplecov'
+  gem 'webdrivers'
 end

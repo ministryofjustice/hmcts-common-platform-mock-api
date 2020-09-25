@@ -6,10 +6,6 @@ RSpec.describe 'adding a new offence to prosecution case ', type: :feature do
   let(:prosecution_case) { FactoryBot.create(:realistic_prosecution_case) }
 
   describe 'add offence' do
-    before do
-      WebMock.disable_net_connect!(allow_localhost: true)
-    end
-
     include_context 'When authenticated'
 
     it 'creates the new offence', js: true do

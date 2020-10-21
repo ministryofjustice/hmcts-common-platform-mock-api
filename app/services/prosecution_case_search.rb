@@ -12,10 +12,6 @@ class ProsecutionCaseSearch < ApplicationService
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
     raise Errors::InvalidParams, errors if errors.present?
 
-    #  if permitted_params['prosecutionCaseReference'].present? && permitted_params['defendantNINO'].present?
-    #    return prosecution_cases_by_reference.merge(prosecution_cases_by_nino)
-    #  end
-
     prosecution_cases_by_reference if permitted_params['prosecutionCaseReference'].present?
 
     prosecution_cases_by_nino if permitted_params['defendantNINO'].present?

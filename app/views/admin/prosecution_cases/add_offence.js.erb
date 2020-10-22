@@ -1,3 +1,7 @@
 document.
 getElementById("offences").
 insertAdjacentHTML('beforeend', '<%= escape_javascript(render 'add_offence') %>')
+
+var orderIndexElements = document.querySelectorAll('.order-index')
+
+orderIndexElements[orderIndexElements.length - 1].value = orderIndexElements.length

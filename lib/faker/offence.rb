@@ -14,6 +14,10 @@ module Faker
       def class
         fetch('offence.class')
       end
+
+      def mode_of_trial
+        fetch('offence.mode_of_trial')
+      end
     end
   end
 end

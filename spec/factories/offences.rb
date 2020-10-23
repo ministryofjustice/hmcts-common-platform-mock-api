@@ -11,7 +11,7 @@ FactoryBot.define do
     offenceTitleWelsh { Faker::Offence.name }
     offenceLegislation { Faker::Offence.act }
     offenceLegislationWelsh { Faker::Offence.act }
-    modeOfTrial { 'Random string' }
+    modeOfTrial { Faker::Offence.mode_of_trial }
     wording { 'Random string' }
     wordingWelsh { 'Llinyn ar hap' }
     startDate { '2019-10-17 14:06:13' }

@@ -116,6 +116,31 @@ RSpec.describe '/admin/prosecution_cases', type: :request do
         expect(response).to be_successful
       end
     end
+
+    context 'when deleting an offense' do
+      let(:valid_attributes) do
+        FactoryBot.attributes_for(:prosecution_case,
+                                  defendants_attributes: [defendants_attributes])
+      end
+
+      let(:defendants_attributes) do
+        FactoryBot.attributes_for(:defendant,
+                                  id: prosecution_case.defendants.first.id,
+                                  offences_attributes: [{ id: offence_two.id, _destroy: 1 }])
+      end
+      let(:offence_two) { FactoryBot.create(:offence)}
+
+      before do
+        prosecution_case.defendants.first.offences << offence_two
+        prosecution_case.save!
+      end
+
+      it 'deletes an offense from the database' do
+        expect do
+          patch admin_prosecution_case_url(prosecution_case), params: { prosecution_case: valid_attributes }, headers: headers
+        end.to change(Offence, :count).by(-1)
+      end
+    end
   end
 
   describe 'POST /result' do

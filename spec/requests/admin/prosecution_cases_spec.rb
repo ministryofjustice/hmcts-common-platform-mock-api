@@ -128,7 +128,7 @@ RSpec.describe '/admin/prosecution_cases', type: :request do
                                   id: prosecution_case.defendants.first.id,
                                   offences_attributes: [{ id: offence_two.id, _destroy: 1 }])
       end
-      let(:offence_two) { FactoryBot.create(:offence)}
+      let(:offence_two) { FactoryBot.create(:offence) }
 
       before do
         prosecution_case.defendants.first.offences << offence_two

@@ -76,6 +76,10 @@
             "description": "The date that the result was ordered",
             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
         },
+        "postHearingCustodyStatus": {
+            "description": "The bail status following the hearing",
+            "type": "string"
+        },
         "lastSharedDateTime": {
             "type": "string"
         },

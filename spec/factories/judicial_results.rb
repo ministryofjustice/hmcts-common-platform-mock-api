@@ -18,7 +18,7 @@ FactoryBot.define do
     qualifier { 'Random String' }
     resultText { 'Random String' }
     cjsCode { 'Random String' }
-    postHearingCustodyStatus { 'Random String' }
+    postHearingCustodyStatus { 'A' }
     rank { 1 }
     orderedDate { '2019-10-16 10:11:02' }
     lastSharedDateTime { 'Random String' }

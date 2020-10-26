@@ -2,6 +2,8 @@
 
 class JudicialResult < ApplicationRecord
   include BuilderMappable
+
+  POST_HEARING_CUSTODY_STATUSES = %w[A B C L P R S U].freeze
   belongs_to :court_clerk, class_name: 'DelegatedPowers', optional: true
   belongs_to :delegated_powers, optional: true
   belongs_to :four_eyes_approval, class_name: 'DelegatedPowers', optional: true
@@ -20,6 +22,8 @@ class JudicialResult < ApplicationRecord
   validates :category, presence: true, inclusion: %w[FINAL INTERMEDIARY ANCILLARY]
   validates :resultText, presence: true
   validates :terminatesOffenceProceedings, inclusion: [true, false]
+  validates :postHearingCustodyStatus, inclusion: POST_HEARING_CUSTODY_STATUSES
+
   def to_builder
     Jbuilder.new do |judicial_result|
       judicial_result.judicialResultId judicialResultId
@@ -40,6 +44,7 @@ class JudicialResult < ApplicationRecord
       judicial_result.cjsCode cjsCode
       judicial_result.rank rank
       judicial_result.orderedDate orderedDate.to_date
+      judicial_result.postHearingCustodyStatus postHearingCustodyStatus
       judicial_result.lastSharedDateTime lastSharedDateTime
       judicial_result.terminatesOffenceProceedings terminatesOffenceProceedings
       judicial_result.courtClerk court_clerk.to_builder if court_clerk.present?

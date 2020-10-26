@@ -21,6 +21,7 @@ RSpec.describe JudicialResult, type: :model do
     it { should validate_presence_of(:category) }
     it { should validate_presence_of(:resultText) }
     it { should validate_inclusion_of(:category).in_array(%w[FINAL INTERMEDIARY ANCILLARY]) }
+    it { should validate_inclusion_of(:postHearingCustodyStatus).in_array(described_class::POST_HEARING_CUSTODY_STATUSES) }
   end
 
   it_has_behaviour 'conforming to valid schema'

@@ -41,11 +41,15 @@ class HearingResultedPublisher < ApplicationService
     hearing['id'] = 'http://justice.gov.uk/core/courts/external/hearing.json'
     JSON::Validator.add_schema(JSON::Schema.new(hearing, Addressable::URI.parse(hearing['id'])))
 
+    person_defendant = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiPersonDefendant.json')).read)
+    JSON::Validator.add_schema(JSON::Schema.new(person_defendant, Addressable::URI.parse(person_defendant['id'])))
+
     court_centre = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiCourtCentre.json')).read)
+    court_centre['id'] = 'http://justice.gov.uk/core/courts/external/apiCourtCentre.json'
     JSON::Validator.add_schema(JSON::Schema.new(court_centre, Addressable::URI.parse(hearing['id'])))
 
     address = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiAddress.json')).read)
-    address['id'] = 'http://justice.gov.uk/hearing/external/global/apiaddress.json'
+    address['id'] = 'http://justice.gov.uk/core/courts/external/apiAddress.json'
     JSON::Validator.add_schema(JSON::Schema.new(address, Addressable::URI.parse(address['id'])))
 
     hearing_type = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiHearingType.json')).read)

@@ -3,6 +3,7 @@
 class ProsecutionCaseSearch < ApplicationService
   def initialize(params)
     @params = params
+    @prosecution_cases = ProsecutionCase
     @schema = JSON.parse(File.open(Rails.root.join('lib/schemas/api/search-prosecutionCaseRequest.json')).read)
     register_dependant_schemas!
   end
@@ -11,15 +12,17 @@ class ProsecutionCaseSearch < ApplicationService
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
     raise Errors::InvalidParams, errors if errors.present?
 
-    return prosecution_cases_by_reference if permitted_params['prosecutionCaseReference'].present?
+    prosecution_cases_by_reference if permitted_params['prosecutionCaseReference'].present?
 
-    return prosecution_cases_by_nino if permitted_params['defendantNINO'].present?
+    prosecution_cases_by_nino if permitted_params['defendantNINO'].present?
 
-    return prosecution_cases_by_summons if permitted_params['defendantASN'].present?
+    prosecution_cases_by_summons if permitted_params['defendantASN'].present?
 
-    return prosecution_cases_by_name_and_dob if permitted_params['defendantDOB'].present?
+    prosecution_cases_by_name_and_dob if permitted_params['defendantDOB'].present?
 
-    prosecution_cases_by_name_and_date_of_next_hearing
+    prosecution_cases_by_name_and_date_of_next_hearing if permitted_params['dateOfNextHearing'].present?
+
+    @prosecution_cases
   end
 
   private
@@ -27,13 +30,12 @@ class ProsecutionCaseSearch < ApplicationService
   attr_reader :params, :schema
 
   def prosecution_cases_by_reference
-    ProsecutionCase
-      .joins(:prosecution_case_identifier)
-      .merge(ProsecutionCaseIdentifier.by_reference(permitted_params[:prosecutionCaseReference]))
+    @prosecution_cases = @prosecution_cases.joins(:prosecution_case_identifier)
+                                           .merge(ProsecutionCaseIdentifier.by_reference(permitted_params[:prosecutionCaseReference]))
   end
 
   def prosecution_cases_by_nino
-    ProsecutionCase.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_nino)
+    @prosecution_cases = @prosecution_cases.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_nino)
   end
 
   def person_defendant_by_nino
@@ -41,7 +43,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def prosecution_cases_by_summons
-    ProsecutionCase.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_summons)
+    @prosecution_cases = @prosecution_cases.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_summons)
   end
 
   def person_defendant_by_summons
@@ -49,7 +51,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def prosecution_cases_by_name_and_dob
-    ProsecutionCase.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_name_and_dob)
+    @prosecution_cases = @prosecution_cases.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_name_and_dob)
   end
 
   def person_defendant_by_name_and_dob
@@ -57,8 +59,8 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def prosecution_cases_by_name_and_date_of_next_hearing
-    ProsecutionCase.joins(:defendants)
-                   .merge(defendant_by_name_and_date_of_next_hearing)
+    @prosecution_cases = @prosecution_cases.joins(:defendants)
+                                           .merge(defendant_by_name_and_date_of_next_hearing)
   end
 
   def defendant_by_name_and_date_of_next_hearing

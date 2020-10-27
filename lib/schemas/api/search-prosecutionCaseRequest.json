@@ -28,7 +28,7 @@
           "$ref": "http://justice.gov.uk/core/courts/external/courtsDefinitions.json#/definitions/datePattern"
         }
     },
-    "oneOf": [
+    "anyOf": [
         {
           "required": [
             "prosecutionCaseReference"

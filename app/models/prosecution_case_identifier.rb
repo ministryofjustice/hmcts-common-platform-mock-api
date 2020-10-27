@@ -7,7 +7,8 @@ class ProsecutionCaseIdentifier < ApplicationRecord
   validates :caseURN, presence: true, if: -> { prosecutionAuthorityReference.blank? }
 
   scope :by_reference, lambda { |reference|
-    where('LOWER("caseURN") = :reference OR LOWER("prosecutionAuthorityReference") = :reference', reference: reference.downcase)
+    where('LOWER("caseURN") = :reference OR LOWER("prosecution_case_identifiers"."prosecutionAuthorityReference") = :reference',
+          reference: reference.downcase)
   }
 
   def to_builder

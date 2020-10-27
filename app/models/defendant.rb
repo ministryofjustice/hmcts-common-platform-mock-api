@@ -50,7 +50,7 @@ class Defendant < ApplicationRecord
   }
 
   accepts_nested_attributes_for :defendable, reject_if: :all_blank
-  accepts_nested_attributes_for :offences, reject_if: :all_blank
+  accepts_nested_attributes_for :offences, reject_if: :all_blank, allow_destroy: true
 
   def build_defendable(params)
     self.defendable = defendable_type.constantize.new(params)

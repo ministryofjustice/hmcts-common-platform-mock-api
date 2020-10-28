@@ -39,7 +39,7 @@ RSpec.describe Hearing, type: :model do
     let(:json_schema) { :results_hearing_resulted_response }
 
     it 'matches the given schema' do
-      expect(subject.resulted_response).to match_json_schema(json_schema)
+      expect(hearing.resulted_response).to match_json_schema(json_schema)
     end
   end
 

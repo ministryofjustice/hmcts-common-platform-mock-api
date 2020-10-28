@@ -34,6 +34,7 @@ spec/examples.txt
 
 # dotenv files
 .env.test.local
+.env.development.local
 
 /public/packs
 /public/packs-test

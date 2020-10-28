@@ -8,7 +8,7 @@ class HearingResulter < ApplicationService
 
   def call
     hearing.update(resulted: true)
-    HearingResultedPublisher.call(hearing_id: hearing.id, shared_time: Time.zone.now, type: publish_to) if publish_to.present?
+    HearingResultedPublisher.call(hearing_id: hearing.id, type: publish_to) if publish_to.present?
     hearing.resulted?
   end
 

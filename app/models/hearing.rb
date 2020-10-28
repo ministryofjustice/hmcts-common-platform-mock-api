@@ -62,4 +62,8 @@ class Hearing < ApplicationRecord
       hearing.courtApplicationPartyAttendance array_builder(court_application_party_attendances)
     end
   end
+
+  def resulted_response
+    { hearing: to_builder.attributes!, sharedTime: created_at.to_datetime }.to_json
+  end
 end

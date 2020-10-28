@@ -34,6 +34,15 @@ RSpec.describe Hearing, type: :model do
     it { should validate_inclusion_of(:hearingLanguage).in_array(%w[ENGLISH WELSH]) }
   end
 
+  context 'when the hearing has been resulted' do
+    let(:hearing) { FactoryBot.create(:hearing, resulted: true) }
+    let(:json_schema) { :results_hearing_resulted_response }
+
+    it 'matches the given schema' do
+      expect(hearing.resulted_response).to match_json_schema(json_schema)
+    end
+  end
+
   it_has_behaviour 'conforming to valid schema'
 
   context 'with optional relationships' do

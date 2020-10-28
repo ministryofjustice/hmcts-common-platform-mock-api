@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe HearingResulter do
-  include ActiveSupport::Testing::TimeHelpers
-
   let(:hearing) { FactoryBot.create(:hearing) }
   let(:publish_to) { 'dev' }
 
@@ -11,10 +9,8 @@ RSpec.describe HearingResulter do
   before { allow(HearingResultedPublisher).to receive(:call) }
 
   it 'triggers the publisher' do
-    freeze_time do
-      expect(HearingResultedPublisher).to receive(:call).with(hearing_id: hearing.id, shared_time: Time.zone.now, type: 'dev')
-      result_and_publish
-    end
+    expect(HearingResultedPublisher).to receive(:call).with(hearing_id: hearing.id, type: 'dev')
+    result_and_publish
   end
 
   it 'results the hearing' do

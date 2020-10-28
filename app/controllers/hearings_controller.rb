@@ -18,7 +18,7 @@ class HearingsController < ApplicationController
   def hearing_response
     return {} if @hearing.blank?
 
-    { hearing: @hearing.to_builder.attributes!, sharedTime: @hearing.created_at.to_datetime }
+    @hearing.resulted_response
   end
 
   def hearing_log_response

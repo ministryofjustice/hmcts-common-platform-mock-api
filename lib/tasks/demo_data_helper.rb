@@ -28,4 +28,21 @@ module DemoDataHelper
   def humanize_prosecution_case(pcase)
     pcase.prosecution_case_identifier.caseURN || pcase.prosecution_case_identifier.prosecutionAuthorityReference
   end
+
+  def case_details_hash(urn)
+    pc = prosecution_cases_by_reference(urn).first
+
+    pc.defendants.map do |d|
+      d.offences.map do |offence|
+        {
+          defendant_id: d.id,
+          defendant_name: "#{d.defendable.person.firstName} #{d.defendable.person.lastName}",
+          offence_id: offence.id,
+          offence_desc: offence.offenceTitle,
+          mode_of_trial: offence.modeOfTrial,
+          allocation_decision: offence.allocation_decision
+        }
+      end
+    end.flatten
+  end
 end

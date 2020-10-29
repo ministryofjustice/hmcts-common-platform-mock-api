@@ -38,15 +38,24 @@ def create_prosecution_cases
   puts " #{ICONS[:success]}"
 
   # create specific case with 3 random defendants plus Jammy Dodger
+  # - add allocation decisions to jammy dodger on offence
   print "[CREATE][PROSECUTION_CASE] #{CASE1[:URN]}"
   case1 = FactoryBot.create(
     :realistic_prosecution_case,
     prosecution_case_identifier: FactoryBot.create(:realistic_prosecution_case_identifier, caseURN: CASE1[:URN])
   )
   FactoryBot.create_list(:realistic_defendant, 2, prosecution_case: case1)
+  puts " #{ICONS[:success]}"
 
+  print "[CREATE][DEFENDANT] #{CASE1[:URN]}"
   person_defendant1 = FactoryBot.create(:realistic_person_defendant, person: person)
-  FactoryBot.create(:realistic_defendant, defendable: person_defendant1, prosecution_case: case1)
+  defendant1 = FactoryBot.create(:realistic_defendant, defendable: person_defendant1, prosecution_case: case1)
+  puts " #{ICONS[:success]}"
+
+  print "[CREATE][OFFENCE][ALLOCATION_DECISION] #{CASE1[:URN]}"
+  offence = defendant1.offences.first
+  offence.allocation_decision = FactoryBot.create(:realistic_allocation_decision)
+  offence.save!
   puts " #{ICONS[:success]}"
 
   # create specific case with 2 random defendants plus Jammy Dodger
@@ -60,6 +69,8 @@ def create_prosecution_cases
   person_defendant2 = FactoryBot.create(:realistic_person_defendant, person: person)
   FactoryBot.create(:realistic_defendant, defendable: person_defendant2, prosecution_case: case2)
   puts " #{ICONS[:success]}"
+
+  pp case_details_hash(CASE1[:URN])
 end
 
 def create_person

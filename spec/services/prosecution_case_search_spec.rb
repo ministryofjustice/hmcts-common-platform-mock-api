@@ -184,9 +184,12 @@ RSpec.describe ProsecutionCaseSearch do
   context 'when searching by defendantASN' do
     let(:cases) { FactoryBot.create_list(:prosecution_case, 2) }
     let(:defendant) do
-      build(:defendant,
+      build(:defendant, :with_next_hearing,
+            next_hearing_date: '2019-01-10',
             prosecution_case: nil,
-            defendable: FactoryBot.create(:person_defendant, arrestSummonsNumber: '3.1428r'))
+            defendable: FactoryBot.create(:person_defendant,
+                                          arrestSummonsNumber: '3.1428r',
+                                          person: FactoryBot.create(:person, nationalInsuranceNumber: 'nh489223c')))
     end
 
     before do
@@ -207,6 +210,19 @@ RSpec.describe ProsecutionCaseSearch do
       end
 
       it { is_expected.to be_empty }
+    end
+
+    context 'and NINO and name/DOB' do
+      let(:params_hash) do
+        { defendantASN: '3.1428R',
+          defendantNINO: 'NH489223C',
+          defendantDOB: '1971-05-12',
+          defendantName: 'Parker',
+          dateOfNextHearing: '2019-01-10' }
+      end
+
+      it { is_expected.to include(cases.first) }
+      it { is_expected.not_to include(cases.second) }
     end
   end
 

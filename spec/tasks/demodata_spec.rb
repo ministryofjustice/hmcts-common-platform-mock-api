@@ -15,27 +15,28 @@ RSpec.describe 'Demo data tasks', type: :rake do
   let(:unloader) { Rake::Task['mock:demodata:unload'].execute }
 
   context 'Demo data load' do
+    before { allow(FactoryBot).to receive(:create).and_call_original }
+
+    let(:person_attrs) do
+      {
+        title: 'MR',
+        firstName: 'Jammy',
+        middleName: '',
+        lastName: 'Dodger',
+        dateOfBirth: '21-MAY-1987'.to_date,
+        gender: 'MALE',
+        nationalInsuranceNumber: 'JC123456A'
+      }
+    end
+
     it 'creates 2 cases' do
       expect { loader }.to change(ProsecutionCase, :count).by(2)
     end
 
-    # rubocop:disable RSpec/ExampleLength
     it 'creates a specific person' do
-      allow(FactoryBot).to receive(:create)
-      expect(FactoryBot).to \
-        receive(:create).with(
-          :realistic_person,
-          title: 'MR',
-          firstName: 'Jammy',
-          middleName: '',
-          lastName: 'Dodger',
-          dateOfBirth: '21-MAY-1987'.to_date,
-          gender: 'MALE',
-          nationalInsuranceNumber: 'JC123456A'
-        )
+      expect(FactoryBot).to receive(:create).with(:realistic_person, person_attrs)
       loader
     end
-    # rubocop:enable RSpec/ExampleLength
   end
 
   context 'Demo data unload' do

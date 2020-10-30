@@ -98,4 +98,27 @@ RSpec.describe DemoDataHelper, type: :helper do
       it { is_expected.to eql('PAR54321') }
     end
   end
+
+  describe '#case_details_hash' do
+    subject(:results) { instance.case_details_hash(urn) }
+
+    let(:urn) { 'TESTURN123' }
+    let(:attributes) do
+      %i[defendant_id defendant_name offence_id offence_desc mode_of_trial allocation_decision]
+    end
+
+    before do
+      create(
+        :realistic_prosecution_case,
+        prosecution_case_identifier: create(:realistic_prosecution_case_identifier,
+                                            caseURN: urn)
+      )
+    end
+
+    it { is_expected.to be_an Array }
+
+    it { is_expected.to all(be_instance_of(Hash)) }
+
+    it { expect(results.map(&:keys)).to all(contain_exactly(*attributes)) }
+  end
 end

@@ -7,7 +7,7 @@ class HearingDay < ApplicationRecord
   validates :sittingDay, presence: true
   validates :listedDurationMinutes, presence: true
 
-  has_many :events, class_name: 'HearingEvent', inverse_of: :hearing_day
+  has_many :events, class_name: 'HearingEvent', inverse_of: :hearing_day, dependent: :destroy
   belongs_to :hearing, optional: true
 
   def to_builder

@@ -13,7 +13,7 @@ RSpec.describe HearingDay, type: :model do
   end
 
   describe 'relationships' do
-    it { should have_many(:events).class_name('HearingEvent') }
+    it { should have_many(:events).class_name('HearingEvent').dependent(:destroy) }
     it { should belong_to(:hearing).optional }
   end
 

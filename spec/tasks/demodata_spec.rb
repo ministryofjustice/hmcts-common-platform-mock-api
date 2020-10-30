@@ -37,6 +37,15 @@ RSpec.describe 'Demo data tasks', type: :rake do
       expect(FactoryBot).to receive(:create).with(:realistic_person, person_attrs)
       loader
     end
+
+    context 'for case 1' do
+      before { loader }
+      let(:case1) { prosecution_cases_by_reference('TEST12345').first }
+
+      it { expect(case1.prosecution_case_identifier.caseURN).to eql 'TEST12345' }
+
+      it { expect(case1.hearings.count).to eql 3 }
+    end
   end
 
   context 'Demo data unload' do

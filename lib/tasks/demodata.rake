@@ -47,7 +47,7 @@ def create_prosecution_cases
   FactoryBot.create_list(:realistic_defendant, 2, prosecution_case: case1)
   puts " #{ICONS[:success]}"
 
-  print "[CREATE][DEFENDANT] #{CASE1[:URN]}"
+  print "[CREATE][DEFENDANT] on #{CASE1[:URN]}"
   person_defendant1 = FactoryBot.create(:realistic_person_defendant, person: person)
   defendant1 = FactoryBot.create(:realistic_defendant, defendable: person_defendant1, prosecution_case: case1)
   puts " #{ICONS[:success]}"
@@ -58,7 +58,40 @@ def create_prosecution_cases
   offence.save!
   puts " #{ICONS[:success]}"
 
-  # create specific case with 2 random defendants plus Jammy Dodger
+  print "[CREATE][HEARINGS] for #{CASE1[:URN]}"
+  case1.hearings.reload.destroy_all
+  case1.hearings << FactoryBot.create_list(:hearing, 3)
+  puts " #{ICONS[:success]}"
+
+  print "[CREATE][DEFENCE_COUNSELS] for #{CASE1[:URN]}"
+  defence_counsels = FactoryBot.create_list(:defence_counsel, 2)
+  puts " #{ICONS[:success]}"
+
+  case1.hearings.each do |hearing|
+    print "[CREATE][HEARINGS][DEFENCE_COUNSELS] for #{CASE1[:URN]}"
+    hearing.resulted = true
+    hearing.defence_counsels << defence_counsels
+    hearing.save!
+    puts " #{ICONS[:success]}"
+
+    print "[CREATE][HEARINGS][HEARING_DAYS] for #{CASE1[:URN]}"
+    base_date = '2019-10-23 00:00:00'.to_datetime
+    hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 1.day + 8.hours + 30.minutes).to_s)
+    hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 2.day + 10.hours + 45.minutes).to_s)
+    hearing.save!
+    puts " #{ICONS[:success]}"
+
+    print "[CREATE][HEARINGS][HEARING_DAYS][HEARING_EVENT] for #{CASE1[:URN]}"
+    hearing.hearing_days.each do |hearing_day|
+      10.times do |idx|
+        hearing_day.events << FactoryBot.create(:hearing_event, eventTime: hearing_day.sittingDay + idx.hours, recordedLabel: "Hearing event #{idx}")
+      end
+    end
+    hearing.save!
+    puts " #{ICONS[:success]}"
+  end
+
+  # create another case with 2 random defendants plus Jammy Dodger
   print "[CREATE][PROSECUTION_CASE] #{CASE2[:URN]}"
   case2 = FactoryBot.create(
     :realistic_prosecution_case,
@@ -88,11 +121,12 @@ end
 
 def destroy_prosecution_case(case_urn)
   pcases = prosecution_cases_by_reference(case_urn)
-  puts "No cases matching #{case_urn} found #{ICONS[:failure]}" if pcases.empty?
+  puts pcases.empty? ? "No cases matching #{case_urn} found #{ICONS[:failure]}" : "Cases matching #{case_urn} found #{ICONS[:success]}"
 
   pcases.each do |pcase|
     pcase.defendants.each do |defendant|
       defended_item = defendant.defendable
+      defended_item = defendant.defence_organisation unless defended_item
       next unless defended_item
 
       print "[DESTROY][DEFENDED ITEM] #{humanize_defended_item(defended_item)}"

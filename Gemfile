@@ -26,10 +26,10 @@ gem 'faker'
 gem 'faraday_middleware'
 gem 'hmcts_common_platform', github: 'ministryofjustice/hmcts_common_platform', tag: '0.1.0'
 gem 'json-schema'
+gem 'kaminari'
 gem 'oauth2'
 gem 'pg_search'
 gem 'webpacker'
-gem 'kaminari'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

@@ -39,7 +39,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def person_defendant_by_nino
-    PersonDefendant.joins(:person).where('"nationalInsuranceNumber" ILIKE :search', search: permitted_params[:defendantNINO])
+    PersonDefendant.joins(:person).where('"people"."nationalInsuranceNumber" ILIKE :search', search: permitted_params[:defendantNINO])
   end
 
   def prosecution_cases_by_summons
@@ -47,7 +47,7 @@ class ProsecutionCaseSearch < ApplicationService
   end
 
   def person_defendant_by_summons
-    PersonDefendant.where('"arrestSummonsNumber" ILIKE :search', search: permitted_params[:defendantASN])
+    PersonDefendant.where('"person_defendants"."arrestSummonsNumber" ILIKE :search', search: permitted_params[:defendantASN])
   end
 
   def prosecution_cases_by_name_and_dob

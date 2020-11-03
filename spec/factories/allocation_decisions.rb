@@ -5,7 +5,7 @@ FactoryBot.define do
     originatingHearingId { SecureRandom.uuid }
     offenceId { SecureRandom.uuid }
     motReasonId { SecureRandom.uuid }
-    motReasonDescription { 'This is a description' }
+    motReasonDescription { Faker::Offence.mode_of_trial_reason }
     motReasonCode { 'ABCD' }
     sequenceNumber { 1 }
     allocationDecisionDate { '2019-10-14 13:46:12' }
@@ -22,7 +22,7 @@ FactoryBot.define do
       originatingHearingId { SecureRandom.uuid }
       offenceId { SecureRandom.uuid }
       motReasonId { SecureRandom.uuid }
-      motReasonDescription { Faker::Lorem.sentence }
+      motReasonDescription { Faker::Offence.mode_of_trial_reason }
       motReasonCode { Faker::Alphanumeric.alphanumeric(number: 4) }
       sequenceNumber { Faker::Number.number(digits: 3) }
       allocationDecisionDate { Faker::Date.backward }

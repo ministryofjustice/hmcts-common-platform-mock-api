@@ -18,6 +18,10 @@ module Faker
       def mode_of_trial
         fetch('offence.mode_of_trial')
       end
+
+      def mode_of_trial_reason
+        fetch('offence.mode_of_trial_reason')
+      end
     end
   end
 end

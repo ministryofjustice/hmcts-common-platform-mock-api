@@ -14,7 +14,7 @@ RSpec.describe Hearing, type: :model do
     it { should have_many(:court_applications).class_name('CourtApplication') }
     it { should have_many(:referral_reasons).class_name('ReferralReason') }
     it { should have_many(:hearing_case_notes).class_name('HearingCaseNote') }
-    it { should have_many(:hearing_days).class_name('HearingDay') }
+    it { should have_many(:hearing_days).class_name('HearingDay').dependent(:destroy) }
     it { should have_many(:judicial_roles).class_name('JudicialRole') }
     it { should have_many(:applicant_counsels).class_name('ApplicantCounsel') }
     it { should have_many(:respondent_counsels).class_name('RespondentCounsel') }

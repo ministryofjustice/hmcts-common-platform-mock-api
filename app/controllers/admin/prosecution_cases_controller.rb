@@ -6,7 +6,7 @@ module Admin
     before_action :set_prosecution_case, only: %i[show edit update destroy result]
 
     def index
-      @prosecution_cases = ProsecutionCase.all
+      @prosecution_cases = ProsecutionCase.order(created_at: :desc).page(params[:page])
     end
 
     def show; end

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/prosecution_cases/index', type: :view do
   before do
-    assign(:prosecution_cases, FactoryBot.create_list(:prosecution_case, 2))
+    assign(:prosecution_cases, ProsecutionCase.all.page)
   end
 
   it 'renders a list of prosecution_cases' do

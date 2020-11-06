@@ -7,6 +7,27 @@
   </p>
 <% end %>
 
+<h2>Defendants</h2>
+<table>
+  <thead>
+    <tr>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @prosecution_case.defendants.each do |defendant| %>
+      <tr>
+        <td>
+          <%= defendant.id %>
+        </td>
+        <td>
+          <%= defendant.defendable.person.firstName %> <%= defendant.defendable.person.middleName %> <%= defendant.defendable.person.lastName %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <h2>Hearings</h2>
 <% @prosecution_case.hearings.each do |hearing| %>
   <p><%= hearing.id %></p>

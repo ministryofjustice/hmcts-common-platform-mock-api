@@ -9,5 +9,6 @@ RSpec.describe 'admin/prosecution_cases/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
+    expect(rendered).to match(/Alfredine Treutel Parker/)
   end
 end

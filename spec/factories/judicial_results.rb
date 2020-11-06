@@ -17,18 +17,12 @@ FactoryBot.define do
     amendmentDate { '2019-10-16 10:11:02' }
     qualifier { 'Random String' }
     resultText { 'Random String' }
-    cjsCode { 'Random String' }
+    cjsCode { '2507' }
     postHearingCustodyStatus { 'A' }
     rank { 1 }
     orderedDate { '2019-10-16 10:11:02' }
     lastSharedDateTime { 'Random String' }
     terminatesOffenceProceedings { false }
-    isLifeDuration { false }
-    isPublishedAsAPrompt { false }
-    isExcludedFromResults { false }
-    isAlwaysPublished { false }
-    isUrgent { false }
-    isD20 { false }
     approvedDate { '2019-10-16 10:11:02' }
     category { 'INTERMEDIARY' }
 

@@ -34,6 +34,10 @@ FactoryBot.define do
     pendingCBPW { false }
     civilOffence { false }
 
+    after(:build) do |offence|
+      offence.judicial_results << build(:judicial_result_with_relationships)
+    end
+
     factory :offence_with_relationships do
       notified_plea
       indicated_plea
@@ -44,7 +48,6 @@ FactoryBot.define do
       association :offence_facts, factory: :offence_facts
       after(:build) do |offence|
         offence.victims << build(:person_with_relationships)
-        offence.judicial_results << build(:judicial_result_with_relationships)
       end
 
       factory :offence_with_relationships_and_laa_reference do

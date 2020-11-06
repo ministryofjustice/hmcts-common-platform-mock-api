@@ -1,0 +1,92 @@
+<div class="field">
+  <%= judicial_result.label :judicialResultId %>
+  <%= judicial_result.text_field :judicialResultId %>
+</div>
+<div class="field">
+  <%= judicial_result.label :judicialResultTypeId %>
+  <%= judicial_result.text_field :judicialResultTypeId %>
+</div>
+<div class="field">
+  <%= judicial_result.label :orderedHearingId %>
+  <%= judicial_result.text_field :orderedHearingId %>
+</div>
+<div class="field">
+  <%= judicial_result.label :label %>
+  <%= judicial_result.text_field :label %>
+</div>
+<div class="field">
+  <%= judicial_result.label :welshLabel %>
+  <%= judicial_result.text_field :welshLabel %>
+</div>
+<div class="field">
+  <%= judicial_result.label :isAdjournmentResult %>
+  <%= judicial_result.check_box :isAdjournmentResult %>
+</div>
+<div class="field">
+  <%= judicial_result.label :isFinancialResult %>
+  <%= judicial_result.check_box :isFinancialResult %>
+</div>
+<div class="field">
+  <%= judicial_result.label :isConvictedResult %>
+  <%= judicial_result.check_box :isConvictedResult %>
+</div>
+<div class="field">
+  <%= judicial_result.label :isAvailableForCourtExtract %>
+  <%= judicial_result.check_box :isAvailableForCourtExtract %>
+</div>
+<div class="field">
+  <%= judicial_result.label :isDeleted %>
+  <%= judicial_result.text_field :isDeleted %>
+</div>
+<div class="field">
+  <%= judicial_result.label :amendmentReasonId %>
+  <%= judicial_result.text_field :amendmentReasonId %>
+</div>
+<div class="field">
+  <%= judicial_result.label :amendmentReason %>
+  <%= judicial_result.text_field :amendmentReason %>
+</div>
+<div class="field">
+  <%= judicial_result.label :amendmentDate %>
+  <%= judicial_result.text_field :amendmentDate %>
+</div>
+<div class="field">
+  <%= judicial_result.label :qualifier %>
+  <%= judicial_result.text_field :qualifier %>
+</div>
+<div class="field">
+  <%= judicial_result.label :resultText %>
+  <%= judicial_result.text_field :resultText %>
+</div>
+<div class="field">
+  <%= judicial_result.label :cjsCode %>
+  <%= judicial_result.text_field :cjsCode %>
+</div>
+<div class="field">
+  <%= judicial_result.label :rank %>
+  <%= judicial_result.text_field :rank %>
+</div>
+<div class="field">
+  <%= judicial_result.label :orderedDate %>
+  <%= judicial_result.text_field :orderedDate %>
+</div>
+<div class="field">
+  <%= judicial_result.label :postHearingCustodyStatus %>
+  <%= judicial_result.select :postHearingCustodyStatus, JudicialResult::POST_HEARING_CUSTODY_STATUSES %>
+</div>
+<div class="field">
+  <%= judicial_result.label :lastSharedDateTime %>
+  <%= judicial_result.text_field :lastSharedDateTime %>
+</div>
+<div class="field">
+  <%= judicial_result.label :terminatesOffenceProceedings %>
+  <%= judicial_result.check_box :terminatesOffenceProceedings %>
+</div>
+<div class="field">
+  <%= judicial_result.label :approvedDate %>
+  <%= judicial_result.text_field :approvedDate %>
+</div>
+<div class="field">
+  <%= judicial_result.label :category %>
+  <%= judicial_result.select :category, JudicialResult::CATEGORIES %>
+</div>

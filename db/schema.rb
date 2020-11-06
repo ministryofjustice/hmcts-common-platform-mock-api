@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_162204) do
+ActiveRecord::Schema.define(version: 2020_11_06_163830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -520,12 +520,6 @@ ActiveRecord::Schema.define(version: 2020_08_06_162204) do
     t.datetime "orderedDate"
     t.string "lastSharedDateTime"
     t.boolean "terminatesOffenceProceedings", null: false
-    t.boolean "isLifeDuration", null: false
-    t.boolean "isPublishedAsAPrompt", null: false
-    t.boolean "isExcludedFromResults", null: false
-    t.boolean "isAlwaysPublished", null: false
-    t.boolean "isUrgent", null: false
-    t.boolean "isD20", null: false
     t.uuid "court_clerk_id"
     t.uuid "delegated_powers_id"
     t.uuid "four_eyes_approval_id"

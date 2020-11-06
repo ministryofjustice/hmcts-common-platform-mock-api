@@ -4,13 +4,14 @@ class JudicialResult < ApplicationRecord
   include BuilderMappable
 
   POST_HEARING_CUSTODY_STATUSES = %w[A B C L P R S U].freeze
+  CATEGORIES = %w[FINAL INTERMEDIARY ANCILLARY].freeze
   belongs_to :court_clerk, class_name: 'DelegatedPowers', optional: true
   belongs_to :delegated_powers, optional: true
   belongs_to :four_eyes_approval, class_name: 'DelegatedPowers', optional: true
   belongs_to :next_hearing, optional: true
 
   has_many :user_groups
-  has_many :judicial_result_prompts
+  has_many :judicial_result_prompts, dependent: :destroy
 
   validates :orderedHearingId, presence: true
   validates :label, presence: true
@@ -19,7 +20,7 @@ class JudicialResult < ApplicationRecord
   validates :isConvictedResult, inclusion: [true, false]
   validates :isAvailableForCourtExtract, inclusion: [true, false]
   validates :orderedDate, presence: true
-  validates :category, presence: true, inclusion: %w[FINAL INTERMEDIARY ANCILLARY]
+  validates :category, presence: true, inclusion: CATEGORIES
   validates :resultText, presence: true
   validates :terminatesOffenceProceedings, inclusion: [true, false]
   validates :postHearingCustodyStatus, inclusion: POST_HEARING_CUSTODY_STATUSES

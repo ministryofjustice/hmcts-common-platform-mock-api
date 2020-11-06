@@ -20,6 +20,9 @@ class Offence < ApplicationRecord
   validates :offenceTitle, presence: true
   validates :wording, presence: true
   validates :startDate, presence: true
+
+  accepts_nested_attributes_for :judicial_results, reject_if: :all_blank, allow_destroy: true
+
   def to_builder
     Jbuilder.new do |offence|
       offence.id id

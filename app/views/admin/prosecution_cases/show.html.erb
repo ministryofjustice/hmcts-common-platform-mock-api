@@ -23,6 +23,9 @@
         <td>
           <%= defendant.defendable.person.firstName %> <%= defendant.defendable.person.middleName %> <%= defendant.defendable.person.lastName %>
         </td>
+        <td><%= link_to 'Show', [:admin, defendant] %></td>
+        <td><%= link_to 'Edit', edit_admin_defendant_path(defendant) %></td>
+        <td><%= link_to 'Destroy', [:admin, defendant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

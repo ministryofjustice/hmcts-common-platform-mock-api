@@ -20,6 +20,8 @@ class ProsecutionCaseSearch < ApplicationService
 
     prosecution_cases_by_name_and_dob if permitted_params['defendantDOB'].present?
 
+    prosecution_cases_by_name if permitted_params['defendantName'].present?
+
     prosecution_cases_by_name_and_date_of_next_hearing if permitted_params['dateOfNextHearing'].present?
 
     @prosecution_cases
@@ -83,5 +85,13 @@ class ProsecutionCaseSearch < ApplicationService
     courts_definitions = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiCourtsDefinitions.json')).read)
     courts_definitions['id'] = 'http://justice.gov.uk/core/courts/external/courtsDefinitions.json'
     JSON::Validator.add_schema(JSON::Schema.new(courts_definitions, Addressable::URI.parse(courts_definitions['id'])))
+  end
+
+  def prosecution_cases_by_name
+    @prosecution_cases = @prosecution_cases.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_name)
+  end
+
+  def person_defendant_by_name
+    PersonDefendant.by_name(defendantName: permitted_params[:defendantName])
   end
 end

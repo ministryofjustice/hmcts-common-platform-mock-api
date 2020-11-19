@@ -212,6 +212,15 @@ RSpec.describe ProsecutionCaseSearch do
       it { is_expected.to be_empty }
     end
 
+    context 'and name' do
+      let(:params_hash) do
+        { defendantASN: '3.1428R',
+          defendantName: 'bloggs' }
+      end
+
+      it { is_expected.to be_empty }
+    end
+
     context 'and NINO and name/DOB' do
       let(:params_hash) do
         { defendantASN: '3.1428R',

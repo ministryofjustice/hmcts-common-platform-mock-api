@@ -22,18 +22,16 @@ RSpec.describe PersonDefendant, type: :model do
       end
     end
 
-    describe '.by_name_and_dob' do
-      let(:params) { { defendantName: 'John Doe', dateOfBirth: '2000-05-12' } }
+    describe '.by_dob' do
+      let(:params) { { dateOfBirth: '2000-05-12' } }
 
-      subject { described_class.by_name_and_dob(params) }
+      subject { described_class.by_dob(params) }
 
       before do
-        allow(Person).to receive(:by_name).and_call_original
         allow(Person).to receive(:by_date_of_birth).and_call_original
       end
 
-      it 'calls the by_name and by_date_of_birth scopes on Person' do
-        expect(Person).to receive(:by_name).with(params[:defendantName])
+      it 'calls the by_date_of_birth scopes on Person' do
         expect(Person).to receive(:by_date_of_birth).with(params[:dateOfBirth])
         subject
       end

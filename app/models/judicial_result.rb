@@ -23,7 +23,7 @@ class JudicialResult < ApplicationRecord
   validates :category, presence: true, inclusion: CATEGORIES
   validates :resultText, presence: true
   validates :terminatesOffenceProceedings, inclusion: [true, false]
-  validates :postHearingCustodyStatus, inclusion: POST_HEARING_CUSTODY_STATUSES
+  validates :postHearingCustodyStatus, inclusion: POST_HEARING_CUSTODY_STATUSES, allow_blank: true
 
   def to_builder
     Jbuilder.new do |judicial_result|
@@ -45,7 +45,7 @@ class JudicialResult < ApplicationRecord
       judicial_result.cjsCode cjsCode
       judicial_result.rank rank
       judicial_result.orderedDate orderedDate.to_date
-      judicial_result.postHearingCustodyStatus postHearingCustodyStatus
+      judicial_result.postHearingCustodyStatus postHearingCustodyStatus if postHearingCustodyStatus.present?
       judicial_result.lastSharedDateTime lastSharedDateTime
       judicial_result.terminatesOffenceProceedings terminatesOffenceProceedings
       judicial_result.courtClerk court_clerk.to_builder if court_clerk.present?

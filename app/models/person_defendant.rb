@@ -10,10 +10,13 @@ class PersonDefendant < ApplicationRecord
   validates :person, presence: true
   validates :driverLicenceCode, inclusion: LICENCE_CODES
 
-  scope :by_name_and_dob, lambda { |params|
-    joins(:person).merge(Person.by_name(params[:defendantName]).by_date_of_birth(params[:dateOfBirth]))
+  scope :by_dob, lambda { |params|
+    joins(:person).merge(Person.by_date_of_birth(params[:dateOfBirth]))
   }
 
+  scope :by_name, lambda { |params|
+    joins(:person).merge(Person.by_name(params[:defendantName]))
+  }
   accepts_nested_attributes_for :person, reject_if: :all_blank
 
   def to_builder

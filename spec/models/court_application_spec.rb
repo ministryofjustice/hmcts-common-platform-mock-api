@@ -30,7 +30,7 @@ RSpec.describe CourtApplication, type: :model do
       court_application.court_application_respondents << FactoryBot.create(:court_application_respondent)
       court_application.court_application_outcome = FactoryBot.create(:court_application_outcome)
       court_application.court_application_payment = FactoryBot.create(:court_application_payment)
-      court_application.court_centre_id = 'bc4864ca-4b22-3449-9716-a8db1db89905'
+      court_application.court_centre_id = '6131bd34-33d9-3d1e-8152-8b5a2084f1bd'
       court_application.judicial_results << FactoryBot.create(:judicial_result_with_relationships)
       court_application.save!
     end

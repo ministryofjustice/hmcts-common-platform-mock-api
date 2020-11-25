@@ -31,7 +31,7 @@ RSpec.describe NextHearing, type: :model do
 
   context 'with relationships' do
     before do
-      next_hearing.update!(court_centre_id: 'bc4864ca-4b22-3449-9716-a8db1db89905')
+      next_hearing.update!(court_centre_id: '6131bd34-33d9-3d1e-8152-8b5a2084f1bd')
     end
 
     it_has_behaviour 'conforming to valid schema'

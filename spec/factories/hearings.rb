@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :hearing do
     jurisdictionType { 'CROWN' }
     reportingRestrictionReason { 'reporting restriction because...' }
-    court_centre_id { 'bc4864ca-4b22-3449-9716-a8db1db89905' }
+    court_centre_id { '6131bd34-33d9-3d1e-8152-8b5a2084f1bd' }
     hearingLanguage { 'WELSH' }
     hasSharedResults { false }
     hearing_type

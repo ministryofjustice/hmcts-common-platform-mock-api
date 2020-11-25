@@ -51,4 +51,20 @@ RSpec.describe "Admin::Defendants", type: :request do
       end
     end
   end
+
+  describe 'DELETE /destroy' do
+    before { defendant.save! }
+
+    it 'destroys the requested defendant' do
+      expect do
+        delete admin_defendant_url(defendant), headers: headers
+      end.to change(Defendant, :count).by(-1)
+    end
+
+    it 'redirects to the defendant list' do
+      delete admin_defendant_url(defendant), headers: headers
+      expect(response).to redirect_to(admin_prosecution_case_url(defendant.prosecution_case))
+    end
+  end
+
 end

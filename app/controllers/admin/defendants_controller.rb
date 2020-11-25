@@ -1,6 +1,6 @@
 module Admin
   class DefendantsController < Admin::ApplicationController
-    before_action :set_defendant, only: %i[show edit update]
+    before_action :set_defendant, only: %i[show edit update destroy]
 
     def show
     end
@@ -14,6 +14,11 @@ module Admin
       else
         render :edit
       end
+    end
+
+    def destroy
+      @defendant.destroy
+      redirect_to admin_prosecution_case_url(@defendant.prosecution_case), notice: 'Defendant was successfully destroyed.'
     end
 
     private

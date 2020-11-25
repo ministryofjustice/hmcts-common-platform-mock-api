@@ -29,21 +29,39 @@
 </table>
 
 <h2>Hearings</h2>
-<% @prosecution_case.hearings.each do |hearing| %>
-  <p><%= hearing.id %></p>
 
-  <% if hearing.resulted? %>
-    Hearing has been resulted
-  <% else %>
-    <%= button_to 'Result hearing', result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id) %>
-  <% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Hearing ID</th>
+      <th>Result Shared</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
 
-  <% Rails.configuration.laa_connection.keys.each do |type| %>
-    <br/>
-    <%= button_to "Result and Publish to #{type.to_s}", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, type) %>
-  <% end %>
-  <hr/>
-<% end %>
+  <tbody>
+    <% @prosecution_case.hearings.each do |hearing| %>
+      <tr>
+        <td><%= hearing.id %></td>
+        <td><%= hearing.resulted? ? 'Result shared' : '' %></td>
+        <td><%= link_to 'Show', [:admin, hearing] %></td>
+        <td><%= link_to 'Edit', edit_admin_hearing_path(hearing) %></td>
+        <td><%= link_to 'Destroy', [:admin, hearing], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <% unless hearing.resulted? %>
+            <%= button_to 'Result hearing', result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id) %>
+          <% end %>
+
+          <% Rails.configuration.laa_connection.keys.each do |type| %>
+            <%= button_to "Result and Publish to #{type.to_s}", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, type) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_admin_prosecution_case_path(@prosecution_case) %> |
 <%= link_to 'Back', admin_prosecution_cases_path %>

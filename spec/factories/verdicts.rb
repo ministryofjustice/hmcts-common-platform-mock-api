@@ -4,8 +4,8 @@ FactoryBot.define do
   has_jurors = Faker::Boolean.boolean
   has_lesser_or_alternative_offence = Faker::Boolean.boolean
   factory :verdict do
-    originatingHearingId { SecureRandom.uuid }
-    offenceId { SecureRandom.uuid }
+    hearing
+    offence
     verdictDate { '2019-10-14 16:18:56' }
     verdict_type
 
@@ -15,8 +15,8 @@ FactoryBot.define do
     end
 
     factory :realistic_verdict do
-      originatingHearingId { SecureRandom.uuid }
-      offenceId { SecureRandom.uuid }
+      association :hearing, factory: :realistic_hearing
+      association :offence, factory: :realistic_offence
       verdictDate { Faker::Date.forward(days: 30) }
       association :verdict_type, factory: :realistic_verdict_type
       association :jurors, factory: :realistic_jurors if has_jurors

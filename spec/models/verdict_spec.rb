@@ -7,16 +7,16 @@ RSpec.describe Verdict, type: :model do
   subject { verdict }
 
   describe 'associations' do
-    it { should belong_to(:verdict_type).class_name('VerdictType') }
-    it { should belong_to(:jurors).class_name('Jurors').optional }
-    it { should belong_to(:lesser_or_alternative_offence).class_name('LesserOrAlternativeOffence').optional }
+    it { is_expected.to belong_to(:verdict_type).class_name('VerdictType') }
+    it { is_expected.to belong_to(:jurors).class_name('Jurors').optional }
+    it { is_expected.to belong_to(:lesser_or_alternative_offence).class_name('LesserOrAlternativeOffence').optional }
+    it { is_expected.to belong_to(:hearing) }
+    it { is_expected.to belong_to(:offence) }
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:originatingHearingId) }
-    it { should validate_presence_of(:offenceId) }
-    it { should validate_presence_of(:verdictDate) }
-    it { should validate_presence_of(:verdict_type) }
+    it { is_expected.to validate_presence_of(:verdictDate) }
+    it { is_expected.to validate_presence_of(:verdict_type) }
   end
 
   it_has_behaviour 'conforming to valid schema'

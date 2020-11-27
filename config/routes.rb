@@ -2,13 +2,14 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-    resources :prosecution_cases do
+    resources :prosecution_cases, shallow: true do
       member do
         post 'result/:hearing_id(/:publish_to)' => 'prosecution_cases#result', as: :result_hearing
       end
       collection do
         get 'add_offence'
       end
+      resources :hearings, except: [:index]
     end
   end
   resources :status, only: [:index]

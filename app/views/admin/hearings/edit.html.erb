@@ -1,0 +1,8 @@
+<h1>Editing Hearing</h1>
+
+<%= render 'form', hearing: @hearing, url: admin_hearing_path(@hearing) %>
+
+<%= link_to 'Show', [:admin, @hearing] %> |
+<% @hearing.prosecution_cases.each do |prosecution_case| %>
+  <%= link_to "Back to #{prosecution_case.prosecution_case_identifier.caseURN}", admin_prosecution_case_path(prosecution_case) %>
+<% end %>

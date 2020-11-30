@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, defendant], local: true) do |form| %>
+<%= form_with(model: [:admin, defendant], url: url, local: true) do |form| %>
   <% if defendant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(defendant.errors.count, "error") %> prohibited this defendant from being saved:</h2>

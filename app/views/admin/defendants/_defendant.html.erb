@@ -169,4 +169,11 @@
     <hr>
     <% end %>
 
+  <h3>Offences</h3>
+  <div id="offences">
+    <%= defendant.fields_for :offences do |offence| %>
+      <%= render 'offence_fields', f: offence %>
+    <% end %>
+  </div>
+
 <% end %>

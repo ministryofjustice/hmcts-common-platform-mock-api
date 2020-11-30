@@ -1,0 +1,5 @@
+<%= fields_for @offence do |offence_form| %>
+  <%= offence_form.fields_for :pleas do |plea_form| %>
+    <%= render 'plea_fields', f: plea_form %>
+  <% end %>
+<% end %>

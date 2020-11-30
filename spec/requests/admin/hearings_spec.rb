@@ -106,4 +106,19 @@ RSpec.describe '/admin/hearings', type: :request do
       expect(response).to redirect_to(admin_prosecution_case_url(prosecution_case))
     end
   end
+
+  describe 'GET /add_plea' do
+    let(:offence) { prosecution_case.defendants.first.offences.first }
+
+    it 'creates a new plea' do
+      expect do
+        post add_plea_admin_hearing_url(hearing, offence), headers: headers
+      end.to change(offence.pleas, :count).by(1)
+    end
+
+    it 'redirects to the edit hearings page' do
+      post add_plea_admin_hearing_url(hearing, offence), headers: headers
+      expect(response).to redirect_to(edit_admin_hearing_url(hearing))
+    end
+  end
 end

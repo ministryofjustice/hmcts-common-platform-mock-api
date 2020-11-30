@@ -24,7 +24,7 @@ class Offence < ApplicationRecord
   accepts_nested_attributes_for :judicial_results, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :pleas, reject_if: :all_blank, allow_destroy: true
 
-  def to_builder
+  def to_builder(hearing: nil)
     Jbuilder.new do |offence|
       offence.id id
       offence.offenceDefinitionId offenceDefinitionId
@@ -53,6 +53,31 @@ class Offence < ApplicationRecord
       offence.offenceFacts offence_facts&.to_builder
       offence.laaApplnReference laa_reference&.to_builder
       offence.custodyTimeLimit custody_time_limit&.to_builder
+
+      if hearing.present?
+        offence.indicatedPlea indicated_plea_for_hearing(hearing)&.to_builder
+        offence.allocationDecision allocation_decision_for_hearing(hearing)&.to_builder
+        offence.plea plea_for_hearing(hearing)&.to_builder
+        offence.verdict verdict_for_hearing(hearing)&.to_builder
+      end
     end
+  end
+
+  private
+
+  def indicated_plea_for_hearing(hearing)
+    indicated_pleas.find_by(hearing: hearing)
+  end
+
+  def allocation_decision_for_hearing(hearing)
+    allocation_decisions.find_by(hearing: hearing)
+  end
+
+  def plea_for_hearing(hearing)
+    pleas.find_by(hearing: hearing)
+  end
+
+  def verdict_for_hearing(hearing)
+    verdicts.find_by(hearing: hearing)
   end
 end

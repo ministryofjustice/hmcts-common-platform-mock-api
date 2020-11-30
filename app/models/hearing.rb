@@ -49,7 +49,7 @@ class Hearing < ApplicationRecord
       hearing.applicantCounsels array_builder(applicant_counsels)
       hearing.respondentCounsels array_builder(respondent_counsels)
       hearing.prosecutionCounsels array_builder(prosecution_counsels)
-      hearing.prosecutionCases array_builder(prosecution_cases)
+      hearing.prosecutionCases array_builder(prosecution_cases, hearing: self)
       hearing.defenceCounsels array_builder(defence_counsels)
       hearing.applicationPartyCounsels array_builder(court_application_party_counsels)
       hearing.crackedIneffectiveTrial cracked_ineffective_trial.to_builder if cracked_ineffective_trial.present?

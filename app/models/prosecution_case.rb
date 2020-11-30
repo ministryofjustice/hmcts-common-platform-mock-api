@@ -31,7 +31,7 @@ class ProsecutionCase < ApplicationRecord
   accepts_nested_attributes_for :prosecution_case_identifier, reject_if: :all_blank
   accepts_nested_attributes_for :hearings, reject_if: :all_blank
 
-  def to_builder
+  def to_builder(hearing: nil)
     Jbuilder.new do |prosecution_case|
       prosecution_case.id id
       prosecution_case.prosecutionCaseIdentifier prosecution_case_identifier.to_builder
@@ -43,7 +43,7 @@ class ProsecutionCase < ApplicationRecord
       prosecution_case.statementOfFactsWelsh statementOfFactsWelsh
       prosecution_case.breachProceedingsPending breachProceedingsPending
       prosecution_case.appealProceedingsPending appealProceedingsPending
-      prosecution_case.defendants array_builder(defendants)
+      prosecution_case.defendants array_builder(defendants, hearing: hearing)
       prosecution_case.caseMarkers array_builder(markers)
     end
   end

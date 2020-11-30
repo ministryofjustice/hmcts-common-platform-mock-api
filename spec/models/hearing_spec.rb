@@ -64,5 +64,20 @@ RSpec.describe Hearing, type: :model do
       hearing.save!
     end
     it_has_behaviour 'conforming to valid schema'
+
+    context 'when the hearing contains a plea' do
+      let(:offence) { hearing.prosecution_cases.first.defendants.first.offences.first }
+      let(:hearing_json) { subject.to_builder.attributes! }
+
+      before do
+        FactoryBot.create(:plea, offence: offence, hearing: hearing)
+      end
+
+      it_has_behaviour 'conforming to valid schema'
+
+      it 'contains a plea object' do
+        expect(hearing_json['prosecutionCases'][0]['defendants'][0]['offences'][0]['plea']).not_to be_empty
+      end
+    end
   end
 end

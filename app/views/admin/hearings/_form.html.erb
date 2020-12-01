@@ -1,0 +1,88 @@
+<%= form_with(model: hearing, local: true, url: url) do |form| %>
+  <% if hearing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hearing.errors.count, "error") %> prohibited this hearing from being saved:</h2>
+
+      <ul>
+        <% hearing.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :jurisdictionType, 'Jurisdiction Type' %>
+    <%= form.select :jurisdictionType, Hearing::JURISDICTION_TYPES %>
+  </div>
+  <div class="field">
+    <%= form.label :reportingRestrictionReason, 'Reporting Restriction Reason' %>
+    <%= form.text_field :reportingRestrictionReason %>
+  </div>
+  <div class="field">
+    <%= form.label :court_centre_id, 'Court Centre' %>
+    <%= form.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] } %>
+  </div>
+  <div class="field">
+    <%= form.label :hearingLanguage, 'Hearing Language' %>
+    <%= form.select :hearingLanguage, Hearing::LANGUAGES %>
+  </div>
+  <div class="field">
+    <%= form.label :hasSharedResults, 'Has shared results' %>
+    <%= form.check_box :hasSharedResults %>
+  </div>
+  <%= form.fields_for :hearing_type do |hearing_type| %>
+    <div class="field">
+      <%= hearing_type.label :description, 'Hearing Type description' %>
+      <%= hearing_type.text_field :description %>
+    </div>
+  <% end %>
+  <%= form.fields_for :hearing_days do |hearing_day| %>
+    <div class="field">
+      <%= hearing_day.label :sittingDay %>
+      <%= hearing_day.text_field :sittingDay %>
+    </div>
+    <div class="field">
+      <%= hearing_day.label :listedDurationMinutes %>
+      <%= hearing_day.text_field :listedDurationMinutes %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :isEffectiveTrial %>
+    <%= form.check_box :isEffectiveTrial %>
+  </div>
+  <div class="field">
+    <%= form.label :isBoxHearing %>
+    <%= form.check_box :isBoxHearing %>
+  </div>
+
+  <% if hearing.persisted? %>
+
+  <h3>Defendant-Offences:</h3>
+
+    <%= form.fields_for :prosecution_cases do |prosecution_case| %>
+      <%= prosecution_case.fields_for :defendants do |defendant| %>
+          <h4><%= defendant.object.name %></h4>
+        <%= defendant.fields_for :offences do |offence| %>
+          <h5><%= offence.object.offenceTitle %></h5>
+          <div id="defendant-offences-<%= offence.object.id %>">
+            <%= offence.fields_for :pleas, offence.object.pleas.where(hearing: hearing) do |plea| %>
+              <%= render 'plea_fields', f: plea %>
+            <% end %>
+            <% if offence.object.pleas.where(hearing: hearing).size == 0 %>
+              <div class="links">
+                <%= link_to 'add plea', add_plea_admin_hearing_path(hearing, offence.object), method: :post %>
+              </div>
+            <% end %>
+          </div>
+          <hr/>
+        <% end %>
+      <% end %>
+    <% end %>
+    <br/>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

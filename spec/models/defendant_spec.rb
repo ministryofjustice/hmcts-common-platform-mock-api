@@ -55,6 +55,18 @@ RSpec.describe Defendant, type: :model do
     end
   end
 
+  describe '#name' do
+    subject { defendant.name }
+
+    it { is_expected.to eq('Alfredine Treutel Parker') }
+
+    context 'when the defendant is an organisation' do
+      let(:defendant) { FactoryBot.create(:defendant_as_legal_entity) }
+
+      it { is_expected.to eq('Bergstrom-Johnson') }
+    end
+  end
+
   describe 'associations' do
     it { should belong_to(:defendable) }
     it { should belong_to(:person_defendant).class_name('PersonDefendant').optional }

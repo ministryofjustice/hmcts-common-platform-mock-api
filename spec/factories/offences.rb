@@ -39,12 +39,7 @@ FactoryBot.define do
     end
 
     factory :offence_with_relationships do
-      notified_plea
-      indicated_plea
-      association :allocation_decision, factory: :allocation_decision_with_relationships
       association :custody_time_limit, factory: :custody_time_limit
-      association :plea, factory: :plea_with_relationships
-      association :verdict, factory: :verdict_with_relationships
       association :offence_facts, factory: :offence_facts
       after(:build) do |offence|
         offence.victims << build(:person_with_relationships)

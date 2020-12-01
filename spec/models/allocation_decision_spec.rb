@@ -6,8 +6,6 @@ RSpec.describe AllocationDecision, type: :model do
 
   subject { allocation_decision }
 
-  it { should validate_presence_of(:originatingHearingId) }
-  it { should validate_presence_of(:offenceId) }
   it { should validate_presence_of(:motReasonId) }
   it { should validate_presence_of(:motReasonDescription) }
   it { should validate_presence_of(:motReasonCode) }
@@ -16,6 +14,8 @@ RSpec.describe AllocationDecision, type: :model do
 
   describe 'associations' do
     it { should belong_to(:court_indicated_sentence).class_name('CourtIndicatedSentence').optional }
+    it { should belong_to(:offence) }
+    it { should belong_to(:hearing) }
   end
 
   it_has_a 'realistic factory'

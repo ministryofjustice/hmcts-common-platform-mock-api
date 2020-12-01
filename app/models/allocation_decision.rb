@@ -3,8 +3,9 @@
 class AllocationDecision < ApplicationRecord
   belongs_to :court_indicated_sentence, optional: true
 
-  validates :originatingHearingId, presence: true
-  validates :offenceId, presence: true
+  belongs_to :hearing
+  belongs_to :offence
+
   validates :motReasonId, presence: true
   validates :motReasonDescription, presence: true
   validates :motReasonCode, presence: true
@@ -17,8 +18,8 @@ class AllocationDecision < ApplicationRecord
 
   def to_builder
     Jbuilder.new do |allocation_decision|
-      allocation_decision.originatingHearingId originatingHearingId
-      allocation_decision.offenceId offenceId
+      allocation_decision.originatingHearingId hearing_id
+      allocation_decision.offenceId offence_id
       allocation_decision.motReasonId motReasonId
       allocation_decision.motReasonDescription motReasonDescription
       allocation_decision.motReasonCode motReasonCode

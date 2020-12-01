@@ -11,6 +11,8 @@ class Hearing < ApplicationRecord
   belongs_to :cracked_ineffective_trial, optional: true
   has_many :prosecution_case_hearings, dependent: :destroy
   has_many :prosecution_cases, through: :prosecution_case_hearings, inverse_of: :hearings
+  has_many :defendants, through: :prosecution_cases
+  has_many :offences, through: :defendants
   has_many :court_applications
   has_many :referral_reasons
   has_many :hearing_case_notes
@@ -33,6 +35,7 @@ class Hearing < ApplicationRecord
 
   accepts_nested_attributes_for :hearing_type, reject_if: :all_blank
   accepts_nested_attributes_for :hearing_days, reject_if: :all_blank
+  accepts_nested_attributes_for :prosecution_cases, reject_if: :all_blank
 
   def to_builder
     Jbuilder.new do |hearing|

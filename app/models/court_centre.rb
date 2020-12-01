@@ -5,10 +5,14 @@ class CourtCentre
 
   attr_accessor :id
 
+  def name
+    csv_row.oucode_l3_name
+  end
+
   def to_builder
     Jbuilder.new do |court_centre|
       court_centre.id id
-      court_centre.name csv_row.oucode_l3_name
+      court_centre.name name
       court_centre.welshName csv_row.oucode_l3_welsh_name
       court_centre.roomId id # Using CourtCentre while we manage to get a list of rooms
       court_centre.roomName csv_row.oucode_l3_name # Using CourtCentre while we manage to get a list of rooms

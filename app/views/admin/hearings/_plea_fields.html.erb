@@ -1,0 +1,13 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.hidden_field :hearing_id, value: @hearing.id %>
+    <%= f.label :pleaDate, 'Plea Date' %>
+    <%= f.text_field :pleaDate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pleaValue, 'Plea Value' %>
+    <%= f.select :pleaValue, Plea::VALUES, include_blank: true %>
+  </div>
+  <%= link_to_remove_association "remove plea", f %>
+</div>

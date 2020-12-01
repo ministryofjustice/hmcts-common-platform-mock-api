@@ -64,7 +64,7 @@ def create_prosecution_cases
   puts " #{ICONS[:success]}"
 
   print "[CREATE][DEFENCE_COUNSELS] for #{CASE1[:URN]}"
-  defence_counsels = FactoryBot.create_list(:defence_counsel, 2)
+  defence_counsels = FactoryBot.create_list(:defence_counsel, 2, defendant: defendant1)
   puts " #{ICONS[:success]}"
 
   case1.hearings.each do |hearing|

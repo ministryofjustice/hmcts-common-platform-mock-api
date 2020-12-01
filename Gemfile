@@ -36,6 +36,7 @@ gem 'webpacker'
 
 group :development, :test do
   gem 'capybara'
+  gem 'colorize'
   gem 'dotenv-rails'
   gem 'json-schema-rspec'
   gem 'pry-byebug'

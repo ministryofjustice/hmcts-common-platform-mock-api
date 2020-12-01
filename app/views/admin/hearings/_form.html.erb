@@ -56,6 +56,31 @@
     <%= form.check_box :isBoxHearing %>
   </div>
 
+  <% if hearing.persisted? %>
+
+  <h3>Defendant-Offences:</h3>
+
+    <%= form.fields_for :prosecution_cases do |prosecution_case| %>
+      <%= prosecution_case.fields_for :defendants do |defendant| %>
+          <h4><%= defendant.object.name %></h4>
+        <%= defendant.fields_for :offences do |offence| %>
+          <h5><%= offence.object.offenceTitle %></h5>
+          <div id="defendant-offences-<%= offence.object.id %>">
+            <%= offence.fields_for :pleas, offence.object.pleas.where(hearing: hearing) do |plea| %>
+              <%= render 'plea_fields', f: plea %>
+            <% end %>
+            <% if offence.object.pleas.where(hearing: hearing).size == 0 %>
+              <div class="links">
+                <%= link_to 'add plea', add_plea_admin_hearing_path(hearing, offence.object), method: :post %>
+              </div>
+            <% end %>
+          </div>
+          <hr/>
+        <% end %>
+      <% end %>
+    <% end %>
+    <br/>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

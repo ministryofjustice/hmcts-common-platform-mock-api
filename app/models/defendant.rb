@@ -64,6 +64,12 @@ class Defendant < ApplicationRecord
     defendable.is_a? LegalEntityDefendant
   end
 
+  def name
+    return defendable.organisation.name if legal_entity?
+
+    [defendable.person.first_name, defendable.person.middle_name, defendable.person.last_name].compact.join(' ')
+  end
+
   def to_builder
     Jbuilder.new do |defendant|
       defendant.id id

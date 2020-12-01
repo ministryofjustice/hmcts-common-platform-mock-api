@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :plea do
-    originatingHearingId { SecureRandom.uuid }
-    offenceId { SecureRandom.uuid }
+    hearing
+    offence
     pleaDate { '2019-10-14 14:59:41' }
     pleaValue { 'GUILTY' }
 
@@ -12,8 +12,8 @@ FactoryBot.define do
     end
 
     factory :realistic_plea do
-      originatingHearingId { SecureRandom.uuid }
-      offenceId { SecureRandom.uuid }
+      association :hearing, factory: :realistic_hearing
+      association :offence, factory: :realistic_offence
       pleaDate { Faker::Date.backward }
       pleaValue { Plea::VALUES.sample }
     end

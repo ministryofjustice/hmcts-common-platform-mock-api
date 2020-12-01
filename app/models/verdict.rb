@@ -5,15 +5,16 @@ class Verdict < ApplicationRecord
   belongs_to :jurors, optional: true
   belongs_to :lesser_or_alternative_offence, optional: true
 
-  validates :originatingHearingId, presence: true
-  validates :offenceId, presence: true
+  belongs_to :hearing
+  belongs_to :offence
+
   validates :verdictDate, presence: true
   validates :verdict_type, presence: true
 
   def to_builder
     Jbuilder.new do |verdict|
-      verdict.originatingHearingId originatingHearingId
-      verdict.offenceId offenceId
+      verdict.originatingHearingId hearing_id
+      verdict.offenceId offence_id
       verdict.verdictDate verdictDate.to_date
       verdict.verdictType verdict_type.to_builder
       verdict.jurors jurors.to_builder if jurors.present?

@@ -40,7 +40,7 @@ module DemoDataHelper
           offence_id: offence.id,
           offence_desc: offence.offenceTitle,
           mode_of_trial: offence.modeOfTrial,
-          allocation_decision: offence.allocation_decision
+          allocation_decisions: offence.allocation_decisions
         }
       end
     end.flatten

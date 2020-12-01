@@ -2,11 +2,11 @@
 
 class Offence < ApplicationRecord
   include BuilderMappable
-  belongs_to :notified_plea, optional: true
-  belongs_to :indicated_plea, optional: true
-  belongs_to :allocation_decision, optional: true
-  belongs_to :plea, optional: true
-  belongs_to :verdict, optional: true
+  has_many :notified_pleas, dependent: :destroy
+  has_many :indicated_pleas, dependent: :destroy
+  has_many :allocation_decisions, dependent: :destroy
+  has_many :pleas, dependent: :destroy
+  has_many :verdicts, dependent: :destroy
   belongs_to :offence_facts, optional: true
   belongs_to :custody_time_limit, optional: true
   belongs_to :defendant, optional: true
@@ -22,6 +22,7 @@ class Offence < ApplicationRecord
   validates :startDate, presence: true
 
   accepts_nested_attributes_for :judicial_results, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :pleas, reject_if: :all_blank, allow_destroy: true
 
   def to_builder
     Jbuilder.new do |offence|
@@ -49,11 +50,6 @@ class Offence < ApplicationRecord
       offence.judicialResults array_builder(judicial_results)
       offence.isDiscontinued isDiscontinued
       offence.proceedingsConcluded proceedingsConcluded
-      offence.notifiedPlea notified_plea&.to_builder
-      offence.indicatedPlea indicated_plea&.to_builder
-      offence.allocationDecision allocation_decision&.to_builder
-      offence.plea plea&.to_builder
-      offence.verdict verdict&.to_builder
       offence.offenceFacts offence_facts&.to_builder
       offence.laaApplnReference laa_reference&.to_builder
       offence.custodyTimeLimit custody_time_limit&.to_builder

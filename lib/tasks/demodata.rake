@@ -88,6 +88,7 @@ def create_prosecution_cases
       end
     end
     hearing.save!
+
     puts " #{ICONS[:success]}"
   end
 

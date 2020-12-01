@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Admin::Defendants", type: :request do
-
+RSpec.describe 'Admin::Defendants', type: :request do
   let(:prosecution_case) { FactoryBot.create(:prosecution_case) }
   let(:defendant) { FactoryBot.create(:defendant) }
   let(:headers) { { 'Authorization': authorisation } }
   let(:authorisation) { ActionController::HttpAuthentication::Basic.encode_credentials(ENV['ADMIN_USERNAME'], ENV['ADMIN_PASSWORD']) }
   let(:invalid_attributes) do
-    FactoryBot.attributes_for(:defendant,
-                              defendable_type: 'PersonDefendant',
-                              defendable_attributes: FactoryBot.attributes_for(:person_defendant,
-                                                                               person_attributes: FactoryBot.attributes_for(:person, lastName: nil)))
+    attributes_for(:defendant,
+                   defendable_type: 'PersonDefendant',
+                   defendable_attributes: FactoryBot.attributes_for(:person_defendant,
+                                                                    person_attributes: FactoryBot.attributes_for(:person, lastName: nil)))
   end
 
   let(:valid_attributes) do
@@ -18,18 +19,18 @@ RSpec.describe "Admin::Defendants", type: :request do
                               defendable_type: 'PersonDefendant',
                               defendable_attributes: FactoryBot.attributes_for(:person_defendant,
                                                                                person_attributes: FactoryBot.attributes_for(:person)),
-                                                                               offences_attributes: [FactoryBot.attributes_for(:offence)])
+                              offences_attributes: [FactoryBot.attributes_for(:offence)])
   end
-  
-  describe "GET /show" do
-    it "returns http success" do
+
+  describe 'GET /show' do
+    it 'returns http success' do
       get "/admin/defendants/#{defendant.id}", headers: headers
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /edit" do
-    it "returns http success" do
+  describe 'GET /edit' do
+    it 'returns http success' do
       get "/admin/defendants/#{defendant.id}/edit", headers: headers
       expect(response).to have_http_status(:success)
     end
@@ -73,7 +74,7 @@ RSpec.describe "Admin::Defendants", type: :request do
       delete admin_defendant_url(defendant), headers: headers
       expect(response).to redirect_to(admin_prosecution_case_url(defendant.prosecution_case))
     end
-  end 
+  end
 
   describe 'GET /new' do
     it 'renders a successful response' do
@@ -84,8 +85,8 @@ RSpec.describe "Admin::Defendants", type: :request do
 
   describe 'POST /create' do
     before { prosecution_case.save! }
-    context 'with valid parameters' do
 
+    context 'with valid parameters' do
       it 'creates a new Defendant' do
         expect do
           post admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: valid_attributes }, headers: headers
@@ -111,5 +112,4 @@ RSpec.describe "Admin::Defendants", type: :request do
       end
     end
   end
-
 end

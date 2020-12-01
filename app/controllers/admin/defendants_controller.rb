@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 module Admin
+  # rubocop:disable Metrics/ClassLength
   class DefendantsController < Admin::ApplicationController
     before_action :set_defendant, only: %i[show edit update destroy]
 
-    def show
-    end
+    def show; end
 
-    def edit
-    end
+    def edit; end
 
     def new
       @prosecution_case = ProsecutionCase.find(params[:prosecution_case_id])
@@ -17,7 +18,7 @@ module Admin
       @prosecution_case = ProsecutionCase.find(params[:prosecution_case_id])
       @defendant = @prosecution_case.defendants.build(defendant_params)
 
-      if @defendant.save    
+      if @defendant.save
         redirect_to [:admin, @defendant], notice: 'Defendant was successfully created.'
       else
         render :new
@@ -45,21 +46,22 @@ module Admin
 
     def defendant_params
       params.require(:defendant).permit(
-       :numberOfPreviousConvictionsCited,
-       :prosecutionAuthorityReference,
-       :witnessStatement,
-       :witnessStatementWelsh,
-       :mitigation,
-       :mitigationWelsh,
-       :croNumber,
-       :pncId,
-       :mergedProsecutionCaseReference,
-       :masterDefendantId,
-       :courtProceedingsInitiated,
-       :defendantDetailsUpdated,
-       :defendable_type,
-       { defendable_attributes: defendable_attributes,
-       offences_attributes: offences_attributes})
+        :numberOfPreviousConvictionsCited,
+        :prosecutionAuthorityReference,
+        :witnessStatement,
+        :witnessStatementWelsh,
+        :mitigation,
+        :mitigationWelsh,
+        :croNumber,
+        :pncId,
+        :mergedProsecutionCaseReference,
+        :masterDefendantId,
+        :courtProceedingsInitiated,
+        :defendantDetailsUpdated,
+        :defendable_type,
+        { defendable_attributes: defendable_attributes,
+          offences_attributes: offences_attributes }
+      )
     end
 
     def defendable_attributes
@@ -162,4 +164,5 @@ module Admin
       ]
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end

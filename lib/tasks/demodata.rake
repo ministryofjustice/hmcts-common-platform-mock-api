@@ -52,10 +52,20 @@ def create_prosecution_cases
   defendant1 = FactoryBot.create(:realistic_defendant, defendable: person_defendant1, prosecution_case: case1)
   puts " #{ICONS[:success]}"
 
-  print "[CREATE][OFFENCE][ALLOCATION_DECISION] #{CASE1[:URN]}"
+  print "[CREATE][DEFENDANT][OFFENCE][ALLOCATION_DECISION] #{CASE1[:URN]}"
   offence = defendant1.offences.first
   offence.allocation_decisions << FactoryBot.create(:realistic_allocation_decision)
   offence.save!
+  puts " #{ICONS[:success]}"
+
+  print "[CREATE][DEFENDANT][OFFENCE][PLEAS] #{CASE1[:URN]}"
+  defendant1.offences.each do |off|
+    off.pleas.create(pleaDate: case1.hearings.first.hearing_days.first.sittingDay,
+                     pleaValue: %w[NO_PLEA NOT_GUILTY].sample, hearing: case1.hearings.first)
+    off.pleas.create(pleaDate: case1.hearings.last.hearing_days.last.sittingDay,
+                     pleaValue: %w[GUILTY UNFIT_TO_PLEAD].sample, hearing: case1.hearings.last)
+    off.save!
+  end
   puts " #{ICONS[:success]}"
 
   print "[CREATE][HEARINGS] for #{CASE1[:URN]}"

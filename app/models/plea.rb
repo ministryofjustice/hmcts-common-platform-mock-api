@@ -1,7 +1,19 @@
 # frozen_string_literal: true
 
 class Plea < ApplicationRecord
-  VALUES = %w[GUILTY NOT_GUILTY].freeze
+  VALUES = %w[GUILTY
+              NOT_GUILTY
+              MCA_GUILTY
+              UNFIT_TO_PLEAD
+              AUTREFOIS_ACQUIT
+              AUTREFOIS_CONVICT
+              CONSENTS
+              OPPOSES
+              NO_PLEA
+              CHANGE_TO_NOT_GUILTY
+              CHANGE_TO_GUILTY_AFTER_SWORN_IN
+              CHANGE_TO_GUILTY_MAGISTRATES_COURT
+              PARDON].freeze
 
   belongs_to :delegated_powers, optional: true
 

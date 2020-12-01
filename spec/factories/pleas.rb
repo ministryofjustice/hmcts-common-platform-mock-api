@@ -5,7 +5,7 @@ FactoryBot.define do
     hearing
     offence
     pleaDate { '2019-10-14 14:59:41' }
-    pleaValue { 'GUILTY' }
+    pleaValue { Plea::VALUES.sample }
 
     factory :plea_with_relationships do
       delegated_powers

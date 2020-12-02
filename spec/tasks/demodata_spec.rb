@@ -29,13 +29,61 @@ RSpec.describe 'Demo data tasks', type: :rake do
       }
     end
 
+    it 'creates a specific person' do
+      expect(FactoryBot).to receive(:create).with(:realistic_person, person_attrs)
+      loader
+    end
+
     it 'creates 2 cases' do
       expect { loader }.to change(ProsecutionCase, :count).by(2)
     end
 
-    it 'creates a specific person' do
-      expect(FactoryBot).to receive(:create).with(:realistic_person, person_attrs)
-      loader
+    it 'creates 1 allocation_decision' do
+      expect { loader }.to change(AllocationDecision, :count).by(1)
+    end
+
+    it 'creates 2 pleas' do
+      expect { loader }.to change(Plea, :count).by(2)
+    end
+
+    it 'creates 2 defence counsels' do
+      expect { loader }.to change(DefenceCounsel, :count).by(2)
+    end
+
+    context 'for case 1' do
+      before { loader }
+
+      let(:case1) { prosecution_cases_by_reference('TEST12345').first }
+
+      it 'adds 4 defendants' do
+        expect(case1.defendants.count).to be 4
+      end
+
+      it 'adds 3 hearings' do
+        expect(case1.hearings.count).to be 3
+      end
+
+      it 'all hearings are "resulted"' do
+        expect(case1.hearings.pluck(:resulted)).to all(be(true))
+      end
+
+      it 'adds 3 hearing days to each hearing' do
+        expect(case1.hearings.map(&:hearing_days).map(&:size)).to eql([3, 3, 3])
+      end
+
+      it 'adds 10 hearing events to each hearing day' do
+        expect(case1.hearings.flat_map(&:hearing_days).map(&:events).map(&:size)).to eql(Array.new(9, 10))
+      end
+    end
+
+    context 'for case 2' do
+      before { loader }
+
+      let(:case2) { prosecution_cases_by_reference('TEST54321').first }
+
+      it 'adds 3 defendants' do
+        expect(case2.defendants.count).to be 3
+      end
     end
   end
 

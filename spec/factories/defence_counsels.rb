@@ -7,8 +7,13 @@ FactoryBot.define do
     middleName { Faker::Name.first_name }
     lastName { Faker::Name.last_name }
     status { 'Junior counsel' }
-    after(:build) do |defence_counsel|
-      defence_counsel.defendants << build(:defendant)
+
+    transient do
+      defendant { nil }
+    end
+
+    after(:build) do |defence_counsel, evaluator|
+      defence_counsel.defendants << (evaluator.defendant || build(:defendant))
       defence_counsel.attendance_days << build(:attendance_day)
     end
   end

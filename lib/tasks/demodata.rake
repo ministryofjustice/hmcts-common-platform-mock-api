@@ -87,14 +87,16 @@ def create_prosecution_cases
     print "[CREATE][HEARINGS][HEARING_DAYS] for #{CASE1[:URN]}"
     base_date = '2019-10-23 00:00:00'.to_datetime
     hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 1.day + 8.hours + 30.minutes).to_s)
-    hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 2.day + 10.hours + 45.minutes).to_s)
+    hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 2.days + 10.hours + 45.minutes).to_s)
     hearing.save!
     puts " #{ICONS[:success]}"
 
     print "[CREATE][HEARINGS][HEARING_DAYS][HEARING_EVENT] for #{CASE1[:URN]}"
     hearing.hearing_days.each do |hearing_day|
       10.times do |idx|
-        hearing_day.events << FactoryBot.create(:hearing_event, eventTime: hearing_day.sittingDay + idx.hours, recordedLabel: "Hearing event #{idx}")
+        hearing_day.events << FactoryBot.create(:hearing_event,
+                                                eventTime: hearing_day.sittingDay + idx.hours,
+                                                recordedLabel: "Hearing event #{idx}")
       end
     end
     hearing.save!
@@ -137,7 +139,7 @@ def destroy_prosecution_case(case_urn)
   pcases.each do |pcase|
     pcase.defendants.each do |defendant|
       defended_item = defendant.defendable
-      defended_item = defendant.defence_organisation unless defended_item
+      defended_item ||= defendant.defence_organisation
       next unless defended_item
 
       print "[DESTROY][DEFENDED ITEM] #{humanize_defended_item(defended_item)}"

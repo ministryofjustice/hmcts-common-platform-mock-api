@@ -7,6 +7,12 @@ RSpec.describe CourtCentre, type: :model do
 
   subject { court_centre }
 
+  describe '#name' do
+    subject { court_centre.name }
+
+    it { is_expected.to eq('Derby Crown Court') }
+  end
+
   it_has_behaviour 'conforming to valid schema'
 
   context 'when an address exists' do

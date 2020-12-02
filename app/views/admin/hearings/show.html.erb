@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hearing <%= @hearing.id %></h1>
+
+<h2><%= @hearing.court_centre.name %></h2>
+
+<h2>Days</h2>
+<ol>
+<% @hearing.hearing_days.each do |hearing_day| %>
+  <li><%= hearing_day.sittingDay.to_date %></li>
+<% end %>
+</ol>
+
+<%= link_to 'Edit', edit_admin_hearing_path(@hearing) %> |
+<%= link_to 'Back', admin_prosecution_case_path(@prosecution_case) %>

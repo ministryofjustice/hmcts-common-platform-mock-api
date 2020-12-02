@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :allocation_decision do
-    originatingHearingId { SecureRandom.uuid }
-    offenceId { SecureRandom.uuid }
+    hearing
+    offence
     motReasonId { SecureRandom.uuid }
     motReasonDescription { Faker::Offence.mode_of_trial_reason }
     motReasonCode { 'ABCD' }
@@ -19,8 +19,8 @@ FactoryBot.define do
     end
 
     factory :realistic_allocation_decision do
-      originatingHearingId { SecureRandom.uuid }
-      offenceId { SecureRandom.uuid }
+      association :hearing, factory: :realistic_hearing
+      association :offence, factory: :realistic_offence
       motReasonId { SecureRandom.uuid }
       motReasonDescription { Faker::Offence.mode_of_trial_reason }
       motReasonCode { Faker::Alphanumeric.alphanumeric(number: 4) }

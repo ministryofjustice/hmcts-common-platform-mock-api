@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :organisation do
-    name { 'Random string' }
+    name { 'Bergstrom-Johnson' }
     incorporationNumber { 'Random string' }
     registeredCharityNumber { 'Random string' }
 

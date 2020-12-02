@@ -10,6 +10,11 @@ Rails.application.routes.draw do
         get 'add_offence'
       end
       resources :defendants
+      resources :hearings, except: [:index] do
+        member do
+          post ':offence_id/add_plea' => 'hearings#add_plea', as: :add_plea
+        end
+      end
     end
   end
   resources :status, only: [:index]

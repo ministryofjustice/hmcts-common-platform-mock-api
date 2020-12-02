@@ -6,10 +6,10 @@ module BuilderMappable
   included do
     private
 
-    def array_builder(collection)
+    def array_builder(collection, options = {})
       return nil if collection.empty?
 
-      collection.map { |item| item.to_builder.attributes! }
+      collection.map { |item| item.to_builder(**options).attributes! }
     end
 
     def collection_ids(collection)

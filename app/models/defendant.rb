@@ -64,7 +64,13 @@ class Defendant < ApplicationRecord
     defendable.is_a? LegalEntityDefendant
   end
 
-  def to_builder
+  def name
+    return defendable.organisation.name if legal_entity?
+
+    [defendable.person.first_name, defendable.person.middle_name, defendable.person.last_name].compact.join(' ')
+  end
+
+  def to_builder(hearing: nil)
     Jbuilder.new do |defendant|
       defendant.id id
       defendant.prosecutionCaseId prosecution_case_id
@@ -76,7 +82,7 @@ class Defendant < ApplicationRecord
       defendant.witnessStatementWelsh witnessStatementWelsh
       defendant.mitigation mitigation
       defendant.mitigationWelsh mitigationWelsh
-      defendant.offences array_builder(offences)
+      defendant.offences array_builder(offences, hearing: hearing)
       defendant.associatedPersons array_builder(associated_people)
       defendant.defenceOrganisation defence_organisation.organisation.to_builder if defence_organisation.present?
       defendant.associatedDefenceOrganisation defence_organisation.to_builder if defence_organisation.present?

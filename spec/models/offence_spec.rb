@@ -7,11 +7,11 @@ RSpec.describe Offence, type: :model do
   subject { offence }
 
   describe 'associations' do
-    it { should belong_to(:notified_plea).class_name('NotifiedPlea').optional }
-    it { should belong_to(:indicated_plea).class_name('IndicatedPlea').optional }
-    it { should belong_to(:allocation_decision).class_name('AllocationDecision').optional }
-    it { should belong_to(:plea).class_name('Plea').optional }
-    it { should belong_to(:verdict).class_name('Verdict').optional }
+    it { should have_many(:notified_pleas).class_name('NotifiedPlea') }
+    it { should have_many(:indicated_pleas).class_name('IndicatedPlea') }
+    it { should have_many(:allocation_decisions).class_name('AllocationDecision') }
+    it { should have_many(:pleas).class_name('Plea') }
+    it { should have_many(:verdicts).class_name('Verdict') }
     it { should belong_to(:offence_facts).class_name('OffenceFacts').optional }
     it { should belong_to(:custody_time_limit).class_name('CustodyTimeLimit').optional }
     it { should belong_to(:defendant).class_name('Defendant').optional }

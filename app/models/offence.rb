@@ -2,11 +2,11 @@
 
 class Offence < ApplicationRecord
   include BuilderMappable
-  belongs_to :notified_plea, optional: true
-  belongs_to :indicated_plea, optional: true
-  belongs_to :allocation_decision, optional: true
-  belongs_to :plea, optional: true
-  belongs_to :verdict, optional: true
+  has_many :notified_pleas, dependent: :destroy
+  has_many :indicated_pleas, dependent: :destroy
+  has_many :allocation_decisions, dependent: :destroy
+  has_many :pleas, dependent: :destroy
+  has_many :verdicts, dependent: :destroy
   belongs_to :offence_facts, optional: true
   belongs_to :custody_time_limit, optional: true
   belongs_to :defendant, optional: true
@@ -22,8 +22,9 @@ class Offence < ApplicationRecord
   validates :startDate, presence: true
 
   accepts_nested_attributes_for :judicial_results, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :pleas, reject_if: :all_blank, allow_destroy: true
 
-  def to_builder
+  def to_builder(hearing: nil)
     Jbuilder.new do |offence|
       offence.id id
       offence.offenceDefinitionId offenceDefinitionId
@@ -49,14 +50,34 @@ class Offence < ApplicationRecord
       offence.judicialResults array_builder(judicial_results)
       offence.isDiscontinued isDiscontinued
       offence.proceedingsConcluded proceedingsConcluded
-      offence.notifiedPlea notified_plea&.to_builder
-      offence.indicatedPlea indicated_plea&.to_builder
-      offence.allocationDecision allocation_decision&.to_builder
-      offence.plea plea&.to_builder
-      offence.verdict verdict&.to_builder
       offence.offenceFacts offence_facts&.to_builder
       offence.laaApplnReference laa_reference&.to_builder
       offence.custodyTimeLimit custody_time_limit&.to_builder
+
+      if hearing.present?
+        offence.indicatedPlea indicated_plea_for_hearing(hearing)&.to_builder
+        offence.allocationDecision allocation_decision_for_hearing(hearing)&.to_builder
+        offence.plea plea_for_hearing(hearing)&.to_builder
+        offence.verdict verdict_for_hearing(hearing)&.to_builder
+      end
     end
+  end
+
+  private
+
+  def indicated_plea_for_hearing(hearing)
+    indicated_pleas.find_by(hearing: hearing)
+  end
+
+  def allocation_decision_for_hearing(hearing)
+    allocation_decisions.find_by(hearing: hearing)
+  end
+
+  def plea_for_hearing(hearing)
+    pleas.find_by(hearing: hearing)
+  end
+
+  def verdict_for_hearing(hearing)
+    verdicts.find_by(hearing: hearing)
   end
 end

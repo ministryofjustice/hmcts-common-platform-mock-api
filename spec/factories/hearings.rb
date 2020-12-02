@@ -2,6 +2,12 @@
 
 FactoryBot.define do
   factory :hearing do
+    trait :with_prosecution_case do
+      after(:build) do |hearing|
+        hearing.prosecution_cases << FactoryBot.create(:prosecution_case)
+      end
+    end
+
     jurisdictionType { 'CROWN' }
     reportingRestrictionReason { 'reporting restriction because...' }
     court_centre_id { '6131bd34-33d9-3d1e-8152-8b5a2084f1bd' }

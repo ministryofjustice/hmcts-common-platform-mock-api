@@ -54,7 +54,7 @@ def create_prosecution_cases
 
   print "[CREATE][OFFENCE][ALLOCATION_DECISION] #{CASE1[:URN]}"
   offence = defendant1.offences.first
-  offence.allocation_decision = FactoryBot.create(:realistic_allocation_decision)
+  offence.allocation_decisions << FactoryBot.create(:realistic_allocation_decision)
   offence.save!
   puts " #{ICONS[:success]}"
 

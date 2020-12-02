@@ -55,7 +55,9 @@ RSpec.describe 'Demo data tasks', type: :rake do
 
       let(:case1) { prosecution_cases_by_reference('TEST12345').first }
 
-      it { expect(case1.prosecution_case_identifier.caseURN).to eql 'TEST12345' }
+      it 'adds 4 defendants' do
+        expect(case1.defendants.count).to be 4
+      end
 
       it 'adds 3 hearings' do
         expect(case1.hearings.count).to be 3
@@ -71,6 +73,16 @@ RSpec.describe 'Demo data tasks', type: :rake do
 
       it 'adds 10 hearing events to each hearing day' do
         expect(case1.hearings.flat_map(&:hearing_days).map(&:events).map(&:size)).to eql(Array.new(9, 10))
+      end
+    end
+
+    context 'for case 2' do
+      before { loader }
+
+      let(:case2) { prosecution_cases_by_reference('TEST54321').first }
+
+      it 'adds 3 defendants' do
+        expect(case2.defendants.count).to be 3
       end
     end
   end

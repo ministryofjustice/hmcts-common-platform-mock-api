@@ -23,11 +23,16 @@
         <td>
           <%= defendant.defendable.person.firstName %> <%= defendant.defendable.person.middleName %> <%= defendant.defendable.person.lastName %>
         </td>
+        <td><%= link_to 'Show', [:admin, defendant] %></td>
+        <td><%= link_to 'Edit', edit_admin_defendant_path(defendant) %></td>
+        <td><%= link_to 'Destroy', [:admin, defendant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<br/>
+<%= link_to 'New Defendant', new_admin_prosecution_case_defendant_path(@prosecution_case) %>
+<br/>
 <h2>Hearings</h2>
 
 <table>

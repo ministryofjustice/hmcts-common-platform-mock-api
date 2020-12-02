@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       collection do
         get 'add_offence'
       end
+      resources :defendants
       resources :hearings, except: [:index] do
         member do
           post ':offence_id/add_plea' => 'hearings#add_plea', as: :add_plea

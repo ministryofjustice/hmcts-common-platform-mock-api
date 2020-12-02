@@ -1,0 +1,6 @@
+<h1>Editing Defendant</h1>
+
+<%= render 'form', defendant: @defendant, url: admin_defendant_path(@defendant) %>
+
+<%= link_to 'Show', [:admin, @defendant] %> |
+<%= link_to 'Back', admin_prosecution_case_path(@defendant.prosecution_case) %>

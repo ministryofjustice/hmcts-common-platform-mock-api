@@ -11,14 +11,10 @@ FactoryBot.define do
     end
 
     factory :realistic_prosecution_case_identifier do
-      transient do
-        has_case_urn { Faker::Boolean.boolean }
-      end
-
       prosecutionAuthorityId { SecureRandom.uuid }
       prosecutionAuthorityCode { Faker::Alphanumeric.alpha(number: 10).upcase }
-      caseURN { has_case_urn ? Faker::Alphanumeric.alpha(number: 10).upcase : nil }
-      prosecutionAuthorityReference { has_case_urn ? nil : Faker::Alphanumeric.alpha(number: 10).upcase }
+      caseURN { Faker::Alphanumeric.alpha(number: 10).upcase }
+      prosecutionAuthorityReference { nil }
     end
   end
 end

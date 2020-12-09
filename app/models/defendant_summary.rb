@@ -31,13 +31,11 @@ class DefendantSummary
     end
   end
 
-  private
-
   def date_of_next_hearing
-    # This is one of the attributes used to make a search ProsecutionCase request (see prosecutionCaseRequest.json)
-    # We will need to use the `dateOfNextHearing` and `name` to search defendants and return to the this object.
-    '2012-12-12'
+    defendant.judicial_results.order(created_at: :asc).last&.next_hearing&.listedStartDateTime
   end
+
+  private
 
   def proceedings_concluded?
     defendant.offences.map(&:isDisposed).all? true

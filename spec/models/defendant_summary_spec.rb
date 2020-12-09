@@ -28,7 +28,7 @@ RSpec.describe DefendantSummary, type: :model do
   describe '#date_of_next_hearing ' do
     subject { defendant_summary.date_of_next_hearing }
 
-    it {is_expected.to be_blank}
+    it { is_expected.to be_blank }
 
     context 'date_of_next_hearing exists' do
       let(:defendant) do
@@ -36,7 +36,7 @@ RSpec.describe DefendantSummary, type: :model do
                next_hearing_date: '2019-01-10')
       end
 
-      it {is_expected.to eq('2019-01-10')}
+      it { is_expected.to eq('2019-01-10') }
     end
   end
 end

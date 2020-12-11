@@ -35,5 +35,8 @@ module HmctsCommonPlatformApi
     config.generators.system_tests = nil
 
     config.laa_connection = config_for(:laa_connection)
+
+    # load all files in locales to allow creation of separate files for organization purposes
+    config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}')]
   end
 end

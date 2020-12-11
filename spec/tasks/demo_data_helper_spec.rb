@@ -104,7 +104,7 @@ RSpec.describe DemoDataHelper, type: :helper do
 
     let(:urn) { 'TESTURN123' }
     let(:attributes) do
-      %i[defendant_id defendant_name offence_id offence_desc mode_of_trial allocation_decisions plea_sentence]
+      %i[defendant_id defendant_name offence_id offence_desc mode_of_trial mot_reasons plea_sentences]
     end
 
     before do

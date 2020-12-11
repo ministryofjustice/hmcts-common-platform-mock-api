@@ -9,11 +9,11 @@
             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "code": {
-            "description": "The reason code for the cracked or ineffective trail",
+            "description": "The reason code for the cracked or ineffective trial",
             "type": "string"
         },
         "description": {
-            "description": "The details of the reason for the cracked or ineffective trail",
+            "description": "The details of the reason for the cracked or ineffective trial",
             "type": "string"
         },
         "type": {

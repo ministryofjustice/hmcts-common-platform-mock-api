@@ -37,11 +37,11 @@ module DemoDataHelper
   end
 
   def defendant_offence_details_for(prosecution_case)
-    prosecution_case.defendants.map do |d|
-      d.offences.map do |offence|
+    prosecution_case.defendants.map do |defendant|
+      defendant.offences.map do |offence|
         {
-          defendant_id: d.id,
-          defendant_name: "#{d.defendable.person.firstName} #{d.defendable.person.lastName}",
+          defendant_id: defendant.id,
+          defendant_name: "#{defendant.defendable.person.firstName} #{defendant.defendable.person.lastName}",
           offence_id: offence.id,
           offence_desc: offence.offenceTitle,
           mode_of_trial: offence.modeOfTrial,

@@ -84,6 +84,10 @@ RSpec.describe 'Demo data tasks', type: :rake do
       it 'adds 3 defendants' do
         expect(case2.defendants.count).to be 3
       end
+
+      it 'adds a cracked ineffective hearing' do
+        expect(case2.hearings.map(&:cracked_ineffective_trial).compact.size).to be >= 1
+      end
     end
   end
 

@@ -40,8 +40,8 @@ module DemoDataHelper
           offence_id: offence.id,
           offence_desc: offence.offenceTitle,
           mode_of_trial: offence.modeOfTrial,
-          allocation_decisions: offence.allocation_decisions,
-          plea_sentence: offence.pleas.map { |p| "#{p.pleaValue} on #{p.pleaDate}" }
+          mot_reasons: offence.allocation_decisions.map(&:motReasonDescription),
+          plea_sentences: offence.pleas.map { |p| "#{p.pleaValue} on #{p.pleaDate}" }
         }
       end
     end.flatten

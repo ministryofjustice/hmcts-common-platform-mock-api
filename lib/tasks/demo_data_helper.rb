@@ -32,7 +32,12 @@ module DemoDataHelper
   def case_details_hash(urn)
     pc = prosecution_cases_by_reference(urn).first
 
-    pc.defendants.map do |d|
+    case_details = defendant_offence_details_for(pc)
+    case_details << cracked_ineffective_trial_sentences_for(pc)
+  end
+
+  def defendant_offence_details_for(prosecution_case)
+    prosecution_case.defendants.map do |d|
       d.offences.map do |offence|
         {
           defendant_id: d.id,
@@ -45,5 +50,14 @@ module DemoDataHelper
         }
       end
     end.flatten
+  end
+
+  def cracked_ineffective_trial_sentences_for(prosecution_case)
+    cracked_ineffective_trial_sentences = prosecution_case.hearings.map do |hearing|
+      "#{hearing.cracked_ineffective_trial&.reason_type} because #{hearing.cracked_ineffective_trial&.description}" \
+        if hearing.cracked_ineffective_trial
+    end
+
+    { cracked_ineffective_trial_sentences: cracked_ineffective_trial_sentences }
   end
 end

@@ -104,21 +104,19 @@ RSpec.describe DemoDataHelper, type: :helper do
 
     let(:urn) { 'TESTURN123' }
     let(:attributes) do
-      %i[defendant_id defendant_name offence_id offence_desc mode_of_trial mot_reasons plea_sentences]
+      %i[defendant_id defendant_name offence_id offence_desc mode_of_trial mot_reasons plea_sentences cracked_ineffective_trial_sentences]
     end
 
     before do
-      create(
-        :realistic_prosecution_case,
-        prosecution_case_identifier: create(:realistic_prosecution_case_identifier,
-                                            caseURN: urn)
-      )
+      create(:realistic_prosecution_case,
+             prosecution_case_identifier: create(:realistic_prosecution_case_identifier,
+                                                 caseURN: urn))
     end
 
     it { is_expected.to be_an Array }
 
     it { is_expected.to all(be_instance_of(Hash)) }
 
-    it { expect(results.map(&:keys)).to all(contain_exactly(*attributes)) }
+    it { expect(results.flat_map(&:keys)).to contain_exactly(*attributes) }
   end
 end

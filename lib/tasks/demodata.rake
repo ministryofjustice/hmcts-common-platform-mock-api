@@ -45,6 +45,7 @@ def create_prosecution_cases
   # create another case with 2 random defendants and jammy dodger
   case2 = create_case_and_defendants(urn: CASE2[:URN], additional_defendant_count: 1)
   create_defendant_for(prosecution_case: case2, person: person)
+  create_cracked_ineffective_trial_for(prosecution_case: case2)
 
   pp case_details_hash(CASE1[:URN])
 end
@@ -146,6 +147,18 @@ def create_hearings_for(prosecution_case:, defendant:)
 
     puts " #{ICONS[:success]}"
   end
+end
+
+def create_cracked_ineffective_trial_for(prosecution_case:)
+  print "[CREATE][HEARINGS][CRACKED_INEFFECTIVE_TRIAL] for #{prosecution_case.prosecution_case_identifier.caseURN}"
+  raise 'Hearing not found' unless prosecution_case.hearings.any?
+
+  prosecution_case.hearings.last.tap do |hearing|
+    hearing.cracked_ineffective_trial = FactoryBot.create(:realistic_cracked_ineffective_trial)
+    hearing.save!
+  end
+
+  puts " #{ICONS[:success]}"
 end
 
 def destroy_prosecution_case(case_urn)

@@ -31,18 +31,16 @@ RSpec.describe '/admin/prosecution_cases', type: :request do
   let(:authorisation) { ActionController::HttpAuthentication::Basic.encode_credentials(ENV['ADMIN_USERNAME'], ENV['ADMIN_PASSWORD']) }
 
   describe 'GET /index' do
-    
     it 'renders a successful response' do
       get admin_prosecution_cases_url, headers: headers
       expect(response).to be_successful
     end
 
-    context "when a query parameter is provided"
-    it 'renders a successful response' do
-      get admin_prosecution_cases_url, params: { query: "test" }, headers: headers
+    context 'when a query parameter is provided'
+    it 'renders a successful response ' do
+      get admin_prosecution_cases_url, params: { query: 'test' }, headers: headers
       expect(response).to be_successful
     end
-
   end
 
   describe 'GET /show' do

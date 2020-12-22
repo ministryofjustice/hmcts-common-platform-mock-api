@@ -12,11 +12,11 @@ class ProsecutionCase < ApplicationRecord
   has_many :hearings, through: :prosecution_case_hearings, inverse_of: :prosecution_cases
 
   include PgSearch
-  pg_search_scope :search, 
-    associated_against: {prosecution_case_identifier: :caseURN},
-    using: {
-    tsearch: { prefix: true }
-    }
+  pg_search_scope :search,
+                  associated_against: { prosecution_case_identifier: :caseURN },
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 
   has_many :defendants, dependent: :destroy, inverse_of: :prosecution_case
   has_many :person_only_defendants, -> { people_only }, class_name: 'Defendant'

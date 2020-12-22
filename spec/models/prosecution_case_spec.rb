@@ -40,19 +40,20 @@ RSpec.describe ProsecutionCase, type: :model do
     end
   end
 
-  describe '.search' do 
+  describe '.search' do
     let(:prosecution_case_1) { FactoryBot.create(:prosecution_case) }
-    let(:prosecution_case_2) { FactoryBot.create(:prosecution_case, 
-                              prosecution_case_identifier: FactoryBot.create(:prosecution_case_identifier,caseURN: 'TEST1')) }
+    let(:prosecution_case_2) do
+      FactoryBot.create(:prosecution_case,
+                        prosecution_case_identifier: FactoryBot.create(:prosecution_case_identifier, caseURN: 'TEST1'))
+    end
 
-    let(:parameters) {'TEST'}
+    let(:parameters) { 'TEST' }
 
     subject { described_class.search(parameters) }
 
-      it { is_expected.to include(prosecution_case_2) }
-      it { is_expected.not_to include(prosecution_case_1) }
+    it { is_expected.to include(prosecution_case_2) }
+    it { is_expected.not_to include(prosecution_case_1) }
   end
-  
 
   context 'when only one SplitProsecutorCaseReference exists' do
     before do

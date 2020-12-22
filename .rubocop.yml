@@ -37,19 +37,10 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
 
-Layout/ArrayAlignment:
-  Enabled: true
-
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
 
-Layout/IndentationStyle:
-  Enabled: true
-
 Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-
-Layout/TrailingEmptyLines:
   Enabled: true
 
 Lint/DeprecatedOpenSSLConstant:
@@ -59,9 +50,6 @@ Lint/MixedRegexpCaptureTypes:
   Enabled: true
 
 Lint/RaiseException:
-  Enabled: true
-  
-Lint/RedundantStringCoercion:
   Enabled: true
 
 Lint/StructNewOverride:

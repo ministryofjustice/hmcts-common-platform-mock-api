@@ -27,6 +27,14 @@ jobs:
           POSTGRES_DB: hmcts_common_platform_api_test
     steps:
       - checkout
+      - run:
+          name: "Update Node.js and npm"
+          command: |
+            curl -sSL "https://nodejs.org/dist/v12.19.1/node-v12.19.1-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v12.19.1-linux-x64/bin/node
+            curl https://www.npmjs.com/install.sh | sudo bash
+      - run:
+          name: Check current version of node
+          command: node -v
 
       - restore_cache:
           keys:

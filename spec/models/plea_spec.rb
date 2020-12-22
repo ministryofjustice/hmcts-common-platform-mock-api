@@ -6,7 +6,6 @@ RSpec.describe Plea, type: :model do
   let(:plea) { FactoryBot.create(:plea) }
   let(:json_schema) { :plea }
 
-
   it { is_expected.to validate_presence_of(:pleaDate) }
   it { is_expected.to validate_presence_of(:pleaValue) }
 

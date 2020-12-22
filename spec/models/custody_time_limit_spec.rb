@@ -7,7 +7,6 @@ RSpec.describe CustodyTimeLimit, type: :model do
 
   let(:json_schema) { :custody_time_limit }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:timeLimit) }
     it { is_expected.to validate_presence_of(:daysSpent) }

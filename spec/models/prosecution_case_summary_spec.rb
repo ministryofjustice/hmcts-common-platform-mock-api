@@ -8,7 +8,6 @@ RSpec.describe ProsecutionCaseSummary, type: :model do
 
   let(:json_schema) { :prosecution_case_summary }
 
-
   it_has_behaviour "conforming to valid schema"
 
   context "with a hearing relationship" do

@@ -7,7 +7,6 @@ RSpec.describe ContactNumber, type: :model do
 
   let(:json_schema) { :contact_number }
 
-
   it_has_a "realistic factory"
 
   it_has_behaviour "conforming to valid schema"

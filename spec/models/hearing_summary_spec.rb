@@ -8,6 +8,5 @@ RSpec.describe HearingSummary, type: :model do
 
   let(:json_schema) { :hearing_summary }
 
-
   it_has_behaviour "conforming to valid schema"
 end

@@ -7,7 +7,6 @@ RSpec.describe ProsecutingAuthority, type: :model do
 
   let(:json_schema) { :prosecuting_authority }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:address).class_name("Address").optional }
     it { is_expected.to belong_to(:contact).class_name("ContactNumber").optional }

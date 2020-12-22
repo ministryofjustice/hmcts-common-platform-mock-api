@@ -5,7 +5,6 @@ RSpec.describe HearingResultedPublisher do
 
   let(:hearing) { FactoryBot.create(:hearing, resulted: true) }
 
-
   context "with valid params" do
     it "sends a payload to LAA hearings endpoint" do
       VCR.use_cassette("hearings/resulted/success") do
@@ -22,7 +21,6 @@ RSpec.describe HearingResultedPublisher do
     before do
       allow(LaaConnector).to receive(:call).and_return(connection)
     end
-
 
     it "makes a POST request" do
       expect(connection).to receive(:post)

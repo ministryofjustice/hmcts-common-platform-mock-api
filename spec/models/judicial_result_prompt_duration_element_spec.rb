@@ -7,7 +7,6 @@ RSpec.describe JudicialResultPromptDurationElement, type: :model do
 
   let(:json_schema) { :judicial_result_prompt_duration_element }
 
-
   it { is_expected.to validate_numericality_of(:primaryDurationValue).is_greater_than_or_equal_to(1).is_less_than_or_equal_to(999) }
   it { is_expected.to validate_numericality_of(:secondaryDurationValue).is_greater_than_or_equal_to(1).is_less_than_or_equal_to(999) }
   it { is_expected.to validate_numericality_of(:tertiaryDurationValue).is_greater_than_or_equal_to(1).is_less_than_or_equal_to(999) }

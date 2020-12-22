@@ -7,7 +7,6 @@ RSpec.describe LesserOrAlternativeOffence, type: :model do
 
   let(:json_schema) { :lesser_or_alternative_offence }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:offenceDefinitionId) }
     it { is_expected.to validate_presence_of(:offenceCode) }

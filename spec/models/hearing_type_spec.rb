@@ -7,7 +7,6 @@ RSpec.describe HearingType, type: :model do
 
   let(:json_schema) { :hearing_type }
 
-
   it { is_expected.to validate_presence_of(:description) }
 
   it_has_behaviour "conforming to valid schema"

@@ -5,7 +5,6 @@ RSpec.describe HearingLogFinder do
 
   let(:params) { ActionController::Parameters.new(params_hash) }
 
-
   context "with invalid params" do
     let(:params_hash) do
       { random: "value" }

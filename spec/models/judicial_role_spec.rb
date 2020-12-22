@@ -7,7 +7,6 @@ RSpec.describe JudicialRole, type: :model do
 
   let(:json_schema) { :judicial_role }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:next_hearing).class_name("NextHearing").optional }
   end

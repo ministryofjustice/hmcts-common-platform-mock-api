@@ -6,7 +6,6 @@ RSpec.describe AllocationDecision, type: :model do
   let(:allocation_decision) { FactoryBot.create(:allocation_decision) }
   let(:json_schema) { :allocation_decision }
 
-
   it { is_expected.to validate_presence_of(:motReasonId) }
   it { is_expected.to validate_presence_of(:motReasonDescription) }
   it { is_expected.to validate_presence_of(:motReasonCode) }

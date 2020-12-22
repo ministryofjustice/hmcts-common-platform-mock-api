@@ -6,7 +6,6 @@ RSpec.describe Defendant, type: :model do
   let(:defendant) { FactoryBot.create(:defendant) }
   let(:json_schema) { :defendant }
 
-
   describe "scopes" do
     let!(:defendant_as_person) { FactoryBot.create(:defendant) }
     let!(:defendant_as_legal_entity) { FactoryBot.create(:defendant_as_legal_entity) }
@@ -39,7 +38,6 @@ RSpec.describe Defendant, type: :model do
 
       let(:name) { "Altenwerth" }
 
-
       it { is_expected.to include(organisation_defendant) }
       it { is_expected.to include(person_defendant) }
     end
@@ -50,8 +48,6 @@ RSpec.describe Defendant, type: :model do
       let(:next_hearing_date) { "2020-01-10" }
       let!(:defendant_one) { FactoryBot.create(:defendant, :with_next_hearing, next_hearing_date: "2020-01-10 12:30") }
       let!(:defendant_two) { FactoryBot.create(:defendant) }
-
-
 
       it { is_expected.to include(defendant_one) }
       it { is_expected.not_to include(defendant_two) }

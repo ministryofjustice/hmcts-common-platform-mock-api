@@ -6,7 +6,6 @@ RSpec.describe HearingCaseNote, type: :model do
   let(:hearing_case_note) { FactoryBot.create(:hearing_case_note) }
   let(:json_schema) { :hearing_case_note }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:hearing).class_name("Hearing") }
     it { is_expected.to belong_to(:court_clerk).class_name("DelegatedPowers") }

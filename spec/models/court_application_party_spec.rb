@@ -7,7 +7,6 @@ RSpec.describe CourtApplicationParty, type: :model do
 
   let(:json_schema) { :court_application_party }
 
-
   describe "associations" do
     it { is_expected.to have_many(:associated_people).class_name("AssociatedPerson") }
     it { is_expected.to belong_to(:person).class_name("Person").optional }

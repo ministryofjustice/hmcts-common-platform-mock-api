@@ -7,7 +7,6 @@ RSpec.describe CourtIndicatedSentence, type: :model do
 
   let(:json_schema) { :court_indicated_sentence }
 
-
   it { is_expected.to validate_presence_of(:courtIndicatedSentenceTypeId) }
   it { is_expected.to validate_presence_of(:courtIndicatedSentenceDescription) }
 

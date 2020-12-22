@@ -6,13 +6,11 @@ RSpec.describe PersonDefendant, type: :model do
   let(:person_defendant) { FactoryBot.create(:person_defendant) }
   let(:json_schema) { :person_defendant }
 
-
   describe "scopes" do
     describe ".by_name" do
       subject { described_class.by_name(params) }
 
       let(:params) { { defendantName: "John Doe" } }
-
 
       before do
         allow(Person).to receive(:by_name).and_call_original
@@ -28,7 +26,6 @@ RSpec.describe PersonDefendant, type: :model do
       subject { described_class.by_dob(params) }
 
       let(:params) { { dateOfBirth: "2000-05-12" } }
-
 
       before do
         allow(Person).to receive(:by_date_of_birth).and_call_original

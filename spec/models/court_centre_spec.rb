@@ -7,7 +7,6 @@ RSpec.describe CourtCentre, type: :model do
 
   let(:json_schema) { :court_centre }
 
-
   describe "#name" do
     subject { court_centre.name }
 

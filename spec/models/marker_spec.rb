@@ -7,7 +7,6 @@ RSpec.describe Marker, type: :model do
 
   let(:json_schema) { :marker }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:markerTypeid) }
     it { is_expected.to validate_presence_of(:markerTypeCode) }

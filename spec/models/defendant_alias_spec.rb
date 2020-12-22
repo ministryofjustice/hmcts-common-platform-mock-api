@@ -7,7 +7,6 @@ RSpec.describe DefendantAlias, type: :model do
 
   let(:json_schema) { :defendant_alias }
 
-
   describe "validations" do
     it do
       is_expected.to validate_inclusion_of(:title)

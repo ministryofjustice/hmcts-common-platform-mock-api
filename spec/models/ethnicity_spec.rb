@@ -7,7 +7,6 @@ RSpec.describe Ethnicity, type: :model do
 
   let(:json_schema) { :ethnicity }
 
-
   describe "associations" do
     it { is_expected.to have_one(:person).class_name("Person") }
   end

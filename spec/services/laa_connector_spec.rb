@@ -8,7 +8,6 @@ RSpec.describe LaaConnector do
   let(:client_secret) { "CLIENT_SECRET" }
   let(:oauth_url) { "OAUTH_URL" }
 
-
   it "connects to the laa api url" do
     expect(Faraday).to receive(:new).with(api_url)
     subject

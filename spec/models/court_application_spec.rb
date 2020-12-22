@@ -6,7 +6,6 @@ RSpec.describe CourtApplication, type: :model do
   let(:court_application) { FactoryBot.create(:court_application) }
   let(:json_schema) { :court_application }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:application_type).class_name("CourtApplicationType") }
     it { is_expected.to belong_to(:court_application_party).class_name("CourtApplicationParty") }

@@ -7,7 +7,6 @@ RSpec.describe AssociatedPerson, type: :model do
 
   let(:json_schema) { :associated_person }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:person).class_name("Person") }
   end

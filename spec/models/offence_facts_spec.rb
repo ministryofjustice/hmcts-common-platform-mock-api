@@ -6,7 +6,6 @@ RSpec.describe OffenceFacts, type: :model do
   let(:offence_facts) { FactoryBot.create(:offence_facts) }
   let(:json_schema) { :offence_facts }
 
-
   describe "validations" do
     it do
       is_expected.to validate_inclusion_of(:vehicleCode)

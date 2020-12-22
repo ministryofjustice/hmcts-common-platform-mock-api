@@ -27,7 +27,6 @@ RSpec.describe LaaRepresentationOrderRecorder do
                       offence: offence)
   end
 
-
   context "with invalid params" do
     let(:params_hash) do
       { random: "value" }

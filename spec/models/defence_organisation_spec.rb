@@ -6,7 +6,6 @@ RSpec.describe DefenceOrganisation, type: :model do
   let(:defence_organisation) { FactoryBot.create(:defence_organisation) }
   let(:json_schema) { :defence_organisation }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:organisation).class_name("Organisation") }
     it { is_expected.to belong_to(:defendant).class_name("Defendant").optional }
@@ -33,7 +32,6 @@ RSpec.describe DefenceOrganisation, type: :model do
     let(:defence_organisation) { FactoryBot.create(:associated_defence_organisation, defendant: defendant) }
     let(:defendant) { FactoryBot.create(:defendant) }
     let(:laa_reference) { FactoryBot.create(:laa_reference, applicationReference: "10010101010") }
-
 
     it { is_expected.to be_nil }
 

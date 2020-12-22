@@ -8,7 +8,6 @@ RSpec.describe OffenceSummary, type: :model do
 
   let(:json_schema) { :offence_summary }
 
-
   context "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
 

@@ -6,7 +6,6 @@ RSpec.describe Hearing, type: :model do
   let(:hearing) { FactoryBot.create(:hearing) }
   let(:json_schema) { :hearing }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:hearing_type).class_name("HearingType") }
     it { is_expected.to belong_to(:cracked_ineffective_trial).class_name("CrackedIneffectiveTrial").optional }

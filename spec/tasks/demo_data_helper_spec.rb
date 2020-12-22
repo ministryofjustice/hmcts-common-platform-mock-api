@@ -43,7 +43,7 @@ RSpec.describe DemoDataHelper, type: :helper do
     before do
       pc = create(:realistic_prosecution_case,
                   prosecution_case_identifier: create(:realistic_prosecution_case_identifier, caseURN: "TESTURN321"))
-      pc.defendants.first.defendable.person.update(nationalInsuranceNumber: nino)
+      pc.defendants.first.defendable.person.update!(nationalInsuranceNumber: nino)
     end
 
     it "returns array of prosecution cases" do

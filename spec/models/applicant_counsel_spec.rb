@@ -6,7 +6,6 @@ RSpec.describe ApplicantCounsel, type: :model do
   let(:applicant_counsel) { FactoryBot.create(:applicant_counsel) }
   let(:json_schema) { :applicant_counsel }
 
-
   describe "associations" do
     it { is_expected.to have_many(:applicants).class_name("Applicant") }
     it { is_expected.to have_many(:attendance_days).class_name("AttendanceDay") }

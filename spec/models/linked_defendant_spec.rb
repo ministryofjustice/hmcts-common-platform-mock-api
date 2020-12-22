@@ -7,7 +7,6 @@ RSpec.describe LinkedDefendant, type: :model do
 
   let(:json_schema) { :linked_defendant }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:prosecutionCaseId) }
     it { is_expected.to validate_presence_of(:defendantId) }

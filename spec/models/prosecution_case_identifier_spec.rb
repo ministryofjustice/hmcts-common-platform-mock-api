@@ -6,7 +6,6 @@ RSpec.describe ProsecutionCaseIdentifier, type: :model do
   let(:prosecution_case_identifier) { FactoryBot.create(:prosecution_case_identifier) }
   let(:json_schema) { :prosecution_case_identifier }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:prosecutionAuthorityId) }
     it { is_expected.to validate_presence_of(:prosecutionAuthorityCode) }
@@ -16,7 +15,6 @@ RSpec.describe ProsecutionCaseIdentifier, type: :model do
     subject { described_class.by_reference(search_term) }
 
     let(:search_term) { "INHRBICZKQ" }
-
 
     before { prosecution_case_identifier.save! }
 

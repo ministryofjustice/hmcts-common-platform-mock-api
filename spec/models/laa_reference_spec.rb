@@ -7,7 +7,6 @@ RSpec.describe LaaReference, type: :model do
 
   let(:json_schema) { :laa_reference }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:offence).class_name("Offence").optional }
   end

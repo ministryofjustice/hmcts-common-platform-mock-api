@@ -5,7 +5,6 @@ RSpec.describe Applicant, type: :model do
 
   let(:applicant) { FactoryBot.create(:applicant) }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:applicant_counsel).class_name("ApplicantCounsel").optional }
   end

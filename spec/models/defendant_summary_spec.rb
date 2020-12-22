@@ -8,7 +8,6 @@ RSpec.describe DefendantSummary, type: :model do
 
   let(:json_schema) { :defendant_summary }
 
-
   it_has_behaviour "conforming to valid schema"
 
   context "with RepresentationOrder" do

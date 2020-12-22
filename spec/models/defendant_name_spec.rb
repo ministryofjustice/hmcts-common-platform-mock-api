@@ -8,7 +8,6 @@ RSpec.describe DefendantName, type: :model do
 
   let(:json_schema) { :defendant_name }
 
-
   context "when defendant is a person" do
     it_has_behaviour "conforming to valid schema"
   end

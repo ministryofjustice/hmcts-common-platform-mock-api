@@ -7,7 +7,6 @@ RSpec.describe JudicialResultPrompt, type: :model do
 
   let(:json_schema) { :judicial_result_prompt }
 
-
   describe "associations" do
     it { is_expected.to have_many(:user_groups).class_name("UserGroup") }
     it { is_expected.to belong_to(:judicial_result).class_name("JudicialResult").optional }

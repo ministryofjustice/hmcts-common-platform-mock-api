@@ -7,7 +7,6 @@ RSpec.describe CourtApplicationResponse, type: :model do
 
   let(:json_schema) { :court_application_response }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:application_response_type).class_name("CourtApplicationResponseType") }
   end

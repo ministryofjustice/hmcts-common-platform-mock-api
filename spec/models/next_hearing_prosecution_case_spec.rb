@@ -7,7 +7,6 @@ RSpec.describe NextHearingProsecutionCase, type: :model do
 
   let(:json_schema) { :next_hearing_prosecution_case }
 
-
   describe "associations" do
     it { is_expected.to have_many(:next_hearing_defendants).class_name("NextHearingDefendant") }
     it { is_expected.to belong_to(:next_hearing).class_name("NextHearing").optional }

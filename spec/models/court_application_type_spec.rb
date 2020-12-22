@@ -6,7 +6,6 @@ RSpec.describe CourtApplicationType, type: :model do
   let(:court_application_type) { FactoryBot.create(:court_application_type) }
   let(:json_schema) { :court_application_type }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:applicationCategory) }
     it { is_expected.to validate_presence_of(:applicationJurisdictionType) }

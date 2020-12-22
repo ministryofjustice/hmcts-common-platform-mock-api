@@ -6,7 +6,6 @@ RSpec.describe CrackedIneffectiveTrial, type: :model do
   let(:cracked_ineffective_trial) { FactoryBot.create(:cracked_ineffective_trial) }
   let(:json_schema) { :cracked_ineffective_trial }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:code) }
     it { is_expected.to validate_presence_of(:description) }

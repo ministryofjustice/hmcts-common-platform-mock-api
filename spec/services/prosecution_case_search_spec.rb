@@ -12,7 +12,6 @@ RSpec.describe ProsecutionCaseSearch do
                                         person: FactoryBot.create(:person, nationalInsuranceNumber: "nh489223c")))
   end
 
-
   context "with invalid params" do
     let(:params_hash) do
       { random: "value" }
@@ -38,7 +37,6 @@ RSpec.describe ProsecutionCaseSearch do
                                                        prosecutionAuthorityReference: "XXYYZZ")
       cases.map(&:save!)
     end
-
 
     it { is_expected.to include(cases.first, cases.second) }
     it { is_expected.not_to include(cases.third) }
@@ -104,7 +102,8 @@ RSpec.describe ProsecutionCaseSearch do
 
       let(:params_hash) do
         { prosecutionCaseReference: "XXYYZZ",
-          defendantDOB: "2000-01-10", defendantName: "John Doe" }
+          defendantDOB: "2000-01-10",
+          defendantName: "John Doe" }
       end
 
       before do
@@ -128,7 +127,8 @@ RSpec.describe ProsecutionCaseSearch do
 
       let(:params_hash) do
         { prosecutionCaseReference: "XXYYZZ",
-          dateOfNextHearing: "2019-01-10", defendantName: "John Doe" }
+          dateOfNextHearing: "2019-01-10",
+          defendantName: "John Doe" }
       end
 
       let(:defendant_two) do
@@ -169,7 +169,6 @@ RSpec.describe ProsecutionCaseSearch do
       cases.first.save!
     end
 
-
     it { is_expected.to include(cases.first) }
     it { is_expected.not_to include(cases.second) }
 
@@ -200,7 +199,6 @@ RSpec.describe ProsecutionCaseSearch do
       cases.first.defendants << defendant
       cases.first.save!
     end
-
 
     it { is_expected.to include(cases.first) }
     it { is_expected.not_to include(cases.second) }
@@ -253,7 +251,6 @@ RSpec.describe ProsecutionCaseSearch do
       cases.first.save!
     end
 
-
     it { is_expected.to include(cases.first) }
     it { is_expected.not_to include(cases.second) }
 
@@ -282,7 +279,6 @@ RSpec.describe ProsecutionCaseSearch do
       cases.first.defendants << defendant
       cases.first.save!
     end
-
 
     it { is_expected.to include(cases.first) }
     it { is_expected.not_to include(cases.second) }

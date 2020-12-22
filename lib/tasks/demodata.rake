@@ -99,10 +99,10 @@ def create_pleas_for(defendant:)
   pc = defendant.prosecution_case
 
   defendant.offences.each do |offence|
-    offence.pleas.create(pleaDate: pc.hearings.first.hearing_days.first.sittingDay,
-                         pleaValue: %w[NO_PLEA NOT_GUILTY].sample, hearing: pc.hearings.first)
-    offence.pleas.create(pleaDate: pc.hearings.last.hearing_days.last.sittingDay,
-                         pleaValue: %w[GUILTY UNFIT_TO_PLEAD].sample, hearing: pc.hearings.last)
+    offence.pleas.create!(pleaDate: pc.hearings.first.hearing_days.first.sittingDay,
+                          pleaValue: %w[NO_PLEA NOT_GUILTY].sample, hearing: pc.hearings.first)
+    offence.pleas.create!(pleaDate: pc.hearings.last.hearing_days.last.sittingDay,
+                          pleaValue: %w[GUILTY UNFIT_TO_PLEAD].sample, hearing: pc.hearings.last)
     offence.save!
   end
   puts " #{ICONS[:success]}"
@@ -159,12 +159,12 @@ def destroy_prosecution_case(case_urn)
       next unless defended_item
 
       print "[DESTROY][DEFENDED ITEM] #{humanize_defended_item(defended_item)}"
-      defended_item.destroy
+      defended_item.destroy!
       puts " #{ICONS[:success]}"
     end
 
     print "[DESTROY][PROSECUTION_CASE] #{humanize_prosecution_case(pcase)}"
-    pcase.destroy
+    pcase.destroy!
     puts " #{ICONS[:success]}"
   end
 end

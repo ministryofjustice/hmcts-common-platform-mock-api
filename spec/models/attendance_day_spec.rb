@@ -6,7 +6,6 @@ RSpec.describe AttendanceDay, type: :model do
   let(:attendance_day) { FactoryBot.create(:attendance_day) }
   let(:json_schema) { :attendance_day }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:day) }
   end

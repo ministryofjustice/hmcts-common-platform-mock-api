@@ -7,7 +7,6 @@ RSpec.describe CourtApplicationResponseType, type: :model do
 
   let(:json_schema) { :court_application_response_type }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:description) }
     it { is_expected.to validate_numericality_of(:sequence).is_greater_than(0) }

@@ -32,13 +32,13 @@ module Admin
     end
 
     def destroy
-      @hearing.destroy
+      @hearing.destroy!
       redirect_to [:admin, @prosecution_case], notice: "Hearing was successfully destroyed."
     end
 
     def add_plea
       @offence = Offence.find(params[:offence_id])
-      @offence.pleas.create(pleaDate: Time.zone.now, pleaValue: Plea::VALUES.first, hearing: @hearing)
+      @offence.pleas.create!(pleaDate: Time.zone.now, pleaValue: Plea::VALUES.first, hearing: @hearing)
       redirect_to edit_admin_hearing_url(@hearing), notice: "Plea was successfully added."
     end
 

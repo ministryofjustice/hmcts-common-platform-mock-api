@@ -6,7 +6,6 @@ RSpec.describe Offence, type: :model do
   let(:offence) { FactoryBot.create(:offence) }
   let(:json_schema) { :offence }
 
-
   describe "associations" do
     it { is_expected.to have_many(:notified_pleas).class_name("NotifiedPlea") }
     it { is_expected.to have_many(:indicated_pleas).class_name("IndicatedPlea") }

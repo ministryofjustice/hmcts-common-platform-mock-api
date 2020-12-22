@@ -6,7 +6,6 @@ RSpec.describe Verdict, type: :model do
   let(:verdict) { FactoryBot.create(:verdict) }
   let(:json_schema) { :verdict }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:verdict_type).class_name("VerdictType") }
     it { is_expected.to belong_to(:jurors).class_name("Jurors").optional }

@@ -6,7 +6,6 @@ RSpec.describe HearingResulter do
   let(:hearing) { FactoryBot.create(:hearing) }
   let(:publish_to) { "dev" }
 
-
   before { allow(HearingResultedPublisher).to receive(:call) }
 
   it "triggers the publisher" do

@@ -6,7 +6,6 @@ RSpec.describe DefendantAttendance, type: :model do
   let(:defendant_attendance) { FactoryBot.create(:defendant_attendance) }
   let(:json_schema) { :defendant_attendance }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:defendant).class_name("Defendant") }
     it { is_expected.to have_many(:attendance_days).class_name("AttendanceDay") }

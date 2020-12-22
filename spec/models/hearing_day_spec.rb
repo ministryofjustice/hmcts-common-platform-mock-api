@@ -7,7 +7,6 @@ RSpec.describe HearingDay, type: :model do
 
   let(:json_schema) { :hearing_day }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:sittingDay) }
     it { is_expected.to validate_presence_of(:listedDurationMinutes) }

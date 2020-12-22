@@ -8,8 +8,6 @@ RSpec.describe MergedProsecutionCase, type: :model do
 
   let(:json_schema) { :merged_prosecution_case }
 
-
-
   describe "associations" do
     it { is_expected.to have_many(:merged_prosecution_case_targets).class_name("MergedProsecutionCaseTarget") }
   end
@@ -25,7 +23,6 @@ RSpec.describe MergedProsecutionCase, type: :model do
         merged_prosecution_case.merged_prosecution_case_targets = []
         merged_prosecution_case.merged_prosecution_case_targets << FactoryBot.create(:merged_prosecution_case_target)
       end
-
 
       context "when only one is present" do
         it { is_expected.not_to be_valid }

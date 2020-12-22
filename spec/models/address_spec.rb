@@ -7,7 +7,6 @@ RSpec.describe Address, type: :model do
 
   let(:json_schema) { :address }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:address1) }
   end

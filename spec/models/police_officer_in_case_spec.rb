@@ -6,7 +6,6 @@ RSpec.describe PoliceOfficerInCase, type: :model do
   let(:police_officer_in_case) { FactoryBot.create(:police_officer_in_case) }
   let(:json_schema) { :police_officer_in_case }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:person).class_name("Person").required }
   end

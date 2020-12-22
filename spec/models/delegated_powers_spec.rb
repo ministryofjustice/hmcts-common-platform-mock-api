@@ -7,7 +7,6 @@ RSpec.describe DelegatedPowers, type: :model do
 
   let(:json_schema) { :delegated_powers }
 
-
   it { is_expected.to validate_presence_of(:userId) }
   it { is_expected.to validate_presence_of(:firstName) }
   it { is_expected.to validate_presence_of(:lastName) }

@@ -7,7 +7,6 @@ RSpec.describe IndicatedPlea, type: :model do
 
   let(:json_schema) { :indicated_plea }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:indicatedPleaDate) }
     it { is_expected.to validate_presence_of(:indicatedPleaValue) }

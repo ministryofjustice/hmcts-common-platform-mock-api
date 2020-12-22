@@ -7,7 +7,6 @@ RSpec.describe MergedProsecutionCaseTarget, type: :model do
 
   let(:json_schema) { :merged_prosecution_case_target }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:prosecutionCaseId) }
     it { is_expected.to validate_presence_of(:prosecutionCaseReference) }

@@ -6,7 +6,6 @@ RSpec.describe Organisation, type: :model do
   let(:organisation) { FactoryBot.create(:organisation) }
   let(:json_schema) { :organisation }
 
-
   describe "scopes" do
     describe ".by_name" do
       subject { described_class.by_name(name) }
@@ -14,8 +13,6 @@ RSpec.describe Organisation, type: :model do
       let(:name) { "Altenwerth and Sons" }
       let!(:organisation_one) { FactoryBot.create(:organisation, name: "Altenwerth and Sons") }
       let!(:organisation_two) { FactoryBot.create(:organisation) }
-
-
 
       it { is_expected.to include(organisation_one) }
       it { is_expected.not_to include(organisation_two) }

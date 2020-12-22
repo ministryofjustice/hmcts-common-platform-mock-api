@@ -35,7 +35,7 @@ module Admin
     end
 
     def destroy
-      @prosecution_case.destroy
+      @prosecution_case.destroy!
       redirect_to admin_prosecution_cases_url, notice: "Prosecution case was successfully destroyed."
     end
 

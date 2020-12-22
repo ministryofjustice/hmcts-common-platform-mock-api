@@ -7,7 +7,6 @@ RSpec.describe Jurors, type: :model do
 
   let(:json_schema) { :jurors }
 
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:numberOfJurors) }
     it { is_expected.to validate_presence_of(:numberOfSplitJurors) }

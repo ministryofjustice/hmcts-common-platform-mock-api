@@ -6,7 +6,6 @@ RSpec.describe DefendantHearingYouthMarker, type: :model do
   let(:defendant_hearing_youth_marker) { FactoryBot.create(:defendant_hearing_youth_marker) }
   let(:json_schema) { :defendant_hearing_youth_marker }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:prosecution_case).class_name("ProsecutionCase") }
     it { is_expected.to belong_to(:defendant).class_name("Defendant") }

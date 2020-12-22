@@ -7,7 +7,6 @@ RSpec.describe LegalEntityDefendant, type: :model do
 
   let(:json_schema) { :legal_entity_defendant }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:organisation).class_name("Organisation") }
   end

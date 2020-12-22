@@ -6,7 +6,6 @@ RSpec.describe ProsecutionCase, type: :model do
   let(:prosecution_case) { FactoryBot.create(:prosecution_case) }
   let(:json_schema) { :prosecution_case }
 
-
   describe "associations" do
     it { is_expected.to have_many(:prosecution_case_hearings).class_name("ProsecutionCaseHearing") }
     it { is_expected.to have_many(:hearings).class_name("Hearing").through(:prosecution_case_hearings) }

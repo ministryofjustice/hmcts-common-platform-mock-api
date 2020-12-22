@@ -7,7 +7,6 @@ RSpec.describe BailStatus, type: :model do
 
   let(:json_schema) { :bail_status }
 
-
   describe "associations" do
     it { is_expected.to belong_to(:custody_time_limit).class_name("CustodyTimeLimit").optional }
   end

@@ -6,7 +6,6 @@ RSpec.describe Person, type: :model do
   let(:person) { FactoryBot.create(:person) }
   let(:json_schema) { :person }
 
-
   describe "scopes" do
     describe ".by_name" do
       subject { described_class.by_name(name) }
@@ -15,8 +14,6 @@ RSpec.describe Person, type: :model do
       let!(:person_one) { FactoryBot.create(:person, firstName: "John") }
       let!(:person_two) { FactoryBot.create(:person, firstName: "John", lastName: "Doe") }
       let!(:person_three) { FactoryBot.create(:person, firstName: "John", middleName: "JD", lastName: "Doe") }
-
-
 
       it { is_expected.to include(person_one) }
       it { is_expected.to include(person_two) }
@@ -45,8 +42,6 @@ RSpec.describe Person, type: :model do
       let(:date_of_birth) { "2000-05-12" }
       let!(:person_one) { FactoryBot.create(:person, dateOfBirth: "2000-05-12") }
       let!(:person_two) { FactoryBot.create(:person, dateOfBirth: "2012-05-12") }
-
-
 
       it { is_expected.to include(person_one) }
       it { is_expected.not_to include(person_two) }

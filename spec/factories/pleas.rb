@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :plea do
     hearing
     offence
-    pleaDate { '2019-10-14 14:59:41' }
+    pleaDate { "2019-10-14 14:59:41" }
     pleaValue { Plea::VALUES.sample }
 
     factory :plea_with_relationships do

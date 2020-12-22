@@ -3,11 +3,11 @@
 FactoryBot.define do
   factory :lesser_or_alternative_offence do
     offenceDefinitionId { SecureRandom.uuid }
-    offenceCode { 'RC86395' }
-    offenceTitle { 'MyString' }
-    offenceTitleWelsh { 'MyString' }
-    offenceLegislation { 'MyString' }
-    offenceLegislationWelsh { 'MyString' }
+    offenceCode { "RC86395" }
+    offenceTitle { "MyString" }
+    offenceTitleWelsh { "MyString" }
+    offenceLegislation { "MyString" }
+    offenceLegislationWelsh { "MyString" }
 
     factory :realistic_lesser_or_alternative_offence do
       offenceDefinitionId { SecureRandom.uuid }

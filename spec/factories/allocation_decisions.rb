@@ -6,9 +6,9 @@ FactoryBot.define do
     offence
     motReasonId { SecureRandom.uuid }
     motReasonDescription { Faker::Offence.mode_of_trial_reason }
-    motReasonCode { 'ABCD' }
+    motReasonCode { "ABCD" }
     sequenceNumber { 1 }
-    allocationDecisionDate { '2019-10-14 13:46:12' }
+    allocationDecisionDate { "2019-10-14 13:46:12" }
     isSection22ALowValueShoplifting { false }
     isDamageValueUnder5000 { false }
     isTreatedAsIndictableOnly { false }

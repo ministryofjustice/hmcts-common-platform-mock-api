@@ -1,0 +1,20 @@
+2020-12-08 15:11:58.164 GMT [56388] LOG:  starting PostgreSQL 13.1 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 12.0.0 (clang-1200.0.32.27), 64-bit
+2020-12-08 15:11:58.166 GMT [56388] LOG:  listening on IPv6 address "::1", port 5432
+2020-12-08 15:11:58.166 GMT [56388] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-12-08 15:11:58.166 GMT [56388] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-12-08 15:11:58.170 GMT [56389] LOG:  database system was shut down at 2020-12-08 15:11:44 GMT
+2020-12-08 15:11:58.173 GMT [56388] LOG:  database system is ready to accept connections
+2020-12-08 15:12:31.019 GMT [56409] FATAL:  database "hmcts_common_platform_api_development" does not exist
+2020-12-08 17:00:20.624 GMT [58198] ERROR:  database "laa_court_data_adaptor_development" already exists
+2020-12-08 17:00:20.624 GMT [58198] STATEMENT:  CREATE DATABASE "laa_court_data_adaptor_development" ENCODING = 'unicode'
+2020-12-08 17:00:20.813 GMT [58204] ERROR:  relation "ar_internal_metadata" already exists
+2020-12-08 17:00:20.813 GMT [58204] STATEMENT:  CREATE TABLE public.ar_internal_metadata (
+	    key character varying NOT NULL,
+	    value character varying,
+	    created_at timestamp(6) without time zone NOT NULL,
+	    updated_at timestamp(6) without time zone NOT NULL
+	);
+2020-12-11 10:08:00.370 GMT [56388] LOG:  received smart shutdown request
+2020-12-11 10:08:00.374 GMT [56388] LOG:  background worker "logical replication launcher" (PID 56395) exited with exit code 1
+2020-12-11 10:08:00.374 GMT [56390] LOG:  shutting down
+2020-12-11 10:08:00.383 GMT [56388] LOG:  database system is shut down

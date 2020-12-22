@@ -1,9 +1,17 @@
+inherit_from: .rubocop_todo.yml
+
 require:
   - rubocop-performance
-  - rubocop-rails
   - rubocop-rspec
 
-inherit_from: .rubocop_todo.yml
+inherit_gem: 
+  rubocop-govuk:
+    - config/default.yml
+    - config/rails.yml
+
+inherit_mode:
+  merge:
+    - Exclude
 
 # The behavior of RuboCop can be controlled via the .rubocop.yml
 # configuration file. It makes it possible to enable/disable

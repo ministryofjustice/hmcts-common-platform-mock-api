@@ -35,7 +35,7 @@ class DefenceOrganisation < ApplicationRecord
     defendant.laa_references.map(&:applicationReference).compact.uniq.first
   end
 
-  private
+private
 
   def associated_defence_organisation?
     defendant.present?

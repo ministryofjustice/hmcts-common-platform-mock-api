@@ -13,7 +13,7 @@ module DemoDataHelper
       .merge(
         PersonDefendant
           .joins(:person)
-          .where(people: { nationalInsuranceNumber: nino })
+          .where(people: { nationalInsuranceNumber: nino }),
       )
   end
 
@@ -32,7 +32,7 @@ module DemoDataHelper
   def case_details_hash(urn)
     pc = prosecution_cases_by_reference(urn).first
 
-    pc.defendants.map do |d|
+    pc.defendants.map { |d|
       d.offences.map do |offence|
         {
           defendant_id: d.id,
@@ -41,9 +41,9 @@ module DemoDataHelper
           offence_desc: offence.offenceTitle,
           mode_of_trial: offence.modeOfTrial,
           allocation_decisions: offence.allocation_decisions,
-          plea_sentence: offence.pleas.map { |p| "#{p.pleaValue} on #{p.pleaDate}" }
+          plea_sentence: offence.pleas.map { |p| "#{p.pleaValue} on #{p.pleaDate}" },
         }
       end
-    end.flatten
+    }.flatten
   end
 end

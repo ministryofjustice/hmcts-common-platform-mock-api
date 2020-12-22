@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'demo_data_helper'
+require_relative "demo_data_helper"
 include DemoDataHelper
 
 namespace :mock do
   namespace :demodata do
-    desc 'create existing demo data'
+    desc "create existing demo data"
     task load: :environment do
       create_prosecution_cases
     end
 
-    desc 'remove existing demo data'
+    desc "remove existing demo data"
     task unload: :environment do
       destroy_prosecution_case(CASE1[:URN])
       destroy_prosecution_case(CASE2[:URN])
@@ -18,11 +18,11 @@ namespace :mock do
   end
 end
 
-CASE1 = { URN: 'TEST12345' }.freeze
-CASE2 = { URN: 'TEST54321' }.freeze
+CASE1 = { URN: "TEST12345" }.freeze
+CASE2 = { URN: "TEST54321" }.freeze
 ICONS = {
   success: "\u{2705}",
-  failure: "\u{274E}"
+  failure: "\u{274E}",
 }.freeze
 
 # create bear minimum reflection of possible
@@ -50,16 +50,16 @@ def create_prosecution_cases
 end
 
 def create_person
-  print '[CREATE][PERSON]'
+  print "[CREATE][PERSON]"
   person = FactoryBot.create(
     :realistic_person,
-    title: 'MR',
-    firstName: 'Jammy',
-    middleName: '',
-    lastName: 'Dodger',
-    dateOfBirth: '21-MAY-1987'.to_date,
-    gender: 'MALE',
-    nationalInsuranceNumber: 'JC123456A'
+    title: "MR",
+    firstName: "Jammy",
+    middleName: "",
+    lastName: "Dodger",
+    dateOfBirth: "21-MAY-1987".to_date,
+    gender: "MALE",
+    nationalInsuranceNumber: "JC123456A",
   )
   puts " #{ICONS[:success]}"
 
@@ -70,7 +70,7 @@ def create_case_and_defendants(urn:, additional_defendant_count: 1)
   print "[CREATE][PROSECUTION_CASE] #{urn}"
   prosecution_case = FactoryBot.create(
     :realistic_prosecution_case,
-    prosecution_case_identifier: FactoryBot.create(:realistic_prosecution_case_identifier, caseURN: urn)
+    prosecution_case_identifier: FactoryBot.create(:realistic_prosecution_case_identifier, caseURN: urn),
   )
   FactoryBot.create_list(:realistic_defendant, additional_defendant_count, prosecution_case: prosecution_case)
   puts " #{ICONS[:success]}"
@@ -128,7 +128,7 @@ def create_hearings_for(prosecution_case:, defendant:)
     puts " #{ICONS[:success]}"
 
     print "[CREATE][HEARINGS][HEARING_DAYS] for #{urn}"
-    base_date = '2019-10-23 00:00:00'.to_datetime
+    base_date = "2019-10-23 00:00:00".to_datetime
     hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 1.day + 8.hours + 30.minutes).to_s)
     hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 2.days + 10.hours + 45.minutes).to_s)
     hearing.save!

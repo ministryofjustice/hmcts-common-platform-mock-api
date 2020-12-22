@@ -3,12 +3,12 @@
 FactoryBot.define do
   factory :prosecution_case do
     prosecution_case_identifier
-    originatingOrganisation { 'Random String' }
-    initiationCode { 'Q' }
-    caseStatus { 'INACTIVE' }
+    originatingOrganisation { "Random String" }
+    initiationCode { "Q" }
+    caseStatus { "INACTIVE" }
     police_officer_in_case { nil }
-    statementOfFacts { 'Random String' }
-    statementOfFactsWelsh { 'Random String' }
+    statementOfFacts { "Random String" }
+    statementOfFactsWelsh { "Random String" }
     breachProceedingsPending { false }
     appealProceedingsPending { false }
     merged_prosecution_case { nil }
@@ -19,7 +19,7 @@ FactoryBot.define do
     end
   end
 
-  factory :realistic_prosecution_case, class: 'ProsecutionCase' do
+  factory :realistic_prosecution_case, class: "ProsecutionCase" do
     association :prosecution_case_identifier, factory: :realistic_prosecution_case_identifier
     originatingOrganisation { Faker::Company.name }
     initiationCode { ProsecutionCase::INITIATION_CODES.sample }

@@ -4,11 +4,11 @@ class ProsecutionCasesController < ApplicationController
   def index
     @prosecution_cases = ProsecutionCaseSearch.call(params)
 
-    headers['Content-Type'] = 'application/vnd.unifiedsearch.query.laa.cases+json'
+    headers["Content-Type"] = "application/vnd.unifiedsearch.query.laa.cases+json"
     render json: prosecution_cases_response
   end
 
-  private
+private
 
   def prosecution_cases_response
     { totalResults: @prosecution_cases.size, cases: prosecution_cases_builder }

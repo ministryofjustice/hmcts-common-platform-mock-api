@@ -11,7 +11,7 @@ class Offence < ApplicationRecord
   belongs_to :custody_time_limit, optional: true
   belongs_to :defendant, optional: true
 
-  has_many :victims, class_name: 'Person', dependent: :destroy
+  has_many :victims, class_name: "Person", dependent: :destroy
   has_many :judicial_results, dependent: :destroy
   has_one :laa_reference, dependent: :destroy
 
@@ -63,7 +63,7 @@ class Offence < ApplicationRecord
     end
   end
 
-  private
+private
 
   def indicated_plea_for_hearing(hearing)
     indicated_pleas.find_by(hearing: hearing)

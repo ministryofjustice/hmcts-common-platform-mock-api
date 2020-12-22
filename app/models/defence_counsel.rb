@@ -21,7 +21,7 @@ class DefenceCounsel < ApplicationRecord
     end
   end
 
-  private
+private
 
   def attendance_days_builder
     attendance_days.map do |attendance_day|

@@ -3,9 +3,9 @@
 FactoryBot.define do
   factory :police_officer_in_case do
     person
-    policeOfficerRank { 'Captain' }
-    policeWorkerReferenceNumber { '4233223423' }
-    policeWorkerLocationCode { 'AK' }
+    policeOfficerRank { "Captain" }
+    policeWorkerReferenceNumber { "4233223423" }
+    policeWorkerLocationCode { "AK" }
 
     factory :realistic_police_officer_in_case do
       association :person, factory: :realistic_person

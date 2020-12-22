@@ -2,12 +2,12 @@
 
 FactoryBot.define do
   factory :judicial_result_prompt_duration_element do
-    primaryDurationUnit { 'MyString' }
+    primaryDurationUnit { "MyString" }
     primaryDurationValue { 1 }
-    primaryLabel { 'MyString' }
-    secondaryDurationUnit { 'MyString' }
+    primaryLabel { "MyString" }
+    secondaryDurationUnit { "MyString" }
     secondaryDurationValue { 1 }
-    tertiaryDurationUnit { 'MyString' }
+    tertiaryDurationUnit { "MyString" }
     tertiaryDurationValue { 1 }
   end
 end

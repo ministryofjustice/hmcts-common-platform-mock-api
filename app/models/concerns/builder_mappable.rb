@@ -4,7 +4,7 @@ module BuilderMappable
   extend ActiveSupport::Concern
 
   included do
-    private
+  private
 
     def array_builder(collection, options = {})
       return nil if collection.empty?

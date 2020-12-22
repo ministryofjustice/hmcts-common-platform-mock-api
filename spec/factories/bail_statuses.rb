@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :bail_status do
-    code { 'Random string' }
-    description { 'Random string' }
+    code { "Random string" }
+    description { "Random string" }
 
     factory :bail_status_with_relationships do
       custody_time_limit

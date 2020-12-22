@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :cracked_ineffective_trial do
-    code { 'String' }
-    description { 'String' }
-    reason_type { 'String' }
+    code { "String" }
+    description { "String" }
+    reason_type { "String" }
     factory :realistic_cracked_ineffective_trial do
       code { Faker::Code.sin }
       description { Faker::Lorem.sentence }

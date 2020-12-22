@@ -12,7 +12,7 @@ class HearingResulter < ApplicationService
     hearing.resulted?
   end
 
-  private
+private
 
   attr_reader :hearing, :publish_to
 end

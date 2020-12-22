@@ -2,11 +2,11 @@
 
 FactoryBot.define do
   factory :offence_facts do
-    vehicleRegistration { 'Random String' }
+    vehicleRegistration { "Random String" }
     alcoholReadingAmount { 1 }
-    alcoholReadingMethodCode { 'Random String' }
-    alcoholReadingMethodDescription { 'Random String' }
-    vehicleCode { 'PASSENGER_CARRYING_VEHICLE' }
+    alcoholReadingMethodCode { "Random String" }
+    alcoholReadingMethodDescription { "Random String" }
+    vehicleCode { "PASSENGER_CARRYING_VEHICLE" }
 
     factory :realistic_offence_facts do
       vehicleRegistration { Faker::Alphanumeric.alphanumeric(number: 7).upcase }

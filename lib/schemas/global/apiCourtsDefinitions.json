@@ -6,6 +6,25 @@
       "type": "integer",
       "minimum": 0
     },
+    "organisationType": {
+      "description": "The organisation type for an organisation",
+      "type": "string",
+      "enum": [
+        "CPS",
+        "CPP",
+        "LEGAL_ORGANISATION",
+        "HMCTS",
+        "JUDGES",
+        "MAGISTRATES",
+        "PPA",
+        "PRISON_SERVICE",
+        "PROBATION_SERVICE",
+        "POLICE_FORCE",
+        "YOUTH_OFFENDING_SERVICE",
+        "CRIMINAL_JUSTICE_PARTNERS",
+        "PUBLIC_AGENCY"
+      ]
+    },
     "uuid": {
       "type": "string",
       "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
@@ -127,13 +146,13 @@
       ]
     },
     "hearingListingStatus": {
-      "description": "The listing status of a hearing",
-      "type": "string",
-      "enum": [
-        "SENT_FOR_LISTING",
-        "HEARING_INITIALISED",
-        "HEARING_RESULTED"
-      ]
+        "description": "The listing status of a hearing",
+        "type": "string",
+        "enum": [
+            "SENT_FOR_LISTING",
+            "HEARING_INITIALISED",
+            "HEARING_RESULTED"
+        ]
     },
     "summonsType": {
       "description": "The types of summons",
@@ -237,10 +256,6 @@
         "COURT_APPOINTED",
         "PRO_BONO"
       ]
-    },
-    "date-time": {
-      "type": "string",
-      "format": "date-time"
     }
   },
   "additionalProperties": false

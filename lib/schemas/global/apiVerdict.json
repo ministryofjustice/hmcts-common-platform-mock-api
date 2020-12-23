@@ -5,26 +5,25 @@
   "type": "object",
   "properties": {
     "originatingHearingId": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "offenceId": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "verdictDate": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "verdictType": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiVerdictType.json#"
+      "$ref": "../../external/global/apiVerdictType.json#"
     },
     "jurors": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiJurors.json#"
+      "$ref": "../../external/global/apiJurors.json#"
     },
     "lesserOrAlternativeOffence": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiLesserOrAlternativeOffence.json#"
+      "$ref": "../../external/global/apiLesserOrAlternativeOffence.json#"
     }
   },
   "required": [
-    "originatingHearingId",
     "offenceId",
     "verdictDate",
     "verdictType"

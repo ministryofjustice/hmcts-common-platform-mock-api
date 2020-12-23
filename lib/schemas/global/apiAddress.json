@@ -26,7 +26,7 @@
     },
     "postcode": {
       "description": "The post code",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/ukGovPostCode"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/ukGovPostCode"
     }
   },
   "required": [

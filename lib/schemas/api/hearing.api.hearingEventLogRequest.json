@@ -5,11 +5,11 @@
   "properties": {
     "hearingId": {
       "description": "The identifier of the hearing",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "date": {
       "description": "date of hearing",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
     }
   },
   "required": [

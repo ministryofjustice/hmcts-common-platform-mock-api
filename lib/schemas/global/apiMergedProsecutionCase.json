@@ -13,7 +13,7 @@
             "type": "array",
             "minItems": 2,
             "items": {
-                "$ref": "http://justice.gov.uk/core/courts/external/apiMergedProsecutionCaseTarget.json#"
+                "$ref": "../../external/global/apiMergedProsecutionCaseTarget.json#"
             }
         }
     },

@@ -5,7 +5,7 @@
     "properties": {
         "hearing": {
             "description": "The details of the resulted hearing, its case details and the results",
-            "$ref": "http://justice.gov.uk/core/courts/external/hearing.json#"
+            "$ref": "../../external/global/apiHearing.json#"
         },
         "sharedTime": {
             "description": "The date and time that teh results were shared by HMCTS",

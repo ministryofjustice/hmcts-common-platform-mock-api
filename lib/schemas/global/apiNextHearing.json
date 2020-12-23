@@ -4,10 +4,10 @@
     "type": "object",
     "properties": {
         "type": {
-             "$ref": "http://justice.gov.uk/core/courts/external/apiHearingType.json#"
+             "$ref": "../../external/global/apiHearingType.json#"
         },
         "jurisdictionType": {
-             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/jurisdictionType"
+             "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/jurisdictionType"
         },
         "reportingRestrictionReason": {
             "type": "string"
@@ -16,7 +16,7 @@
             "type": "string"
         },
         "hearingLanguage": {
-             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/hearingLanguage"
+             "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/hearingLanguage"
         },
         "listedStartDateTime": {
             "description": "The date and time that has been pre-arranged and therefore must be listed accordingly.  Since the Police grant bail, Police requests will arrive at court with a pre-agreed date and time as per the bail arrangements.  Similarly adjournments will result in a pre-arranged date and time",
@@ -24,38 +24,77 @@
              "format": "date-time"
         },
         "estimatedMinutes": {
-             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
+             "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
         },
         "courtCentre": {
-             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtCentre.json#"
+             "$ref": "../../external/global/apiCourtCentre.json#"
         },
         "judiciary": {
              "type": "array",
              "minItems": 1,
              "items": {
-                 "$ref": "http://justice.gov.uk/core/courts/external/apiJudicialRole.json#"
+                 "$ref": "../../external/global/apiJudicialRole.json#"
             }
         },
         "nextHearingProsecutionCases": {
              "type": "array",
              "minItems": 1,
              "items": {
-                 "$ref": "http://justice.gov.uk/core/courts/external/apiNextHearingProsecutionCase.json#"
+                 "$ref": "../../external/global/apiNextHearingProsecutionCase.json#"
             }
         },
         "nextHearingCourtApplicationId": {
              "type": "array",
              "minItems": 1,
              "items": {
-                 "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+                 "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
             }
-        }
+        },
+        "existingHearingId": {
+            "description": "The id of an existing hearing which these next hearing cases/application will be adjourned to.",
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "bookingReference": {
+            "description": "Scheduled booking reference for provisionally booked slots in magistrates courts.",
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "reservedJudiciary": {
+            "description": "Flag to indicate whether the same judiciaries in the current hearing should be reserved for the next hearing.",
+            "type": "boolean"
+        },
+        "weekCommencingDate": {
+            "description": "Hearing week commencing start date.",
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "dateToBeFixed": {
+          "description": "Flag to indicate that the next hearing needs to be listed as unscheduled hearing without any start date.",
+          "type": "boolean"
+        }       
     },
-     "required": [
-        "type",
-        "courtCentre",
-        "estimatedMinutes",
-        "listedStartDateTime"
-    ],
+      "oneOf": [
+        {
+          "required": [
+          "type",
+          "courtCentre",
+          "estimatedMinutes",
+          "listedStartDateTime"
+          ]
+        },
+        {
+          "required": [
+          "type",
+          "courtCentre",
+          "estimatedMinutes",
+          "weekCommencingDate"
+          ]
+        },
+        {
+          "required": [
+            "type",
+            "courtCentre",
+            "dateToBeFixed"
+          ]
+        }
+      ],
      "additionalProperties": false
 }

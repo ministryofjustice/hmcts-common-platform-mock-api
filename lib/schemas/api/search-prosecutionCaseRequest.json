@@ -9,7 +9,7 @@
         },
         "defendantNINO": {
           "description": "The person nino when the defendant is a person",
-          "$ref": "http://justice.gov.uk/core/courts/external/courtsDefinitions.json#/definitions/nino"
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/nino"
         },
         "defendantASN": {
           "description": "The police arrest summons number when the defendant is a person",
@@ -21,14 +21,14 @@
         },
         "defendantDOB": {
           "description": "The person date of birth when the defendant is a person",
-          "$ref": "http://justice.gov.uk/core/courts/external/courtsDefinitions.json#/definitions/datePattern"
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "dateOfNextHearing": {
           "description": "The date of the next hearing for the defendant",
-          "$ref": "http://justice.gov.uk/core/courts/external/courtsDefinitions.json#/definitions/datePattern"
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         }
     },
-    "anyOf": [
+    "oneOf": [
         {
           "required": [
             "prosecutionCaseReference"

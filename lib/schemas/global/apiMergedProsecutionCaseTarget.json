@@ -6,7 +6,7 @@
     "properties": {
         "prosecutionCaseId": {
             "description": "The case id that is being merged",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "prosecutionCaseReference": {
             "description": "The case urn or prn that is being merged.  When the target is split, this will itemise the spilt reference",

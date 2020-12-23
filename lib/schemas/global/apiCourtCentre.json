@@ -4,7 +4,10 @@
   "type": "object",
   "properties": {
     "id": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "code": {
+      "type": "string"
     },
     "name": {
       "type": "string"
@@ -13,7 +16,7 @@
       "type": "string"
     },
     "roomId": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "roomName": {
       "type": "string"
@@ -22,10 +25,22 @@
       "type": "string"
     },
     "address": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiAddress.json"
+      "$ref": "../../external/global/apiAddress.json"
     },
-	"psaCode": {
+    "psaCode": {
       "type": "integer"
+    },
+    "welshAddress": {
+      "$ref": "../../external/global/apiAddress.json",
+      "description": "The court address in welsh language.  Required for generation of welsh documentation.  Required to be enriched when publishing hearing results"
+    },
+    "welshCourtCentre": {
+      "description": "Indicates that the court centre is located under Welsh regulation i.e. is in Wales",
+      "type": "boolean"
+    },
+    "lja": {
+      "description": "The lja details of the court centre.  Required for generation of documentation.  Required to be enriched when publishing hearing results",
+      "$ref": "../../external/global/apiLjaDetails.json"
     }
   },
   "required": [

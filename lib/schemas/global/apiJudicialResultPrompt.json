@@ -6,7 +6,7 @@
   "properties": {
     "judicialResultPromptTypeId": {
       "description": "The result prompt type from reference data.  Required for rollup and Nows purposes",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "label": {
       "description": "The result prompt label provided from reference data during the resulting process",
@@ -56,6 +56,10 @@
         "items": {
             "type": "string"
         }
+    },
+    "welshValue": {
+      "description": "The result prompt welsh value provided by the judiciary and recorded by the person executing the resulting process",
+      "type": "string"
     }
   },
   "required": [

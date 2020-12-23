@@ -17,11 +17,11 @@
     },
     "address": {
       "description": "The organisation address details",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiAddress.json"
+      "$ref": "../../external/global/apiAddress.json"
     },
     "contact": {
       "description": "The organisation contact details",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiContactNumber.json"
+      "$ref": "../../external/global/apiContactNumber.json"
     }
   },
   "required": [

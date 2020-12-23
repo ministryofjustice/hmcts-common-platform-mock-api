@@ -5,7 +5,7 @@
   "properties": {
     "judicialId": {
       "description": "The reference data identify for the judicial role.",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "title": {
       "description": "The judicial role persons title",
@@ -25,7 +25,7 @@
     },
     "judicialRoleType": {
       "description": "The classification of the judicial role",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiJudicialRoleType.json#"
+      "$ref": "../../external/global/apiJudicialRoleType.json#"
     },
     "isDeputy": {
       "description": "Indicates if the judiciary acts as a deputy.  This is applicable to circuit and district judges",

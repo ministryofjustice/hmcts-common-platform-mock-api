@@ -4,11 +4,11 @@
   "type": "object",
   "properties": {
     "personDetails": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiPerson.json"
+      "$ref": "../../external/global/apiPerson.json"
     },
     "bailStatus": {
       "description": "The defendant bail status for the given case",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiBailStatus.json"
+      "$ref": "../../external/global/apiBailStatus.json"
     },
     "bailConditions": {
       "description": "Defines the conditions that have been applied to the Order of Bail, or Order of Remand into the care of the Local Authority",
@@ -20,16 +20,16 @@
     },
     "custodyTimeLimit": {
       "description": "The custody time limit for the given case when the bail status is remanded-in-custody",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "perceivedBirthYear": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
     },
     "driverNumber": {
       "type": "string"
     },
     "driverLicenceCode": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/driverLicenseCode"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/driverLicenseCode"
     },
     "driverLicenseIssue": {
       "description": "identifies the license issue no.",
@@ -43,7 +43,7 @@
       "type": "string"
     },
     "employerOrganisation": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiOrganisation.json"
+      "$ref": "../../external/global/apiOrganisation.json"
     },
     "employerPayrollReference": {
       "type": "string"

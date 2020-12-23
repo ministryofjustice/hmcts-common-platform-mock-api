@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "properties": {
     "person": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiPerson.json#"
+      "$ref": "../../external/global/apiPerson.json#"
     },
     "role": {
       "type": "string"

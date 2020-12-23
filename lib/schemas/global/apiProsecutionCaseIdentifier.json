@@ -4,11 +4,27 @@
   "type": "object",
   "properties": {
     "prosecutionAuthorityId": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "prosecutionAuthorityCode": {
       "type": "string"
-    }
+    },
+    "prosecutionAuthorityName": {
+      "type": "string",
+      "description": "The name of the prosecution authority from reference data.  Required for documentation purposes.  Required to be enriched when publishing hearing results"
+    },
+    "prosecutionAuthorityOUCode": {
+      "type": "string"
+    },
+    "majorCreditorCode": {
+      "type": "string"
+    },
+    "address": {
+      "$ref": "../../external/global/apiAddress.json"
+    },
+    "contact": {
+      "$ref": "../../external/global/apiContactNumber.json"
+    }   
   },
   "required": [
     "prosecutionAuthorityId",

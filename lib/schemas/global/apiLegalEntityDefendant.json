@@ -4,7 +4,7 @@
   "type": "object",
   "properties": {
     "organisation": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiOrganisation.json"
+      "$ref": "../../external/global/apiOrganisation.json"
     }
   },
   "required": [

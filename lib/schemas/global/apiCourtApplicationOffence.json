@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiCourtApplicationOffence.json",
+  "description": "The details of the offences being considered as part of an application",
+  "type": "object",
+  "properties": {
+    "offenceCode": {
+      "description": "The details of the new offence code for re-resulting purposes",
+      "type": "string"
+    },
+    "offence": {
+      "description": "The details of the criminal offence that is being considered as part of the application",
+      "$ref": "apiOffence.json#"
+    }
+  },
+  "required": [
+    "offence"
+  ],
+  "additionalProperties": false
+}

@@ -10,7 +10,7 @@
     },
     "statusId": {
       "description": "Reference data identifer for the agreed status",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "statusCode": {
       "description": "The status code from reference data",
@@ -22,15 +22,15 @@
     },
     "statusDate": {
       "description": "The date that the status was recorded",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "effectiveStartDate": {
       "description": "The start date for legal aid, set when the status represents an approved representation order",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "effectiveEndDate": {
       "description": "The end date for legal aid, set when the status represents an approved representation order",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "offenceLevelStatus": {
       "description": "The defendant level status coming from legal status ref data table",

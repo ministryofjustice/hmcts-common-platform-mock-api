@@ -6,10 +6,10 @@
   "properties": {
     "id": {
       "description": "The identifier of the verdict type from reference data",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "sequence": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
     },
     "description": {
       "type": "string"
@@ -19,7 +19,14 @@
     },
     "categoryType": {
       "type": "string"
-    }
+    },
+    "cjsVerdictCode": {
+      "type": "string"
+    },
+    "verdictCode": {
+      "description": "The code of the verdict.  Required for documentation purposes and also for publishing to LAA.  Required to be enriched when publishing hearing results",
+      "type": "string"
+    }   
   },
   "additionalProperties": false,
   "required": [

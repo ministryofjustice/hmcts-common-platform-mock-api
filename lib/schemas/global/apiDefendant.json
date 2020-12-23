@@ -5,23 +5,19 @@
   "description": "The defendant for an individual prosecution case.  Defendant details are NOT associated to multiple prosecution cases.  HMCTS business does not have authority to merge defendant details or recognise a single view of defendant",
   "properties": {
     "id": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "masterDefendantId": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid",
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid",
       "description": "Technical identifier that uniquely identifies the defendant on CPP i.e. across prosecution cases.  Case defendants that are the same person will be matched and provided the same defendantMasterId"
     },
     "prosecutionCaseId": {
       "description": "The prosecution case technical identifier",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
-    "courtProceedingsInitiated": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/date-time",
-      "description": "The date time that court proceedings for this defendant were initiated.  Optional for PCF but needs to be set when initiateCourtProceedings or referCasesToCourt progression commands are executed and in that sense is mandatory for the end to end court journey.  Required for hearing to understand the most recent defendant information, latest details must be rendered for initiated hearings so that the defendant is always arraigned against the latest known details."
-    },
-  "numberOfPreviousConvictionsCited": {
+    "numberOfPreviousConvictionsCited": {
       "description": "The number of previous convictions cited by the case prosecuting authority",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
     },
     "prosecutionAuthorityReference": {
       "description": "The prosecuting authorities reference for the defendant for the given case",
@@ -43,41 +39,37 @@
       "type": "array",
       "minItems": 1,
       "items": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiOffence.json"
+        "$ref": "../../external/global/apiOffence.json"
       }
     },
     "associatedPersons": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiAssociatedPerson.json"
+        "$ref": "../../external/global/apiAssociatedPerson.json"
       }
     },
     "defenceOrganisation": {
       "description": "The organisation details of the defence representation",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiOrganisation.json"
+      "$ref": "../../external/global/apiOrganisation.json"
     },
     "associatedDefenceOrganisation": {
-      "description": "The associated defence representation details",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiAssociatedDefenceOrganisation.json"
+      "description": "The collection of associated defence representation details",
+      "$ref": "../../external/global/apiAssociatedDefenceOrganisation.json"
     },
     "personDefendant": {
       "description": "When the defendant is a person the additional person specific details for the defendant",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiPersonDefendant.json"
+      "$ref": "../../external/global/apiPersonDefendant.json"
     },
     "legalEntityDefendant": {
       "description": "When the defendant is a legal entity the additional legal entity specific details for the defendant",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiLegalEntityDefendant.json"
-    },
-    "proceedingsConcluded": {
-      "description": "Indicates that proceedings for the defendant have been concluded i.e. all offences have been disposed with final results or have been withdrawn by the prosecuting authority",
-      "type": "boolean"
+      "$ref": "../../external/global/apiLegalEntityDefendant.json"
     },
     "aliases": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiDefendantAlias.json#"
+        "$ref": "../../external/global/apiDefendantAlias.json#"
       }
     },
     "judicialResults": {
@@ -85,7 +77,7 @@
       "type": "array",
       "minItems": 1,
       "items": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiJudicialResult.json"
+        "$ref": "../../external/global/apiJudicialResult.json"
       }
     },
     "croNumber": {
@@ -95,11 +87,15 @@
     "pncId": {
       "type": "string"
     },
-    "isYouth":{
-      "type" : "boolean"
-    },
     "legalAidStatus": {
       "type": "string"
+    },
+    "proceedingsConcluded": {
+      "description": "Indicates that proceedings for the defendant have been concluded i.e. all offences have been disposed with final results or have been withdrawn by the prosecuting authority",
+      "type": "boolean"
+    },
+    "isYouth": {
+      "type": "boolean"
     }
   },
   "required": [

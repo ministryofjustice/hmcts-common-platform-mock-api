@@ -5,13 +5,13 @@
   "type": "object",
   "properties": {
     "originatingHearingId": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "offenceId": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "motReasonId": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "motReasonDescription": {
       "type": "string"
@@ -20,22 +20,20 @@
       "type": "string"
     },
     "allocationDecisionDate": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
     },
     "courtIndicatedSentence": {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtIndicatedSentence.json#"
+      "$ref": "../../external/global/apiCourtIndicatedSentence.json#"
     },
     "sequenceNumber": {
       "type": "integer"
     }
   },
   "required": [
-    "originatingHearingId",
     "offenceId",
     "motReasonId",
     "motReasonDescription",
     "motReasonCode",
-    "allocationDecisionDate",
     "sequenceNumber"
   ],
   "additionalProperties": false

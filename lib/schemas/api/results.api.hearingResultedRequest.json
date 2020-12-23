@@ -5,7 +5,7 @@
     "properties": {
         "hearingId": {
           "description": "The identifier of the resulted hearing",
-          "$ref": "http://justice.gov.uk/core/courts/external/courtsDefinitions.json#/definitions/uuid"
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         }
     },
     "required": [

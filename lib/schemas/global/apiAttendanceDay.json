@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
         "day": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "attendanceType": {
             "description": "The defendant attendance type for hearing.",

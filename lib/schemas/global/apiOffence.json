@@ -4,11 +4,11 @@
     "type": "object",
     "properties": {
         "id": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "offenceDefinitionId": {
             "description": "The identifier of the offence from reference data",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "offenceCode": {
             "type": "string"
@@ -35,59 +35,59 @@
             "type": "string"
         },
         "startDate": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "endDate": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "arrestDate": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "chargeDate": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "laidDate": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "dateOfInformation": {
             "description": "The date that the matter is brought to court attention for consideration and for proceeding",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "orderIndex": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
         },
         "count": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/positiveInteger"
         },
         "convictionDate": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "notifiedPlea": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiNotifiedPlea.json"
+            "$ref": "../../external/global/apiNotifiedPlea.json"
         },
         "indicatedPlea": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiIndicatedPlea.json"
+            "$ref": "../../external/global/apiIndicatedPlea.json"
         },
         "allocationDecision": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiAllocationDecision.json"
+            "$ref": "../../external/global/apiAllocationDecision.json"
         },
         "plea": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiPlea.json"
+            "$ref": "../../external/global/apiPlea.json"
         },
         "verdict": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiVerdict.json"
+            "$ref": "../../external/global/apiVerdict.json"
         },
         "offenceFacts": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiOffenceFacts.json"
+            "$ref": "../../external/global/apiOffenceFacts.json"
         },
         "aquittalDate": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "victims": {
             "type": "array",
             "minItems": 1,
             "items": {
-                "$ref": "http://justice.gov.uk/core/courts/external/apiPerson.json#"
+                "$ref": "../../external/global/apiPerson.json#"
             }
         },
         "judicialResults": {
@@ -95,7 +95,7 @@
             "type": "array",
             "minItems": 1,
             "items": {
-                "$ref": "http://justice.gov.uk/core/courts/external/apiJudicialResult.json"
+                "$ref": "../../external/global/apiJudicialResult.json"
             }
         },
         "isDiscontinued": {
@@ -108,15 +108,29 @@
         },
         "laaApplnReference": {
             "description": "A record of legal aid applications for this offence",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiLaaReference.json"
+             "$ref": "../../external/global/apiLaaReference.json"
         },
         "custodyTimeLimit": {
             "description": "The custody time limit for the individual offence when a defendant has been ordered to be remanded in custody",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCustodyTimeLimit.json#"
+            "$ref": "../../external/global/apiCustodyTimeLimit.json#"
         },
         "proceedingsConcluded": {
             "description": "Indicates that proceedings for the defendant have been concluded i.e. all offences have been disposed with final results or have been withdrawn by the prosecuting authority",
             "type": "boolean"
+        },
+        "dvlaOffenceCode": {
+          "description": "The code for the offence to be used within the offence wording",
+          "type": "string"
+        },
+        "committingCourt": {
+          "description": "Sending court details",
+          "$ref": "../../external/global/apiCommittingCourt.json"
+        },
+        "offenceDateCode": {
+          "description": "The code for the offence date to be used within the offence wording, 1 = on or in, 2 = before, 3 = after, 4 = between, 5 = on or about and 6 = on or before",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
         }
     },
     "required": [

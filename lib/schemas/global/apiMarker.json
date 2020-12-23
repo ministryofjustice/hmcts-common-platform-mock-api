@@ -5,11 +5,11 @@
     "type": "object",
     "properties": {
         "id": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "markerTypeid": {
             "description": "The marker type from reference data",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "markerTypeCode": {
             "description": "The Code for the marker type",

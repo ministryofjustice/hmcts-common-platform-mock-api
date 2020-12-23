@@ -4,7 +4,7 @@
   "type": "object",
   "properties": {
     "id":  {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "code":  {
       "type": "string"
@@ -13,7 +13,7 @@
       "type": "string"
     },
     "custodyTimeLimit":  {
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCustodyTimeLimit.json"
+      "$ref": "../../external/global/apiCustodyTimeLimit.json"
     }
   },
   "required": [

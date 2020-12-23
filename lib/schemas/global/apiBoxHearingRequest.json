@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/external/apiBoxHearingRequest.json",
+  "description": "The details of a box hearing that is requested during initiation of court proceedings for an application",
+  "type": "object",
+  "properties": {
+    "courtCentre": {
+      "$ref": "../../external/global/apiCourtCentre.json"
+    },
+    "jurisdictionType": {
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/jurisdictionType"
+    },
+    "applicationDueDate": {
+      "description": "application due date",
+      "type": "string",
+      "format": "date"
+    },
+    "virtualAppointmentTime": {
+      "description": "virtual Appointment Time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "sendAppointmentLetter": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "jurisdictionType",
+    "courtCentre",
+    "applicationDueDate"
+  ],
+  "additionalProperties": false
+}

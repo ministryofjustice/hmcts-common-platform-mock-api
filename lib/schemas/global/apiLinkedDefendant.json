@@ -6,11 +6,11 @@
     "properties": {
         "prosecutionCaseId": {
             "description": "The case id for the defendant that is linked",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "defendantId": {
             "description": "The defendant identifier",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         }
     },
     "required": [

@@ -6,15 +6,15 @@
     "properties": {
         "prosecutionCaseId": {
             "description": "The identifier of the prosecution case",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "defendantId": {
             "description": "The identifier of the defendant",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "offenceId": {
             "description": "The identifier of the offence",
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "statusCode": {
             "description": "The status of the application that aligns to the reference data",
@@ -26,19 +26,19 @@
         },
         "statusDate": {
           "description": "The date that the status was recorded",
-          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "effectiveStartDate": {
           "description": "The start date for legal aid",
-          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "effectiveEndDate": {
           "description": "The end date for legal aid",
-          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+          "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/datePattern"
         },
         "defenceOrganisation": {
           "description": "The associated defence representation details",
-          "$ref": "http://justice.gov.uk/core/courts/external/apiDefenceOrganisation.json"
+          "$ref": "../../external/global/apiDefenceOrganisation.json"
         }
     },
     "required": [

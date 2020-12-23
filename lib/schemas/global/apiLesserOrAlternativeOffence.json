@@ -6,7 +6,7 @@
   "properties": {
     "offenceDefinitionId": {
       "description": "The identifier of the offence from reference data",
-      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "offenceCode": {
         "type": "string"

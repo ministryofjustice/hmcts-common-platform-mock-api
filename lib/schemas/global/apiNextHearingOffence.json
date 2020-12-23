@@ -4,7 +4,7 @@
     "type": "object",
     "properties": {
         "id": {
-            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+            "$ref": "../../external/global/apiCourtsDefinitions.json#/definitions/uuid"
         }
     },
     "required": [

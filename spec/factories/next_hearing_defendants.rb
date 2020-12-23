@@ -7,7 +7,7 @@ FactoryBot.define do
     end
   end
 
-  factory :realistic_next_hearing_defendant, class: 'NextHearingDefendant' do
+  factory :realistic_next_hearing_defendant, class: "NextHearingDefendant" do
     after(:build) do |next_hearing_defendant|
       next_hearing_defendant.next_hearing_offences << build(:realistic_next_hearing_offence)
     end

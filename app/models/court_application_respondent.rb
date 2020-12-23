@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class CourtApplicationRespondent < ApplicationRecord
-  belongs_to :party_details, class_name: 'CourtApplicationParty'
-  belongs_to :application_response, class_name: 'CourtApplicationResponse', optional: true
+  belongs_to :party_details, class_name: "CourtApplicationParty"
+  belongs_to :application_response, class_name: "CourtApplicationResponse", optional: true
 
   validates :party_details, presence: true
 

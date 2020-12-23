@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_context 'When authenticated' do
+RSpec.shared_context "When authenticated" do
   before do
     authenticate
   end
@@ -14,11 +14,11 @@ RSpec.shared_context 'When authenticated' do
   end
 
   def username
-    ENV['ADMIN_USERNAME']
+    ENV["ADMIN_USERNAME"]
   end
 
   def password
-    ENV['ADMIN_PASSWORD']
+    ENV["ADMIN_PASSWORD"]
   end
 
   def host

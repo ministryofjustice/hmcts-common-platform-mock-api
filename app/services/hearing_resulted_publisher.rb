@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HearingResultedPublisher < ApplicationService
-  URL = '/api/external/v1/hearings'
+  URL = "/api/external/v1/hearings"
 
   def initialize(hearing_id:, type: :dev)
     @hearing = Hearing.where(resulted: true).find(hearing_id)
@@ -12,7 +12,7 @@ class HearingResultedPublisher < ApplicationService
     connection.post(URL, hearing.resulted_response)
   end
 
-  private
+private
 
   attr_reader :hearing, :type
 

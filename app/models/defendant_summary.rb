@@ -31,12 +31,12 @@ class DefendantSummary
     end
   end
 
-  private
+private
 
   def date_of_next_hearing
     # This is one of the attributes used to make a search ProsecutionCase request (see prosecutionCaseRequest.json)
     # We will need to use the `dateOfNextHearing` and `name` to search defendants and return to the this object.
-    '2012-12-12'
+    "2012-12-12"
   end
 
   def proceedings_concluded?

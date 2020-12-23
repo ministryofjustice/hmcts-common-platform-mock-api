@@ -4,17 +4,17 @@ FactoryBot.define do
   factory :person_defendant do
     person
     bail_status { nil }
-    bailConditions { 'Random string' }
-    bailReasons { 'Random string' }
-    custodyTimeLimit { '2019-10-17 15:38:58' }
+    bailConditions { "Random string" }
+    bailReasons { "Random string" }
+    custodyTimeLimit { "2019-10-17 15:38:58" }
     perceivedBirthYear { 1999 }
-    driverNumber { 'Random string' }
-    driverLicenceCode { 'PROVISIONAL' }
-    driverLicenseIssue { 'Random string' }
-    vehicleOperatorLicenceNumber { 'Random string' }
-    arrestSummonsNumber { 'Random string' }
+    driverNumber { "Random string" }
+    driverLicenceCode { "PROVISIONAL" }
+    driverLicenseIssue { "Random string" }
+    vehicleOperatorLicenceNumber { "Random string" }
+    arrestSummonsNumber { "Random string" }
     employer_organisation { nil }
-    employerPayrollReference { 'Random string' }
+    employerPayrollReference { "Random string" }
 
     factory :person_defendant_with_relationships do
       association :bail_status, factory: :bail_status_with_relationships

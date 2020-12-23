@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Admin
-  # rubocop:disable Metrics/ClassLength
   class DefendantsController < Admin::ApplicationController
     before_action :set_defendant, only: %i[show edit update destroy]
 
@@ -19,7 +18,7 @@ module Admin
       @defendant = @prosecution_case.defendants.build(defendant_params)
 
       if @defendant.save
-        redirect_to [:admin, @defendant], notice: 'Defendant was successfully created.'
+        redirect_to [:admin, @defendant], notice: "Defendant was successfully created."
       else
         render :new
       end
@@ -27,18 +26,18 @@ module Admin
 
     def update
       if @defendant.update(defendant_params)
-        redirect_to [:admin, @defendant], notice: 'Defendant was successfully updated.'
+        redirect_to [:admin, @defendant], notice: "Defendant was successfully updated."
       else
         render :edit
       end
     end
 
     def destroy
-      @defendant.destroy
-      redirect_to admin_prosecution_case_url(@defendant.prosecution_case), notice: 'Defendant was successfully destroyed.'
+      @defendant.destroy!
+      redirect_to admin_prosecution_case_url(@defendant.prosecution_case), notice: "Defendant was successfully destroyed."
     end
 
-    private
+  private
 
     def set_defendant
       @defendant = Defendant.find(params[:id])
@@ -60,7 +59,7 @@ module Admin
         :defendantDetailsUpdated,
         :defendable_type,
         { defendable_attributes: defendable_attributes,
-          offences_attributes: offences_attributes }
+          offences_attributes: offences_attributes },
       )
     end
 
@@ -164,5 +163,4 @@ module Admin
       ]
     end
   end
-  # rubocop:enable Metrics/ClassLength
 end

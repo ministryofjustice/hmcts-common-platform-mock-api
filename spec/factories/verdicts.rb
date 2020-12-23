@@ -6,7 +6,7 @@ FactoryBot.define do
   factory :verdict do
     hearing
     offence
-    verdictDate { '2019-10-14 16:18:56' }
+    verdictDate { "2019-10-14 16:18:56" }
     verdict_type
 
     factory :verdict_with_relationships do

@@ -25,11 +25,11 @@ module Faker
         struct_for(:vacated)
       end
 
-      private
+    private
 
       def struct_for(type)
         csv_line = fetch("cracked_ineffective_trial.#{type}.#{codes_for(type).sample}")
-        arr = CSV.parse_line(csv_line, col_sep: ', ')
+        arr = CSV.parse_line(csv_line, col_sep: ", ")
         CrackedIneffectiveTrialStruct.new(*arr)
       end
 

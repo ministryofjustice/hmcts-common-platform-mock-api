@@ -4,9 +4,9 @@ FactoryBot.define do
   factory :indicated_plea do
     hearing
     offence
-    indicatedPleaDate { '2019-10-14' }
-    indicatedPleaValue { 'NO_INDICATION' }
-    source { 'ONLINE' }
+    indicatedPleaDate { "2019-10-14" }
+    indicatedPleaValue { "NO_INDICATION" }
+    source { "ONLINE" }
 
     factory :realistic_indicated_plea do
       association :hearing, factory: :realistic_hearing

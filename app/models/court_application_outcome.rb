@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CourtApplicationOutcome < ApplicationRecord
-  belongs_to :application_outcome_type, class_name: 'CourtApplicationOutcomeType'
+  belongs_to :application_outcome_type, class_name: "CourtApplicationOutcomeType"
 
   validates :originatingHearingId, presence: true
   validates :applicationId, presence: true

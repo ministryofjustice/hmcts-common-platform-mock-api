@@ -19,7 +19,7 @@ class HearingEvent < ApplicationRecord
     end
   end
 
-  private
+private
 
   def event_time
     day = hearing_day.sittingDay

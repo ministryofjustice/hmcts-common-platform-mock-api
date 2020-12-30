@@ -17,6 +17,7 @@ RSpec.configure do |config|
   config.json_schemas[:attendance_day] = "#{schema_path}/global/apiAttendanceDay.json"
   config.json_schemas[:attendant] = "#{schema_path}/global/apiAttendant.json"
   config.json_schemas[:bail_status] = "#{schema_path}/global/apiBailStatus.json"
+  config.json_schemas[:box_hearing_request] = "#{schema_path}/global/apiBoxHearingRequest.json"
   config.json_schemas[:company_representative] = "#{schema_path}/global/apiCompanyRepresentative.json"
   config.json_schemas[:contact_number] = "#{schema_path}/global/apiContactNumber.json"
   config.json_schemas[:court_application] = "#{schema_path}/global/apiCourtApplication.json"

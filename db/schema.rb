@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_111055) do
+ActiveRecord::Schema.define(version: 2020_12_30_142547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -141,6 +141,23 @@ ActiveRecord::Schema.define(version: 2020_12_29_111055) do
     t.string "fax"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "court_application_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecution_case_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["prosecution_case_id"], name: "index_court_application_cases_on_prosecution_case_id"
+  end
+
+  create_table "court_application_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "offenceCode"
+    t.uuid "offence_id", null: false
+    t.uuid "court_application_case_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_application_case_id"], name: "index_court_application_offences_on_court_application_case_id"
+    t.index ["offence_id"], name: "index_court_application_offences_on_offence_id"
   end
 
   create_table "court_application_outcome_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -1028,6 +1045,9 @@ ActiveRecord::Schema.define(version: 2020_12_29_111055) do
   add_foreign_key "attendance_days", "prosecution_counsels"
   add_foreign_key "attendance_days", "respondent_counsels"
   add_foreign_key "bail_statuses", "custody_time_limits"
+  add_foreign_key "court_application_cases", "prosecution_cases"
+  add_foreign_key "court_application_offences", "court_application_cases"
+  add_foreign_key "court_application_offences", "offences"
   add_foreign_key "court_application_outcomes", "court_application_outcome_types", column: "application_outcome_type_id"
   add_foreign_key "court_application_parties", "court_application_party_counsels"
   add_foreign_key "court_application_parties", "defendants"

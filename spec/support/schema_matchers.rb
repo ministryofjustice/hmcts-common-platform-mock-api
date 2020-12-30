@@ -21,6 +21,8 @@ RSpec.configure do |config|
   config.json_schemas[:company_representative] = "#{schema_path}/global/apiCompanyRepresentative.json"
   config.json_schemas[:contact_number] = "#{schema_path}/global/apiContactNumber.json"
   config.json_schemas[:court_application] = "#{schema_path}/global/apiCourtApplication.json"
+  config.json_schemas[:court_application_case] = "#{schema_path}/global/apiCourtApplicationCase.json"
+  config.json_schemas[:court_application_offence] = "#{schema_path}/global/apiCourtApplicationOffence.json"
   config.json_schemas[:court_application_outcome] = "#{schema_path}/global/apiCourtApplicationOutcome.json"
   config.json_schemas[:court_application_outcome_type] = "#{schema_path}/global/apiCourtApplicationOutcomeType.json"
   config.json_schemas[:court_application_party] = "#{schema_path}/global/apiCourtApplicationParty.json"

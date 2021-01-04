@@ -17,7 +17,7 @@ module Admin
       @hearing = Hearing.new(hearing_params.merge(prosecution_case_ids: @prosecution_case.id))
 
       if @hearing.save
-        redirect_to [:admin, @prosecution_case], notice: 'Hearing was successfully created.'
+        redirect_to [:admin, @prosecution_case], notice: "Hearing was successfully created."
       else
         render :new
       end
@@ -25,24 +25,24 @@ module Admin
 
     def update
       if @hearing.update(hearing_params)
-        redirect_to [:admin, @prosecution_case], notice: 'Hearing was successfully updated.'
+        redirect_to [:admin, @prosecution_case], notice: "Hearing was successfully updated."
       else
         render :edit
       end
     end
 
     def destroy
-      @hearing.destroy
-      redirect_to [:admin, @prosecution_case], notice: 'Hearing was successfully destroyed.'
+      @hearing.destroy!
+      redirect_to [:admin, @prosecution_case], notice: "Hearing was successfully destroyed."
     end
 
     def add_plea
       @offence = Offence.find(params[:offence_id])
-      @offence.pleas.create(pleaDate: Time.zone.now, pleaValue: Plea::VALUES.first, hearing: @hearing)
-      redirect_to edit_admin_hearing_url(@hearing), notice: 'Plea was successfully added.'
+      @offence.pleas.create!(pleaDate: Time.zone.now, pleaValue: Plea::VALUES.first, hearing: @hearing)
+      redirect_to edit_admin_hearing_url(@hearing), notice: "Plea was successfully added."
     end
 
-    private
+  private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_hearing

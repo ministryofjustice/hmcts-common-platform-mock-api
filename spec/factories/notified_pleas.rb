@@ -3,8 +3,8 @@
 FactoryBot.define do
   factory :notified_plea do
     offence
-    notifiedPleaDate { '2019-10-14' }
-    notifiedPleaValue { 'NOTIFIED_GUILTY' }
+    notifiedPleaDate { "2019-10-14" }
+    notifiedPleaValue { "NOTIFIED_GUILTY" }
 
     factory :realistic_notified_plea do
       association :offence, factory: :realistic_offence

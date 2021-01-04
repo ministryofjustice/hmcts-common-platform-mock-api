@@ -13,7 +13,7 @@ class HearingsController < ApplicationController
     render json: hearing_log_response
   end
 
-  private
+private
 
   def hearing_response
     return {} if @hearing.blank?
@@ -25,7 +25,7 @@ class HearingsController < ApplicationController
     {
       "hearingId": params[:hearingId],
       "hasActiveHearing": @hearing_events.present?,
-      "events": hearing_events_builder
+      "events": hearing_events_builder,
     }
   end
 

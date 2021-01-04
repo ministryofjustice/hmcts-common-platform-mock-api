@@ -10,12 +10,12 @@ class LaaConnector < ApplicationService
     Faraday.new api_url do |connection|
       connection.request :oauth2, token.token, token_type: :bearer
       connection.request :json
-      connection.response :json, content_type: 'application/json'
+      connection.response :json, content_type: "application/json"
       connection.adapter Faraday.default_adapter
     end
   end
 
-  private
+private
 
   def token
     @token = client.client_credentials.get_token if @token.blank? || @token.expired?

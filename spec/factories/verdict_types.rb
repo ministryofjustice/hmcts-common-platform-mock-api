@@ -3,9 +3,9 @@
 FactoryBot.define do
   factory :verdict_type do
     add_attribute(:sequence) { 1 }
-    description { 'MyString' }
-    category { 'MyString' }
-    categoryType { 'MyString' }
+    description { "MyString" }
+    category { "MyString" }
+    categoryType { "MyString" }
 
     factory :realistic_verdict_type do
       add_attribute(:sequence) { Faker::Number.positive.to_i }

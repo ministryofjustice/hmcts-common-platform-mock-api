@@ -13,7 +13,7 @@ module DemoDataHelper
       .merge(
         PersonDefendant
           .joins(:person)
-          .where(people: { nationalInsuranceNumber: nino })
+          .where(people: { nationalInsuranceNumber: nino }),
       )
   end
 
@@ -37,7 +37,7 @@ module DemoDataHelper
   end
 
   def defendant_offence_details_for(prosecution_case)
-    prosecution_case.defendants.map do |defendant|
+    prosecution_case.defendants.map { |defendant|
       defendant.offences.map do |offence|
         {
           defendant_id: defendant.id,
@@ -46,10 +46,10 @@ module DemoDataHelper
           offence_desc: offence.offenceTitle,
           mode_of_trial: offence.modeOfTrial,
           mot_reasons: offence.allocation_decisions.map(&:motReasonDescription),
-          plea_sentences: offence.pleas.map { |p| "#{p.pleaValue} on #{p.pleaDate}" }
+          plea_sentences: offence.pleas.map { |p| "#{p.pleaValue} on #{p.pleaDate}" },
         }
       end
-    end.flatten
+    }.flatten
   end
 
   def cracked_ineffective_trial_sentences_for(prosecution_case)

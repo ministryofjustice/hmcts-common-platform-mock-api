@@ -21,7 +21,7 @@ class CourtCentre
     end
   end
 
-  private
+private
 
   def csv_row
     @csv_row ||= HmctsCommonPlatform::Reference::CourtCentre.find(id)
@@ -37,7 +37,7 @@ class CourtCentre
         address3: csv_row.address3,
         address4: csv_row.address4,
         address5: csv_row.address5,
-        postcode: csv_row.postcode
+        postcode: csv_row.postcode,
       )
     end
   end

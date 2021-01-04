@@ -7,12 +7,12 @@ class HearingResulter < ApplicationService
   end
 
   def call
-    hearing.update(resulted: true)
+    hearing.update!(resulted: true)
     HearingResultedPublisher.call(hearing_id: hearing.id, type: publish_to) if publish_to.present?
     hearing.resulted?
   end
 
-  private
+private
 
   attr_reader :hearing, :publish_to
 end

@@ -21,7 +21,7 @@ class ProsecutionCaseSummary
     end
   end
 
-  private
+private
 
   def prosecution_case_reference
     prosecution_case.prosecution_case_identifier.caseURN || prosecution_case.prosecution_case_identifier.prosecutionAuthorityReference

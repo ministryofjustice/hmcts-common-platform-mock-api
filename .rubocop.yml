@@ -1,9 +1,17 @@
+inherit_from: .rubocop_todo.yml
+
 require:
   - rubocop-performance
-  - rubocop-rails
   - rubocop-rspec
 
-inherit_from: .rubocop_todo.yml
+inherit_gem:
+  rubocop-govuk:
+    - config/default.yml
+    - config/rails.yml
+
+inherit_mode:
+  merge:
+    - Exclude
 
 # The behavior of RuboCop can be controlled via the .rubocop.yml
 # configuration file. It makes it possible to enable/disable
@@ -120,24 +128,6 @@ Performance/Squeeze:
   Enabled: true
 
 Performance/StringInclude:
-  Enabled: true
-
-Lint/DuplicateElsifCondition:
-  Enabled: true
-
-Style/ArrayCoercion:
-  Enabled: true
-
-Style/CaseLikeIf:
-  Enabled: true
-
-Style/HashAsLastArrayItem:
-  Enabled: true
-
-Style/HashLikeCase:
-  Enabled: true
-
-Style/RedundantFileExtensionInRequire:
   Enabled: true
 
 Rails/ActiveRecordCallbacksOrder:

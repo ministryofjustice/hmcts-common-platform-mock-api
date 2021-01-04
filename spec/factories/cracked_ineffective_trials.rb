@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'faker/cracked_ineffective_trial'
+require "faker/cracked_ineffective_trial"
 
 FactoryBot.define do
   factory :cracked_ineffective_trial do
-    code { 'String' }
-    description { 'String' }
-    reason_type { 'String' }
+    code { "String" }
+    description { "String" }
+    reason_type { "String" }
 
     factory :realistic_cracked_ineffective_trial do
       transient do

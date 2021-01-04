@@ -5,9 +5,9 @@ class JudicialResult < ApplicationRecord
 
   POST_HEARING_CUSTODY_STATUSES = %w[A B C L P R S U].freeze
   CATEGORIES = %w[FINAL INTERMEDIARY ANCILLARY].freeze
-  belongs_to :court_clerk, class_name: 'DelegatedPowers', optional: true
+  belongs_to :court_clerk, class_name: "DelegatedPowers", optional: true
   belongs_to :delegated_powers, optional: true
-  belongs_to :four_eyes_approval, class_name: 'DelegatedPowers', optional: true
+  belongs_to :four_eyes_approval, class_name: "DelegatedPowers", optional: true
   belongs_to :next_hearing, optional: true
 
   has_many :user_groups

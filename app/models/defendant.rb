@@ -15,15 +15,15 @@ class Defendant < ApplicationRecord
   has_many :linked_defendants, dependent: :destroy
 
   belongs_to :person_defendant,
-             -> { where(defendants: { defendable_type: 'PersonDefendant' }) },
-             class_name: 'PersonDefendant',
-             foreign_key: 'defendable_id',
+             -> { where(defendants: { defendable_type: "PersonDefendant" }) },
+             class_name: "PersonDefendant",
+             foreign_key: "defendable_id",
              optional: true
 
   belongs_to :legal_entity_defendant,
-             -> { where(defendants: { defendable_type: 'LegalEntityDefendant' }) },
-             class_name: 'LegalEntityDefendant',
-             foreign_key: 'defendable_id',
+             -> { where(defendants: { defendable_type: "LegalEntityDefendant" }) },
+             class_name: "LegalEntityDefendant",
+             foreign_key: "defendable_id",
              optional: true
 
   validates :prosecution_case, presence: true
@@ -40,8 +40,8 @@ class Defendant < ApplicationRecord
       OR person_defendants.person_id IN (:person_ids)',
       {
         organisation_ids: Organisation.by_name(name).ids,
-        person_ids: Person.by_name(name).ids
-      }
+        person_ids: Person.by_name(name).ids,
+      },
     )
   }
 
@@ -67,7 +67,7 @@ class Defendant < ApplicationRecord
   def name
     return defendable.organisation.name if legal_entity?
 
-    [defendable.person.first_name, defendable.person.middle_name, defendable.person.last_name].compact.join(' ')
+    [defendable.person.first_name, defendable.person.middle_name, defendable.person.last_name].compact.join(" ")
   end
 
   def to_builder(hearing: nil)

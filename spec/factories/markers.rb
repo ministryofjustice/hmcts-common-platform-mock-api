@@ -3,11 +3,11 @@
 FactoryBot.define do
   factory :marker do
     markerTypeid { SecureRandom.uuid }
-    sequenceNumber { 'Random string' }
-    markerTypeCode { 'Random string' }
-    markerTypeLabel { 'Random string' }
-    markerTypeName { 'Random string' }
-    splitProsecutorCaseReference { 'Random string' }
+    sequenceNumber { "Random string" }
+    markerTypeCode { "Random string" }
+    markerTypeLabel { "Random string" }
+    markerTypeName { "Random string" }
+    splitProsecutorCaseReference { "Random string" }
     factory :realistic_marker do
       markerTypeid { SecureRandom.uuid }
       sequenceNumber { Faker::Alphanumeric.alpha(number: 10).upcase }

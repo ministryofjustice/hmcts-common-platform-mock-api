@@ -10,7 +10,7 @@ FactoryBot.define do
     factory :realistic_hearing_event do
       hearingEventDefinitionId { SecureRandom.uuid }
       recordedLabel { Faker::Lorem.sentence }
-      eventTime { DateTime.now }
+      eventTime { Time.zone.now }
       alterable { Faker::Boolean.boolean }
     end
   end

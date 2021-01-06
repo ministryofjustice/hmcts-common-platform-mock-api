@@ -4,7 +4,6 @@ RSpec.describe MergedProsecutionCase, type: :model do
   subject { merged_prosecution_case }
 
   let(:merged_prosecution_case) { FactoryBot.create(:merged_prosecution_case) }
-  let(:merged_prosecution_case) { FactoryBot.create(:merged_prosecution_case) }
 
   let(:json_schema) { :merged_prosecution_case }
 

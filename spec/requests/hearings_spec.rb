@@ -7,7 +7,7 @@ RSpec.describe "Hearings", type: :request do
   describe "GET /hearing/results" do
     it "matches the response schema" do
       get "/hearing/results?hearingId=#{hearing.id}", headers: headers
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response.body).to match_json_schema(:results_hearing_resulted_response)
     end
   end
@@ -17,7 +17,7 @@ RSpec.describe "Hearings", type: :request do
 
     it "matches the response schema" do
       get "/hearing/hearingLog?hearingId=#{hearing.id}&date=2019-10-23", headers: headers
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response.body).to match_json_schema(:results_hearing_event_log_response)
     end
   end

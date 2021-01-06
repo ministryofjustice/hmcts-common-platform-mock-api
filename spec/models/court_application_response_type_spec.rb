@@ -12,7 +12,7 @@ RSpec.describe CourtApplicationResponseType, type: :model do
     it { is_expected.to validate_numericality_of(:sequence).is_greater_than(0) }
   end
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
   end
 end

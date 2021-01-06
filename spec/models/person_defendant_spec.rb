@@ -8,7 +8,7 @@ RSpec.describe PersonDefendant, type: :model do
 
   describe "scopes" do
     describe ".by_name" do
-      subject { described_class.by_name(params) }
+      subject(:call) { described_class.by_name(params) }
 
       let(:params) { { defendantName: "John Doe" } }
 
@@ -18,12 +18,12 @@ RSpec.describe PersonDefendant, type: :model do
 
       it "calls the by_name scopes on Person" do
         expect(Person).to receive(:by_name).with(params[:defendantName])
-        subject
+        call
       end
     end
 
     describe ".by_dob" do
-      subject { described_class.by_dob(params) }
+      subject(:call) { described_class.by_dob(params) }
 
       let(:params) { { dateOfBirth: "2000-05-12" } }
 
@@ -33,7 +33,7 @@ RSpec.describe PersonDefendant, type: :model do
 
       it "calls the by_date_of_birth scopes on Person" do
         expect(Person).to receive(:by_date_of_birth).with(params[:dateOfBirth])
-        subject
+        call
       end
     end
   end
@@ -53,10 +53,10 @@ RSpec.describe PersonDefendant, type: :model do
     end
   end
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
 
-    context "required attributes" do
+    context "with required attributes" do
       before { person_defendant.update!(custodyTimeLimit: nil) }
 
       it_has_behaviour "conforming to valid schema"

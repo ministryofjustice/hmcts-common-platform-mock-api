@@ -8,7 +8,7 @@ FactoryBot.define do
 
     factory :realistic_notified_plea do
       association :offence, factory: :realistic_offence
-      notifiedPleaDate { Date.today - Faker::Number.number(digits: 3).to_i.days }
+      notifiedPleaDate { Time.zone.today - Faker::Number.number(digits: 3).to_i.days }
       notifiedPleaValue { NotifiedPlea::VALUES.sample }
     end
   end

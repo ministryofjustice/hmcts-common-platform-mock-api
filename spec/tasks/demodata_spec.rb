@@ -14,7 +14,7 @@ RSpec.describe "Demo data tasks", type: :rake do
   let(:loader) { Rake::Task["mock:demodata:load"].execute }
   let(:unloader) { Rake::Task["mock:demodata:unload"].execute }
 
-  context "Demo data load" do
+  context "when loading demo data" do
     before { allow(FactoryBot).to receive(:create).and_call_original }
 
     let(:person_attrs) do
@@ -50,7 +50,7 @@ RSpec.describe "Demo data tasks", type: :rake do
       expect { loader }.to change(DefenceCounsel, :count).by(2)
     end
 
-    context "for case 1" do
+    context "and for case 1" do
       before { loader }
 
       let(:case1) { prosecution_cases_by_reference("TEST12345").first }
@@ -76,7 +76,7 @@ RSpec.describe "Demo data tasks", type: :rake do
       end
     end
 
-    context "for case 2" do
+    context "and for case 2" do
       before { loader }
 
       let(:case2) { prosecution_cases_by_reference("TEST54321").first }
@@ -91,7 +91,7 @@ RSpec.describe "Demo data tasks", type: :rake do
     end
   end
 
-  context "Demo data unload" do
+  describe "Demo data unload" do
     context "when demo data exists" do
       before { loader }
 

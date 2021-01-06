@@ -44,7 +44,6 @@ group :development, :test do
   gem "rspec-rails", "~> 4.0"
   gem "rubocop-govuk", "~> 3.0"
   gem "rubocop-performance", require: false
-  gem "rubocop-rspec", require: false
   gem "sinatra"
   gem "vcr"
   gem "webmock"

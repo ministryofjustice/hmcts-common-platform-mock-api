@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe LaaRepresentationOrderRecorder do
-  subject { described_class.call(params) }
+  subject(:record_order) { described_class.call(params) }
 
   let(:params) { ActionController::Parameters.new(params_hash) }
   let(:defendant) { FactoryBot.create(:defendant) }
@@ -34,7 +34,7 @@ RSpec.describe LaaRepresentationOrderRecorder do
 
     it "raises an invalid params error" do
       expect {
-        subject
+        record_order
       }.to raise_error(Errors::InvalidParams)
     end
   end
@@ -56,13 +56,13 @@ RSpec.describe LaaRepresentationOrderRecorder do
 
     context "when an LaaReference does not exist" do
       it "creates the LaaReference" do
-        expect { subject }.to change(LaaReference, :count).by(1)
+        expect { record_order }.to change(LaaReference, :count).by(1)
       end
     end
 
     context "when a DefenceOrganisation does not exist" do
       it "creates the DefenceOrganisation" do
-        expect { subject }.to change(DefenceOrganisation, :count).by(1)
+        expect { record_order }.to change(DefenceOrganisation, :count).by(1)
       end
     end
 
@@ -70,11 +70,11 @@ RSpec.describe LaaRepresentationOrderRecorder do
       before { laa_reference.save! }
 
       it "does not create a new LaaReference" do
-        expect { subject }.to change(LaaReference, :count).by(0)
+        expect { record_order }.to change(LaaReference, :count).by(0)
       end
 
       it "updates the LaaReference" do
-        subject
+        record_order
         laa_reference.reload
         expect(laa_reference.statusCode).to eq(status_code)
         expect(laa_reference.applicationReference).to eq(application_reference)
@@ -124,11 +124,11 @@ RSpec.describe LaaRepresentationOrderRecorder do
       end
 
       it "does not create a new DefenceOrganisation" do
-        expect { subject }.to change(DefenceOrganisation, :count).by(0)
+        expect { record_order }.to change(DefenceOrganisation, :count).by(0)
       end
 
       it "updates the DefenceOrganisation" do
-        subject
+        record_order
         defence_organisation.reload
         expect(defence_organisation.organisation.name).to eq("Unlimited Solicitors")
         expect(defence_organisation.organisation.incorporationNumber).to eq("ABCDE")

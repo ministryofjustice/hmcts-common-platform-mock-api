@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe ProsecutionCaseSearch do
-  subject { described_class.call(params) }
+  subject(:search) { described_class.call(params) }
 
   let(:params) { ActionController::Parameters.new(params_hash) }
   let(:john_doe) { FactoryBot.create(:person, firstName: "John", lastName: "Doe", dateOfBirth: "2000-01-10") }
@@ -19,7 +19,7 @@ RSpec.describe ProsecutionCaseSearch do
 
     it "raises an invalid params error" do
       expect {
-        subject
+        search
       }.to raise_error(Errors::InvalidParams)
     end
   end

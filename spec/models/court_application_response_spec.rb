@@ -18,7 +18,7 @@ RSpec.describe CourtApplicationResponse, type: :model do
     it { is_expected.to validate_presence_of(:application_response_type) }
   end
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
   end
 end

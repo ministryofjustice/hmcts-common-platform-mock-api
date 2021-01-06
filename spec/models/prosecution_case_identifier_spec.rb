@@ -20,13 +20,13 @@ RSpec.describe ProsecutionCaseIdentifier, type: :model do
 
     it { is_expected.to eq([prosecution_case_identifier]) }
 
-    context "non-exact matches" do
+    context "with non-exact matches" do
       let(:search_term) { "INHRBICZKQ&&!" }
 
       it { is_expected.to be_empty }
     end
 
-    context "lowercase searches" do
+    context "with lowercase searches" do
       let(:search_term) { "inhrbiczkq" }
 
       it { is_expected.to eq([prosecution_case_identifier]) }

@@ -6,7 +6,7 @@ RSpec.describe "adding a new offence to prosecution case ", type: :feature do
   let(:prosecution_case) { FactoryBot.create(:realistic_prosecution_case) }
 
   describe "add offence" do
-    include_context "When authenticated"
+    include_context "when authenticated"
 
     it "creates the new offence", js: true do
       visit "/admin/prosecution_cases/#{prosecution_case.id}/edit"

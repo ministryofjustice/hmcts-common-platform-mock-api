@@ -7,7 +7,7 @@ RSpec.describe CourtApplicationPayment, type: :model do
 
   let(:json_schema) { :court_application_payment }
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
   end
 end

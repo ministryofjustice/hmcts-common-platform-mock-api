@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe HearingFinder do
-  subject { described_class.call(params) }
+  subject(:call) { described_class.call(params) }
 
   let(:params) { ActionController::Parameters.new(params_hash) }
 
@@ -12,7 +12,7 @@ RSpec.describe HearingFinder do
 
     it "raises an invalid params error" do
       expect {
-        subject
+        call
       }.to raise_error(Errors::InvalidParams)
     end
   end
@@ -25,7 +25,7 @@ RSpec.describe HearingFinder do
     end
 
     it "returns an empty value" do
-      expect(subject).to be_nil
+      expect(call).to be_nil
     end
 
     context "with an incorrect id" do
@@ -34,7 +34,7 @@ RSpec.describe HearingFinder do
       end
 
       it "returns an empty value" do
-        expect(subject).to be_nil
+        expect(call).to be_nil
       end
     end
 

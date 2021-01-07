@@ -17,7 +17,7 @@ RSpec.describe LegalEntityDefendant, type: :model do
 
   it_has_a "realistic factory"
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
   end
 end

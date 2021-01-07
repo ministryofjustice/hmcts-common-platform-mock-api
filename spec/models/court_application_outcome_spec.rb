@@ -18,7 +18,7 @@ RSpec.describe CourtApplicationOutcome, type: :model do
     it { is_expected.to validate_presence_of(:applicationOutcomeDate) }
   end
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
   end
 end

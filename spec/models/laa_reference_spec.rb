@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe LaaReference, type: :model do
-  subject { laa_reference }
+  subject(:laa_reference_subject) { laa_reference }
 
   let(:laa_reference) { FactoryBot.create(:laa_reference) }
 
@@ -24,7 +24,7 @@ RSpec.describe LaaReference, type: :model do
   describe "#to_builder" do
     context "when all the dates are present" do
       it "returns a JBuilder object" do
-        expect(subject.to_builder).to be_an_instance_of(Jbuilder)
+        expect(laa_reference_subject.to_builder).to be_an_instance_of(Jbuilder)
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe LaaReference, type: :model do
       end
 
       it "returns a JBuilder object" do
-        expect(subject.to_builder).to be_an_instance_of(Jbuilder)
+        expect(laa_reference_subject.to_builder).to be_an_instance_of(Jbuilder)
       end
 
       it_has_behaviour "conforming to valid schema"

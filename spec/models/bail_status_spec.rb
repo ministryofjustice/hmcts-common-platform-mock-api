@@ -16,7 +16,7 @@ RSpec.describe BailStatus, type: :model do
     it { is_expected.to validate_presence_of(:description) }
   end
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
 
     context "with relationships" do

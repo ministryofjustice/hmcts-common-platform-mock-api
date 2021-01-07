@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe ApplicationService do
-  subject { described_class.call("some", "arguments") }
+  subject(:call) { described_class.call("some", "arguments") }
 
   let(:described_instance) { instance_double("ApplicationService") }
 
@@ -12,6 +12,6 @@ RSpec.describe ApplicationService do
   it "initializes and call the instance" do
     expect(described_class).to receive(:new).with("some", "arguments")
     expect(described_instance).to receive(:call)
-    subject
+    call
   end
 end

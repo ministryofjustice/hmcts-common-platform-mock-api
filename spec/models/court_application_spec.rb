@@ -25,7 +25,7 @@ RSpec.describe CourtApplication, type: :model do
 
   it_has_behaviour "conforming to valid schema"
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     before do
       court_application.court_application_respondents << FactoryBot.create(:court_application_respondent)
       court_application.court_application_outcome = FactoryBot.create(:court_application_outcome)

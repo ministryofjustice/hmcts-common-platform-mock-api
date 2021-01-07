@@ -17,7 +17,7 @@ RSpec.describe HearingDay, type: :model do
     it { is_expected.to belong_to(:hearing).optional }
   end
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
   end
 end

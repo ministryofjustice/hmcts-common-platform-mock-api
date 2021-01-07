@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe LaaReferenceRecorder do
-  subject { described_class.call(params) }
+  subject(:record_reference) { described_class.call(params) }
 
   let(:params) { ActionController::Parameters.new(params_hash) }
   let(:defendant) { FactoryBot.create(:defendant) }
@@ -24,7 +24,7 @@ RSpec.describe LaaReferenceRecorder do
 
     it "raises an invalid params error" do
       expect {
-        subject
+        record_reference
       }.to raise_error(Errors::InvalidParams)
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe LaaReferenceRecorder do
 
     context "when an LaaReference does not exist" do
       it "creates the LaaReference" do
-        expect { subject }.to change(LaaReference, :count).by(1)
+        expect { record_reference }.to change(LaaReference, :count).by(1)
       end
     end
 
@@ -51,11 +51,11 @@ RSpec.describe LaaReferenceRecorder do
       before { laa_reference.save! }
 
       it "does not create a new LaaReference" do
-        expect { subject }.to change(LaaReference, :count).by(0)
+        expect { record_reference }.to change(LaaReference, :count).by(0)
       end
 
       it "updates the LaaReference" do
-        subject
+        record_reference
         laa_reference.reload
         expect(laa_reference.applicationReference).to eq(application_reference)
         expect(laa_reference.statusCode).to eq(status_code)

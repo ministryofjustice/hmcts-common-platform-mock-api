@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe LaaConnector do
-  subject { described_class.call(api_url: api_url, client_id: client_id, client_secret: client_secret, oauth_url: oauth_url) }
+  subject(:call) { described_class.call(api_url: api_url, client_id: client_id, client_secret: client_secret, oauth_url: oauth_url) }
 
   let(:api_url) { "API_URL" }
   let(:client_id) { "CLIENT_ID" }
@@ -10,10 +10,10 @@ RSpec.describe LaaConnector do
 
   it "connects to the laa api url" do
     expect(Faraday).to receive(:new).with(api_url)
-    subject
+    call
   end
 
-  context "faraday configuration" do
+  context "with faraday configuration" do
     let(:connection) { double }
     let(:oauth_client) { instance_double("OAuth2::Client", client_credentials: token_generator) }
     let(:token_generator) { double(get_token: double(token: "XYZ")) }
@@ -23,15 +23,13 @@ RSpec.describe LaaConnector do
       allow(OAuth2::Client).to receive(:new).and_return(oauth_client)
     end
 
-    # rubocop:disable RSpec/ExampleLength
     it "authenticates with generated oauth token" do
       expect(OAuth2::Client).to receive(:new).with(client_id, client_secret, site: oauth_url)
       expect(connection).to receive(:request).with(:oauth2, "XYZ", token_type: :bearer)
       expect(connection).to receive(:request)
       expect(connection).to receive(:response).with(:json, content_type: "application/json")
       expect(connection).to receive(:adapter).with(:net_http)
-      subject
+      call
     end
-    # rubocop:enable RSpec/ExampleLength
   end
 end

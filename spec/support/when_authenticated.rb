@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_context "When authenticated" do
+RSpec.shared_context "when authenticated" do
   before do
     authenticate
   end

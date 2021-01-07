@@ -20,7 +20,7 @@ RSpec.describe Person, type: :model do
       it { is_expected.to include(person_two) }
       it { is_expected.to include(person_three) }
 
-      context "omitting middleName" do
+      context "when omitting middleName" do
         let(:name) { "John Doe" }
 
         it { is_expected.to include(person_one) }
@@ -28,7 +28,7 @@ RSpec.describe Person, type: :model do
         it { is_expected.to include(person_three) }
       end
 
-      context "Single name search" do
+      context "when searching single name" do
         let(:name) { "Doe" }
 
         it { is_expected.not_to include(person_one) }

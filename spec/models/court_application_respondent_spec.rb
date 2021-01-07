@@ -16,7 +16,7 @@ RSpec.describe CourtApplicationRespondent, type: :model do
     it { is_expected.to validate_presence_of(:party_details) }
   end
 
-  context "hmcts schema" do
+  describe "hmcts schema" do
     it_has_behaviour "conforming to valid schema"
 
     context "with application_response" do

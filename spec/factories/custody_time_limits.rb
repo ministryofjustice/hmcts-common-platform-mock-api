@@ -6,7 +6,7 @@ FactoryBot.define do
     daysSpent { 10 }
 
     factory :realistic_custody_time_limit do
-      timeLimit { DateTime.now + Faker::Types.rb_integer }
+      timeLimit { Time.zone.now + Faker::Types.rb_integer }
       daysSpent { Faker::Types.rb_integer }
     end
   end

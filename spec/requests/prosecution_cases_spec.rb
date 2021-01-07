@@ -4,7 +4,7 @@ RSpec.describe "ProsecutionCases", type: :request do
   let(:headers) { { 'Ocp-Apim-Subscription-Key': ENV.fetch("SHARED_SECRET_KEY") } }
 
   describe "GET /prosecutionCases" do
-    let(:prosecution_case) do
+    let!(:prosecution_case) do
       FactoryBot.create(:prosecution_case,
                         prosecution_case_identifier: FactoryBot.create(:prosecution_case_identifier,
                                                                        caseURN: "some-reference"))

@@ -133,7 +133,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    listen (3.3.4)
+    listen (3.4.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.8.0)
@@ -359,7 +359,7 @@ DEPENDENCIES
   json-schema
   json-schema-rspec
   kaminari
-  listen (>= 3.0.5, < 3.4)
+  listen (>= 3.0.5, < 3.5)
   oauth2
   pg (>= 0.18, < 2.0)
   pg_search

@@ -3,7 +3,7 @@
 module Admin
   class HearingsController < Admin::ApplicationController
     before_action :set_prosecution_case, only: %i[new create]
-    before_action :set_hearing, only: %i[show edit update destroy add_plea]
+    before_action :set_hearing, only: %i[show edit update destroy add_plea add_allocation_decision]
 
     def show; end
 
@@ -42,6 +42,12 @@ module Admin
       redirect_to edit_admin_hearing_url(@hearing), notice: "Plea was successfully added."
     end
 
+    def add_allocation_decision
+      @offence = Offence.find(params[:offence_id])
+      @offence.allocation_decisions.create!(allocationDecisionDate: Time.zone.now, motReasonId: SecureRandom.uuid, motReasonCode: "ABCD", motReasonDescription: Faker::Offence.mode_of_trial_reason, hearing: @hearing)
+      redirect_to edit_admin_hearing_url(@hearing), notice: "Allocation decision was successfully added."
+    end
+
   private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -78,7 +84,7 @@ module Admin
     end
 
     def offences_attributes
-      [:id, { pleas_attributes: %i[id hearing_id pleaValue pleaDate _destroy] }]
+      [:id, { pleas_attributes: %i[id hearing_id pleaValue pleaDate _destroy] }, { allocation_decisions_attributes: %i[id hearing_id allocationDecisionDate motReasonId motReasonCode motReasonDescription _destroy] }]
     end
   end
 end

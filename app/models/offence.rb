@@ -23,6 +23,7 @@ class Offence < ApplicationRecord
 
   accepts_nested_attributes_for :judicial_results, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :pleas, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :allocation_decisions, reject_if: :all_blank, allow_destroy: true
 
   def to_builder(hearing: nil)
     Jbuilder.new do |offence|

@@ -75,6 +75,16 @@
               </div>
             <% end %>
           </div>
+          <div id="defendant-offences-<%= offence.object.id %>">
+            <%= offence.fields_for :allocation_decisions, offence.object.allocation_decisions.where(hearing: hearing) do |allocation_decision| %>
+              <%= render 'allocation_decision_fields', f: allocation_decision %>
+            <% end %>
+            <% if offence.object.allocation_decisions.where(hearing: hearing).size == 0 %>
+              <div class="links">
+                <%= link_to 'add allocation decision', add_allocation_decision_admin_hearing_path(hearing, offence.object), method: :post %>
+              </div>
+            <% end %>
+          </div>
           <hr/>
         <% end %>
       <% end %>

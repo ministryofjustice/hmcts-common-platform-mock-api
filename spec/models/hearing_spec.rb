@@ -81,5 +81,20 @@ RSpec.describe Hearing, type: :model do
         expect(hearing_json["prosecutionCases"][0]["defendants"][0]["offences"][0]["plea"]).not_to be_empty
       end
     end
+
+    context "when the hearing contains an allocation decision" do
+      let(:offence) { hearing.prosecution_cases.first.defendants.first.offences.first }
+      let(:hearing_json) { subject.to_builder.attributes! }
+
+      before do
+        FactoryBot.create(:allocation_decision, offence: offence, hearing: hearing)
+      end
+
+      it_has_behaviour "conforming to valid schema"
+
+      it "contains an allocation decision object" do
+        expect(hearing_json["prosecutionCases"][0]["defendants"][0]["offences"][0]["allocationDecision"]).not_to be_empty
+      end
+    end
   end
 end

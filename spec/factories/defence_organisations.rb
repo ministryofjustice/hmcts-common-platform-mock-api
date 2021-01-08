@@ -3,21 +3,21 @@
 FactoryBot.define do
   factory :defence_organisation do
     organisation
-    laaContractNumber { 'Random String' }
+    laaContractNumber { "Random String" }
 
     factory :realistic_defence_organisation do
       laaContractNumber { Faker::Code.isbn }
     end
   end
 
-  factory :associated_defence_organisation, class: 'DefenceOrganisation' do
+  factory :associated_defence_organisation, class: "DefenceOrganisation" do
     defendant
     organisation
-    laaContractNumber { 'Random String' }
+    laaContractNumber { "Random String" }
 
-    associationStartDate { '2019-10-17 15:20:09' }
-    associationEndDate { '2019-10-17 15:20:09' }
-    fundingType { 'COURT_APPOINTED' }
+    associationStartDate { "2019-10-17 15:20:09" }
+    associationEndDate { "2019-10-17 15:20:09" }
+    fundingType { "COURT_APPOINTED" }
     isAssociatedByLAA { false }
 
     factory :associated_defence_organisation_with_relationships do

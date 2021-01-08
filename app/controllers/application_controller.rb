@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
 
   ERROR_MAPPINGS = {
     Errors::InvalidParams => :bad_request,
-    ActiveRecord::RecordNotFound => :not_found
+    ActiveRecord::RecordNotFound => :not_found,
   }.freeze
 
   ERROR_MAPPINGS.each do |klass, status|
@@ -15,12 +15,12 @@ class ApplicationController < ActionController::API
     end
   end
 
-  private
+private
 
   def authenticate
     authenticated = ActiveSupport::SecurityUtils.secure_compare(
-      request.headers.fetch('Ocp-Apim-Subscription-Key', ''),
-      ENV.fetch('SHARED_SECRET_KEY')
+      request.headers.fetch("Ocp-Apim-Subscription-Key", ""),
+      ENV.fetch("SHARED_SECRET_KEY"),
     )
 
     head :unauthorized unless authenticated

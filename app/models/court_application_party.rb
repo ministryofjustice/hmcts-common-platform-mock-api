@@ -6,7 +6,7 @@ class CourtApplicationParty < ApplicationRecord
   belongs_to :organisation, optional: true
   belongs_to :person, optional: true
   belongs_to :prosecuting_authority, optional: true
-  belongs_to :representation_organisation, class_name: 'Organisation', optional: true
+  belongs_to :representation_organisation, class_name: "Organisation", optional: true
 
   has_many :associated_people
 

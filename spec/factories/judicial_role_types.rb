@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :judicial_role_type do
     judicialRoleTypeId { SecureRandom.uuid }
-    judiciaryType { 'High Court Judge' }
+    judiciaryType { "High Court Judge" }
 
     factory :realistic_judicial_role_type do
       judicialRoleTypeId { SecureRandom.uuid }

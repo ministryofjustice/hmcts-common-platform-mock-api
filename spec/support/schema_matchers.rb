@@ -5,7 +5,7 @@
 RSpec.configure do |config|
   config.include JSON::SchemaMatchers
 
-  schema_path = 'lib/schemas/'
+  schema_path = "lib/schemas/"
 
   # Models
   config.json_schemas[:address] = "#{schema_path}/global/apiAddress.json"

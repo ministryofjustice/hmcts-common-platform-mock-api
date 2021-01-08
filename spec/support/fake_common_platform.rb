@@ -1,69 +1,69 @@
 # frozen_string_literal: true
 
-require 'sinatra/base'
+require "sinatra/base"
 
 class FakeCommonPlatform < Sinatra::Base
-  get '/' do
-    'fake common platform running'
+  get "/" do
+    "fake common platform running"
   end
 
-  get '/core/courts/:directory/:file_name' do
-    json_response(200, '/global/', params[:file_name])
+  get "/core/courts/:directory/:file_name" do
+    json_response(200, "/global/", params[:file_name])
   end
 
-  get '/core/courts/:file_name' do
-    json_response(200, '/global/', params[:file_name])
+  get "/core/courts/:file_name" do
+    json_response(200, "/global/", params[:file_name])
   end
 
-  get '/core/external/:directory/:file_name' do
-    json_response(200, '/global/', params[:file_name])
+  get "/core/external/:directory/:file_name" do
+    json_response(200, "/global/", params[:file_name])
   end
 
-  get '/core/courts/search/external/:file_name' do
-    json_response(200, '/global/search/', params[:file_name])
+  get "/core/courts/search/external/:file_name" do
+    json_response(200, "/global/search/", params[:file_name])
   end
 
-  get '/core/external/global/search/:file_name' do
-    json_response(200, '/global/search/', params[:file_name])
+  get "/core/external/global/search/:file_name" do
+    json_response(200, "/global/search/", params[:file_name])
   end
 
-  get '/core/external/global/:directory/:file_name' do
-    json_response(200, '/global/', params[:file_name])
+  get "/core/external/global/:directory/:file_name" do
+    json_response(200, "/global/", params[:file_name])
   end
 
-  get '/results/external/:directory/:file_name' do
-    json_response(200, '/global/', params[:file_name])
+  get "/results/external/:directory/:file_name" do
+    json_response(200, "/global/", params[:file_name])
   end
 
-  get '/hearing/external/:directory/:file_name' do
-    json_response(200, '/global/', params[:file_name])
+  get "/hearing/external/:directory/:file_name" do
+    json_response(200, "/global/", params[:file_name])
   end
 
-  get '/core/courts/:directory/search/:file_name' do
-    json_response(200, '/global/search/', params[:file_name])
+  get "/core/courts/:directory/search/:file_name" do
+    json_response(200, "/global/search/", params[:file_name])
   end
 
-  get '/core/courts/search/public/:file_name' do
-    json_response(200, '/global/search/', params[:file_name])
+  get "/core/courts/search/public/:file_name" do
+    json_response(200, "/global/search/", params[:file_name])
   end
 
-  get '/unified_search_query/global/search/:file_name' do
-    json_response(200, '/global/search/', params[:file_name])
+  get "/unified_search_query/global/search/:file_name" do
+    json_response(200, "/global/search/", params[:file_name])
   end
 
-  get '/unified_search_query/external/global/search/:file_name' do
-    json_response(200, '/global/search/', params[:file_name])
+  get "/unified_search_query/external/global/search/:file_name" do
+    json_response(200, "/global/search/", params[:file_name])
   end
 
-  get '/unified_search_query/external/global/:file_name' do
-    json_response(200, '/global/', params[:file_name])
+  get "/unified_search_query/external/global/:file_name" do
+    json_response(200, "/global/", params[:file_name])
   end
 
-  get '/results/global/:file_name' do
-    json_response(200, '/global/', params[:file_name])
+  get "/results/global/:file_name" do
+    json_response(200, "/global/", params[:file_name])
   end
 
-  private
+private
 
   def json_response(response_code, file_path, file_name)
     content_type :json
@@ -80,12 +80,12 @@ class FakeCommonPlatform < Sinatra::Base
     # be referenced from both urls. The easiest way to do this is by
     # rewriting the path in the "id" attribute
     # for the schema based on the requested path
-    file_contents['id'] = url
+    file_contents["id"] = url
     file_contents.to_json
   end
 
   def normalise_file_name(name)
-    name = "api#{name}" unless name.starts_with? 'api'
+    name = "api#{name}" unless name.starts_with? "api"
 
     # apicourtsDefinitions.json => apiCourtsDefinitions.json
     name.chars.map.with_index { |x, i| (x.upcase if i == 3) || x }.join

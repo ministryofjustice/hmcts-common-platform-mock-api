@@ -3,7 +3,7 @@
 class LaaRepresentationOrderRecorder < ApplicationService
   def initialize(params)
     @params = params
-    @schema = JSON.parse(File.open(Rails.root.join('lib/schemas/api/progression.recordRepresentationOrder.json')).read)
+    @schema = JSON.parse(File.open(Rails.root.join("lib/schemas/api/progression.recordRepresentationOrder.json")).read)
     register_dependant_schemas!
   end
 
@@ -23,7 +23,7 @@ class LaaRepresentationOrderRecorder < ApplicationService
     offence.laa_reference
   end
 
-  private
+private
 
   attr_reader :params, :schema
 
@@ -46,7 +46,7 @@ class LaaRepresentationOrderRecorder < ApplicationService
                            :effectiveStartDate,
                            :effectiveEndDate)
                     .merge(statusId: SecureRandom.uuid,
-                           statusDescription: 'FAKE NEWS')
+                           statusDescription: "FAKE NEWS")
   end
 
   def defence_organisation_params
@@ -54,7 +54,7 @@ class LaaRepresentationOrderRecorder < ApplicationService
 
     attributes.deep_transform_keys! { |x| %w[address contact organisation].include?(x) ? "#{x}_attributes" : x }
 
-    attributes.merge(fundingType: 'REPRESENTATION_ORDER',
+    attributes.merge(fundingType: "REPRESENTATION_ORDER",
                      associationStartDate: permitted_params[:effectiveStartDate],
                      associationEndDate: permitted_params[:effectiveEndDate],
                      isAssociatedByLAA: true)
@@ -63,24 +63,24 @@ class LaaRepresentationOrderRecorder < ApplicationService
   def register_dependant_schemas!
     # Since apiCourtsDefinitions.json does not map to the expected directory structure for both the api responses and the model schemas,
     # we are overriding the id, to ensure that the validator can find the definitions without blowing up.
-    courts_definitions = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiCourtsDefinitions.json')).read)
-    courts_definitions['id'] = 'http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json'
-    JSON::Validator.add_schema(JSON::Schema.new(courts_definitions, Addressable::URI.parse(courts_definitions['id'])))
+    courts_definitions = JSON.parse(File.open(Rails.root.join("lib/schemas/global/apiCourtsDefinitions.json")).read)
+    courts_definitions["id"] = "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json"
+    JSON::Validator.add_schema(JSON::Schema.new(courts_definitions, Addressable::URI.parse(courts_definitions["id"])))
 
-    defence_organisation = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiDefenceOrganisation.json')).read)
-    defence_organisation['id'] = 'http://justice.gov.uk/core/courts/external/apiDefenceOrganisation.json'
-    JSON::Validator.add_schema(JSON::Schema.new(defence_organisation, Addressable::URI.parse(defence_organisation['id'])))
+    defence_organisation = JSON.parse(File.open(Rails.root.join("lib/schemas/global/apiDefenceOrganisation.json")).read)
+    defence_organisation["id"] = "http://justice.gov.uk/core/courts/external/apiDefenceOrganisation.json"
+    JSON::Validator.add_schema(JSON::Schema.new(defence_organisation, Addressable::URI.parse(defence_organisation["id"])))
 
-    organisation = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiOrganisation.json')).read)
-    organisation['id'] = 'http://justice.gov.uk/core/courts/external/apiOrganisation.json'
-    JSON::Validator.add_schema(JSON::Schema.new(organisation, Addressable::URI.parse(organisation['id'])))
+    organisation = JSON.parse(File.open(Rails.root.join("lib/schemas/global/apiOrganisation.json")).read)
+    organisation["id"] = "http://justice.gov.uk/core/courts/external/apiOrganisation.json"
+    JSON::Validator.add_schema(JSON::Schema.new(organisation, Addressable::URI.parse(organisation["id"])))
 
-    address = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiAddress.json')).read)
-    address['id'] = 'http://justice.gov.uk/core/courts/external/apiAddress.json'
-    JSON::Validator.add_schema(JSON::Schema.new(address, Addressable::URI.parse(address['id'])))
+    address = JSON.parse(File.open(Rails.root.join("lib/schemas/global/apiAddress.json")).read)
+    address["id"] = "http://justice.gov.uk/core/courts/external/apiAddress.json"
+    JSON::Validator.add_schema(JSON::Schema.new(address, Addressable::URI.parse(address["id"])))
 
-    contact = JSON.parse(File.open(Rails.root.join('lib/schemas/global/apiContactNumber.json')).read)
-    contact['id'] = 'http://justice.gov.uk/core/courts/external/apiContactNumber.json'
-    JSON::Validator.add_schema(JSON::Schema.new(contact, Addressable::URI.parse(contact['id'])))
+    contact = JSON.parse(File.open(Rails.root.join("lib/schemas/global/apiContactNumber.json")).read)
+    contact["id"] = "http://justice.gov.uk/core/courts/external/apiContactNumber.json"
+    JSON::Validator.add_schema(JSON::Schema.new(contact, Addressable::URI.parse(contact["id"])))
   end
 end

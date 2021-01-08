@@ -5,6 +5,6 @@ FactoryBot.define do
     isFeePaid { false }
     isFeeUndertakingAttached { false }
     isFeeExempt { false }
-    paymentReference { 'MyString' }
+    paymentReference { "MyString" }
   end
 end

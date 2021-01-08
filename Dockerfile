@@ -24,7 +24,7 @@ RUN addgroup -g 1000 -S appgroup \
 && adduser -u 1000 -S appuser -G appgroup
 
 # create app directory in conventional, existing dir /usr/src
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app && mkdir -p /usr/src/app/tmp/pids
 WORKDIR /usr/src/app
 
 ######################
@@ -49,6 +49,7 @@ EXPOSE 3000
 
 COPY . .
 
+RUN yarn install
 RUN SECRET_KEY_BASE=fake-key-base bundle exec rails assets:precompile
 
 # non-root/appuser should own only what they need to

@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 
 RSpec.describe LaaRepresentationOrderRecorder do
+  subject(:record_order) { described_class.call(params) }
+
   let(:params) { ActionController::Parameters.new(params_hash) }
   let(:defendant) { FactoryBot.create(:defendant) }
   let(:offence) { defendant.offences.first }
-  let(:status_code) { 'STATUS CODE 999' }
-  let(:application_reference) { 'APPLICATION REFERENCE 998' }
-  let(:status_date) { '2019-12-10' }
-  let(:effective_start_date) { '2019-12-12' }
-  let(:effective_end_date) { '2019-12-20' }
+  let(:status_code) { "STATUS CODE 999" }
+  let(:application_reference) { "APPLICATION REFERENCE 998" }
+  let(:status_date) { "2019-12-10" }
+  let(:effective_start_date) { "2019-12-12" }
+  let(:effective_end_date) { "2019-12-20" }
   let(:defence_organisation_params) do
     {
       organisation: {
-        name: 'Unlimited Solicitors'
+        name: "Unlimited Solicitors",
       },
-      laaContractNumber: 'ZYXWVU'
+      laaContractNumber: "ZYXWVU",
     }
   end
   let(:laa_reference) do
@@ -25,21 +27,19 @@ RSpec.describe LaaRepresentationOrderRecorder do
                       offence: offence)
   end
 
-  subject { described_class.call(params) }
-
-  context 'with invalid params' do
+  context "with invalid params" do
     let(:params_hash) do
-      { random: 'value' }
+      { random: "value" }
     end
 
-    it 'raises an invalid params error' do
-      expect do
-        subject
-      end.to raise_error(Errors::InvalidParams)
+    it "raises an invalid params error" do
+      expect {
+        record_order
+      }.to raise_error(Errors::InvalidParams)
     end
   end
 
-  context 'with valid params' do
+  context "with valid params" do
     let(:params_hash) do
       {
         prosecutionCaseId: defendant.prosecution_case.id,
@@ -50,31 +50,31 @@ RSpec.describe LaaRepresentationOrderRecorder do
         statusDate: status_date,
         effectiveStartDate: effective_start_date,
         effectiveEndDate: effective_end_date,
-        defenceOrganisation: defence_organisation_params
+        defenceOrganisation: defence_organisation_params,
       }
     end
 
-    context 'when an LaaReference does not exist' do
-      it 'creates the LaaReference' do
-        expect { subject }.to change(LaaReference, :count).by(1)
+    context "when an LaaReference does not exist" do
+      it "creates the LaaReference" do
+        expect { record_order }.to change(LaaReference, :count).by(1)
       end
     end
 
-    context 'when a DefenceOrganisation does not exist' do
-      it 'creates the DefenceOrganisation' do
-        expect { subject }.to change(DefenceOrganisation, :count).by(1)
+    context "when a DefenceOrganisation does not exist" do
+      it "creates the DefenceOrganisation" do
+        expect { record_order }.to change(DefenceOrganisation, :count).by(1)
       end
     end
 
-    context 'when the LaaReference exists' do
+    context "when the LaaReference exists" do
       before { laa_reference.save! }
 
-      it 'does not create a new LaaReference' do
-        expect { subject }.to change(LaaReference, :count).by(0)
+      it "does not create a new LaaReference" do
+        expect { record_order }.to change(LaaReference, :count).by(0)
       end
 
-      it 'updates the LaaReference' do
-        subject
+      it "updates the LaaReference" do
+        record_order
         laa_reference.reload
         expect(laa_reference.statusCode).to eq(status_code)
         expect(laa_reference.applicationReference).to eq(application_reference)
@@ -86,57 +86,57 @@ RSpec.describe LaaRepresentationOrderRecorder do
       it { is_expected.to eq laa_reference }
     end
 
-    context 'when the DefenceOrganisation exists' do
+    context "when the DefenceOrganisation exists" do
       let!(:defence_organisation) { FactoryBot.create(:associated_defence_organisation, defendant: defendant) }
       let(:address_hash) do
         {
-          address1: '788 Rau Court',
-          address2: 'Apt. 384',
-          address3: '4324',
-          address4: 'Lake Pamala',
-          address5: 'UK',
-          postcode: 'W1D 2LR'
+          address1: "788 Rau Court",
+          address2: "Apt. 384",
+          address3: "4324",
+          address4: "Lake Pamala",
+          address5: "UK",
+          postcode: "W1D 2LR",
         }
       end
 
       let(:contact_hash) do
         {
-          home: '1-445-317-3241',
-          work: '(314) 470-7790',
-          mobile: '930-170-8637',
-          primaryEmail: 'piper_will@lueilwitzpfeffer.org',
-          secondaryEmail: 'otto.frami@schaefer.co',
-          fax: '648-536-8278 x55542'
+          home: "1-445-317-3241",
+          work: "(314) 470-7790",
+          mobile: "930-170-8637",
+          primaryEmail: "piper_will@lueilwitzpfeffer.org",
+          secondaryEmail: "otto.frami@schaefer.co",
+          fax: "648-536-8278 x55542",
         }
       end
 
       let(:defence_organisation_params) do
         {
           organisation: {
-            name: 'Unlimited Solicitors',
-            incorporationNumber: 'ABCDE',
-            registeredCharityNumber: 'FGHIJ',
+            name: "Unlimited Solicitors",
+            incorporationNumber: "ABCDE",
+            registeredCharityNumber: "FGHIJ",
             address: address_hash,
-            contact: contact_hash
+            contact: contact_hash,
           },
-          laaContractNumber: 'ZYXWVU'
+          laaContractNumber: "ZYXWVU",
         }
       end
 
-      it 'does not create a new DefenceOrganisation' do
-        expect { subject }.to change(DefenceOrganisation, :count).by(0)
+      it "does not create a new DefenceOrganisation" do
+        expect { record_order }.to change(DefenceOrganisation, :count).by(0)
       end
 
-      it 'updates the DefenceOrganisation' do
-        subject
+      it "updates the DefenceOrganisation" do
+        record_order
         defence_organisation.reload
-        expect(defence_organisation.organisation.name).to eq('Unlimited Solicitors')
-        expect(defence_organisation.organisation.incorporationNumber).to eq('ABCDE')
-        expect(defence_organisation.organisation.registeredCharityNumber).to eq('FGHIJ')
+        expect(defence_organisation.organisation.name).to eq("Unlimited Solicitors")
+        expect(defence_organisation.organisation.incorporationNumber).to eq("ABCDE")
+        expect(defence_organisation.organisation.registeredCharityNumber).to eq("FGHIJ")
         expect(defence_organisation.organisation.address).to have_attributes(address_hash)
         expect(defence_organisation.organisation.contact).to have_attributes(contact_hash)
-        expect(defence_organisation.laaContractNumber).to eq('ZYXWVU')
-        expect(defence_organisation.fundingType).to eq('REPRESENTATION_ORDER')
+        expect(defence_organisation.laaContractNumber).to eq("ZYXWVU")
+        expect(defence_organisation.fundingType).to eq("REPRESENTATION_ORDER")
         expect(defence_organisation.associationStartDate).to eq(effective_start_date)
         expect(defence_organisation.associationEndDate).to eq(effective_end_date)
         expect(defence_organisation.isAssociatedByLAA).to eq(true)

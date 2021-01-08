@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'demo_data_helper'
+require_relative "demo_data_helper"
 include DemoDataHelper
 
 namespace :mock do
   namespace :demodata do
-    desc 'create existing demo data'
+    desc "create existing demo data"
     task load: :environment do
       create_prosecution_cases
     end
 
-    desc 'remove existing demo data'
+    desc "remove existing demo data"
     task unload: :environment do
       destroy_prosecution_case(CASE1[:URN])
       destroy_prosecution_case(CASE2[:URN])
@@ -18,11 +18,11 @@ namespace :mock do
   end
 end
 
-CASE1 = { URN: 'TEST12345' }.freeze
-CASE2 = { URN: 'TEST54321' }.freeze
+CASE1 = { URN: "TEST12345" }.freeze
+CASE2 = { URN: "TEST54321" }.freeze
 ICONS = {
   success: "\u{2705}",
-  failure: "\u{274E}"
+  failure: "\u{274E}",
 }.freeze
 
 # create bear minimum reflection of possible
@@ -45,21 +45,22 @@ def create_prosecution_cases
   # create another case with 2 random defendants and jammy dodger
   case2 = create_case_and_defendants(urn: CASE2[:URN], additional_defendant_count: 1)
   create_defendant_for(prosecution_case: case2, person: person)
+  create_cracked_ineffective_trial_for(prosecution_case: case2)
 
   pp case_details_hash(CASE1[:URN])
 end
 
 def create_person
-  print '[CREATE][PERSON]'
+  print "[CREATE][PERSON]"
   person = FactoryBot.create(
     :realistic_person,
-    title: 'MR',
-    firstName: 'Jammy',
-    middleName: '',
-    lastName: 'Dodger',
-    dateOfBirth: '21-MAY-1987'.to_date,
-    gender: 'MALE',
-    nationalInsuranceNumber: 'JC123456A'
+    title: "MR",
+    firstName: "Jammy",
+    middleName: "",
+    lastName: "Dodger",
+    dateOfBirth: "21-MAY-1987".to_date,
+    gender: "MALE",
+    nationalInsuranceNumber: "JC123456A",
   )
   puts " #{ICONS[:success]}"
 
@@ -70,7 +71,7 @@ def create_case_and_defendants(urn:, additional_defendant_count: 1)
   print "[CREATE][PROSECUTION_CASE] #{urn}"
   prosecution_case = FactoryBot.create(
     :realistic_prosecution_case,
-    prosecution_case_identifier: FactoryBot.create(:realistic_prosecution_case_identifier, caseURN: urn)
+    prosecution_case_identifier: FactoryBot.create(:realistic_prosecution_case_identifier, caseURN: urn),
   )
   FactoryBot.create_list(:realistic_defendant, additional_defendant_count, prosecution_case: prosecution_case)
   puts " #{ICONS[:success]}"
@@ -99,10 +100,10 @@ def create_pleas_for(defendant:)
   pc = defendant.prosecution_case
 
   defendant.offences.each do |offence|
-    offence.pleas.create(pleaDate: pc.hearings.first.hearing_days.first.sittingDay,
-                         pleaValue: %w[NO_PLEA NOT_GUILTY].sample, hearing: pc.hearings.first)
-    offence.pleas.create(pleaDate: pc.hearings.last.hearing_days.last.sittingDay,
-                         pleaValue: %w[GUILTY UNFIT_TO_PLEAD].sample, hearing: pc.hearings.last)
+    offence.pleas.create!(pleaDate: pc.hearings.first.hearing_days.first.sittingDay,
+                          pleaValue: %w[NO_PLEA NOT_GUILTY].sample, hearing: pc.hearings.first)
+    offence.pleas.create!(pleaDate: pc.hearings.last.hearing_days.last.sittingDay,
+                          pleaValue: %w[GUILTY UNFIT_TO_PLEAD].sample, hearing: pc.hearings.last)
     offence.save!
   end
   puts " #{ICONS[:success]}"
@@ -128,7 +129,7 @@ def create_hearings_for(prosecution_case:, defendant:)
     puts " #{ICONS[:success]}"
 
     print "[CREATE][HEARINGS][HEARING_DAYS] for #{urn}"
-    base_date = '2019-10-23 00:00:00'.to_datetime
+    base_date = "2019-10-23 00:00:00".to_datetime
     hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 1.day + 8.hours + 30.minutes).to_s)
     hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 2.days + 10.hours + 45.minutes).to_s)
     hearing.save!
@@ -148,6 +149,18 @@ def create_hearings_for(prosecution_case:, defendant:)
   end
 end
 
+def create_cracked_ineffective_trial_for(prosecution_case:)
+  print "[CREATE][HEARINGS][CRACKED_INEFFECTIVE_TRIAL] for #{prosecution_case.prosecution_case_identifier.caseURN}"
+  raise "Hearing not found" unless prosecution_case.hearings.any?
+
+  prosecution_case.hearings.last.tap do |hearing|
+    hearing.cracked_ineffective_trial = FactoryBot.create(:realistic_cracked_ineffective_trial)
+    hearing.save!
+  end
+
+  puts " #{ICONS[:success]}"
+end
+
 def destroy_prosecution_case(case_urn)
   pcases = prosecution_cases_by_reference(case_urn)
   puts pcases.empty? ? "No cases matching #{case_urn} found #{ICONS[:failure]}" : "Cases matching #{case_urn} found #{ICONS[:success]}"
@@ -159,12 +172,12 @@ def destroy_prosecution_case(case_urn)
       next unless defended_item
 
       print "[DESTROY][DEFENDED ITEM] #{humanize_defended_item(defended_item)}"
-      defended_item.destroy
+      defended_item.destroy!
       puts " #{ICONS[:success]}"
     end
 
     print "[DESTROY][PROSECUTION_CASE] #{humanize_prosecution_case(pcase)}"
-    pcase.destroy
+    pcase.destroy!
     puts " #{ICONS[:success]}"
   end
 end

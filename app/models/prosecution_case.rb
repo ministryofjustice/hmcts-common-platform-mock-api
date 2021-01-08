@@ -15,7 +15,7 @@ class ProsecutionCase < ApplicationRecord
   pg_search_scope :search,
                   associated_against: { prosecution_case_identifier: :caseURN },
                   using: {
-                    tsearch: { prefix: true }
+                    tsearch: { prefix: true },
                   }
 
   has_many :defendants, dependent: :destroy, inverse_of: :prosecution_case

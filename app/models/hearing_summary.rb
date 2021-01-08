@@ -22,14 +22,14 @@ class HearingSummary
     end
   end
 
-  private
+private
 
   def hearing_days_builder
     hearing.hearing_days.map do |hearing_day|
       [
         [:sittingDay, hearing_day.sittingDay],
         [:listingSequence, hearing_day.listingSequence],
-        [:listedDurationMinutes, hearing_day.listedDurationMinutes]
+        [:listedDurationMinutes, hearing_day.listedDurationMinutes],
       ].to_h
     end
   end
@@ -38,6 +38,6 @@ class HearingSummary
     # `defendants` is a required property on the schema, however, it is optional on Hearing.
     # We will need to determine where this is derived from.
     # Till then, to prevent our specs from breaking we render an array containing a single uuid in case the defendant ids are unavailable.
-    hearing.defendant_attendances.pluck(:defendant_id).presence || ['ecca893f-0928-4fc6-ae50-6a8794b78c5c']
+    hearing.defendant_attendances.pluck(:defendant_id).presence || %w[ecca893f-0928-4fc6-ae50-6a8794b78c5c]
   end
 end

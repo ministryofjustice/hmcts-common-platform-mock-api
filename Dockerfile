@@ -49,6 +49,7 @@ EXPOSE 3000
 
 COPY . .
 
+RUN yarn install
 RUN SECRET_KEY_BASE=fake-key-base bundle exec rails assets:precompile
 
 # non-root/appuser should own only what they need to

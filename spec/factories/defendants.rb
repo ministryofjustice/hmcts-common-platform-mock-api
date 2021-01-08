@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :defendant do
     trait :with_next_hearing do
       transient do
-        next_hearing_date { '2025-05-04' }
+        next_hearing_date { "2025-05-04" }
       end
       after(:build) do |defendant, evaluator|
         next_hearing = build(:next_hearing, listedStartDateTime: evaluator.next_hearing_date)
@@ -14,17 +14,17 @@ FactoryBot.define do
     end
     prosecution_case
     masterDefendantId { SecureRandom.uuid }
-    courtProceedingsInitiated { '2019-10-17 14:06:13' }
+    courtProceedingsInitiated { "2019-10-17 14:06:13" }
     numberOfPreviousConvictionsCited { 1 }
-    prosecutionAuthorityReference { 'MyString' }
-    witnessStatement { 'MyString' }
-    witnessStatementWelsh { 'MyString' }
-    mitigation { 'MyString' }
-    mitigationWelsh { 'MyString' }
+    prosecutionAuthorityReference { "MyString" }
+    witnessStatement { "MyString" }
+    witnessStatementWelsh { "MyString" }
+    mitigation { "MyString" }
+    mitigationWelsh { "MyString" }
     association :defendable, factory: :person_defendant
-    croNumber { 'MyString' }
-    pncId { 'MyString' }
-    mergedProsecutionCaseReference { 'MyString' }
+    croNumber { "MyString" }
+    pncId { "MyString" }
+    mergedProsecutionCaseReference { "MyString" }
     factory :defendant_as_legal_entity do
       association :defendable, factory: :legal_entity_defendant
     end
@@ -47,7 +47,7 @@ FactoryBot.define do
     end
   end
 
-  factory :realistic_defendant, class: 'Defendant' do
+  factory :realistic_defendant, class: "Defendant" do
     association :prosecution_case, factory: :realistic_prosecution_case
     numberOfPreviousConvictionsCited { Faker::Number.positive.to_i }
     prosecutionAuthorityReference { Faker::Lorem.word }

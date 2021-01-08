@@ -6,7 +6,7 @@ FactoryBot.define do
     firstName { Faker::Name.first_name }
     middleName { Faker::Name.first_name }
     lastName { Faker::Name.last_name }
-    status { 'Junior counsel' }
+    status { "Junior counsel" }
 
     transient do
       defendant { nil }
@@ -18,7 +18,7 @@ FactoryBot.define do
     end
   end
 
-  factory :realistic_defence_counsel, class: 'DefenceCounsel' do
+  factory :realistic_defence_counsel, class: "DefenceCounsel" do
     title { Person::TITLES.sample }
     firstName { Faker::Name.first_name }
     middleName { Faker::Name.middle_name }

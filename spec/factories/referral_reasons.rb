@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :referral_reason do
-    description { 'Random String' }
+    description { "Random String" }
     defendantId { SecureRandom.uuid }
   end
 end

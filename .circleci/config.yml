@@ -4,7 +4,7 @@ orbs:
   aws-ecr: circleci/aws-ecr@4.0.1
   aws-eks: circleci/aws-eks@0.2.1
   kubernetes: circleci/kubernetes@0.7.0
-  helm: circleci/helm@1.0.0
+  helm: circleci/helm@1.1.2
 
 commands:
   checkout_and_decrypt:
@@ -27,6 +27,15 @@ jobs:
           POSTGRES_DB: hmcts_common_platform_api_test
     steps:
       - checkout
+      - run:
+          name: "Update Node.js and npm"
+          command: |
+            curl -sSL "https://nodejs.org/dist/v12.19.1/node-v12.19.1-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v12.19.1-linux-x64/bin/node
+            curl https://www.npmjs.com/install.sh | sudo bash
+      - run:
+          name: Check current version of node
+          command: node -v
+
 
       - restore_cache:
           keys:

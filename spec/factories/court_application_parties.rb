@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :court_application_party do
     id { SecureRandom.uuid }
-    synonym { 'MyString' }
+    synonym { "MyString" }
 
     factory :court_application_party_with_relationships do
       association :person, factory: :person_with_relationships

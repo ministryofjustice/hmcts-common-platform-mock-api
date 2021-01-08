@@ -3,9 +3,9 @@
 FactoryBot.define do
   factory :prosecuting_authority do
     prosecutionAuthorityId { SecureRandom.uuid }
-    prosecutionAuthorityCode { 'MyString' }
-    name { 'MyString' }
-    accountCode { 'MyString' }
+    prosecutionAuthorityCode { "MyString" }
+    name { "MyString" }
+    accountCode { "MyString" }
 
     factory :prosecuting_authority_with_relationships do
       address

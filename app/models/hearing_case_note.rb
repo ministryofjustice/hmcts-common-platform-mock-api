@@ -2,7 +2,7 @@
 
 class HearingCaseNote < ApplicationRecord
   include BuilderMappable
-  belongs_to :court_clerk, class_name: 'DelegatedPowers'
+  belongs_to :court_clerk, class_name: "DelegatedPowers"
   belongs_to :hearing
   has_many :prosecution_case_hearing_case_notes
   has_many :prosecution_cases, through: :prosecution_case_hearing_case_notes

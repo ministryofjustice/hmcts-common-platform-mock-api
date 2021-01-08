@@ -19,8 +19,8 @@ class ProsecutionCase < ApplicationRecord
                   }
 
   has_many :defendants, dependent: :destroy, inverse_of: :prosecution_case
-  has_many :person_only_defendants, -> { people_only }, class_name: 'Defendant'
-  has_many :legal_entity_only_defendants, -> { legal_entity_only }, class_name: 'Defendant'
+  has_many :person_only_defendants, -> { people_only }, class_name: "Defendant"
+  has_many :legal_entity_only_defendants, -> { legal_entity_only }, class_name: "Defendant"
   has_many :markers, dependent: :destroy
   has_many :split_prosecutor_case_references, dependent: :destroy
   has_many :linked_prosecution_cases, dependent: :destroy

@@ -5,7 +5,7 @@ class PersonDefendant < ApplicationRecord
 
   belongs_to :person
   belongs_to :bail_status, optional: true
-  belongs_to :employer_organisation, class_name: 'Organisation', optional: true
+  belongs_to :employer_organisation, class_name: "Organisation", optional: true
 
   validates :person, presence: true
   validates :driverLicenceCode, inclusion: LICENCE_CODES

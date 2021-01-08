@@ -1,13 +1,13 @@
 <div class="nested-fields">
   <div class="field">
     <%= f.hidden_field :hearing_id, value: @hearing.id %>
-    <%= f.label :motReasonId, "MOT Reason ID" %>
-    <%= f.text_field :motReasonId %>
+    <%= f.label :motReasonDescription, 'MOT Reason Description' %>
+    <%= f.select :motReasonDescription, AllocationDecision::VALUES, include_blank: true %>
   </div>
 
   <div class="field">
-    <%= f.label :motReasonDescription, 'MOT Reason Description' %>
-    <%= f.select :motReasonDescription, AllocationDecision::VALUES, include_blank: true %>
+    <%= f.label :motReasonId, "MOT Reason ID" %>
+    <%= f.text_field :motReasonId %>
   </div>
 
   <div class="field">

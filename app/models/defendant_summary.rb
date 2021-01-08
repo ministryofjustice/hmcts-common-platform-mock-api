@@ -35,7 +35,7 @@ class DefendantSummary
     defendant.judicial_results.order(created_at: :asc).last&.next_hearing&.listedStartDateTime
   end
 
-  private
+private
 
   def proceedings_concluded?
     defendant.offences.map(&:isDisposed).all? true

@@ -25,18 +25,18 @@ RSpec.describe DefendantSummary, type: :model do
     it_has_behaviour "conforming to valid schema"
   end
 
-  describe '#date_of_next_hearing ' do
+  describe "#date_of_next_hearing " do
     subject { defendant_summary.date_of_next_hearing }
 
     it { is_expected.to be_blank }
 
-    context 'date_of_next_hearing exists' do
+    context "when date_of_next_hearing exists" do
       let(:defendant) do
         create(:defendant, :with_next_hearing,
-               next_hearing_date: '2019-01-10')
+               next_hearing_date: "2019-01-10")
       end
 
-      it { is_expected.to eq('2019-01-10') }
+      it { is_expected.to eq("2019-01-10") }
     end
   end
 end

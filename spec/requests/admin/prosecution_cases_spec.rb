@@ -35,6 +35,12 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
       get admin_prosecution_cases_url, headers: headers
       expect(response).to be_successful
     end
+
+    context "when a query parameter is provided"
+    it "renders a successful response " do
+      get admin_prosecution_cases_url, params: { query: "test" }, headers: headers
+      expect(response).to be_successful
+    end
   end
 
   describe "GET /show" do

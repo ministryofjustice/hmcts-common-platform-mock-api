@@ -2,6 +2,13 @@
 
 <h1>Prosecution Cases</h1>
 
+<%= form_with local: true, method: :get do |form| %>
+  <%= form.label :query, "Search for:" %>
+  <%= form.text_field :query, value: params[:query] %>
+  <%= form.submit "Search" %>
+  <%= link_to  "Show all", admin_prosecution_cases_path %>
+<% end %>
+
 <table>
   <thead>
     <tr>

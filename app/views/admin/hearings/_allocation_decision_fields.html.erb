@@ -6,13 +6,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :motReasonId, "MOT Reason ID" %>
-    <%= f.text_field :motReasonId %>
-  </div>
-
-  <div class="field">
     <%= f.label :motReasonCode, 'MOT Reason Code' %>
-    <%= f.text_field :motReasonCode %>
+    <%= f.text_field :motReasonDescription, AllocationDecision::VALUES %>
   </div>
 
   <div class="field">

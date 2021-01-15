@@ -2,12 +2,12 @@
   <div class="field">
     <%= f.hidden_field :hearing_id, value: @hearing.id %>
     <%= f.label :motReasonDescription, 'MOT Reason Description' %>
-    <%= f.select :motReasonDescription, AllocationDecision::VALUES, include_blank: true %>
+    <%= f.collection_select :motReasonDescription, ModeOfTrialReason.all, :reason_code, :reason_description %>
   </div>
 
   <div class="field">
     <%= f.label :motReasonCode, 'MOT Reason Code' %>
-    <%= f.text_field :motReasonDescription, AllocationDecision::VALUES %>
+    <%= f.text_field :motReasonCode %>
   </div>
 
   <div class="field">

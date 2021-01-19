@@ -2,12 +2,20 @@
   <div class="field">
     <%= f.hidden_field :hearing_id, value: @hearing.id %>
     <%= f.label :motReasonDescription, 'MOT Reason Description' %>
-    <%= f.collection_select :motReasonDescription, ModeOfTrialReason.all, :reason_code, :reason_description %>
+    <%= f.collection_select :motReasonDescription, ModeOfTrialReason.all, :reason_code, :reason_description, {:prompt=>true}, {class: 'mot-desc'} %>
   </div>
+
+  <script type="text/javascript">
+    const reasonDescriptionSelect = document.querySelector('.mot-desc')
+    reasonDescriptionSelect.addEventListener('change', (event) => {
+      const reasonCode = document.querySelector('.mot-code')
+      reasonCode.value = event.target.value
+    })
+  </script>
 
   <div class="field">
     <%= f.label :motReasonCode, 'MOT Reason Code' %>
-    <%= f.text_field :motReasonCode %>
+    <%= f.text_field :motReasonCode, class: 'mot-code' %>
   </div>
 
   <div class="field">

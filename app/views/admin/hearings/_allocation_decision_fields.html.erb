@@ -2,7 +2,7 @@
   <div class="field">
     <%= f.hidden_field :hearing_id, value: @hearing.id %>
     <%= f.label :motReasonDescription, 'MOT Reason Description' %>
-    <%= f.collection_select :motReasonDescription, ModeOfTrialReason.all, :reason_code, :reason_description, {:prompt=>true}, {class: 'mot-desc'} %>
+    <%= f.collection_select :motReasonDescription, ModeOfTrialReason.all, :reason_code, :reason_description, {}, {class: 'mot-desc'} %>
   </div>
 
   <script type="text/javascript">
@@ -22,5 +22,6 @@
     <%= f.label :allocationDecisionDate, 'Allocation Decision Date' %>
     <%= f.text_field :allocationDecisionDate %>
   </div>
+
   <%= link_to_remove_association "remove allocation decision", f %>
 </div>

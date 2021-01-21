@@ -1,17 +1,11 @@
 <div class="nested-fields">
-  <div class="field">
+  <div class="field mot-desc">
     <%= f.hidden_field :hearing_id, value: @hearing.id %>
-    <%= f.label :motReasonDescription, 'MOT Reason Description' %>
-    <%= f.collection_select :motReasonDescription, ModeOfTrialReason.all, :reason_code, :reason_description, {}, {class: 'mot-desc'} %>
-  </div>
+    <%= f.label :motReasonDescription, "MOT Reason Description" %>
+    <%= f.select :motReasonDescription, options_for_select(ModeOfTrialReason.all.map{ |mot| [mot.reason_description,
+    { "data-mot-code": mot.reason_code}]}) %>
 
-  <script type="text/javascript">
-    const reasonDescriptionSelect = document.querySelector('.mot-desc')
-    reasonDescriptionSelect.addEventListener('change', (event) => {
-      const reasonCode = document.querySelector('.mot-code')
-      reasonCode.value = event.target.value
-    })
-  </script>
+  </div>
 
   <div class="field">
     <%= f.label :motReasonCode, 'MOT Reason Code' %>

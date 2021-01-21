@@ -4,8 +4,17 @@
     <%= f.label :motReasonDescription, "MOT Reason Description" %>
     <%= f.select :motReasonDescription, options_for_select(ModeOfTrialReason.all.map{ |mot| [mot.reason_description,
     { "data-mot-code": mot.reason_code}]}) %>
-
   </div>
+
+  <script type="text/javascript">
+  const motDescription = document.querySelector('.mot-desc select')
+  motDescription.addEventListener('change', (event) => {
+    const selectedOption = event.target.options[event.target.selectedIndex]
+    const motCode = selectedOption.dataset.motCode
+    const reasonCode = document.querySelector('.mot-code')
+    reasonCode.value = motCode
+  })
+  </script>
 
   <div class="field">
     <%= f.label :motReasonCode, 'MOT Reason Code' %>

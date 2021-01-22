@@ -18,6 +18,5 @@ require('@rails/ujs').start()
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import "@kollegorna/cocoon-vanilla-js";
-import "../javascript/allocation_decision.js"
 
 console.log('Hello World from Webpacker')

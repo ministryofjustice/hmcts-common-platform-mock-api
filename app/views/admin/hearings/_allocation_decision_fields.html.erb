@@ -3,7 +3,7 @@
     <%= f.hidden_field :hearing_id, value: @hearing.id %>
     <%= f.label :motReasonDescription, "MOT Reason Description" %>
     <%= f.select :motReasonDescription, options_for_select(ModeOfTrialReason.all.map{ |mot| [mot.reason_description,
-    { "data-mot-code": mot.reason_code}]}) %>
+    { "data-mot-code": mot.reason_code}]}, @hearing.offences[0].allocation_decisions[0]['motReasonDescription'] || nil) %>
   </div>
 
   <script type="text/javascript">

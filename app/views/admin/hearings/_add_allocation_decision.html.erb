@@ -1,0 +1,5 @@
+<%= fields_for @offence do |offence_form| %>
+  <%= offence_form.fields_for :allocation_decisions do |allocation_decision_form| %>
+    <%= render 'allocation_decision_fields', f: allocation_decision_form %>
+  <% end %>
+<% end %>

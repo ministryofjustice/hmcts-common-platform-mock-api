@@ -1,0 +1,18 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.hidden_field :hearing_id, value: @hearing.id %>
+    <%= f.label :motReasonDescription, 'MOT Reason Description' %>
+    <%= f.select :motReasonDescription, AllocationDecision::DESCRIPTIONS, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :motReasonCode, 'MOT Reason Code' %>
+    <%= f.select :motReasonCode, AllocationDecision::CODES, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :allocationDecisionDate, 'Allocation Decision Date' %>
+    <%= f.text_field :allocationDecisionDate %>
+  </div>
+  <%= link_to_remove_association "remove allocation decision", f %>
+</div>

@@ -39,6 +39,7 @@ def create_prosecution_cases
   case1 = create_case_and_defendants(urn: CASE1[:URN], additional_defendant_count: 2)
   defendant1 = create_defendant_for(prosecution_case: case1, person: person)
   create_allocation_decision_for(defendant: defendant1)
+  create_judicial_results_for(defendant: defendant1)
   create_pleas_for(defendant: defendant1)
   create_hearings_for(prosecution_case: case1, defendant: defendant1)
 
@@ -91,6 +92,14 @@ def create_allocation_decision_for(defendant:)
   print "[CREATE][DEFENDANT][OFFENCE][ALLOCATION_DECISION] #{defendant.prosecution_case.prosecution_case_identifier.caseURN}"
   offence = defendant.offences.first
   offence.allocation_decisions << FactoryBot.create(:realistic_allocation_decision)
+  offence.save!
+  puts " #{ICONS[:success]}"
+end
+
+def create_judicial_results_for(defendant:)
+  print "[CREATE][DEFENDANT][OFFENCE][JUDICIAL_RESULT] #{defendant.prosecution_case.prosecution_case_identifier.caseURN}"
+  offence = defendant.offences.first
+  offence.judicial_results << FactoryBot.create(:judicial_result)
   offence.save!
   puts " #{ICONS[:success]}"
 end

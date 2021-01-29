@@ -34,10 +34,6 @@ FactoryBot.define do
     pendingCBPW { false }
     civilOffence { false }
 
-    after(:build) do |offence|
-      offence.judicial_results << build(:judicial_result_with_relationships)
-    end
-
     factory :offence_with_relationships do
       association :custody_time_limit, factory: :custody_time_limit
       association :offence_facts, factory: :offence_facts

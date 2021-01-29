@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         member do
           post ":offence_id/add_plea" => "hearings#add_plea", as: :add_plea
           post ":offence_id/add_allocation_decision" => "hearings#add_allocation_decision", as: :add_allocation_decision
+          post ":offence_id/add_judicial_result" => "hearings#add_judicial_result", as: :add_judicial_result
         end
       end
     end

@@ -136,4 +136,19 @@ RSpec.describe "/admin/hearings", type: :request do
       expect(response).to redirect_to(edit_admin_hearing_url(hearing))
     end
   end
+
+  describe "GET /add_judicial_result" do
+    let(:offence) { prosecution_case.defendants.first.offences.first }
+
+    it "creates a new judicial result" do
+      expect {
+        post add_judicial_result_admin_hearing_url(hearing, offence), headers: headers
+      }.to change(offence.judicial_results, :count).by(1)
+    end
+
+    it "redirects to the edit hearings page" do
+      post add_judicial_result_admin_hearing_url(hearing, offence), headers: headers
+      expect(response).to redirect_to(edit_admin_hearing_url(hearing))
+    end
+  end
 end

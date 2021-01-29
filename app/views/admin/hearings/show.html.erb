@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Hearing <%= @hearing.id %></h1>
+<h1>Hearing <%= @hearing.id %> </h1>
 
-<h2><%= @hearing.court_centre.name %></h2>
+<h2>Location</h2>
+<li><%= @hearing.court_centre.name %></li>
 
 <h2>Days</h2>
 <ol>
@@ -10,6 +11,46 @@
   <li><%= hearing_day.sittingDay.to_date %></li>
 <% end %>
 </ol>
+
+<h2>Defendants</h2>
+<ol>
+<% @hearing.defendants.each do |defendant| %>
+  <li><%= defendant.name %></li>
+<% end %>
+</ol>
+
+<h2>Offences</h2>
+<ol>
+<% @hearing.defendants.each do |defendant| %>
+  <% defendant.offences.each do |offence| %>
+    <li><%= offence.offenceTitle %></li>
+  <% end %>
+<% end %>
+</ol>
+
+<h2>Pleas</h2>
+<ol>
+<% @hearing.defendants.each do |defendant| %>
+  <% defendant.offences.each do |offence| %>
+    <% offence.pleas.each do |plea| %>
+      <li><%= plea.pleaValue %></li>
+    <% end %>
+  <% end %>
+<% end %>
+</ol>
+
+<h2>Judicial Results</h2>
+<ol>
+<% @hearing.defendants.each do |defendant| %>
+  <% defendant.offences.each do |offence| %>
+    <% offence.judicial_results.each do |judicial_result| %>
+      <li><%= judicial_result %></li>
+    <% end %>
+  <% end %>
+<% end %>
+</ol>
+
+
 
 <%= link_to 'Edit', edit_admin_hearing_path(@hearing) %> |
 <%= link_to 'Back', admin_prosecution_case_path(@prosecution_case) %>

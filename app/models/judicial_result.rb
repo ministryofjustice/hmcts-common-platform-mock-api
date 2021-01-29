@@ -9,11 +9,12 @@ class JudicialResult < ApplicationRecord
   belongs_to :delegated_powers, optional: true
   belongs_to :four_eyes_approval, class_name: "DelegatedPowers", optional: true
   belongs_to :next_hearing, optional: true
+  belongs_to :hearing
+  belongs_to :offence
 
   has_many :user_groups
   has_many :judicial_result_prompts, dependent: :destroy
 
-  validates :orderedHearingId, presence: true
   validates :label, presence: true
   validates :isAdjournmentResult, inclusion: [true, false]
   validates :isFinancialResult, inclusion: [true, false]
@@ -29,7 +30,7 @@ class JudicialResult < ApplicationRecord
     Jbuilder.new do |judicial_result|
       judicial_result.judicialResultId judicialResultId
       judicial_result.judicialResultTypeId judicialResultTypeId
-      judicial_result.orderedHearingId orderedHearingId
+      judicial_result.orderedHearingId hearing_id
       judicial_result.label label
       judicial_result.welshLabel welshLabel
       judicial_result.isAdjournmentResult isAdjournmentResult

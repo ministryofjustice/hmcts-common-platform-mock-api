@@ -101,66 +101,36 @@ module Admin
     end
 
     def offences_attributes
-      [:id,
-       :offenceDefinitionId,
-       :offenceCode,
-       :offenceTitle,
-       :offenceTitleWelsh,
-       :offenceLegislation,
-       :offenceLegislationWelsh,
-       :modeOfTrial,
-       :wording,
-       :wordingWelsh,
-       :startDate,
-       :endDate,
-       :arrestDate,
-       :chargeDate,
-       :dateOfInformation,
-       :orderIndex,
-       :count,
-       :convictionDate,
-       :aquittalDate,
-       :isDisposed,
-       :isDiscontinued,
-       :isIntroduceAfterInitialProceedings,
-       :splitProsecutorCaseReference,
-       :mergedProsecutionCaseReference,
-       :dvlaCode,
-       :laidDate,
-       :proceedingsConcluded,
-       :pendingCBPW,
-       :civilOffence,
-       :_destroy,
-       { judicial_results_attributes: judicial_results_attributes }]
-    end
-
-    def judicial_results_attributes
-      %i[
-        id
-        judicialResultId
-        judicialResultTypeId
-        orderedHearingId
-        label
-        welshLabel
-        isAdjournmentResult
-        isFinancialResult
-        isConvictedResult
-        isAvailableForCourtExtract
-        isDeleted
-        amendmentReasonId
-        amendmentReason
-        amendmentDate
-        qualifier
-        resultText
-        cjsCode
-        rank
-        orderedDate
-        postHearingCustodyStatus
-        lastSharedDateTime
-        terminatesOffenceProceedings
-        approvedDate
-        category
-      ]
+      %i[id
+         offenceDefinitionId
+         offenceCode
+         offenceTitle
+         offenceTitleWelsh
+         offenceLegislation
+         offenceLegislationWelsh
+         modeOfTrial
+         wording
+         wordingWelsh
+         startDate
+         endDate
+         arrestDate
+         chargeDate
+         dateOfInformation
+         orderIndex
+         count
+         convictionDate
+         aquittalDate
+         isDisposed
+         isDiscontinued
+         isIntroduceAfterInitialProceedings
+         splitProsecutorCaseReference
+         mergedProsecutionCaseReference
+         dvlaCode
+         laidDate
+         proceedingsConcluded
+         pendingCBPW
+         civilOffence
+         _destroy]
     end
   end
 end

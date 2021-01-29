@@ -3,7 +3,7 @@
 module Admin
   class HearingsController < Admin::ApplicationController
     before_action :set_prosecution_case, only: %i[new create]
-    before_action :set_hearing, only: %i[show edit update destroy add_plea add_allocation_decision]
+    before_action :set_hearing, only: %i[show edit update destroy add_plea add_allocation_decision add_judicial_result]
 
     def show; end
 
@@ -48,6 +48,37 @@ module Admin
       redirect_to edit_admin_hearing_url(@hearing), notice: "Allocation decision was successfully added."
     end
 
+    def add_judicial_result
+      @offence = Offence.find(params[:offence_id])
+      @offence.judicial_results.create!(
+        judicialResultId: SecureRandom.uuid,
+        judicialResultTypeId: SecureRandom.uuid,
+        orderedHearingId: SecureRandom.uuid,
+        label: Faker::Lorem.word,
+        welshLabel: Faker::Lorem.word,
+        isAdjournmentResult: Faker::Boolean.boolean,
+        isFinancialResult: Faker::Boolean.boolean,
+        isConvictedResult: Faker::Boolean.boolean,
+        isAvailableForCourtExtract: Faker::Boolean.boolean,
+        isDeleted: Faker::Boolean.boolean,
+        amendmentReasonId: SecureRandom.uuid,
+        amendmentReason: Faker::Lorem.word,
+        amendmentDate: Faker::Date.backward,
+        qualifier: Faker::Lorem.word,
+        resultText: Faker::Lorem.word,
+        cjsCode: Faker::Number.number(digits: 4),
+        postHearingCustodyStatus: %w[A B C L P R S U].sample,
+        rank: Faker::Number.number(digits: 1),
+        orderedDate: Faker::Date.backward,
+        lastSharedDateTime: Faker::Date.backward,
+        terminatesOffenceProceedings: Faker::Boolean.boolean,
+        approvedDate: Faker::Date.backward,
+        category: %w[FINAL INTERMEDIARY ANCILLARY].sample,
+        hearing: @hearing,
+      )
+      redirect_to edit_admin_hearing_url(@hearing), notice: "Judicial result was successfully added."
+    end
+
   private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -84,7 +115,49 @@ module Admin
     end
 
     def offences_attributes
-      [:id, { pleas_attributes: %i[id hearing_id pleaValue pleaDate _destroy] }, { allocation_decisions_attributes: %i[id hearing_id allocationDecisionDate motReasonId motReasonCode motReasonDescription _destroy] }]
+      [
+        :id,
+        { pleas_attributes: %i[id hearing_id pleaValue pleaDate _destroy] },
+        { allocation_decisions_attributes:
+          %i[
+            id
+            hearing_id
+            allocationDecisionDate
+            motReasonId
+            motReasonCode
+            motReasonDescription
+            _destroy
+          ] },
+        { judicial_results_attributes:
+          %i[
+            id
+            hearing_id
+            judicialResultId
+            orderedHearingId
+            judicialResultTypeId
+            label
+            welshLabel
+            isAdjournmentResult
+            isFinancialResult
+            isConvictedResult
+            isAvailableForCourtExtract
+            isDeleted
+            amendmentReasonId
+            amendmentReason
+            amendmentDate
+            qualifier
+            resultText
+            cjsCode:
+            postHearingCustodyStatus
+            rank:
+            orderedDate
+            lastSharedDateTime
+            terminatesOffenceProceedings
+            approvedDate
+            category
+            _destroy
+          ] },
+      ]
     end
   end
 end

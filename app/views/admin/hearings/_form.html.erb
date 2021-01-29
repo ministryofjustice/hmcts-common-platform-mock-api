@@ -69,7 +69,7 @@
             <%= offence.fields_for :pleas, offence.object.pleas.where(hearing: hearing) do |plea| %>
               <%= render 'plea_fields', f: plea %>
             <% end %>
-            <% if offence.object.pleas.where(hearing: hearing).size == 0 %>
+            <% if offence.object.pleas.where(hearing: hearing).empty? %>
               <div class="links">
                 <%= link_to 'add plea', add_plea_admin_hearing_path(hearing, offence.object), method: :post %>
               </div>
@@ -79,9 +79,19 @@
             <%= offence.fields_for :allocation_decisions, offence.object.allocation_decisions.where(hearing: hearing) do |allocation_decision| %>
               <%= render 'allocation_decision_fields', f: allocation_decision %>
             <% end %>
-            <% if offence.object.allocation_decisions.where(hearing: hearing).size == 0 %>
+            <% if offence.object.allocation_decisions.where(hearing: hearing).empty? %>
               <div class="links">
                 <%= link_to 'add allocation decision', add_allocation_decision_admin_hearing_path(hearing, offence.object), method: :post %>
+              </div>
+            <% end %>
+          </div>
+          <div id="defendant-offences-<%= offence.object.id %>">
+            <%= offence.fields_for :judicial_results, offence.object.judicial_results.where(hearing: hearing) do |judicial_result| %>
+              <%= render 'judicial_result_fields', f: judicial_result %>
+            <% end %>
+            <% if offence.object.judicial_results.where(hearing: hearing).empty? %>
+              <div class="links">
+                <%= link_to 'add judicial result', add_judicial_result_admin_hearing_path(hearing, offence.object), method: :post %>
               </div>
             <% end %>
           </div>

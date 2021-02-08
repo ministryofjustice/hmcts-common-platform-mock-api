@@ -72,9 +72,19 @@ module Admin
                                                :breachProceedingsPending,
                                                :appealProceedingsPending,
                                                prosecution_case_identifier_attributes: prosecution_case_identifier_attributes,
-                                               hearings_attributes: hearings_attributes,
-                                               defendants_attributes: defendant_attributes)
+                                               hearings_attributes: hearings_attributes,  
+                                               defendants_attributes: defendant_attributes,
+                                              )
     end
+
+    def next_hearing_attributes
+      [:listedStartDateTime,
+       :jurisdictionType,
+       :estimatedMinutes,
+       :hearingLanguage,
+       :court_centre_id,
+       { hearing_type_attributes: %i[id description] }]
+    end	      
 
     def defendant_attributes
       [:id,
@@ -209,7 +219,7 @@ module Admin
         terminatesOffenceProceedings
         approvedDate
         category
-      ]
+      ] << { next_hearing_attributes: next_hearing_attributes }
     end
   end
 end

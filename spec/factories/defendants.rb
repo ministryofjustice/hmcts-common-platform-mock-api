@@ -71,7 +71,7 @@ FactoryBot.define do
                                                 Faker::Number.between(from: 0, to: 3))
       defendant.defendant_aliases << build_list(:realistic_defendant_alias,
                                                 Faker::Number.between(from: 0, to: 3))
-      defendant.judicial_results << build_list(:realistic_judicial_result,
+      defendant.judicial_results << build_list(:judicial_result_with_relationships,
                                                Faker::Number.between(from: 0, to: 3))
       defendant.markers << build_list(:realistic_marker,
                                       Faker::Number.between(from: 0, to: 3))

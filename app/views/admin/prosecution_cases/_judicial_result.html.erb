@@ -90,3 +90,37 @@
   <%= judicial_result.label :category %>
   <%= judicial_result.select :category, JudicialResult::CATEGORIES %>
 </div>
+
+</div>
+
+  <h3>Next Hearing</h3>
+
+  <%= judicial_result.fields_for :next_hearing do |next_hearing| %>
+    <div class="field">
+      <%= next_hearing.label :listedStartDateTime %>
+      <%= next_hearing.text_field :listedStartDateTime %>
+    </div>
+    <div class="field">
+      <%= next_hearing.label :jurisdictionType %>
+      <%= next_hearing.text_field :jurisdictionType %>
+    </div>
+    <div class="field">
+      <%= next_hearing.label :estimatedMinutes %>
+      <%= next_hearing.text_field :estimatedMinutes %>
+    </div>
+    <div class="field">
+      <%= next_hearing.label :hearingLanguage %>
+      <%= next_hearing.text_field :hearingLanguage %>
+    </div>
+    <div class="field">
+      <%= next_hearing.label :court_centre_id, 'Court Centre' %>
+      <%= next_hearing.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] } %>
+    </div>
+    <%= next_hearing.fields_for :hearing_type do |hearing_type| %>
+      <div class="field">
+        <%= hearing_type.label :description, 'Hearing Type description' %>
+        <%= hearing_type.text_field :description %>
+      </div>
+    <% end %>
+  <% end %>
+      

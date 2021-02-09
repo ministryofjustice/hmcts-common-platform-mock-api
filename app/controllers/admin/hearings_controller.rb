@@ -54,10 +54,15 @@ module Admin
     def set_hearing
       @hearing = Hearing.find(params[:id])
       @prosecution_case = @hearing.prosecution_cases.first
+      add_cracked_ineffective_trial
     end
 
     def set_prosecution_case
       @prosecution_case = ProsecutionCase.find(params[:prosecution_case_id])
+    end
+
+    def add_cracked_ineffective_trial
+      @hearing.cracked_ineffective_trial = CrackedIneffectiveTrial.new
     end
 
     # Only allow a list of trusted parameters through.

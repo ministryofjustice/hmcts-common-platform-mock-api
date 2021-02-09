@@ -56,6 +56,14 @@
     <%= form.check_box :isBoxHearing %>
   </div>
 
+  <h3>Cracked Ineffective Trial</h3>
+    <%= form.fields_for :cracked_ineffective_trial do |cit| %>
+      <div class="field">
+        <%= cit.label :description, 'Cracked Ineffective Trial Description' %>
+        <%= cit.select("description", "id", CrackedIneffectiveTrial.select_options, { include_blank: true}) %>
+      </div>
+    <% end %>
+
   <% if hearing.persisted? %>
 
   <h3>Defendant-Offences:</h3>

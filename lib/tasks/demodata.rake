@@ -160,6 +160,7 @@ def create_cracked_ineffective_trial_for(prosecution_case:)
   raise "Hearing not found" unless prosecution_case.hearings.any?
 
   prosecution_case.hearings.last.tap do |hearing|
+    hearing.resulted = true
     hearing.cracked_ineffective_trial = FactoryBot.create(:realistic_cracked_ineffective_trial)
     hearing.save!
   end

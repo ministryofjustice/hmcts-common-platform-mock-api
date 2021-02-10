@@ -68,8 +68,8 @@ RSpec.describe Hearing, type: :model do
     it_has_behaviour "conforming to valid schema"
 
     context "when the hearing contains a 'cracked trial' outcome" do
-      it "contains a 'cracked trial' object" do
-        expect(hearing.cracked_ineffective_trial).not_to be_blank
+      it "is associated to a cracked ineffective trial" do
+        expect(hearing.cracked_ineffective_trial).to be_present
       end
     end
 

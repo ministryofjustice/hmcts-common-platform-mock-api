@@ -36,7 +36,6 @@ class Hearing < ApplicationRecord
   accepts_nested_attributes_for :hearing_type, reject_if: :all_blank
   accepts_nested_attributes_for :hearing_days, reject_if: :all_blank
   accepts_nested_attributes_for :prosecution_cases, reject_if: :all_blank
-  accepts_nested_attributes_for :cracked_ineffective_trial, reject_if: :all_blank
 
   def to_builder
     Jbuilder.new do |hearing|

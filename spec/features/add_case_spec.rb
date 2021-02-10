@@ -16,4 +16,19 @@ RSpec.describe "adding a new offence to prosecution case ", type: :feature do
       }.to change(Offence, :count).by(1)
     end
   end
+
+  describe "next hearing" do
+    it "creates a next hearing" do
+      visit "/admin/prosecution_cases/new"
+      expect { click_button "Create Prosecution case" }.to change(NextHearing, :count).by(1)
+    end
+
+    it "updates a next hearing" do
+      visit "/admin/prosecution_cases/#{prosecution_case.id}/edit"
+      fill_in "Estimatedminutes", :with => "2"
+      click_button "Update Prosecution case"
+
+      expect(page).to have_text("Prosecution case was successfully updated.")
+    end
+  end
 end

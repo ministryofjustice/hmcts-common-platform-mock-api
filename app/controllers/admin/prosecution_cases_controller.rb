@@ -78,13 +78,14 @@ module Admin
     end
 
     def next_hearing_attributes
-      [:listedStartDateTime,
+      [:id,
+       :listedStartDateTime,
        :jurisdictionType,
        :estimatedMinutes,
        :hearingLanguage,
        :court_centre_id,
        { hearing_type_attributes: %i[id description] }]
-    end	      
+    end
 
     def defendant_attributes
       [:id,

@@ -77,7 +77,10 @@ module Admin
                                       :isBoxHearing,
                                       { prosecution_cases_attributes: prosecution_cases_attributes },
                                       { hearing_type_attributes: %i[id description] },
-                                      { hearing_days_attributes: %i[id sittingDay listedDurationMinutes] })
+                                      { hearing_days_attributes: %i[id sittingDay listedDurationMinutes] },
+                                      { cracked_ineffective_trial_attributes: %i[id] },
+                                     )
+
     end
 
     def prosecution_cases_attributes

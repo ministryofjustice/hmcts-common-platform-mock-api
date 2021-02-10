@@ -15,23 +15,16 @@ class CrackedIneffectiveTrial < ApplicationRecord
     end
   end
 
-  def self.cracked_ineffective_trial_types
-    @cracked_ineffective_trial_types ||= YAML.load_file('lib/data/cracked_ineffective_trial.yml')
-  end
-
   def self.select_options
-    cracked_ineffective_trial_types.map {|trial_type| [trial_type["reason_short_desc"], trial_type["id"]] }
+    records.map do |record|
+      [
+        record["reason_short_desc"],
+        record["id"],
+      ]
+    end
   end
 
-  def self.reason_codes
-    codes = []
-    cracked_ineffective_trial_types.each {|trial_type| codes << trial_type["reason_code"] }
-    codes.uniq.sort
-  end
-
-  def self.types
-    types = []
-    cracked_ineffective_trial_types.each {|trial_type| types << trial_type["trial_type"] }
-    types.uniq
+  def self.records
+    @data ||= YAML.load_file('lib/data/cracked_ineffective_trial.yml')
   end
 end

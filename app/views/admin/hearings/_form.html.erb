@@ -57,12 +57,10 @@
   </div>
 
   <h3>Cracked Ineffective Trial</h3>
-    <%= form.fields_for :cracked_ineffective_trial do |cit| %>
-      <div class="field">
-        <%= cit.label :description, 'Cracked Ineffective Trial Description' %>
-        <%= cit.select("description", "id", CrackedIneffectiveTrial.select_options, { include_blank: true}) %>
-      </div>
-    <% end %>
+
+  <%= form.fields_for :cracked_ineffective_trial do |cit| %>
+    <%= cit.select(:id, options_for_select(CrackedIneffectiveTrial.select_options)) %>
+  <% end %>
 
   <% if hearing.persisted? %>
 

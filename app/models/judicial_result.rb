@@ -25,7 +25,7 @@ class JudicialResult < ApplicationRecord
   validates :terminatesOffenceProceedings, inclusion: [true, false]
   validates :postHearingCustodyStatus, inclusion: POST_HEARING_CUSTODY_STATUSES, allow_blank: true
 
-  accepts_nested_attributes_for :next_hearing, reject_if: :all_blank, allow_destroy: true 
+  accepts_nested_attributes_for :next_hearing, reject_if: :all_blank, allow_destroy: true
 
   def to_builder
     Jbuilder.new do |judicial_result|

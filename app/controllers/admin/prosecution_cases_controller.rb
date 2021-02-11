@@ -72,9 +72,8 @@ module Admin
                                                :breachProceedingsPending,
                                                :appealProceedingsPending,
                                                prosecution_case_identifier_attributes: prosecution_case_identifier_attributes,
-                                               hearings_attributes: hearings_attributes,  
-                                               defendants_attributes: defendant_attributes,
-                                              )
+                                               hearings_attributes: hearings_attributes,
+                                               defendants_attributes: defendant_attributes)
     end
 
     def next_hearing_attributes

@@ -6,10 +6,11 @@ Rails.application.routes.draw do
       member do
         post "result/:hearing_id(/:publish_to)" => "prosecution_cases#result", as: :result_hearing
       end
-      collection do
-        get "add_offence"
+
+      resources :defendants do
+        resources :offences
       end
-      resources :defendants
+
       resources :hearings, except: [:index] do
         member do
           post ":offence_id/add_plea" => "hearings#add_plea", as: :add_plea

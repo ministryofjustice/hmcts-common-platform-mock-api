@@ -1,7 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>  <%= @defendant.defendable.person.firstName %> <%= @defendant.defendable.person.middleName %> <%= @defendant.defendable.person.lastName %>
+<h1>
+  <%= @defendant.defendable.person.firstName %> <%= @defendant.defendable.person.middleName %> <%= @defendant.defendable.person.lastName %>
 </h1>
+
+  <% @defendant.offences.each do |offence| %>
+    <h2>
+      <%= offence.offenceTitle %>
+    </h2>
+
+    <ul>
+      <li><%= offence.offenceDefinitionId %></li>
+      <li><%= offence.offenceCode %></li>
+    </ul>
+  <% end %>
+
+<div class="links">
+  <%= link_to 'Add offence', new_admin_defendant_offence_path(@defendant) %>
+</div>
 
 <%= link_to 'Edit', edit_admin_defendant_path(@defendant) %> |
 <%= link_to 'Back', admin_prosecution_case_path(@defendant.prosecution_case) %>

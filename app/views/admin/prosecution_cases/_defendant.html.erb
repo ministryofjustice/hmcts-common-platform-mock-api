@@ -2,42 +2,52 @@
   <%= defendant.label :numberOfPreviousConvictionsCited, 'Number of previous convictions cited' %>
   <%= defendant.text_field :numberOfPreviousConvictionsCited %>
 </div>
+
 <div class="field">
   <%= defendant.label :prosecutionAuthorityReference, 'Prosecution authority reference' %>
   <%= defendant.text_field :prosecutionAuthorityReference %>
 </div>
+
 <div class="field">
   <%= defendant.label :witnessStatement, 'Witness statement' %>
   <%= defendant.text_area :witnessStatement %>
 </div>
+
 <div class="field">
   <%= defendant.label :witnessStatementWelsh, 'Witness statement welsh' %>
   <%= defendant.text_area :witnessStatementWelsh %>
 </div>
+
 <div class="field">
   <%= defendant.label :mitigation, 'Mitigation' %>
   <%= defendant.text_area :mitigation %>
 </div>
+
 <div class="field">
   <%= defendant.label :mitigationWelsh, 'Mitigation welsh' %>
   <%= defendant.text_area :mitigationWelsh %>
 </div>
+
 <div class="field">
   <%= defendant.label :croNumber, 'Cro number' %>
   <%= defendant.text_field :croNumber %>
 </div>
+
 <div class="field">
   <%= defendant.label :pncId, 'Pnc' %>
   <%= defendant.text_field :pncId %>
 </div>
+
 <div class="field">
   <%= defendant.label :mergedProsecutionCaseReference, 'Merged prosecution case reference' %>
   <%= defendant.text_field :mergedProsecutionCaseReference %>
 </div>
+
 <div class="field">
   <%= defendant.label :masterDefendantId, 'Master defendant' %>
   <%= defendant.text_field :masterDefendantId %>
 </div>
+
 <div class="field">
   <%= defendant.label :courtProceedingsInitiated, 'Court proceedings initiated' %>
   <%= defendant.text_field :courtProceedingsInitiated %>
@@ -46,40 +56,50 @@
 <hr>
 
 <h3> Defendable: </h3>
+
 <%= defendant.hidden_field :defendable_type %>
+
 <%= defendant.fields_for :defendable do |defendable| %>
   <div class="field">
     <%= defendable.label :bailConditions, 'Bail Conditions' %>
     <%= defendable.text_field :bailConditions %>
   </div>
+
   <div class="field">
     <%= defendable.label :bailReasons, 'BailReasons' %>
     <%= defendable.text_field :bailReasons %>
   </div>
+
   <div class="field">
     <%= defendable.label :perceivedBirthYear, 'PerceivedBirthYear' %>
     <%= defendable.text_field :perceivedBirthYear %>
   </div>
+
   <div class="field">
     <%= defendable.label :driverNumber, 'DriverNumber' %>
     <%= defendable.text_field :driverNumber %>
   </div>
+
   <div class="field">
     <%= defendable.label :driverLicenceCode, 'DriverLicenceCode' %>
     <%= defendable.select :driverLicenceCode, PersonDefendant::LICENCE_CODES %>
   </div>
+
   <div class="field">
     <%= defendable.label :driverLicenseIssue, 'DriverLicenseIssue' %>
     <%= defendable.text_field :driverLicenseIssue %>
   </div>
+
   <div class="field">
     <%= defendable.label :vehicleOperatorLicenceNumber, 'VehicleOperatorLicenceNumber' %>
     <%= defendable.text_field :vehicleOperatorLicenceNumber %>
   </div>
+
   <div class="field">
     <%= defendable.label :arrestSummonsNumber, 'ArrestSummonsNumber' %>
     <%= defendable.text_field :arrestSummonsNumber %>
   </div>
+
   <div class="field">
     <%= defendable.label :employerPayrollReference, 'EmployerPayrollReference' %>
     <%= defendable.text_field :employerPayrollReference %>
@@ -87,95 +107,101 @@
 
   <hr>
 
-
   <%= defendable.fields_for :person do |person| %>
     <div class="field">
       <%= person.label :title, 'title' %>
       <%= person.text_field :title %>
     </div>
+
     <div class="field">
       <%= person.label :firstName, 'firstName' %>
       <%= person.text_field :firstName %>
     </div>
+
     <div class="field">
       <%= person.label :middleName, 'middleName' %>
       <%= person.text_field :middleName %>
     </div>
+
     <div class="field">
       <%= person.label :lastName, 'lastName' %>
       <%= person.text_field :lastName %>
     </div>
+
     <div class="field">
       <%= person.label :dateOfBirth, 'dateOfBirth' %>
       <%= person.text_field :dateOfBirth %>
     </div>
+
     <div class="field">
       <%= person.label :nationalityId, 'nationalityId' %>
       <%= person.text_field :nationalityId %>
     </div>
+
     <div class="field">
       <%= person.label :nationalityCode, 'nationalityCode' %>
       <%= person.text_field :nationalityCode %>
     </div>
+
     <div class="field">
       <%= person.label :nationalityDescription, 'nationalityDescription' %>
       <%= person.text_field :nationalityDescription %>
     </div>
+
     <div class="field">
       <%= person.label :additionalNationalityId, 'additionalNationalityId' %>
       <%= person.text_field :additionalNationalityId %>
     </div>
+
     <div class="field">
       <%= person.label :additionalNationalityCode, 'additionalNationalityCode' %>
       <%= person.text_field :additionalNationalityCode %>
     </div>
+
     <div class="field">
       <%= person.label :additionalNationalityDescription, 'additionalNationalityDescription' %>
       <%= person.text_field :additionalNationalityDescription %>
     </div>
+
     <div class="field">
       <%= person.label :disabilityStatus, 'disabilityStatus' %>
       <%= person.text_field :disabilityStatus %>
     </div>
+
     <div class="field">
       <%= person.label :gender, 'gender' %>
       <%= person.text_field :gender %>
     </div>
+
     <div class="field">
       <%= person.label :interpreterLanguageNeeds, 'interpreterLanguageNeeds' %>
       <%= person.text_field :interpreterLanguageNeeds %>
     </div>
+
     <div class="field">
       <%= person.label :documentationLanguageNeeds, 'documentationLanguageNeeds' %>
       <%= person.text_field :documentationLanguageNeeds %>
     </div>
+
     <div class="field">
       <%= person.label :nationalInsuranceNumber, 'nationalInsuranceNumber' %>
       <%= person.text_field :nationalInsuranceNumber %>
     </div>
+
     <div class="field">
       <%= person.label :occupation, 'occupation' %>
       <%= person.text_field :occupation %>
     </div>
+
     <div class="field">
       <%= person.label :occupationCode, 'occupationCode' %>
       <%= person.text_field :occupationCode %>
     </div>
+
     <div class="field">
       <%= person.label :specificRequirements, 'specificRequirements' %>
       <%= person.text_field :specificRequirements %>
     </div>
     <hr>
   <% end %>
-
-
-  <h3>Offences</h3>
-  <div id="offences">
-    <%= defendant.fields_for :offences do |offence| %>
-      <%= render 'offence_fields', f: offence %>
-    <% end %>
-  </div>
-  <div class="links">
-    <%= link_to 'add offence', add_offence_admin_prosecution_cases_path, remote: true %>
-  </div>
 <% end %>

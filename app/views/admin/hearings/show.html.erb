@@ -13,43 +13,31 @@
 </ol>
 
 <h2>Defendants</h2>
-<ol>
-<% @hearing.defendants.each do |defendant| %>
-  <li><%= defendant.name %></li>
-<% end %>
-</ol>
 
-<h2>Offences</h2>
-<ol>
 <% @hearing.defendants.each do |defendant| %>
-  <% defendant.offences.each do |offence| %>
-    <li><%= offence.offenceTitle %></li>
-  <% end %>
-<% end %>
-</ol>
 
-<h2>Pleas</h2>
-<ol>
-<% @hearing.defendants.each do |defendant| %>
+  <ul>
+    <li><%= defendant.name %></li>
+  </ul>
+
   <% defendant.offences.each do |offence| %>
-    <% offence.pleas.each do |plea| %>
-      <li><%= plea.pleaValue %></li>
+      <h3>Offences</h3>
+      <ul>
+        <li><%= offence.offenceTitle %></li>
+      </ul>
+      
+      <h4>Plea</h4>
+      <% offence.pleas.each do |plea| %>
+        <%= plea.pleaValue %>
+      <% end %>
+
+      <h4>Judicial Result</h4>
+      <% offence.judicial_results.each do |judicial_result| %>
+        <%= judicial_result %>
+      <% end %>
+
     <% end %>
-  <% end %>
 <% end %>
-</ol>
-
-<h2>Judicial Results</h2>
-<ol>
-<% @hearing.defendants.each do |defendant| %>
-  <% defendant.offences.each do |offence| %>
-    <% offence.judicial_results.each do |judicial_result| %>
-      <li><%= judicial_result %></li>
-    <% end %>
-  <% end %>
-<% end %>
-</ol>
-
 
 
 <%= link_to 'Edit', edit_admin_hearing_path(@hearing) %> |

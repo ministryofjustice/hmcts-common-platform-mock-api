@@ -3,7 +3,7 @@
 module Admin
   class HearingsController < Admin::ApplicationController
     before_action :set_prosecution_case, only: %i[new create]
-    before_action :set_hearing, only: %i[show edit update destroy add_plea add_allocation_decision add_judicial_result]
+    before_action :set_hearing, only: %i[show edit update destroy add_plea add_allocation_decision]
 
     def show; end
 
@@ -46,37 +46,6 @@ module Admin
       @offence = Offence.find(params[:offence_id])
       @offence.allocation_decisions.create!(allocationDecisionDate: Time.zone.now, motReasonId: SecureRandom.uuid, motReasonCode: 0, motReasonDescription: Faker::Offence.mode_of_trial_reason, hearing: @hearing)
       redirect_to edit_admin_hearing_url(@hearing), notice: "Allocation decision was successfully added."
-    end
-
-    def add_judicial_result
-      @offence = Offence.find(params[:offence_id])
-      @offence.judicial_results.create!(
-        judicialResultId: SecureRandom.uuid,
-        judicialResultTypeId: SecureRandom.uuid,
-        orderedHearingId: SecureRandom.uuid,
-        label: Faker::Lorem.word,
-        welshLabel: Faker::Lorem.word,
-        isAdjournmentResult: Faker::Boolean.boolean,
-        isFinancialResult: Faker::Boolean.boolean,
-        isConvictedResult: Faker::Boolean.boolean,
-        isAvailableForCourtExtract: Faker::Boolean.boolean,
-        isDeleted: Faker::Boolean.boolean,
-        amendmentReasonId: SecureRandom.uuid,
-        amendmentReason: Faker::Lorem.word,
-        amendmentDate: Faker::Date.backward,
-        qualifier: Faker::Lorem.word,
-        resultText: Faker::Lorem.word,
-        cjsCode: Faker::Number.number(digits: 4),
-        postHearingCustodyStatus: %w[A B C L P R S U].sample,
-        rank: Faker::Number.number(digits: 1),
-        orderedDate: Faker::Date.backward,
-        lastSharedDateTime: Faker::Date.backward,
-        terminatesOffenceProceedings: Faker::Boolean.boolean,
-        approvedDate: Faker::Date.backward,
-        category: %w[FINAL INTERMEDIARY ANCILLARY].sample,
-        hearing: @hearing,
-      )
-      redirect_to edit_admin_hearing_url(@hearing), notice: "Judicial result was successfully added."
     end
 
   private

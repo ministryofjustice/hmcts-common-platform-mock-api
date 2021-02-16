@@ -112,14 +112,6 @@
     <%= f.check_box :civilOffence %>
   </div>
 
-  <h3>Judicial Results:</h3>
-
-  <%= f.fields_for :judicial_results do |judicial_result| %>
-    <%= render 'judicial_result', judicial_result: judicial_result %>
-  <% end %>
-
-
-
   <%= link_to_remove_association "remove offence", f %>
   <hr>
 </div>

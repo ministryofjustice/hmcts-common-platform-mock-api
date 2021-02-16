@@ -16,12 +16,11 @@ RSpec.describe JudicialResult, type: :model do
   end
 
   describe "validations" do
-    it { is_expected.to validate_presence_of(:orderedHearingId) }
     it { is_expected.to validate_presence_of(:label) }
     it { is_expected.to validate_presence_of(:orderedDate) }
     it { is_expected.to validate_presence_of(:category) }
     it { is_expected.to validate_presence_of(:resultText) }
-    it { is_expected.to validate_inclusion_of(:category).in_array(%w[FINAL INTERMEDIARY ANCILLARY]) }
+    it { is_expected.to validate_inclusion_of(:category).in_array(described_class::CATEGORIES) }
     it { is_expected.to validate_inclusion_of(:postHearingCustodyStatus).in_array(described_class::POST_HEARING_CUSTODY_STATUSES) }
   end
 

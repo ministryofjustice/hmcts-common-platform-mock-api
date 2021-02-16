@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_154118) do
+ActiveRecord::Schema.define(version: 2021_02_05_143221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -505,7 +505,6 @@ ActiveRecord::Schema.define(version: 2020_11_27_154118) do
 
   create_table "judicial_results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "judicialResultId"
-    t.uuid "orderedHearingId"
     t.string "label"
     t.string "welshLabel"
     t.boolean "isAdjournmentResult", null: false
@@ -537,12 +536,15 @@ ActiveRecord::Schema.define(version: 2020_11_27_154118) do
     t.uuid "defendant_id"
     t.uuid "court_application_id"
     t.uuid "judicialResultTypeId"
+    t.uuid "orderedHearingId"
+    t.uuid "hearing_id", null: false
     t.index ["court_application_id"], name: "index_judicial_results_on_court_application_id"
     t.index ["court_clerk_id"], name: "index_judicial_results_on_court_clerk_id"
     t.index ["defendant_id"], name: "index_judicial_results_on_defendant_id"
     t.index ["delegated_powers_id"], name: "index_judicial_results_on_delegated_powers_id"
     t.index ["duration_element_id"], name: "index_judicial_results_on_duration_element_id"
     t.index ["four_eyes_approval_id"], name: "index_judicial_results_on_four_eyes_approval_id"
+    t.index ["hearing_id"], name: "index_judicial_results_on_hearing_id"
     t.index ["next_hearing_id"], name: "index_judicial_results_on_next_hearing_id"
     t.index ["offence_id"], name: "index_judicial_results_on_offence_id"
   end
@@ -657,6 +659,14 @@ ActiveRecord::Schema.define(version: 2020_11_27_154118) do
 
   create_table "merged_prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "prosecutionCaseReference"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "mode_of_trial_reasons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "seq_number"
+    t.integer "reason_code"
+    t.string "reason_description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -1053,6 +1063,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_154118) do
   add_foreign_key "judicial_results", "delegated_powers", column: "court_clerk_id"
   add_foreign_key "judicial_results", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "judicial_results", "delegated_powers", column: "four_eyes_approval_id"
+  add_foreign_key "judicial_results", "hearings"
   add_foreign_key "judicial_results", "judicial_result_prompt_duration_elements", column: "duration_element_id"
   add_foreign_key "judicial_results", "next_hearings"
   add_foreign_key "judicial_results", "offences"

@@ -39,6 +39,7 @@ def create_prosecution_cases
   case1 = create_case_and_defendants(urn: CASE1[:URN], additional_defendant_count: 2)
   defendant1 = create_defendant_for(prosecution_case: case1, person: person)
   create_allocation_decision_for(defendant: defendant1)
+  create_judicial_results_for(defendant: defendant1)
   create_pleas_for(defendant: defendant1)
   create_hearings_for(prosecution_case: case1, defendant: defendant1)
 
@@ -95,6 +96,14 @@ def create_allocation_decision_for(defendant:)
   puts " #{ICONS[:success]}"
 end
 
+def create_judicial_results_for(defendant:)
+  print "[CREATE][DEFENDANT][OFFENCE][JUDICIAL_RESULT] #{defendant.prosecution_case.prosecution_case_identifier.caseURN}"
+  offence = defendant.offences.first
+  offence.judicial_results << FactoryBot.create(:judicial_result)
+  offence.save!
+  puts " #{ICONS[:success]}"
+end
+
 def create_pleas_for(defendant:)
   print "[CREATE][DEFENDANT][OFFENCE][PLEAS] #{CASE1[:URN]}"
   pc = defendant.prosecution_case
@@ -121,6 +130,8 @@ def create_hearings_for(prosecution_case:, defendant:)
   defence_counsels = FactoryBot.create_list(:defence_counsel, 2, defendant: defendant)
   puts " #{ICONS[:success]}"
 
+  base_date = "2019-10-23 00:00:00".to_datetime
+
   prosecution_case.hearings.each do |hearing|
     print "[CREATE][HEARINGS][DEFENCE_COUNSELS] for #{urn}"
     hearing.resulted = true
@@ -129,10 +140,14 @@ def create_hearings_for(prosecution_case:, defendant:)
     puts " #{ICONS[:success]}"
 
     print "[CREATE][HEARINGS][HEARING_DAYS] for #{urn}"
-    base_date = "2019-10-23 00:00:00".to_datetime
-    hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 1.day + 8.hours + 30.minutes).to_s)
-    hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 2.days + 10.hours + 45.minutes).to_s)
+    puts "base date for #{hearing.id} is #{base_date}"
+    hearing.hearing_days.destroy_all
+    hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 0.days + 8.hours + 30.minutes).to_s)
+    hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 1.day + 8.hours + 45.minutes).to_s)
+    hearing.hearing_days << FactoryBot.create(:hearing_day, sittingDay: (base_date + 2.days + 9.hours + 0.minutes).to_s)
+    base_date += 3.days
     hearing.save!
+
     puts " #{ICONS[:success]}"
 
     print "[CREATE][HEARINGS][HEARING_DAYS][HEARING_EVENT] for #{urn}"
@@ -154,6 +169,7 @@ def create_cracked_ineffective_trial_for(prosecution_case:)
   raise "Hearing not found" unless prosecution_case.hearings.any?
 
   prosecution_case.hearings.last.tap do |hearing|
+    hearing.resulted = true
     hearing.cracked_ineffective_trial = FactoryBot.create(:realistic_cracked_ineffective_trial)
     hearing.save!
   end

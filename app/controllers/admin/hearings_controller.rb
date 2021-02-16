@@ -85,7 +85,49 @@ module Admin
     end
 
     def offences_attributes
-      [:id, { pleas_attributes: %i[id hearing_id pleaValue pleaDate _destroy] }, { allocation_decisions_attributes: %i[id hearing_id allocationDecisionDate motReasonId motReasonCode motReasonDescription _destroy] }]
+      [
+        :id,
+        { pleas_attributes: %i[id hearing_id pleaValue pleaDate _destroy] },
+        { allocation_decisions_attributes:
+          %i[
+            id
+            hearing_id
+            allocationDecisionDate
+            motReasonId
+            motReasonCode
+            motReasonDescription
+            _destroy
+          ] },
+        { judicial_results_attributes:
+          %i[
+            id
+            hearing_id
+            judicialResultId
+            orderedHearingId
+            judicialResultTypeId
+            label
+            welshLabel
+            isAdjournmentResult
+            isFinancialResult
+            isConvictedResult
+            isAvailableForCourtExtract
+            isDeleted
+            amendmentReasonId
+            amendmentReason
+            amendmentDate
+            qualifier
+            resultText
+            cjsCode:
+            postHearingCustodyStatus
+            rank:
+            orderedDate
+            lastSharedDateTime
+            terminatesOffenceProceedings
+            approvedDate
+            category
+            _destroy
+          ] },
+      ]
     end
   end
 end

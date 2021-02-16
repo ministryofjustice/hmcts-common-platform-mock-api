@@ -71,6 +71,12 @@ RSpec.describe "Demo data tasks", type: :rake do
         expect(case1.hearings.map(&:hearing_days).map(&:size)).to eql([3, 3, 3])
       end
 
+      it "adds unique sequential sittingDays to hearing days" do
+        sitting_days = case1.hearings.flat_map { |h| h.hearing_days.map { |d| d.sittingDay.to_date } }
+        expected_dates = (0..8).map { |i| "2019-10-23".to_date + i.days }
+        expect(sitting_days).to contain_exactly(*expected_dates)
+      end
+
       it "adds 10 hearing events to each hearing day" do
         expect(case1.hearings.flat_map(&:hearing_days).map(&:events).map(&:size)).to eql(Array.new(9, 10))
       end

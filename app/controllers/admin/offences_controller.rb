@@ -1,9 +1,14 @@
 module Admin
   class OffencesController < ApplicationController
     def create
-      defendant = Defendant.find(params[:defendant_id])
-      defendant.offences.create!(offence_params)
-      redirect_to admin_defendant_path(defendant)
+      @defendant = Defendant.find(params[:defendant_id])
+      @offence = @defendant.offences.build(offence_params)
+
+      if @defendant.save
+        redirect_to admin_defendant_path(@defendant), notice: "Offence was successfully created."
+      else
+        render :new
+      end
     end
 
     def new

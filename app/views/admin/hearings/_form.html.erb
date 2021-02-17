@@ -65,6 +65,12 @@
     <%= form.check_box :isBoxHearing %>
   </div>
 
+  <h3>Cracked Ineffective Trial</h3>
+
+  <div class="field">
+    <%= form.select(:cracked_ineffective_trial_id, CrackedIneffectiveTrial.all.collect { |cit| [cit.description, cit.id] }, include_blank: true) %>
+  </div>
+
   <% if hearing.persisted? %>
 
   <h3>Defendant-Offences:</h3>
@@ -75,6 +81,7 @@
 
         <%= defendant.fields_for :offences do |offence| %>
           <h5><%= offence.object.offenceTitle %></h5>
+
           <div id="defendant-offences-<%= offence.object.id %>">
             <%= offence.fields_for :pleas, offence.object.pleas.where(hearing: hearing) do |plea| %>
               <%= render 'plea_fields', f: plea %>
@@ -91,12 +98,14 @@
             <%= offence.fields_for :allocation_decisions, offence.object.allocation_decisions.where(hearing: hearing) do |allocation_decision| %>
               <%= render 'allocation_decision_fields', f: allocation_decision %>
             <% end %>
-
+            
             <% if offence.object.allocation_decisions.where(hearing: hearing).empty? %>
+
               <div class="links">
                 <%= link_to 'add allocation decision', add_allocation_decision_admin_hearing_path(hearing, offence.object), method: :post %>
               </div>
             <% end %>
+
           </div>
 
           <div>

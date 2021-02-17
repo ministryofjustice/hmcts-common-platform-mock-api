@@ -67,6 +67,12 @@ RSpec.describe Hearing, type: :model do
 
     it_has_behaviour "conforming to valid schema"
 
+    context "when the hearing contains a 'cracked trial' outcome" do
+      it "is associated to a cracked ineffective trial" do
+        expect(hearing.cracked_ineffective_trial).to be_present
+      end
+    end
+
     context "when the hearing contains a plea" do
       let(:offence) { hearing.prosecution_cases.first.defendants.first.offences.first }
       let(:hearing_json) { subject.to_builder.attributes! }

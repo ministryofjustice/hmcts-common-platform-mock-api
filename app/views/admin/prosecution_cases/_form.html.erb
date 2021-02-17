@@ -53,6 +53,11 @@
 
   <%= form.fields_for :defendants do |defendant| %>
     <%= render 'defendant', defendant: defendant %>
+
+    <%= defendant.fields_for :offences do |offence| %>
+      <h4>Offences</h4>
+      <%= render 'admin/offences/fields', offence: offence %>
+    <% end %>
   <% end %>
 
 

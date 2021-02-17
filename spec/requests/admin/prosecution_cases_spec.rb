@@ -57,13 +57,6 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
     end
   end
 
-  describe "GET /add_offence" do
-    it "renders a successful response" do
-      get add_offence_admin_prosecution_cases_url, headers: headers, xhr: true
-      expect(response).to be_successful
-    end
-  end
-
   describe "GET /edit" do
     it "render a successful response" do
       get edit_admin_prosecution_case_url(prosecution_case), headers: headers

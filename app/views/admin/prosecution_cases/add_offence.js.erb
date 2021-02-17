@@ -1,9 +1,0 @@
-document.
-getElementById("offences").
-insertAdjacentHTML('beforeend', '<%= escape_javascript(render 'add_offence') %>')
-
-var orderIndexElements = document.querySelectorAll('.order-index')
-
-var arrayMaxValue = Math.max(...Array.from(orderIndexElements).map( item => Number(item.value)))
-
-orderIndexElements[orderIndexElements.length - 1].value = arrayMaxValue + 1

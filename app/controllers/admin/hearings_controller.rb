@@ -3,7 +3,7 @@
 module Admin
   class HearingsController < Admin::ApplicationController
     before_action :set_prosecution_case, only: %i[new create]
-    before_action :set_hearing, only: %i[show edit update destroy add_allocation_decision]
+    before_action :set_hearing, only: %i[show edit update destroy]
 
     def show; end
 
@@ -34,12 +34,6 @@ module Admin
     def destroy
       @hearing.destroy!
       redirect_to [:admin, @prosecution_case], notice: "Hearing was successfully destroyed."
-    end
-
-    def add_allocation_decision
-      @offence = Offence.find(params[:offence_id])
-      @offence.allocation_decisions.create!(allocationDecisionDate: Time.zone.now, motReasonId: SecureRandom.uuid, motReasonCode: 0, motReasonDescription: Faker::Offence.mode_of_trial_reason, hearing: @hearing)
-      redirect_to edit_admin_hearing_url(@hearing), notice: "Allocation decision was successfully added."
     end
 
   private

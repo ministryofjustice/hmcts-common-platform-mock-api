@@ -110,14 +110,13 @@ jobs:
           kubeconfig: ENCODED_KUBECONFIG
       - kubernetes/install-kubectl
       - helm/install-helm-client:
-          version: 'v3.2.4'
+          version: 'v3.5.0'
       - helm/upgrade-helm-chart:
           namespace: hmcts-mock-api-dev
           update-repositories: false
           chart: ./helm_deploy/hmcts-common-platform-mock-api
           release-name: hmcts-common-platform-mock-api
           values-to-override: image.tag=$CIRCLE_SHA1
-          timeout: "600s"
 
 workflows:
   version: 2

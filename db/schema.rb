@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_143221) do
+ActiveRecord::Schema.define(version: 2021_01_28_160503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -505,6 +505,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_143221) do
 
   create_table "judicial_results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "judicialResultId"
+    t.uuid "orderedHearingId"
     t.string "label"
     t.string "welshLabel"
     t.boolean "isAdjournmentResult", null: false
@@ -536,7 +537,6 @@ ActiveRecord::Schema.define(version: 2021_02_05_143221) do
     t.uuid "defendant_id"
     t.uuid "court_application_id"
     t.uuid "judicialResultTypeId"
-    t.uuid "orderedHearingId"
     t.uuid "hearing_id", null: false
     t.index ["court_application_id"], name: "index_judicial_results_on_court_application_id"
     t.index ["court_clerk_id"], name: "index_judicial_results_on_court_clerk_id"
@@ -659,14 +659,6 @@ ActiveRecord::Schema.define(version: 2021_02_05_143221) do
 
   create_table "merged_prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "prosecutionCaseReference"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "mode_of_trial_reasons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "seq_number"
-    t.integer "reason_code"
-    t.string "reason_description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

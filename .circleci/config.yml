@@ -117,6 +117,7 @@ jobs:
           chart: ./helm_deploy/hmcts-common-platform-mock-api
           release-name: hmcts-common-platform-mock-api
           values-to-override: image.tag=$CIRCLE_SHA1
+          wait: false
 
 workflows:
   version: 2

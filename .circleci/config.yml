@@ -117,7 +117,7 @@ jobs:
           chart: ./helm_deploy/hmcts-common-platform-mock-api
           release-name: hmcts-common-platform-mock-api
           values-to-override: image.tag=$CIRCLE_SHA1
-          timeout: "600"
+          timeout: "600s"
 
 workflows:
   version: 2

@@ -98,7 +98,7 @@
             <%= offence.fields_for :allocation_decisions, offence.object.allocation_decisions.where(hearing: hearing) do |allocation_decision| %>
               <%= render 'allocation_decision_fields', f: allocation_decision %>
             <% end %>
-            
+
             <% if offence.object.allocation_decisions.where(hearing: hearing).empty? %>
 
               <div class="links">

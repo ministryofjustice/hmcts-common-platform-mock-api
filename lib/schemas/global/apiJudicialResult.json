@@ -76,10 +76,6 @@
             "description": "The date that the result was ordered",
             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
         },
-        "postHearingCustodyStatus": {
-            "description": "The bail status following the hearing",
-            "type": "string"
-        },
         "lastSharedDateTime": {
             "type": "string"
         },
@@ -112,6 +108,10 @@
         "nextHearing": {
             "description": "When the result is a next hearing result, the definition of the next hearing i.e. the output from processing the result prompts, etc",
             "$ref": "http://justice.gov.uk/core/courts/external/apiNextHearing.json#"
+        },
+        "durationElement": {
+            "description": "structured representation of the prompt value",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiJudicialResultPromptDurationElement.json"
         },
         "judicialResultPrompts": {
             "type": "array",
@@ -147,6 +147,41 @@
         "d20": {
             "description": "Determines that the result is a D20 result",
             "type": "boolean"
+        },
+        "parentJudicialResultId": {
+          "description": "The shared result line identifier for the root result element",
+          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "parentJudicialResultTypeId": {
+          "description": "The result definition type from reference data for the root result element.  Required for rollup and Nows purposes",
+          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "rootJudicialResultId": {
+          "description": "The shared result line identifier for the root result element",
+          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "rootJudicialResultTypeId": {
+          "description": "The result definition type from reference data for the root result element.  Required for rollup and Nows purposes",
+          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "postHearingCustodyStatus": {
+          "description": "The bail status following the hearing",
+          "type": "string"
+        },
+        "canBeSubjectOfVariation": {
+          "type": "boolean"
+        },
+        "canBeSubjectOfBreach": {
+          "type": "boolean"
+        },
+        "resultWording": {
+          "type": "string"
+        },
+        "welshResultWording": {
+          "type": "string"
+        },
+        "level": {
+            "type": "string"
         }
     },
     "required": [

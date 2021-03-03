@@ -5,11 +5,23 @@
   "type": "object",
   "properties": {
     "id": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
     "synonym": {
-        "description": "Provides the additional business persona of an applicant or respondent e.g. appellant, complainant, appellee, suspect",
-        "type": "string"
+      "description": "Provides the additional business persona of an applicant or respondent e.g. appellant, complainant, appellee, suspect",
+      "type": "string"
+    },
+    "summonsRequired": {
+      "description": "Indicates if this party is required to be summonsed.  Typically applies to the subject of the application",
+      "type": "boolean"
+    },
+    "notificationRequired": {
+      "description": "Indicates if this party is required to be notified of the application proceedings",
+      "type": "boolean"
+    },
+    "appointmentNotificationRequired": {
+      "description": "Indicates if this party is required to be notified of the application proceedings that are planned by telephone appointment.  Typically applies to the subject of the application",
+      "type": "boolean"
     },
     "personDetails": {
       "description": "Provided when the party is a person",
@@ -28,12 +40,12 @@
       }
     },
     "prosecutingAuthority": {
-        "description": "Provided when the party is a prosecutingAuthority for a linked case",
-        "$ref": "http://justice.gov.uk/core/courts/external/apiProsecutingAuthority.json"
+      "description": "Provided when the party is a prosecutingAuthority for a linked case",
+      "$ref": "http://justice.gov.uk/core/courts/external/apiProsecutingAuthority.json"
     },
-    "defendant": {
-        "description": "Provided when the party is a defendant for a linked case",
-        "$ref": "http://justice.gov.uk/core/courts/external/apiDefendant.json"
+    "masterDefendant": {
+      "description": "Provided when the party is a defendant for a linked case",
+      "$ref": "http://justice.gov.uk/core/courts/external/apiMasterDefendant.json"
     },
     "representationOrganisation": {
       "description": "The organisation details of the appointed representation",
@@ -41,7 +53,9 @@
     }
   },
   "required": [
-        "id"
-    ],
+    "id",
+    "summonsRequired",
+    "notificationRequired"
+  ],
   "additionalProperties": false
 }

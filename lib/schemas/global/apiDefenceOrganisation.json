@@ -15,8 +15,7 @@
     },
     "required":
     [
-      "organisation",
-      "laaContractNumber"
+      "organisation"
     ],
     "additionalProperties": false
 }

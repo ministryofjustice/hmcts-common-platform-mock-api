@@ -20,18 +20,6 @@
           "description": "The name of the defendant",
           "type": "string"
         },
-        "defendantFirstName": {
-          "description": "The firstname of the defendant",
-          "type": "string"
-        },
-        "defendantMiddleName": {
-          "description": "The middle name of the defendant",
-          "type": "string"
-        },
-        "defendantLastName": {
-          "description": "The last name of the defendant",
-          "type": "string"
-        },
         "defendantDOB": {
           "description": "The person date of birth when the defendant is a person",
           "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
@@ -53,23 +41,10 @@
             }
         }
     },
-    "oneOf": [
-       {
-            "required": [
-              "defendantId",
-              "defendantName",
-              "offenceSummary"
-           ]
-       },
-       {
-            "required": [
-              "defendantId",
-              "defendantFirstName",
-              "defendantMiddleName",
-              "defendantLastName",
-              "offenceSummary"
-           ]
-       }
-   ],
+    "required": [
+        "defendantId",
+        "defendantName",
+        "offenceSummary"
+    ],
     "additionalProperties": false
 }

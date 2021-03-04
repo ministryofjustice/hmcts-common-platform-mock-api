@@ -110,7 +110,7 @@
 
           <div>
             <%= offence.fields_for :judicial_results do |judicial_result| %>
-              <%= render 'judicial_result_fields', f: judicial_result %>
+              <%= render 'admin/judicial_results/form', f: judicial_result %>
             <% end %>
 
             <% if offence.object.judicial_results.empty? %>

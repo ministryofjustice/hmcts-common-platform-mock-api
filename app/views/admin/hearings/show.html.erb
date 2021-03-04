@@ -1,44 +1,53 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Hearing <%= @hearing.id %> </h1>
+<h1>Hearing</h1>
 
-<h2>Location</h2>
-<li><%= @hearing.court_centre.name %></li>
+<p>ID: <%= @hearing.id %></p>
+<p>Location: <%= @hearing.court_centre.name %></p>
 
 <h2>Days</h2>
+
 <ol>
-<% @hearing.hearing_days.each do |hearing_day| %>
-  <li><%= hearing_day.sittingDay.to_date %></li>
-<% end %>
+  <% @hearing.hearing_days.each do |hearing_day| %>
+    <li><%= hearing_day.sittingDay.to_date %></li>
+  <% end %>
 </ol>
 
 <h2>Defendants</h2>
 
 <% @hearing.defendants.each do |defendant| %>
-
   <ul>
-    <li><%= defendant.name %></li>
+    <li>Name: <%= defendant.name %></li>
   </ul>
 
+  <h3>Offences</h3>
+
   <% defendant.offences.each do |offence| %>
-      <h3>Offences</h3>
+
       <ul>
-        <li><%= offence.offenceTitle %></li>
+        <li>
+          <%= offence.offenceTitle %>
+
+          <p>Judicial results:</p>
+          <ul>
+            <% offence.judicial_results.each do |judicial_result| %>
+              <li>Text: <%= link_to judicial_result.resultText, judicial_result_admin_hearing_path(@hearing, offence, judicial_result) %></li>
+              <p>Next hearing: <%= judicial_result.next_hearing.listedStartDateTime %> (estimated length: <%= judicial_result.next_hearing.estimatedMinutes %> minutes)</p>
+            <% end %>
+          </ul>
+
+          <p>Pleas:</p>
+          <ul>
+            <% offence.pleas.each do |plea| %>
+              <li><%= plea.pleaValue %></li>
+            <% end %>
+          </ul>
+        </li>
       </ul>
-      
-      <h4>Plea</h4>
-      <% offence.pleas.each do |plea| %>
-        <%= plea.pleaValue %>
-      <% end %>
-
-      <h4>Judicial Result</h4>
-      <% offence.judicial_results.each do |judicial_result| %>
-        <%= judicial_result %>
-      <% end %>
-
     <% end %>
 <% end %>
 
+<hr />
 
 <%= link_to 'Edit', edit_admin_hearing_path(@hearing) %> |
 <%= link_to 'Back', admin_prosecution_case_path(@prosecution_case) %>

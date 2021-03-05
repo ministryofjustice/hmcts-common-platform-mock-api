@@ -1,5 +1,4 @@
 class ApplicationVerdict < ApplicationRecord
-
   belongs_to :verdict_type
   belongs_to :jurors
   belongs_to :lesser_or_alternative_offence

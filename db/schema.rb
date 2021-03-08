@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_112405) do
+ActiveRecord::Schema.define(version: 2021_03_08_160847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -315,6 +315,16 @@ ActiveRecord::Schema.define(version: 2021_03_08_112405) do
     t.string "courtIndicatedSentenceDescription"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "court_order_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "offence_id", null: false
+    t.uuid "prosecution_case_id"
+    t.uuid "prosecution_case_identifier_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["offence_id"], name: "index_court_order_offences_on_offence_id"
+    t.index ["prosecution_case_identifier_id"], name: "index_court_order_offences_on_prosecution_case_identifier_id"
   end
 
   create_table "cracked_ineffective_trials", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -1083,6 +1093,8 @@ ActiveRecord::Schema.define(version: 2021_03_08_112405) do
   add_foreign_key "court_applications", "court_application_payments"
   add_foreign_key "court_applications", "court_application_types", column: "application_type_id"
   add_foreign_key "court_applications", "hearings"
+  add_foreign_key "court_order_offences", "offences"
+  add_foreign_key "court_order_offences", "prosecution_case_identifiers"
   add_foreign_key "defence_counsels", "hearings"
   add_foreign_key "defence_organisations", "defendants"
   add_foreign_key "defence_organisations", "organisations"

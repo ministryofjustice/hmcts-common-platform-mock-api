@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_142331) do
+ActiveRecord::Schema.define(version: 2021_03_07_081606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -133,6 +133,16 @@ ActiveRecord::Schema.define(version: 2021_03_05_142331) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["custody_time_limit_id"], name: "index_bail_statuses_on_custody_time_limit_id"
+  end
+
+  create_table "box_hearing_requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "court_centre_id"
+    t.string "jurisdiction_type"
+    t.string "application_due_date"
+    t.string "virtual_appointment_time"
+    t.boolean "send_appointment_letter"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "contact_numbers", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|

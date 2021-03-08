@@ -7,12 +7,6 @@ RSpec.describe ApprovalRequest, type: :model do
 
   let(:json_schema) { :approval_request }
 
-  # describe "associations" do
-  #   it { is_expected.to belong_to(:verdict_type).class_name("VerdictType") }
-  #   it { is_expected.to belong_to(:jurors).class_name("Jurors") }
-  #   it { is_expected.to belong_to(:lesser_or_alternative_offence).class_name("LesserOrAlternativeOffence") }
-  # end
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:hearing_id) }
     it { is_expected.to validate_presence_of(:user_id) }

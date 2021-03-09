@@ -44,6 +44,7 @@ RSpec.configure do |config|
   config.json_schemas[:defendant] = "#{schema_path}/global/apiDefendant.json"
   config.json_schemas[:defendant_alias] = "#{schema_path}/global/apiDefendantAlias.json"
   config.json_schemas[:defendant_attendance] = "#{schema_path}/global/apiDefendantAttendance.json"
+  config.json_schemas[:defendant_case] = "#{schema_path}/global/apiDefendantCase.json"
   config.json_schemas[:defendant_hearing_youth_marker] = "#{schema_path}/global/apiDefendantHearingYouthMarker.json"
   config.json_schemas[:defendant_judicial_result] = "#{schema_path}/global/apiDefendantJudicialResult.json"
   config.json_schemas[:delegated_powers] = "#{schema_path}/global/apiDelegatedPowers.json"

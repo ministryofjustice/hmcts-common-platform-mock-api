@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe CourtOrderOffence, type: :model do
   subject { court_order_offence }

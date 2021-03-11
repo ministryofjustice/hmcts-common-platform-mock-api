@@ -89,6 +89,7 @@ RSpec.configure do |config|
   config.json_schemas[:referral_reason] = "#{schema_path}/global/apiReferralReason.json"
   config.json_schemas[:reporting_restriction] = "#{schema_path}/global/apiReportingRestriction.json"
   config.json_schemas[:respondent_counsel] = "#{schema_path}/global/apiRespondentCounsel.json"
+  config.json_schemas[:rota_slot] = "#{schema_path}/global/apiRotaSlot.json"
   config.json_schemas[:verdict] = "#{schema_path}/global/apiVerdict.json"
   config.json_schemas[:verdict_type] = "#{schema_path}/global/apiVerdictType.json"
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_161859) do
+ActiveRecord::Schema.define(version: 2021_03_10_171814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -1046,6 +1046,19 @@ ActiveRecord::Schema.define(version: 2021_03_10_161859) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "hearing_id"
     t.index ["hearing_id"], name: "index_respondent_counsels_on_hearing_id"
+  end
+
+  create_table "rota_slots", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "start_time"
+    t.integer "duration"
+    t.string "court_schedule_id"
+    t.string "session"
+    t.string "oucode"
+    t.integer "court_room_id"
+    t.string "court_centre_id"
+    t.string "room_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "split_prosecutor_case_references", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|

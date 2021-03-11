@@ -81,6 +81,7 @@ RSpec.configure do |config|
   config.json_schemas[:person] = "#{schema_path}/global/apiPerson.json"
   config.json_schemas[:person_defendant] = "#{schema_path}/global/apiPersonDefendant.json"
   config.json_schemas[:plea] = "#{schema_path}/global/apiPlea.json"
+  config.json_schemas[:plea_model] = "#{schema_path}/global/apiPleaModel.json"
   config.json_schemas[:police_officer_in_case] = "#{schema_path}/global/apiPoliceOfficerInCase.json"
   config.json_schemas[:prosecuting_authority] = "#{schema_path}/global/apiProsecutingAuthority.json"
   config.json_schemas[:prosecution_case] = "#{schema_path}/global/apiProsecutionCase.json"

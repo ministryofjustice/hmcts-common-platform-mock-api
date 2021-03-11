@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_145405) do
+ActiveRecord::Schema.define(version: 2021_03_11_152546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -931,6 +931,21 @@ ActiveRecord::Schema.define(version: 2021_03_11_145405) do
     t.index ["person_id"], name: "index_person_defendants_on_person_id"
   end
 
+  create_table "plea_models", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecution_case_id"
+    t.uuid "defendant_id"
+    t.uuid "offence_id"
+    t.uuid "indicated_plea_id", null: false
+    t.uuid "plea_id", null: false
+    t.uuid "allocation_decision_id", null: false
+    t.uuid "application_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["allocation_decision_id"], name: "index_plea_models_on_allocation_decision_id"
+    t.index ["indicated_plea_id"], name: "index_plea_models_on_indicated_plea_id"
+    t.index ["plea_id"], name: "index_plea_models_on_plea_id"
+  end
+
   create_table "pleas", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "pleaDate"
     t.string "pleaValue"
@@ -1223,6 +1238,9 @@ ActiveRecord::Schema.define(version: 2021_03_11_145405) do
   add_foreign_key "person_defendants", "bail_statuses"
   add_foreign_key "person_defendants", "organisations", column: "employer_organisation_id"
   add_foreign_key "person_defendants", "people"
+  add_foreign_key "plea_models", "allocation_decisions"
+  add_foreign_key "plea_models", "indicated_pleas"
+  add_foreign_key "plea_models", "pleas"
   add_foreign_key "pleas", "delegated_powers", column: "delegated_powers_id"
   add_foreign_key "pleas", "hearings"
   add_foreign_key "pleas", "offences"

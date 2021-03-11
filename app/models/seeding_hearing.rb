@@ -1,6 +1,5 @@
 class SeedingHearing < ApplicationRecord
-
-  JURISDICTION_TYPES =  %w[MAGISTRATES CROWN].freeze
+  JURISDICTION_TYPES = %w[MAGISTRATES CROWN].freeze
 
   validates :seeding_hearing_id, presence: true
   validates :jurisdiction_type, presence: true

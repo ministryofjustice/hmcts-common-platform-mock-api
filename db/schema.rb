@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_092020) do
+ActiveRecord::Schema.define(version: 2021_03_11_145405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -425,6 +425,14 @@ ActiveRecord::Schema.define(version: 2021_03_11_092020) do
     t.index ["hearing_id"], name: "index_defendant_hearing_youth_markers_on_hearing_id"
     t.index ["marker_id"], name: "index_defendant_hearing_youth_markers_on_marker_id"
     t.index ["prosecution_case_id"], name: "index_defendant_hearing_youth_markers_on_prosecution_case_id"
+  end
+
+  create_table "defendant_judicial_results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "master_defendant_id"
+    t.uuid "judicial_result_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["judicial_result_id"], name: "index_defendant_judicial_results_on_judicial_result_id"
   end
 
   create_table "defendants", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -1165,6 +1173,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_092020) do
   add_foreign_key "defendant_hearing_youth_markers", "hearings"
   add_foreign_key "defendant_hearing_youth_markers", "markers"
   add_foreign_key "defendant_hearing_youth_markers", "prosecution_cases"
+  add_foreign_key "defendant_judicial_results", "judicial_results"
   add_foreign_key "defendants", "defence_counsels"
   add_foreign_key "defendants", "prosecution_cases"
   add_foreign_key "hearing_case_notes", "delegated_powers", column: "court_clerk_id"

@@ -1,5 +1,5 @@
 class RotaSlot < ApplicationRecord
-  SESSIONS = ["All Day (AD)", "Morning (AM)", "Afternoon (PM)"]
+  SESSIONS = ["All Day (AD)", "Morning (AM)", "Afternoon (PM)"].freeze
 
   validates :start_time, presence: true
 

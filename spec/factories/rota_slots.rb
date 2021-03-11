@@ -10,13 +10,13 @@ FactoryBot.define do
     room_id { "MyString" }
 
     factory :realistic_rota_slot do
-      start_time { Faker::Time.forward(days:5).rfc3339 }
+      start_time { Faker::Time.forward(days: 5).rfc3339 }
       duration { Faker::Number.within(range: 1..10) }
       court_schedule_id { "MyString" }
       session { RotaSlot::SESSIONS.sample }
       oucode { "MyString" }
       court_room_id { SecureRandom.uuid }
-      court_centre_id { SecureRandom.uuid  }
+      court_centre_id { SecureRandom.uuid }
       room_id { "MyString" }
     end
   end

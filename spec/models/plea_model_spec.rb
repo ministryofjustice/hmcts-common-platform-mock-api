@@ -22,6 +22,7 @@ RSpec.describe PleaModel, type: :model do
 
     context "when the application id is not present" do
       before { allow(subject).to receive(:application_id).and_return(false) }
+
       it { is_expected.to validate_presence_of(:offence_id) }
     end
   end

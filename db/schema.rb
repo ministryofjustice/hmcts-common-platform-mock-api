@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_152546) do
+ActiveRecord::Schema.define(version: 2021_03_12_151052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -164,6 +164,16 @@ ActiveRecord::Schema.define(version: 2021_03_11_152546) do
     t.string "fax"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "court_application_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecution_case_id"
+    t.boolean "is_sjp"
+    t.uuid "prosecution_case_identifier_id", null: false
+    t.string "case_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["prosecution_case_identifier_id"], name: "index_court_application_cases_on_prosecution_case_identifier_id"
   end
 
   create_table "court_application_outcome_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -859,6 +869,8 @@ ActiveRecord::Schema.define(version: 2021_03_11_152546) do
     t.boolean "proceedingsConcluded", default: false, null: false
     t.boolean "pendingCBPW", default: false, null: false
     t.boolean "civilOffence", default: false, null: false
+    t.bigint "court_application_case_id"
+    t.index ["court_application_case_id"], name: "index_offences_on_court_application_case_id"
     t.index ["custody_time_limit_id"], name: "index_offences_on_custody_time_limit_id"
     t.index ["defendant_id"], name: "index_offences_on_defendant_id"
     t.index ["offence_facts_id"], name: "index_offences_on_offence_facts_id"
@@ -1156,6 +1168,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_152546) do
   add_foreign_key "attendance_days", "prosecution_counsels"
   add_foreign_key "attendance_days", "respondent_counsels"
   add_foreign_key "bail_statuses", "custody_time_limits"
+  add_foreign_key "court_application_cases", "prosecution_case_identifiers"
   add_foreign_key "court_application_outcomes", "court_application_outcome_types", column: "application_outcome_type_id"
   add_foreign_key "court_application_parties", "court_application_party_counsels"
   add_foreign_key "court_application_parties", "defendants"

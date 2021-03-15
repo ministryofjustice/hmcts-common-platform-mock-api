@@ -45,16 +45,16 @@ RSpec.describe "/admin/hearings/:hearing_id/offences/:offence_id/judicial_result
     end
   end
 
-  describe "PUT /judicial_result/id" do
+  describe "PATCH /judicial_result/id" do
     it "updates a judicial result" do
       judicial_result = FactoryBot.create(:judicial_result_with_relationships, offence: offence)
-      put update_judicial_result_admin_hearing_path(hearing, offence, judicial_result), params: { judicial_result: { label: "foo" } }, headers: headers
+      patch update_judicial_result_admin_hearing_path(hearing, offence, judicial_result), params: { judicial_result: { label: "foo" } }, headers: headers
       expect(judicial_result.reload.label).to eql("foo")
     end
 
     it "renders edit page when update fails" do
       judicial_result = FactoryBot.create(:judicial_result_with_relationships, offence: offence)
-      put update_judicial_result_admin_hearing_path(hearing, offence, judicial_result), params: { judicial_result: { label: nil } }, headers: headers
+      patch update_judicial_result_admin_hearing_path(hearing, offence, judicial_result), params: { judicial_result: { label: nil } }, headers: headers
       expect(response).to be_ok
     end
   end

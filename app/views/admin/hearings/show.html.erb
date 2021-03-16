@@ -23,28 +23,31 @@
   <h3>Offences</h3>
 
   <% defendant.offences.each do |offence| %>
+    <ul>
+      <li>
+        <%= offence.offenceTitle %>
 
-      <ul>
-        <li>
-          <%= offence.offenceTitle %>
+        <p>Judicial results:</p>
+        <ul>
+          <% offence.judicial_results.each do |judicial_result| %>
+            <li>Text: <%= link_to judicial_result.resultText, judicial_result_admin_hearing_path(@hearing, offence, judicial_result) %></li>
+            <p>Next hearing: <%= judicial_result.next_hearing.listedStartDateTime %> (estimated length: <%= judicial_result.next_hearing.estimatedMinutes %> minutes)</p>
+          <% end %>
 
-          <p>Judicial results:</p>
-          <ul>
-            <% offence.judicial_results.each do |judicial_result| %>
-              <li>Text: <%= link_to judicial_result.resultText, judicial_result_admin_hearing_path(@hearing, offence, judicial_result) %></li>
-              <p>Next hearing: <%= judicial_result.next_hearing.listedStartDateTime %> (estimated length: <%= judicial_result.next_hearing.estimatedMinutes %> minutes)</p>
-            <% end %>
-          </ul>
+          <li>
+            <%= link_to 'add judicial result', add_judicial_result_admin_hearing_path(@hearing, offence), method: :post %>
+          </li>
+        </ul>
 
-          <p>Pleas:</p>
-          <ul>
-            <% offence.pleas.each do |plea| %>
-              <li><%= plea.pleaValue %></li>
-            <% end %>
-          </ul>
-        </li>
-      </ul>
-    <% end %>
+        <p>Pleas:</p>
+        <ul>
+          <% offence.pleas.each do |plea| %>
+            <li><%= plea.pleaValue %></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
 <% end %>
 
 <hr />

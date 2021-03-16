@@ -5,7 +5,7 @@ module Admin
       hearing = Hearing.find(params[:id])
       FactoryBot.create(:judicial_result_with_relationships, hearing: hearing, offence: offence)
 
-      redirect_to edit_admin_hearing_url(hearing), notice: "Judicial result was successfully created."
+      redirect_to admin_hearing_url(hearing), notice: "Judicial result was successfully created."
     end
 
     def show

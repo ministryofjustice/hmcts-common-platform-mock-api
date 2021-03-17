@@ -37,6 +37,7 @@ RSpec.configure do |config|
   config.json_schemas[:court_centre] = "#{schema_path}/global/apiCourtCentre.json"
   config.json_schemas[:court_hearing_request] = "#{schema_path}/global/apiCourtHearingRequest.json"
   config.json_schemas[:court_indicated_sentence] = "#{schema_path}/global/apiCourtIndicatedSentence.json"
+  config.json_schemas[:court_order] = "#{schema_path}/global/apiCourtOrder.json"
   config.json_schemas[:court_order_offence] = "#{schema_path}/global/apiCourtOrderOffence.json"
   config.json_schemas[:court_order_subject] = "#{schema_path}/global/apiCourtOrderSubject.json"
   config.json_schemas[:cracked_ineffective_trial] = "#{schema_path}/global/apiCrackedIneffectiveTrial.json"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_171251) do
+ActiveRecord::Schema.define(version: 2021_03_17_173424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -362,6 +362,8 @@ ActiveRecord::Schema.define(version: 2021_03_17_171251) do
     t.uuid "prosecution_case_identifier_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "court_order_id"
+    t.index ["court_order_id"], name: "index_court_order_offences_on_court_order_id"
     t.index ["offence_id"], name: "index_court_order_offences_on_offence_id"
     t.index ["prosecution_case_identifier_id"], name: "index_court_order_offences_on_prosecution_case_identifier_id"
   end
@@ -377,6 +379,23 @@ ActiveRecord::Schema.define(version: 2021_03_17_171251) do
     t.string "address_line_1"
     t.string "pnc_id"
     t.string "cro_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "court_orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "defendant_ids", default: [], array: true
+    t.uuid "master_defendant_id"
+    t.uuid "judicial_result_type_id"
+    t.string "label"
+    t.string "order_date"
+    t.string "start_date"
+    t.string "end_date"
+    t.uuid "court_centre_id"
+    t.uuid "ordering_hearing_id"
+    t.boolean "is_sjp_order"
+    t.boolean "can_be_subject_of_breach_proceedings"
+    t.boolean "can_be_subject_of_variation_proceedings"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -18,7 +18,7 @@ FactoryBot.define do
     amendmentReason { "Random String" }
     amendmentDate { "2019-10-16 10:11:02" }
     qualifier { "Random String" }
-    resultText { "Random String" }
+    resultText { ["GUILTY", "PARDON", "NOT GUILTY"].sample }
     cjsCode { "2507" }
     postHearingCustodyStatus { "A" }
     rank { 1 }

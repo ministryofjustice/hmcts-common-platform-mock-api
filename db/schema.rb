@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "addresses", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "address1", null: false
     t.string "address2"
     t.string "address3"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "allocation_decisions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "allocation_decisions", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "motReasonId"
     t.string "motReasonDescription"
     t.string "motReasonCode"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["offence_id"], name: "index_allocation_decisions_on_offence_id"
   end
 
-  create_table "applicant_counsels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "applicant_counsels", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "firstName"
     t.string "middleName"
@@ -59,14 +59,24 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_applicant_counsels_on_hearing_id"
   end
 
-  create_table "applicants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "applicants", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "applicant_counsel_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["applicant_counsel_id"], name: "index_applicants_on_applicant_counsel_id"
   end
 
-  create_table "associated_people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "approval_requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "hearing_id", null: false
+    t.uuid "userId"
+    t.datetime "requestApprovalTime"
+    t.string "approvalType"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hearing_id"], name: "index_approval_requests_on_hearing_id"
+  end
+
+  create_table "associated_people", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id", null: false
     t.string "role"
     t.datetime "created_at", precision: 6, null: false
@@ -78,7 +88,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["person_id"], name: "index_associated_people_on_person_id"
   end
 
-  create_table "attendance_days", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "attendance_days", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -103,7 +113,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["respondent_counsel_id"], name: "index_attendance_days_on_respondent_counsel_id"
   end
 
-  create_table "bail_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "bail_statuses", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "code"
     t.string "description"
     t.uuid "custody_time_limit_id"
@@ -112,7 +122,17 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["custody_time_limit_id"], name: "index_bail_statuses_on_custody_time_limit_id"
   end
 
-  create_table "contact_numbers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "box_hearing_requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "jurisdictionType"
+    t.uuid "court_centre_id"
+    t.datetime "applicationDueDate"
+    t.datetime "virtualAppointmentTime"
+    t.boolean "sendAppointmentLetter", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contact_numbers", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "home"
     t.string "work"
     t.string "mobile"
@@ -123,14 +143,31 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "court_application_outcome_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "prosecution_case_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["prosecution_case_id"], name: "index_court_application_cases_on_prosecution_case_id"
+  end
+
+  create_table "court_application_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "offenceCode"
+    t.uuid "offence_id", null: false
+    t.uuid "court_application_case_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_application_case_id"], name: "index_court_application_offences_on_court_application_case_id"
+    t.index ["offence_id"], name: "index_court_application_offences_on_offence_id"
+  end
+
+  create_table "court_application_outcome_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.integer "sequence"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "court_application_outcomes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_outcomes", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "originatingHearingId"
     t.uuid "applicationId"
     t.datetime "applicationOutcomeDate"
@@ -140,7 +177,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["application_outcome_type_id"], name: "index_court_application_outcomes_on_application_outcome_type_id"
   end
 
-  create_table "court_application_parties", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_parties", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "synonym"
     t.uuid "person_id"
     t.uuid "organisation_id"
@@ -158,7 +195,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["representation_organisation_id"], name: "court_application_parties_on_rep_org_id"
   end
 
-  create_table "court_application_party_attendances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_party_attendances", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "court_application_party_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -167,7 +204,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_court_application_party_attendances_on_hearing_id"
   end
 
-  create_table "court_application_party_counsels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_party_counsels", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "applicationId"
     t.string "title"
     t.string "firstName"
@@ -180,7 +217,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_court_application_party_counsels_on_hearing_id"
   end
 
-  create_table "court_application_payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_payments", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "isFeePaid", default: false, null: false
     t.boolean "isFeeUndertakingAttached", default: false, null: false
     t.boolean "isFeeExempt", default: false, null: false
@@ -189,7 +226,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "court_application_respondents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_respondents", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "party_details_id", null: false
     t.uuid "application_response_id"
     t.datetime "created_at", precision: 6, null: false
@@ -202,14 +239,14 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["respondent_counsel_id"], name: "index_court_application_respondents_on_respondent_counsel_id"
   end
 
-  create_table "court_application_response_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_response_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.integer "sequence"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "court_application_responses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_responses", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "originatingHearingId"
     t.uuid "applicationId"
     t.datetime "applicationResponseDate"
@@ -219,7 +256,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["application_response_type_id"], name: "application_responses_on_application_response_type_id"
   end
 
-  create_table "court_application_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_application_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "applicationCode"
     t.string "applicationType"
     t.string "applicationTypeWelsh"
@@ -239,7 +276,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "court_applications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_applications", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "application_type_id", null: false
     t.datetime "applicationReceivedDate"
     t.string "applicationReference"
@@ -267,14 +304,14 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_court_applications_on_hearing_id"
   end
 
-  create_table "court_indicated_sentences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "court_indicated_sentences", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "courtIndicatedSentenceTypeId"
     t.string "courtIndicatedSentenceDescription"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "cracked_ineffective_trials", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "cracked_ineffective_trials", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "code"
     t.string "description"
     t.string "reason_type"
@@ -282,14 +319,14 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "custody_time_limits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "custody_time_limits", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "timeLimit"
     t.integer "daysSpent"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "defence_counsels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "defence_counsels", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "firstName"
     t.string "middleName"
@@ -301,7 +338,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_defence_counsels_on_hearing_id"
   end
 
-  create_table "defence_organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "defence_organisations", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "organisation_id", null: false
     t.string "laaContractNumber"
     t.string "sraNumber"
@@ -317,7 +354,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["organisation_id"], name: "index_defence_organisations_on_organisation_id"
   end
 
-  create_table "defendant_aliases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "defendant_aliases", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "firstName"
     t.string "middleName"
@@ -329,7 +366,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["defendant_id"], name: "index_defendant_aliases_on_defendant_id"
   end
 
-  create_table "defendant_attendances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "defendant_attendances", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "defendant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -338,7 +375,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_defendant_attendances_on_hearing_id"
   end
 
-  create_table "defendant_hearing_youth_markers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "defendant_hearing_youth_markers", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "prosecution_case_id", null: false
     t.uuid "defendant_id", null: false
     t.uuid "hearing_id"
@@ -351,7 +388,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["prosecution_case_id"], name: "index_defendant_hearing_youth_markers_on_prosecution_case_id"
   end
 
-  create_table "defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "defendants", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.integer "numberOfPreviousConvictionsCited"
     t.string "prosecutionAuthorityReference"
     t.string "witnessStatement"
@@ -377,7 +414,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["prosecution_case_id"], name: "index_defendants_on_prosecution_case_id"
   end
 
-  create_table "delegated_powers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "delegated_powers", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "userId"
     t.string "firstName"
     t.string "lastName"
@@ -385,7 +422,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ethnicities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "ethnicities", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "observedEthnicityId"
     t.string "observedEthnicityCode"
     t.string "observedEthnicityDescription"
@@ -396,7 +433,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "hearing_case_notes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "hearing_case_notes", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "court_clerk_id", null: false
     t.datetime "noteDateTime"
     t.string "noteType"
@@ -408,7 +445,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_hearing_case_notes_on_hearing_id"
   end
 
-  create_table "hearing_days", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "hearing_days", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "sittingDay"
     t.integer "listingSequence"
     t.integer "listedDurationMinutes"
@@ -423,7 +460,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_hearing_days_on_hearing_id"
   end
 
-  create_table "hearing_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "hearing_events", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "hearingEventDefinitionId"
     t.string "recordedLabel"
     t.datetime "eventTime"
@@ -434,14 +471,14 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_day_id"], name: "index_hearing_events_on_hearing_day_id"
   end
 
-  create_table "hearing_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "hearing_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "description"
     t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "hearings", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "jurisdictionType"
     t.string "reportingRestrictionReason"
     t.uuid "court_centre_id", null: false
@@ -459,7 +496,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_type_id"], name: "index_hearings_on_hearing_type_id"
   end
 
-  create_table "indicated_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "indicated_pleas", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "indicatedPleaDate"
     t.string "indicatedPleaValue"
     t.string "source"
@@ -471,7 +508,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["offence_id"], name: "index_indicated_pleas_on_offence_id"
   end
 
-  create_table "judicial_result_prompt_duration_elements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "judicial_result_prompt_duration_elements", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "primaryDurationUnit"
     t.integer "primaryDurationValue"
     t.string "primaryLabel"
@@ -485,7 +522,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "judicial_result_prompts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "judicial_result_prompts", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "label"
     t.boolean "isAvailableForCourtExtract", null: false
     t.string "welshLabel"
@@ -503,7 +540,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["judicial_result_id"], name: "index_judicial_result_prompts_on_judicial_result_id"
   end
 
-  create_table "judicial_results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "judicial_results", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "judicialResultId"
     t.uuid "orderedHearingId"
     t.string "label"
@@ -549,14 +586,14 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["offence_id"], name: "index_judicial_results_on_offence_id"
   end
 
-  create_table "judicial_role_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "judicial_role_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "judicialRoleTypeId"
     t.string "judiciaryType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "judicial_roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "judicial_roles", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "judicialId"
     t.string "title"
     t.string "firstName"
@@ -576,7 +613,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["next_hearing_id"], name: "index_judicial_roles_on_next_hearing_id"
   end
 
-  create_table "jurors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "jurors", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.integer "numberOfJurors"
     t.integer "numberOfSplitJurors"
     t.boolean "unanimous"
@@ -584,7 +621,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "laa_references", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "laa_references", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "applicationReference"
     t.uuid "statusId"
     t.string "statusCode"
@@ -599,14 +636,14 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["offence_id"], name: "index_laa_references_on_offence_id"
   end
 
-  create_table "legal_entity_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "legal_entity_defendants", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "organisation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["organisation_id"], name: "index_legal_entity_defendants_on_organisation_id"
   end
 
-  create_table "lesser_or_alternative_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "lesser_or_alternative_offences", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "offenceDefinitionId"
     t.string "offenceCode"
     t.string "offenceTitle"
@@ -617,7 +654,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "linked_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "linked_defendants", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "prosecutionCaseId"
     t.uuid "defendantId"
     t.datetime "created_at", precision: 6, null: false
@@ -626,14 +663,14 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["defendant_id"], name: "index_linked_defendants_on_defendant_id"
   end
 
-  create_table "linked_prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "linked_prosecution_cases", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "prosecution_case_id"
     t.index ["prosecution_case_id"], name: "index_linked_prosecution_cases_on_prosecution_case_id"
   end
 
-  create_table "markers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "markers", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "markerTypeid"
     t.string "sequenceNumber"
     t.string "markerTypeCode"
@@ -648,7 +685,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["prosecution_case_id"], name: "index_markers_on_prosecution_case_id"
   end
 
-  create_table "merged_prosecution_case_targets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "merged_prosecution_case_targets", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "prosecutionCaseId"
     t.string "prosecutionCaseReference"
     t.datetime "created_at", precision: 6, null: false
@@ -657,41 +694,41 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["merged_prosecution_case_id"], name: "index_merged_prosecution_case_targets_on_case_id"
   end
 
-  create_table "merged_prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "merged_prosecution_cases", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "prosecutionCaseReference"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "next_hearing_court_applications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "next_hearing_court_applications", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "next_hearing_id"
     t.index ["next_hearing_id"], name: "index_next_hearing_court_applications_on_next_hearing_id"
   end
 
-  create_table "next_hearing_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "next_hearing_defendants", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "next_hearing_prosecution_case_id"
     t.index ["next_hearing_prosecution_case_id"], name: "index_next_hearing_defendants_on_prosecution_case_id"
   end
 
-  create_table "next_hearing_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "next_hearing_offences", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "next_hearing_defendant_id"
     t.index ["next_hearing_defendant_id"], name: "index_next_hearing_offences_on_next_hearing_defendant_id"
   end
 
-  create_table "next_hearing_prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "next_hearing_prosecution_cases", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "next_hearing_id"
     t.index ["next_hearing_id"], name: "index_next_hearing_prosecution_cases_on_next_hearing_id"
   end
 
-  create_table "next_hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "next_hearings", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "hearing_type_id", null: false
     t.string "jurisdictionType"
     t.string "reportingRestrictionReason"
@@ -706,7 +743,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_type_id"], name: "index_next_hearings_on_hearing_type_id"
   end
 
-  create_table "notified_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "notified_pleas", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "notifiedPleaDate"
     t.string "notifiedPleaValue"
     t.datetime "created_at", precision: 6, null: false
@@ -715,7 +752,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["offence_id"], name: "index_notified_pleas_on_offence_id"
   end
 
-  create_table "offence_facts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "offence_facts", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "vehicleRegistration"
     t.integer "alcoholReadingAmount"
     t.string "alcoholReadingMethodCode"
@@ -725,7 +762,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "offences", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "offenceDefinitionId"
     t.string "offenceCode"
     t.string "offenceTitle"
@@ -764,7 +801,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["offence_facts_id"], name: "index_offences_on_offence_facts_id"
   end
 
-  create_table "organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "organisations", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "incorporationNumber"
     t.string "registeredCharityNumber"
@@ -776,7 +813,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["contact_id"], name: "index_organisations_on_contact_id"
   end
 
-  create_table "people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "people", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "firstName"
     t.string "middleName"
@@ -808,7 +845,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["offence_id"], name: "index_people_on_offence_id"
   end
 
-  create_table "person_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "person_defendants", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id", null: false
     t.uuid "bail_status_id"
     t.string "bailConditions"
@@ -831,7 +868,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["person_id"], name: "index_person_defendants_on_person_id"
   end
 
-  create_table "pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "pleas", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "pleaDate"
     t.string "pleaValue"
     t.datetime "created_at", precision: 6, null: false
@@ -844,7 +881,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["offence_id"], name: "index_pleas_on_offence_id"
   end
 
-  create_table "police_officer_in_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "police_officer_in_cases", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id", null: false
     t.string "policeOfficerRank"
     t.string "policeWorkerReferenceNumber"
@@ -854,7 +891,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["person_id"], name: "index_police_officer_in_cases_on_person_id"
   end
 
-  create_table "prosecuting_authorities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "prosecuting_authorities", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "prosecutionAuthorityId"
     t.string "prosecutionAuthorityCode"
     t.string "name"
@@ -867,7 +904,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["contact_id"], name: "index_prosecuting_authorities_on_contact_id"
   end
 
-  create_table "prosecution_case_hearing_case_notes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "prosecution_case_hearing_case_notes", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "prosecution_case_id", null: false
     t.uuid "hearing_case_note_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -876,7 +913,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["prosecution_case_id"], name: "prosecution_case_hearing_case_notes_on_prosecution_case_id"
   end
 
-  create_table "prosecution_case_hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "prosecution_case_hearings", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "prosecution_case_id", null: false
     t.uuid "hearing_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -885,7 +922,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["prosecution_case_id"], name: "index_prosecution_case_hearings_on_prosecution_case_id"
   end
 
-  create_table "prosecution_case_identifiers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "prosecution_case_identifiers", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "caseURN"
     t.string "prosecutionAuthorityReference"
     t.uuid "prosecutionAuthorityId", null: false
@@ -894,7 +931,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "prosecution_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "prosecution_cases", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "prosecution_case_identifier_id", null: false
     t.string "originatingOrganisation"
     t.string "initiationCode"
@@ -915,7 +952,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["prosecution_counsel_id"], name: "index_prosecution_cases_on_prosecution_counsel_id"
   end
 
-  create_table "prosecution_counsels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "prosecution_counsels", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "firstName"
     t.string "middleName"
@@ -927,7 +964,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_prosecution_counsels_on_hearing_id"
   end
 
-  create_table "referral_reasons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "referral_reasons", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "description"
     t.uuid "defendantId"
     t.datetime "created_at", precision: 6, null: false
@@ -936,7 +973,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_referral_reasons_on_hearing_id"
   end
 
-  create_table "respondent_counsels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "respondent_counsels", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "firstName"
     t.string "middleName"
@@ -948,7 +985,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["hearing_id"], name: "index_respondent_counsels_on_hearing_id"
   end
 
-  create_table "split_prosecutor_case_references", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "split_prosecutor_case_references", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "split"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -958,7 +995,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["prosecution_case_id"], name: "index_split_prosecutor_case_references_on_prosecution_case_id"
   end
 
-  create_table "user_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "user_groups", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "group"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -968,7 +1005,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.index ["judicial_result_prompt_id"], name: "index_user_groups_on_judicial_result_prompt_id"
   end
 
-  create_table "verdict_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "verdict_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.integer "sequence"
     t.string "description"
     t.string "category"
@@ -977,7 +1014,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "verdicts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "verdicts", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "verdictDate"
     t.uuid "verdict_type_id", null: false
     t.uuid "jurors_id"
@@ -998,6 +1035,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
   add_foreign_key "allocation_decisions", "offences"
   add_foreign_key "applicant_counsels", "hearings"
   add_foreign_key "applicants", "applicant_counsels"
+  add_foreign_key "approval_requests", "hearings"
   add_foreign_key "associated_people", "court_application_parties"
   add_foreign_key "associated_people", "defendants"
   add_foreign_key "associated_people", "people"
@@ -1009,6 +1047,9 @@ ActiveRecord::Schema.define(version: 2021_01_28_160503) do
   add_foreign_key "attendance_days", "prosecution_counsels"
   add_foreign_key "attendance_days", "respondent_counsels"
   add_foreign_key "bail_statuses", "custody_time_limits"
+  add_foreign_key "court_application_cases", "prosecution_cases"
+  add_foreign_key "court_application_offences", "court_application_cases"
+  add_foreign_key "court_application_offences", "offences"
   add_foreign_key "court_application_outcomes", "court_application_outcome_types", column: "application_outcome_type_id"
   add_foreign_key "court_application_parties", "court_application_party_counsels"
   add_foreign_key "court_application_parties", "defendants"

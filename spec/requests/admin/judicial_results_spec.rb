@@ -23,9 +23,9 @@ RSpec.describe "/admin/hearings/:hearing_id/offences/:offence_id/judicial_result
       }.to change(NextHearing, :count).by(1)
     end
 
-    it "redirects to the prosecution case" do
+    it "redirects to the hearing show page" do
       post add_judicial_result_admin_hearing_url(hearing, offence), headers: headers
-      expect(response).to redirect_to(edit_admin_hearing_url(hearing))
+      expect(response).to redirect_to(admin_hearing_url(hearing))
     end
   end
 

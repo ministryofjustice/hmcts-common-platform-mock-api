@@ -51,6 +51,7 @@ RSpec.configure do |config|
   config.json_schemas[:defendant_judicial_result] = "#{schema_path}/global/apiDefendantJudicialResult.json"
   config.json_schemas[:delegated_powers] = "#{schema_path}/global/apiDelegatedPowers.json"
   config.json_schemas[:ethnicity] = "#{schema_path}/global/apiEthnicity.json"
+  config.json_schemas[:future_summons_hearing] = "#{schema_path}/global/apiFutureSummonsHearing.json"
   config.json_schemas[:hearing] = "#{schema_path}/global/apiHearing.json"
   config.json_schemas[:hearing_case_note] = "#{schema_path}/global/apiHearingCaseNote.json"
   config.json_schemas[:hearing_day] = "#{schema_path}/global/apiHearingDay.json"

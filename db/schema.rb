@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_112318) do
+ActiveRecord::Schema.define(version: 2021_03_17_171251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -521,6 +521,16 @@ ActiveRecord::Schema.define(version: 2021_03_17_112318) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "future_summons_hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "jurisdiction_type"
+    t.string "earliest_start_date_time"
+    t.json "week_commencing_date"
+    t.integer "estimated_minutes"
+    t.uuid "court_centre_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "hearing_case_notes", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "court_clerk_id", null: false
     t.datetime "noteDateTime"
@@ -696,7 +706,9 @@ ActiveRecord::Schema.define(version: 2021_03_17_112318) do
     t.uuid "hearing_id"
     t.uuid "hearing_day_id"
     t.bigint "court_hearing_request_id"
+    t.bigint "future_summons_hearing_id"
     t.index ["court_hearing_request_id"], name: "index_judicial_roles_on_court_hearing_request_id"
+    t.index ["future_summons_hearing_id"], name: "index_judicial_roles_on_future_summons_hearing_id"
     t.index ["hearing_day_id"], name: "index_judicial_roles_on_hearing_day_id"
     t.index ["hearing_id"], name: "index_judicial_roles_on_hearing_id"
     t.index ["judicial_role_type_id"], name: "index_judicial_roles_on_judicial_role_type_id"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_100026) do
+ActiveRecord::Schema.define(version: 2021_03_17_112318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -331,6 +331,22 @@ ActiveRecord::Schema.define(version: 2021_03_16_100026) do
     t.index ["court_application_payment_id"], name: "index_court_applications_on_court_application_payment_id"
     t.index ["court_centre_id"], name: "index_court_applications_on_court_centre_id"
     t.index ["hearing_id"], name: "index_court_applications_on_hearing_id"
+  end
+
+  create_table "court_hearing_requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "hearing_type_id", null: false
+    t.string "jurisdiction_type"
+    t.string "listed_start_date_time"
+    t.string "earliest_start_date_time"
+    t.string "end_date"
+    t.uuid "booking_reference"
+    t.json "week_commencing_date"
+    t.integer "estimate_minutes"
+    t.uuid "court_centre_id"
+    t.string "listing_directions"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hearing_type_id"], name: "index_court_hearing_requests_on_hearing_type_id"
   end
 
   create_table "court_indicated_sentences", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -679,6 +695,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_100026) do
     t.uuid "next_hearing_id"
     t.uuid "hearing_id"
     t.uuid "hearing_day_id"
+    t.bigint "court_hearing_request_id"
+    t.index ["court_hearing_request_id"], name: "index_judicial_roles_on_court_hearing_request_id"
     t.index ["hearing_day_id"], name: "index_judicial_roles_on_hearing_day_id"
     t.index ["hearing_id"], name: "index_judicial_roles_on_hearing_id"
     t.index ["judicial_role_type_id"], name: "index_judicial_roles_on_judicial_role_type_id"
@@ -1122,6 +1140,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_100026) do
     t.string "room_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "court_hearing_request_id"
+    t.index ["court_hearing_request_id"], name: "index_rota_slots_on_court_hearing_request_id"
   end
 
   create_table "seeding_hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1217,6 +1237,7 @@ ActiveRecord::Schema.define(version: 2021_03_16_100026) do
   add_foreign_key "court_applications", "court_application_payments"
   add_foreign_key "court_applications", "court_application_types", column: "application_type_id"
   add_foreign_key "court_applications", "hearings"
+  add_foreign_key "court_hearing_requests", "hearing_types"
   add_foreign_key "court_order_offences", "offences"
   add_foreign_key "court_order_offences", "prosecution_case_identifiers"
   add_foreign_key "defence_counsels", "hearings"

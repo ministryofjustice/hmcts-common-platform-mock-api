@@ -69,6 +69,7 @@ RSpec.configure do |config|
   config.json_schemas[:linked_defendant] = "#{schema_path}/global/apiLinkedDefendant.json"
   config.json_schemas[:lja_detail] = "#{schema_path}/global/apiLjaDetails.json"
   config.json_schemas[:marker] = "#{schema_path}/global/apiMarker.json"
+  config.json_schemas[:master_defendant] = "#{schema_path}/global/apiMasterDefendant.json"
   config.json_schemas[:merged_prosecution_case] = "#{schema_path}/global/apiMergedProsecutionCase.json"
   config.json_schemas[:merged_prosecution_case_target] = "#{schema_path}/global/apiMergedProsecutionCaseTarget.json"
   config.json_schemas[:next_hearing] = "#{schema_path}/global/apiNextHearing.json"

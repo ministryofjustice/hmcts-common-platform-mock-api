@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_100924) do
+ActiveRecord::Schema.define(version: 2021_03_16_100026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -96,8 +96,10 @@ ActiveRecord::Schema.define(version: 2021_03_15_100924) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "defendant_id"
     t.uuid "court_application_party_id"
+    t.bigint "master_defendant_id"
     t.index ["court_application_party_id"], name: "index_associated_people_on_court_application_party_id"
     t.index ["defendant_id"], name: "index_associated_people_on_defendant_id"
+    t.index ["master_defendant_id"], name: "index_associated_people_on_master_defendant_id"
     t.index ["person_id"], name: "index_associated_people_on_person_id"
   end
 
@@ -433,6 +435,8 @@ ActiveRecord::Schema.define(version: 2021_03_15_100924) do
     t.string "case_reference"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "master_defendant_id"
+    t.index ["master_defendant_id"], name: "index_defendant_cases_on_master_defendant_id"
   end
 
   create_table "defendant_hearing_youth_markers", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -759,6 +763,19 @@ ActiveRecord::Schema.define(version: 2021_03_15_100924) do
     t.uuid "prosecution_case_id"
     t.index ["defendant_id"], name: "index_markers_on_defendant_id"
     t.index ["prosecution_case_id"], name: "index_markers_on_prosecution_case_id"
+  end
+
+  create_table "master_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "master_defendant_id"
+    t.uuid "person_defendant_id", null: false
+    t.uuid "legal_entity_defendant_id", null: false
+    t.boolean "is_youth"
+    t.string "pnc_id"
+    t.string "prosecution_authority_reference"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["legal_entity_defendant_id"], name: "index_master_defendants_on_legal_entity_defendant_id"
+    t.index ["person_defendant_id"], name: "index_master_defendants_on_person_defendant_id"
   end
 
   create_table "merged_prosecution_case_targets", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -1243,6 +1260,8 @@ ActiveRecord::Schema.define(version: 2021_03_15_100924) do
   add_foreign_key "linked_prosecution_cases", "prosecution_cases"
   add_foreign_key "markers", "defendants"
   add_foreign_key "markers", "prosecution_cases"
+  add_foreign_key "master_defendants", "legal_entity_defendants"
+  add_foreign_key "master_defendants", "person_defendants"
   add_foreign_key "merged_prosecution_case_targets", "merged_prosecution_cases"
   add_foreign_key "next_hearing_court_applications", "next_hearings"
   add_foreign_key "next_hearing_defendants", "next_hearing_prosecution_cases"

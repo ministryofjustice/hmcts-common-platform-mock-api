@@ -17,12 +17,10 @@ class DefendantSummary
       if defendant.person?
         defendant_summary.defendantNINO defendant.defendable.person.nationalInsuranceNumber
         defendant_summary.defendantASN defendant.defendable.arrestSummonsNumber
-        defendant_summary.defendantFirstName defendant_first_name
-        defendant_summary.defendantMiddleName defendant_middle_name
-        defendant_summary.defendantLastName defendant_last_name
+        defendant_summary.defendantName defendant_person_name
         defendant_summary.defendantDOB defendant.defendable.person.dateOfBirth.to_date
       else
-        defendant_summary.defendantName defendant_name
+        defendant_summary.defendantName defendant_organisation_name
       end
 
       defendant_summary.dateOfNextHearing date_of_next_hearing
@@ -41,10 +39,6 @@ private
     defendant.offences.map(&:isDisposed).all? true
   end
 
-  def defendant_name
-    defendant.defendable.organisation.name
-  end
-
   def defendant_first_name
     defendant.defendable.person.first_name
   end
@@ -55,6 +49,14 @@ private
 
   def defendant_last_name
     defendant.defendable.person.last_name
+  end
+
+  def defendant_organisation_name
+    defendant.defendable.organisation.name
+  end
+
+  def defendant_person_name
+    defendant_first_name + defendant_last_name
   end
 
   def offences_builder

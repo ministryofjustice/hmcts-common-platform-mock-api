@@ -15,13 +15,13 @@ RSpec.describe PleaModel, type: :model do
 
   describe "validations" do
     context "when the offence id is not present" do
-      before { allow(subject).to receive(:offence_id).and_return(false) }
+      before { plea_model.offence_id = nil }
 
       it { is_expected.to validate_presence_of(:application_id) }
     end
 
     context "when the application id is not present" do
-      before { allow(subject).to receive(:application_id).and_return(false) }
+      before { plea_model.application_id = nil }
 
       it { is_expected.to validate_presence_of(:offence_id) }
     end

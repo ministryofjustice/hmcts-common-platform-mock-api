@@ -11,6 +11,7 @@ class CrackedIneffectiveTrial < ApplicationRecord
       cracked_ineffective_trial.code code
       cracked_ineffective_trial.description description
       cracked_ineffective_trial.type reason_type
+      cracked_ineffective_trial.date date
     end
   end
 end

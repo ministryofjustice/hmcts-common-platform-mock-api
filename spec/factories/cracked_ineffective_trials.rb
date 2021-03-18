@@ -7,6 +7,7 @@ FactoryBot.define do
     code { "String" }
     description { "String" }
     reason_type { "String" }
+    date { "2021-03-18" }
 
     factory :realistic_cracked_ineffective_trial do
       transient do
@@ -16,6 +17,7 @@ FactoryBot.define do
       code { cit_struct.code }
       description { cit_struct.description }
       reason_type { cit_struct.reason_type }
+      date { Faker::Date.backward }
     end
   end
 end

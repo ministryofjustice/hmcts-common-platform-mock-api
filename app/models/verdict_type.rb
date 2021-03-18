@@ -11,6 +11,8 @@ class VerdictType < ApplicationRecord
       verdict_type.description description
       verdict_type.category category
       verdict_type.categoryType categoryType
+      verdict_type.cjsVerdictCode cjs_verdict_code
+      verdict_type.verdictCode verdict_code
     end
   end
 end

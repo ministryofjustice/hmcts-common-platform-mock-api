@@ -107,11 +107,7 @@
             <% end %>
           </div>
 
-          <div>
-            <%= offence.fields_for :judicial_results do |judicial_result| %>
-              <%= render 'admin/judicial_results/form', f: judicial_result %>
-            <% end %>
-          </div>
+          
           <hr/>
         <% end %>
       <% end %>

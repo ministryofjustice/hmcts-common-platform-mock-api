@@ -13,7 +13,7 @@ RSpec.describe FutureSummonsHearing, type: :model do
 
   describe "validations" do
     it "has a key 'start date' in the column 'week_commencing_date'" do
-      expect(subject.week_commencing_date).to have_key("startDate")
+      expect(future_summons_hearing.week_commencing_date).to have_key("startDate")
     end
   end
 

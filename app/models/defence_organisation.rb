@@ -9,7 +9,6 @@ class DefenceOrganisation < ApplicationRecord
   accepts_nested_attributes_for :organisation, reject_if: :all_blank
 
   validates :organisation, presence: true
-  validates :laaContractNumber, presence: true
 
   validates :fundingType, presence: true, inclusion: FUNDING_TYPES, if: -> { defendant.present? }
   validates :associationStartDate, presence: true, if: -> { defendant.present? }

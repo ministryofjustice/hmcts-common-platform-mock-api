@@ -8,7 +8,6 @@ RSpec.describe MasterDefendant, type: :model do
   let(:json_schema) { :master_defendant }
 
   describe "associations" do
-    it { is_expected.to belong_to(:legal_entity_defendant).class_name("LegalEntityDefendant") }
     it { is_expected.to belong_to(:person_defendant).class_name("PersonDefendant") }
     it { is_expected.to have_many(:defendant_cases).class_name("DefendantCase") }
     it { is_expected.to have_many(:associated_people).class_name("AssociatedPerson") }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_175455) do
+ActiveRecord::Schema.define(version: 2021_03_19_105128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -818,13 +818,11 @@ ActiveRecord::Schema.define(version: 2021_03_18_175455) do
   create_table "master_defendants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "master_defendant_id"
     t.uuid "person_defendant_id", null: false
-    t.uuid "legal_entity_defendant_id", null: false
     t.boolean "is_youth"
     t.string "pnc_id"
     t.string "prosecution_authority_reference"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["legal_entity_defendant_id"], name: "index_master_defendants_on_legal_entity_defendant_id"
     t.index ["person_defendant_id"], name: "index_master_defendants_on_person_defendant_id"
   end
 
@@ -1316,7 +1314,6 @@ ActiveRecord::Schema.define(version: 2021_03_18_175455) do
   add_foreign_key "linked_prosecution_cases", "prosecution_cases"
   add_foreign_key "markers", "defendants"
   add_foreign_key "markers", "prosecution_cases"
-  add_foreign_key "master_defendants", "legal_entity_defendants"
   add_foreign_key "master_defendants", "person_defendants"
   add_foreign_key "merged_prosecution_case_targets", "merged_prosecution_cases"
   add_foreign_key "next_hearing_court_applications", "next_hearings"

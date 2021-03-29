@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_105128) do
+ActiveRecord::Schema.define(version: 2021_03_29_101121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -64,6 +64,19 @@ ActiveRecord::Schema.define(version: 2021_03_19_105128) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["applicant_counsel_id"], name: "index_applicants_on_applicant_counsel_id"
+  end
+
+  create_table "application_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "originating_hearing_id"
+    t.uuid "delegated_powers_id", null: false
+    t.uuid "application_id"
+    t.string "plea_date"
+    t.string "plea_value"
+    t.uuid "lesser_or_alternative_offence_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delegated_powers_id"], name: "index_application_pleas_on_delegated_powers_id"
+    t.index ["lesser_or_alternative_offence_id"], name: "index_application_pleas_on_lesser_or_alternative_offence_id"
   end
 
   create_table "application_verdicts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1235,6 +1248,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_105128) do
   add_foreign_key "allocation_decisions", "offences"
   add_foreign_key "applicant_counsels", "hearings"
   add_foreign_key "applicants", "applicant_counsels"
+  add_foreign_key "application_pleas", "delegated_powers", column: "delegated_powers_id"
+  add_foreign_key "application_pleas", "lesser_or_alternative_offences"
   add_foreign_key "application_verdicts", "jurors", column: "jurors_id"
   add_foreign_key "application_verdicts", "lesser_or_alternative_offences"
   add_foreign_key "application_verdicts", "verdict_types"

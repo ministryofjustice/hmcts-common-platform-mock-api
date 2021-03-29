@@ -11,6 +11,7 @@ RSpec.configure do |config|
   config.json_schemas[:address] = "#{schema_path}/global/apiAddress.json"
   config.json_schemas[:allocation_decision] = "#{schema_path}/global/apiAllocationDecision.json"
   config.json_schemas[:applicant_counsel] = "#{schema_path}/global/apiApplicantCounsel.json"
+  config.json_schemas[:application_plea] = "#{schema_path}/global/apiApplicationPlea.json"
   config.json_schemas[:application_verdict] = "#{schema_path}/global/apiApplicationVerdict.json"
   config.json_schemas[:approval_request] = "#{schema_path}/global/apiApprovalRequest.json"
   config.json_schemas[:associated_defence_organisation] = "#{schema_path}/global/apiAssociatedDefenceOrganisation.json"

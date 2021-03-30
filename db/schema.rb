@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_165640) do
+ActiveRecord::Schema.define(version: 2021_03_30_170105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -257,13 +257,6 @@ ActiveRecord::Schema.define(version: 2021_03_30_165640) do
     t.boolean "isFeeUndertakingAttached", default: false, null: false
     t.boolean "isFeeExempt", default: false, null: false
     t.string "paymentReference"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "court_application_response_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "sequence"
-    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

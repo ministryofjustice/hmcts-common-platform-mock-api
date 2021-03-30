@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_161506) do
+ActiveRecord::Schema.define(version: 2021_03_30_162949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -259,19 +259,6 @@ ActiveRecord::Schema.define(version: 2021_03_30_161506) do
     t.string "paymentReference"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "court_application_respondents", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "party_details_id", null: false
-    t.uuid "application_response_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.uuid "respondent_counsel_id"
-    t.uuid "court_application_id"
-    t.index ["application_response_id"], name: "index_court_application_respondents_on_application_response_id"
-    t.index ["court_application_id"], name: "index_court_application_respondents_on_court_application_id"
-    t.index ["party_details_id"], name: "index_court_application_respondents_on_party_details_id"
-    t.index ["respondent_counsel_id"], name: "index_court_application_respondents_on_respondent_counsel_id"
   end
 
   create_table "court_application_response_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -1262,10 +1249,6 @@ ActiveRecord::Schema.define(version: 2021_03_30_161506) do
   add_foreign_key "court_application_party_attendances", "court_application_parties"
   add_foreign_key "court_application_party_attendances", "hearings"
   add_foreign_key "court_application_party_counsels", "hearings"
-  add_foreign_key "court_application_respondents", "court_application_parties", column: "party_details_id"
-  add_foreign_key "court_application_respondents", "court_application_responses", column: "application_response_id"
-  add_foreign_key "court_application_respondents", "court_applications"
-  add_foreign_key "court_application_respondents", "respondent_counsels"
   add_foreign_key "court_application_responses", "court_application_response_types", column: "application_response_type_id"
   add_foreign_key "court_applications", "court_application_payments"
   add_foreign_key "court_applications", "court_application_types", column: "application_type_id"

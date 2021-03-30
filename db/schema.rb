@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_162949) do
+ActiveRecord::Schema.define(version: 2021_03_30_165640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -266,16 +266,6 @@ ActiveRecord::Schema.define(version: 2021_03_30_162949) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "court_application_responses", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "originatingHearingId"
-    t.uuid "applicationId"
-    t.datetime "applicationResponseDate"
-    t.uuid "application_response_type_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["application_response_type_id"], name: "application_responses_on_application_response_type_id"
   end
 
   create_table "court_application_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -1249,7 +1239,6 @@ ActiveRecord::Schema.define(version: 2021_03_30_162949) do
   add_foreign_key "court_application_party_attendances", "court_application_parties"
   add_foreign_key "court_application_party_attendances", "hearings"
   add_foreign_key "court_application_party_counsels", "hearings"
-  add_foreign_key "court_application_responses", "court_application_response_types", column: "application_response_type_id"
   add_foreign_key "court_applications", "court_application_payments"
   add_foreign_key "court_applications", "court_application_types", column: "application_type_id"
   add_foreign_key "court_hearing_requests", "hearing_types"

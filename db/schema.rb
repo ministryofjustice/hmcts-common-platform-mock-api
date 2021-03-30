@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_101121) do
+ActiveRecord::Schema.define(version: 2021_03_30_161506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -202,13 +202,6 @@ ActiveRecord::Schema.define(version: 2021_03_29_101121) do
     t.index ["prosecution_case_identifier_id"], name: "index_court_application_cases_on_prosecution_case_identifier_id"
   end
 
-  create_table "court_application_outcome_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "sequence"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "court_application_outcomes", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "originatingHearingId"
     t.uuid "applicationId"
@@ -322,28 +315,23 @@ ActiveRecord::Schema.define(version: 2021_03_29_101121) do
     t.uuid "application_type_id", null: false
     t.datetime "applicationReceivedDate"
     t.string "applicationReference"
-    t.uuid "court_application_party_id", null: false
-    t.uuid "court_application_outcome_id"
-    t.uuid "linkedCaseId"
-    t.string "linkedSplitProsecutorCaseReference"
     t.uuid "parentApplicationId"
     t.string "applicationParticulars"
     t.uuid "court_application_payment_id"
     t.datetime "applicationDecisionSoughtByDate"
     t.string "applicationStatus"
     t.string "outOfTimeReasons"
-    t.string "breachedOrder"
-    t.string "breachedOrderDate"
-    t.uuid "court_centre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "court_application_party_id"
     t.uuid "hearing_id"
+    t.uuid "court_centre_id"
+    t.string "breachedOrderDate"
+    t.string "linkedSplitProsecutorCaseReference"
+    t.uuid "linkedCaseId"
+    t.uuid "court_application_outcome_id"
     t.index ["application_type_id"], name: "index_court_applications_on_application_type_id"
-    t.index ["court_application_outcome_id"], name: "index_court_applications_on_court_application_outcome_id"
-    t.index ["court_application_party_id"], name: "index_court_applications_on_court_application_party_id"
     t.index ["court_application_payment_id"], name: "index_court_applications_on_court_application_payment_id"
-    t.index ["court_centre_id"], name: "index_court_applications_on_court_centre_id"
-    t.index ["hearing_id"], name: "index_court_applications_on_hearing_id"
   end
 
   create_table "court_hearing_requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1265,7 +1253,6 @@ ActiveRecord::Schema.define(version: 2021_03_29_101121) do
   add_foreign_key "attendance_days", "respondent_counsels"
   add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_application_cases", "prosecution_case_identifiers"
-  add_foreign_key "court_application_outcomes", "court_application_outcome_types", column: "application_outcome_type_id"
   add_foreign_key "court_application_parties", "court_application_party_counsels"
   add_foreign_key "court_application_parties", "defendants"
   add_foreign_key "court_application_parties", "organisations"
@@ -1280,11 +1267,8 @@ ActiveRecord::Schema.define(version: 2021_03_29_101121) do
   add_foreign_key "court_application_respondents", "court_applications"
   add_foreign_key "court_application_respondents", "respondent_counsels"
   add_foreign_key "court_application_responses", "court_application_response_types", column: "application_response_type_id"
-  add_foreign_key "court_applications", "court_application_outcomes"
-  add_foreign_key "court_applications", "court_application_parties"
   add_foreign_key "court_applications", "court_application_payments"
   add_foreign_key "court_applications", "court_application_types", column: "application_type_id"
-  add_foreign_key "court_applications", "hearings"
   add_foreign_key "court_hearing_requests", "hearing_types"
   add_foreign_key "court_order_offences", "offences"
   add_foreign_key "court_order_offences", "prosecution_case_identifiers"

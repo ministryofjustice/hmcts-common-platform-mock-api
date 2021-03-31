@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_170105) do
+ActiveRecord::Schema.define(version: 2021_03_31_170149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -626,6 +626,7 @@ ActiveRecord::Schema.define(version: 2021_03_30_170105) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "judicial_result_id"
     t.uuid "judicialResultPromptTypeId"
+    t.string "welsh_value"
     t.index ["judicial_result_id"], name: "index_judicial_result_prompts_on_judicial_result_id"
   end
 

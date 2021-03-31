@@ -21,6 +21,7 @@ class JudicialResultPrompt < ApplicationRecord
       judicial_result_prompt.totalPenaltyPoints totalPenaltyPoints
       judicial_result_prompt.isFinancialImposition isFinancialImposition
       judicial_result_prompt.usergroups user_groups.map(&:group)
+      judicial_result_prompt.welshValue welsh_value
     end
   end
 end

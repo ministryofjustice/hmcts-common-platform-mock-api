@@ -6,6 +6,8 @@ FactoryBot.define do
     offence
     pleaDate { "2019-10-14 14:59:41" }
     pleaValue { Plea::VALUES.sample }
+    application_id { "14535fbe-cd2d-454e-929e-a7bdcc1be822" }
+    lesser_or_alternative_offence
 
     factory :plea_with_relationships do
       delegated_powers
@@ -16,6 +18,8 @@ FactoryBot.define do
       association :offence, factory: :realistic_offence
       pleaDate { Faker::Date.backward }
       pleaValue { Plea::VALUES.sample }
+      application_id { SecureRandom.uuid }
+      association :lesser_or_alternative_offence, factory: :realistic_lesser_or_alternative_offence
     end
   end
 end

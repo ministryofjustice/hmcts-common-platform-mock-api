@@ -19,9 +19,12 @@ class Plea < ApplicationRecord
 
   belongs_to :hearing
   belongs_to :offence
+  belongs_to :lesser_or_alternative_offence
 
   validates :pleaDate, presence: true
   validates :pleaValue, presence: true, inclusion: VALUES
+  validates :offence_id, presence: true, if: -> { application_id.blank? }
+  validates :application_id, presence: true, if: -> { offence_id.blank? }
 
   def to_builder
     Jbuilder.new do |plea|
@@ -30,6 +33,8 @@ class Plea < ApplicationRecord
       plea.pleaDate pleaDate.to_date
       plea.pleaValue pleaValue
       plea.delegatedPowers delegated_powers.to_builder if delegated_powers.present?
+      plea.applicationId application_id
+      plea.lesserOrAlternativeOffence lesser_or_alternative_offence.to_builder
     end
   end
 end

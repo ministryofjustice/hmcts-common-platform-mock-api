@@ -14,6 +14,18 @@ RSpec.describe Plea, type: :model do
       .in_array(%w[GUILTY NOT_GUILTY])
   end
 
+  context "when the offence id is not present" do
+    before { plea.offence_id = nil }
+
+    it { is_expected.to validate_presence_of(:application_id) }
+  end
+
+  context "when the application id is not present" do
+    before { plea.application_id = nil }
+
+    it { is_expected.to validate_presence_of(:offence_id) }
+  end
+
   it { is_expected.to belong_to(:delegated_powers).class_name("DelegatedPowers").optional }
   it { is_expected.to belong_to(:offence) }
   it { is_expected.to belong_to(:hearing) }

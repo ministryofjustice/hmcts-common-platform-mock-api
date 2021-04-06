@@ -12,6 +12,9 @@ FactoryBot.define do
     breachProceedingsPending { false }
     appealProceedingsPending { false }
     merged_prosecution_case { nil }
+    class_of_case { "Class 1" }
+    is_cps_org_verify_error { true }
+    summons_code { "12345" }
 
     after(:build) do |prosecution_case|
       prosecution_case.defendants << build(:defendant, prosecution_case: nil)
@@ -30,6 +33,9 @@ FactoryBot.define do
     breachProceedingsPending { Faker::Boolean.boolean }
     appealProceedingsPending { Faker::Boolean.boolean }
     association :merged_prosecution_case, factory: :realistic_merged_prosecution_case
+    class_of_case { Faker::Lorem.word }
+    is_cps_org_verify_error { Faker::Boolean.boolean }
+    summons_code { Faker::Number.number(digits: 5) }
 
     after(:build) do |prosecution_case|
       prosecution_case.hearings << build_list(:realistic_hearing, (1..2).to_a.sample)

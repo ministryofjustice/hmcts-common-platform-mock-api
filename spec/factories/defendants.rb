@@ -14,7 +14,6 @@ FactoryBot.define do
     end
     prosecution_case
     masterDefendantId { SecureRandom.uuid }
-    courtProceedingsInitiated { "2019-10-17 14:06:13" }
     numberOfPreviousConvictionsCited { 1 }
     prosecutionAuthorityReference { "MyString" }
     witnessStatement { "MyString" }

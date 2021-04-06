@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_103836) do
+ActiveRecord::Schema.define(version: 2021_04_06_114840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -484,7 +484,6 @@ ActiveRecord::Schema.define(version: 2021_04_06_103836) do
     t.uuid "prosecution_case_id"
     t.uuid "defence_counsel_id"
     t.uuid "masterDefendantId"
-    t.datetime "courtProceedingsInitiated"
     t.boolean "defendantDetailsUpdated", default: false, null: false
     t.uuid "company_representative_id"
     t.index ["company_representative_id"], name: "index_defendants_on_company_representative_id"
@@ -1100,6 +1099,9 @@ ActiveRecord::Schema.define(version: 2021_04_06_103836) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "prosecution_counsel_id"
     t.string "removalReason"
+    t.string "class_of_case"
+    t.boolean "is_cps_org_verify_error"
+    t.string "summons_code"
     t.index ["merged_prosecution_case_id"], name: "index_prosecution_cases_on_merged_prosecution_case_id"
     t.index ["police_officer_in_case_id"], name: "index_prosecution_cases_on_police_officer_in_case_id"
     t.index ["prosecution_case_identifier_id"], name: "index_prosecution_cases_on_prosecution_case_identifier_id"

@@ -52,6 +52,9 @@ class ProsecutionCase < ApplicationRecord
       prosecution_case.appealProceedingsPending appealProceedingsPending
       prosecution_case.defendants array_builder(defendants, hearing: hearing)
       prosecution_case.caseMarkers array_builder(markers)
+      prosecution_case.classOfCase class_of_case
+      prosecution_case.isCpsOrgVerifyError is_cps_org_verify_error
+      prosecution_case.summonsCode summons_code
     end
   end
 end

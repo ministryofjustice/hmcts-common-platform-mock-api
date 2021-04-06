@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_155810) do
+ActiveRecord::Schema.define(version: 2021_04_06_165110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -926,6 +926,10 @@ ActiveRecord::Schema.define(version: 2021_04_06_155810) do
     t.boolean "pendingCBPW", default: false, null: false
     t.boolean "civilOffence", default: false, null: false
     t.bigint "court_application_case_id"
+    t.string "dvla_offence_code"
+    t.bigint "committing_court_id"
+    t.integer "offence_date_code"
+    t.index ["committing_court_id"], name: "index_offences_on_committing_court_id"
     t.index ["court_application_case_id"], name: "index_offences_on_court_application_case_id"
     t.index ["custody_time_limit_id"], name: "index_offences_on_custody_time_limit_id"
     t.index ["defendant_id"], name: "index_offences_on_defendant_id"
@@ -1138,6 +1142,8 @@ ActiveRecord::Schema.define(version: 2021_04_06_155810) do
     t.string "ordered_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "offence_id"
+    t.index ["offence_id"], name: "index_reporting_restrictions_on_offence_id"
   end
 
   create_table "respondent_counsels", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|

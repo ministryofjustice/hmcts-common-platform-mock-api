@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_170149) do
+ActiveRecord::Schema.define(version: 2021_04_06_103836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -665,6 +665,15 @@ ActiveRecord::Schema.define(version: 2021_03_31_170149) do
     t.uuid "court_application_id"
     t.uuid "judicialResultTypeId"
     t.uuid "hearing_id", null: false
+    t.uuid "parent_judicial_result_id"
+    t.uuid "parent_judicial_result_type_id"
+    t.uuid "root_judicial_result_id"
+    t.uuid "root_judicial_result_type_id"
+    t.boolean "can_be_subject_of_variation"
+    t.boolean "can_be_subject_of_breach"
+    t.string "result_wording"
+    t.string "welsh_result_wording"
+    t.string "level"
     t.index ["court_application_id"], name: "index_judicial_results_on_court_application_id"
     t.index ["court_clerk_id"], name: "index_judicial_results_on_court_clerk_id"
     t.index ["defendant_id"], name: "index_judicial_results_on_defendant_id"
@@ -1067,6 +1076,13 @@ ActiveRecord::Schema.define(version: 2021_03_31_170149) do
     t.string "prosecutionAuthorityCode", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "prosecution_authority_name"
+    t.string "prosecution_authority_oucode"
+    t.string "major_creditor_code"
+    t.uuid "address_id", null: false
+    t.uuid "contact_number_id", null: false
+    t.index ["address_id"], name: "index_prosecution_case_identifiers_on_address_id"
+    t.index ["contact_number_id"], name: "index_prosecution_case_identifiers_on_contact_number_id"
   end
 
   create_table "prosecution_cases", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
@@ -1312,6 +1328,8 @@ ActiveRecord::Schema.define(version: 2021_03_31_170149) do
   add_foreign_key "prosecution_case_hearing_case_notes", "prosecution_cases"
   add_foreign_key "prosecution_case_hearings", "hearings"
   add_foreign_key "prosecution_case_hearings", "prosecution_cases"
+  add_foreign_key "prosecution_case_identifiers", "addresses"
+  add_foreign_key "prosecution_case_identifiers", "contact_numbers"
   add_foreign_key "prosecution_cases", "merged_prosecution_cases"
   add_foreign_key "prosecution_cases", "police_officer_in_cases"
   add_foreign_key "prosecution_cases", "prosecution_case_identifiers"

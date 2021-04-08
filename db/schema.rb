@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_165110) do
+ActiveRecord::Schema.define(version: 2021_04_08_083944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -217,13 +217,16 @@ ActiveRecord::Schema.define(version: 2021_04_06_165110) do
     t.uuid "person_id"
     t.uuid "organisation_id"
     t.uuid "prosecuting_authority_id"
-    t.uuid "defendant_id"
     t.uuid "representation_organisation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "court_application_party_counsel_id"
+    t.boolean "summons_required"
+    t.boolean "notification_required"
+    t.uuid "master_defendant_id"
+    t.boolean "appointment_notification_required"
     t.index ["court_application_party_counsel_id"], name: "application_parties_on_court_application_party_counsel_id"
-    t.index ["defendant_id"], name: "index_court_application_parties_on_defendant_id"
+    t.index ["master_defendant_id"], name: "index_court_application_parties_on_master_defendant_id"
     t.index ["organisation_id"], name: "index_court_application_parties_on_organisation_id"
     t.index ["person_id"], name: "index_court_application_parties_on_person_id"
     t.index ["prosecuting_authority_id"], name: "index_court_application_parties_on_prosecuting_authority_id"
@@ -1252,7 +1255,7 @@ ActiveRecord::Schema.define(version: 2021_04_06_165110) do
   add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_application_cases", "prosecution_case_identifiers"
   add_foreign_key "court_application_parties", "court_application_party_counsels"
-  add_foreign_key "court_application_parties", "defendants"
+  add_foreign_key "court_application_parties", "master_defendants"
   add_foreign_key "court_application_parties", "organisations"
   add_foreign_key "court_application_parties", "organisations", column: "representation_organisation_id"
   add_foreign_key "court_application_parties", "people"

@@ -7,30 +7,26 @@ RSpec.describe CourtApplicationType, type: :model do
   let(:json_schema) { :court_application_type }
 
   describe "validations" do
-    it { is_expected.to validate_presence_of(:applicationCategory) }
-    it { is_expected.to validate_presence_of(:applicationJurisdictionType) }
-    it { is_expected.to validate_presence_of(:applicationType) }
+    it { is_expected.to validate_presence_of(:type) }
+    it { is_expected.to validate_presence_of(:category_code) }
     it { is_expected.to validate_presence_of(:linkType) }
+    it { is_expected.to validate_presence_of(:jurisdiction) }
+    it { is_expected.to validate_presence_of(:summons_template_type) }
+    it { is_expected.to validate_presence_of(:breach_type) }
+    it { is_expected.to validate_presence_of(:appeal_flag) }
+    it { is_expected.to validate_presence_of(:applicant_appellant_flag) }
+    it { is_expected.to validate_presence_of(:plea_applicable_flag) }
+    it { is_expected.to validate_presence_of(:commr_of_oath_flag) }
+    it { is_expected.to validate_presence_of(:court_of_appeal_flag) }
+    it { is_expected.to validate_presence_of(:court_extract_avl_flag) }
+    it { is_expected.to validate_presence_of(:prosecutor_third_party_flag) }
+    it { is_expected.to validate_presence_of(:spi_out_applicable_flag) }
+    it { is_expected.to validate_presence_of(:offence_active_order) }
+  end
 
-    it do
-      is_expected.to validate_inclusion_of(:applicationJurisdictionType)
-        .in_array(%w[MAGISTRATES CROWN EITHER])
-    end
-
-    it do
-      is_expected.to validate_inclusion_of(:applicationSummonsRecipientType)
-        .in_array(%w[APPLICANT RESPONDENT])
-    end
-
-    it do
-      is_expected.to validate_inclusion_of(:applicationSummonsTemplateType)
-        .in_array(%w[GENERIC_SUMMONS])
-    end
-
-    it do
-      is_expected.to validate_inclusion_of(:linkType)
-        .in_array(%w[STANDALONE LINKED NEITHER])
-    end
+  it do
+    is_expected.to validate_inclusion_of(:linkType)
+      .in_array(%w[STANDALONE LINKED NEITHER])
   end
 
   it_has_behaviour "conforming to valid schema"

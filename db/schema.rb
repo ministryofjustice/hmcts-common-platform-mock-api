@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_145749) do
+ActiveRecord::Schema.define(version: 2021_04_08_163758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -265,23 +265,34 @@ ActiveRecord::Schema.define(version: 2021_04_08_145749) do
   end
 
   create_table "court_application_types", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
-    t.string "applicationCode"
-    t.string "applicationType"
-    t.string "applicationTypeWelsh"
-    t.string "applicationLegislation"
-    t.string "applicationLegislationWelsh"
-    t.string "applicationCategory"
-    t.boolean "isAppealApplication"
-    t.boolean "isBreachApplication"
-    t.boolean "isApplicationToRecordCourtOfAppealDecision"
     t.string "linkType"
-    t.string "applicantSynonym"
-    t.string "respondentSynonym"
-    t.string "applicationJurisdictionType"
-    t.string "applicationSummonsRecipientType"
-    t.string "applicationSummonsTemplateType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "type"
+    t.string "category_code"
+    t.string "jurisdiction"
+    t.string "summons_template_type"
+    t.string "breach_type"
+    t.boolean "appeal_flag"
+    t.boolean "applicant_appellant_flag"
+    t.boolean "plea_applicable_flag"
+    t.boolean "commr_of_oath_flag"
+    t.boolean "court_of_appeal_flag"
+    t.boolean "court_extract_avl_flag"
+    t.boolean "prosecutor_third_party_flag"
+    t.boolean "spi_out_applicable_flag"
+    t.string "offence_active_order"
+    t.string "code"
+    t.string "legislation"
+    t.string "valid_from"
+    t.string "valid_to"
+    t.string "listing_notif_template"
+    t.string "boxwork_notif_template"
+    t.string "type_welsh"
+    t.string "legislation_welsh"
+    t.string "hearing_code"
+    t.string "resentencing_activation_code"
+    t.string "prefix"
   end
 
   create_table "court_applications", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|

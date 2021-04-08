@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_083944) do
+ActiveRecord::Schema.define(version: 2021_04_08_142210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -1158,6 +1158,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_083944) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "hearing_id"
+    t.uuid "respondents", default: [], array: true
     t.index ["hearing_id"], name: "index_respondent_counsels_on_hearing_id"
   end
 

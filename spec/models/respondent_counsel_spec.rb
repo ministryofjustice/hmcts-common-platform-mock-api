@@ -7,12 +7,11 @@ RSpec.describe RespondentCounsel, type: :model do
   let(:json_schema) { :respondent_counsel }
 
   describe "associations" do
-    it { is_expected.to have_many(:court_application_respondents).class_name("CourtApplicationRespondent") }
     it { is_expected.to have_many(:attendance_days).class_name("AttendanceDay") }
   end
 
   describe "validations" do
-    it { is_expected.to validate_presence_of(:court_application_respondents) }
+    it { is_expected.to validate_presence_of(:respondents) }
     it { is_expected.to validate_presence_of(:attendance_days) }
   end
 

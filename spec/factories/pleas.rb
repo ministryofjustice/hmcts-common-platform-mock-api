@@ -7,10 +7,10 @@ FactoryBot.define do
     pleaDate { "2019-10-14 14:59:41" }
     pleaValue { Plea::VALUES.sample }
     application_id { "14535fbe-cd2d-454e-929e-a7bdcc1be822" }
-    lesser_or_alternative_offence
 
     factory :plea_with_relationships do
       delegated_powers
+      lesser_or_alternative_offence
     end
 
     factory :realistic_plea do

@@ -22,17 +22,15 @@ class CourtApplication < ApplicationRecord
       court_application.applicant court_application_party.to_builder
       court_application.respondents
       court_application.type court_application_type.to_builder
-      court_application.linkedCaseId linkedCaseId
-      court_application.linkedSplitProsecutorCaseReference linkedSplitProsecutorCaseReference
       court_application.parentApplicationId parentApplicationId
       court_application.applicationParticulars applicationParticulars
       court_application.courtApplicationPayment court_application_payment.to_builder if court_application_payment.present?
       court_application.applicationDecisionSoughtByDate applicationDecisionSoughtByDate.to_date
       court_application.applicationStatus applicationStatus
       court_application.outOfTimeReasons outOfTimeReasons
-      court_application.breachedOrderDate breachedOrderDate
       court_application.orderingCourt court_centre.to_builder if court_centre.present?
       court_application.judicialResults array_builder(judicial_results)
+      court_application.subject court_application_party.to_builder
     end
   end
 end

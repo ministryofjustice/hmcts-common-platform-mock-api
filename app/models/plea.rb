@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Plea < ApplicationRecord
+  include BuilderMappable
+
   VALUES = %w[GUILTY
               NOT_GUILTY
               MCA_GUILTY
@@ -16,10 +18,9 @@ class Plea < ApplicationRecord
               PARDON].freeze
 
   belongs_to :delegated_powers, optional: true
-
   belongs_to :hearing
   belongs_to :offence
-  belongs_to :lesser_or_alternative_offence
+  belongs_to :lesser_or_alternative_offence, optional: true
 
   validates :pleaDate, presence: true
   validates :pleaValue, presence: true, inclusion: VALUES
@@ -34,7 +35,7 @@ class Plea < ApplicationRecord
       plea.pleaValue pleaValue
       plea.delegatedPowers delegated_powers.to_builder if delegated_powers.present?
       plea.applicationId application_id
-      plea.lesserOrAlternativeOffence lesser_or_alternative_offence.to_builder
+      plea.lesserOrAlternativeOffence lesser_or_alternative_offence.to_builder if lesser_or_alternative_offence.present?
     end
   end
 end

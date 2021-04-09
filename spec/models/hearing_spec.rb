@@ -30,9 +30,7 @@ RSpec.describe Hearing, type: :model do
     it { is_expected.to validate_presence_of(:jurisdictionType) }
     it { is_expected.to validate_presence_of(:court_centre_id) }
     it { is_expected.to validate_presence_of(:hearing_type) }
-    it { is_expected.to validate_presence_of(:hearing_days) }
     it { is_expected.to validate_inclusion_of(:jurisdictionType).in_array(%w[MAGISTRATES CROWN]) }
-    it { is_expected.to validate_inclusion_of(:hearingLanguage).in_array(%w[ENGLISH WELSH]) }
   end
 
   context "when the hearing has been resulted" do

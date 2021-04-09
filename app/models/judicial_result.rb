@@ -22,9 +22,7 @@ class JudicialResult < ApplicationRecord
   validates :isAvailableForCourtExtract, inclusion: [true, false]
   validates :orderedDate, presence: true
   validates :category, presence: true, inclusion: CATEGORIES
-  validates :resultText, presence: true
-  validates :terminatesOffenceProceedings, inclusion: [true, false]
-  validates :postHearingCustodyStatus, inclusion: POST_HEARING_CUSTODY_STATUSES, allow_blank: true
+  validates :orderedHearingId, presence: true
 
   def to_builder
     Jbuilder.new do |judicial_result|

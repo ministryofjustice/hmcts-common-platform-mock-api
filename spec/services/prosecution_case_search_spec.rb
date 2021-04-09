@@ -52,8 +52,11 @@ RSpec.describe ProsecutionCaseSearch do
         cases.first.save!
       end
 
-      it { is_expected.to include(cases.first) }
-      it { is_expected.not_to include(cases.second, cases.third) }
+      it "raises an invalid params error" do
+        expect {
+          search
+        }.to raise_error(Errors::InvalidParams)
+      end
     end
 
     context "and ASN" do
@@ -81,8 +84,11 @@ RSpec.describe ProsecutionCaseSearch do
         cases.third.save!
       end
 
-      it { is_expected.to include(cases.first) }
-      it { is_expected.not_to include(cases.second, cases.third) }
+      it "raises an invalid params error" do
+        expect {
+          search
+        }.to raise_error(Errors::InvalidParams)
+      end
     end
 
     context "and name and DOB" do
@@ -113,8 +119,11 @@ RSpec.describe ProsecutionCaseSearch do
         cases.third.save!
       end
 
-      it { is_expected.to include(cases.first) }
-      it { is_expected.not_to include(cases.second, cases.third) }
+      it "raises an invalid params error" do
+        expect {
+          search
+        }.to raise_error(Errors::InvalidParams)
+      end
     end
 
     context "and Date of next hearing" do
@@ -145,8 +154,11 @@ RSpec.describe ProsecutionCaseSearch do
         cases.third.save!
       end
 
-      it { is_expected.to include(cases.first) }
-      it { is_expected.not_to include(cases.second, cases.third) }
+      it "raises an invalid params error" do
+        expect {
+          search
+        }.to raise_error(Errors::InvalidParams)
+      end
     end
 
     context "with a non matching reference" do
@@ -229,8 +241,11 @@ RSpec.describe ProsecutionCaseSearch do
           dateOfNextHearing: "2019-01-10" }
       end
 
-      it { is_expected.to include(cases.first) }
-      it { is_expected.not_to include(cases.second) }
+      it "raises an invalid params error" do
+        expect {
+          search
+        }.to raise_error(Errors::InvalidParams)
+      end
     end
   end
 

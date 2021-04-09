@@ -28,7 +28,6 @@ class CourtApplication < ApplicationRecord
       court_application.applicationDecisionSoughtByDate applicationDecisionSoughtByDate.to_date
       court_application.applicationStatus applicationStatus
       court_application.outOfTimeReasons outOfTimeReasons
-      court_application.orderingCourt court_centre.to_builder if court_centre.present?
       court_application.judicialResults array_builder(judicial_results)
       court_application.subject court_application_party.to_builder
     end

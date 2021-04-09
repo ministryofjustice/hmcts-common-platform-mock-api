@@ -25,7 +25,6 @@ RSpec.describe CourtApplication, type: :model do
   describe "hmcts schema" do
     before do
       court_application.court_application_payment = FactoryBot.create(:court_application_payment)
-      court_application.court_centre_id = "6131bd34-33d9-3d1e-8152-8b5a2084f1bd"
       court_application.judicial_results << FactoryBot.create(:judicial_result_with_relationships)
       court_application.save!
     end

@@ -15,7 +15,7 @@ RSpec.describe Offence, type: :model do
     it { is_expected.to belong_to(:offence_facts).class_name("OffenceFacts").optional }
     it { is_expected.to belong_to(:custody_time_limit).class_name("CustodyTimeLimit").optional }
     it { is_expected.to belong_to(:defendant).class_name("Defendant").optional }
-    it { is_expected.to belong_to(:committing_court) }
+    it { is_expected.to belong_to(:committing_court).optional }
     it { is_expected.to have_many(:victims).class_name("Person") }
     it { is_expected.to have_many(:judicial_results).class_name("JudicialResult") }
     it { is_expected.to have_many(:reporting_restrictions) }

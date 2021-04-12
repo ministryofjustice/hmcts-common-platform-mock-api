@@ -7,7 +7,6 @@ class ProsecutionCaseSearch < ApplicationService
     schema = JSON.parse(File.open(Rails.root.join("lib/schemas/api/search-prosecutionCaseRequest.json")).read)
     register_dependant_schemas!
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
-    # binding.pry
     raise Errors::InvalidParams, errors if errors.present?
   end
 

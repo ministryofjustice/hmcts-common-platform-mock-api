@@ -67,6 +67,9 @@ module Admin
                                                :statementOfFactsWelsh,
                                                :breachProceedingsPending,
                                                :appealProceedingsPending,
+                                               :summons_code,
+                                               :class_of_case,
+                                               :is_cps_org_verify_error,
                                                prosecution_case_identifier_attributes: prosecution_case_identifier_attributes,
                                                hearings_attributes: hearings_attributes,
                                                defendants_attributes: defendant_attributes)

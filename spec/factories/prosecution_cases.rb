@@ -35,7 +35,7 @@ FactoryBot.define do
     association :merged_prosecution_case, factory: :realistic_merged_prosecution_case
     class_of_case { Faker::Lorem.word }
     is_cps_org_verify_error { Faker::Boolean.boolean }
-    summons_code { Faker::Number.number(digits: 5) }
+    summons_code { Faker::Number.number(digits: 5).to_s }
 
     after(:build) do |prosecution_case|
       prosecution_case.hearings << build_list(:realistic_hearing, (1..2).to_a.sample)

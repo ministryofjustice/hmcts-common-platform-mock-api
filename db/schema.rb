@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_091429) do
+ActiveRecord::Schema.define(version: 2021_04_12_082733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -1095,8 +1095,8 @@ ActiveRecord::Schema.define(version: 2021_04_09_091429) do
     t.string "prosecution_authority_name"
     t.string "prosecution_authority_oucode"
     t.string "major_creditor_code"
-    t.uuid "address_id", null: false
-    t.uuid "contact_number_id", null: false
+    t.uuid "address_id"
+    t.uuid "contact_number_id"
     t.index ["address_id"], name: "index_prosecution_case_identifiers_on_address_id"
     t.index ["contact_number_id"], name: "index_prosecution_case_identifiers_on_contact_number_id"
   end

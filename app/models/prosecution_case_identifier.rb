@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ProsecutionCaseIdentifier < ApplicationRecord
-  belongs_to :address
-  belongs_to :contact_number
+  belongs_to :address, optional: true
+  belongs_to :contact_number, optional: true
 
   validates :prosecutionAuthorityId, presence: true
   validates :prosecutionAuthorityCode, presence: true

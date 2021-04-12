@@ -11,7 +11,7 @@ class Offence < ApplicationRecord
   belongs_to :offence_facts, optional: true
   belongs_to :custody_time_limit, optional: true
   belongs_to :defendant, optional: true
-  belongs_to :committing_court
+  belongs_to :committing_court, optional: true
 
   has_many :victims, class_name: "Person", dependent: :destroy
   has_many :judicial_results, dependent: :destroy

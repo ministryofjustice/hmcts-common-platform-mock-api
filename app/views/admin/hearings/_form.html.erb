@@ -105,20 +105,9 @@
                 <%= link_to 'add allocation decision', add_allocation_decision_admin_hearing_path(hearing, offence.object), method: :post %>
               </div>
             <% end %>
-
           </div>
 
-          <div>
-            <%= offence.fields_for :judicial_results do |judicial_result| %>
-              <%= render 'judicial_result_fields', f: judicial_result %>
-            <% end %>
-
-            <% if offence.object.judicial_results.empty? %>
-              <div class="links">
-                <%= link_to 'add judicial result', add_judicial_result_admin_hearing_path(hearing, offence.object), method: :post %>
-              </div>
-            <% end %>
-          </div>
+          
           <hr/>
         <% end %>
       <% end %>

@@ -64,7 +64,7 @@ FactoryBot.define do
 
     association :defence_organisation, factory: :realistic_associated_defence_organisation, defendant: nil
     after(:build) do |defendant|
-      defendant.offences << build(:realistic_offence, defendant: nil)
+      defendant.offences << build(:offence_with_relationships, defendant: nil)
       defendant.associated_people << build_list(:realistic_associated_person,
                                                 Faker::Number.between(from: 0, to: 3))
       defendant.defendant_aliases << build_list(:realistic_defendant_alias,

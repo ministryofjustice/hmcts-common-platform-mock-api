@@ -16,6 +16,8 @@ class NextHearing < ApplicationRecord
   validates :jurisdictionType, inclusion: %w[MAGISTRATES CROWN]
   validates :hearingLanguage, inclusion: %w[ENGLISH WELSH]
 
+  accepts_nested_attributes_for :hearing_type, reject_if: :all_blank
+
   def to_builder
     Jbuilder.new do |next_hearing|
       next_hearing.type hearing_type.to_builder

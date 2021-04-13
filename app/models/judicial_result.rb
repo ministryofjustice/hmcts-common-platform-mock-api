@@ -5,6 +5,7 @@ class JudicialResult < ApplicationRecord
 
   POST_HEARING_CUSTODY_STATUSES = %w[A B C L P R S U].freeze
   CATEGORIES = %w[FINAL INTERMEDIARY ANCILLARY].freeze
+
   belongs_to :court_clerk, class_name: "DelegatedPowers", optional: true
   belongs_to :delegated_powers, optional: true
   belongs_to :four_eyes_approval, class_name: "DelegatedPowers", optional: true
@@ -23,6 +24,8 @@ class JudicialResult < ApplicationRecord
   validates :orderedDate, presence: true
   validates :category, presence: true, inclusion: CATEGORIES
   validates :orderedHearingId, presence: true
+
+  accepts_nested_attributes_for :next_hearing, reject_if: :all_blank, allow_destroy: true
 
   def to_builder
     Jbuilder.new do |judicial_result|

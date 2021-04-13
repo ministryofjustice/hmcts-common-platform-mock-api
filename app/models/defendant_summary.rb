@@ -43,10 +43,6 @@ private
     defendant.defendable.person.first_name
   end
 
-  def defendant_middle_name
-    defendant.defendable.person.middle_name
-  end
-
   def defendant_last_name
     defendant.defendable.person.last_name
   end

@@ -1,0 +1,20 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+    timezone: Europe/London
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: webmock
+    versions:
+    - 3.11.3
+  - dependency-name: rails
+    versions:
+    - 6.1.1
+    - 6.1.2
+  - dependency-name: bootsnap
+    versions:
+    - 1.7.1

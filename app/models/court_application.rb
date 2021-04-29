@@ -20,7 +20,6 @@ class CourtApplication < ApplicationRecord
       court_application.applicationReceivedDate applicationReceivedDate.to_date
       court_application.applicationReference applicationReference
       court_application.applicant court_application_party.to_builder
-      court_application.respondents
       court_application.type court_application_type.to_builder
       court_application.parentApplicationId parentApplicationId
       court_application.applicationParticulars applicationParticulars

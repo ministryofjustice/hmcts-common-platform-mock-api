@@ -110,7 +110,7 @@ jobs:
           kubeconfig: ENCODED_KUBECONFIG
       - kubernetes/install-kubectl
       - helm/install-helm-client:
-          version: 'v3.5.0'
+          version: 'v3.5.4'
       - helm/upgrade-helm-chart:
           namespace: hmcts-mock-api-dev
           update-repositories: false

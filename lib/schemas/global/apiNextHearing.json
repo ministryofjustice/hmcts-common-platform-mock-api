@@ -49,13 +49,52 @@
              "items": {
                  "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
             }
-        }
+        },
+        "existingHearingId": {
+            "description": "The id of an existing hearing which these next hearing cases/application will be adjourned to.",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "bookingReference": {
+            "description": "Scheduled booking reference for provisionally booked slots in magistrates courts.",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "reservedJudiciary": {
+            "description": "Flag to indicate whether the same judiciaries in the current hearing should be reserved for the next hearing.",
+            "type": "boolean"
+        },
+        "weekCommencingDate": {
+            "description": "Hearing week commencing start date.",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
+        },
+        "dateToBeFixed": {
+          "description": "Flag to indicate that the next hearing needs to be listed as unscheduled hearing without any start date.",
+          "type": "boolean"
+        }       
     },
-     "required": [
-        "type",
-        "courtCentre",
-        "estimatedMinutes",
-        "listedStartDateTime"
-    ],
+      "oneOf": [
+        {
+          "required": [
+          "type",
+          "courtCentre",
+          "estimatedMinutes",
+          "listedStartDateTime"
+          ]
+        },
+        {
+          "required": [
+          "type",
+          "courtCentre",
+          "estimatedMinutes",
+          "weekCommencingDate"
+          ]
+        },
+        {
+          "required": [
+            "type",
+            "courtCentre",
+            "dateToBeFixed"
+          ]
+        }
+      ],
      "additionalProperties": false
 }

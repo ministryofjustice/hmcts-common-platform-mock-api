@@ -56,6 +56,10 @@
         "items": {
             "type": "string"
         }
+    },
+    "welshValue": {
+      "description": "The result prompt welsh value provided by the judiciary and recorded by the person executing the resulting process",
+      "type": "string"
     }
   },
   "required": [

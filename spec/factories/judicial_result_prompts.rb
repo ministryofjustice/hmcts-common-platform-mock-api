@@ -13,5 +13,6 @@ FactoryBot.define do
     promptReference { "Random String" }
     totalPenaltyPoints { 1 }
     isFinancialImposition { false }
+    welsh_value { "MyString" }
   end
 end

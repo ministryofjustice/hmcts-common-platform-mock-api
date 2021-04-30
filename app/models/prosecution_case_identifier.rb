@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ProsecutionCaseIdentifier < ApplicationRecord
+  belongs_to :address, optional: true
+  belongs_to :contact_number, optional: true
+
   validates :prosecutionAuthorityId, presence: true
   validates :prosecutionAuthorityCode, presence: true
   validates :prosecutionAuthorityReference, presence: true, if: -> { caseURN.blank? }
@@ -17,6 +20,11 @@ class ProsecutionCaseIdentifier < ApplicationRecord
       prosecution_case_identifier.prosecutionAuthorityReference prosecutionAuthorityReference if prosecutionAuthorityReference.present?
       prosecution_case_identifier.prosecutionAuthorityId prosecutionAuthorityId
       prosecution_case_identifier.prosecutionAuthorityCode prosecutionAuthorityCode
+      prosecution_case_identifier.prosecutionAuthorityName prosecution_authority_name
+      prosecution_case_identifier.prosecutionAuthorityOUCode prosecution_authority_oucode
+      prosecution_case_identifier.majorCreditorCode major_creditor_code
+      prosecution_case_identifier.address address.to_builder
+      prosecution_case_identifier.contact contact_number.to_builder
     end
   end
 end

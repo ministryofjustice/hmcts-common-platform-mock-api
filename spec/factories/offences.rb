@@ -33,6 +33,13 @@ FactoryBot.define do
     proceedingsConcluded { false }
     pendingCBPW { false }
     civilOffence { false }
+    dvla_offence_code { "MyString" }
+    committing_court
+    offence_date_code { 1 }
+
+    after(:build) do |offence|
+      offence.reporting_restrictions << build(:reporting_restriction)
+    end
 
     factory :offence_with_relationships do
       association :custody_time_limit, factory: :custody_time_limit

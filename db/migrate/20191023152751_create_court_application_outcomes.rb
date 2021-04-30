@@ -5,7 +5,6 @@ class CreateCourtApplicationOutcomes < ActiveRecord::Migration[6.0]
       t.uuid :applicationId
       t.datetime :applicationOutcomeDate
       t.references :application_outcome_type, type: :uuid, foreign_key: { to_table: :court_application_outcome_types }
-
       t.timestamps
     end
   end

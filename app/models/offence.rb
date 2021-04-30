@@ -7,9 +7,11 @@ class Offence < ApplicationRecord
   has_many :allocation_decisions, dependent: :destroy
   has_many :pleas, dependent: :destroy
   has_many :verdicts, dependent: :destroy
+  has_many :reporting_restrictions
   belongs_to :offence_facts, optional: true
   belongs_to :custody_time_limit, optional: true
   belongs_to :defendant, optional: true
+  belongs_to :committing_court, optional: true
 
   has_many :victims, class_name: "Person", dependent: :destroy
   has_many :judicial_results, dependent: :destroy
@@ -54,6 +56,10 @@ class Offence < ApplicationRecord
       offence.offenceFacts offence_facts&.to_builder
       offence.laaApplnReference laa_reference&.to_builder
       offence.custodyTimeLimit custody_time_limit&.to_builder
+      offence.dvlaOffenceCode dvla_offence_code
+      offence.committingCourt committing_court.to_builder
+      offence.offenceDateCode offence_date_code
+      offence.reportingRestrictions array_builder(reporting_restrictions)
 
       if hearing.present?
         offence.indicatedPlea indicated_plea_for_hearing(hearing)&.to_builder

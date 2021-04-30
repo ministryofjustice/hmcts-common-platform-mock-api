@@ -19,11 +19,11 @@ class AddOnePointFiveFields < ActiveRecord::Migration[6.0]
     add_column :offences, :pendingCBPW, :boolean, default: false, null: false
     add_column :offences, :civilOffence, :boolean, default: false, null: false
 
-    add_reference :attendance_days, :company_representative, type: :uuid, foreign_key: true
+    add_reference :attendance_days, :company_representatives, type: :uuid, foreign_key: true
     add_reference :attendance_days, :interpreter_intermediary, type: :uuid, foreign_key: true
     add_reference :company_representatives, :hearing, type: :uuid, foreign_key: true
     add_reference :defendant_judicial_results, :hearing, type: :uuid, foreign_key: true
-    add_reference :defendants, :company_representative, type: :uuid, foreign_key: true
+    add_reference :defendants, :company_representatives, type: :uuid, foreign_key: true
     add_reference :hearing_days, :court_centre, type: :uuid, foreign_key: true
     add_reference :interpreter_intermediaries, :hearing, type: :uuid, foreign_key: true
     add_reference :judicial_roles, :hearing_day, type: :uuid, foreign_key: true

@@ -30,8 +30,6 @@ class Hearing < ApplicationRecord
   validates :jurisdictionType, presence: true, inclusion: JURISDICTION_TYPES
   validates :court_centre_id, presence: true
   validates :hearing_type, presence: true
-  validates :hearing_days, presence: true
-  validates :hearingLanguage, inclusion: LANGUAGES
 
   accepts_nested_attributes_for :hearing_type, reject_if: :all_blank
   accepts_nested_attributes_for :hearing_days, reject_if: :all_blank

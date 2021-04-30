@@ -48,6 +48,18 @@
             "items": {
                 "$ref": "http://justice.gov.uk/core/courts/external/apiMarker.json#"
             }
+        },
+        "classOfCase": {
+            "description": "Class of case received. E.g Class 1, Class 2",
+            "type": "string"
+        },
+        "isCpsOrgVerifyError": {
+            "description": "Flag to determine if CPS organisation verified",
+            "type": "boolean"
+        },
+        "summonsCode": {
+            "description": "When it is a first hearing summons request, system must check the summons code (in the summons request message) to determine which summons template type should be used to generate a summons",
+            "type": "string"
         }
     },
     "required": [

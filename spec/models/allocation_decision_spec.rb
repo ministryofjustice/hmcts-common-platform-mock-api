@@ -9,7 +9,6 @@ RSpec.describe AllocationDecision, type: :model do
   it { is_expected.to validate_presence_of(:motReasonId) }
   it { is_expected.to validate_presence_of(:motReasonDescription) }
   it { is_expected.to validate_presence_of(:motReasonCode) }
-  it { is_expected.to validate_presence_of(:allocationDecisionDate) }
   it { is_expected.to validate_presence_of(:sequenceNumber) }
 
   describe "associations" do

@@ -12,7 +12,6 @@ RSpec.describe DefenceOrganisation, type: :model do
   end
 
   it { is_expected.to validate_presence_of(:organisation) }
-  it { is_expected.to validate_presence_of(:laaContractNumber) }
 
   it_has_behaviour "conforming to valid schema"
 

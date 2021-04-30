@@ -17,6 +17,18 @@ RSpec.describe Verdict, type: :model do
   describe "validations" do
     it { is_expected.to validate_presence_of(:verdictDate) }
     it { is_expected.to validate_presence_of(:verdict_type) }
+
+    context "when the offence id is not present" do
+      before { verdict.offence_id = nil }
+
+      it { is_expected.to validate_presence_of(:application_id) }
+    end
+
+    context "when the application id is not present" do
+      before { verdict.application_id = nil }
+
+      it { is_expected.to validate_presence_of(:offence_id) }
+    end
   end
 
   it_has_behaviour "conforming to valid schema"

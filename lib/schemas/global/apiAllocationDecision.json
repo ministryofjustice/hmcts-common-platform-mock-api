@@ -30,12 +30,10 @@
     }
   },
   "required": [
-    "originatingHearingId",
     "offenceId",
     "motReasonId",
     "motReasonDescription",
     "motReasonCode",
-    "allocationDecisionDate",
     "sequenceNumber"
   ],
   "additionalProperties": false

@@ -12,8 +12,13 @@ RSpec.describe CourtApplicationParty, type: :model do
     it { is_expected.to belong_to(:person).class_name("Person").optional }
     it { is_expected.to belong_to(:organisation).class_name("Organisation").optional }
     it { is_expected.to belong_to(:prosecuting_authority).class_name("ProsecutingAuthority").optional }
-    it { is_expected.to belong_to(:defendant).class_name("Defendant").optional }
     it { is_expected.to belong_to(:representation_organisation).class_name("Organisation").optional }
+  end
+
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:id) }
+    it { is_expected.to validate_presence_of(:summons_required) }
+    it { is_expected.to validate_presence_of(:notification_required) }
   end
 
   it_has_behaviour "conforming to valid schema"

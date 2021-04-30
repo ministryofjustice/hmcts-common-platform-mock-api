@@ -75,7 +75,6 @@ class Defendant < ApplicationRecord
       defendant.id id
       defendant.prosecutionCaseId prosecution_case_id
       defendant.masterDefendantId masterDefendantId
-      defendant.courtProceedingsInitiated courtProceedingsInitiated.to_datetime if courtProceedingsInitiated.present?
       defendant.numberOfPreviousConvictionsCited numberOfPreviousConvictionsCited
       defendant.prosecutionAuthorityReference prosecutionAuthorityReference
       defendant.witnessStatement witnessStatement

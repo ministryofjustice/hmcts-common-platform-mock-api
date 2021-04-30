@@ -10,6 +10,9 @@
     "offenceId": {
       "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
+    "applicationId": {
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+    },
     "verdictDate": {
       "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
     },
@@ -23,11 +26,21 @@
       "$ref": "http://justice.gov.uk/core/courts/external/apiLesserOrAlternativeOffence.json#"
     }
   },
-  "required": [
-    "originatingHearingId",
-    "offenceId",
-    "verdictDate",
-    "verdictType"
+  "anyOf": [
+    {
+      "required": [
+        "offenceId",
+        "verdictDate",
+        "verdictType"
+      ]
+    },
+    {
+      "required": [
+        "applicationId",
+        "verdictDate",
+        "verdictType"
+      ]
+    }
   ],
   "additionalProperties": false
 }

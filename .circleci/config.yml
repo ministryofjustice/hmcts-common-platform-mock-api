@@ -4,7 +4,7 @@ orbs:
   aws-ecr: circleci/aws-ecr@4.0.1
   aws-eks: circleci/aws-eks@0.2.1
   kubernetes: circleci/kubernetes@0.7.0
-  helm: circleci/helm@1.1.2
+  helm: circleci/helm@1.2.0
 
 commands:
   checkout_and_decrypt:
@@ -110,13 +110,14 @@ jobs:
           kubeconfig: ENCODED_KUBECONFIG
       - kubernetes/install-kubectl
       - helm/install-helm-client:
-          version: 'v3.5.0'
+          version: 'v3.5.4'
       - helm/upgrade-helm-chart:
           namespace: hmcts-mock-api-dev
           update-repositories: false
           chart: ./helm_deploy/hmcts-common-platform-mock-api
           release-name: hmcts-common-platform-mock-api
           values-to-override: image.tag=$CIRCLE_SHA1
+          timeout: 10m
 
 workflows:
   version: 2

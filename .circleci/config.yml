@@ -111,6 +111,9 @@ jobs:
       - kubernetes/install-kubectl
       - helm/install-helm-client:
           version: 'v3.5.4'
+      - run:
+          name: deny read-permission to group and others for ~/.kube/config
+          command: chmod go-r ~/.kube/config
       - helm/upgrade-helm-chart:
           namespace: hmcts-mock-api-dev
           update-repositories: false

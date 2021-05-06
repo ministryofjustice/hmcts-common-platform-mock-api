@@ -16,6 +16,7 @@ class HearingEvent < ApplicationRecord
       hearing_event.eventTime event_time.to_datetime
       hearing_event.lastModifiedTime updated_at.to_datetime
       hearing_event.alterable alterable
+      hearing_event.note note
     end
   end
 

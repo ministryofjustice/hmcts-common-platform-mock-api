@@ -23,8 +23,8 @@ class ProsecutionCaseIdentifier < ApplicationRecord
       prosecution_case_identifier.prosecutionAuthorityName prosecution_authority_name
       prosecution_case_identifier.prosecutionAuthorityOUCode prosecution_authority_oucode
       prosecution_case_identifier.majorCreditorCode major_creditor_code
-      prosecution_case_identifier.address address.to_builder
-      prosecution_case_identifier.contact contact_number.to_builder
+      prosecution_case_identifier.address address.to_builder if address.present?
+      prosecution_case_identifier.contact contact_number.to_builder if contact_number.present?
     end
   end
 end

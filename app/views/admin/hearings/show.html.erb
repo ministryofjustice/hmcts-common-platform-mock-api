@@ -13,6 +13,10 @@
   <% end %>
 </ol>
 
+<li>
+<%= link_to 'add hearing day', add_hearing_days_admin_hearing_path(@hearing), method: :post %>
+</li>
+
 <h2>Defendants</h2>
 
 <% @hearing.defendants.each do |defendant| %>

@@ -9,7 +9,8 @@
 
 <ol>
   <% @hearing.hearing_days.each do |hearing_day| %>
-    <li><%= hearing_day.sittingDay.to_date %></li>
+     <li>Sitting day: <%= link_to hearing_day.sittingDay.to_date, hearing_day_admin_hearing_path(@hearing, hearing_day) %></li>
+    
   <% end %>
 </ol>
 

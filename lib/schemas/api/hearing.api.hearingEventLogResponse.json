@@ -46,6 +46,9 @@
         },
         "alterable": {
           "type": "boolean"
+        },
+        "note": {
+          "type": "string"
         }
       },
       "required": [

@@ -155,7 +155,8 @@ def create_hearings_for(prosecution_case:, defendant:)
       10.times do |idx|
         hearing_day.events << FactoryBot.create(:hearing_event,
                                                 eventTime: hearing_day.sittingDay + idx.hours,
-                                                recordedLabel: "Hearing event #{idx}")
+                                                recordedLabel: "Hearing event #{idx}",
+                                                note: "Some free text")
       end
     end
     hearing.save!

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-  include ActionController::HttpAuthentication::Token::ControllerMethods
-  before_action :authenticate
+  # include ActionController::HttpAuthentication::Token::ControllerMethods
+  # before_action :authenticate
 
   ERROR_MAPPINGS = {
     Errors::InvalidParams => :bad_request,

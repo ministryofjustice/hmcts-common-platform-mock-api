@@ -33,10 +33,7 @@
     <%= hearing_day.label :listedDurationMinutes %>
     <%= hearing_day.text_field :listedDurationMinutes %>
   </div>
-  <div class="field">
-  <%= hearing.label :court_centre_id, 'Court Centre' %>
-  <%= hearing.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] } %>
-  </div>
+
 <% end %>
 <div class="field">
   <%= hearing.label :isEffectiveTrial %>

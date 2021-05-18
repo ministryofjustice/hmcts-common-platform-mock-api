@@ -1,4 +1,4 @@
-  module Admin
+module Admin
   class HearingDaysController < Admin::ApplicationController
     def create
       hearing = Hearing.find(params[:id])
@@ -12,26 +12,44 @@
       @hearing_day = HearingDay.find(params[:hearing_day_id])
     end
 
-    # def edit
-    #   @hearing = Hearing.find(params[:id])
-    #   @hearing_day = HearingDay.find(params[:hearing_day_id])
-    # end
+    def edit
+      @hearing = Hearing.find(params[:id])
+      @hearing_day = HearingDay.find(params[:hearing_day_id])
+    end
 
-    # def update
-    #   @hearing = Hearing.find(params[:id])
-    #   @hearing_day = HearingDay.find(params[:hearing_day_id])
+    def update
+      @hearing = Hearing.find(params[:id])
+      @hearing_day = HearingDay.find(params[:hearing_day_id])
 
-    #   if @hearing_day.update(hearing_day_params)
-    #     render :show, notice: "Judicial result was successfully updated."
-    #   else
-    #     render :edit
-    #   end
-    # end
+      if @hearing_day.update(hearing_day_params)
+        render :show, notice: "Hearing day was successfully updated."
+      else
+        render :edit
+      end
+    end
 
-    # def delete
-    #   @hearing = Hearing.find(params[:id])
-    #   HearingDay.find(params[:hearing_day_id]).destroy!
-    #   redirect_to admin_hearing_url(@hearing), notice: "Judicial result was successfully deleted."
-    # end
+    def delete
+      @hearing = Hearing.find(params[:id])
+      HearingDay.find(params[:hearing_day_id]).destroy!
+      redirect_to admin_hearing_url(@hearing), notice: "Hearing day was successfully deleted."
+    end
+
+  private
+
+    def hearing_day_params
+      params.require(:hearing_day).permit(hearing_day_attributes)
+    end
+
+    def hearing_day_attributes
+      %i[
+        id
+        sittingDay
+        listingSequence
+        listedDurationMinutes
+        startTime
+        endTime
+        court_centre_id
+      ]
+    end
   end
 end

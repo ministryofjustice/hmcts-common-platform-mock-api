@@ -30,33 +30,33 @@ RSpec.describe "/admin/hearings/:hearing_id/hearing_days", type: :request do
 
   describe "GET /hearing_days/id/edit" do
     it "shows the hearing day edit page" do
-      hearing_days = FactoryBot.create(:hearing_days_with_relationships, offence: offence)
-      get edit_hearing_days_admin_hearing_path(hearing, offence, hearing_days), headers: headers
+      hearing_day = hearing.hearing_days.first
+      get edit_hearing_day_admin_hearing_path(hearing, hearing_day), headers: headers
       expect(response).to be_ok
     end
   end
 
   describe "PATCH /hearing_days/id" do
-    it "updates a judicial result" do
-      hearing_days = FactoryBot.create(:hearing_days_with_relationships, offence: offence)
-      patch update_hearing_days_admin_hearing_path(hearing, offence, hearing_days), params: { hearing_days: { label: "foo" } }, headers: headers
-      expect(hearing_days.reload.label).to eql("foo")
+    it "updates a hearing day" do
+      hearing_day = FactoryBot.create(:hearing_day, hearing: hearing)
+      patch update_hearing_day_admin_hearing_path(hearing, hearing_day), params: { hearing_day: { listingSequence: 9 } }, headers: headers
+      expect(hearing_day.reload.listingSequence).to be(9)
     end
 
     it "renders edit page when update fails" do
-      hearing_days = FactoryBot.create(:hearing_days_with_relationships, offence: offence)
-      patch update_hearing_days_admin_hearing_path(hearing, offence, hearing_days), params: { hearing_days: { label: nil } }, headers: headers
+      hearing_day = FactoryBot.create(:hearing_day, hearing: hearing)
+      patch update_hearing_day_admin_hearing_path(hearing, hearing_day), params: { hearing_day: { listingSequence: 1 } }, headers: headers
       expect(response).to be_ok
     end
   end
 
   describe "DELETE /hearing_days/id" do
-    it "deletes a judicial result" do
-      hearing_days = FactoryBot.create(:hearing_days_with_relationships, offence: offence)
-      expect(offence.hearing_days.count).to be(1)
+    it "deletes a hearing day" do
+      hearing_days = FactoryBot.create(:hearing_day, hearing: hearing)
+      expect(hearing.hearing_days.count).to be(2)
 
-      delete delete_hearing_days_admin_hearing_path(hearing, offence, hearing_days), headers: headers
-      expect(offence.hearing_days.count).to be(0)
+      delete delete_hearing_day_admin_hearing_path(hearing, hearing_days), headers: headers
+      expect(hearing.hearing_days.count).to be(1)
     end
   end
 end

@@ -1,148 +1,38 @@
 <div class="nested-fields">
   <div class="field">
     <%= f.hidden_field :hearing_id, value: @hearing.id %>
-    <%= f.label :judicialResultId, 'Judicial Result Id' %>
-    <%= f.text_field :judicialResultId %>
+    <%= f.label :hearingId, 'Hearing Id' %>
+    <%= f.text_field :hearing_id, disabled: true %>
   </div>
 
   <div class="field">
-    <%= f.label :judicialResultTypeId, 'Judicial Result Type Id' %>
-    <%= f.text_field :judicialResultTypeId %>
+    <%= f.label :sittingDay, 'Sitting Day' %>
+    <%= f.text_field :sittingDay %>
   </div>
 
   <div class="field">
-    <%= f.label :label, 'Label'%>
-    <%= f.text_field :label %>
+    <%= f.label :listingSequence, 'Listing Sequence'%>
+    <%= f.text_field :listingSequence %>
   </div>
 
   <div class="field">
-    <%= f.label :welshLabel, 'Welsh Label' %>
-    <%= f.text_field :welshLabel %>
+    <%= f.label :listedDurationMinutes, 'Listed Duration Minutes' %>
+    <%= f.text_field :listedDurationMinutes %>
   </div>
 
   <div class="field">
-    <%= f.label :isAdjournmentResult, 'Is Adjournment Result' %>
-    <%= f.check_box :isAdjournmentResult %>
+    <%= f.label :startTime, 'Start time' %>
+    <%= f.text_field :startTime %>
   </div>
 
   <div class="field">
-    <%= f.label :isFinancialResult, 'Is Financial Result' %>
-    <%= f.check_box :isFinancialResult %>
+    <%= f.label :endTime, 'End time' %>
+    <%= f.text_field :endTime %>
   </div>
 
   <div class="field">
-    <%= f.label :isConvictedResult, 'Is Convicted Result' %>
-    <%= f.check_box :isConvictedResult %>
+    <%= f.label :court_centre_id, 'Court Centre' %>
+    <%= f.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] } %>
   </div>
 
-  <div class="field">
-    <%= f.label :isAvailableForCourtExtract, 'Is Available For Court Extract' %>
-    <%= f.check_box :isAvailableForCourtExtract %>
-  </div>
-
-  <div class="field">
-    <%= f.label :isDeleted, 'Is Deleted' %>
-    <%= f.check_box :isDeleted %>
-  </div>
-
-  <div class="field">
-    <%= f.label :amendmentReasonId, 'Amendment Reason Id' %>
-    <%= f.text_field :amendmentReasonId %>
-  </div>
-
-  <div class="field">
-    <%= f.label :amendmentReason, 'Amendment Reason Id' %>
-    <%= f.text_field :amendmentReason %>
-  </div>
-
-  <div class="field">
-    <%= f.label :amendmentDate, 'Amendment Date' %>
-    <%= f.text_field :amendmentDate %>
-  </div>
-
-  <div class="field">
-    <%= f.label :qualifier, 'Qualifier' %>
-    <%= f.text_field :qualifier %>
-  </div>
-
-  <div class="field">
-    <%= f.label :resultText, 'Result Text' %>
-    <%= f.text_field :resultText %>
-  </div>
-
-  <div class="field">
-    <%= f.label :cjsCode, 'CJS Code' %>
-    <%= f.text_field :cjsCode %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :rank, 'Rank' %>
-    <%= f.text_field :rank %>
-  </div>
-
-  <div class="field">
-    <%= f.label :orderedDate, 'Ordered Date' %>
-    <%= f.text_field :orderedDate %>
-  </div>
-
-  <div class="field">
-    <%= f.label :postHearingCustodyStatus, 'Post Hearing Custody Status' %>
-    <%= f.select :postHearingCustodyStatus, JudicialResult::POST_HEARING_CUSTODY_STATUSES, include_blank: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lastSharedDateTime, 'Last Shared Date Time' %>
-    <%= f.text_field :lastSharedDateTime %>
-  </div>
-
-  <div class="field">
-    <%= f.label :terminatesOffenceProceedings, 'Terminates Offence Proceedings' %>
-    <%= f.check_box :terminatesOffenceProceedings %>
-  </div>
-
-  <div class="field">
-    <%= f.label :approvedDate, 'Approved Date' %>
-    <%= f.text_field :approvedDate %>
-  </div>
-
-  <div class="field">
-    <%= f.label :category, 'Category' %>
-    <%= f.select :category, JudicialResult::CATEGORIES %>
-  </div>
-
-  <h3>Next Hearing</h3>
-
-  <%= f.fields_for :next_hearing do |next_hearing| %>
-    <div class="field">
-      <%= next_hearing.label :listedStartDateTime %>
-      <%= next_hearing.text_field :listedStartDateTime %>
-    </div>
-
-    <div class="field">
-      <%= next_hearing.label :jurisdictionType %>
-      <%= next_hearing.text_field :jurisdictionType %>
-    </div>
-
-    <div class="field">
-      <%= next_hearing.label :estimatedMinutes %>
-      <%= next_hearing.text_field :estimatedMinutes %>
-    </div>
-
-    <div class="field">
-      <%= next_hearing.label :hearingLanguage %>
-      <%= next_hearing.text_field :hearingLanguage %>
-    </div>
-
-    <div class="field">
-      <%= next_hearing.label :court_centre_id, 'Court Centre' %>
-      <%= next_hearing.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] } %>
-    </div>
-
-    <%= next_hearing.fields_for :hearing_type do |hearing_type| %>
-      <div class="field">
-        <%= hearing_type.label :description, 'Hearing Type description' %>
-        <%= hearing_type.text_field :description %>
-      </div>
-    <% end %>
-  <% end %>
 </div>

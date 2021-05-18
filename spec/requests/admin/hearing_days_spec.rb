@@ -45,7 +45,7 @@ RSpec.describe "/admin/hearings/:hearing_id/hearing_days", type: :request do
 
     it "renders edit page when update fails" do
       hearing_day = FactoryBot.create(:hearing_day, hearing: hearing)
-      patch update_hearing_day_admin_hearing_path(hearing, hearing_day), params: { hearing_day: { listingSequence: 1 } }, headers: headers
+      patch update_hearing_day_admin_hearing_path(hearing, hearing_day), params: { hearing_day: { sittingDay: nil } }, headers: headers
       expect(response).to be_ok
     end
   end

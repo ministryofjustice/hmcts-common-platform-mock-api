@@ -2,7 +2,7 @@
   <div class="field">
     <%= f.hidden_field :hearing_id, value: @hearing.id %>
     <%= f.label :hearingId, 'Hearing Id' %>
-    <%= f.text_field :hearing_id, disabled: true %>
+    <%= f.text_field :hearing_id, readonly: true%>
   </div>
 
   <div class="field">
@@ -21,13 +21,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :startTime, 'Start time' %>
-    <%= f.text_field :startTime %>
+    <%= f.label :isCancelled, 'Is Cancelled' %>
+    <%= f.check_box :isCancelled %>
   </div>
 
   <div class="field">
-    <%= f.label :endTime, 'End time' %>
-    <%= f.text_field :endTime %>
+    <%= f.label :courtRoomId, 'Court Room Id' %>
+    <%= f.text_field :courtRoomId %>
   </div>
 
   <div class="field">

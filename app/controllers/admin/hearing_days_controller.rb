@@ -46,9 +46,9 @@ module Admin
         sittingDay
         listingSequence
         listedDurationMinutes
-        startTime
-        endTime
+        isCancelled
         court_centre_id
+        courtRoomId
       ]
     end
   end

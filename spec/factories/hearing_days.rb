@@ -7,6 +7,7 @@ FactoryBot.define do
     listedDurationMinutes { 1 }
     courtRoomId { SecureRandom.uuid }
     isCancelled { Faker::Boolean.boolean }
+    court_centre_id { HmctsCommonPlatform::Reference::CourtCentre.all.collect(&:id).sample }
   end
 
   factory :realistic_hearing_day, class: "HearingDay" do
@@ -15,5 +16,6 @@ FactoryBot.define do
     listedDurationMinutes { Faker::Number.number(digits: 3) }
     courtRoomId { SecureRandom.uuid }
     isCancelled { Faker::Boolean.boolean }
+    court_centre_id { HmctsCommonPlatform::Reference::CourtCentre.all.collect(&:id).sample }
   end
 end

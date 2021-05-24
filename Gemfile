@@ -10,7 +10,7 @@ gem "rails", "~> 6.0.3"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
 # Use Puma as the app server
-gem "puma", "~> 5.2"
+gem "puma", "~> 5.3"
 # Use SCSS for stylesheets
 gem "sass-rails", ">= 6"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -24,7 +24,7 @@ gem "cocoon"
 gem "factory_bot_rails"
 gem "faker"
 gem "faraday_middleware"
-gem "hmcts_common_platform", github: "ministryofjustice/hmcts_common_platform", tag: "0.1.0"
+gem "hmcts_common_platform", github: "ministryofjustice/hmcts_common_platform", tag: "v0.2.0"
 gem "json-schema"
 gem "kaminari"
 gem "oauth2"

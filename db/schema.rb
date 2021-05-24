@@ -499,8 +499,8 @@ ActiveRecord::Schema.define(version: 2021_05_19_135007) do
     t.uuid "defence_counsel_id"
     t.uuid "masterDefendantId"
     t.boolean "defendantDetailsUpdated", default: false, null: false
-    t.uuid "company_representatives_id"
-    t.index ["company_representatives_id"], name: "index_defendants_on_company_representatives_id"
+    t.uuid "company_representative_id"
+    t.index ["company_representative_id"], name: "index_defendants_on_company_representative_id"
     t.index ["defence_counsel_id"], name: "index_defendants_on_defence_counsel_id"
     t.index ["defendable_type", "defendable_id"], name: "index_defendants_on_defendable_type_and_defendable_id"
     t.index ["prosecution_case_id"], name: "index_defendants_on_prosecution_case_id"
@@ -569,6 +569,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_135007) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "alterable", default: false, null: false
     t.uuid "hearing_day_id", null: false
+    t.string "note"
     t.index ["hearing_day_id"], name: "index_hearing_events_on_hearing_day_id"
   end
 

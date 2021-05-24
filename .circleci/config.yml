@@ -1,8 +1,8 @@
 version: 2.1
 
 orbs:
-  aws-ecr: circleci/aws-ecr@4.0.1
-  aws-eks: circleci/aws-eks@0.2.1
+  aws-ecr: circleci/aws-ecr@7.0.0
+  aws-eks: circleci/aws-eks@1.1.0
   kubernetes: circleci/kubernetes@0.7.0
   helm: circleci/helm@1.2.0
 
@@ -111,6 +111,9 @@ jobs:
       - kubernetes/install-kubectl
       - helm/install-helm-client:
           version: 'v3.5.4'
+      - run:
+          name: deny read-permission to group and others for ~/.kube/config
+          command: chmod go-r ~/.kube/config
       - helm/upgrade-helm-chart:
           namespace: hmcts-mock-api-dev
           update-repositories: false
@@ -124,7 +127,7 @@ workflows:
   test_and_build:
     jobs:
       - test
-      - aws-ecr/build_and_push_image:
+      - aws-ecr/build-and-push-image:
           requires:
             - test
           repo: laa-crime-apps-team/hmcts-common-platform-mock-api
@@ -135,7 +138,7 @@ workflows:
                 - master
       - install_on_cluster:
           requires:
-          - aws-ecr/build_and_push_image
+          - aws-ecr/build-and-push-image
           filters:
             branches:
               only:

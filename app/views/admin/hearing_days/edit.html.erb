@@ -1,0 +1,8 @@
+<%= form_with(model: @hearing_day, local: true, url: hearing_day_admin_hearing_path) do |form| %>
+  <%= render 'form', f: form %>
+  <%= form.submit %>
+<% end %>
+
+<hr />
+
+<%= link_to 'Back', admin_hearing_path(@hearing) %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_06_124837) do
+ActiveRecord::Schema.define(version: 2021_05_19_135007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -554,10 +554,9 @@ ActiveRecord::Schema.define(version: 2021_05_06_124837) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "hearing_id"
-    t.time "startTime"
-    t.time "endTime"
-    t.uuid "onTheDayCourtRoomId"
     t.uuid "court_centre_id"
+    t.boolean "isCancelled"
+    t.uuid "courtRoomId"
     t.index ["court_centre_id"], name: "index_hearing_days_on_court_centre_id"
     t.index ["hearing_id"], name: "index_hearing_days_on_hearing_id"
   end

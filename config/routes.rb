@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       end
 
       resources :hearings, except: [:index] do
+        resources :court_applications
+
         member do
           post "offences/:offence_id/pleas" => "pleas#create", as: :add_plea
           post "offences/:offence_id/allocation_decisions" => "allocation_decisions#create", as: :add_allocation_decision

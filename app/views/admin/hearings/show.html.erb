@@ -55,6 +55,22 @@
   <% end %>
 <% end %>
 
+<h2>Court Applications</h2>
+
+<% @hearing.court_applications.each_with_index do |court_application, index| %>
+  <ul>
+    <li>
+      <%= link_to "Court application #{index + 1 }", admin_court_application_path(court_application) %>
+        | <%= link_to "delete", admin_court_application_path(court_application), method: "DELETE" %>
+        | <%= link_to "edit", edit_admin_court_application_path(court_application) %>
+    </li>
+  </ul>
+<% end %>
+
+  <p>
+    <%= link_to 'add court application', admin_hearing_court_applications_path(@hearing), method: :post %>
+  <p>
+
 <hr />
 
 <%= link_to 'Edit', edit_admin_hearing_path(@hearing) %> |

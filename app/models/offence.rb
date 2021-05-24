@@ -57,7 +57,7 @@ class Offence < ApplicationRecord
       offence.laaApplnReference laa_reference&.to_builder
       offence.custodyTimeLimit custody_time_limit&.to_builder
       offence.dvlaOffenceCode dvla_offence_code
-      offence.committingCourt committing_court.to_builder
+      offence.committingCourt committing_court.to_builder if committing_court.present?
       offence.offenceDateCode offence_date_code
       offence.reportingRestrictions array_builder(reporting_restrictions)
 

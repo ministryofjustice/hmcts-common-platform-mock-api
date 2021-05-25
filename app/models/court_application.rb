@@ -7,8 +7,9 @@ class CourtApplication < ApplicationRecord
   belongs_to :court_application_party
   belongs_to :court_application_payment, optional: true
   belongs_to :court_application_type
+  belongs_to :hearing
 
-  has_many :judicial_results
+  has_many :judicial_results, dependent: :destroy
 
   validates :applicationReceivedDate, presence: true
   validates :court_application_party, presence: true

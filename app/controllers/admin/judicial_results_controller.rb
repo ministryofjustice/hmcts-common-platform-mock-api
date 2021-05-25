@@ -1,29 +1,25 @@
 module Admin
   class JudicialResultsController < Admin::ApplicationController
     def create
-      offence = Offence.find(params[:offence_id])
-      hearing = Hearing.find(params[:id])
-      FactoryBot.create(:judicial_result_with_relationships, hearing: hearing, offence: offence)
+      court_application = CourtApplication.find(params[:court_application_id]) if params[:court_application_id]
+      offence = Offence.find_by(id: params[:offence_id])
+      hearing = Hearing.find_by(id: params[:id]) || court_application.hearing
+
+      FactoryBot.create(:judicial_result_with_relationships, hearing: hearing, offence: offence, court_application: court_application)
 
       redirect_to admin_hearing_url(hearing), notice: "Judicial result was successfully created."
     end
 
     def show
-      @hearing = Hearing.find(params[:id])
-      @offence = Offence.find(params[:offence_id])
-      @judicial_result = JudicialResult.find(params[:judicial_result_id])
+      @judicial_result = JudicialResult.find(params[:id])
     end
 
     def edit
-      @hearing = Hearing.find(params[:id])
-      @offence = Offence.find(params[:offence_id])
-      @judicial_result = JudicialResult.find(params[:judicial_result_id])
+      @judicial_result = JudicialResult.find(params[:id])
     end
 
     def update
-      @hearing = Hearing.find(params[:id])
-      @offence = Offence.find(params[:offence_id])
-      @judicial_result = JudicialResult.find(params[:judicial_result_id])
+      @judicial_result = JudicialResult.find(params[:id])
 
       if @judicial_result.update(judicial_result_params)
         render :show, notice: "Judicial result was successfully updated."
@@ -32,10 +28,11 @@ module Admin
       end
     end
 
-    def delete
-      @hearing = Hearing.find(params[:id])
-      JudicialResult.find(params[:judicial_result_id]).destroy!
-      redirect_to admin_hearing_url(@hearing), notice: "Judicial result was successfully deleted."
+    def destroy
+      judicial_result = JudicialResult.find(params[:id])
+      judicial_result.destroy!
+
+      redirect_to admin_hearing_url(judicial_result.hearing_id), notice: "Judicial result was successfully deleted."
     end
 
   private

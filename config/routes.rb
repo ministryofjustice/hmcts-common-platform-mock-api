@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       end
 
       resources :hearings, except: [:index] do
-        resources :court_applications
+        resources :court_applications do
+          resources :judicial_results
+        end
 
         member do
           post "offences/:offence_id/pleas" => "pleas#create", as: :add_plea
@@ -25,10 +27,6 @@ Rails.application.routes.draw do
           delete "hearing_days/:hearing_day_id" => "hearing_days#delete", as: :delete_hearing_day
 
           post "offences/:offence_id/judicial_results" => "judicial_results#create", as: :add_judicial_result
-          get "offences/:offence_id/judicial_results/:judicial_result_id" => "judicial_results#show", as: :judicial_result
-          get "offences/:offence_id/judicial_results/:judicial_result_id/edit" => "judicial_results#edit", as: :edit_judicial_result
-          patch "offences/:offence_id/judicial_results/:judicial_result_id" => "judicial_results#update", as: :update_judicial_result
-          delete "offences/:offence_id/judicial_results/:judicial_result_id" => "judicial_results#delete", as: :delete_judicial_result
         end
       end
     end

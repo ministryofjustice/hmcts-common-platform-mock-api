@@ -6,6 +6,15 @@
   <p><strong><%= key %></strong>: <%= value %></p>
 <% end %>
 
+<h2>Judicial results</h2>
+
+<% @court_application.judicial_results.each do |judicial_result| %>
+  <% judicial_result.attributes.each do |key, value| %>
+    <p><strong><%= key %></strong>: <%= value %></p>
+  <% end %>
+<% end %>
+
+
 <hr />
 
 <%= link_to 'Edit', edit_admin_court_application_path(@court_application) %> |

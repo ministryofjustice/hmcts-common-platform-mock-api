@@ -3,13 +3,13 @@
 FactoryBot.define do
   factory :court_application do
     hearing
-    applicationReceivedDate { DateTime.now }
+    applicationReceivedDate { Time.zone.now }
     applicationReference { "MyString" }
     parentApplicationId { SecureRandom.uuid }
     applicationParticulars { "MyString" }
     court_application_payment { nil }
     applicationDecisionSoughtByDate { "2019-10-25 16:18:43" }
-    applicationStatus { ["DRAFT", "LISTED", "FINALISED"].sample }
+    applicationStatus { %w[DRAFT LISTED FINALISED].sample }
     outOfTimeReasons { "MyString" }
 
     association :court_application_type

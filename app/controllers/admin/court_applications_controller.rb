@@ -1,6 +1,5 @@
 module Admin
   class CourtApplicationsController < Admin::ApplicationController
-
     def create
       hearing = Hearing.find(params[:hearing_id])
       hearing.court_applications << FactoryBot.create(:court_application)

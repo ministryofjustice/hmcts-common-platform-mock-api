@@ -2,10 +2,17 @@
 
 <h1>Hearing</h1>
 
-<p>ID: <%= @hearing.id %></p>
-<p>Location: <%= @hearing.court_centre.name %></p>
+<ul>
+  <li>
+    <strong>ID</strong>: <%= @hearing.id %>
+  </li>
 
-<h2>Days</h2>
+  <li>
+    <strong>Location</strong>: <%= @hearing.court_centre.name %>
+  </li>
+</ul>
+
+<h2>Hearing days</h2>
 
 <ol>
   <% @hearing.hearing_days.each do |hearing_day| %>
@@ -44,12 +51,14 @@
           </li>
         </ul>
 
-        <p>Pleas:</p>
-        <ul>
-          <% offence.pleas.each do |plea| %>
-            <li><%= plea.pleaValue %></li>
-          <% end %>
-        </ul>
+        <% if offence.pleas.any? %>
+          <p>Pleas:</p>
+          <ul>
+            <% offence.pleas.each do |plea| %>
+              <li><%= plea.pleaValue %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </li>
     </ul>
   <% end %>
@@ -62,6 +71,7 @@
 </ul>
 
 <% @hearing.court_applications.each_with_index do |court_application, index| %>
+
   <ul>
     <li>
       <strong>
@@ -69,6 +79,17 @@
       </strong>
       | <%= link_to "delete", admin_court_application_path(court_application), method: "DELETE" %>
       | <%= link_to "edit", edit_admin_court_application_path(court_application) %>
+
+    <p>
+      <strong>Court application type</strong>
+      <%= link_to "edit", edit_admin_court_application_court_application_type_path(court_application) %>
+    </p>
+
+    <ul>
+      <li>code: <%= court_application.court_application_type.code %></li>
+      <li>type: <%= court_application.court_application_type.type %></li>
+      <li>legislation: <%= court_application.court_application_type.legislation %></li>
+    </ul>
 
       <p><strong>Judicial results</strong></p>
 

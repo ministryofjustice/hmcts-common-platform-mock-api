@@ -2,18 +2,31 @@
 
 <h1>Court Application</h1>
 
-<% @court_application.attributes.each do |key, value| %>
-  <p><strong><%= key %></strong>: <%= value %></p>
-<% end %>
-
-<h2>Judicial results</h2>
-
-<% @court_application.judicial_results.each do |judicial_result| %>
-  <% judicial_result.attributes.each do |key, value| %>
-    <p><strong><%= key %></strong>: <%= value %></p>
+<ul>
+  <% @court_application.attributes.each do |key, value| %>
+    <li><strong><%= key %></strong>: <%= value %></li>
   <% end %>
-<% end %>
+</ul>
 
+<h2>Court Application Type</h2>
+
+<ul>
+  <% @court_application.court_application_type.attributes.each do |key, value| %>
+    <li><strong><%= key %></strong>: <%= value %></li>
+  <% end %>
+</ul>
+
+<h2>Judicial Results</h2>
+
+<% @court_application.judicial_results.each_with_index do |judicial_result, index| %>
+  <h3>Judicial result <%= index + 1 %></h3>
+
+  <ul>
+    <% judicial_result.attributes.each do |key, value| %>
+      <li><strong><%= key %></strong>: <%= value %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <hr />
 

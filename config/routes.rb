@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :hearings, except: [:index] do
         resources :court_applications do
           resources :judicial_results
+          resource :court_application_type, only: [:edit, :update]
         end
 
         member do

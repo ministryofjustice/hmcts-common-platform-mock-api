@@ -20,14 +20,13 @@ Rails.application.routes.draw do
         member do
           post "offences/:offence_id/pleas" => "pleas#create", as: :add_plea
           post "offences/:offence_id/allocation_decisions" => "allocation_decisions#create", as: :add_allocation_decision
+          post "offences/:offence_id/judicial_results" => "judicial_results#create", as: :add_judicial_result
 
           post "hearing_days" => "hearing_days#create", as: :add_hearing_days
           get "hearing_days/:hearing_day_id" => "hearing_days#show", as: :hearing_day
           get "hearing_days/:hearing_day_id/edit" => "hearing_days#edit", as: :edit_hearing_day
           patch "hearing_days/:hearing_day_id" => "hearing_days#update", as: :update_hearing_day
           delete "hearing_days/:hearing_day_id" => "hearing_days#delete", as: :delete_hearing_day
-
-          post "offences/:offence_id/judicial_results" => "judicial_results#create", as: :add_judicial_result
         end
       end
     end

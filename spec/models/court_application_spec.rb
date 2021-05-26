@@ -11,6 +11,7 @@ RSpec.describe CourtApplication, type: :model do
     it { is_expected.to belong_to(:court_application_party).class_name("CourtApplicationParty") }
     it { is_expected.to belong_to(:court_application_payment).class_name("CourtApplicationPayment").optional }
     it { is_expected.to have_many(:judicial_results).class_name("JudicialResult") }
+    it { is_expected.to have_many(:respondents).class_name("CourtApplicationParty") }
   end
 
   describe "validations" do

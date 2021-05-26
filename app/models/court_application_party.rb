@@ -2,6 +2,7 @@
 
 class CourtApplicationParty < ApplicationRecord
   include BuilderMappable
+
   belongs_to :master_defendant, optional: true
   belongs_to :organisation, optional: true
   belongs_to :person, optional: true

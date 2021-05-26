@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_135007) do
+ActiveRecord::Schema.define(version: 2021_05_25_135110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -225,6 +225,8 @@ ActiveRecord::Schema.define(version: 2021_05_19_135007) do
     t.boolean "notification_required"
     t.uuid "master_defendant_id"
     t.boolean "appointment_notification_required"
+    t.uuid "court_application_id"
+    t.index ["court_application_id"], name: "index_court_application_parties_on_court_application_id"
     t.index ["court_application_party_counsel_id"], name: "application_parties_on_court_application_party_counsel_id"
     t.index ["master_defendant_id"], name: "index_court_application_parties_on_master_defendant_id"
     t.index ["organisation_id"], name: "index_court_application_parties_on_organisation_id"
@@ -499,8 +501,8 @@ ActiveRecord::Schema.define(version: 2021_05_19_135007) do
     t.uuid "defence_counsel_id"
     t.uuid "masterDefendantId"
     t.boolean "defendantDetailsUpdated", default: false, null: false
-    t.uuid "company_representative_id"
-    t.index ["company_representative_id"], name: "index_defendants_on_company_representative_id"
+    t.uuid "company_representatives_id"
+    t.index ["company_representatives_id"], name: "index_defendants_on_company_representatives_id"
     t.index ["defence_counsel_id"], name: "index_defendants_on_defence_counsel_id"
     t.index ["defendable_type", "defendable_id"], name: "index_defendants_on_defendable_type_and_defendable_id"
     t.index ["prosecution_case_id"], name: "index_defendants_on_prosecution_case_id"
@@ -1250,6 +1252,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_135007) do
   add_foreign_key "bail_statuses", "custody_time_limits"
   add_foreign_key "court_application_cases", "prosecution_case_identifiers"
   add_foreign_key "court_application_parties", "court_application_party_counsels"
+  add_foreign_key "court_application_parties", "court_applications"
   add_foreign_key "court_application_parties", "master_defendants"
   add_foreign_key "court_application_parties", "organisations"
   add_foreign_key "court_application_parties", "organisations", column: "representation_organisation_id"

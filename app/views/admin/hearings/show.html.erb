@@ -2,10 +2,17 @@
 
 <h1>Hearing</h1>
 
-<p>ID: <%= @hearing.id %></p>
-<p>Location: <%= @hearing.court_centre.name %></p>
+<ul>
+  <li>
+    <strong>ID</strong>: <%= @hearing.id %>
+  </li>
 
-<h2>Days</h2>
+  <li>
+    <strong>Location</strong>: <%= @hearing.court_centre.name %>
+  </li>
+</ul>
+
+<h2>Hearing days</h2>
 
 <ol>
   <% @hearing.hearing_days.each do |hearing_day| %>
@@ -32,10 +39,10 @@
       <li>
         <%= offence.offenceTitle %>
 
-        <p>Judicial results:</p>
+        <p><strong>Judicial results</strong></p>
         <ul>
           <% offence.judicial_results.each do |judicial_result| %>
-            <li>Text: <%= link_to judicial_result.resultText, judicial_result_admin_hearing_path(@hearing, offence, judicial_result) %></li>
+            <li>Text: <%= link_to judicial_result.resultText, admin_judicial_result_path(judicial_result) %></li>
             <p>Next hearing: <%= judicial_result.next_hearing.listedStartDateTime %> (estimated length: <%= judicial_result.next_hearing.estimatedMinutes %> minutes)</p>
           <% end %>
 
@@ -44,15 +51,75 @@
           </li>
         </ul>
 
-        <p>Pleas:</p>
-        <ul>
-          <% offence.pleas.each do |plea| %>
-            <li><%= plea.pleaValue %></li>
-          <% end %>
-        </ul>
+        <% if offence.pleas.any? %>
+          <p>Pleas:</p>
+          <ul>
+            <% offence.pleas.each do |plea| %>
+              <li><%= plea.pleaValue %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </li>
     </ul>
   <% end %>
+<% end %>
+
+<h2>Court Applications</h2>
+
+<ul>
+  <%= link_to 'add court application', admin_hearing_court_applications_path(@hearing), method: :post %>
+</ul>
+
+<% @hearing.court_applications.each_with_index do |court_application, index| %>
+
+  <ul>
+    <li>
+      <strong>
+        <%= link_to "Court application #{index + 1 }", admin_court_application_path(court_application) %>
+      </strong>
+      | <%= link_to "delete", admin_court_application_path(court_application), method: "DELETE" %>
+      | <%= link_to "edit", edit_admin_court_application_path(court_application) %>
+
+    <p>
+      <strong>Court application type</strong>
+      <%= link_to "edit", edit_admin_court_application_court_application_type_path(court_application) %>
+    </p>
+
+    <ul>
+      <li>code: <%= court_application.court_application_type.code %></li>
+      <li>type: <%= court_application.court_application_type.type %></li>
+      <li>legislation: <%= court_application.court_application_type.legislation %></li>
+    </ul>
+
+    <h3><strong>Respondents</strong></h3>
+
+    <% court_application.respondents.each_with_index do |respondent, index| %>
+      <p>
+        <strong>Respondent <%= index + 1 %></strong>
+        <%= link_to 'edit', edit_admin_respondent_path(respondent) %>
+      </p>
+
+      <ul>
+        <li>synonym: <%= respondent.synonym %></li>
+      </ul>
+      <%# <li> %>
+        <%# <%= link_to 'add respondent', admin_court_application_judicial_results_path(court_application), method: :post %1> %>
+      <%# </li> %>
+    <% end %>
+
+      <p><strong>Judicial results</strong></p>
+
+      <ul>
+        <% court_application.judicial_results.each do |judicial_result| %>
+          <li>Text: <%= link_to judicial_result.resultText, admin_judicial_result_path(judicial_result) %></li>
+          <p>Next hearing: <%= judicial_result.next_hearing.listedStartDateTime %> (estimated length: <%= judicial_result.next_hearing.estimatedMinutes %> minutes)</p>
+        <% end %>
+        <li>
+          <%= link_to 'add judicial result', admin_court_application_judicial_results_path(court_application), method: :post %>
+        </li>
+      </ul>
+    </li>
+  </ul>
 <% end %>
 
 <hr />

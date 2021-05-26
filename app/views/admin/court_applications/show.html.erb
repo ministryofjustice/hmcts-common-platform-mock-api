@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Court Application</h1>
+
+<ul>
+  <% @court_application.attributes.each do |key, value| %>
+    <li><strong><%= key %></strong>: <%= value %></li>
+  <% end %>
+</ul>
+
+<h2>Court Application Type</h2>
+
+<ul>
+  <% @court_application.court_application_type.attributes.each do |key, value| %>
+    <li><strong><%= key %></strong>: <%= value %></li>
+  <% end %>
+</ul>
+
+<h2>Respondents</h2>
+
+<% @court_application.respondents.each_with_index do |respondent, index| %>
+  <h3>Respondent <%= index + 1 %></h3>
+
+  <ul>
+    <% respondent.attributes.each do |key, value| %>
+      <li><strong><%= key %></strong>: <%= value %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2>Judicial Results</h2>
+
+<% @court_application.judicial_results.each_with_index do |judicial_result, index| %>
+  <h3>Judicial result <%= index + 1 %></h3>
+
+  <ul>
+    <% judicial_result.attributes.each do |key, value| %>
+      <li><strong><%= key %></strong>: <%= value %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<hr />
+
+<%= link_to 'Edit', edit_admin_court_application_path(@court_application) %> |
+<%= link_to 'Back to hearing', admin_hearing_path(@court_application.hearing_id) %>

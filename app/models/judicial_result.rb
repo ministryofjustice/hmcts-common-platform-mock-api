@@ -11,7 +11,8 @@ class JudicialResult < ApplicationRecord
   belongs_to :four_eyes_approval, class_name: "DelegatedPowers", optional: true
   belongs_to :next_hearing, optional: true
   belongs_to :hearing
-  belongs_to :offence
+  belongs_to :offence, optional: true
+  belongs_to :court_application, optional: true
 
   has_many :user_groups
   has_many :judicial_result_prompts, dependent: :destroy

@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :judicial_result do
     hearing
     offence
+    court_application
     judicialResultId { SecureRandom.uuid }
     judicialResultTypeId { SecureRandom.uuid }
     orderedHearingId { SecureRandom.uuid }

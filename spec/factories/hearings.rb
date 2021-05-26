@@ -31,8 +31,10 @@ FactoryBot.define do
     hearing_type
     isEffectiveTrial { Faker::Boolean.boolean }
     isBoxHearing { Faker::Boolean.boolean }
+
     after(:build) do |hearing|
       hearing.hearing_days << FactoryBot.build(:hearing_day)
+      hearing.court_applications << FactoryBot.build(:court_application)
     end
   end
 end

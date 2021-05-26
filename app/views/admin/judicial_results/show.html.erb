@@ -14,5 +14,6 @@
 
 <hr />
 
-<p><%= link_to "Edit judicial result", edit_judicial_result_admin_hearing_path(@hearing, @offence, @judicial_result) %></p>
-<p><%= link_to "Delete judicial result", delete_judicial_result_admin_hearing_path(@hearing, @offence, @judicial_result), method: "DELETE" %></p>
+<p><%= link_to "Edit judicial result", edit_admin_judicial_result_path(@judicial_result) %></p>
+<p><%= link_to "Delete judicial result", admin_judicial_result_path(@judicial_result), method: "DELETE" %></p>
+<%= link_to 'Back to hearing', admin_hearing_path(@judicial_result.hearing_id) %>

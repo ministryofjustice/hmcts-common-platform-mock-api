@@ -6,6 +6,8 @@ class CourtApplicationType < ApplicationRecord
   RECIPIENT_TYPES = %w[APPLICANT RESPONDENT].freeze
   TEMPLATE_TYPES = %w[GENERIC_SUMMONS].freeze
 
+  self.inheritance_column = nil
+
   validates :type, presence: true
   validates :category_code, presence: true
   validates :linkType, presence: true, inclusion: LINK_TYPES

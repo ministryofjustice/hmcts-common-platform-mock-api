@@ -1,11 +1,5 @@
 <div class="nested-fields">
   <div class="field">
-    <%= f.hidden_field :hearing_id, value: @hearing.id %>
-    <%= f.label :hearingId, 'Hearing Id' %>
-    <%= f.text_field :hearing_id, readonly: true%>
-  </div>
-
-  <div class="field">
     <%= f.label :sittingDay, 'Sitting Day' %>
     <%= f.text_field :sittingDay %>
   </div>
@@ -34,5 +28,4 @@
     <%= f.label :court_centre_id, 'Court Centre' %>
     <%= f.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] } %>
   </div>
-
 </div>

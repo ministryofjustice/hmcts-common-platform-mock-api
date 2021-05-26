@@ -16,13 +16,12 @@
 
 <ol>
   <% @hearing.hearing_days.each do |hearing_day| %>
-     <li>Sitting day: <%= link_to hearing_day.sittingDay.to_date, hearing_day_admin_hearing_path(@hearing, hearing_day) %></li>
-    
+     <li>Sitting day: <%= link_to hearing_day.sittingDay.to_date, admin_hearing_day_path(hearing_day) %></li>
   <% end %>
 </ol>
 
 <li>
-<%= link_to 'add hearing day', add_hearing_days_admin_hearing_path(@hearing), method: :post %>
+  <%= link_to 'add hearing day', admin_hearing_hearing_days_path(@hearing), method: :post %>
 </li>
 
 <h2>Defendants</h2>

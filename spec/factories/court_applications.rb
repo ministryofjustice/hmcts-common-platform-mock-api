@@ -14,5 +14,9 @@ FactoryBot.define do
 
     association :court_application_type
     association :court_application_party
+
+    after(:build) do |court_application|
+      court_application.respondents << FactoryBot.build(:court_application_party)
+    end
   end
 end

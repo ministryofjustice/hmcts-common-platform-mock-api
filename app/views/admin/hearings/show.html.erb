@@ -91,6 +91,22 @@
       <li>legislation: <%= court_application.court_application_type.legislation %></li>
     </ul>
 
+    <h3><strong>Respondents</strong></h3>
+
+    <% court_application.respondents.each_with_index do |respondent, index| %>
+      <p>
+        <strong>Respondent <%= index + 1 %></strong>
+        <%= link_to 'edit', edit_admin_respondent_path(respondent) %>
+      </p>
+
+      <ul>
+        <li>synonym: <%= respondent.synonym %></li>
+      </ul>
+      <%# <li> %>
+        <%# <%= link_to 'add respondent', admin_court_application_judicial_results_path(court_application), method: :post %1> %>
+      <%# </li> %>
+    <% end %>
+
       <p><strong>Judicial results</strong></p>
 
       <ul>

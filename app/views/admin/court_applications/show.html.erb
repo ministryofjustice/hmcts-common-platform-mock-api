@@ -16,6 +16,18 @@
   <% end %>
 </ul>
 
+<h2>Respondents</h2>
+
+<% @court_application.respondents.each_with_index do |respondent, index| %>
+  <h3>Respondent <%= index + 1 %></h3>
+
+  <ul>
+    <% respondent.attributes.each do |key, value| %>
+      <li><strong><%= key %></strong>: <%= value %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h2>Judicial Results</h2>
 
 <% @court_application.judicial_results.each_with_index do |judicial_result, index| %>

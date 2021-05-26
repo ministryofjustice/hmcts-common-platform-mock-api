@@ -9,11 +9,12 @@ class Hearing < ApplicationRecord
 
   belongs_to :hearing_type
   belongs_to :cracked_ineffective_trial, optional: true
+
   has_many :prosecution_case_hearings, dependent: :destroy
   has_many :prosecution_cases, through: :prosecution_case_hearings, inverse_of: :hearings
   has_many :defendants, through: :prosecution_cases
   has_many :offences, through: :defendants
-  has_many :court_applications
+  has_many :court_applications, dependent: :destroy
   has_many :referral_reasons
   has_many :hearing_case_notes
   has_many :hearing_days, inverse_of: :hearing, dependent: :destroy

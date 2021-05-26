@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         resources :court_applications do
           resources :judicial_results
           resource :court_application_type, only: %i[edit update]
+          resources :respondents
         end
 
         member do

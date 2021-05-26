@@ -1,0 +1,4 @@
+<%= form_with(model: @respondent, local: true, url: admin_respondent_path) do |form| %>
+  <%= render 'form', f: form %>
+  <%= form.submit %>
+<% end %>

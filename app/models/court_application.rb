@@ -10,6 +10,7 @@ class CourtApplication < ApplicationRecord
   belongs_to :hearing
 
   has_many :judicial_results, dependent: :destroy
+  has_many :respondents, class_name: "CourtApplicationParty", dependent: :destroy
 
   validates :applicationReceivedDate, presence: true
   validates :court_application_party, presence: true
@@ -30,6 +31,7 @@ class CourtApplication < ApplicationRecord
       court_application.outOfTimeReasons outOfTimeReasons
       court_application.judicialResults array_builder(judicial_results)
       court_application.subject court_application_party.to_builder
+      court_application.respondents array_builder(respondents)
     end
   end
 end

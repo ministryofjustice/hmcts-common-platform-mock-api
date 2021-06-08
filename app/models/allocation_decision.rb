@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
 class AllocationDecision < ApplicationRecord
-  DESCRIPTIONS = ["Offence triable only by court martial",
-                  "Indictable only offence",
-                  "No mode of Trial Either way offence",
-                  "Defendant consents to summary trial",
-                  "Commanding Officer orders trial by court martial",
-                  "Defendant chooses trial by court martial 1",
-                  "Defendant elects trial by jury",
-                  "Summary only offence",
-                  "Youth offence triable on indictment only (homicide relevant firearms dangerousness)",
-                  "Youth Court directs trial by jury (grave crime)",
-                  "Low value offence triable summarily only",
-                  "Indictable only (previous convictions relevant firearms offence)",
-                  "Court directs trial by jury"].freeze
-
-  CODES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].freeze
+  DESCRIPTIONS = {"Offence triable only by court martial" =>8,  
+                  "Indictable only offence" => 2,
+                  "No mode of Trial Either way offence" => 7,
+                  "Defendant consents to summary trial" => 3,
+                  "Commanding Officer orders trial by court martial" => 10,
+                  "Defendant chooses trial by court martial 1" => 9,
+                  "Defendant elects trial by jury" => 4,
+                  "Summary only offence" => 1,
+                  "Youth offence triable on indictment only (homicide relevant firearms dangerousness)" => 2,
+                  "Youth Court directs trial by jury (grave crime)" => 5,
+                  "Low value offence triable summarily only" => 6,
+                  "Indictable only (previous convictions relevant firearms offence)" => 2,
+                  "Court directs trial by jury" => 5}
 
   belongs_to :court_indicated_sentence, optional: true
 
@@ -31,6 +29,10 @@ class AllocationDecision < ApplicationRecord
   validates :isDamageValueUnder5000, inclusion: [true, false]
   validates :isTreatedAsIndictableOnly, inclusion: [true, false]
   validates :sentencingIndicationRequested, inclusion: [true, false]
+
+  before_save do
+    self.motReasonCode = AllocationDecision::DESCRIPTIONS[motReasonDescription]
+  end
 
   def to_builder
     Jbuilder.new do |allocation_decision|

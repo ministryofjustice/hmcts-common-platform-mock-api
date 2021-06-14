@@ -9,7 +9,7 @@ class AllocationDecision < ApplicationRecord
                    "Defendant chooses trial by court martial 1" => 9,
                    "Defendant elects trial by jury" => 4,
                    "Summary-only offence" => 1,
-                   "Youth - offence triable on indictment only (homicide / relevant firearms dangerousness)" => 2,
+                   "Youth - offence triable on indictment only (homicide / relevant firearms / dangerousness)" => 2,
                    "Youth - Court directs trial by jury (grave crime)" => 5,
                    "Low value offence triable summarily only" => 6,
                    "Indictable only (previous convictions / relevant firearms offence)" => 2,

@@ -17,6 +17,13 @@ RSpec.describe AllocationDecision, type: :model do
     it { is_expected.to belong_to(:hearing) }
   end
 
+  describe "before save callback" do
+    it "updates mot reason code based on description" do
+      allocation_decision.update!(motReasonDescription: "Summary-only offence")
+      expect(allocation_decision.motReasonCode).to eq("1")
+    end
+  end
+
   it_has_a "realistic factory"
 
   it_has_behaviour "conforming to valid schema"

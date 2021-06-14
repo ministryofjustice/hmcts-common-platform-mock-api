@@ -5,8 +5,8 @@ FactoryBot.define do
     hearing
     offence
     motReasonId { SecureRandom.uuid }
-    motReasonDescription { Faker::Offence.mode_of_trial_reason }
-    motReasonCode { "ABCD" }
+    motReasonDescription { "Indictable-only offence" }
+    motReasonCode { "2" }
     sequenceNumber { 1 }
     allocationDecisionDate { "2019-10-14 13:46:12" }
     isSection22ALowValueShoplifting { false }
@@ -22,8 +22,8 @@ FactoryBot.define do
       association :hearing, factory: :realistic_hearing
       association :offence, factory: :realistic_offence
       motReasonId { SecureRandom.uuid }
-      motReasonDescription { Faker::Offence.mode_of_trial_reason }
-      motReasonCode { Faker::Alphanumeric.alphanumeric(number: 4) }
+      motReasonDescription { "Indictable-only offence" }
+      motReasonCode { "2" }
       sequenceNumber { Faker::Number.number(digits: 3) }
       allocationDecisionDate { Faker::Date.backward }
       isSection22ALowValueShoplifting { Faker::Boolean.boolean }

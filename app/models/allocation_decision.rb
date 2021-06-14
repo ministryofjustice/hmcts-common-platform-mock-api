@@ -31,7 +31,6 @@ class AllocationDecision < ApplicationRecord
   validates :sentencingIndicationRequested, inclusion: [true, false]
 
   before_save do
-    # byebug
     self.motReasonCode = AllocationDecision::DESCRIPTIONS[motReasonDescription]
   end
 

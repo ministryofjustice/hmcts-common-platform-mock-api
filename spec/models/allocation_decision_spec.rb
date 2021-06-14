@@ -19,7 +19,7 @@ RSpec.describe AllocationDecision, type: :model do
 
   describe "before save callback" do
     it "updates mot reason code based on description" do
-      allocation_decision.update!(motReasonDescription: "Summary only offence")
+      allocation_decision.update!(motReasonDescription: "Summary-only offence")
       expect(allocation_decision.motReasonCode).to eq("1")
     end
   end

@@ -67,7 +67,7 @@ module Admin
         :terminatesOffenceProceedings,
         :approvedDate,
         :category,
-        next_hearing_attributes: next_hearing_attributes,
+        { next_hearing_attributes: next_hearing_attributes },
       ]
     end
 
@@ -79,7 +79,7 @@ module Admin
         :estimatedMinutes,
         :hearingLanguage,
         :court_centre_id,
-        hearing_type_attributes: %i[id description],
+        { hearing_type_attributes: %i[id description] },
       ]
     end
   end

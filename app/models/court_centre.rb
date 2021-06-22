@@ -30,15 +30,13 @@ private
   def address
     return if csv_row.address1.blank?
 
-    @address ||= begin
-      Address.new(
-        address1: csv_row.address1,
-        address2: csv_row.address2,
-        address3: csv_row.address3,
-        address4: csv_row.address4,
-        address5: csv_row.address5,
-        postcode: csv_row.postcode,
-      )
-    end
+    @address ||= Address.new(
+      address1: csv_row.address1,
+      address2: csv_row.address2,
+      address3: csv_row.address3,
+      address4: csv_row.address4,
+      address5: csv_row.address5,
+      postcode: csv_row.postcode,
+    )
   end
 end

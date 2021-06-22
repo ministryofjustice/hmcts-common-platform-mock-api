@@ -32,6 +32,10 @@ AllCops:
     - "bin/**/*"
     - "log/**/*"
     - "node_modules/**/*"
+    
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*.rb'
 
 Metrics/BlockLength:
   Exclude:

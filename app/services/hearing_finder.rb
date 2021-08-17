@@ -11,7 +11,11 @@ class HearingFinder < ApplicationService
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
     raise Errors::InvalidParams, errors if errors.present?
 
-    Hearing.find_by(id: params[:hearingId], resulted: true)
+    if params[:sittingDay]
+      Hearing.find_by(hearing_id: params[:hearingId], sitting_day: params[:sittingDay], resulted: true)
+    else
+      Hearing.where(hearing_id: params[:hearingId], resulted: true).order("sitting_day").last
+    end
   end
 
 private
@@ -19,7 +23,7 @@ private
   attr_reader :params, :schema
 
   def permitted_params
-    params.permit(:hearingId)
+    params.permit(:hearingId, :sittingDay)
   end
 
   def register_dependant_schemas!

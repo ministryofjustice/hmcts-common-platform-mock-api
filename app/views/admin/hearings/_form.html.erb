@@ -10,7 +10,14 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= form.label :hearing_id, 'Hearing ID' %>
+    <%= form.text_field :hearing_id %><small> - use an existing hearing id to create a multiday hearing</small>
+  </div>
+  <div class="field">
+    <%= form.label :sitting_day, 'Sitting Day' %>
+    <%= form.text_field :sitting_day %> <small> - include a date for multiday hearing (must differ from other hearings with same hearing id</small>
+  </div>
   <div class="field">
     <%= form.label :jurisdictionType, 'Jurisdiction Type' %>
     <%= form.select :jurisdictionType, Hearing::JURISDICTION_TYPES %>

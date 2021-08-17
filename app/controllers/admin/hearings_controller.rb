@@ -51,6 +51,8 @@ module Admin
     # Only allow a list of trusted parameters through.
     def hearing_params
       params.require(:hearing).permit(:hearing,
+                                      :hearing_id,
+                                      :sitting_day,
                                       :jurisdictionType,
                                       :reportingRestrictionReason,
                                       :court_centre_id,

@@ -6,6 +6,10 @@
         "hearingId": {
           "description": "The identifier of the resulted hearing",
           "$ref": "http://justice.gov.uk/core/courts/external/courtsDefinitions.json#/definitions/uuid"
+        },
+        "sittingDay": {
+          "description": "The date of the resulted hearing",
+          "type": "string"
         }
     },
     "required": [

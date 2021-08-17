@@ -15,12 +15,14 @@ class HearingsController < ApplicationController
 
 private
 
+  # :nocov:
   def hearing_response
     return {} if @hearing.blank?
 
     @hearing.resulted_response
   end
 
+  # :nocov:
   def hearing_log_response
     {
       "hearingId": params[:hearingId],

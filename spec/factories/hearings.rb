@@ -8,8 +8,13 @@ FactoryBot.define do
       end
     end
 
+<<<<<<< HEAD
     hearing_id { "0304d126-d773-41fd-af01-83e017cecd80" }
     sitting_day { "2019-10-23 16:19:15" }
+=======
+    hearing_id { SecureRandom.uuid }
+    sitting_day { Time.zone.today }
+>>>>>>> 4133f87 (Add hearing_id and sitting_day options to hearing)
     jurisdictionType { "CROWN" }
     reportingRestrictionReason { "reporting restriction because..." }
     court_centre_id { "6131bd34-33d9-3d1e-8152-8b5a2084f1bd" }

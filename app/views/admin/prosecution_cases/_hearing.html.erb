@@ -1,4 +1,12 @@
 <div class="field">
+  <%= hearing.label :hearing_id, 'Hearing ID' %>
+  <%= hearing.text_field :hearing_id %>
+</div>
+<div class="field">
+  <%= hearing.label :sitting_day, 'Sitting Day' %>
+  <%= hearing.text_field :sitting_day %>
+</div>
+<div class="field">
   <%= hearing.label :jurisdictionType, 'Jurisdiction Type' %>
   <%= hearing.select :jurisdictionType, Hearing::JURISDICTION_TYPES %>
 </div>

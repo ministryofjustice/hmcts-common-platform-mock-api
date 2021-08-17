@@ -39,6 +39,8 @@ class Hearing < ApplicationRecord
   def to_builder
     Jbuilder.new do |hearing|
       hearing.id id
+      hearing.hearing_id hearing_id
+      hearing.sitting_day sitting_day
       hearing.jurisdictionType jurisdictionType
       hearing.reportingRestrictionReason reportingRestrictionReason
       hearing.courtCentre court_centre.to_builder

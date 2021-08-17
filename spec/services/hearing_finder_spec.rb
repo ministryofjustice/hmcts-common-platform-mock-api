@@ -18,30 +18,134 @@ RSpec.describe HearingFinder do
   end
 
   context "when finding by hearingId" do
-    let(:hearing) { FactoryBot.create(:hearing) }
+    context "with one hearing" do
+      let(:hearing) { FactoryBot.create(:hearing) }
 
-    let(:params_hash) do
-      { hearingId: hearing.id }
-    end
-
-    it "returns an empty value" do
-      expect(call).to be_nil
-    end
-
-    context "with an incorrect id" do
       let(:params_hash) do
-        { hearingId: "6c0b7068-d4a7-4adc-a7a0-7bd5715b501d" }
+        { hearingId: hearing.hearing_id }
       end
 
-      it "returns an empty value" do
-        expect(call).to be_nil
+      context "when hearing not resulted" do
+        it "returns an empty value" do
+          expect(call).to be_nil
+        end
+      end
+
+      context "with an incorrect id" do
+        before { hearing.update!(resulted: true) }
+
+        let(:params_hash) do
+          { hearingId: "6c0b7068-d4a7-4adc-a7a0-7bd5715b501d" }
+        end
+
+        it "returns an empty value" do
+          expect(call).to be_nil
+        end
+      end
+
+      context "with a resulted hearing" do
+        before { hearing.update!(resulted: true) }
+
+        it { is_expected.to eq(hearing) }
       end
     end
 
-    context "with a resulted hearing" do
-      before { hearing.update!(resulted: true) }
+    context "with multiday hearing" do
+      let(:hearing_day_one) { FactoryBot.create(:hearing) }
+      let(:params_hash) do
+        { hearingId: hearing_day_one.hearing_id }
+      end
+      let(:hearing_day_two) { FactoryBot.create(:hearing) }
 
-      it { is_expected.to eq(hearing) }
+      before { hearing_day_one.update!(hearing_id: hearing_day_two.hearing_id, sitting_day: "2021-08-01", resulted: true) }
+
+      context "when hearing two not resulted" do
+        it "returns hearing one, as the most recent resulted hearing" do
+          expect(call).to eq(hearing_day_one)
+        end
+      end
+
+      context "when both hearing days are resulted" do
+        before { hearing_day_two.update!(resulted: true) }
+
+        it "returns the hearing with the most recent sitting day" do
+          expect(call).to eq(hearing_day_two)
+        end
+      end
+    end
+  end
+
+  context "when finding by hearingId and sittingDay" do
+    context "with one hearing" do
+      let(:hearing) { FactoryBot.create(:hearing) }
+
+      let(:params_hash) do
+        { hearingId: hearing.hearing_id, sittingDay: hearing.sitting_day }
+      end
+
+      context "when hearing not resulted" do
+        it "returns an empty value" do
+          expect(call).to be_nil
+        end
+      end
+
+      context "with an incorrect id" do
+        before { hearing.update!(resulted: true) }
+
+        let(:params_hash) do
+          { hearingId: "6c0b7068-d4a7-4adc-a7a0-7bd5715b501d", sittingDay: hearing.sitting_day }
+        end
+
+        it "returns an empty value" do
+          expect(call).to be_nil
+        end
+      end
+
+      context "with an incorrect date" do
+        before { hearing.update!(resulted: true) }
+
+        let(:params_hash) do
+          { hearingId: hearing.hearing_id, sittingDay: "2021-08-08" }
+        end
+
+        it "returns an empty value" do
+          expect(call).to be_nil
+        end
+      end
+
+      context "with a resulted hearing" do
+        before { hearing.update!(resulted: true) }
+
+        it { is_expected.to eq(hearing) }
+      end
+    end
+
+    context "with multiday hearing" do
+      let(:hearing_day_one) { FactoryBot.create(:hearing) }
+      let(:hearing_day_two) { FactoryBot.create(:hearing) }
+
+      before do
+        hearing_day_two.update!(hearing_id: hearing_day_one.hearing_id, sitting_day: "2021-08-01", resulted: true)
+        hearing_day_one.update!(resulted: true)
+      end
+
+      context "when searching for hearing one" do
+        let(:params_hash) do
+          { hearingId: hearing_day_one.hearing_id, sittingDay: hearing_day_one.sitting_day }
+        end
+
+        it { is_expected.to eq(hearing_day_one) }
+        it { is_expected.not_to eq(hearing_day_two) }
+      end
+
+      context "when searching for hearing two" do
+        let(:params_hash) do
+          { hearingId: hearing_day_two.hearing_id, sittingDay: hearing_day_two.sitting_day }
+        end
+
+        it { is_expected.to eq(hearing_day_two) }
+        it { is_expected.not_to eq(hearing_day_one) }
+      end
     end
   end
 end

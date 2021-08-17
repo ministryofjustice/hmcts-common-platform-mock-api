@@ -100,6 +100,8 @@ module Admin
 
     def hearings_attributes
       [:id,
+       :hearing_id,
+       :sitting_day,
        :jurisdictionType,
        :reportingRestrictionReason,
        :court_centre_id,

@@ -39,6 +39,7 @@
   <thead>
     <tr>
       <th>Hearing ID</th>
+      <th>Sitting Day</th>
       <th>Result Shared</th>
       <th colspan="3">Actions</th>
     </tr>
@@ -47,7 +48,8 @@
   <tbody>
     <% @prosecution_case.hearings.each do |hearing| %>
       <tr>
-        <td><%= hearing.id %></td>
+        <td><%= hearing.hearing_id %></td>
+        <td><strong><%= hearing.sitting_day&.strftime("%a, %d %b %Y") %></strong></td>
         <td><%= hearing.resulted? ? 'Result shared' : '' %></td>
         <td><%= link_to 'Show', [:admin, hearing] %></td>
         <td><%= link_to 'Edit', edit_admin_hearing_path(hearing) %></td>

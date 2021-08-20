@@ -1,4 +1,4 @@
-<h3>Hearing</h3>
+<h3><%= "Hearing #{hearing.index + 1 }" %></h3>
 <div class="field">
   <%= hearing.label :jurisdictionType, 'Jurisdiction Type' %>
   <%= hearing.select :jurisdictionType, Hearing::JURISDICTION_TYPES %>
@@ -28,7 +28,7 @@
   <%= hearing.check_box :isBoxHearing %>
 </div>
 
-<h3> Hearing Type: </h3>
+<h4> Hearing Type: </h4>
 <%= hearing.fields_for :hearing_type do |hearing_type| %>
   <div class="field">
     <%= hearing_type.label :description, 'Hearing Type description' %>
@@ -37,7 +37,7 @@
 <% end %>
 
 <%= hearing.fields_for :hearing_days do |hearing_day| %>
-  <h3> Hearing Day </h3>
+  <h4> Hearing Day </h4>
   <div class="field">
     <%= hearing_day.label :sittingDay, 'Sitting Day' %>
     <%= hearing_day.text_field :sittingDay %>

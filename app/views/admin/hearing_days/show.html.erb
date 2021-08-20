@@ -2,11 +2,31 @@
 
 <h1>Hearing Day</h1>
 
-<% @hearing_day.attributes.each do |key, value| %>
-  <p><strong><%= key %></strong>: <%= value %></p>
-<% end %>
+<strong>ID</strong>: <%= @hearing_day.id %>
+<br>
+<br>
+<strong>Location</strong>: <%= @hearing_day.court_centre.name %>
+<br>
+<br>
+<strong>Court Centre ID</strong>: <%= @hearing_day.court_centre_id %>
+<br>
+<br>
+<strong>Court Room ID</strong>: <%= @hearing_day.courtRoomId %>
+<br>
+<br>
+<strong>Sitting Day</strong>: <%= @hearing_day.sittingDay %>
+<br>
+<br>
+<strong>Listing Sequence</strong>: <%= @hearing_day.listingSequence %>
+<br>
+<br>
+<strong>Listed Duration Minutes</strong>: <%= @hearing_day.listedDurationMinutes %>
+<br>
+<br>
+<strong>Is Cancelled</strong>: <%= @hearing_day.isCancelled %>
+<br>
 
-<hr />
+<hr>
 
-<p><%= link_to "Edit hearing day", edit_admin_hearing_day_path(@hearing_day) %></p>
-<p><%= link_to "Delete hearing day", admin_hearing_day_path(@hearing_day), method: "DELETE" %></p>
+<%= link_to "Edit", edit_admin_hearing_day_path(@hearing_day) %> |
+<%= link_to 'Back', admin_hearing_path(@hearing_day.hearing_id) %>

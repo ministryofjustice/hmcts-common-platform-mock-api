@@ -1,3 +1,4 @@
+<h3>Hearing</h3>
 <div class="field">
   <%= hearing.label :jurisdictionType, 'Jurisdiction Type' %>
   <%= hearing.select :jurisdictionType, Hearing::JURISDICTION_TYPES %>
@@ -18,28 +19,33 @@
   <%= hearing.label :hasSharedResults, 'Has shared results' %>
   <%= hearing.check_box :hasSharedResults %>
 </div>
+<div class="field">
+  <%= hearing.label :isEffectiveTrial, 'Is Effective Trial' %>
+  <%= hearing.check_box :isEffectiveTrial %>
+</div>
+<div class="field">
+  <%= hearing.label :isBoxHearing, 'Is Box Hearing' %>
+  <%= hearing.check_box :isBoxHearing %>
+</div>
+
+<h3> Hearing Type: </h3>
 <%= hearing.fields_for :hearing_type do |hearing_type| %>
   <div class="field">
     <%= hearing_type.label :description, 'Hearing Type description' %>
     <%= hearing_type.text_field :description %>
   </div>
 <% end %>
+
 <%= hearing.fields_for :hearing_days do |hearing_day| %>
+  <h3> Hearing Day </h3>
   <div class="field">
-    <%= hearing_day.label :sittingDay %>
+    <%= hearing_day.label :sittingDay, 'Sitting Day' %>
     <%= hearing_day.text_field :sittingDay %>
   </div>
   <div class="field">
-    <%= hearing_day.label :listedDurationMinutes %>
+    <%= hearing_day.label :listedDurationMinutes, 'Listed Duration Minutes' %>
     <%= hearing_day.text_field :listedDurationMinutes %>
   </div>
-
 <% end %>
-<div class="field">
-  <%= hearing.label :isEffectiveTrial %>
-  <%= hearing.check_box :isEffectiveTrial %>
-</div>
-<div class="field">
-  <%= hearing.label :isBoxHearing %>
-  <%= hearing.check_box :isBoxHearing %>
-</div>
+<hr>
+

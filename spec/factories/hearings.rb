@@ -33,7 +33,7 @@ FactoryBot.define do
     isBoxHearing { Faker::Boolean.boolean }
 
     after(:build) do |hearing|
-      hearing.hearing_days << FactoryBot.build(:hearing_day)
+      hearing.hearing_days << FactoryBot.build(:realistic_hearing_day)
       hearing.court_applications << FactoryBot.build(:court_application)
     end
   end

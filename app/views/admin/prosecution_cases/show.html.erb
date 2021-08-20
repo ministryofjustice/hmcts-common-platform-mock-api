@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Prosecution Case</h1>
 <% @prosecution_case.attributes.each do |key, value| %>
   <p>
     <strong><%= key.humanize %></strong>
@@ -11,7 +12,9 @@
 <table>
   <thead>
     <tr>
-      <th colspan="2"></th>
+      <th>Defendant ID</th>
+      <th>Defendant Name</th>
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -21,7 +24,7 @@
           <%= defendant.id %>
         </td>
         <td>
-          <%= defendant.defendable.person.firstName %> <%= defendant.defendable.person.middleName %> <%= defendant.defendable.person.lastName %>
+          <strong><%= defendant.defendable.person.firstName %> <%= defendant.defendable.person.middleName %> <%= defendant.defendable.person.lastName %></strong>
         </td>
         <td><%= link_to 'Show', [:admin, defendant] %></td>
         <td><%= link_to 'Edit', edit_admin_defendant_path(defendant) %></td>
@@ -30,11 +33,12 @@
     <% end %>
   </tbody>
 </table>
-<br/>
-<%= link_to 'New Defendant', new_admin_prosecution_case_defendant_path(@prosecution_case) %>
-<br/>
-<h2>Hearings</h2>
+<br>
+<%= link_to 'Add new defendant', new_admin_prosecution_case_defendant_path(@prosecution_case) %>
 
+<br>
+
+<h2>Hearings</h2>
 <table>
   <thead>
     <tr>
@@ -68,11 +72,10 @@
   </tbody>
 </table>
 
-<br/>
-<br/>
+<br>
 <%= link_to 'Add new hearing', new_admin_prosecution_case_hearing_path(@prosecution_case) %>
-<br/>
-<br/>
+<br>
+<br>
 
 <%= link_to 'Edit', edit_admin_prosecution_case_path(@prosecution_case) %> |
 <%= link_to 'Back', admin_prosecution_cases_path %>

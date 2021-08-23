@@ -50,23 +50,23 @@ RSpec.describe HearingFinder do
       end
     end
 
-    context "with multiday hearing" do
+    context "with a multiday hearing" do
       let(:hearing_day_one) { FactoryBot.create(:hearing) }
-      let(:params_hash) do
-        { hearingId: hearing_day_one.hearing_id }
-      end
       let(:hearing_day_two) { FactoryBot.create(:hearing) }
+      let(:params_hash) do
+        { hearingId: hearing_day_two.hearing_id }
+      end
 
       before { hearing_day_one.update!(hearing_id: hearing_day_two.hearing_id, sitting_day: "2021-08-01", resulted: true) }
 
-      context "when hearing two not resulted" do
+      context "when hearing two is not resulted" do
         it "returns hearing one, as the most recent resulted hearing" do
           expect(call).to eq(hearing_day_one)
         end
       end
 
       context "when both hearing days are resulted" do
-        before { hearing_day_two.update!(resulted: true) }
+        before { hearing_day_two.update!(sitting_day: "2021-08-08", resulted: true) }
 
         it "returns the hearing with the most recent sitting day" do
           expect(call).to eq(hearing_day_two)
@@ -135,7 +135,6 @@ RSpec.describe HearingFinder do
         end
 
         it { is_expected.to eq(hearing_day_one) }
-        it { is_expected.not_to eq(hearing_day_two) }
       end
 
       context "when searching for hearing two" do
@@ -144,7 +143,6 @@ RSpec.describe HearingFinder do
         end
 
         it { is_expected.to eq(hearing_day_two) }
-        it { is_expected.not_to eq(hearing_day_one) }
       end
     end
   end

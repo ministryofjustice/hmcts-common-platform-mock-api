@@ -4,16 +4,28 @@ RSpec.describe HearingsController, type: :controller do
   let(:hearing) { FactoryBot.create(:hearing) }
 
   describe "GET #show" do
-    it "returns unauthorized" do
-      get :show, params: { hearingId: hearing.id }
-      expect(response).to be_unauthorized
+    context "without authorization" do
+      it "returns unauthorized" do
+        get :show, params: { hearingId: hearing.hearing_id }
+        expect(response).to be_unauthorized
+      end
     end
 
     context "with the correct auth header and the hearing exists" do
       it "returns a success response" do
         request.headers["Ocp-Apim-Subscription-Key"] = ENV.fetch("SHARED_SECRET_KEY")
-        get :show, params: { hearingId: hearing.id }
+        get :show, params: { hearingId: hearing.hearing_id }
         expect(response).to be_successful
+      end
+
+      context "when hearing is resulted" do
+        before { hearing.update!(resulted: true) }
+
+        it "returns a success response" do
+          request.headers["Ocp-Apim-Subscription-Key"] = ENV.fetch("SHARED_SECRET_KEY")
+          get :show, params: { hearingId: hearing.hearing_id }
+          expect(response.body).to include(hearing.hearing_id)
+        end
       end
     end
 

@@ -9,12 +9,17 @@ FactoryBot.define do
     end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     hearing_id { "0304d126-d773-41fd-af01-83e017cecd80" }
     sitting_day { "2019-10-23 16:19:15" }
 =======
     hearing_id { SecureRandom.uuid }
     sitting_day { Time.zone.today }
 >>>>>>> 4133f87 (Add hearing_id and sitting_day options to hearing)
+=======
+    hearing_id { "0304d126-d773-41fd-af01-83e017cecd80" }
+    sitting_day { "2019-10-23 16:19:15" }
+>>>>>>> fe94812 (align hearing day creation to new paradigm)
     jurisdictionType { "CROWN" }
     reportingRestrictionReason { "reporting restriction because..." }
     court_centre_id { "6131bd34-33d9-3d1e-8152-8b5a2084f1bd" }
@@ -47,14 +52,20 @@ FactoryBot.define do
 
     after(:build) do |hearing|
 <<<<<<< HEAD
+<<<<<<< HEAD
       hearing.hearing_days << FactoryBot.build(:realistic_hearing_day)
 =======
+=======
+>>>>>>> fe94812 (align hearing day creation to new paradigm)
       hearing.hearing_days << FactoryBot.build(
         :hearing_day,
         sittingDay: hearing.sitting_day,
         court_centre_id: hearing.court_centre_id,
       )
+<<<<<<< HEAD
 >>>>>>> 3eb02f7 (align hearing day creation to new paradigm)
+=======
+>>>>>>> fe94812 (align hearing day creation to new paradigm)
       hearing.court_applications << FactoryBot.build(:court_application)
     end
   end

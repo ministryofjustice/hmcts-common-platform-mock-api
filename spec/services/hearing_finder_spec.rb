@@ -51,6 +51,7 @@ RSpec.describe HearingFinder do
     end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     context "with a multiday hearing" do
       let(:hearing_day_one) { FactoryBot.create(:hearing) }
       let(:hearing_day_two) { FactoryBot.create(:hearing) }
@@ -63,16 +64,23 @@ RSpec.describe HearingFinder do
       context "when hearing two is not resulted" do
 =======
     context "with multiday hearing" do
+=======
+    context "with a multiday hearing" do
+>>>>>>> fe94812 (align hearing day creation to new paradigm)
       let(:hearing_day_one) { FactoryBot.create(:hearing) }
-      let(:params_hash) do
-        { hearingId: hearing_day_one.hearing_id }
-      end
       let(:hearing_day_two) { FactoryBot.create(:hearing) }
+      let(:params_hash) do
+        { hearingId: hearing_day_two.hearing_id }
+      end
 
       before { hearing_day_one.update!(hearing_id: hearing_day_two.hearing_id, sitting_day: "2021-08-01", resulted: true) }
 
+<<<<<<< HEAD
       context "when hearing two not resulted" do
 >>>>>>> 4133f87 (Add hearing_id and sitting_day options to hearing)
+=======
+      context "when hearing two is not resulted" do
+>>>>>>> fe94812 (align hearing day creation to new paradigm)
         it "returns hearing one, as the most recent resulted hearing" do
           expect(call).to eq(hearing_day_one)
         end
@@ -80,10 +88,14 @@ RSpec.describe HearingFinder do
 
       context "when both hearing days are resulted" do
 <<<<<<< HEAD
+<<<<<<< HEAD
         before { hearing_day_two.update!(sitting_day: "2021-08-08", resulted: true) }
 =======
         before { hearing_day_two.update!(resulted: true) }
 >>>>>>> 4133f87 (Add hearing_id and sitting_day options to hearing)
+=======
+        before { hearing_day_two.update!(sitting_day: "2021-08-08", resulted: true) }
+>>>>>>> fe94812 (align hearing day creation to new paradigm)
 
         it "returns the hearing with the most recent sitting day" do
           expect(call).to eq(hearing_day_two)
@@ -153,9 +165,12 @@ RSpec.describe HearingFinder do
 
         it { is_expected.to eq(hearing_day_one) }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         it { is_expected.not_to eq(hearing_day_two) }
 >>>>>>> 4133f87 (Add hearing_id and sitting_day options to hearing)
+=======
+>>>>>>> fe94812 (align hearing day creation to new paradigm)
       end
 
       context "when searching for hearing two" do
@@ -165,9 +180,12 @@ RSpec.describe HearingFinder do
 
         it { is_expected.to eq(hearing_day_two) }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         it { is_expected.not_to eq(hearing_day_one) }
 >>>>>>> 4133f87 (Add hearing_id and sitting_day options to hearing)
+=======
+>>>>>>> fe94812 (align hearing day creation to new paradigm)
       end
     end
   end

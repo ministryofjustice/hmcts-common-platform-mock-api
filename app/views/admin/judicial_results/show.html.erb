@@ -12,8 +12,7 @@
   <p><strong><%= key %></strong>: <%= value %></p>
 <% end %>
 
-<hr />
+<hr>
 
-<p><%= link_to "Edit judicial result", edit_admin_judicial_result_path(@judicial_result) %></p>
-<p><%= link_to "Delete judicial result", admin_judicial_result_path(@judicial_result), method: "DELETE" %></p>
-<%= link_to 'Back to hearing', admin_hearing_path(@judicial_result.hearing_id) %>
+<%= link_to "Edit", edit_admin_judicial_result_path(@judicial_result) %> |
+<%= link_to 'Back', admin_hearing_path(@judicial_result.hearing_id) %>

@@ -59,9 +59,7 @@
       <%= render 'admin/offences/fields', offence: offence %>
     <% end %>
   <% end %>
-
-
-  <h3>Hearings:</h3>
+  <hr>
 
   <%= form.fields_for :hearings do |hearing| %>
     <%= render 'hearing', hearing: hearing %>

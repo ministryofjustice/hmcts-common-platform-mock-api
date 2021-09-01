@@ -11,7 +11,7 @@ FactoryBot.define do
     factory :realistic_indicated_plea do
       association :hearing, factory: :realistic_hearing
       association :offence, factory: :realistic_offence
-      indicatedPleaDate { Date.today - Faker::Number.number(digits: 3).to_i.days }
+      indicatedPleaDate { Time.zone.today - Faker::Number.number(digits: 3).to_i.days }
       indicatedPleaValue { IndicatedPlea::VALUES.sample }
       source { IndicatedPlea::SOURCES.sample }
     end

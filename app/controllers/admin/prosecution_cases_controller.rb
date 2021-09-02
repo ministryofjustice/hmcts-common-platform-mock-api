@@ -110,7 +110,7 @@ module Admin
        :isEffectiveTrial,
        :isBoxHearing,
        { hearing_type_attributes: %i[id description] },
-       { hearing_days_attributes: hearing_days_attributes}]
+       { hearing_days_attributes: hearing_days_attributes }]
     end
 
     def hearing_days_attributes

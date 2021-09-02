@@ -55,12 +55,28 @@
 <%= hearing.fields_for :hearing_days do |hearing_day| %>
   <h4> Hearing Day </h4>
   <div class="field">
+    <%= hearing_day.label :court_centre_id, 'Court Centre ID' %>
+    <%= hearing_day.text_field :court_centre_id %>
+  </div>
+  <div class="field">
+    <%= hearing_day.label :courtRoomId, 'Court Room ID' %>
+    <%= hearing_day.text_field :courtRoomId %>
+  </div>
+  <div class="field">
     <%= hearing_day.label :sittingDay, 'Sitting Day' %>
     <%= hearing_day.text_field :sittingDay %>
   </div>
   <div class="field">
+    <%= hearing_day.label :listingSequence, 'Listing Sequence' %>
+    <%= hearing_day.text_field :listingSequence %>
+  </div>
+  <div class="field">
     <%= hearing_day.label :listedDurationMinutes, 'Listed Duration Minutes' %>
     <%= hearing_day.text_field :listedDurationMinutes %>
+  </div>
+  <div class="field">
+    <%= hearing_day.label :isCancelled, 'Is Cancelled' %>
+    <%= hearing_day.check_box :isCancelled %>
   </div>
 <% end %>
 <hr>

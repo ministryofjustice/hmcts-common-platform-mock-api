@@ -110,7 +110,17 @@ module Admin
        :isEffectiveTrial,
        :isBoxHearing,
        { hearing_type_attributes: %i[id description] },
-       { hearing_days_attributes: %i[id sittingDay listedDurationMinutes court_centre_id] }]
+       { hearing_days_attributes: hearing_days_attributes}]
+    end
+
+    def hearing_days_attributes
+      %i[id
+         sittingDay
+         listedDurationMinutes
+         court_centre_id
+         courtRoomId
+         listingSequence
+         isCancelled]
     end
 
     def defendable_attributes

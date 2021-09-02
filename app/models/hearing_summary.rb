@@ -8,7 +8,7 @@ class HearingSummary
 
   def initialize(attributes = {})
     super
-    @hearing ||= Hearing.find(attributes[:hearing_id])
+    @hearing ||= Hearing.find_by(hearing_id: attributes[:hearing_id])
   end
 
   def to_builder

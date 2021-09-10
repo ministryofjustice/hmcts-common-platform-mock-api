@@ -51,6 +51,8 @@ module Admin
     # Only allow a list of trusted parameters through.
     def hearing_params
       params.require(:hearing).permit(:hearing,
+                                      :hearing_id,
+                                      :sitting_day,
                                       :jurisdictionType,
                                       :reportingRestrictionReason,
                                       :court_centre_id,
@@ -61,7 +63,17 @@ module Admin
                                       :cracked_ineffective_trial_id,
                                       { prosecution_cases_attributes: prosecution_cases_attributes },
                                       { hearing_type_attributes: %i[id description] },
-                                      { hearing_days_attributes: %i[id sittingDay listedDurationMinutes] })
+                                      { hearing_days_attributes: hearing_days_attributes })
+    end
+
+    def hearing_days_attributes
+      %i[id
+         sittingDay
+         listedDurationMinutes
+         court_centre_id
+         courtRoomId
+         listingSequence
+         isCancelled]
     end
 
     def prosecution_cases_attributes

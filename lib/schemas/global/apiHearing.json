@@ -179,5 +179,12 @@
     "courtCentre",
     "type"
   ],
-  "additionalProperties": false
+  "additionalProperties": {
+    "hearing_id": {
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+    },
+    "sitting_day": {
+      "type": "string"
+    }
+  }
 }

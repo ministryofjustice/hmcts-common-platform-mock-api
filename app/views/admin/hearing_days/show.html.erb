@@ -3,7 +3,7 @@
 <h1>Hearing Day</h1>
 
 <p><strong>ID</strong>: <%= @hearing_day.id %></p>
-<p><strong>Location</strong>: <%= @hearing_day.court_centre.name %></p>
+<p><strong>Location</strong>: <%= @hearing_day.court_centre&.name %></p>
 <p><strong>Court Centre ID</strong>: <%= @hearing_day.court_centre_id %></p>
 <p><strong>Court Room ID</strong>: <%= @hearing_day.courtRoomId %></p>
 <p><strong>Sitting Day</strong>: <%= @hearing_day.sittingDay %></p>

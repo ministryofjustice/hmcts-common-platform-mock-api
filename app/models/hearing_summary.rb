@@ -4,11 +4,11 @@ class HearingSummary
   include ActiveModel::Model
 
   attr_reader :hearing
-  attr_accessor :hearing_id
+  attr_accessor :hearing_id, :sitting_day
 
   def initialize(attributes = {})
     super
-    @hearing ||= Hearing.find(attributes[:hearing_id])
+    @hearing ||= Hearing.find_by(hearing_id: attributes[:hearing_id], sitting_day: attributes[:sitting_day])
   end
 
   def to_builder

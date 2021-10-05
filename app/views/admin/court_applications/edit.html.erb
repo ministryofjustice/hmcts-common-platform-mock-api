@@ -2,3 +2,7 @@
   <%= render 'form', f: form %>
   <%= form.submit %>
 <% end %>
+
+<hr>
+
+<%= link_to 'Back', admin_hearing_path(@court_application.hearing_id) %>

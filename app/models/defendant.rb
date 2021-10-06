@@ -90,6 +90,7 @@ class Defendant < ApplicationRecord
       defendant.aliases array_builder(defendant_aliases)
       defendant.croNumber croNumber
       defendant.pncId pncId
+      defendant.judicialResults array_builder(judicial_results)
     end
   end
 end

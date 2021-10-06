@@ -59,7 +59,8 @@ module Admin
         :defendantDetailsUpdated,
         :defendable_type,
         { defendable_attributes: defendable_attributes,
-          offences_attributes: offences_attributes },
+          offences_attributes: offences_attributes,
+          judicial_results_attributes: judicial_results_attributes },
       )
     end
 
@@ -131,6 +132,35 @@ module Admin
          pendingCBPW
          civilOffence
          _destroy]
+    end
+
+    def judicial_results_attributes
+      %i[
+        id
+        judicialResultId
+        judicialResultTypeId
+        orderedHearingId
+        label
+        welshLabel
+        isAdjournmentResult
+        isFinancialResult
+        isConvictedResult
+        isAvailableForCourtExtract
+        isDeleted
+        amendmentReasonId
+        amendmentReason
+        amendmentDate
+        qualifier
+        resultText
+        cjsCode
+        rank
+        orderedDate
+        postHearingCustodyStatus
+        lastSharedDateTime
+        terminatesOffenceProceedings
+        approvedDate
+        category
+      ]
     end
   end
 end

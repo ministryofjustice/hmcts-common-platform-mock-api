@@ -39,6 +39,21 @@
   <ul>
     <li>Name: <%= defendant.name %></li>
   </ul>
+  <p><strong>Judicial results</strong></p>
+        <ul>
+          <% defendant.judicial_results.each do |judicial_result| %>
+            <li>
+              Text: <%= judicial_result.resultText%>
+              <%= link_to 'Show',  admin_judicial_result_path(judicial_result) %>
+              <%= link_to 'Edit',  edit_admin_judicial_result_path(judicial_result) %>
+              <%= link_to 'Destroy',  admin_judicial_result_path(judicial_result), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </li>
+          <% end %>
+
+          <li>
+            <%= link_to 'Add judicial result', admin_defendant_judicial_results_path(defendant, id: @hearing.id), method: :post %>
+          </li>
+        </ul>
 
   <h3>Offences</h3>
 

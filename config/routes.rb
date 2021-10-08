@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       end
 
       resources :defendants do
+        resources :judicial_results
         resources :offences
       end
 

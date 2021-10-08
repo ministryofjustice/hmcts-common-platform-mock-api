@@ -60,6 +60,7 @@ class Offence < ApplicationRecord
       offence.committingCourt committing_court.to_builder if committing_court.present?
       offence.offenceDateCode offence_date_code
       offence.reportingRestrictions array_builder(reporting_restrictions)
+      offence.judicialResults array_builder(judicial_results)
 
       if hearing.present?
         offence.indicatedPlea indicated_plea_for_hearing(hearing)&.to_builder

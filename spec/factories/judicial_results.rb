@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :judicial_result do
     hearing
+    defendant { build(:defendant, prosecution_case: nil) }
     offence
     court_application
     judicialResultId { SecureRandom.uuid }

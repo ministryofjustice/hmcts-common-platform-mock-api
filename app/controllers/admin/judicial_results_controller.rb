@@ -2,10 +2,11 @@ module Admin
   class JudicialResultsController < Admin::ApplicationController
     def create
       court_application = CourtApplication.find(params[:court_application_id]) if params[:court_application_id]
+      defendant = Defendant.find(params[:defendant_id]) if params[:defendant_id]
       offence = Offence.find_by(id: params[:offence_id])
       hearing = Hearing.find_by(id: params[:id]) || court_application.hearing
 
-      FactoryBot.create(:judicial_result_with_relationships, hearing: hearing, offence: offence, court_application: court_application)
+      FactoryBot.create(:judicial_result_with_relationships, hearing: hearing, defendant: defendant, offence: offence, court_application: court_application)
 
       redirect_to admin_hearing_url(hearing), notice: "Judicial result was successfully created."
     end

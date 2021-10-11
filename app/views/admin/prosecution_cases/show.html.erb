@@ -64,10 +64,6 @@
           <% unless hearing.resulted? %>
             <%= button_to 'Result hearing', result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id) %>
           <% end %>
-
-          <% Rails.configuration.laa_connection.keys.each do |type| %>
-            <%= button_to "Result and Publish to #{type.to_s}", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, type) %>
-          <% end %>
         </td>
       </tr>
     <% end %>

@@ -93,9 +93,9 @@ RSpec.describe "Admin::Defendants", type: :request do
         }.to change(Defendant, :count).by(1)
       end
 
-      it "redirects to the created defendant" do
+      it "redirects to parent prosecution case" do
         post admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: valid_attributes }, headers: headers
-        expect(response).to redirect_to(admin_defendant_url(Defendant.order(created_at: :asc).last))
+        expect(response).to redirect_to(admin_prosecution_case_url(Defendant.order(created_at: :asc).last.prosecution_case))
       end
     end
 

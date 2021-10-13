@@ -50,7 +50,7 @@
 
 <hr>
 
-<h3> Defendable</h3>
+<h3>Defendable</h3>
 
 <%= defendant.hidden_field :defendable_type %>
 
@@ -198,4 +198,10 @@
       <%= person.text_field :specificRequirements %>
     </div>
   <% end %>
+<% end %>
+
+<h3>Offences</h3>
+
+<%= defendant.fields_for :offences do |offence| %>
+  <%= render 'admin/offences/fields', offence: offence %>
 <% end %>

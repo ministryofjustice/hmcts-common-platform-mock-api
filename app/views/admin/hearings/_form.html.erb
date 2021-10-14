@@ -29,8 +29,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :court_centre_id, 'Court Centre' %>
-    <%= form.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] } %>
+    <%= form.label :court_centre, 'Court Centre' %>
+    <%= form.select :court_centre, CourtCentre::COURTS_SAMPLE %>
   </div>
 
   <div class="field">
@@ -114,7 +114,7 @@
             <% end %>
           </div>
 
-          
+
           <hr>
         <% end %>
       <% end %>

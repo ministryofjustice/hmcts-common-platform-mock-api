@@ -18,7 +18,7 @@ module Admin
       @defendant = @prosecution_case.defendants.build(defendant_params)
 
       if @defendant.save
-        redirect_to [:admin, @defendant], notice: "Defendant was successfully created."
+        redirect_to [:admin, @prosecution_case], notice: "Defendant was successfully created."
       else
         render :new
       end

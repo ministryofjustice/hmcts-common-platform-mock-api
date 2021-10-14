@@ -3,6 +3,12 @@
 class CourtCentre
   include ActiveModel::Model
 
+  COURTS_SAMPLE = ["Central Criminal Court",
+                   "Derby Crown Court",
+                   "Nottingham Crown Court",
+                   "Oxford Crown Court",
+                   "Sunderland Magistrates' Court"].freeze
+
   attr_accessor :id
 
   def name

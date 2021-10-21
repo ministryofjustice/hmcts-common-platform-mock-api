@@ -66,13 +66,11 @@
           <% end %>
 
           <% case Rails.env %>
-            <% when "development" %>
-              <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :dev) %>
-            <% when "test" %>
-              <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :test) %>
-            <% when "stage" %>
-              <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :stage) %>
-          <% end %>
+          <% when "development" %>
+            <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :dev) %>
+          <% when "production" %>
+            <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :stage) %>
+        <% end %>
 
           </td>
       </tr>

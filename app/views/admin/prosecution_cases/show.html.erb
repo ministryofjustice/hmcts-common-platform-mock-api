@@ -64,7 +64,17 @@
           <% unless hearing.resulted? %>
             <%= button_to 'Result hearing', result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id) %>
           <% end %>
-        </td>
+
+          <% case Rails.env %>
+            <% when "development" %>
+              <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :dev) %>
+            <% when "test" %>
+              <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :test) %>
+            <% when "stage" %>
+              <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :stage) %>
+          <% end %>
+
+          </td>
       </tr>
     <% end %>
   </tbody>

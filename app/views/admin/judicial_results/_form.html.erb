@@ -73,7 +73,7 @@
     <%= f.label :cjsCode, 'CJS Code' %>
     <%= f.text_field :cjsCode %>
   </div>
-  
+
   <div class="field">
     <%= f.label :rank, 'Rank' %>
     <%= f.text_field :rank %>
@@ -134,7 +134,7 @@
 
     <div class="field">
       <%= next_hearing.label :court_centre_id, 'Court Centre' %>
-      <%= next_hearing.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] } %>
+      <%= next_hearing.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] }.sort %>
     </div>
 
     <%= next_hearing.fields_for :hearing_type do |hearing_type| %>

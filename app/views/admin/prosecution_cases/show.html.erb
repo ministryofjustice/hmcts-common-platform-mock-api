@@ -65,10 +65,16 @@
             <%= button_to 'Result hearing', result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id) %>
           <% end %>
 
-          <% Rails.configuration.laa_connection.keys.each do |type| %>
-            <%= button_to "Result and Publish to #{type.to_s}", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, type) %>
+          <% case Rails.env %>
+            <% when "development" %>
+              <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :dev) %>
+            <% when "test" %>
+              <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :test) %>
+            <% when "stage" %>
+              <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :stage) %>
           <% end %>
-        </td>
+
+          </td>
       </tr>
     <% end %>
   </tbody>

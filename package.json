@@ -3,9 +3,11 @@
     "@kollegorna/cocoon-vanilla-js": "^1.0.6",
     "@rails/ujs": "^6.0.3-3",
     "@rails/webpacker": "4.2.2",
-    "cocoon-js-vanilla": "^1.1.0"
+    "cocoon-js-vanilla": "^1.1.0",
+    "govuk-frontend": "^3.14.0"
   },
   "devDependencies": {
+    "sass": "^1.43.3",
     "webpack-dev-server": "^3.11.0"
   }
 }

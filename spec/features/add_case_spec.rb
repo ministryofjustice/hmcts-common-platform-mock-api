@@ -8,7 +8,7 @@ RSpec.describe "adding a new offence to prosecution case ", type: :feature do
   describe "add offence" do
     include_context "when authenticated"
 
-    it "creates the new offence", js: true do
+    it "creates the new offence" do
       visit "/admin/defendants/#{defendant.id}"
       click_link "Add offence"
       expect {

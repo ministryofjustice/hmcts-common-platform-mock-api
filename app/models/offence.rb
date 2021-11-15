@@ -71,6 +71,10 @@ class Offence < ApplicationRecord
     end
   end
 
+  def build_pleas
+    array_builder(pleas)
+  end
+
 private
 
   def indicated_plea_for_hearing(hearing)

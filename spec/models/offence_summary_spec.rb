@@ -14,6 +14,7 @@ RSpec.describe OffenceSummary, type: :model do
     context "with relationships" do
       before do
         offence.update!(laa_reference: FactoryBot.create(:laa_reference))
+        # binding.pry
       end
 
       it_has_behaviour "conforming to valid schema"

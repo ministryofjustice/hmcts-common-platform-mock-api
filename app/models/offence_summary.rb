@@ -26,6 +26,7 @@ class OffenceSummary
       offence_summary.startDate offence.startDate.to_date
       offence_summary.endDate offence.endDate.to_date
       offence_summary.proceedingsConcluded offence.isDisposed
+      offence_summary.verdict offence.build_verdict
       offence_summary.plea offence.build_pleas
       offence_summary.laaApplnReference offence.laa_reference.to_builder if offence.laa_reference.present?
     end

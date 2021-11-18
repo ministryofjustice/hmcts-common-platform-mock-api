@@ -1,0 +1,9 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.hidden_field :hearing_id, value: @hearing.id %>
+    <%= f.label :verdictDate, 'Verdict Date' %>
+    <%= f.text_field :verdictDate %>
+  </div>
+
+  <%= link_to_remove_association "remove verdict", f %>
+</div>

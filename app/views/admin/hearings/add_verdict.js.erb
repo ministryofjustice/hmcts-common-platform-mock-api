@@ -1,0 +1,2 @@
+var defendantOffences = document.getElementById("defendant-offences-<%= @offence.id %>")
+defendantOffences.innerHTML = '<%= escape_javascript(render 'add_verdict') %>';

@@ -114,6 +114,19 @@
             <% end %>
           </div>
 
+          <div id="defendant-offences-<%= offence.object.id %>">
+            <%= offence.fields_for :verdicts, offence.object.verdicts.where(hearing: hearing) do |verdict| %>
+              <%= render 'verdict_fields', f: verdict %>
+            <% end %>
+
+            <% if offence.object.verdicts.where(hearing: hearing).empty? %>
+
+              <div class="links">
+                <%= link_to 'add verdict', add_verdict_admin_hearing_path(hearing, offence.object), method: :post %>
+              </div>
+            <% end %>
+          </div>
+
           <hr>
         <% end %>
       <% end %>

@@ -22,7 +22,6 @@ RSpec.describe "ProsecutionCases", type: :request do
         get "/prosecutionCases?prosecutionCaseReference=incorrect-reference", headers: headers
         expect(response).to have_http_status(:ok)
         expect(response.headers["content-type"]).to eq("application/vnd.unifiedsearch.query.laa.cases+json")
-        expect(response.body).to match_json_schema(:search_prosecution_case_response)
       end
     end
   end

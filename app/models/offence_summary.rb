@@ -26,9 +26,31 @@ class OffenceSummary
       offence_summary.startDate offence.startDate.to_date
       offence_summary.endDate offence.endDate.to_date
       offence_summary.proceedingsConcluded offence.isDisposed
-      offence_summary.verdict offence.build_verdict
+      offence_summary.verdict build_verdict.first if offence.verdicts.present?
       offence_summary.plea offence.build_pleas
       offence_summary.laaApplnReference offence.laa_reference.to_builder if offence.laa_reference.present?
+    end
+  end
+
+  def build_verdict
+    offence.verdicts.map do |verdict|
+      [
+        [:verdictDate, verdict.verdictDate],
+        [:originatingHearingId, verdict.hearing_id],
+        [:verdictType, verdict_type_builder.first],
+      ].to_h
+    end
+  end
+
+  def verdict_type_builder
+    offence.verdicts.map do |verdict|
+      [
+        [:description, verdict.verdict_type.description],
+        [:category, verdict.verdict_type.category],
+        [:categoryType, verdict.verdict_type.categoryType],
+        [:sequence, verdict.verdict_type.sequence],
+        [:verdictTypeId, verdict.verdict_type.id],
+      ].to_h
     end
   end
 end

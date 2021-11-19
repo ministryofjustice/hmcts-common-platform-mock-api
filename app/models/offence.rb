@@ -16,7 +16,6 @@ class Offence < ApplicationRecord
   has_many :victims, class_name: "Person", dependent: :destroy
   has_many :judicial_results, dependent: :destroy
   has_one :laa_reference, dependent: :destroy
-  has_one :verdict, dependent: :destroy
 
   validates :offenceDefinitionId, presence: true
   validates :offenceCode, presence: true, length: { maximum: 8 }
@@ -75,24 +74,6 @@ class Offence < ApplicationRecord
 
   def build_pleas
     array_builder(pleas)
-  end
-
-  def build_verdict
-      [
-        [:verdictDate, verdict.verdictDate],
-        [:originatingHearingId, verdict.hearing_id],
-        [:verdictType, verdict_type_builder],
-      ].to_h
-  end
-
-  def verdict_type_builder
-    [
-      [:description, verdict.verdict_type.description],
-      [:category, verdict.verdict_type.category],
-      [:categoryType, verdict.verdict_type.categoryType],
-      [:sequence, verdict.verdict_type.sequence],
-      [:verdictTypeId, verdict.verdict_type.id],
-    ].to_h
   end
 
 private

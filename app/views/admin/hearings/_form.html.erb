@@ -119,7 +119,7 @@
               <%= render 'verdict_fields', f: verdict %>
             <% end %>
 
-            <% if offence.object.verdicts.where(hearing: hearing).empty? %>
+            <% if offence.object.verdicts.empty? %>
 
               <div class="links">
                 <%= link_to 'add verdict', add_verdict_admin_hearing_path(hearing, offence.object), method: :post %>

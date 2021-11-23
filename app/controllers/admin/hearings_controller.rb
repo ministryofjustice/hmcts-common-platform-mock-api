@@ -88,7 +88,14 @@ module Admin
       [
         :id,
         { pleas_attributes: %i[id hearing_id pleaValue pleaDate _destroy] },
-        { verdicts_attributes: %i[id hearing_id verdict_type verdictDate _destroy] },
+        { verdicts_attributes:
+          [
+            :id,
+            :hearing_id,
+            :verdictDate,
+            :_destroy,
+            { verdict_type_attributes: %i[id sequence description category categoryType cjsVerdictCode verdictCode _destroy] },
+          ] },
         { allocation_decisions_attributes:
           %i[
             id

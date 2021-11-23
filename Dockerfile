@@ -1,4 +1,4 @@
-FROM ruby:2.6.8-alpine
+FROM ruby:2.7-alpine3.13
 MAINTAINER crime apps team
 
 # fail early and print all commands

@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.6.8"
+ruby "2.7.4"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.0.3"
@@ -42,7 +42,7 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails", "~> 5.0"
-  gem "rubocop-govuk", "~> 4.1"
+  gem "rubocop-govuk", "~> 4.2"
   gem "rubocop-performance", require: false
   gem "sinatra"
   gem "vcr"

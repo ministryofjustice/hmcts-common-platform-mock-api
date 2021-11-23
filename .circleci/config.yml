@@ -5,6 +5,7 @@ orbs:
   aws-eks: circleci/aws-eks@1.1.0
   kubernetes: circleci/kubernetes@0.7.0
   helm: circleci/helm@1.2.0
+  browser-tools: circleci/browser-tools@1.2.3
 
 commands:
   checkout_and_decrypt:
@@ -18,11 +19,11 @@ commands:
 jobs:
   test:
     docker:
-      - image: circleci/ruby:2.6.3-node-browsers
+      - image: cimg/ruby:2.6.8-browsers
         environment:
           DATABASE_URL: postgres://postgres@localhost/hmcts_common_platform_api_test
           RAILS_ENV: test
-      - image: circleci/postgres:11.5-alpine
+      - image: cimg/postgres:11.12
         environment:
           POSTGRES_DB: hmcts_common_platform_api_test
     steps:

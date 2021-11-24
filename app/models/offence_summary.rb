@@ -26,7 +26,20 @@ class OffenceSummary
       offence_summary.startDate offence.startDate.to_date
       offence_summary.endDate offence.endDate.to_date
       offence_summary.proceedingsConcluded offence.isDisposed
+      offence_summary.plea build_pleas if offence.pleas.present?
       offence_summary.laaApplnReference offence.laa_reference.to_builder if offence.laa_reference.present?
+    end
+  end
+
+private
+
+  def build_pleas
+    offence.pleas.map do |plea|
+      [
+        [:originatingHearingId, plea.hearing_id],
+        [:value, plea.pleaValue],
+        [:pleaDate, plea.pleaDate],
+      ].to_h
     end
   end
 end

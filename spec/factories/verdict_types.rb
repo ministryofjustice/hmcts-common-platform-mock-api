@@ -3,9 +3,9 @@
 FactoryBot.define do
   factory :verdict_type do
     add_attribute(:sequence) { 1 }
-    description { "MyString" }
-    category { "MyString" }
-    categoryType { "MyString" }
+    description { "Guilty" }
+    category { "Guilty" }
+    categoryType { "GUILTY" }
     cjs_verdict_code { "324300128" }
     verdict_code { "719478760" }
 
@@ -13,7 +13,7 @@ FactoryBot.define do
       add_attribute(:sequence) { Faker::Number.positive.to_i }
       description { Faker::Lorem.sentence }
       category { Faker::Commerce.department }
-      categoryType { Faker::Commerce.material }
+      categoryType { "GUILTY" }
       cjs_verdict_code { Faker::Code.sin }
       verdict_code { Faker::Code.sin }
     end

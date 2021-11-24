@@ -7,20 +7,8 @@
 
   <%= f.fields_for :verdict_type do |verdict_type| %>
     <div class="field">
-      <%= verdict_type.label :description, 'Description' %>
-      <%= verdict_type.text_field :description %>
-    </div>
-    <div class="field">
-      <%= verdict_type.label :category, 'Category' %>
-      <%= verdict_type.text_field :category %>
-    </div>
-    <div class="field">
-      <%= verdict_type.label :categoryType, 'Category Type' %>
-      <%= verdict_type.text_field :categoryType %>
-    </div>
-    <div class="field">
-      <%= verdict_type.label :verdict_code, 'Verdict Code' %>
-      <%= verdict_type.text_field :verdict_code %>
+      <%= verdict_type.label :categoryType, 'Verdict Category Type' %>
+      <%= verdict_type.select :categoryType, VerdictType::CATEGORY_TYPES.keys %>
     </div>
   <% end %>
 

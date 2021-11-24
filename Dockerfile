@@ -1,4 +1,4 @@
-FROM ruby:2.6.8-alpine
+FROM ruby:2.6-alpine3.13
 MAINTAINER crime apps team
 
 # fail early and print all commands
@@ -33,9 +33,6 @@ WORKDIR /usr/src/app
 # Env vars needed for dependency install and asset precompilation
 
 COPY Gemfile* ./
-
-ENV GEM_HOME="/usr/local/bundle"
-ENV PATH $GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
 
 RUN gem install bundler -v 2.0.2 \
 && bundle install --deployment --without development test

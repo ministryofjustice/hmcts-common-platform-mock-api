@@ -15,6 +15,7 @@ RSpec.describe OffenceSummary, type: :model do
       before do
         offence.update!(laa_reference: FactoryBot.create(:laa_reference))
         offence.verdicts << FactoryBot.create(:verdict)
+        offence.pleas << FactoryBot.create(:plea)
       end
 
       it_has_behaviour "conforming to valid schema"

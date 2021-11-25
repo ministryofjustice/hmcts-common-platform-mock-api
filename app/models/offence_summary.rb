@@ -31,7 +31,7 @@ class OffenceSummary
       offence_summary.plea build_pleas if offence.pleas.present?
     end
   end
-  
+
   def build_verdict
     offence.verdicts.map do |verdict|
       [
@@ -50,7 +50,10 @@ class OffenceSummary
         [:categoryType, verdict.verdict_type.categoryType],
         [:sequence, verdict.verdict_type.sequence],
         [:verdictTypeId, verdict.verdict_type.id],
-        
+      ].to_h
+    end
+  end
+
 private
 
   def build_pleas

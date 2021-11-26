@@ -18,7 +18,7 @@ RSpec.describe "ProsecutionCases", type: :request do
     end
 
     context "when the search returns no results" do
-      it "matches the response schema" do
+      it "returns a response with an ok status" do
         get "/prosecutionCases?prosecutionCaseReference=incorrect-reference", headers: headers
         expect(response).to have_http_status(:ok)
         expect(response.headers["content-type"]).to eq("application/vnd.unifiedsearch.query.laa.cases+json")

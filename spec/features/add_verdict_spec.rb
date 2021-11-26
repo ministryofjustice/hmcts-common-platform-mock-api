@@ -11,7 +11,7 @@ RSpec.describe "adding a verdict against an offence", type: :feature do
     it "creates the new verdict" do
       visit "/admin/hearings/#{hearing.id}/edit"
       click_link "add verdict"
-      
+
       expect(page).to have_text("Verdict Date")
     end
 

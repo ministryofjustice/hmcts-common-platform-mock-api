@@ -11,8 +11,8 @@ FactoryBot.define do
 
     factory :realistic_verdict_type do
       add_attribute(:sequence) { Faker::Number.positive.to_i }
-      description { Faker::Lorem.sentence }
-      category { Faker::Commerce.department }
+      description { "Guilty" }
+      category { "Guilty" }
       categoryType { "GUILTY" }
       cjs_verdict_code { Faker::Code.sin }
       verdict_code { Faker::Code.sin }

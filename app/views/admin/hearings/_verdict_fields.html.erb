@@ -7,8 +7,9 @@
 
   <%= f.fields_for :verdict_type do |verdict_type| %>
     <div class="field">
-      <%= verdict_type.label :categoryType, 'Verdict Category Type' %>
-      <%= verdict_type.select :categoryType, VerdictType::CATEGORY_TYPES.keys %>
+      <%= verdict_type.label :description, 'Verdict Description' %>
+      <br></br>
+      <%= verdict_type.select :description, VerdictType::DESCRIPTIONS_CATEGORIES_TYPES_DATA.keys %>
     </div>
   <% end %>
 

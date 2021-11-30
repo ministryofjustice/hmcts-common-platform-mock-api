@@ -13,6 +13,8 @@ class Verdict < ApplicationRecord
   validates :application_id, presence: true, if: -> { offence_id.blank? }
   validates :offence_id, presence: true, if: -> { application_id.blank? }
 
+  accepts_nested_attributes_for :verdict_type, reject_if: :all_blank
+
   def to_builder
     Jbuilder.new do |verdict|
       verdict.originatingHearingId hearing_id

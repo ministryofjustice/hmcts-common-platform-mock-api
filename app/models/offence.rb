@@ -26,6 +26,7 @@ class Offence < ApplicationRecord
   accepts_nested_attributes_for :judicial_results, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :pleas, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :allocation_decisions, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :verdicts, reject_if: :all_blank, allow_destroy: true
 
   def to_builder(hearing: nil)
     Jbuilder.new do |offence|
@@ -77,15 +78,15 @@ private
     indicated_pleas.find_by(hearing: hearing)
   end
 
+  def verdict_for_hearing(hearing)
+    verdicts.find_by(hearing: hearing)
+  end
+
   def allocation_decision_for_hearing(hearing)
     allocation_decisions.find_by(hearing: hearing)
   end
 
   def plea_for_hearing(hearing)
     pleas.find_by(hearing: hearing)
-  end
-
-  def verdict_for_hearing(hearing)
-    verdicts.find_by(hearing: hearing)
   end
 end

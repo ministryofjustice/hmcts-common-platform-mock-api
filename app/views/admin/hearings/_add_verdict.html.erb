@@ -1,0 +1,5 @@
+<%= fields_for @offence do |offence_form| %>
+  <%= offence_form.fields_for :verdicts do |verdict_form| %>
+    <%= render 'verdict_fields', f: verdict_form %>
+  <% end %>
+<% end %>

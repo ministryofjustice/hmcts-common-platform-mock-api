@@ -1,4 +1,4 @@
-FROM ruby:2.7-alpine3.13
+FROM ruby:2.7.5-alpine3.13
 MAINTAINER crime apps team
 
 # fail early and print all commands
@@ -34,8 +34,8 @@ WORKDIR /usr/src/app
 
 COPY Gemfile* ./
 
-RUN gem install bundler -v 2.0.2 \
-&& bundle install --deployment --without development test
+RUN gem install bundler -v 2.2.28
+RUN bundle config set --local deployment 'true' without 'development:test' && bundle install --jobs 4
 
 ####################
 # DEPENDENCIES END #

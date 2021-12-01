@@ -30,7 +30,7 @@
 
   <div class="field">
     <%= form.label :court_centre_id, 'Court Centre' %>
-    <%= form.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] }.sort %>
+    <%= form.select :court_centre_id, CourtCentre.all.map { |cc| [cc.name, cc.id ] }.sort %>
   </div>
 
   <div class="field">

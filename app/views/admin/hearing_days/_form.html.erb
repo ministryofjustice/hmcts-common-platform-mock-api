@@ -26,6 +26,6 @@
 
   <div class="field">
     <%= f.label :court_centre_id, 'Court Centre' %>
-    <%= f.select :court_centre_id, HmctsCommonPlatform::Reference::CourtCentre.all.collect{ |cc| [cc.oucode_l3_name, cc.id ] }.sort %>
+    <%= f.select :court_centre_id, YAML.load_file('./lib/data/court_centres_sample.yml').map { |cc| [cc["oucode_l3_name"], cc["id"] ] }.sort %>
   </div>
 </div>

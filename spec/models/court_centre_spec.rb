@@ -14,10 +14,4 @@ RSpec.describe CourtCentre, type: :model do
   end
 
   it_has_behaviour "conforming to valid schema"
-
-  context "when an address exists" do
-    let(:court_centre) { described_class.new(id: "f8254db1-1683-483e-afb3-b87fde5a0a26") }
-
-    it_has_behaviour "conforming to valid schema"
-  end
 end

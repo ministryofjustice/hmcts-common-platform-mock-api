@@ -34,7 +34,7 @@ FactoryBot.define do
     hasSharedResults { Faker::Boolean.boolean }
     jurisdictionType { Hearing::JURISDICTION_TYPES.sample }
     reportingRestrictionReason { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
-    court_centre_id { HmctsCommonPlatform::Reference::CourtCentre.all.collect(&:id).sample }
+    court_centre_id { YAML.load_file("./lib/data/court_centres_sample.yml").sample["id"] }
     hearingLanguage { Hearing::LANGUAGES.sample }
     hearing_type
     isEffectiveTrial { Faker::Boolean.boolean }

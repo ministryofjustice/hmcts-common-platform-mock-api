@@ -1,46 +1,61 @@
 # frozen_string_literal: true
 
 class CourtCentre
-  include ActiveModel::Model
+  attr_accessor :id, :name, :welsh_name,
+                :address1, :address2, :address3,
+                :address4, :address5, :postcode
 
-  attr_accessor :id
+  def initialize(id:, name:, welsh_name:, address1:, address2:, address3:, address4:, address5:, postcode:)
+    @id = id
+    @name = name
+    @welsh_name = welsh_name
+    @address1 = address1
+    @address2 = address2
+    @address3 = address3
+    @address4 = address4
+    @address5 = address5
+    @postcode = postcode
+  end
 
-  def name
-    csv_row["oucode_l3_name"]
+  def self.all
+    YAML.load_file("./lib/data/court_centres_sample.yml").map do |court_centre_data|
+      new(
+        id: court_centre_data["id"],
+        name: court_centre_data["oucode_l3_name"],
+        welsh_name: court_centre_data["welshName"],
+        address1: court_centre_data["address1"],
+        address2: court_centre_data["address2"],
+        address3: court_centre_data["address3"],
+        address4: court_centre_data["address4"],
+        address5: court_centre_data["address5"],
+        postcode: court_centre_data["postcode"],
+      )
+    end
+  end
+
+  def self.find_by(id:)
+    all.find { |cc| cc.id == id }
   end
 
   def to_builder
     Jbuilder.new do |court_centre|
       court_centre.id id
       court_centre.name name
-      court_centre.welshName csv_row["oucode_l3_welsh_name"]
-      court_centre.roomId id # Using CourtCentre while we manage to get a list of rooms
-      court_centre.roomName csv_row["oucode_l3_name"] # Using CourtCentre while we manage to get a list of rooms
-      court_centre.welshRoomName csv_row["oucode_l3_welsh_name"] # Using CourtCentre while we manage to get a list of rooms
-      court_centre.address address.to_builder if address.present?
+      court_centre.welshName welsh_name
+      court_centre.address address.to_builder
     end
   end
 
 private
 
-  def csv_row
-    @csv_row ||= courts.find { |court| court["id"] == id }
-  end
-
   def address
-    return if csv_row["address1"].blank?
-
-    @address ||= Address.new(
-      address1: csv_row["address1"],
-      address2: csv_row["address2"],
-      address3: csv_row["address3"],
-      address4: csv_row["address4"],
-      address5: csv_row["address5"],
-      postcode: csv_row["postcode"],
+    Address.new(
+      address1: address1,
+      address2: address2,
+      address3: address3,
+      address4: address4,
+      address5: address5,
+      postcode: postcode,
     )
-  end
-
-  def courts
-    YAML.load_file("./lib/data/court_centres_sample.yml")
   end
 end

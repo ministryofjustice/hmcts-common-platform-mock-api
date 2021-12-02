@@ -8,7 +8,7 @@ FactoryBot.define do
     order_date { "2021-03-01" }
     start_date { "2021-03-01" }
     end_date { "2022-03-01" }
-    court_centre_id { "6131bd34-33d9-3d1e-8152-8b5a2084f1bd" }
+    court_centre_id { CourtCentre.all.sample.id }
     ordering_hearing_id { "d9ddeb65-eb0c-4d09-baf1-5052a93fefaa" }
     is_sjp_order { true }
     can_be_subject_of_breach_proceedings { true }
@@ -27,7 +27,7 @@ FactoryBot.define do
       order_date { Faker::Date.backward }
       start_date { Faker::Date.backward }
       end_date { Faker::Date.forward }
-      court_centre_id { "6131bd34-33d9-3d1e-8152-8b5a2084f1bd" }
+      court_centre_id { CourtCentre.all.sample.id }
       ordering_hearing_id { SecureRandom.uuid }
       is_sjp_order { Faker::Boolean.boolean }
       can_be_subject_of_breach_proceedings { Faker::Boolean.boolean }

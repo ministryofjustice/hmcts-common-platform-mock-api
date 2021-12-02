@@ -6,7 +6,7 @@ FactoryBot.define do
     session { "All Day (AD)" }
     oucode { "MyString" }
     court_room_id { 1 }
-    court_centre_id { "3849a72b-b307-35b8-8763-e737a5cc5c46" }
+    court_centre_id { CourtCentre.all.sample.id }
     room_id { "MyString" }
 
     factory :realistic_rota_slot do
@@ -16,7 +16,7 @@ FactoryBot.define do
       session { RotaSlot::SESSIONS.sample }
       oucode { "MyString" }
       court_room_id { SecureRandom.uuid }
-      court_centre_id { SecureRandom.uuid }
+      court_centre_id { CourtCentre.all.sample.id }
       room_id { "MyString" }
     end
   end

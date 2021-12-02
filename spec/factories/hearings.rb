@@ -12,7 +12,7 @@ FactoryBot.define do
     sitting_day { "2019-10-23 16:19:15" }
     jurisdictionType { "CROWN" }
     reportingRestrictionReason { "reporting restriction because..." }
-    court_centre_id { "6131bd34-33d9-3d1e-8152-8b5a2084f1bd" }
+    court_centre_id { CourtCentre.all.sample.id }
     hearingLanguage { "WELSH" }
     hasSharedResults { false }
     hearing_type
@@ -34,7 +34,7 @@ FactoryBot.define do
     hasSharedResults { Faker::Boolean.boolean }
     jurisdictionType { Hearing::JURISDICTION_TYPES.sample }
     reportingRestrictionReason { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
-    court_centre_id { YAML.load_file("./lib/data/court_centres_sample.yml").sample["id"] }
+    court_centre_id { CourtCentre.all.sample.id }
     hearingLanguage { Hearing::LANGUAGES.sample }
     hearing_type
     isEffectiveTrial { Faker::Boolean.boolean }

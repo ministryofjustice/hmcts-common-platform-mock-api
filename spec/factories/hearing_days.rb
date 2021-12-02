@@ -7,7 +7,7 @@ FactoryBot.define do
     listedDurationMinutes { 120 }
     courtRoomId { "f866cbff-313a-4a0f-86a8-9d66768ba072" }
     isCancelled { false }
-    court_centre_id { "6131bd34-33d9-3d1e-8152-8b5a2084f1bd" }
+    court_centre_id { CourtCentre.all.sample.id }
   end
 
   factory :realistic_hearing_day, class: "HearingDay" do
@@ -16,6 +16,6 @@ FactoryBot.define do
     listedDurationMinutes { Faker::Number.number(digits: 3) }
     courtRoomId { SecureRandom.uuid }
     isCancelled { Faker::Boolean.boolean }
-    court_centre_id { YAML.load_file("./lib/data/court_centres_sample.yml").sample["id"] }
+    court_centre_id { CourtCentre.all.sample.id }
   end
 end

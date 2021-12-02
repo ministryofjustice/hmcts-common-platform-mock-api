@@ -1,0 +1,1000 @@
+---
+- oucode_l3_code: DT
+  oucode_l3_name: Cirencester Magistrates' Court
+  lja: 1698
+  oucode_effective_from_date: 21/09/2020
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Court
+  oucode_l2_code: 53
+  oucode_l2_name: Gloucestershire
+  phone: ''
+  fax: ''
+  email: ''
+  address1: The Court House
+  address2: The Forum
+  address3: Cirencester
+  address4: Glos.
+  address5: ''
+  postcode: GL7 2PL
+  iswelsh:
+  id: 003245ab-10cf-3145-8364-e30e72892d95
+  last_modified_ts: 26/04/2021 10:11
+  oucode_l3_welsh_name: Llys Ynadon Cirencester
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B53DT00
+  region: South West
+  cps_email_address: southwest.mcgateway@cps.gov.uk
+  pecs_contractor_email_address: ''
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 6
+- oucode_l3_code: CE
+  oucode_l3_name: Central Criminal Court
+  lja: 2570
+  oucode_effective_from_date: 01/01/2016
+  oucode_effective_to_date: ''
+  oucode_l1_code: C
+  oucode_l1_name: Crown Courts
+  oucode_l2_code: 1
+  oucode_l2_name: London
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Old Bailey
+  address2: London
+  address3: ''
+  address4: ''
+  address5: ''
+  postcode: EC4M 7EH
+  iswelsh:
+  id: 44497da7-ec8d-3137-94ad-ff7c0c57827a
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Y Llys Troseddol Canolog
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: C01CE00
+  region: London
+  cps_email_address: London.crowncourt@cps.gov.uk
+  pecs_contractor_email_address: PECSCentralCriminalCourt@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 1
+- oucode_l3_code: NT
+  oucode_l3_name: Nottingham Crown Court
+  lja: 2095
+  oucode_effective_from_date: 01/01/2016
+  oucode_effective_to_date: ''
+  oucode_l1_code: C
+  oucode_l1_name: Crown Courts
+  oucode_l2_code: 31
+  oucode_l2_name: Nottinghamshire
+  phone: ''
+  fax: ''
+  email: ''
+  address1: The Law Courts
+  address2: 60 Canal Street
+  address3: Nottingham
+  address4: ''
+  address5: ''
+  postcode: NG1 7EL
+  iswelsh:
+  id: e2b8580f-5247-30f9-905f-4b8136b23318
+  last_modified_ts: 23/12/2020 13:10
+  oucode_l3_welsh_name: Llys Y Goron Nottingham
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:30:00'
+  default_duration_hrs: '06:00:00'
+  oucode: C31NT00
+  region: Midlands
+  cps_email_address: EMCorrespondence@cps.gov.uk
+  pecs_contractor_email_address: nottinghamcc@geoamey.co.uk
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 2
+- oucode_l3_code: IR
+  oucode_l3_name: Maidstone Magistrates' Court
+  lja: 1960
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 46
+  oucode_l2_name: Kent
+  phone: ''
+  fax: ''
+  email: ''
+  address1: The Court House
+  address2: Palace Avenue
+  address3: Maidstone
+  address4: Kent
+  address5: ''
+  postcode: ME15 6LL
+  iswelsh:
+  id: 68c7e9af-2db7-3fc3-b6e8-e51653120790
+  last_modified_ts: 05/03/2021 09:27
+  oucode_l3_welsh_name: Llys Ynadon Maidstone
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B46IR00
+  region: South East
+  cps_email_address: SE.MagistratesCourt@cps.gov.uk
+  pecs_contractor_email_address: ''
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 5
+- oucode_l3_code: JL
+  oucode_l3_name: Newcastle Magistrates' Court
+  lja: 2365
+  oucode_effective_from_date: 01/10/2020
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Court
+  oucode_l2_code: 10
+  oucode_l2_name: Northumbria
+  phone: ''
+  fax: ''
+  email: ''
+  address1: The Law Courts
+  address2: The Quayside
+  address3: Newcastle Upon Tyne
+  address4: ''
+  address5: ''
+  postcode: NE1 3LA
+  iswelsh:
+  id: 1b73c7dd-bef1-33f4-81f5-fbfa092d4c49
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Newcastle
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B10JL00
+  region: North East
+  cps_email_address: Northumbria.MCGeneral@cps.gov.uk
+  pecs_contractor_email_address: NewcastleMHCC@geoamey.co.uk
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 3
+- oucode_l3_code: LI
+  oucode_l3_name: Lincoln Crown Court
+  lja: 2105
+  oucode_effective_from_date: 01/01/2016
+  oucode_effective_to_date: ''
+  oucode_l1_code: C
+  oucode_l1_name: Crown Courts
+  oucode_l2_code: 32
+  oucode_l2_name: Lincolnshire
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Lincoln Combined Court Centre
+  address2: The Castle
+  address3: Castle Hill
+  address4: Lincoln
+  address5: ''
+  postcode: LN1 3GA
+  iswelsh:
+  id: 4957492e-0397-352a-9660-7f1d985504bc
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Y Goron Lincoln
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:30:00'
+  default_duration_hrs: '06:00:00'
+  oucode: C32LI00
+  region: Midlands
+  cps_email_address: EMCorrespondence@cps.gov.uk
+  pecs_contractor_email_address: lincolncc@geoamey.co.uk
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 3
+- oucode_l3_code: SW
+  oucode_l3_name: Shrewsbury Crown Court
+  lja: 3285
+  oucode_effective_from_date: 01/02/2020
+  oucode_effective_to_date: ''
+  oucode_l1_code: C
+  oucode_l1_name: Crown Courts
+  oucode_l2_code: 22
+  oucode_l2_name: West Mercia
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Shrewsbury Justice Centre
+  address2: Preston Street
+  address3: Shrewsbury
+  address4: Shropshire
+  address5: ''
+  postcode: SY2 5NX
+  iswelsh:
+  id: 892b48df-86ae-3303-b87b-6cb7b375fb44
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Y Goron Amwythig
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:30:00'
+  default_duration_hrs: '06:00:00'
+  oucode: C22SW00
+  region: Midlands
+  cps_email_address: WestMids.CrownCourt@cps.gov.uk
+  pecs_contractor_email_address: shrewsburycc@geoamey.co.uk
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 2
+- oucode_l3_code: CM
+  oucode_l3_name: Chelmsford Magistrates' Court
+  lja: 1970
+  oucode_effective_from_date: 01/11/2011
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 42
+  oucode_l2_name: Essex
+  phone: ''
+  fax: ''
+  email: ''
+  address1: 10 New Street
+  address2: Chelmsford
+  address3: Essex
+  address4: ''
+  address5: ''
+  postcode: CM1 1NT
+  iswelsh:
+  id: '07178fbe-4b93-37d0-99c4-4859ffaa23a2'
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Chelmsford
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B42CM00
+  region: South East
+  cps_email_address: Essex.Cambs.IDPC@cps.gov.uk
+  pecs_contractor_email_address: PECSChelmsfordMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 5
+- oucode_l3_code: KR
+  oucode_l3_name: Barkingside Magistrates' Court
+  lja: 2573
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 1
+  oucode_l2_name: London
+  phone: ''
+  fax: ''
+  email: ''
+  address1: 850 Cranbrook Road
+  address2: Barkingside
+  address3: Ilford
+  address4: Essex
+  address5: ''
+  postcode: IG6 1HW
+  iswelsh:
+  id: 0c28787f-536d-410c-ad22-ebb2810ec67a
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Barkingside
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B01KR00
+  region: London
+  cps_email_address: London.magistrates@cps.gov.uk
+  pecs_contractor_email_address: PECSRedbridgeMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 1
+- oucode_l3_code: OS
+  oucode_l3_name: Worcester Magistrates' Court
+  lja: 1894
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 22
+  oucode_l2_name: West Mercia
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Castle Street
+  address2: Worcester
+  address3: ''
+  address4: ''
+  address5: ''
+  postcode: WR1 3QZ
+  iswelsh:
+  id: 5d5bb965-e149-38fe-9f87-d34c30455e7e
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Worcester
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B22OS00
+  region: Midlands
+  cps_email_address: Bham.CaseProgression@cps.gov.uk
+  pecs_contractor_email_address: worcestermc@geoamey.co.uk
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 2
+- oucode_l3_code: GP
+  oucode_l3_name: St George's Hall
+  lja: 1810
+  oucode_effective_from_date: 01/08/2020
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Court
+  oucode_l2_code: 5
+  oucode_l2_name: Merseyside
+  phone: ''
+  fax: ''
+  email: ''
+  address1: St George's Place
+  address2: Liverpool
+  address3: ''
+  address4: ''
+  address5: ''
+  postcode: L1 1JJ
+  iswelsh:
+  id: a1298789-f2e5-31da-b9a2-f9010ae35d5b
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: ''
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B05GP00
+  region: North West
+  cps_email_address: MerseyCheshire.MCU@cps.gov.uk
+  pecs_contractor_email_address: ''
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 4
+- oucode_l3_code: NR
+  oucode_l3_name: Norwich Crown Court
+  lja: 1972
+  oucode_effective_from_date: 01/01/2016
+  oucode_effective_to_date: ''
+  oucode_l1_code: C
+  oucode_l1_name: Crown Courts
+  oucode_l2_code: 36
+  oucode_l2_name: Norfolk
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Norwich Combined Court Centre
+  address2: The Law Courts
+  address3: Bishopgate
+  address4: Norwich
+  address5: ''
+  postcode: NR3 1UR
+  iswelsh:
+  id: 07c66c4d-5af4-3ae6-9201-55e047e30364
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Y Goron Norwich
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:30:00'
+  default_duration_hrs: '06:00:00'
+  oucode: C36NR00
+  region: South East
+  cps_email_address: NorfolkCrownCourtAdmin@cps.gov.uk
+  pecs_contractor_email_address: PECSNorwichCombined@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 5
+- oucode_l3_code: GU
+  oucode_l3_name: Highbury Corner Magistrates' Court
+  lja: 2572
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 1
+  oucode_l2_name: London
+  phone: ''
+  fax: ''
+  email: ''
+  address1: 51 Holloway Road
+  address2: London
+  address3: ''
+  address4: ''
+  address5: ''
+  postcode: N7 8JA
+  iswelsh:
+  id: 122b6b6b-6a6a-4f2f-8885-23ec28508e73
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Highbury Corner
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B01GU00
+  region: London
+  cps_email_address: London.magistrates@cps.gov.uk
+  pecs_contractor_email_address: PECSHighburyMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 1
+- oucode_l3_code: DE
+  oucode_l3_name: Derby Crown Court
+  lja: 1428
+  oucode_effective_from_date: 01/01/2016
+  oucode_effective_to_date: ''
+  oucode_l1_code: C
+  oucode_l1_name: Crown Courts
+  oucode_l2_code: 30
+  oucode_l2_name: Derbyshire
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Derby Combined Court Centre
+  address2: Morledge
+  address3: Derby
+  address4: ''
+  address5: ''
+  postcode: DE1 2XE
+  iswelsh:
+  id: 6131bd34-33d9-3d1e-8152-8b5a2084f1bd
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Y Goron Derby
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:30:00'
+  default_duration_hrs: '06:00:00'
+  oucode: C30DE00
+  region: Midlands
+  cps_email_address: EMCorrespondence@cps.gov.uk
+  pecs_contractor_email_address: derbycc@geoamey.co.uk
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 2
+- oucode_l3_code: LW
+  oucode_l3_name: Lewes Crown Court
+  lja: 2948
+  oucode_effective_from_date: 01/01/2016
+  oucode_effective_to_date: ''
+  oucode_l1_code: C
+  oucode_l1_name: Crown Courts
+  oucode_l2_code: 47
+  oucode_l2_name: Sussex
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Lewes Combined Court Centre
+  address2: The Law Courts
+  address3: High Street
+  address4: Lewes
+  address5: E.Sussex
+  postcode: BN7 1YB
+  iswelsh:
+  id: '049b5d11-e3dd-356f-b742-bd5e71eb7af6'
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Y Goron Lewes
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:30:00'
+  default_duration_hrs: '06:00:00'
+  oucode: C47LW00
+  region: South East
+  cps_email_address: SE.CrownCourt@cps.gov.uk
+  pecs_contractor_email_address: PECSLewesCrown@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 5
+- oucode_l3_code: FA
+  oucode_l3_name: Ealing Magistrates' Court
+  lja: 2578
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 1
+  oucode_l2_name: London
+  phone: ''
+  fax: ''
+  email: ''
+  address1: The Court House
+  address2: Green Man Lane
+  address3: Ealing
+  address4: London
+  address5: ''
+  postcode: W13 0SD
+  iswelsh:
+  id: b6a48a7e-8eb8-435d-8f93-1ef86a6daee2
+  last_modified_ts: 23/12/2020 13:10
+  oucode_l3_welsh_name: Llys Ynadon Ealing
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B01FA00
+  region: London
+  cps_email_address: London.magistrates@cps.gov.uk
+  pecs_contractor_email_address: PECSEalingMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 1
+- oucode_l3_code: OK
+  oucode_l3_name: Wimbledon Magistrates' Court
+  lja: 2577
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 1
+  oucode_l2_name: London
+  phone: ''
+  fax: ''
+  email: ''
+  address1: The Law Courts
+  address2: Alexandra Road
+  address3: Wimbledon
+  address4: ''
+  address5: ''
+  postcode: SW19 7JP
+  iswelsh:
+  id: d9bff7d8-6168-4163-ad77-3b98d61de174
+  last_modified_ts: 23/12/2020 13:10
+  oucode_l3_welsh_name: Llys Ynadon Wimbeldon
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B01OK00
+  region: London
+  cps_email_address: London.magistrates@cps.gov.uk
+  pecs_contractor_email_address: PECSWimbledonMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 1
+- oucode_l3_code: DC
+  oucode_l3_name: Cardiff Magistrates' Court
+  lja: 3190
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 62
+  oucode_l2_name: South Wales
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Fitzalan Place
+  address2: Cardiff
+  address3: ''
+  address4: ''
+  address5: ''
+  postcode: CF24 0RZ
+  iswelsh: true
+  id: 153ac9f3-bf7a-3616-8749-bf44a749a470
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Caerdydd
+  welsh_address1: Plas Fitzalan
+  welsh_address2: Caerdydd
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B62DC00
+  region: Wales
+  cps_email_address: SEastWalesCPS@cps.gov.uk.cjsm.net
+  pecs_contractor_email_address: CardiffMC@geoamey.co.uk
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 7
+- oucode_l3_code: MW
+  oucode_l3_name: Swindon Magistrates' Court
+  lja: 3021
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 54
+  oucode_l2_name: Wiltshire
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Princes Street
+  address2: Swindon
+  address3: Wilts.
+  address4: ''
+  address5: ''
+  postcode: SN1 2JB
+  iswelsh:
+  id: 0f418409-301c-39df-89a2-f3989859f953
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Swindon
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B54MW00
+  region: South West
+  cps_email_address: FirstHearingMags.Wessex@cps.gov.uk
+  pecs_contractor_email_address: PECSSwindonMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 6
+- oucode_l3_code: CM
+  oucode_l3_name: Cambridge Crown Court
+  lja: 1949
+  oucode_effective_from_date: 01/01/2016
+  oucode_effective_to_date: ''
+  oucode_l1_code: C
+  oucode_l1_name: Crown Courts
+  oucode_l2_code: 35
+  oucode_l2_name: Cambridgeshire
+  phone: ''
+  fax: ''
+  email: ''
+  address1: 83 East Road
+  address2: Cambridge
+  address3: ''
+  address4: ''
+  address5: ''
+  postcode: CB1 1BT
+  iswelsh:
+  id: 1868f485-d814-36d1-ad92-6ed6330693bc
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Y Goron Caergrawnt
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:30:00'
+  default_duration_hrs: '06:00:00'
+  oucode: C35CM00
+  region: South East
+  cps_email_address: Cambs.CCTeam@cps.gov.uk
+  pecs_contractor_email_address: PECSCambridgeCrown@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 5
+- oucode_l3_code: CX
+  oucode_l3_name: Camberwell Green Magistrates' Court
+  lja: 2576
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 1
+  oucode_l2_name: London
+  phone: ''
+  fax: ''
+  email: ''
+  address1: 15 D'Eynsford Road
+  address2: Camberwell Green
+  address3: London
+  address4: ''
+  address5: ''
+  postcode: SE5 7UP
+  iswelsh:
+  id: 35982b84-5056-4306-bf70-b010e6a95a9f
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Camberwell Green
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B01CX00
+  region: London
+  cps_email_address: London.magistrates@cps.gov.uk
+  pecs_contractor_email_address: PECSCamberwellGreenMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 1
+- oucode_l3_code: NM
+  oucode_l3_name: Uxbridge Magistrates' Court
+  lja: 2578
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 1
+  oucode_l2_name: London
+  phone: ''
+  fax: ''
+  email: ''
+  address1: The Court House
+  address2: Harefield Road
+  address3: Uxbridge
+  address4: Middlesex
+  address5: ''
+  postcode: UB8 1PQ
+  iswelsh:
+  id: '00277559-2bd9-42d4-b96e-a020f7a88297'
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Uxbridge
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B01NM00
+  region: London
+  cps_email_address: London.magistrates@cps.gov.uk
+  pecs_contractor_email_address: PECSUxbridgeMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 1
+- oucode_l3_code: ET
+  oucode_l3_name: Doncaster Magistrates' Court
+  lja: 2800
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 14
+  oucode_l2_name: South Yorkshire
+  phone: ''
+  fax: ''
+  email: ''
+  address1: PO Box 49
+  address2: College Road
+  address3: Doncaster
+  address4: S. Yorks.
+  address5: ''
+  postcode: DN1 3HT
+  iswelsh:
+  id: 1798a45e-310e-3919-9609-d5df7140f7c6
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Doncaster
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B14ET00
+  region: North East
+  cps_email_address: YandH.correspondencemags@cps.gov.uk
+  pecs_contractor_email_address: doncastermc@geoamey.co.uk
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 3
+- oucode_l3_code: KE
+  oucode_l3_name: Peterborough Magistrates' Court
+  lja: 1949
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 35
+  oucode_l2_name: Cambridgeshire
+  phone: ''
+  fax: ''
+  email: ''
+  address1: Magistrates' Court
+  address2: Bridge Street
+  address3: Peterborough
+  address4: Cambridgeshire
+  address5: ''
+  postcode: PE1 1ED
+  iswelsh:
+  id: 2565ecb5-bd1b-3810-9520-f1db1ed94f95
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Peterborough
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B35KE00
+  region: South East
+  cps_email_address: Essex.Cambs.IDPC@cps.gov.uk
+  pecs_contractor_email_address: PECSPeterboroughMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 5
+- oucode_l3_code: MY
+  oucode_l3_name: Taunton Magistrates' Court
+  lja: 1450
+  oucode_effective_from_date: '1899-12-30'
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 52
+  oucode_l2_name: Avon and Somerset
+  phone: ''
+  fax: ''
+  email: ''
+  address1: St John's Road
+  address2: Taunton
+  address3: Somerset
+  address4: ''
+  address5: ''
+  postcode: TA1 4AX
+  iswelsh:
+  id: 2c45bc8c-f4b3-3163-bf09-f32d80d4b6cb
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Taunton
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B52MY00
+  region: South West
+  cps_email_address: southwest.mcgateway@cps.gov.uk
+  pecs_contractor_email_address: PECSTauntonMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 6
+- oucode_l3_code: IX
+  oucode_l3_name: Westminster Magistrates' Court
+  lja: 2570
+  oucode_effective_from_date: 01/03/2011
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 1
+  oucode_l2_name: London
+  phone: ''
+  fax: ''
+  email: ''
+  address1: 181 Marylebone Road
+  address2: London
+  address3: ''
+  address4: ''
+  address5: ''
+  postcode: NW1 5BR
+  iswelsh:
+  id: 67aa82ba-67bb-4699-8176-5f572048352b
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Westminster
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B01IX00
+  region: London
+  cps_email_address: London.magistrates@cps.gov.uk
+  pecs_contractor_email_address: PECSWestminsterMags@serco.com
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 1
+- oucode_l3_code: BX
+  oucode_l3_name: Boston Magistrates' Court
+  lja: 2105
+  oucode_effective_from_date: 14/04/2008
+  oucode_effective_to_date: ''
+  oucode_l1_code: B
+  oucode_l1_name: Magistrates' Courts
+  oucode_l2_code: 32
+  oucode_l2_name: Lincolnshire
+  phone: ''
+  fax: ''
+  email: ''
+  address1: 55 Norfolk Street
+  address2: Boston
+  address3: Lincs.
+  address4: ''
+  address5: ''
+  postcode: PE21 6PE
+  iswelsh:
+  id: 1cedd568-dac5-3fd2-aff8-23e3db2a76da
+  last_modified_ts: 23/12/2020 13:09
+  oucode_l3_welsh_name: Llys Ynadon Boston
+  welsh_address1: ''
+  welsh_address2: ''
+  welsh_address3: ''
+  welsh_address4: ''
+  welsh_address5: ''
+  default_start_time: '10:00:00'
+  default_duration_hrs: '07:00:00'
+  oucode: B32BX00
+  region: Midlands
+  cps_email_address: EMCorrespondence@cps.gov.uk
+  pecs_contractor_email_address: BostonMC@geoamey.co.uk
+  ou_bottom_level_code: ''
+  ou_bottom_level_name: ''
+  cps_prosecutor_short_name: ''
+  division_code: 3

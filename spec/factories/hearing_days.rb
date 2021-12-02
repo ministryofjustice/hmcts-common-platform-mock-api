@@ -16,6 +16,6 @@ FactoryBot.define do
     listedDurationMinutes { Faker::Number.number(digits: 3) }
     courtRoomId { SecureRandom.uuid }
     isCancelled { Faker::Boolean.boolean }
-    court_centre_id { HmctsCommonPlatform::Reference::CourtCentre.all.collect(&:id).sample }
+    court_centre_id { CourtCentre.all.sample.id }
   end
 end

@@ -87,6 +87,15 @@
             <% end %>
           </ul>
         <% end %>
+
+        <% if offence.verdicts.any? %>
+          <p>Verdict:</p>
+          <ul>
+            <% offence.verdicts.each do |verdict| %>
+              <li><%= verdict.verdict_type.category %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </li>
     </ul>
   <% end %>

@@ -15,4 +15,18 @@ RSpec.describe "admin/hearings/show", type: :view do
     render
     expect(rendered).to match(/Derby Crown Court/)
   end
+
+  context "when the hearing has a verdict" do
+    let(:offence) { prosecution_case.defendants.first.offences.first }
+
+    before do
+      assign(:offence, offence)
+      offence.verdicts << FactoryBot.create(:verdict)
+    end
+
+    it "renders the verdict" do
+      render
+      expect(rendered).to match(/Guilty/)
+    end
+  end
 end

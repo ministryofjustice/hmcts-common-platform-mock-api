@@ -43,5 +43,5 @@ Rails.application.routes.draw do
     "/defendants/:defendantId" \
     "/offences/:offenceId" => "representation_orders#create", as: :representation_order
   get "/hearing/results" => "hearings#show", as: :hearing
-  get "/hearing/hearingLog" => "hearings#log", as: :hearing_log
+  get "/hearing/hearingLog" => "hearing_logs#show", as: :hearing_log
 end

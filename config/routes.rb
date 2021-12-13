@@ -37,11 +37,11 @@ Rails.application.routes.draw do
   post "/prosecutionCases/laaReference" \
     "/cases/:prosecutionCaseId" \
     "/defendant/:defendantId" \
-    "/offences/:offenceId" => "laa_references#record_reference", as: :laa_reference
+    "/offences/:offenceId" => "laa_references#create", as: :laa_reference
   post "/prosecutionCases/representationOrder" \
     "/cases/:prosecutionCaseId" \
     "/defendants/:defendantId" \
-    "/offences/:offenceId" => "laa_references#record_representation_order", as: :representation_order
+    "/offences/:offenceId" => "representation_orders#create", as: :representation_order
   get "/hearing/results" => "hearings#show", as: :hearing
   get "/hearing/hearingLog" => "hearings#log", as: :hearing_log
 end

@@ -89,4 +89,59 @@ RSpec.describe ProsecutionCase, type: :model do
 
     it_has_behaviour "conforming to valid schema"
   end
+
+  context "when the case has been concluded" do
+    let(:json_schema) { :prosecution_concluded }
+
+    it "matches the given schema" do
+      expect(prosecution_case.conclusion_payload).to match_json_schema(json_schema)
+    end
+
+    context "when there is a plea and a verdict" do
+      before do
+        prosecution_case.defendants.first.offences.first.pleas << FactoryBot.create(:plea)
+        prosecution_case.defendants.first.offences.first.verdicts << FactoryBot.create(:verdict)
+      end
+
+      it "matches the given schema" do
+        expect(prosecution_case.conclusion_payload).to match_json_schema(json_schema)
+      end
+
+      it "contains a plea object" do
+        expect(JSON.parse(prosecution_case.conclusion_payload)["prosecutionConcluded"][0]["offenceSummary"][0]["plea"]).not_to be_empty
+      end
+
+      it "contains a verdict object" do
+        expect(JSON.parse(prosecution_case.conclusion_payload)["prosecutionConcluded"][0]["offenceSummary"][0]["verdict"]).not_to be_empty
+      end
+    end
+
+    context "when there are two defendants" do
+      before do
+        prosecution_case.defendants << build(:defendant)
+      end
+
+      it "matches the given schema" do
+        expect(prosecution_case.conclusion_payload).to match_json_schema(json_schema)
+      end
+
+      it "contains a second prosecution conclusion" do
+        expect(JSON.parse(prosecution_case.conclusion_payload)["prosecutionConcluded"][1]).not_to be_empty
+      end
+    end
+
+    context "when a defendant has two offences" do
+      before do
+        prosecution_case.defendants.first.offences << FactoryBot.build(:offence)
+      end
+
+      it "matches the given schema" do
+        expect(prosecution_case.conclusion_payload).to match_json_schema(json_schema)
+      end
+
+      it "contains a second offence summary" do
+        expect(JSON.parse(prosecution_case.conclusion_payload)["prosecutionConcluded"][0]["offenceSummary"][1]).not_to be_empty
+      end
+    end
+  end
 end

@@ -8,6 +8,10 @@
   </p>
 <% end %>
 
+<% unless @prosecution_case.concluded? %>
+  <%= button_to 'Conclude Prosecution Case', admin_prosecution_conclusions_path, params: { prosecution_case_id: @prosecution_case.id } %>
+<% end %>
+
 <h2>Defendants</h2>
 <table>
   <thead>

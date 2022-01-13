@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_165723) do
+ActiveRecord::Schema.define(version: 2022_01_13_184745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -1110,6 +1110,7 @@ ActiveRecord::Schema.define(version: 2021_08_17_165723) do
     t.string "class_of_case"
     t.boolean "is_cps_org_verify_error"
     t.string "summons_code"
+    t.boolean "concluded"
     t.index ["merged_prosecution_case_id"], name: "index_prosecution_cases_on_merged_prosecution_case_id"
     t.index ["police_officer_in_case_id"], name: "index_prosecution_cases_on_police_officer_in_case_id"
     t.index ["prosecution_case_identifier_id"], name: "index_prosecution_cases_on_prosecution_case_identifier_id"

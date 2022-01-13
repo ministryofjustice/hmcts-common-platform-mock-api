@@ -28,6 +28,8 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    resources :prosecution_conclusions, only: [:create]
   end
 
   resources :status, only: [:index]

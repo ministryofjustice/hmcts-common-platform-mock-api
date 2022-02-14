@@ -9,7 +9,16 @@
 <% end %>
 
 <% unless @prosecution_case.concluded? %>
-  <%= button_to 'Conclude Prosecution Case', admin_prosecution_conclusions_path, params: { prosecution_case_id: @prosecution_case.id } %>
+  <%= button_to 'Conclude Case', admin_prosecution_conclusions_path(@prosecution_case.id) %>
+<% end %>
+
+<br>
+
+<% case Rails.env %>
+<% when "development" %>
+  <%= button_to 'Conclude Case and Publish', admin_prosecution_conclusions_path(@prosecution_case.id, :dev) %>
+<% when "production" %>
+  <%= button_to 'Conclude Case and Publish', admin_prosecution_conclusions_path(@prosecution_case.id, :stage) %>
 <% end %>
 
 <h2>Defendants</h2>

@@ -59,12 +59,10 @@ class ProsecutionCase < ApplicationRecord
   end
 
   def conclusion_payload
-    payload_array = []
-
-    defendants.map do |defendant|
-      payload_array << ProsecutionConclusion.new(defendant: defendant).to_builder.attributes!
+    prosecution_conclusions = defendants.map do |defendant|
+      ProsecutionConclusion.new(defendant: defendant).to_builder.attributes!
     end
 
-    { prosecutionConcluded: payload_array }.to_json
+    { prosecutionConcluded: prosecution_conclusions }.to_json
   end
 end

@@ -89,4 +89,13 @@ RSpec.describe ProsecutionCase, type: :model do
 
     it_has_behaviour "conforming to valid schema"
   end
+
+  describe "prosecution case conclusion" do
+    it "matches the given schema" do
+      prosecution_case.defendants << build(:defendant)
+      prosecution_case.defendants.first.offences << FactoryBot.build(:offence)
+
+      expect(prosecution_case.conclusion_payload).to match_json_schema(:prosecution_concluded)
+    end
+  end
 end

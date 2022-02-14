@@ -57,4 +57,12 @@ class ProsecutionCase < ApplicationRecord
       prosecution_case.summonsCode summons_code
     end
   end
+
+  def conclusion_payload
+    prosecution_conclusions = defendants.map do |defendant|
+      ProsecutionConclusion.new(defendant: defendant).to_builder.attributes!
+    end
+
+    { prosecutionConcluded: prosecution_conclusions }.to_json
+  end
 end

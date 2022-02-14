@@ -2,6 +2,8 @@
 
 Rails.application.routes.draw do
   namespace :admin do
+    post "prosecution_conclusions/:id(/:publish_to)" => "prosecution_conclusions#create", as: :prosecution_conclusions
+
     resources :prosecution_cases, shallow: true do
       member do
         post "result/:hearing_id(/:publish_to)" => "prosecution_cases#result", as: :result_hearing

@@ -119,6 +119,7 @@ jobs:
           namespace: hmcts-mock-api-dev
           update-repositories: false
           chart: ./helm_deploy/hmcts-common-platform-mock-api
+          values: ./helm_deploy/hmcts-common-platform-mock-api/live-1/values.yaml
           release-name: hmcts-common-platform-mock-api
           values-to-override: image.tag=$CIRCLE_SHA1
           timeout: 10m

@@ -103,7 +103,7 @@ jobs:
           name: run rubocop
           command: bundle exec rubocop
 
-  install_on_cluster:
+  install_on_live1_cluster:
     executor: aws-eks/python
     steps:
       - checkout_and_decrypt
@@ -124,6 +124,31 @@ jobs:
           values-to-override: image.tag=$CIRCLE_SHA1
           timeout: 10m
 
+  install_on_live_cluster:
+    executor: aws-eks/python
+    steps:
+      - checkout_and_decrypt
+      - kubernetes/install-kubectl
+      - helm/install-helm-client:
+          version: 'v3.2.4'
+      - run:
+          name: Authenticate to LIVE cluster
+          command: |
+            echo -n ${CLUSTER_CERT_LIVE} | base64 -d > ./live_ca.crt
+            kubectl config set-cluster ${CLUSTER_NAME_LIVE} --certificate-authority=./live_ca.crt --server=https://${CLUSTER_NAME_LIVE}
+            kubectl config set-credentials circleci --token=${CIRCLE_CI_TOKEN_LIVE}
+            kubectl config set-context ${CLUSTER_NAME_LIVE} --cluster=${CLUSTER_NAME_LIVE} --user=circleci --namespace=hmcts-mock-api-dev
+            kubectl config use-context ${CLUSTER_NAME_LIVE}
+            kubectl config current-context
+            kubectl --namespace=hmcts-mock-api-dev
+      - helm/upgrade-helm-chart:
+          namespace: hmcts-mock-api-dev
+          update-repositories: false
+          chart: ./helm_deploy/hmcts-common-platform-api
+          release-name: hmcts-common-platform-api
+          values: ./helm_deploy/hmcts-common-platform-api/live/values.yaml
+          values-to-override: image.tag=$CIRCLE_SHA1
+
 workflows:
   version: 2
   test_and_build:
@@ -138,7 +163,15 @@ workflows:
             branches:
               only:
                 - master
-      - install_on_cluster:
+      - install_on_live1_cluster:
+          requires:
+          - aws-ecr/build-and-push-image
+          filters:
+            branches:
+              only:
+                - master
+
+      - install_on_live_cluster:
           requires:
           - aws-ecr/build-and-push-image
           filters:

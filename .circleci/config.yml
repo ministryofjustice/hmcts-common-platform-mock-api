@@ -103,6 +103,18 @@ jobs:
           name: run rubocop
           command: bundle exec rubocop
 
+  build-and-push-app:
+    executor: aws-ecr/default
+    steps:
+      - aws-ecr/build-and-push-image:
+          repo: laa-crime-apps-team/hmcts-common-platform-mock-api
+          tag: "${CIRCLE_SHA1}"
+          extra-build-args: |
+            --build-arg BUILD_DATE=$(date +%Y-%m-%dT%H:%M:%S%z) \
+            --build-arg COMMIT_ID=${CIRCLE_SHA1} \
+            --build-arg BUILD_TAG=${CIRCLE_SHA1} \
+            --build-arg APP_BRANCH=${CIRCLE_BRANCH} \
+
   install_on_live1_cluster:
     executor: aws-eks/python
     steps:
@@ -144,37 +156,44 @@ jobs:
       - helm/upgrade-helm-chart:
           namespace: hmcts-mock-api-dev
           update-repositories: false
-          chart: ./helm_deploy/hmcts-common-platform-api
-          release-name: hmcts-common-platform-api
-          values: ./helm_deploy/hmcts-common-platform-api/live/values.yaml
+          chart: ./helm_deploy/hmcts-common-platform-mock-api
+          release-name: hmcts-common-platform-mock-api
+          values: ./helm_deploy/hmcts-common-platform-mock-api/live/values.yaml
           values-to-override: image.tag=$CIRCLE_SHA1
 
 workflows:
   version: 2
-  test_and_build:
+  test_and_build_master:
     jobs:
-      - test
-      - aws-ecr/build-and-push-image:
+      - test:
+          filters:
+            branches:
+              only:
+                - master
+      - build-and-push-app:
           requires:
             - test
-          repo: laa-crime-apps-team/hmcts-common-platform-mock-api
-          tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only:
-                - master
       - install_on_live1_cluster:
           requires:
-          - aws-ecr/build-and-push-image
-          filters:
-            branches:
-              only:
-                - master
-
+          - build-and-push-app
       - install_on_live_cluster:
           requires:
-          - aws-ecr/build-and-push-image
+          - build-and-push-app
+
+  test_and_build_branch:
+    jobs:
+      - test:
           filters:
             branches:
-              only:
+              ignore:
                 - master
+      - build-and-push-app:
+          requires:
+            - test
+      - hold_install_on_live:
+          type: approval
+          requires:
+            - build-and-push-app
+      - install_on_live_cluster:
+          requires:
+          - hold_install_on_live

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class LaaConnector < ApplicationService
-  def initialize(api_url:, client_id:, client_secret:, oauth_url:)
+  def initialize(api_url:, client_id:, client_secret:)
     @api_url = api_url
-    @client = OAuth2::Client.new(client_id, client_secret, site: oauth_url)
+    @client = OAuth2::Client.new(client_id, client_secret, site: api_url)
   end
 
   def call
     Faraday.new api_url do |connection|
-      connection.request :oauth2, token.token, token_type: :bearer
+      connection.request :authorization, "Bearer", token.token
       connection.request :json
       connection.response :json, content_type: "application/json"
       connection.adapter Faraday.default_adapter

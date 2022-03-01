@@ -27,7 +27,7 @@ gem "faraday_middleware"
 gem "hmcts_common_platform", github: "ministryofjustice/hmcts_common_platform", tag: "v0.2.0"
 gem "json-schema"
 gem "kaminari"
-gem "oauth2"
+gem "oauth2", "~> 1.4.9"
 gem "pg_search"
 gem "webpacker"
 

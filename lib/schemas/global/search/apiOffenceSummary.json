@@ -86,18 +86,26 @@
       }
     },
     "plea": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "originatingHearingId": {
-          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
-        },
-        "value": {
-          "type": "string"
-        },
-        "pleaDate": {
-          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
-        }
+      "originatingHearingId": {
+        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      },
+      "delegatedPowers": {
+        "type": "string"
+      },
+      "offenceId": {
+        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      },
+      "applicationId": {
+        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+      },
+      "pleaDate": {
+        "type": "string"
+      },
+      "pleaValue": {
+        "type": "string"
+      },
+      "lesserOrAlternativeOffence": {
+        "type": "object"
       }
     }
   },

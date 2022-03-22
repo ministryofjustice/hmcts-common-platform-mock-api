@@ -41,7 +41,8 @@ class OffenceSummary
       verdictDate: latest_verdict.verdictDate,
       verdictType: verdict_type_builder,
       jurors: latest_verdict.jurors,
-      lesserOrAlternativeOffence: latest_verdict.lesser_or_alternative_offence }
+      lesserOrAlternativeOffence: latest_verdict.lesser_or_alternative_offence,
+    }
   end
 
   def verdict_type_builder
@@ -52,7 +53,7 @@ private
 
   def build_pleas
     latest_plea = offence.pleas.max
-    { originatingHearingId: latest_plea.hearing,
+    { originatingHearingId: latest_plea.id,
       delegatedPowers: latest_plea.delegated_powers,
       offenceId: latest_plea.offence_id,
       applicationId: latest_plea.application_id,

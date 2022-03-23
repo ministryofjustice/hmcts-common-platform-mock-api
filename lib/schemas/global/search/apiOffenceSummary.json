@@ -60,53 +60,12 @@
       "description": "A reference to the LAA application relevant for this offence",
       "$ref": "http://justice.gov.uk/core/courts/external/apiLaaReference.json#"
     },
-    "verdict": {
-      "verdictDate": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/datePattern"
-      },
-      "originatingHearingId": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
-      },
-      "verdictType": {
-        "description": {
-          "type": "string"
-        },
-        "category": {
-          "type": "string"
-        },
-        "categoryType": {
-          "type": "string"
-        },
-        "sequence": {
-          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/positiveInteger"
-        },
-        "verdictTypeId": {
-          "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
-        }
-      }
-    },
     "plea": {
-      "originatingHearingId": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
-      },
-      "delegatedPowers": {
-        "type": "string"
-      },
-      "offenceId": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
-      },
-      "applicationId": {
-        "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
-      },
-      "pleaDate": {
-        "type": "string"
-      },
-      "pleaValue": {
-        "type": "string"
-      },
-      "lesserOrAlternativeOffence": {
-        "type": "object"
-      }
+      "description": "The plea associated with this offence.",
+      "$ref": "http://justice.gov.uk/core/courts/external/apiPlea.json"
+    },
+    "verdict": {
+      "$ref": "http://justice.gov.uk/core/courts/external/apiVerdict.json"
     }
   },
   "required": [

@@ -27,38 +27,8 @@ class OffenceSummary
       offence_summary.endDate offence.endDate.to_date
       offence_summary.proceedingsConcluded offence.isDisposed
       offence_summary.laaApplnReference offence.laa_reference.to_builder if offence.laa_reference.present?
-      offence_summary.verdict build_verdict if offence.verdicts.present?
-      offence_summary.plea build_pleas if offence.pleas.present?
+      offence_summary.verdict offence.verdicts.max.to_builder.attributes! if offence.verdicts.present?
+      offence_summary.plea offence.pleas.max.to_builder.attributes! if offence.pleas.present?
     end
-  end
-
-  def build_verdict
-    latest_verdict = offence.verdicts.max
-    {
-      originatingHearingId: latest_verdict.hearing,
-      offenceId: latest_verdict.offence_id,
-      applicationId: latest_verdict.application_id,
-      verdictDate: latest_verdict.verdictDate,
-      verdictType: verdict_type_builder,
-      jurors: latest_verdict.jurors,
-      lesserOrAlternativeOffence: latest_verdict.lesser_or_alternative_offence,
-    }
-  end
-
-  def verdict_type_builder
-    offence.verdicts.max
-  end
-
-private
-
-  def build_pleas
-    latest_plea = offence.pleas.max
-    { originatingHearingId: latest_plea.id,
-      delegatedPowers: latest_plea.delegated_powers,
-      offenceId: latest_plea.offence_id,
-      applicationId: latest_plea.application_id,
-      pleaDate: latest_plea.pleaDate,
-      pleaValue: latest_plea.pleaValue,
-      lesserOrAlternativeOffence: latest_plea.lesser_or_alternative_offence_id }
   end
 end

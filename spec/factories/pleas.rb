@@ -20,6 +20,7 @@ FactoryBot.define do
       pleaValue { Plea::VALUES.sample }
       application_id { SecureRandom.uuid }
       association :lesser_or_alternative_offence, factory: :realistic_lesser_or_alternative_offence
+      association :delegated_powers, factory: :delegated_powers
     end
   end
 end

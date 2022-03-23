@@ -27,42 +27,8 @@ class OffenceSummary
       offence_summary.endDate offence.endDate.to_date
       offence_summary.proceedingsConcluded offence.isDisposed
       offence_summary.laaApplnReference offence.laa_reference.to_builder if offence.laa_reference.present?
-      offence_summary.verdict build_verdict.first if offence.verdicts.present?
-      offence_summary.plea build_pleas if offence.pleas.present?
-    end
-  end
-
-  def build_verdict
-    offence.verdicts.map do |verdict|
-      [
-        [:verdictDate, verdict.verdictDate],
-        [:originatingHearingId, verdict.hearing_id],
-        [:verdictType, verdict_type_builder.first],
-      ].to_h
-    end
-  end
-
-  def verdict_type_builder
-    offence.verdicts.map do |verdict|
-      [
-        [:description, verdict.verdict_type.description],
-        [:category, verdict.verdict_type.category],
-        [:categoryType, verdict.verdict_type.categoryType],
-        [:sequence, verdict.verdict_type.sequence],
-        [:verdictTypeId, verdict.verdict_type.id],
-      ].to_h
-    end
-  end
-
-private
-
-  def build_pleas
-    offence.pleas.map do |plea|
-      [
-        [:originatingHearingId, plea.hearing_id],
-        [:value, plea.pleaValue],
-        [:pleaDate, plea.pleaDate],
-      ].to_h
+      offence_summary.verdict offence.verdicts.max.to_builder.attributes! if offence.verdicts.present?
+      offence_summary.plea offence.pleas.max.to_builder.attributes! if offence.pleas.present?
     end
   end
 end

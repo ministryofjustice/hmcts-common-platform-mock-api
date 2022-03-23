@@ -16,6 +16,8 @@ FactoryBot.define do
     end
 
     factory :realistic_verdict do
+      has_jurors = true
+      has_lesser_or_alternative_offence = true
       association :hearing, factory: :realistic_hearing
       association :offence, factory: :realistic_offence
       application_id { SecureRandom.uuid }

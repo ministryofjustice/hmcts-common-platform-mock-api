@@ -1,5 +1,8 @@
 # README
 
+[![repo standards badge](https://img.shields.io/badge/dynamic/json?color=green&style=for-the-badge&logo=github&label=MoJ%20Compliant&query=%24.data%5B%3F%28%40.name%20%3D%3D%20%22/hmcts-common-platform-mock-api%22%29%5D.status&url=https%3A%2F%2Foperations-engineering-reports.cloud-platform.service.justice.gov.uk%2Fgithub_repositories)](https://operations-engineering-reports.cloud-platform.service.justice.gov.uk/github_repositories#/hmcts-common-platform-mock-api "Link to report")
+
+
 ## Set up
 
 This is a standard 6 Rails API application using Postgres 12.1 as a database.

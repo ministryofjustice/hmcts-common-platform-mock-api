@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root to: "admin/prosecution_cases#index"
+
   namespace :admin do
     post "prosecution_conclusions/:id(/:publish_to)" => "prosecution_conclusions#create", as: :prosecution_conclusions
 

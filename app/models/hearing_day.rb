@@ -15,6 +15,7 @@ class HearingDay < ApplicationRecord
       hearing_day.sittingDay sittingDay
       hearing_day.listingSequence listingSequence
       hearing_day.listedDurationMinutes listedDurationMinutes
+      hearing_day.hasSharedResults hasSharedResults
     end
   end
 end

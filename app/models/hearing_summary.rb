@@ -30,6 +30,7 @@ private
         [:sittingDay, hearing_day.sittingDay],
         [:listingSequence, hearing_day.listingSequence],
         [:listedDurationMinutes, hearing_day.listedDurationMinutes],
+        [:hasSharedResults, hearing_day.hasSharedResults],
       ].to_h
     end
   end

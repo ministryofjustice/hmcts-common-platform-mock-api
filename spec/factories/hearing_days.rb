@@ -8,6 +8,7 @@ FactoryBot.define do
     courtRoomId { "f866cbff-313a-4a0f-86a8-9d66768ba072" }
     isCancelled { false }
     court_centre_id { "6131bd34-33d9-3d1e-8152-8b5a2084f1bd" }
+    hasSharedResults { Faker::Boolean.boolean }
   end
 
   factory :realistic_hearing_day, class: "HearingDay" do
@@ -17,5 +18,6 @@ FactoryBot.define do
     courtRoomId { SecureRandom.uuid }
     isCancelled { Faker::Boolean.boolean }
     court_centre_id { CourtCentre.all.sample.id }
+    hasSharedResults { Faker::Boolean.boolean }
   end
 end

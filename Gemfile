@@ -27,7 +27,7 @@ gem "faraday", "~> 2.3.0"
 gem "hmcts_common_platform", github: "ministryofjustice/hmcts_common_platform", tag: "v0.2.0"
 gem "json-schema", git: "https://github.com/voxpupuli/json-schema", branch: "master", ref: "081dfc3"
 gem "kaminari"
-gem "oauth2", "~> 2.0.1"
+gem "oauth2", "~> 2.0.2"
 gem "pg_search"
 gem "webpacker"
 

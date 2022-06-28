@@ -28,7 +28,15 @@ class OffenceSummary
       offence_summary.proceedingsConcluded offence.isDisposed
       offence_summary.laaApplnReference offence.laa_reference.to_builder if offence.laa_reference.present?
       offence_summary.verdict offence.verdicts.max.to_builder.attributes! if offence.verdicts.present?
-      offence_summary.plea offence.pleas.max.to_builder.attributes! if offence.pleas.present?
+      offence_summary.plea build_pleas if offence.pleas.present?
+    end
+  end
+
+private
+
+  def build_pleas
+    offence.pleas.map do |plea|
+      plea.to_builder.attributes!
     end
   end
 end

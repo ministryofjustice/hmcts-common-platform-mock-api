@@ -303,7 +303,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    shoulda-matchers (5.1.0)
+    shoulda-matchers (5.2.0)
       activesupport (>= 5.2.0)
     simplecov (0.21.2)
       docile (~> 1.1)

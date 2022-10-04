@@ -23,7 +23,7 @@ gem "bootsnap", ">= 1.4.2", require: false
 gem "cocoon"
 gem "factory_bot_rails"
 gem "faker"
-gem "faraday", "~> 2.5.2"
+gem "faraday", "~> 2.6.0"
 gem "hmcts_common_platform", github: "ministryofjustice/hmcts_common_platform", tag: "v0.2.0"
 gem "json-schema", git: "https://github.com/voxpupuli/json-schema", branch: "master", ref: "081dfc3"
 gem "kaminari"

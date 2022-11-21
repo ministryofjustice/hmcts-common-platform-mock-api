@@ -6,6 +6,7 @@ orbs:
   kubernetes: circleci/kubernetes@0.7.0
   helm: circleci/helm@1.2.0
   browser-tools: circleci/browser-tools@1.2.3
+  node: circleci/node@5.0.2
 
 commands:
   checkout_and_decrypt:
@@ -28,25 +29,10 @@ jobs:
           POSTGRES_DB: hmcts_common_platform_api_test
     steps:
       - checkout
-      - run:
-          name: "Update Node.js and npm"
-          command: |
-            curl -sSL "https://nodejs.org/dist/v12.19.1/node-v12.19.1-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v12.19.1-linux-x64/bin/node
-            curl https://www.npmjs.com/install.sh | sudo bash
-      - run:
-          name: Check current version of node
-          command: node -v
-
-
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
-
-      - restore_cache:
-          keys:
-            - v1-yarn-{{ checksum "yarn.lock" }}
-            - v1-yarn-
 
       - run:
           name: install bundle

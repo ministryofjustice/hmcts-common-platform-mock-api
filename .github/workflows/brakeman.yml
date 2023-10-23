@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v1
+    - name: Install gems
+      run: |
+        gem install brakeman -v 5.4.1
     - name: Brakeman
       uses: devmasx/brakeman-linter-action@v1.0.0
       env:

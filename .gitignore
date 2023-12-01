@@ -49,3 +49,6 @@ yarn-debug.log*
 *.iml
 *.ipr
 out/
+
+### rbenv Gemset Management ###
+.rbenv-gemsets

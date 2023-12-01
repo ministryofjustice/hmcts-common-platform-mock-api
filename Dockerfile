@@ -1,5 +1,5 @@
-FROM ruby:2.7.5-alpine3.13
-MAINTAINER crime apps team
+FROM ruby:3.2.2-alpine3.18
+MAINTAINER LAA Crime Apps - Core
 
 # fail early and print all commands
 RUN set -ex

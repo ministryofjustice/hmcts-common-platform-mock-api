@@ -24,8 +24,7 @@ rails server
 ```
 
 By default, the application will listen on port 3000 as defined in `puma.rb`.
-You can verify your setup by sending a request to an endpoint and checking for a HTTP response code of 2xx/Success.
-e.g.
+You can verify your setup by sending a request to an endpoint and checking for a HTTP response code of 2xx/Success. The credentials for the HTTP Basic Authentication are defined in `.env`.
 ```shell
 curl -u admin:password --head http://localhost:3000/admin/prosecution_cases
 ```

@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.5"
+ruby "3.0.6"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.0.5"
@@ -25,7 +25,7 @@ gem "factory_bot_rails"
 gem "faker"
 gem "faraday", "~> 2.7.4"
 gem "hmcts_common_platform", github: "ministryofjustice/hmcts_common_platform", tag: "v0.2.0"
-gem "json-schema", git: "https://github.com/voxpupuli/json-schema", branch: "master", ref: "081dfc3"
+gem "json-schema", "~> 2.2.0"
 gem "kaminari"
 gem "oauth2", "~> 2.0.9"
 gem "pg_search"

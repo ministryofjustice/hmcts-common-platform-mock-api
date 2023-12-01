@@ -1,24 +1,36 @@
-# README
-
-[![repo standards badge](https://img.shields.io/badge/dynamic/json?color=green&style=for-the-badge&logo=github&label=MoJ%20Compliant&query=%24.data%5B%3F%28%40.name%20%3D%3D%20%22hmcts-common-platform-mock-api%22%29%5D.status&url=https%3A%2F%2Foperations-engineering-reports.cloud-platform.service.justice.gov.uk%2Fgithub_repositories)](https://operations-engineering-reports.cloud-platform.service.justice.gov.uk/github_repositories#hmcts-common-platform-mock-api "Link to report")
-
+# HMCTS Common Platform Mock API
 
 ## Set up
 
-This is a standard 6 Rails API application using Postgres 12.1 as a database.
+This is a standard 6 Rails API application which requires:
 
-Clone the repo, then run:
+- Postgres 14 database - [Brew formula for PostgreSQL@14](https://formulae.brew.sh/formula/postgresql@14#default)
+- [Yarn](https://yarnpkg.com/) - [Brew formula for Yarn](https://formulae.brew.sh/formula/yarn#default)
+- libpq - [Brew Formula for libpq](https://formulae.brew.sh/formula/libpq#default)
 
+
+Clone this repo, then run:
+
+```shell
+bundle install
 ```
-$ bundle install
-$ rails db:setup
+```shell
+rails db:setup
 ```
-
 You can then start the application server by running:
 
+```shell
+rails server
 ```
-$ rails s
+
+By default, the application will listen on port 3000 as defined in `puma.rb`.
+You can verify your setup by sending a request to an endpoint and checking for a HTTP response code of 2xx/Success.
+e.g.
+```shell
+curl -u admin:password --head http://localhost:3000/admin/prosecution_cases
 ```
+
+
 
 ### Generate demonstration data
 Tasks have been created to facilitate generation of a small specific, rememberable set of demonstration data. This data reflects current understanding of a bare minimum needed to effectively demonstrate the workings of this adaptor and its user interface [View court data](https://github.com/ministryofjustice/laa-court-data-ui).

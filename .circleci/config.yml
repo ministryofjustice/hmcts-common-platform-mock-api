@@ -20,11 +20,11 @@ commands:
 jobs:
   test:
     docker:
-      - image: cimg/ruby:3.2.2
+      - image: cimg/ruby:3.0.6
         environment:
           DATABASE_URL: postgres://postgres@localhost/hmcts_common_platform_api_test
           RAILS_ENV: test
-      - image: cimg/postgres:11.12
+      - image: cimg/postgres:14.9
         environment:
           POSTGRES_DB: hmcts_common_platform_api_test
     steps:

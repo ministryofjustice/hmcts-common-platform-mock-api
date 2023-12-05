@@ -8,7 +8,7 @@ ruby "3.0.4"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 7.0"
 # Use postgresql as the database for Active Record
-gem "pg", ">= 0.18", "< 2.0"
+gem "pg", ">= 1.4.5", "< 2.0"
 # Use Puma as the app server
 gem "puma", "~> 6.1.1"
 # Use SCSS for stylesheets
@@ -31,7 +31,7 @@ gem "factory_bot_rails"
 gem "faker"
 gem "faraday", "~> 2.7.4"
 gem "hmcts_common_platform", github: "ministryofjustice/hmcts_common_platform", tag: "v0.2.0"
-gem "json-schema", "~> 2.2.0"
+gem "json-schema", git: "https://github.com/voxpupuli/json-schema", branch: "master", ref: "081dfc3"
 gem "kaminari"
 gem "oauth2", "~> 2.0.9"
 gem "pg_search"
@@ -44,10 +44,10 @@ group :development, :test do
   gem "capybara"
   gem "colorize"
   gem "dotenv-rails"
-  gem "json-schema-rspec"
+  gem "json-schema-rspec", "~> 0.0.4"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 5.1"
+  gem "rspec-rails", "~> 6.0.1"
   gem "rubocop-govuk", "~> 4.9"
   gem "rubocop-performance", require: false
   gem "sinatra"

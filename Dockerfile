@@ -1,4 +1,4 @@
-FROM ruby:3.2.2-alpine3.18
+FROM ruby:3.0.4-alpine3.15
 MAINTAINER LAA Crime Apps - Core
 
 # fail early and print all commands

@@ -29,6 +29,7 @@ class ProsecutionCaseSearch < ApplicationService
 private
 
   attr_reader :params
+  SQL = "INNER JOIN defendants ON defendants.prosecution_case_id = prosecution_cases.id INNER JOIN person_defendants ON person_defendants.id = defendants.defendable_id AND defendants.defendable_type = 'PersonDefendant'"
 
   def prosecution_cases_by_reference
     @prosecution_cases = @prosecution_cases.joins(:prosecution_case_identifier)
@@ -36,7 +37,7 @@ private
   end
 
   def prosecution_cases_by_nino
-    @prosecution_cases = @prosecution_cases.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_nino)
+    @prosecution_cases = @prosecution_cases.joins(SQL).merge(person_defendant_by_nino)
   end
 
   def person_defendant_by_nino
@@ -44,7 +45,7 @@ private
   end
 
   def prosecution_cases_by_summons
-    @prosecution_cases = @prosecution_cases.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_summons)
+    @prosecution_cases = @prosecution_cases.joins(SQL).merge(person_defendant_by_summons)
   end
 
   def person_defendant_by_summons
@@ -52,7 +53,7 @@ private
   end
 
   def prosecution_cases_by_dob
-    @prosecution_cases = @prosecution_cases.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_dob)
+    @prosecution_cases = @prosecution_cases.joins(SQL).merge(person_defendant_by_dob)
   end
 
   def person_defendant_by_dob
@@ -86,7 +87,7 @@ private
   end
 
   def prosecution_cases_by_name
-    @prosecution_cases = @prosecution_cases.joins(person_only_defendants: :person_defendant).merge(person_defendant_by_name)
+    @prosecution_cases = @prosecution_cases.joins(SQL).merge(person_defendant_by_name)
   end
 
   def person_defendant_by_name

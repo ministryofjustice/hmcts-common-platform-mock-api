@@ -8,6 +8,12 @@ FactoryBot.define do
       end
     end
 
+    trait :with_court_application do
+      after(:build) do |hearing|
+        hearing.court_applications << FactoryBot.create(:court_application)
+      end
+    end
+
     hearing_id { "0304d126-d773-41fd-af01-83e017cecd80" }
     sitting_day { "2019-10-23 16:19:15" }
     jurisdictionType { "CROWN" }

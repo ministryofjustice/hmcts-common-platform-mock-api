@@ -1,0 +1,11 @@
+FROM cimg/ruby:3.0.4-browsers
+
+USER root
+
+COPY . .
+
+RUN gem install bundler -N
+RUN bundle config set --local path 'vendor/bundle'
+RUN bundle install --jobs=4 --retry=3
+RUN yarn && bundle exec rails webpacker:compile
+RUN bundle exec rails db:migrate

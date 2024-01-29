@@ -6,7 +6,7 @@ class Person < ApplicationRecord
   LANGUAGES = %w[ENGLISH WELSH].freeze
   GENDERS = %w[MALE FEMALE NOT_KNOWN NOT_SPECIFIED].freeze
   TITLES = %w[MR MRS MISS MS].freeze
-  NINO_REGEXP = /^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/.freeze
+  NINO_REGEXP = /^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/
 
   pg_search_scope :by_name, against: %i[firstName middleName lastName], using: { tsearch: { any_word: true } }
   scope :by_date_of_birth, ->(date) { where(dateOfBirth: date) }

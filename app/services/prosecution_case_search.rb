@@ -29,6 +29,7 @@ class ProsecutionCaseSearch < ApplicationService
 private
 
   attr_reader :params
+
   SQL = "INNER JOIN defendants ON defendants.prosecution_case_id = prosecution_cases.id INNER JOIN person_defendants ON person_defendants.id = defendants.defendable_id AND defendants.defendable_type = 'PersonDefendant'"
 
   def prosecution_cases_by_reference

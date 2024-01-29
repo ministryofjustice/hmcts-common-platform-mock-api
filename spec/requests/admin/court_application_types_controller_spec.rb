@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-#
-require 'rails_helper'
+
+require "rails_helper"
 
 RSpec.describe "/admin/court_application_type", type: :request do
   let(:hearing) { FactoryBot.create(:hearing, :with_court_application) }
@@ -35,6 +35,7 @@ RSpec.describe "/admin/court_application_type", type: :request do
 
     context "with invalid parameters" do
       let(:invalid_attributes) { { code: nil, type: nil, legislation: nil } }
+
       it "renders a successful response (i.e. to display the 'edit' template)" do
         patch admin_court_application_court_application_type_url(court_application), params: { court_application_type: invalid_attributes }, headers: headers
         expect(response).to be_successful

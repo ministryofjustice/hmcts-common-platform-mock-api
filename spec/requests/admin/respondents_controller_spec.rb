@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "/admin/repondent", type: :request do
   let(:hearing) { FactoryBot.create(:hearing, :with_court_application) }

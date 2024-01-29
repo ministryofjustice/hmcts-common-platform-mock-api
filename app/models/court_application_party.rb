@@ -12,6 +12,7 @@ class CourtApplicationParty < ApplicationRecord
   has_many :associated_people
 
   validates :id, presence: true
+  validates :synonym, presence: true
   validates :summons_required, presence: true
   validates :notification_required, presence: true
 

@@ -42,3 +42,15 @@ spec/examples.txt
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### rbenv Gemset Management ###
+.rbenv-gemsets
+
+/vendor/bundle

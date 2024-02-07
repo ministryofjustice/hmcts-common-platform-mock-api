@@ -40,6 +40,10 @@ FactoryBot.define do
     isEffectiveTrial { Faker::Boolean.boolean }
     isBoxHearing { Faker::Boolean.boolean }
 
+    trait :crown do
+      jurisdictionType { "CROWN" }
+    end
+
     after(:build) do |hearing|
       hearing.hearing_days << FactoryBot.build(
         :realistic_hearing_day,

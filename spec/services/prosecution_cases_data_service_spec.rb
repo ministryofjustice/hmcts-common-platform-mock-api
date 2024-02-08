@@ -1,0 +1,41 @@
+# frozen_string_literal: true
+
+require "rspec"
+
+RSpec.describe ProsecutionCasesDataService do
+  subject(:call) { described_class.call(params) }
+
+  let(:params) { ActionController::Parameters.new(params_hash) }
+
+  context "when given valid input" do
+    let(:params_hash) do
+      { is_guilty: "true", result_code: "1234" }
+    end
+
+    it "creates the correct prosecution case test data" do
+      expect {
+        created_data = call
+        expect(created_data.hearings.first.jurisdictionType).to eq("CROWN")
+        expect(created_data.defendants[0].offences[0].verdicts[0].verdict_type.description).to eq("Guilty")
+        expect(created_data.defendants[0].offences[0].judicial_results[0].cjsCode).to eq(params_hash[:result_code])
+      }.to change(ProsecutionCase, :count).by(1)
+        .and change(Hearing, :count).by(1)
+        .and change(Defendant, :count).by(1)
+        .and change(Offence, :count).by(1)
+        .and change(Verdict, :count).by(1)
+        .and change(VerdictType, :count).by(1)
+        .and change(JudicialResult, :count).by(1)
+    end
+  end
+
+  context "when is_guilty parameter is not true" do
+    let(:params_hash) do
+      { is_guilty: "false", result_code: "1234" }
+    end
+
+    it "creates a prosecution case with a not guilty verdict" do
+      created_data = call
+      expect(created_data.defendants[0].offences[0].verdicts[0].verdict_type.description).to eq("Not Guilty")
+    end
+  end
+end

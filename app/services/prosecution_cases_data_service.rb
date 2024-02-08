@@ -13,6 +13,8 @@ class ProsecutionCasesDataService < ApplicationService
     @prosecution_case
   end
 
+private
+
   def hearing
     @prosecution_case.hearings.first
   end
@@ -35,7 +37,7 @@ class ProsecutionCasesDataService < ApplicationService
   end
 
   def set_verdict
-    verdict_type = if @is_guilty
+    verdict_type = if @is_guilty == "true"
                      FactoryBot.build(:realistic_verdict_type)
                    else
                      FactoryBot.build(:realistic_verdict_type, :not_guilty)

@@ -7,8 +7,8 @@ module Test
     end
 
     def result
-      hearing_id = Hearing.find_by(hearing_id: params[:hearing_id]).id
-      HearingResulter.call(hearing_id: hearing_id, publish_to: params[:publish_to])
+      hearing = Hearing.find_by(hearing_id: params[:hearing_id])
+      HearingResulter.call(hearing_id: hearing.id, publish_to: params[:publish_to])
     end
 
     def publish
@@ -18,6 +18,5 @@ module Test
     def valid_parameters
       params.require(:prosecution_case).permit(:is_guilty, :result_code)
     end
-
   end
 end

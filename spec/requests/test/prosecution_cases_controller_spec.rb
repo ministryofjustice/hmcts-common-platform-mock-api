@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require "rspec"
+require "rails_helper"
 
 RSpec.describe "Test::ProsecutionCasesController", type: :request do
-  let(:prosecution_case) { FactoryBot.create(:generic_prosecution_case) }
-  let(:hearing) { prosecution_case.hearings.first }
   let(:headers) { { 'Ocp-Apim-Subscription-Key': ENV.fetch("SHARED_SECRET_KEY") } }
   let(:valid_parameters) { { "is_guilty": "true", "result_code": "4057" } }
   let(:invalid_parameters) { { "fake_param": "fake" } }
@@ -20,30 +18,31 @@ RSpec.describe "Test::ProsecutionCasesController", type: :request do
     end
 
     context "with invalid parameters" do
-      it "does not create a new ProsecutionCase" do
+      it "returns a 400 error and does not create a prosecution case" do
         expect {
-          post test_prosecution_cases_url, params: { prosecution_case: invalid_parameters }, headers: headers
+          post test_prosecution_cases_url, params: { invalid: invalid_parameters }, headers: headers
+          expect(response).to have_http_status(:bad_request)
         }.to change(ProsecutionCase, :count).by(0)
       end
     end
   end
 
   describe "POST /result" do
+    let(:prosecution_case) { FactoryBot.create(:generic_prosecution_case) }
+    let(:hearing) { prosecution_case.hearings.first }
 
-    before { allow(Hearing).to receive(:find_by).and_return({ id: hearing.id }) }
-
-    context "with valid parameters" do
-      it "calls the hearing resulter service" do
-        post result_test_prosecution_case_hearings_url(prosecution_case.id, hearing.id, type), headers: headers
-        expect(HearingResulter).to receive(:call).with(hearing: hearing.id, publish_to: type)
-      end
+    it "calls the hearing resulter service" do
+      expect(HearingResulter).to receive(:call).with(hearing_id: hearing.id, publish_to: type)
+      post result_test_prosecution_case_hearings_url(prosecution_case.id, hearing.hearing_id, type), headers: headers
     end
   end
 
   describe "POST /publish" do
+    let(:prosecution_case) { FactoryBot.create(:generic_prosecution_case) }
+
     it "calls the ProsecutionCaseConcluder" do
       expect(ProsecutionCaseConcluder).to receive(:call).with(prosecution_case_id: prosecution_case.id, publish_to: type)
-      post "/admin/prosecution_conclusions/#{prosecution_case.id}/#{type}", headers: headers
+      post publish_test_prosecution_cases_url(prosecution_case.id, type), headers: headers
     end
   end
 end

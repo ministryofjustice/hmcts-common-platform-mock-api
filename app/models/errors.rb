@@ -2,4 +2,6 @@
 
 module Errors
   class InvalidParams < StandardError; end
+
+  class ContractError < StandardError; end
 end

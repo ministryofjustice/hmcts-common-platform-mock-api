@@ -7,7 +7,8 @@ class ApplicationController < ActionController::API
   ERROR_MAPPINGS = {
     Errors::InvalidParams => :bad_request,
     ActiveRecord::RecordNotFound => :not_found,
-    ActionController::ParameterMissing => :bad_request
+    ActionController::ParameterMissing => :bad_request,
+    Errors::ContractError => :unprocessable_entity,
   }.freeze
 
   ERROR_MAPPINGS.each do |klass, status|

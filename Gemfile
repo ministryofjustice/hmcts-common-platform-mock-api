@@ -30,6 +30,7 @@ gem "kaminari"
 gem "oauth2", "~> 2.0.9"
 gem "pg_search"
 gem "webpacker"
+gem "dry-validation"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

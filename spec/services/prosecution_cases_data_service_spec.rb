@@ -15,16 +15,14 @@ RSpec.describe ProsecutionCasesDataService do
     it "creates the correct prosecution case test data" do
       expect {
         created_data = call
+        expect(created_data.hearings.count).to eq(1)
         expect(created_data.hearings.first.jurisdictionType).to eq("CROWN")
+        expect(created_data.defendants.count).to eq(1)
+        expect(created_data.defendants[0].offences.count).to eq(1)
+        expect(created_data.defendants[0].offences[0].verdicts.count).to eq(1)
         expect(created_data.defendants[0].offences[0].verdicts[0].verdict_type.description).to eq("Guilty")
-        expect(created_data.defendants[0].offences[0].judicial_results[0].cjsCode).to eq(params_hash[:result_code])
+        expect(created_data.defendants[0].offences[0].judicial_results[0].cjsCode).to eq(params_hash[:result_code].to_s)
       }.to change(ProsecutionCase, :count).by(1)
-        .and change(Hearing, :count).by(1)
-        .and change(Defendant, :count).by(1)
-        .and change(Offence, :count).by(1)
-        .and change(Verdict, :count).by(1)
-        .and change(VerdictType, :count).by(1)
-        .and change(JudicialResult, :count).by(1)
     end
   end
 

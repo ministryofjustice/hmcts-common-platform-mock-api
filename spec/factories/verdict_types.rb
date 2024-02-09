@@ -16,6 +16,12 @@ FactoryBot.define do
       categoryType { "GUILTY" }
       cjs_verdict_code { Faker::Code.sin }
       verdict_code { Faker::Code.sin }
+
+      trait :not_guilty do
+        description { "Not Guilty" }
+        category { "Not Guilty" }
+        categoryType { "NOT GUILTY" }
+      end
     end
   end
 end

@@ -7,17 +7,57 @@
 
 This is a standard 6 Rails API application using Postgres 12.1 as a database.
 
-Clone the repo, then run:
+Clone the repo, then:
+
+### Database setup
+Running the tests and the application server locally with require a local Postgres database running. This can be done using docker
+with the following command. This runs the same database image that is used in the CircleCI tests.
+```shell
+docker run -d --name hmcts-mock-db -p 5432:5432 cimg/postgres:11.12
+```
+
+### Populate .env file
+There is a template .env file included in the repository which will need to be updated with the required values.
+
+As this file is tracked in the repository it is best to avoid populating it with secrets incase it is committed pushed to GitHub.
+Therefore the recommendation is to create new files e.g. `.env.development.local` and `.env.test.local` which are in the gitignore file.
+The settings in these env files can be used by prefacing all rails and rspec commands with the `RAILS_ENV` environment variable e.g.
+
+```shell
+RAILS_ENV=test rails s
+```
+The rails environment should be set to `test` for running the test suite or `development` for running/debugging the application server locally
+
+The DEV client id and secret refer to the Court Data Adaptor (DEV) OAuth2.0 credentials. These can be found in the encrypted helm values file.
+
+```shell
+LAA_DEV_CLIENT_ID=
+LAA_DEV_CLIENT_SECRET=
+```
+
+The database url should be setup to point to your local Postgres database e.g.
+
+```shell
+DATABASE_URL=postgres://postgres:@localhost:5432/hmcts_common_platform_api_test
+```
+
+### Setup the app
 
 ```
 $ bundle install
-$ rails db:setup
+$ RAILS_ENV=development rails db:setup
 ```
 
 You can then start the application server by running:
 
 ```
-$ rails s
+$ RAILS_ENV=development rails s
+```
+### Running the tests
+
+The RSpec test can be run using the following command:
+```shell
+RAILS_ENV=test bundle exec rspec
 ```
 
 ### Generate demonstration data

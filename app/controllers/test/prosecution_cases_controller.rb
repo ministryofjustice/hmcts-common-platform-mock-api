@@ -11,12 +11,12 @@ module Test
     def result
       hearing = Hearing.find_by(hearing_id: params[:hearing_id])
       HearingResulter.call(hearing_id: hearing.id, publish_to: params[:publish_to])
-      render json: { message: "Hearing {params[:hearing_id] resulted and posted to CDA {params[:publish_to]}" }, status: :ok
+      render json: { message: "Hearing #{params[:hearing_id]} resulted and posted to CDA #{params[:publish_to]}" }, status: :ok
     end
 
     def publish
       ProsecutionCaseConcluder.call(prosecution_case_id: params[:id], publish_to: params[:publish_to])
-      render json: { message: "Case {params[:id] concluded and posted to CDA {params[:publish_to]}" }, status: :ok
+      render json: { message: "Case #{params[:id]} concluded and posted to CDA #{params[:publish_to]}" }, status: :ok
     end
 
     def valid_parameters

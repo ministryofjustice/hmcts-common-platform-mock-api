@@ -16,7 +16,8 @@ RSpec.describe ProsecutionCasesDataService do
       expect {
         created_data = call
         expect(created_data.hearings.count).to eq(1)
-        expect(created_data.hearings.first.jurisdictionType).to eq("CROWN")
+        expect(created_data.hearings[0].jurisdictionType).to eq("CROWN")
+        expect(created_data.hearings[0].court_centre_id).to eq("e2b8580f-5247-30f9-905f-4b8136b23318")
         expect(created_data.defendants.count).to eq(1)
         expect(created_data.defendants[0].offences.count).to eq(1)
         expect(created_data.defendants[0].offences[0].verdicts.count).to eq(1)

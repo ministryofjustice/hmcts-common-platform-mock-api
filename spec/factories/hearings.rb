@@ -42,6 +42,7 @@ FactoryBot.define do
 
     trait :crown do
       jurisdictionType { "CROWN" }
+      court_centre_id { "e2b8580f-5247-30f9-905f-4b8136b23318" }
     end
 
     after(:build) do |hearing|

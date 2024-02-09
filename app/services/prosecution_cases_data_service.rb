@@ -37,7 +37,7 @@ private
   end
 
   def set_verdict
-    verdict_type = if @is_guilty == "true"
+    verdict_type = if @is_guilty
                      FactoryBot.build(:realistic_verdict_type)
                    else
                      FactoryBot.build(:realistic_verdict_type, :not_guilty)

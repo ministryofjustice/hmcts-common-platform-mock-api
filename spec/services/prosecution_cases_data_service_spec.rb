@@ -9,7 +9,7 @@ RSpec.describe ProsecutionCasesDataService do
 
   context "when given valid input" do
     let(:params_hash) do
-      { is_guilty: "true", result_code: "1234" }
+      { is_guilty: true, result_code: 1234 }
     end
 
     it "creates the correct prosecution case test data" do
@@ -30,7 +30,7 @@ RSpec.describe ProsecutionCasesDataService do
 
   context "when is_guilty parameter is not true" do
     let(:params_hash) do
-      { is_guilty: "false", result_code: "1234" }
+      { is_guilty: false, result_code: 1234 }
     end
 
     it "creates a prosecution case with a not guilty verdict" do

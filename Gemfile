@@ -21,6 +21,7 @@ gem "jbuilder", "~> 2.11"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
 gem "cocoon"
+gem "dry-validation"
 gem "factory_bot_rails"
 gem "faker"
 gem "faraday", "~> 2.7.4"
@@ -30,7 +31,6 @@ gem "kaminari"
 gem "oauth2", "~> 2.0.9"
 gem "pg_search"
 gem "webpacker"
-gem "dry-validation"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Test
   class ProsecutionCasesController < ApplicationController
     def create
@@ -11,7 +12,6 @@ module Test
       hearing = Hearing.find_by(hearing_id: params[:hearing_id])
       HearingResulter.call(hearing_id: hearing.id, publish_to: params[:publish_to])
       render json: { message: "Hearing {params[:hearing_id] resulted and posted to CDA {params[:publish_to]}" }, status: :ok
-
     end
 
     def publish

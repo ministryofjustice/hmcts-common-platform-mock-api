@@ -48,4 +48,13 @@ Rails.application.routes.draw do
     "/offences/:offenceId" => "representation_orders#create", as: :representation_order
   get "/hearing/results" => "hearings#show", as: :hearing
   get "/hearing/hearingLog" => "hearing_logs#show", as: :hearing_log
+
+  namespace :test do
+    resources :prosecution_cases, only: [:create], path: "prosecution_cases" do
+      resources :hearings, only: [] do
+        post ":hearing_id/result(/:publish_to)", to: "prosecution_cases#result", on: :collection, as: :result
+      end
+      post ":id/publish(/:publish_to)", to: "prosecution_cases#publish", on: :collection, as: :publish
+    end
+  end
 end

@@ -14,7 +14,7 @@ FactoryBot.define do
       address3 { Faker::Address.building_number }
       address4 { Faker::Address.city }
       address5 { Faker::Address.country }
-      postcode { Faker::Address.postcode }
+      postcode { Faker::Address.postcode.slice(0, 8) }
     end
   end
 end

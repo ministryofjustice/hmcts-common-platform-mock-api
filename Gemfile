@@ -27,6 +27,7 @@ gem "railties", "~> 7.0"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
 gem "cocoon"
+gem "dry-validation"
 gem "factory_bot_rails"
 gem "faker"
 gem "faraday", "~> 2.7.4"

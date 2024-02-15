@@ -4,9 +4,41 @@
 
 This is a standard 6 Rails API application which requires:
 
-- Postgres 14 database - [Brew formula for PostgreSQL@14](https://formulae.brew.sh/formula/postgresql@14#default)
-- [Yarn](https://yarnpkg.com/) - [Brew formula for Yarn](https://formulae.brew.sh/formula/yarn#default)
-- libpq - [Brew Formula for libpq](https://formulae.brew.sh/formula/libpq#default)
+Clone the repo, then:
+
+### Database setup
+Running the tests and the application server locally with require a local Postgres database running. This can be done using docker
+with the following command. This runs the same database image that is used in the CircleCI tests.
+```shell
+docker run -d --name hmcts-mock-db -p 5432:5432 cimg/postgres:11.12
+```
+
+### Populate .env file
+There is a template .env file included in the repository which will need to be updated with the required values.
+
+As this file is tracked in the repository it is best to avoid populating it with secrets incase it is committed pushed to GitHub.
+Therefore the recommendation is to create new files e.g. `.env.development.local` and `.env.test.local` which are in the gitignore file.
+The settings in these env files can be used by prefacing all rails and rspec commands with the `RAILS_ENV` environment variable e.g.
+
+```shell
+RAILS_ENV=test rails s
+```
+The rails environment should be set to `test` for running the test suite or `development` for running/debugging the application server locally
+
+The DEV client id and secret refer to the Court Data Adaptor (DEV) OAuth2.0 credentials. These can be found in the encrypted helm values file.
+
+```shell
+LAA_DEV_CLIENT_ID=
+LAA_DEV_CLIENT_SECRET=
+```
+
+The database url should be setup to point to your local Postgres database e.g.
+
+```shell
+DATABASE_URL=postgres://postgres:@localhost:5432/hmcts_common_platform_api_test
+```
+
+### Setup the app
 
 
 Clone this repo, then run:
@@ -15,21 +47,27 @@ Clone this repo, then run:
 bundle install
 ```
 ```shell
-rails db:setup
+RAILS_ENV=development rails db:setup
 ```
 You can then start the application server by running:
 
 ```shell
-rails server
+RAILS_ENV=development rails s
 ```
 
 By default, the application will listen on port 3000 as defined in `puma.rb`.
 You can verify your setup by sending a request to an endpoint and checking for a HTTP response code of 2xx/Success. The credentials for the HTTP Basic Authentication are defined in `.env`.
+
 ```shell
 curl -u admin:password --head http://localhost:3000/admin/prosecution_cases
 ```
 
+### Running the tests
 
+The RSpec test can be run using the following command:
+```shell
+RAILS_ENV=test bundle exec rspec
+```
 
 ### Generate demonstration data
 Tasks have been created to facilitate generation of a small specific, rememberable set of demonstration data. This data reflects current understanding of a bare minimum needed to effectively demonstrate the workings of this adaptor and its user interface [View court data](https://github.com/ministryofjustice/laa-court-data-ui).

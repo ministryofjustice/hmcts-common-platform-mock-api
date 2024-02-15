@@ -18,7 +18,7 @@
 <% when "development" %>
   <%= button_to 'Conclude Case and Publish', admin_prosecution_conclusions_path(@prosecution_case.id, :dev) %>
 <% when "production" %>
-  <%= button_to 'Conclude Case and Publish', admin_prosecution_conclusions_path(@prosecution_case.id, :stage) %>
+  <%= button_to 'Conclude Case and Publish', admin_prosecution_conclusions_path(@prosecution_case.id, :dev) %>
 <% end %>
 
 <h2>Defendants</h2>
@@ -82,7 +82,7 @@
           <% when "development" %>
             <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :dev) %>
           <% when "production" %>
-            <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :stage) %>
+            <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :dev) %>
         <% end %>
 
           </td>

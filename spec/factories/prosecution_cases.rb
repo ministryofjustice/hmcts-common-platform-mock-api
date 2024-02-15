@@ -48,4 +48,24 @@ FactoryBot.define do
                                                               (0..3).to_a.sample)
     end
   end
+
+  factory :generic_prosecution_case, class: "ProsecutionCase" do
+    association :prosecution_case_identifier, factory: :realistic_prosecution_case_identifier
+    originatingOrganisation { Faker::Company.name }
+    initiationCode { ProsecutionCase::INITIATION_CODES.sample }
+    caseStatus { ProsecutionCase::CASE_STATUSES.sample }
+    police_officer_in_case
+    statementOfFacts { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
+    statementOfFactsWelsh { Faker::Hipster.sentence(word_count: 3, supplemental: true, random_words_to_add: 4) }
+    breachProceedingsPending { Faker::Boolean.boolean }
+    appealProceedingsPending { Faker::Boolean.boolean }
+    class_of_case { Faker::Lorem.word }
+    is_cps_org_verify_error { Faker::Boolean.boolean }
+    summons_code { Faker::Number.number(digits: 5).to_s }
+
+    after(:build) do |prosecution_case|
+      prosecution_case.hearings << build_list(:realistic_hearing, 1, :crown)
+      prosecution_case.defendants << build(:realistic_defendant, prosecution_case: nil)
+    end
+  end
 end

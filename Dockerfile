@@ -34,7 +34,7 @@ WORKDIR /usr/src/app
 
 COPY Gemfile* ./
 
-RUN gem install bundler -v 2.2.28
+RUN gem install bundler -v 2.4.22
 RUN bundle config set --local deployment 'true' without 'development:test' && bundle install --jobs 4
 
 ####################

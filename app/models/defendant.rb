@@ -39,8 +39,8 @@ class Defendant < ApplicationRecord
       'legal_entity_defendants.organisation_id IN (:organisation_ids)
       OR person_defendants.person_id IN (:person_ids)',
       {
-        organisation_ids: Organisation.by_name(name).ids,
-        person_ids: Person.by_name(name).ids,
+        organisation_ids: Organisation.by_name(name).select(:id),
+        person_ids: Person.by_name(name).select(:id),
       },
     )
   }

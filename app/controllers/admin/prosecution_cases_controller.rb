@@ -3,6 +3,7 @@
 module Admin
   class ProsecutionCasesController < Admin::ApplicationController
     before_action :set_prosecution_case, only: %i[show edit update destroy result]
+    before_action :set_env_list
 
     def index
       @prosecution_cases = if params[:query].present?
@@ -56,6 +57,11 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_prosecution_case
       @prosecution_case = ProsecutionCase.find(params[:id])
+    end
+
+    def set_env_list
+      @env_options = [%w[Development dev], %w[Test test], %w[Stage stage]]
+      @default_env = "dev"
     end
 
     # Only allow a list of trusted parameters through.

@@ -8,18 +8,29 @@
   </p>
 <% end %>
 
+<%= select_tag :environment_select, options_for_select(@env_options, @default_env) %>
+
+<br>
+
 <% unless @prosecution_case.concluded? %>
   <%= button_to 'Conclude Case', admin_prosecution_conclusions_path(@prosecution_case.id) %>
 <% end %>
 
 <br>
 
-<% case Rails.env %>
-<% when "development" %>
-  <%= button_to 'Conclude Case and Publish', admin_prosecution_conclusions_path(@prosecution_case.id, :dev) %>
-<% when "production" %>
-  <%= button_to 'Conclude Case and Publish', admin_prosecution_conclusions_path(@prosecution_case.id, :dev) %>
+
+<% @env_options.each do |option| %>
+
+  <%=
+    button_to "Conclude Case and Publish to #{option[0]}",
+              admin_prosecution_conclusions_path(@prosecution_case.id, option[1]),
+              :id => "publish-case-#{option[1]}",
+              :target_env => option[1],
+              :button_group => "environment_based",
+              :style => (option[1] == @default_env ? "display: block;" : "display: none;")
+  %>
 <% end %>
+
 
 <h2>Defendants</h2>
 <table>
@@ -78,12 +89,15 @@
             <%= button_to 'Result hearing', result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id) %>
           <% end %>
 
-          <% case Rails.env %>
-          <% when "development" %>
-            <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :dev) %>
-          <% when "production" %>
-            <%= button_to "Result and Publish", result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, :dev) %>
-        <% end %>
+          <% @env_options.each do |option| %>
+            <%=
+              button_to "Result and Publish to #{option[0]}",
+                        result_hearing_admin_prosecution_case_path(@prosecution_case, hearing.id, option[1]),
+                        :target_env => option[1],
+                        :button_group => "environment_based",
+                        :style => (option[1] == @default_env ? "display: block;" : "display: none;")
+            %>
+          <% end %>
 
           </td>
       </tr>
@@ -98,3 +112,15 @@
 
 <%= link_to 'Edit', edit_admin_prosecution_case_path(@prosecution_case) %> |
 <%= link_to 'Back', admin_prosecution_cases_path %>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    const selectBox = document.getElementById('environment_select');
+
+    selectBox.addEventListener('change', function() {
+      document.querySelectorAll('[button_group="environment_based"]').forEach((element) => {
+        element.style.display = element.attributes.target_env.value == selectBox.value ? "block" : "none"
+      });
+    });
+  });
+</script>

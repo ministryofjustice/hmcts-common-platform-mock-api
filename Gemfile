@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.7.5"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.0.5"
+gem "rails", "~> 7.0.8", ">= 7.0.8.1"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
 # Use Puma as the app server
@@ -22,7 +22,7 @@ gem "jbuilder", "~> 2.11"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "cocoon"
 gem "dry-validation"
-gem "factory_bot_rails"
+gem "factory_bot_rails", ">= 6.3.0"
 gem "faker"
 gem "faraday", "~> 2.7.4"
 gem "hmcts_common_platform", github: "ministryofjustice/hmcts_common_platform", tag: "v0.2.0"
@@ -30,22 +30,22 @@ gem "json-schema", git: "https://github.com/voxpupuli/json-schema", branch: "mas
 gem "kaminari"
 gem "oauth2", "~> 2.0.9"
 gem "pg_search"
-gem "webpacker"
+gem "webpacker", ">= 5.4.4"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
 group :development, :test do
-  gem "capybara"
+  gem "capybara", ">= 3.39.0"
   gem "colorize"
-  gem "dotenv-rails"
+  gem "dotenv-rails", ">= 3.0.0"
   gem "json-schema-rspec"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 5.1"
-  gem "rubocop-govuk", "~> 4.9"
+  gem "rspec-rails", "~> 6.0", ">= 6.0.0"
+  gem "rubocop-govuk", "~> 4.10", ">= 4.10.0"
   gem "rubocop-performance", require: false
-  gem "sinatra"
+  gem "sinatra", ">= 3.0.6"
   gem "vcr"
   gem "webmock"
 end

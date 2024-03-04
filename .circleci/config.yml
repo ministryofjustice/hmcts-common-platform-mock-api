@@ -109,7 +109,8 @@ jobs:
             --build-arg APP_BRANCH=${CIRCLE_BRANCH} \
 
   install_on_live_cluster:
-    executor: aws-eks/python
+    docker:
+      - image: cimg/python:latest
     steps:
       - checkout_and_decrypt
       - kubernetes/install-kubectl

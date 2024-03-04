@@ -110,7 +110,7 @@ jobs:
 
   install_on_live_cluster:
     docker:
-      - image: cimg/python:latest
+      - image: cimg/python:3.11.8
     steps:
       - checkout_and_decrypt
       - kubernetes/install-kubectl

@@ -1,4 +1,4 @@
-FROM ruby:3.2.2-alpine3.19
+FROM ruby:3.2.2-alpine3.16
 MAINTAINER LAA Crime Apps - Core
 
 # fail early and print all commands
@@ -45,7 +45,6 @@ ENV RAILS_ENV production
 ENV NODE_ENV production
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
-ENV NODE_OPTIONS --openssl-legacy-provider
 EXPOSE 3000
 
 COPY . .

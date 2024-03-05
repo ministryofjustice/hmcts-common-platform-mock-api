@@ -91,7 +91,8 @@ jobs:
           command: bundle exec rubocop
 
   build-and-push-app:
-    executor: aws-ecr/default
+    machine:
+      image: default
     steps:
       - aws-cli/setup:
           role_arn: $ECR_ROLE_TO_ASSUME
@@ -108,7 +109,8 @@ jobs:
             --build-arg APP_BRANCH=${CIRCLE_BRANCH} \
 
   install_on_live_cluster:
-    executor: aws-eks/python
+    docker:
+      - image: cimg/python:3.11.8
     steps:
       - checkout_and_decrypt
       - kubernetes/install-kubectl

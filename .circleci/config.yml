@@ -48,6 +48,7 @@ jobs:
       - run:
           name: Precompile Assets
           command: |
+            export NODE_OPTIONS=--openssl-legacy-provider
             yarn && bundle exec rails webpacker:compile
 
       - save_cache:

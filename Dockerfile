@@ -45,6 +45,7 @@ ENV RAILS_ENV production
 ENV NODE_ENV production
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
+ENV NODE_OPTIONS --openssl-legacy-provider
 EXPOSE 3000
 
 COPY . .

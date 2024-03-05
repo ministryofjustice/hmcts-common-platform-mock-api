@@ -25,7 +25,7 @@ jobs:
         environment:
           DATABASE_URL: postgres://postgres@localhost/hmcts_common_platform_api_test
           RAILS_ENV: test
-      - image: cimg/postgres:11.12
+      - image: cimg/postgres:14.11
         environment:
           POSTGRES_DB: hmcts_common_platform_api_test
     steps:

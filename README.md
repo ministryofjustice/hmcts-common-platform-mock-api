@@ -10,7 +10,7 @@ Clone the repo, then:
 Running the tests and the application server locally with require a local Postgres database running. This can be done using docker
 with the following command. This runs the same database image that is used in the CircleCI tests.
 ```shell
-docker run -d --name hmcts-mock-db -p 5432:5432 cimg/postgres:11.12
+docker run -d --name hmcts-mock-db -p 5432:5432 cimg/postgres:14.11
 ```
 
 ### Populate .env file

@@ -8,7 +8,7 @@ RSpec.describe "/admin/repondent", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
-      get edit_admin_respondent_url(respondent), headers: headers
+      get(edit_admin_respondent_url(respondent), headers:)
       expect(response).to be_successful
     end
   end
@@ -18,13 +18,13 @@ RSpec.describe "/admin/repondent", type: :request do
       let(:new_attributes) { { synonym: "test" } }
 
       it "updates the requested respondent" do
-        patch admin_respondent_url(respondent), params: { court_application_party: new_attributes }, headers: headers
+        patch(admin_respondent_url(respondent), params: { court_application_party: new_attributes }, headers:)
         respondent.reload
         expect(respondent).to have_attributes(new_attributes)
       end
 
       it "redirects to the hearing" do
-        patch admin_respondent_url(respondent), params: { court_application_party: new_attributes }, headers: headers
+        patch(admin_respondent_url(respondent), params: { court_application_party: new_attributes }, headers:)
         respondent.reload
         expect(response).to redirect_to(admin_hearing_url(hearing))
       end
@@ -34,7 +34,7 @@ RSpec.describe "/admin/repondent", type: :request do
       let(:invalid_attributes) { { synonym: nil } }
 
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch admin_respondent_url(respondent), params: { court_application_party: invalid_attributes }, headers: headers
+        patch(admin_respondent_url(respondent), params: { court_application_party: invalid_attributes }, headers:)
         expect(response).to be_successful
       end
     end

@@ -24,14 +24,14 @@ RSpec.describe "Admin::Defendants", type: :request do
 
   describe "GET /show" do
     it "returns http success" do
-      get "/admin/defendants/#{defendant.id}", headers: headers
+      get("/admin/defendants/#{defendant.id}", headers:)
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /edit" do
     it "returns http success" do
-      get "/admin/defendants/#{defendant.id}/edit", headers: headers
+      get("/admin/defendants/#{defendant.id}/edit", headers:)
       expect(response).to have_http_status(:success)
     end
   end
@@ -41,13 +41,13 @@ RSpec.describe "Admin::Defendants", type: :request do
       let(:new_attributes) { FactoryBot.attributes_for(:realistic_defendant) }
 
       it "updates the requested defendant" do
-        patch admin_defendant_url(defendant), params: { defendant: new_attributes }, headers: headers
+        patch(admin_defendant_url(defendant), params: { defendant: new_attributes }, headers:)
         defendant.reload
         expect(defendant).to have_attributes(new_attributes)
       end
 
       it "redirects to the defendant" do
-        patch admin_defendant_url(defendant), params: { defendant: new_attributes }, headers: headers
+        patch(admin_defendant_url(defendant), params: { defendant: new_attributes }, headers:)
         defendant.reload
         expect(response).to redirect_to(admin_defendant_url(defendant))
       end
@@ -55,7 +55,7 @@ RSpec.describe "Admin::Defendants", type: :request do
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch admin_defendant_url(defendant), params: { defendant: invalid_attributes }, headers: headers
+        patch(admin_defendant_url(defendant), params: { defendant: invalid_attributes }, headers:)
         expect(response).to be_successful
       end
     end
@@ -66,19 +66,19 @@ RSpec.describe "Admin::Defendants", type: :request do
 
     it "destroys the requested defendant" do
       expect {
-        delete admin_defendant_url(defendant), headers: headers
+        delete admin_defendant_url(defendant), headers:
       }.to change(Defendant, :count).by(-1)
     end
 
     it "redirects to the defendant list" do
-      delete admin_defendant_url(defendant), headers: headers
+      delete(admin_defendant_url(defendant), headers:)
       expect(response).to redirect_to(admin_prosecution_case_url(defendant.prosecution_case))
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_admin_prosecution_case_defendant_url(prosecution_case), headers: headers
+      get(new_admin_prosecution_case_defendant_url(prosecution_case), headers:)
       expect(response).to be_successful
     end
   end
@@ -89,12 +89,12 @@ RSpec.describe "Admin::Defendants", type: :request do
     context "with valid parameters" do
       it "creates a new Defendant" do
         expect {
-          post admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: valid_attributes }, headers: headers
+          post admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: valid_attributes }, headers:
         }.to change(Defendant, :count).by(1)
       end
 
       it "redirects to parent prosecution case" do
-        post admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: valid_attributes }, headers: headers
+        post(admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: valid_attributes }, headers:)
         expect(response).to redirect_to(admin_prosecution_case_url(Defendant.order(created_at: :asc).last.prosecution_case))
       end
     end
@@ -102,12 +102,12 @@ RSpec.describe "Admin::Defendants", type: :request do
     context "with invalid parameters" do
       it "does not create a new Defendant" do
         expect {
-          post admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: invalid_attributes }, headers: headers
+          post admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: invalid_attributes }, headers:
         }.to change(Defendant, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: invalid_attributes }, headers: headers
+        post(admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: invalid_attributes }, headers:)
         expect(response).to be_successful
       end
     end

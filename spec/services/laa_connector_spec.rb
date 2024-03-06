@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe LaaConnector do
-  subject(:call) { described_class.call(api_url: api_url, client_id: client_id, client_secret: client_secret) }
+  subject(:call) { described_class.call(api_url:, client_id:, client_secret:) }
 
   let(:api_url) { "API_URL" }
   let(:client_id) { "CLIENT_ID" }

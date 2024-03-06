@@ -43,6 +43,6 @@ private
                      FactoryBot.build(:realistic_verdict_type, :not_guilty)
                    end
 
-    offence.verdicts.create!(verdictDate: Time.zone.now, verdict_type: verdict_type, hearing: hearing)
+    offence.verdicts.create!(verdictDate: Time.zone.now, verdict_type:, hearing:)
   end
 end

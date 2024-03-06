@@ -11,7 +11,7 @@ RSpec.describe "/admin/court_application_type", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
-      get edit_admin_court_application_court_application_type_url(court_application), headers: headers
+      get(edit_admin_court_application_court_application_type_url(court_application), headers:)
       expect(response).to be_successful
     end
   end
@@ -21,13 +21,13 @@ RSpec.describe "/admin/court_application_type", type: :request do
       let(:new_attributes) { { code: "code", type: "type", legislation: "legislation" } }
 
       it "updates the requested court_application_type" do
-        patch admin_court_application_court_application_type_url(court_application), params: { court_application_type: new_attributes }, headers: headers
+        patch(admin_court_application_court_application_type_url(court_application), params: { court_application_type: new_attributes }, headers:)
         court_application_type.reload
         expect(court_application_type).to have_attributes(new_attributes)
       end
 
       it "redirects to the hearing" do
-        patch admin_court_application_court_application_type_url(court_application), params: { court_application_type: new_attributes }, headers: headers
+        patch(admin_court_application_court_application_type_url(court_application), params: { court_application_type: new_attributes }, headers:)
         court_application_type.reload
         expect(response).to redirect_to(admin_hearing_url(hearing))
       end
@@ -37,7 +37,7 @@ RSpec.describe "/admin/court_application_type", type: :request do
       let(:invalid_attributes) { { code: nil, type: nil, legislation: nil } }
 
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch admin_court_application_court_application_type_url(court_application), params: { court_application_type: invalid_attributes }, headers: headers
+        patch(admin_court_application_court_application_type_url(court_application), params: { court_application_type: invalid_attributes }, headers:)
         expect(response).to be_successful
       end
     end

@@ -2,7 +2,7 @@ module Admin
   class HearingDaysController < Admin::ApplicationController
     def create
       hearing = Hearing.find(params[:hearing_id])
-      FactoryBot.create(:realistic_hearing_day, hearing: hearing)
+      FactoryBot.create(:realistic_hearing_day, hearing:)
 
       redirect_to admin_hearing_url(hearing), notice: "Hearing day was successfully created."
     end

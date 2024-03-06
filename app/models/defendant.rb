@@ -81,7 +81,7 @@ class Defendant < ApplicationRecord
       defendant.witnessStatementWelsh witnessStatementWelsh
       defendant.mitigation mitigation
       defendant.mitigationWelsh mitigationWelsh
-      defendant.offences array_builder(offences, hearing: hearing)
+      defendant.offences array_builder(offences, hearing:)
       defendant.associatedPersons array_builder(associated_people)
       defendant.defenceOrganisation defence_organisation.organisation.to_builder if defence_organisation.present?
       defendant.associatedDefenceOrganisation defence_organisation.to_builder if defence_organisation.present?

@@ -6,7 +6,7 @@ module Admin
       offence = Offence.find_by(id: params[:offence_id])
       hearing = Hearing.find_by(id: params[:id]) || court_application.hearing
 
-      FactoryBot.create(:judicial_result_with_relationships, hearing: hearing, defendant: defendant, offence: offence, court_application: court_application)
+      FactoryBot.create(:judicial_result_with_relationships, hearing:, defendant:, offence:, court_application:)
 
       redirect_to admin_hearing_url(hearing), notice: "Judicial result was successfully created."
     end
@@ -68,7 +68,7 @@ module Admin
         :terminatesOffenceProceedings,
         :approvedDate,
         :category,
-        { next_hearing_attributes: next_hearing_attributes },
+        { next_hearing_attributes: },
       ]
     end
 

@@ -75,18 +75,18 @@ class Offence < ApplicationRecord
 private
 
   def indicated_plea_for_hearing(hearing)
-    indicated_pleas.find_by(hearing: hearing)
+    indicated_pleas.find_by(hearing:)
   end
 
   def verdict_for_hearing(hearing)
-    verdicts.find_by(hearing: hearing)
+    verdicts.find_by(hearing:)
   end
 
   def allocation_decision_for_hearing(hearing)
-    allocation_decisions.find_by(hearing: hearing)
+    allocation_decisions.find_by(hearing:)
   end
 
   def plea_for_hearing(hearing)
-    pleas.find_by(hearing: hearing)
+    pleas.find_by(hearing:)
   end
 end

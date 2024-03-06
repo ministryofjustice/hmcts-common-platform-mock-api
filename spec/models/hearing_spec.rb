@@ -76,7 +76,7 @@ RSpec.describe Hearing, type: :model do
       let(:hearing_json) { subject.to_builder.attributes! }
 
       before do
-        FactoryBot.create(:plea, offence: offence, hearing: hearing)
+        FactoryBot.create(:plea, offence:, hearing:)
       end
 
       it_has_behaviour "conforming to valid schema"
@@ -91,7 +91,7 @@ RSpec.describe Hearing, type: :model do
       let(:hearing_json) { subject.to_builder.attributes! }
 
       before do
-        FactoryBot.create(:allocation_decision, offence: offence, hearing: hearing)
+        FactoryBot.create(:allocation_decision, offence:, hearing:)
       end
 
       it_has_behaviour "conforming to valid schema"
@@ -106,7 +106,7 @@ RSpec.describe Hearing, type: :model do
       let(:hearing_json) { subject.to_builder.attributes! }
 
       before do
-        FactoryBot.create(:verdict, offence: offence, hearing: hearing)
+        FactoryBot.create(:verdict, offence:, hearing:)
       end
 
       it_has_behaviour "conforming to valid schema"

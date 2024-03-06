@@ -13,7 +13,7 @@ RSpec.describe DefendantSummary, type: :model do
   context "with RepresentationOrder" do
     before do
       FactoryBot.create(:laa_reference, offence: defendant.offences.first)
-      FactoryBot.create(:associated_defence_organisation, defendant: defendant)
+      FactoryBot.create(:associated_defence_organisation, defendant:)
     end
 
     it_has_behaviour "conforming to valid schema"

@@ -29,11 +29,11 @@ RSpec.describe Defendant, type: :model do
 
       let(:organisation) { FactoryBot.create(:organisation, name: "Altenwerth and Sons") }
       let!(:organisation_defendant) do
-        FactoryBot.create(:defendant_as_legal_entity, defendable: FactoryBot.create(:legal_entity_defendant, organisation: organisation))
+        FactoryBot.create(:defendant_as_legal_entity, defendable: FactoryBot.create(:legal_entity_defendant, organisation:))
       end
       let(:person) { FactoryBot.create(:person, firstName: "Altenwerth") }
       let!(:person_defendant) do
-        FactoryBot.create(:defendant, defendable: FactoryBot.create(:person_defendant, person: person))
+        FactoryBot.create(:defendant, defendable: FactoryBot.create(:person_defendant, person:))
       end
 
       let(:name) { "Altenwerth" }

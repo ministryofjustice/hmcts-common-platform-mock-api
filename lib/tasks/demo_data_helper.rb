@@ -59,6 +59,6 @@ module DemoDataHelper
         if hearing.cracked_ineffective_trial
     end
 
-    { cracked_ineffective_trial_sentences: cracked_ineffective_trial_sentences }
+    { cracked_ineffective_trial_sentences: }
   end
 end

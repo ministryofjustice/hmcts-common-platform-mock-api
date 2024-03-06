@@ -50,7 +50,7 @@ class ProsecutionCase < ApplicationRecord
       prosecution_case.statementOfFactsWelsh statementOfFactsWelsh
       prosecution_case.breachProceedingsPending breachProceedingsPending
       prosecution_case.appealProceedingsPending appealProceedingsPending
-      prosecution_case.defendants array_builder(defendants, hearing: hearing)
+      prosecution_case.defendants array_builder(defendants, hearing:)
       prosecution_case.caseMarkers array_builder(markers)
       prosecution_case.classOfCase class_of_case
       prosecution_case.isCpsOrgVerifyError is_cps_org_verify_error
@@ -60,7 +60,7 @@ class ProsecutionCase < ApplicationRecord
 
   def conclusion_payload
     prosecution_conclusions = defendants.map do |defendant|
-      ProsecutionConclusion.new(defendant: defendant).to_builder.attributes!
+      ProsecutionConclusion.new(defendant:).to_builder.attributes!
     end
 
     { prosecutionConcluded: prosecution_conclusions }.to_json

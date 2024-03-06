@@ -21,7 +21,7 @@ private
 
   def offence_summary_builder
     defendant.offences.map do |offence|
-      ProsecutionConclusionOffenceSummary.new(offence: offence).to_builder.attributes!
+      ProsecutionConclusionOffenceSummary.new(offence:).to_builder.attributes!
     end
   end
 end

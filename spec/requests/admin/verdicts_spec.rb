@@ -12,31 +12,31 @@ RSpec.describe "verdicts", type: :request do
 
     it "creates a new verdict" do
       expect {
-        post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers: headers
+        post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers:
       }.to change(offence.verdicts, :count).by(1)
     end
 
     it "redirects to the edit hearings page" do
-      post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers: headers
+      post("/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers:)
 
       expect(response).to redirect_to(edit_admin_hearing_url(hearing))
     end
 
     context "when a verdict has been created" do
       it "does not allow the creation of another verdict" do
-        post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers: headers
+        post("/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers:)
 
         expect {
-          post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers: headers
+          post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers:
         }.to change(offence.verdicts, :count).by(0)
       end
 
       it "does not allow the creation of another verdict on another hearing for the same offence" do
         prosecution_case.hearings << hearing_two
-        post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers: headers
+        post("/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers:)
 
         expect {
-          post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers: headers
+          post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers:
         }.to change(offence.verdicts, :count).by(0)
       end
     end

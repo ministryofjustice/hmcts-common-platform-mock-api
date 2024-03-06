@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe ProsecutionCaseConcluder do
-  subject(:publish) { described_class.call(prosecution_case_id: prosecution_case.id, publish_to: publish_to) }
+  subject(:publish) { described_class.call(prosecution_case_id: prosecution_case.id, publish_to:) }
 
   let(:prosecution_case) { FactoryBot.create(:prosecution_case) }
   let(:publish_to) { "dev" }

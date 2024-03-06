@@ -32,34 +32,34 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      get admin_prosecution_cases_url, headers: headers
+      get(admin_prosecution_cases_url, headers:)
       expect(response).to be_successful
     end
 
     context "when a query parameter is provided"
     it "renders a successful response " do
-      get admin_prosecution_cases_url, params: { query: "test" }, headers: headers
+      get(admin_prosecution_cases_url, params: { query: "test" }, headers:)
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      get admin_prosecution_case_url(prosecution_case), headers: headers
+      get(admin_prosecution_case_url(prosecution_case), headers:)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_admin_prosecution_case_url, headers: headers
+      get(new_admin_prosecution_case_url, headers:)
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "render a successful response" do
-      get edit_admin_prosecution_case_url(prosecution_case), headers: headers
+      get(edit_admin_prosecution_case_url(prosecution_case), headers:)
       expect(response).to be_successful
     end
   end
@@ -68,12 +68,12 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
     context "with valid parameters" do
       it "creates a new ProsecutionCase" do
         expect {
-          post admin_prosecution_cases_url, params: { prosecution_case: valid_attributes }, headers: headers
+          post admin_prosecution_cases_url, params: { prosecution_case: valid_attributes }, headers:
         }.to change(ProsecutionCase, :count).by(1)
       end
 
       it "redirects to the created prosecution_case" do
-        post admin_prosecution_cases_url, params: { prosecution_case: valid_attributes }, headers: headers
+        post(admin_prosecution_cases_url, params: { prosecution_case: valid_attributes }, headers:)
         expect(response).to redirect_to(admin_prosecution_case_url(ProsecutionCase.first))
       end
     end
@@ -81,12 +81,12 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
     context "with invalid parameters" do
       it "does not create a new ProsecutionCase" do
         expect {
-          post admin_prosecution_cases_url, params: { prosecution_case: invalid_attributes }, headers: headers
+          post admin_prosecution_cases_url, params: { prosecution_case: invalid_attributes }, headers:
         }.to change(ProsecutionCase, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_prosecution_cases_url, params: { prosecution_case: invalid_attributes }, headers: headers
+        post(admin_prosecution_cases_url, params: { prosecution_case: invalid_attributes }, headers:)
         expect(response).to be_successful
       end
     end
@@ -97,13 +97,13 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
       let(:new_attributes) { FactoryBot.attributes_for(:realistic_prosecution_case) }
 
       it "updates the requested prosecution_case" do
-        patch admin_prosecution_case_url(prosecution_case), params: { prosecution_case: new_attributes }, headers: headers
+        patch(admin_prosecution_case_url(prosecution_case), params: { prosecution_case: new_attributes }, headers:)
         prosecution_case.reload
         expect(prosecution_case).to have_attributes(new_attributes)
       end
 
       it "redirects to the prosecution_case" do
-        patch admin_prosecution_case_url(prosecution_case), params: { prosecution_case: new_attributes }, headers: headers
+        patch(admin_prosecution_case_url(prosecution_case), params: { prosecution_case: new_attributes }, headers:)
         prosecution_case.reload
         expect(response).to redirect_to(admin_prosecution_case_url(prosecution_case))
       end
@@ -111,7 +111,7 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch admin_prosecution_case_url(prosecution_case), params: { prosecution_case: invalid_attributes }, headers: headers
+        patch(admin_prosecution_case_url(prosecution_case), params: { prosecution_case: invalid_attributes }, headers:)
         expect(response).to be_successful
       end
     end
@@ -136,7 +136,7 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
 
       it "deletes an offense from the database" do
         expect {
-          patch admin_prosecution_case_url(prosecution_case), params: { prosecution_case: valid_attributes }, headers: headers
+          patch admin_prosecution_case_url(prosecution_case), params: { prosecution_case: valid_attributes }, headers:
         }.to change(Offence, :count).by(-1)
       end
     end
@@ -149,13 +149,13 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
 
     context "with valid parameters" do
       it "results the hearing" do
-        post result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers: headers
+        post(result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers:)
         hearing.reload
         expect(hearing.resulted).to eq(true)
       end
 
       it "redirects to the prosecution_case" do
-        post result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers: headers
+        post(result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers:)
         expect(response).to redirect_to(admin_prosecution_case_url(prosecution_case))
       end
     end
@@ -164,7 +164,7 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
       before { allow(HearingResulter).to receive(:call).and_return(false) }
 
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        post result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers: headers
+        post(result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers:)
         expect(response).to be_successful
       end
     end
@@ -175,12 +175,12 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
 
     it "destroys the requested prosecution_case" do
       expect {
-        delete admin_prosecution_case_url(prosecution_case), headers: headers
+        delete admin_prosecution_case_url(prosecution_case), headers:
       }.to change(ProsecutionCase, :count).by(-1)
     end
 
     it "redirects to the prosecution_cases list" do
-      delete admin_prosecution_case_url(prosecution_case), headers: headers
+      delete(admin_prosecution_case_url(prosecution_case), headers:)
       expect(response).to redirect_to(admin_prosecution_cases_url)
     end
   end

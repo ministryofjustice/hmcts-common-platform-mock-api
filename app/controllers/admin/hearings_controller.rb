@@ -61,9 +61,9 @@ module Admin
                                       :isEffectiveTrial,
                                       :isBoxHearing,
                                       :cracked_ineffective_trial_id,
-                                      { prosecution_cases_attributes: prosecution_cases_attributes },
+                                      { prosecution_cases_attributes: },
                                       { hearing_type_attributes: %i[id description] },
-                                      { hearing_days_attributes: hearing_days_attributes })
+                                      { hearing_days_attributes: })
     end
 
     def hearing_days_attributes
@@ -81,7 +81,7 @@ module Admin
     end
 
     def defendant_attributes
-      [:id, { offences_attributes: offences_attributes }]
+      [:id, { offences_attributes: }]
     end
 
     def offences_attributes

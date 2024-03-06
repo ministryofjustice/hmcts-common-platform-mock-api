@@ -28,7 +28,7 @@ RSpec.describe DefenceOrganisation, type: :model do
   describe "#application_reference" do
     subject { defence_organisation.application_reference }
 
-    let(:defence_organisation) { FactoryBot.create(:associated_defence_organisation, defendant: defendant) }
+    let(:defence_organisation) { FactoryBot.create(:associated_defence_organisation, defendant:) }
     let(:defendant) { FactoryBot.create(:defendant) }
     let(:laa_reference) { FactoryBot.create(:laa_reference, applicationReference: "10010101010") }
 
@@ -36,7 +36,7 @@ RSpec.describe DefenceOrganisation, type: :model do
 
     context "when laa_reference exists" do
       before do
-        defendant.offences.first.update!(laa_reference: laa_reference)
+        defendant.offences.first.update!(laa_reference:)
       end
 
       it { is_expected.to eq("10010101010") }

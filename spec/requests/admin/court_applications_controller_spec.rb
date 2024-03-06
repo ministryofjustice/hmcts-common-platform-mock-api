@@ -10,26 +10,26 @@ RSpec.describe "/admin/court_application", type: :request do
   describe "GET /create" do
     it "creates a new court application" do
       expect {
-        post admin_hearing_court_applications_url(hearing_without_court_application), headers: headers
+        post admin_hearing_court_applications_url(hearing_without_court_application), headers:
       }.to change(hearing_without_court_application.court_applications, :count).by(1)
     end
 
     it "redirects to the hearing" do
-      post admin_hearing_court_applications_url(hearing_without_court_application), headers: headers
+      post(admin_hearing_court_applications_url(hearing_without_court_application), headers:)
       expect(response).to redirect_to(admin_hearing_url(hearing_without_court_application))
     end
   end
 
   describe "GET /show" do
     it "render a successful response" do
-      get admin_court_application_url(court_application), headers: headers
+      get(admin_court_application_url(court_application), headers:)
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "render a successful response" do
-      get edit_admin_court_application_url(court_application), headers: headers
+      get(edit_admin_court_application_url(court_application), headers:)
       expect(response).to be_successful
     end
   end
@@ -39,12 +39,12 @@ RSpec.describe "/admin/court_application", type: :request do
 
     it "destroys the requested court_application" do
       expect {
-        delete admin_court_application_url(court_application.id), headers: headers
+        delete admin_court_application_url(court_application.id), headers:
       }.to change(CourtApplication, :count).by(-1)
     end
 
     it "redirects to the hearings list" do
-      delete admin_court_application_url(court_application.id), headers: headers
+      delete(admin_court_application_url(court_application.id), headers:)
       expect(response).to redirect_to(admin_hearing_url(hearing))
     end
   end
@@ -54,13 +54,13 @@ RSpec.describe "/admin/court_application", type: :request do
       let(:new_attributes) { { id: court_application.id, applicationReceivedDate: "2024-01-01".to_date } }
 
       it "updates the requested court_application_type" do
-        patch admin_court_application_url(court_application), params: { court_application: new_attributes }, headers: headers
+        patch(admin_court_application_url(court_application), params: { court_application: new_attributes }, headers:)
         court_application.reload
         expect(court_application).to have_attributes(new_attributes)
       end
 
       it "redirects to the hearing" do
-        patch admin_court_application_url(court_application), params: { court_application: new_attributes }, headers: headers
+        patch(admin_court_application_url(court_application), params: { court_application: new_attributes }, headers:)
         court_application.reload
         expect(response).to redirect_to(admin_court_application_url(court_application))
       end
@@ -70,7 +70,7 @@ RSpec.describe "/admin/court_application", type: :request do
       let(:invalid_attributes) { { id: nil, applicationReceivedDate: nil } }
 
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch admin_court_application_url(court_application), params: { court_application: invalid_attributes }, headers: headers
+        patch(admin_court_application_url(court_application), params: { court_application: invalid_attributes }, headers:)
         expect(response).to be_successful
       end
     end

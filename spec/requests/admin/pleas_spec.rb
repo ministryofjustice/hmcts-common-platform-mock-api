@@ -11,12 +11,12 @@ RSpec.describe "pleas", type: :request do
 
     it "creates a new plea" do
       expect {
-        post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/pleas", headers: headers
+        post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/pleas", headers:
       }.to change(offence.pleas, :count).by(1)
     end
 
     it "redirects to the edit hearings page" do
-      post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/pleas", headers: headers
+      post("/admin/hearings/#{hearing.id}/offences/#{offence.id}/pleas", headers:)
       expect(response).to redirect_to(edit_admin_hearing_url(hearing))
     end
   end

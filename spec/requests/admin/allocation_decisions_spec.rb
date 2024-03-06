@@ -11,12 +11,12 @@ RSpec.describe "/admin/allocation_decisions", type: :request do
 
     it "creates a new allocation decision" do
       expect {
-        post add_allocation_decision_admin_hearing_url(hearing, offence), headers: headers
+        post add_allocation_decision_admin_hearing_url(hearing, offence), headers:
       }.to change(offence.allocation_decisions, :count).by(1)
     end
 
     it "redirects to the edit hearings page" do
-      post add_allocation_decision_admin_hearing_url(hearing, offence), headers: headers
+      post(add_allocation_decision_admin_hearing_url(hearing, offence), headers:)
       expect(response).to redirect_to(edit_admin_hearing_url(hearing))
     end
   end

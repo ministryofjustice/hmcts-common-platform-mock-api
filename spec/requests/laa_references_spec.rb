@@ -8,7 +8,7 @@ RSpec.describe "LaaReferences", type: :request do
   let(:status_date) { "2019-12-12" }
   let(:laa_reference) do
     FactoryBot.create(:laa_reference,
-                      offence: offence,
+                      offence:,
                       statusId: SecureRandom.uuid,
                       statusDescription: "status description",
                       statusCode: status_code,
@@ -41,14 +41,14 @@ RSpec.describe "LaaReferences", type: :request do
       before { laa_reference.save! }
 
       it "returns an accepted status" do
-        post "/prosecutionCases/laaReference/cases/#{defendant.prosecution_case.id}/defendant/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params, headers: headers
+        post("/prosecutionCases/laaReference/cases/#{defendant.prosecution_case.id}/defendant/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params, headers:)
         expect(response).to have_http_status(:accepted)
       end
     end
 
     context "when the LaaReference is new" do
       it "returns an accepted status" do
-        post "/prosecutionCases/laaReference/cases/#{defendant.prosecution_case.id}/defendant/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params, headers: headers
+        post("/prosecutionCases/laaReference/cases/#{defendant.prosecution_case.id}/defendant/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params, headers:)
         expect(response).to have_http_status(:accepted)
       end
     end

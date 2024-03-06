@@ -14,7 +14,7 @@ RSpec.describe LaaReferenceRecorder do
                       statusCode: status_code,
                       applicationReference: application_reference,
                       statusDate: status_date,
-                      offence: offence)
+                      offence:)
   end
 
   context "with invalid params" do

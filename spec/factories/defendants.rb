@@ -9,7 +9,7 @@ FactoryBot.define do
       after(:build) do |defendant, evaluator|
         next_hearing = build(:next_hearing, listedStartDateTime: evaluator.next_hearing_date)
         defendant.judicial_results << build(:judicial_result,
-                                            next_hearing: next_hearing)
+                                            next_hearing:)
       end
     end
     prosecution_case

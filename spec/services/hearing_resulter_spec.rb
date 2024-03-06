@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe HearingResulter do
-  subject(:result_and_publish) { described_class.call(hearing_id: hearing.id, publish_to: publish_to) }
+  subject(:result_and_publish) { described_class.call(hearing_id: hearing.id, publish_to:) }
 
   let(:hearing) { FactoryBot.create(:hearing) }
   let(:publish_to) { "dev" }

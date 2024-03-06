@@ -10,6 +10,6 @@ RSpec.describe "/admin/prosecution_conclusions/:id", type: :request do
 
   it "calls the ProsecutionCaseConcluder" do
     expect(ProsecutionCaseConcluder).to receive(:call).with(prosecution_case_id: prosecution_case.id, publish_to: type)
-    post "/admin/prosecution_conclusions/#{prosecution_case.id}/#{type}", headers: headers
+    post "/admin/prosecution_conclusions/#{prosecution_case.id}/#{type}", headers:
   end
 end

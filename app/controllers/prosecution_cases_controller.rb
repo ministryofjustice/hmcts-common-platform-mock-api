@@ -16,7 +16,7 @@ private
 
   def prosecution_cases_builder
     @prosecution_cases.ids.map do |prosecution_case_id|
-      ProsecutionCaseSummary.new(prosecution_case_id: prosecution_case_id).to_builder.attributes!
+      ProsecutionCaseSummary.new(prosecution_case_id:).to_builder.attributes!
     end
   end
 end

@@ -37,7 +37,7 @@ def create_prosecution_cases
 
   # create specific case with 3 random defendants plus Jammy Dodger
   case1 = create_case_and_defendants(urn: CASE1[:URN], additional_defendant_count: 2)
-  defendant1 = create_defendant_for(prosecution_case: case1, person: person)
+  defendant1 = create_defendant_for(prosecution_case: case1, person:)
   create_allocation_decision_for(defendant: defendant1)
   create_judicial_results_for(defendant: defendant1)
   create_pleas_for(defendant: defendant1)
@@ -45,7 +45,7 @@ def create_prosecution_cases
 
   # create another case with 2 random defendants and jammy dodger
   case2 = create_case_and_defendants(urn: CASE2[:URN], additional_defendant_count: 1)
-  create_defendant_for(prosecution_case: case2, person: person)
+  create_defendant_for(prosecution_case: case2, person:)
   create_cracked_ineffective_trial_for(prosecution_case: case2)
 
   pp case_details_hash(CASE1[:URN])
@@ -74,7 +74,7 @@ def create_case_and_defendants(urn:, additional_defendant_count: 1)
     :realistic_prosecution_case,
     prosecution_case_identifier: FactoryBot.create(:realistic_prosecution_case_identifier, caseURN: urn),
   )
-  FactoryBot.create_list(:realistic_defendant, additional_defendant_count, prosecution_case: prosecution_case)
+  FactoryBot.create_list(:realistic_defendant, additional_defendant_count, prosecution_case:)
   puts " #{ICONS[:success]}"
 
   prosecution_case
@@ -82,8 +82,8 @@ end
 
 def create_defendant_for(prosecution_case:, person:)
   print "[CREATE][DEFENDANT] on #{prosecution_case.prosecution_case_identifier.caseURN}"
-  person_defendant = FactoryBot.create(:realistic_person_defendant, person: person)
-  defendant = FactoryBot.create(:realistic_defendant, defendable: person_defendant, prosecution_case: prosecution_case)
+  person_defendant = FactoryBot.create(:realistic_person_defendant, person:)
+  defendant = FactoryBot.create(:realistic_defendant, defendable: person_defendant, prosecution_case:)
   puts " #{ICONS[:success]}"
   defendant
 end
@@ -127,7 +127,7 @@ def create_hearings_for(prosecution_case:, defendant:)
   puts " #{ICONS[:success]}"
 
   print "[CREATE][DEFENCE_COUNSELS] for #{urn}"
-  defence_counsels = FactoryBot.create_list(:defence_counsel, 2, defendant: defendant)
+  defence_counsels = FactoryBot.create_list(:defence_counsel, 2, defendant:)
   puts " #{ICONS[:success]}"
 
   base_date = "2019-10-23 00:00:00".to_datetime

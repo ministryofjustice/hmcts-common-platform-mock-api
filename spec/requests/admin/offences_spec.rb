@@ -15,7 +15,7 @@ RSpec.describe "offences", type: :request do
     context "with valid parameters" do
       it "creates a new defendant offence" do
         expect {
-          post "/admin/defendants/#{defendant.id}/offences", params: { offence: offence_attributes }, headers: headers
+          post "/admin/defendants/#{defendant.id}/offences", params: { offence: offence_attributes }, headers:
         }.to change(defendant.offences, :count).by(1)
       end
     end
@@ -23,7 +23,7 @@ RSpec.describe "offences", type: :request do
     context "with invalid parameters" do
       it "does not create a new defendant offence" do
         expect {
-          post "/admin/defendants/#{defendant.id}/offences", params: { offence: offence_attributes.merge(offenceCode: nil) }, headers: headers
+          post "/admin/defendants/#{defendant.id}/offences", params: { offence: offence_attributes.merge(offenceCode: nil) }, headers:
         }.to change(defendant.offences, :count).by(0)
       end
     end

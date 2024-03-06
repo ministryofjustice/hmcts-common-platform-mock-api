@@ -68,12 +68,12 @@ private
     return if address1.blank?
 
     @address ||= Address.new(
-      address1: address1,
-      address2: address2,
-      address3: address3,
-      address4: address4,
-      address5: address5,
-      postcode: postcode,
+      address1:,
+      address2:,
+      address3:,
+      address4:,
+      address5:,
+      postcode:,
     )
   end
 

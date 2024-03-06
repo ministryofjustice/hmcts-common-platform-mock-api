@@ -24,7 +24,7 @@ RSpec.describe LaaRepresentationOrderRecorder do
                       statusCode: status_code,
                       applicationReference: application_reference,
                       statusDate: status_date,
-                      offence: offence)
+                      offence:)
   end
 
   context "with invalid params" do
@@ -87,7 +87,7 @@ RSpec.describe LaaRepresentationOrderRecorder do
     end
 
     context "when the DefenceOrganisation exists" do
-      let!(:defence_organisation) { FactoryBot.create(:associated_defence_organisation, defendant: defendant) }
+      let!(:defence_organisation) { FactoryBot.create(:associated_defence_organisation, defendant:) }
       let(:address_hash) do
         {
           address1: "788 Rau Court",

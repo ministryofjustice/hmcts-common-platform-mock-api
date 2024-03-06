@@ -1,11 +1,8 @@
-# README
-
-[![repo standards badge](https://img.shields.io/badge/dynamic/json?color=green&style=for-the-badge&logo=github&label=MoJ%20Compliant&query=%24.data%5B%3F%28%40.name%20%3D%3D%20%22hmcts-common-platform-mock-api%22%29%5D.status&url=https%3A%2F%2Foperations-engineering-reports.cloud-platform.service.justice.gov.uk%2Fgithub_repositories)](https://operations-engineering-reports.cloud-platform.service.justice.gov.uk/github_repositories#hmcts-common-platform-mock-api "Link to report")
-
+# HMCTS Common Platform Mock API
 
 ## Set up
 
-This is a standard 6 Rails API application using Postgres 12.1 as a database.
+This is a standard 6 Rails API application which requires:
 
 Clone the repo, then:
 
@@ -13,7 +10,7 @@ Clone the repo, then:
 Running the tests and the application server locally with require a local Postgres database running. This can be done using docker
 with the following command. This runs the same database image that is used in the CircleCI tests.
 ```shell
-docker run -d --name hmcts-mock-db -p 5432:5432 cimg/postgres:11.12
+docker run -d --name hmcts-mock-db -p 5432:5432 cimg/postgres:14.11
 ```
 
 ### Populate .env file
@@ -43,16 +40,28 @@ DATABASE_URL=postgres://postgres:@localhost:5432/hmcts_common_platform_api_test
 
 ### Setup the app
 
-```
-$ bundle install
-$ RAILS_ENV=development rails db:setup
-```
 
+Clone this repo, then run:
+
+```shell
+bundle install
+```
+```shell
+RAILS_ENV=development rails db:setup
+```
 You can then start the application server by running:
 
+```shell
+RAILS_ENV=development rails s
 ```
-$ RAILS_ENV=development rails s
+
+By default, the application will listen on port 3000 as defined in `puma.rb`.
+You can verify your setup by sending a request to an endpoint and checking for a HTTP response code of 2xx/Success. The credentials for the HTTP Basic Authentication are defined in `.env`.
+
+```shell
+curl -u admin:password --head http://localhost:3000/admin/prosecution_cases
 ```
+
 ### Running the tests
 
 The RSpec test can be run using the following command:

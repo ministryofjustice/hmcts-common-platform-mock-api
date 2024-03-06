@@ -21,11 +21,11 @@ commands:
 jobs:
   test:
     docker:
-      - image: cimg/ruby:2.7.5-browsers
+      - image: cimg/ruby:3.3.0-browsers
         environment:
           DATABASE_URL: postgres://postgres@localhost/hmcts_common_platform_api_test
           RAILS_ENV: test
-      - image: cimg/postgres:11.12
+      - image: cimg/postgres:14.11
         environment:
           POSTGRES_DB: hmcts_common_platform_api_test
     steps:
@@ -48,6 +48,7 @@ jobs:
       - run:
           name: Precompile Assets
           command: |
+            export NODE_OPTIONS=--openssl-legacy-provider
             yarn && bundle exec rails webpacker:compile
 
       - save_cache:
@@ -77,8 +78,7 @@ jobs:
               --format progress \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
+              --format progress
 
       - store_test_results:
           path: /tmp/test-results

@@ -18,21 +18,21 @@ RSpec.describe "/admin/hearings", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      get admin_hearing_url(hearing), headers: headers
+      get(admin_hearing_url(hearing), headers:)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_admin_prosecution_case_hearing_url(prosecution_case), headers: headers
+      get(new_admin_prosecution_case_hearing_url(prosecution_case), headers:)
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "render a successful response" do
-      get edit_admin_hearing_url(hearing), headers: headers
+      get(edit_admin_hearing_url(hearing), headers:)
       expect(response).to be_successful
     end
   end
@@ -43,12 +43,12 @@ RSpec.describe "/admin/hearings", type: :request do
     context "with valid parameters" do
       it "creates a new Hearing" do
         expect {
-          post admin_prosecution_case_hearings_url(prosecution_case), params: { hearing: valid_attributes }, headers: headers
+          post admin_prosecution_case_hearings_url(prosecution_case), params: { hearing: valid_attributes }, headers:
         }.to change(prosecution_case.hearings, :count).by(1)
       end
 
       it "redirects to the prosecution case" do
-        post admin_prosecution_case_hearings_url(prosecution_case), params: { hearing: valid_attributes }, headers: headers
+        post(admin_prosecution_case_hearings_url(prosecution_case), params: { hearing: valid_attributes }, headers:)
         expect(response).to redirect_to(admin_prosecution_case_url(prosecution_case))
       end
     end
@@ -56,12 +56,12 @@ RSpec.describe "/admin/hearings", type: :request do
     context "with invalid parameters" do
       it "does not create a new Hearing" do
         expect {
-          post admin_prosecution_case_hearings_url(prosecution_case), params: { hearing: invalid_attributes }, headers: headers
+          post admin_prosecution_case_hearings_url(prosecution_case), params: { hearing: invalid_attributes }, headers:
         }.to change(Hearing, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_prosecution_case_hearings_url(prosecution_case), params: { hearing: invalid_attributes }, headers: headers
+        post(admin_prosecution_case_hearings_url(prosecution_case), params: { hearing: invalid_attributes }, headers:)
         expect(response).to be_successful
       end
     end
@@ -72,13 +72,13 @@ RSpec.describe "/admin/hearings", type: :request do
       let(:new_attributes) { FactoryBot.attributes_for(:realistic_hearing) }
 
       it "updates the requested hearing" do
-        patch admin_hearing_url(hearing), params: { hearing: new_attributes }, headers: headers
+        patch(admin_hearing_url(hearing), params: { hearing: new_attributes }, headers:)
         hearing.reload
         expect(hearing).to have_attributes(new_attributes)
       end
 
       it "redirects to the prosecution case" do
-        patch admin_hearing_url(hearing), params: { hearing: new_attributes }, headers: headers
+        patch(admin_hearing_url(hearing), params: { hearing: new_attributes }, headers:)
         hearing.reload
         expect(response).to redirect_to(admin_prosecution_case_url(prosecution_case))
       end
@@ -86,7 +86,7 @@ RSpec.describe "/admin/hearings", type: :request do
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch admin_hearing_url(hearing), params: { hearing: invalid_attributes }, headers: headers
+        patch(admin_hearing_url(hearing), params: { hearing: invalid_attributes }, headers:)
         expect(response).to be_successful
       end
     end
@@ -97,12 +97,12 @@ RSpec.describe "/admin/hearings", type: :request do
 
     it "destroys the requested hearing" do
       expect {
-        delete admin_hearing_url(hearing), headers: headers
+        delete admin_hearing_url(hearing), headers:
       }.to change(Hearing, :count).by(-1)
     end
 
     it "redirects to the hearings list" do
-      delete admin_hearing_url(hearing), headers: headers
+      delete(admin_hearing_url(hearing), headers:)
       expect(response).to redirect_to(admin_prosecution_case_url(prosecution_case))
     end
   end

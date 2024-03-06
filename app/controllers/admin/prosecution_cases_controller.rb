@@ -76,8 +76,8 @@ module Admin
                                                :summons_code,
                                                :class_of_case,
                                                :is_cps_org_verify_error,
-                                               prosecution_case_identifier_attributes: prosecution_case_identifier_attributes,
-                                               hearings_attributes: hearings_attributes,
+                                               prosecution_case_identifier_attributes:,
+                                               hearings_attributes:,
                                                defendants_attributes: defendant_attributes)
     end
 
@@ -96,8 +96,8 @@ module Admin
        :courtProceedingsInitiated,
        :defendantDetailsUpdated,
        :defendable_type,
-       { defendable_attributes: defendable_attributes,
-         offences_attributes: offences_attributes }]
+       { defendable_attributes:,
+         offences_attributes: }]
     end
 
     def prosecution_case_identifier_attributes
@@ -116,7 +116,7 @@ module Admin
        :isEffectiveTrial,
        :isBoxHearing,
        { hearing_type_attributes: %i[id description] },
-       { hearing_days_attributes: hearing_days_attributes }]
+       { hearing_days_attributes: }]
     end
 
     def hearing_days_attributes
@@ -140,7 +140,7 @@ module Admin
        :vehicleOperatorLicenceNumber,
        :arrestSummonsNumber,
        :employerPayrollReference,
-       { person_attributes: person_attributes }]
+       { person_attributes: }]
     end
 
     def person_attributes

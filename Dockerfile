@@ -1,5 +1,5 @@
-FROM ruby:2.7.5-alpine3.13
-MAINTAINER crime apps team
+FROM ruby:3.3.0-alpine3.19
+MAINTAINER LAA Crime Apps - Core
 
 # fail early and print all commands
 RUN set -ex
@@ -34,7 +34,7 @@ WORKDIR /usr/src/app
 
 COPY Gemfile* ./
 
-RUN gem install bundler -v 2.2.28
+RUN gem install bundler -v 2.4.22
 RUN bundle config set --local deployment 'true' without 'development:test' && bundle install --jobs 4
 
 ####################
@@ -45,6 +45,7 @@ ENV RAILS_ENV production
 ENV NODE_ENV production
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
+ENV NODE_OPTIONS --openssl-legacy-provider
 EXPOSE 3000
 
 COPY . .

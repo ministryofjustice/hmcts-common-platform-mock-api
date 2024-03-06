@@ -63,7 +63,7 @@ end
 
 group :test do
   gem "rspec_junit_formatter"
-  gem "shoulda-matchers"
+  gem "shoulda-matchers", ">= 6.0.0"
   gem "simplecov"
   gem "webdrivers"
 end

@@ -21,7 +21,7 @@ commands:
 jobs:
   test:
     docker:
-      - image: cimg/ruby:3.2.2-browsers
+      - image: cimg/ruby:3.3.0-browsers
         environment:
           DATABASE_URL: postgres://postgres@localhost/hmcts_common_platform_api_test
           RAILS_ENV: test

@@ -207,7 +207,7 @@ GEM
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
-    listen (3.8.0)
+    listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.22.0)
@@ -458,9 +458,7 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  aarch64-linux
   arm64-darwin-21
-  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -484,7 +482,7 @@ DEPENDENCIES
   json-schema!
   json-schema-rspec (~> 0.0.4)
   kaminari
-  listen (>= 3.0.5, < 3.9)
+  listen (>= 3.0.5, < 3.10)
   oauth2 (~> 2.0.9)
   pg (>= 1.4.5, < 2.0)
   pg_search

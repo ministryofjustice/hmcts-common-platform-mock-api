@@ -62,6 +62,15 @@ You can verify your setup by sending a request to an endpoint and checking for a
 curl -u admin:password --head http://localhost:3000/admin/prosecution_cases
 ```
 
+### Running the App using docker compose
+
+The application and associated database can be started up using the following docker compose command. By default the base `.env` file will be used however
+you can set the `.env.test.local` or `.env.development.local` files using the `--env-file` argument.
+
+```shell
+docker-compose --env-file .env.development.local up --build
+```
+
 ### Running the tests
 
 The RSpec test can be run using the following command:

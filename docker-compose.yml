@@ -1,0 +1,27 @@
+version: '3'
+services:
+  app:
+    platform: "linux/amd64"
+    build:
+      context: .
+    environment:
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      SHARED_SECRET_KEY: ${SHARED_SECRET_KEY}
+      ADMIN_USERNAME: ${ADMIN_USERNAME}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      LAA_DEV_API_URL: ${LAA_DEV_API_URL}
+      LAA_DEV_OAUTH_URL: ${LAA_DEV_OAUTH_URL}
+      LAA_DEV_CLIENT_ID: ${LAA_DEV_CLIENT_ID}
+      LAA_DEV_CLIENT_SECRET: ${LAA_DEV_CLIENT_SECRET}
+      DATABASE_URL: postgres://postgres:@postgres:5432/hmcts_common_platform_api_db
+    depends_on:
+      - postgres
+    ports:
+      - '3000:3000'
+  postgres:
+    image: cimg/postgres:14.11
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: 'postgres'
+

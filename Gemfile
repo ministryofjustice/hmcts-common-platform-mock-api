@@ -58,7 +58,7 @@ end
 
 group :development do
   gem "brakeman"
-  gem "listen", ">= 3.0.5", "< 3.9"
+  gem "listen", ">= 3.0.5", "< 3.10"
 end
 
 group :test do

@@ -9,8 +9,8 @@ FactoryBot.define do
     secondaryEmail { "delbert@keeling.org" }
     fax { "024 0862 0169" }
     factory :realistic_contact_number do
-      home { Faker::PhoneNumber.phone_number }
-      work { Faker::PhoneNumber.phone_number }
+      home { Faker::PhoneNumber.phone_number_with_country_code }
+      work { Faker::PhoneNumber.phone_number_with_country_code }
       mobile { Faker::PhoneNumber.cell_phone }
       primaryEmail { Faker::Internet.email }
       secondaryEmail { Faker::Internet.email }

@@ -167,7 +167,7 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
-    faker (3.2.3)
+    faker (3.3.0)
       i18n (>= 1.8.11, < 2)
     faraday (2.9.0)
       faraday-net_http (>= 2.0, < 3.2)
@@ -180,7 +180,6 @@ GEM
     hashie (5.0.0)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
-      racc (~> 1.7)
     io-console (0.7.2)
     irb (1.12.0)
       rdoc
@@ -460,10 +459,8 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  aarch64-linux
   arm64-darwin-21
   arm64-darwin-23
-  ruby
   x86_64-linux
 
 DEPENDENCIES

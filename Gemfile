@@ -53,7 +53,7 @@ group :development, :test do
   gem "rubocop-performance", require: false
   gem "sinatra"
   gem "vcr"
-  gem "webmock"
+  gem "webmock", ">= 3.23.1"
 end
 
 group :development do

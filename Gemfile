@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.1"
+gem "rails", "~> 7.1", ">= 7.1.3.4"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 1.4.5", "< 2.0"
 # Use Puma as the app server
@@ -17,12 +17,12 @@ gem "sass-rails", ">= 6"
 gem "jbuilder", "~> 2.11"
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem "actionpack", "~> 7.1"
+gem "actionpack", "~> 7.1", ">= 7.1.3.4"
 gem "actionview", "~> 7.1"
 gem "activemodel", "~> 7.1"
 gem "activerecord", "~> 7.1"
 gem "activesupport", "~> 7.1"
-gem "railties", "~> 7.1"
+gem "railties", "~> 7.1", ">= 7.1.3.4"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
@@ -44,11 +44,11 @@ gem "webpacker"
 group :development, :test do
   gem "capybara"
   gem "colorize"
-  gem "dotenv-rails"
+  gem "dotenv-rails", ">= 3.1.1"
   gem "json-schema-rspec", "~> 0.0.4"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 6.1.1"
+  gem "rspec-rails", "~> 6.1.2"
   gem "rubocop-govuk", "~> 4.9"
   gem "rubocop-performance", require: false
   gem "sinatra"

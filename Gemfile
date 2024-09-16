@@ -14,7 +14,7 @@ gem "puma", "~> 6.4.2"
 # Use SCSS for stylesheets
 gem "sass-rails", ">= 6"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "~> 2.11"
+gem "jbuilder", "~> 2.13"
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem "actionpack", "~> 7.1"

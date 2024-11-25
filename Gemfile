@@ -49,11 +49,11 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails", "~> 6.1.1"
-  gem "rubocop-govuk", "~> 4.9"
-  gem "rubocop-performance", require: false
+  gem "rubocop-govuk", "~> 4.15", ">= 4.15.0"
+  gem "rubocop-performance", ">= 1.21.0", require: false
   gem "sinatra"
   gem "vcr"
-  gem "webmock"
+  gem "webmock", ">= 3.23.1"
 end
 
 group :development do

@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.1"
+gem "rails", "~> 7.1", ">= 7.1.5.1"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 1.4.5", "< 2.0"
 # Use Puma as the app server
@@ -17,12 +17,12 @@ gem "sass-rails", ">= 6"
 gem "jbuilder", "~> 2.11"
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem "actionpack", "~> 7.1"
+gem "actionpack", "~> 7.1", ">= 7.1.5.1"
 gem "actionview", "~> 7.1"
 gem "activemodel", "~> 7.1"
 gem "activerecord", "~> 7.1"
 gem "activesupport", "~> 7.1"
-gem "railties", "~> 7.1"
+gem "railties", "~> 7.1", ">= 7.1.5.1"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false

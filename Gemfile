@@ -50,7 +50,7 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails", "~> 6.1.1"
   gem "rubocop-govuk", "~> 4.9"
-  gem "rubocop-performance", require: false
+  gem "rubocop-performance", ">= 1.24.0", require: false
   gem "sinatra"
   gem "vcr"
   gem "webmock"

@@ -36,6 +36,7 @@
 <h2>Defendants</h2>
 
 <% @hearing.defendants.each do |defendant| %>
+  <div>
   <ul>
     <li>Name: <%= defendant.name %></li>
   </ul>
@@ -99,6 +100,8 @@
       </li>
     </ul>
   <% end %>
+  </div>
+  <hr/>
 <% end %>
 
 <h2>Court Applications</h2>

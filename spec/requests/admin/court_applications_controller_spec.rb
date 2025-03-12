@@ -1,9 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "/admin/court_application", type: :request do
-  let(:hearing_without_court_application) { FactoryBot.create(:hearing) }
+  let(:prosecution_case) { FactoryBot.create(:realistic_prosecution_case) }
+  let(:hearing_without_court_application) { prosecution_case.hearings.first }
   let(:hearing) { FactoryBot.create(:hearing, :with_court_application) }
   let(:court_application) { hearing.court_applications.first }
+
   let(:headers) { { 'Authorization': authorisation } }
   let(:authorisation) { ActionController::HttpAuthentication::Basic.encode_credentials(ENV["ADMIN_USERNAME"], ENV["ADMIN_PASSWORD"]) }
 
@@ -29,7 +31,7 @@ RSpec.describe "/admin/court_application", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
-      get(edit_admin_court_application_url(court_application), headers:)
+      get(admin_hearing_court_applications_url(court_application), headers:)
       expect(response).to be_successful
     end
   end

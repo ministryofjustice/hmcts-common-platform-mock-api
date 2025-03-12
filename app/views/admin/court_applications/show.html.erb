@@ -8,6 +8,7 @@
   <% end %>
 </ul>
 
+<%= link_to 'Edit', edit_admin_court_application_path(@court_application) %>
 <h2>Court Application Type</h2>
 
 <ul>
@@ -16,6 +17,7 @@
   <% end %>
 </ul>
 
+<%= link_to 'Edit Court Application Type', edit_admin_court_application_court_application_type_path(@court_application) %>
 <h2>Respondents</h2>
 
 <% @court_application.respondents.each_with_index do |respondent, index| %>
@@ -42,5 +44,14 @@
 
 <hr>
 
-<%= link_to 'Edit', edit_admin_court_application_path(@court_application) %> |
-<%= link_to 'Back to hearing', admin_hearing_path(@court_application.hearing_id) %>
+
+<div class="links">
+<% if @court_application.defendant %>
+  <%= link_to 'Back to Defendant', admin_defendant_path(@court_application.defendant) %>
+<% end %>
+</div>
+<div class="links">
+<% if @court_application.hearing %>
+  <%= link_to 'Back to Hearing', admin_hearing_path(@court_application.hearing) %>
+<% end %>
+</div>

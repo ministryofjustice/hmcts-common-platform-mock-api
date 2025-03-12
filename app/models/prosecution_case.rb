@@ -11,6 +11,9 @@ class ProsecutionCase < ApplicationRecord
   has_many :prosecution_case_hearings, dependent: :destroy
   has_many :hearings, through: :prosecution_case_hearings, inverse_of: :prosecution_cases
 
+  has_many :court_application_prosecution_case, dependent: :destroy
+  has_many :court_application, through: :court_application_prosecution_case
+
   include PgSearch::Model
   pg_search_scope :search,
                   associated_against: { prosecution_case_identifier: :caseURN },

@@ -1,6 +1,75 @@
+<h2>Court Application</h2>
+
 <div class="nested-fields">
   <div class="field">
     <%= f.label :applicationReceivedDate, 'Received Date' %>
     <%= f.date_field :applicationReceivedDate %>
   </div>
+  <div class="field">
+    <%= f.label :applicationStatus, 'Application Status' %>
+    <%= f.text_field :applicationStatus %>
+  </div>
+  <div class="field">
+    <%= f.label :outOfTimeReasons, 'Out Of TimeReasons' %>
+    <%= f.text_field :outOfTimeReasons %>
+  </div>
+  <div class="field">
+    <%= f.label :court_application_party_id, 'court_application_party_id' %>
+    <%= f.text_field :court_application_party_id %>
+  </div>
+  <div class="field">
+    <%= f.label :applicationDecisionSoughtByDate, 'Application Decision Sought By Date' %>
+    <%= f.datetime_local_field :applicationDecisionSoughtByDate %>
+  </div>
+  <div class="field">
+    <%= f.label :applicationReference, 'Application Reference' %>
+    <%= f.text_field :applicationReference %>
+  </div>
+    <div class="field">
+    <%= f.label :court_application_outcome_id, 'Court Application Outcome Id' %>
+    <%= f.text_field :court_application_outcome_id %>
+  </div>
+  <div class="field">
+    <%= f.label :applicationParticulars, 'Application Particulars' %>
+    <%= f.text_field :applicationParticulars %>
+  </div>
+  <div class="field">
+    <%= f.label :parentApplicationId, 'Parent Application Id' %>
+    <%= f.text_field :parentApplicationId %>
+  </div>
+  <div class="field">
+    <%= f.label :applicationParticulars, 'Application Particulars' %>
+    <%= f.text_field :applicationParticulars %>
+  </div>
+  <div class="field">
+    <%= f.label :court_application_payment_id, 'Court Application Payment Id' %>
+    <%= f.text_field :court_application_payment_id %>
+  </div>
+  <div class="field">
+    <%= f.label :court_application_payment_id, 'Court Application Payment Id' %>
+    <%= f.text_field :court_application_payment_id %>
+  </div>
+  <div class="field">
+    <%= f.label :breachedOrder, 'Breached Order' %>
+    <%= f.text_field :breachedOrder %>
+  </div>
+  <% if @defendants.present? %>
+    <div class="field">
+      <%= f.label :defendant_id, "Select Defendant" %>
+      <%= f.select :defendant_id, options_for_select(@defendants.all.collect { |defendant| 
+                    [ "#{defendant.defendable.person.first_name} #{defendant.defendable.person.middle_name} #{defendant.defendable.person.last_name}",
+                    defendant.id] }, @court_application.defendant_id), 
+                    prompt: "Select a user" %>
+    </div>
+  <% end %>
+  <% if @hearings.present? %>
+      <div class="field">
+        <p><strong>So that the existing api endpoint work as expected</strong></p>
+      <%= f.label :hearing_id, "Select Main Hearing" %>
+      <%= f.select :hearing_id, options_for_select(@hearings.all.collect { |hearing| 
+                    [ hearing.id,
+                    hearing.id] }, @court_application.hearing_id),
+                    prompt: "Select a hearing"%>
+    </div>
+  <% end %>
 </div>

@@ -18,6 +18,29 @@
 <div class="links">
   <%= link_to 'Add offence', new_admin_defendant_offence_path(@defendant) %>
 </div>
+  <h2>Court Applications</h2>
+  <% @defendant.court_application.each_with_index do |court_application, index| %>
+    <ul>
+      <li>
+        <strong><%= "Court application #{index + 1 }" %></strong>
+        <%= link_to'Show', admin_court_application_path(court_application) %>
+        <%= link_to 'Edit', edit_admin_court_application_path(court_application) %>
+        <%= link_to 'Destroy', admin_defendants_court_application_path(court_application), method: :delete, data: { confirm: 'Are you sure?' } %>
 
+      <p>
+        <strong>Court application type</strong>
+        <%= link_to 'Edit', edit_admin_court_application_court_application_type_path(court_application, referrer: request.original_url) %>
+      </p>
+
+      <ul>
+        <li>code: <%= court_application.court_application_type.code %></li>
+        <li>type: <%= court_application.court_application_type.type %></li>
+        <li>legislation: <%= court_application.court_application_type.legislation %></li>
+      </ul>
+    </ul>
+  <% end %>
+<div class="links">
+  <%= link_to 'Add court application', admin_defendant_defendants_court_applications_path(@defendant), method: :post %>
+</div>
 <%= link_to 'Edit', edit_admin_defendant_path(@defendant) %> |
 <%= link_to 'Back', admin_prosecution_case_path(@defendant.prosecution_case) %>

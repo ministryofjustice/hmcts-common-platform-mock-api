@@ -4,6 +4,7 @@ class Defendant < ApplicationRecord
   include BuilderMappable
   belongs_to :defendable, polymorphic: true
   belongs_to :prosecution_case, inverse_of: :defendants
+  has_many :court_application, dependent: :destroy
   has_many :offences, dependent: :destroy
   has_many :laa_references, through: :offences
   has_many :associated_people, dependent: :destroy

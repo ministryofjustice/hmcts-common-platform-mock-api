@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/results/courts/api/courtApplicationRequest.json",
+  "type": "object",
+  "properties": {
+      "applicationId": {
+        "description": "The identifier of the court application ID",
+        "$ref": "http://justice.gov.uk/core/courts/external/courtsDefinitions.json#/definitions/uuid"
+      }
+  },
+  "required": [
+      "applicationId"
+    ],
+  "additionalProperties": false
+}

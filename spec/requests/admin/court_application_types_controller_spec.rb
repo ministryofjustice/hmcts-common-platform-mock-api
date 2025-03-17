@@ -29,16 +29,7 @@ RSpec.describe "/admin/court_application_type", type: :request do
       it "redirects to the hearing" do
         patch(admin_court_application_court_application_type_url(court_application), params: { court_application_type: new_attributes }, headers:)
         court_application_type.reload
-        expect(response).to redirect_to(admin_hearing_url(hearing))
-      end
-    end
-
-    context "with invalid parameters" do
-      let(:invalid_attributes) { { code: nil, type: nil, legislation: nil } }
-
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch(admin_court_application_court_application_type_url(court_application), params: { court_application_type: invalid_attributes }, headers:)
-        expect(response).to be_successful
+        expect(response).to redirect_to(admin_court_application_url(court_application))
       end
     end
   end

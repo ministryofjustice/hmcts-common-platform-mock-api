@@ -2,3 +2,19 @@
   <%= render 'form', f: form %>
   <%= form.submit %>
 <% end %>
+</br>
+<div class="links">
+<% if @court_application_type %>
+  <%= link_to 'Back to Court application', admin_court_application_path(@court_application_type.court_application) %>
+<% end %>
+</div>
+<div class="links">
+<% if @court_application_type.court_application.defendant.present? %>
+  <%= link_to 'Back to Defendant', admin_defendant_path(@court_application_type.court_application.defendant) %>
+<% end %>
+</div>
+<div class="links">
+<% if @court_application_type.court_application.hearing %>
+  <%= link_to 'Back to Hearing', admin_hearing_path(@court_application_type.court_application.hearing) %>
+<% end %>
+</div>

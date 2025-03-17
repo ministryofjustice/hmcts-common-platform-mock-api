@@ -7,10 +7,21 @@ class CourtApplication < ApplicationRecord
   belongs_to :court_application_party
   belongs_to :court_application_payment, optional: true
   belongs_to :court_application_type
-  belongs_to :hearing
+  belongs_to :hearing, optional: true
+  belongs_to :defendant, optional: true
 
   has_many :judicial_results, dependent: :destroy
   has_many :respondents, class_name: "CourtApplicationParty", dependent: :destroy
+  # only used for application enpoint
+
+  has_many :court_application_prosecution_case, dependent: :destroy
+  has_many :prosecution_case, through: :court_application_prosecution_case
+
+  # only used for application enpoint
+  has_many :court_application_hearing, dependent: :destroy
+  has_many :court_hearings, through: :court_application_hearing, source: :hearing
+
+  accepts_nested_attributes_for :court_application_type
 
   validates :applicationReceivedDate, presence: true
   validates :court_application_party, presence: true

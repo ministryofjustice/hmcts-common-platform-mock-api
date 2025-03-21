@@ -57,7 +57,7 @@ RSpec.describe "/admin/hearings", type: :request do
       it "does not create a new Hearing" do
         expect {
           post admin_prosecution_case_hearings_url(prosecution_case), params: { hearing: invalid_attributes }, headers:
-        }.to change(Hearing, :count).by(0)
+        }.not_to change(Hearing, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do

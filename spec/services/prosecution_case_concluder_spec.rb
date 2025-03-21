@@ -15,6 +15,6 @@ RSpec.describe ProsecutionCaseConcluder do
 
   it "concludes the prosecution case" do
     publish
-    expect(prosecution_case.reload.concluded).to eq(true)
+    expect(prosecution_case.reload.concluded).to be(true)
   end
 end

@@ -25,7 +25,7 @@ RSpec.describe DefendantSummary, type: :model do
     it_has_behaviour "conforming to valid schema"
   end
 
-  describe "#date_of_next_hearing " do
+  describe "#date_of_next_hearing" do
     subject { defendant_summary.date_of_next_hearing }
 
     it { is_expected.to be_blank }

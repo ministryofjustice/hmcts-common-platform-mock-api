@@ -14,7 +14,7 @@ RSpec.describe LaaConnector do
 
   context "with faraday configuration" do
     let(:connection) { double }
-    let(:oauth_client) { instance_double("OAuth2::Client", client_credentials: token_generator) }
+    let(:oauth_client) { instance_double(OAuth2::Client, client_credentials: token_generator) }
     let(:token_generator) { double(get_token: double(token: "XYZ")) }
 
     before do

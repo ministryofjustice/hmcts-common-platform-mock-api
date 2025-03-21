@@ -226,7 +226,7 @@ GEM
     multi_xml (0.6.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    mutex_m (0.2.0)
+    mutex_m (0.3.0)
     net-http (0.4.1)
       uri
     net-imap (0.4.10)
@@ -460,10 +460,8 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  aarch64-linux
   arm64-darwin-21
   arm64-darwin-23
-  ruby
   x86_64-linux
 
 DEPENDENCIES

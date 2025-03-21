@@ -32,7 +32,7 @@ AllCops:
     - "bin/**/*"
     - "log/**/*"
     - "node_modules/**/*"
-    
+
 Lint/MissingSuper:
   Exclude:
     - 'app/services/**/*.rb'
@@ -169,3 +169,15 @@ Rails/ShortI18n:
 
 Rails/WhereExists:
   Enabled: true
+
+RSpec/IndexedLet:
+  Enabled: false
+
+RSpec/RepeatedDescription:
+  Enabled: false
+
+RSpec/RedundantPredicateMatcher:
+  Enabled: false
+
+RSpec/NoExpectationExample:
+  Enabled: false

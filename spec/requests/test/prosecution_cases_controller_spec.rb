@@ -23,7 +23,7 @@ RSpec.describe "Test::ProsecutionCasesController", type: :request do
         expect {
           post(test_prosecution_cases_url, params: { missing: invalid_parameters }.to_json, headers:)
           expect(response).to have_http_status(:bad_request)
-        }.to change(ProsecutionCase, :count).by(0)
+        }.not_to change(ProsecutionCase, :count)
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe "Test::ProsecutionCasesController", type: :request do
         expect {
           post(test_prosecution_cases_url, params: { prosecution_case: invalid_parameters }.to_json, headers:)
           expect(response).to have_http_status(:unprocessable_entity)
-        }.to change(ProsecutionCase, :count).by(0)
+        }.not_to change(ProsecutionCase, :count)
       end
     end
   end

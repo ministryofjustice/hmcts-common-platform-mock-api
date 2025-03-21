@@ -2,7 +2,7 @@
 
 require "support/when_authenticated"
 
-RSpec.describe "adding a new offence to prosecution case ", type: :feature do
+RSpec.describe "adding a new offence to prosecution case", type: :feature do
   let(:defendant) { FactoryBot.create(:defendant) }
 
   describe "add offence" do

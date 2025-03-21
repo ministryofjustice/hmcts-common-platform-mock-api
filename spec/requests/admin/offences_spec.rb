@@ -24,7 +24,7 @@ RSpec.describe "offences", type: :request do
       it "does not create a new defendant offence" do
         expect {
           post "/admin/defendants/#{defendant.id}/offences", params: { offence: offence_attributes.merge(offenceCode: nil) }, headers:
-        }.to change(defendant.offences, :count).by(0)
+        }.not_to change(defendant.offences, :count)
       end
     end
   end

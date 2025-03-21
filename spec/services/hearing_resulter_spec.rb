@@ -15,11 +15,11 @@ RSpec.describe HearingResulter do
 
   it "results the hearing" do
     result_and_publish
-    expect(hearing.reload.resulted).to eq(true)
+    expect(hearing.reload.resulted).to be(true)
   end
 
   it "returns a boolean" do
-    expect(result_and_publish).to eq(true)
+    expect(result_and_publish).to be(true)
   end
 
   context "when publish_to is nil" do

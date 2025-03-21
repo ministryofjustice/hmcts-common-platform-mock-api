@@ -103,7 +103,7 @@ RSpec.describe "Admin::Defendants", type: :request do
       it "does not create a new Defendant" do
         expect {
           post admin_prosecution_case_defendants_url(prosecution_case), params: { defendant: invalid_attributes }, headers:
-        }.to change(Defendant, :count).by(0)
+        }.not_to change(Defendant, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do

@@ -117,6 +117,6 @@ RSpec.describe DemoDataHelper, type: :helper do
 
     it { is_expected.to all(be_instance_of(Hash)) }
 
-    it { expect(results.flat_map(&:keys)).to contain_exactly(*attributes) }
+    it { expect(results.flat_map(&:keys)).to match_array(attributes) }
   end
 end

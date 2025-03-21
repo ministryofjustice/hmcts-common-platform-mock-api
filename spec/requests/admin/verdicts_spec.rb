@@ -28,7 +28,7 @@ RSpec.describe "verdicts", type: :request do
 
         expect {
           post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers:
-        }.to change(offence.verdicts, :count).by(0)
+        }.not_to change(offence.verdicts, :count)
       end
 
       it "does not allow the creation of another verdict on another hearing for the same offence" do
@@ -37,7 +37,7 @@ RSpec.describe "verdicts", type: :request do
 
         expect {
           post "/admin/hearings/#{hearing.id}/offences/#{offence.id}/verdicts", headers:
-        }.to change(offence.verdicts, :count).by(0)
+        }.not_to change(offence.verdicts, :count)
       end
     end
   end

@@ -51,7 +51,7 @@ RSpec.describe LaaReferenceRecorder do
       before { laa_reference.save! }
 
       it "does not create a new LaaReference" do
-        expect { record_reference }.to change(LaaReference, :count).by(0)
+        expect { record_reference }.not_to change(LaaReference, :count)
       end
 
       it "updates the LaaReference" do

@@ -74,7 +74,7 @@ RSpec.describe "Demo data tasks", type: :rake do
       it "adds unique sequential sittingDays to hearing days" do
         sitting_days = case1.hearings.flat_map { |h| h.hearing_days.map { |d| d.sittingDay.to_date } }
         expected_dates = (0..8).map { |i| "2019-10-23".to_date + i.days }
-        expect(sitting_days).to contain_exactly(*expected_dates)
+        expect(sitting_days).to match_array(expected_dates)
       end
 
       it "adds 10 hearing events to each hearing day" do
@@ -108,7 +108,7 @@ RSpec.describe "Demo data tasks", type: :rake do
 
     context "when demo does not exist" do
       it "destroys 0 cases" do
-        expect { unloader }.to change(ProsecutionCase, :count).by(0)
+        expect { unloader }.not_to change(ProsecutionCase, :count)
       end
     end
   end

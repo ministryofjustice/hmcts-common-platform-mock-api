@@ -5,7 +5,7 @@ RSpec.describe "HearingLogs", type: :request do
 
   describe "GET /hearing/hearingLog" do
     let(:hearing_day) { hearing.hearing_days.first }
-    let(:params) { { hearingId: hearing.id, date: hearing_day.sittingDay.strftime("%Y-%m-%d") } }
+    let(:params) { { hearingId: hearing.hearing_id, date: hearing_day.sittingDay.strftime("%Y-%m-%d") } }
 
     before { FactoryBot.create(:hearing_event, hearing_day:) }
 

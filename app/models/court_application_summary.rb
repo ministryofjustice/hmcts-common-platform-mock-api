@@ -46,10 +46,4 @@ private
   def defendants_builder
     CourtApplicationDefendantSummary.new(defendant_id: @court_application.defendant.id).to_builder.attributes!
   end
-
-  def judicial_result_builder
-    @court_application.judicial_results.ids.map do |judicial_results_single_id|
-      CourtApplicationJudicialResultSummary.new(judicial_results_id: judicial_results_single_id).to_builder.attributes!
-    end
-  end
 end

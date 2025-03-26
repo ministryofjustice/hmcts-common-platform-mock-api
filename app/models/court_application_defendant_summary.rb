@@ -40,7 +40,7 @@ class CourtApplicationDefendantSummary
 private
 
   def proceedings_concluded?
-    defendant.offences.map(&:isDisposed).all? true
+    defendant.offences.all?(&:isDisposed)
   end
 
   def defendant_first_name

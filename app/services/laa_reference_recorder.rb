@@ -9,6 +9,7 @@ class LaaReferenceRecorder < ApplicationService
 
   def call
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
+
     raise Errors::InvalidParams, errors if errors.present?
 
     offence = Offence.find(params[:offenceId])

@@ -48,6 +48,10 @@ Rails.application.routes.draw do
     "/cases/:prosecutionCaseId" \
     "/defendant/:defendantId" \
     "/offences/:offenceId" => "laa_references#create", as: :laa_reference
+  post "/prosecutionCases/laaReference" \
+    "/application/:applicationId" \
+    "/subject/:subjectId" \
+    "/offences/:offenceId" => "application_references#create", as: :application_reference
   post "/prosecutionCases/representationOrder" \
     "/cases/:prosecutionCaseId" \
     "/defendants/:defendantId" \

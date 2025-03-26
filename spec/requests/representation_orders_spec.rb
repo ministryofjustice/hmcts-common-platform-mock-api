@@ -34,29 +34,63 @@ RSpec.describe "RepresentationOrders", type: :request do
     }
   end
 
-  context "when the auth header is incorrect" do
-    it "returns a response with an unauthorised status" do
-      post "/prosecutionCases/representationOrder/cases/#{defendant.prosecution_case.id}/defendants/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params
-      expect(response).to have_http_status(:unauthorized)
-    end
-  end
-
-  context "when the auth header is correct" do
-    let(:headers) { { 'Ocp-Apim-Subscription-Key': ENV.fetch("SHARED_SECRET_KEY") } }
-
-    context "when the LaaReference exists" do
-      before { laa_reference.save! }
-
-      it "returns an accepted status" do
-        post("/prosecutionCases/representationOrder/cases/#{defendant.prosecution_case.id}/defendants/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params, headers:)
-        expect(response).to have_http_status(:accepted)
+  describe "cases" do
+    context "when the auth header is incorrect" do
+      it "returns a response with an unauthorised status" do
+        post "/prosecutionCases/representationOrder/cases/#{defendant.prosecution_case.id}/defendants/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params
+        expect(response).to have_http_status(:unauthorized)
       end
     end
 
-    context "when the LaaReference is new" do
-      it "returns an accepted status" do
-        post("/prosecutionCases/representationOrder/cases/#{defendant.prosecution_case.id}/defendants/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params, headers:)
-        expect(response).to have_http_status(:accepted)
+    context "when the auth header is correct" do
+      let(:headers) { { 'Ocp-Apim-Subscription-Key': ENV.fetch("SHARED_SECRET_KEY") } }
+
+      context "when the LaaReference exists" do
+        before { laa_reference.save! }
+
+        it "returns an accepted status" do
+          post("/prosecutionCases/representationOrder/cases/#{defendant.prosecution_case.id}/defendants/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params, headers:)
+          expect(response).to have_http_status(:accepted)
+        end
+      end
+
+      context "when the LaaReference is new" do
+        it "returns an accepted status" do
+          post("/prosecutionCases/representationOrder/cases/#{defendant.prosecution_case.id}/defendants/#{defendant.id}/offences/#{offence.id}", params: laa_reference_params, headers:)
+          expect(response).to have_http_status(:accepted)
+        end
+      end
+    end
+  end
+
+  describe "application" do
+    let(:subject_id) { SecureRandom.uuid }
+    let(:application_id) { SecureRandom.uuid }
+
+    context "when the auth header is incorrect" do
+      it "returns a response with an unauthorised status" do
+        post "/prosecutionCases/representationOrder/application/#{application_id}/subject/#{subject_id}/offences/#{offence.id}", params: laa_reference_params
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    context "when the auth header is correct" do
+      let(:headers) { { 'Ocp-Apim-Subscription-Key': ENV.fetch("SHARED_SECRET_KEY") } }
+
+      context "when the LaaReference exists" do
+        before { laa_reference.save! }
+
+        it "returns an accepted status" do
+          post("/prosecutionCases/representationOrder/application/#{application_id}/subject/#{subject_id}/offences/#{offence.id}", params: laa_reference_params, headers:)
+          expect(response).to have_http_status(:accepted)
+        end
+      end
+
+      context "when the LaaReference is new" do
+        it "returns an accepted status" do
+          post("/prosecutionCases/representationOrder/application/#{application_id}/subject/#{subject_id}/offences/#{offence.id}", params: laa_reference_params, headers:)
+          expect(response).to have_http_status(:accepted)
+        end
       end
     end
   end

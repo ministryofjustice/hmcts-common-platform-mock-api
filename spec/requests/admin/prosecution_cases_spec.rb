@@ -37,7 +37,7 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
     end
 
     context "when a query parameter is provided"
-    it "renders a successful response " do
+    it "renders a successful response" do
       get(admin_prosecution_cases_url, params: { query: "test" }, headers:)
       expect(response).to be_successful
     end
@@ -82,7 +82,7 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
       it "does not create a new ProsecutionCase" do
         expect {
           post admin_prosecution_cases_url, params: { prosecution_case: invalid_attributes }, headers:
-        }.to change(ProsecutionCase, :count).by(0)
+        }.not_to change(ProsecutionCase, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
@@ -151,7 +151,7 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
       it "results the hearing" do
         post(result_hearing_admin_prosecution_case_url(prosecution_case, hearing.id), headers:)
         hearing.reload
-        expect(hearing.resulted).to eq(true)
+        expect(hearing.resulted).to be(true)
       end
 
       it "redirects to the prosecution_case" do

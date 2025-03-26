@@ -70,7 +70,7 @@ RSpec.describe LaaRepresentationOrderRecorder do
       before { laa_reference.save! }
 
       it "does not create a new LaaReference" do
-        expect { record_order }.to change(LaaReference, :count).by(0)
+        expect { record_order }.not_to change(LaaReference, :count)
       end
 
       it "updates the LaaReference" do
@@ -124,7 +124,7 @@ RSpec.describe LaaRepresentationOrderRecorder do
       end
 
       it "does not create a new DefenceOrganisation" do
-        expect { record_order }.to change(DefenceOrganisation, :count).by(0)
+        expect { record_order }.not_to change(DefenceOrganisation, :count)
       end
 
       it "updates the DefenceOrganisation" do
@@ -139,7 +139,7 @@ RSpec.describe LaaRepresentationOrderRecorder do
         expect(defence_organisation.fundingType).to eq("REPRESENTATION_ORDER")
         expect(defence_organisation.associationStartDate).to eq(effective_start_date)
         expect(defence_organisation.associationEndDate).to eq(effective_end_date)
-        expect(defence_organisation.isAssociatedByLAA).to eq(true)
+        expect(defence_organisation.isAssociatedByLAA).to be(true)
       end
     end
   end

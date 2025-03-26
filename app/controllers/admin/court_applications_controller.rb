@@ -1,11 +1,9 @@
 module Admin
   class CourtApplicationsController < Admin::ApplicationController
     def index
-      @court_applications = if params[:query].present?
-                              CourtApplication.search(params[:query]).order(created_at: :desc).page(params[:page])
-                            else
-                              CourtApplication.order(created_at: :desc).page(params[:page])
-                            end
+      scope = CourtApplication.order(created_at: :desc)
+      scope = scope.where(id: params[:query]) if params[:query].present?
+      @court_applications = scope.page(params[:page])
     end
 
     def new
@@ -37,9 +35,12 @@ module Admin
 
     def edit
       @court_application = CourtApplication.find(params[:id])
-      prosecution_case = ProsecutionCase.find(@court_application.prosecution_case)
-      @defendants = prosecution_case.defendants
-      @hearings = prosecution_case.hearings
+      # checks for existing court applications for prosecution_case as this is a new link table used only for appeals work.
+      if @court_application.prosecution_case.present?
+        prosecution_case = ProsecutionCase.find(@court_application.prosecution_case)
+        @defendants = prosecution_case.defendants
+        @hearings = prosecution_case.hearings
+      end
     end
 
     def update

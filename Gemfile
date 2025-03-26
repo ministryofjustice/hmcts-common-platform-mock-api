@@ -66,4 +66,5 @@ group :test do
   gem "shoulda-matchers", ">= 6.0.0"
   gem "simplecov"
   gem "webdrivers"
+  gem "rails-controller-testing"
 end

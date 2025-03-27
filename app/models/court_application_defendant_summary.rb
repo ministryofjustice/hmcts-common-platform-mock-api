@@ -13,7 +13,6 @@ class CourtApplicationDefendantSummary
 
   def to_builder
     Jbuilder.new do |defendant_summary|
-      defendant_summary.defendantId defendant_id
       if defendant.person?
         defendant_summary.defendantNINO defendant.defendable.person.nationalInsuranceNumber
         defendant_summary.defendantASN defendant.defendable.arrestSummonsNumber
@@ -27,8 +26,7 @@ class CourtApplicationDefendantSummary
       defendant_summary.dateOfNextHearing date_of_next_hearing
       defendant_summary.proceedingsConcluded proceedings_concluded?
       defendant_summary.masterDefendantId defendant.masterDefendantId
-      # Dummy subjectId until we build the link and unlik appeals links
-      defendant_summary.subjectId "4b463e6a-105b-433b-a88d-057d6e645bfb"
+      defendant_summary.subjectId defendant_id
       defendant_summary.offenceSummary defendant.offences
     end
   end

@@ -5,10 +5,10 @@ module Admin
     end
 
     def update
-      respondent = CourtApplicationParty.find(params[:id])
-      hearing = CourtApplication.find(respondent.court_application_id).hearing
+      @respondent = CourtApplicationParty.find(params[:id])
+      hearing = CourtApplication.find(@respondent.court_application_id).hearing
 
-      if respondent.update(respondent_params)
+      if @respondent.update(respondent_params)
         redirect_to admin_hearing_url(hearing), notice: "Respondent was successfully updated."
       else
         render :edit

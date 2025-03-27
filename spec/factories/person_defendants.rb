@@ -25,7 +25,6 @@ FactoryBot.define do
     factory :realistic_person_defendant do
       association :person, factory: :realistic_person
       association :bail_status, factory: :realistic_bail_status
-      association :custodyTimeLimit, factory: :realistic_custody_time_limit
       association :employer_organisation, factory: :realistic_organisation
       bailConditions { Faker::Lorem.sentence }
       bailReasons { Faker::Lorem.sentence }
@@ -36,6 +35,7 @@ FactoryBot.define do
       vehicleOperatorLicenceNumber { Faker::Alphanumeric.alphanumeric(number: 7).upcase }
       arrestSummonsNumber { Faker::Alphanumeric.alphanumeric(number: 12).upcase }
       employerPayrollReference { Faker::Alphanumeric.alphanumeric(number: 9).upcase }
+      custodyTimeLimit { Faker::Date.forward }
     end
   end
 end

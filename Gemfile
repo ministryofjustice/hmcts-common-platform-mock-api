@@ -62,9 +62,9 @@ group :development do
 end
 
 group :test do
+  gem "rails-controller-testing"
   gem "rspec_junit_formatter"
   gem "shoulda-matchers", ">= 6.0.0"
   gem "simplecov"
   gem "webdrivers"
-  gem "rails-controller-testing"
 end

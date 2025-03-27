@@ -23,7 +23,7 @@ RSpec.describe Admin::DefendantsCourtApplicationsController, type: :request do
   end
 
   describe "DELETE #destroy" do
-    it "delete  court_application" do
+    it "delete court_application" do
       expect(CourtApplication).to exist(court_application_to_delete.id)
       expect {
         delete(admin_defendants_court_application_url(court_application_to_delete), headers:)

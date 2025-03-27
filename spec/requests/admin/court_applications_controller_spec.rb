@@ -79,7 +79,7 @@ RSpec.describe "/admin/court_application", type: :request do
   end
 
   describe "GET #index" do
-    it "assigns  @court_applications" do
+    it "assigns @court_applications" do
       get(admin_court_applications_path, headers:)
       expect(assigns(:court_applications)).to be_a(ActiveRecord::Relation)
       expect(response).to have_http_status(:ok)
@@ -87,7 +87,7 @@ RSpec.describe "/admin/court_application", type: :request do
   end
 
   describe "PUT #update" do
-    it "assigns  @court_application" do
+    it "assigns @court_application" do
       get(edit_admin_court_application_path(court_application), headers:)
       expect(assigns(:court_application)).to eq(court_application)
       expect(response).to have_http_status(:ok)
@@ -95,9 +95,10 @@ RSpec.describe "/admin/court_application", type: :request do
 
     context "with invalid parameters" do
       it "does not update the court application" do
-        put(admin_court_application_path(court_application), params: { id: court_application.id, court_application: invalid_attributes }, headers:)
-        court_application.reload
-        expect(court_application.parentApplicationId).to eq(court_application.parentApplicationId)
+        court_application_test = court_application
+        put(admin_court_application_path(court_application_test), params: { id: court_application_test.id, court_application: invalid_attributes }, headers:)
+        court_application_test.reload
+        expect(court_application.parentApplicationId).to eq(court_application_test.parentApplicationId)
       end
 
       it "redirects the edit template" do
@@ -127,7 +128,7 @@ RSpec.describe "/admin/court_application", type: :request do
   end
 
   describe "DELETE #destroy" do
-    it "delete  court_application" do
+    it "delete court_application" do
       expect(CourtApplication).to exist(court_application_to_delete.id)
       expect {
         delete(admin_court_application_path(court_application_to_delete), headers:)

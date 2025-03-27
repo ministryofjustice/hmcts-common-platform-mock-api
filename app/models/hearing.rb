@@ -15,6 +15,7 @@ class Hearing < ApplicationRecord
   has_many :defendants, through: :prosecution_cases
   has_many :offences, through: :defendants
   has_many :court_applications, dependent: :destroy
+  has_many :court_application_hearing, dependent: :destroy
   has_many :referral_reasons
   has_many :hearing_case_notes
   has_many :hearing_days, inverse_of: :hearing, dependent: :destroy

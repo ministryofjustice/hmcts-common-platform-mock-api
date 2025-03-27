@@ -8,6 +8,8 @@ class CourtApplicationType < ApplicationRecord
 
   self.inheritance_column = nil
 
+  has_one :court_application, inverse_of: :court_application_type
+
   validates :type, presence: true
   validates :category_code, presence: true
   validates :linkType, presence: true, inclusion: LINK_TYPES

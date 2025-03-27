@@ -1,0 +1,7 @@
+<%= form_with(model: [:admin, @court_application], local: true, url: admin_court_applications_path) do |form| %>
+  <%= @court_application.court_application_type.inspect %>
+  <%= render 'form', f: form %>
+  <%= form.submit %>
+<% end %>
+
+<hr>

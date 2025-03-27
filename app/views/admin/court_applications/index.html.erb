@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Court Applications</h1>
+
+<%= form_with local: true, method: :get do |form| %>
+  <%= form.label :query, "Search for:" %>
+  <%= form.text_field :query, value: params[:query] %>
+  <%= form.submit "Search" %>
+  
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @court_applications.each do |court_application| %>
+      <tr>
+        <td><%= court_application.id %></td>
+        <td><%= link_to 'Show', [:admin, court_application] %></td>
+        <td><%= link_to 'Edit', edit_admin_court_application_path(court_application) %></td>
+        <td><%= link_to 'Destroy', [:admin, court_application], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<div class="links">
+  <%= link_to 'Clear', admin_court_applications_path, class: 'reload-link' %>
+</div>
+
+
+
+<%= paginate @court_applications %>
+<br>
+
+

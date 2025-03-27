@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     post "prosecution_conclusions/:id(/:publish_to)" => "prosecution_conclusions#create", as: :prosecution_conclusions
+    get "court_applications" => "court_applications#index"
 
     resources :prosecution_cases, shallow: true do
       member do
@@ -14,6 +15,11 @@ Rails.application.routes.draw do
       resources :defendants do
         resources :judicial_results
         resources :offences
+        resources :defendants_court_applications do
+          resources :judicial_results
+          resource :court_application_type, only: %i[edit update]
+          resources :respondents
+        end
       end
 
       resources :hearings, except: [:index] do
@@ -48,6 +54,7 @@ Rails.application.routes.draw do
     "/offences/:offenceId" => "representation_orders#create", as: :representation_order
   get "/hearing/results" => "hearings#show", as: :hearing
   get "/hearing/hearingLog" => "hearing_logs#show", as: :hearing_log
+  get "/applications/:applicationId" => "court_application#index", as: :applications
 
   namespace :test do
     resources :prosecution_cases, only: [:create], path: "prosecution_cases" do

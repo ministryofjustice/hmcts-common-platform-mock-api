@@ -115,3 +115,4 @@ Once the pull request has been merged, pull master and run
 ```
 git-crypt unlock
 ```
+

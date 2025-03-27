@@ -18,6 +18,7 @@ class ProsecutionCaseSummary
       prosecution_case_summary.caseStatus prosecution_case.caseStatus
       prosecution_case_summary.defendantSummary defendants_builder
       prosecution_case_summary.hearingSummary hearings_builder if prosecution_case.hearings.present?
+      prosecution_case_summary.applicationSummary court_application_builder if prosecution_case.court_applications.present?
     end
   end
 
@@ -34,6 +35,12 @@ private
   def defendants_builder
     prosecution_case.defendants.map do |defendant|
       DefendantSummary.new(defendant_id: defendant.id).to_builder.attributes!
+    end
+  end
+
+  def court_application_builder
+    prosecution_case.court_applications.map do |court_application|
+      ProsecutionCaseCourtApplicationSummary.new(court_application_id: court_application.id).to_builder.attributes!
     end
   end
 end

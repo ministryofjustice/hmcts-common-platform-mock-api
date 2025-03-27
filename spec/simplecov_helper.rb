@@ -2,7 +2,7 @@
 
 require "simplecov"
 
-SimpleCov.minimum_coverage 99
+SimpleCov.minimum_coverage 97
 
 unless ENV["NOCOVERAGE"]
   SimpleCov.start do

@@ -1,4 +1,14 @@
 <%= form_with(model: @court_application, local: true, url: admin_court_application_path) do |form| %>
+  <% if @court_application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@court_application.errors.count, "error") %> prevented this application from being saved:</h2>
+      <ul>
+        <% @court_application.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= render 'form', f: form %>
   <%= form.submit %>
 <% end %>

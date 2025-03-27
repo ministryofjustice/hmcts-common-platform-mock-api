@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     post "prosecution_conclusions/:id(/:publish_to)" => "prosecution_conclusions#create", as: :prosecution_conclusions
+    post "application_conclusions/:id(/:publish_to)" => "application_conclusions#create", as: :application_conclusions
     get "court_applications" => "court_applications#index"
 
     resources :prosecution_cases, shallow: true do

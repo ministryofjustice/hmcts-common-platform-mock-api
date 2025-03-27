@@ -1,5 +1,7 @@
 module Admin
   class CourtApplicationsController < Admin::ApplicationController
+    before_action :set_env_list, only: :show
+
     def index
       scope = CourtApplication.order(created_at: :desc)
       scope = scope.where(id: params[:query]) if params[:query].present?
@@ -78,7 +80,8 @@ module Admin
                                                 :breachedOrder,
                                                 :hearing_id,
                                                 :defendant_id,
-                                                :court_application_type_id)
+                                                :court_application_type_id,
+                                                :result_code)
     end
   end
 end

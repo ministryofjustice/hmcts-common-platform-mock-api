@@ -11,9 +11,9 @@ RSpec.describe "RepresentationOrders", type: :request do
                       offence:,
                       statusId: SecureRandom.uuid,
                       statusDescription: "status description",
-                      statusCode: status_code,
-                      applicationReference: application_reference,
-                      statusDate: status_date)
+                      statusCode: "old code",
+                      applicationReference: "old reference",
+                      statusDate: "2000-01-01")
   end
 
   let(:effective_start_date) { "2019-12-12" }
@@ -69,7 +69,7 @@ RSpec.describe "RepresentationOrders", type: :request do
 
     context "when the auth header is incorrect" do
       it "returns a response with an unauthorised status" do
-        post "/prosecutionCases/representationOrder/application/#{application_id}/subject/#{subject_id}/offences/#{offence.id}", params: laa_reference_params
+        post "/prosecutionCases/representationOrder/applications/#{application_id}/subject/#{subject_id}/offences/#{offence.id}", params: laa_reference_params
         expect(response).to have_http_status(:unauthorized)
       end
     end
@@ -78,18 +78,43 @@ RSpec.describe "RepresentationOrders", type: :request do
       let(:headers) { { 'Ocp-Apim-Subscription-Key': ENV.fetch("SHARED_SECRET_KEY") } }
 
       context "when the LaaReference exists" do
-        before { laa_reference.save! }
+        before do
+          laa_reference.save!
+          post("/prosecutionCases/representationOrder/applications/#{application_id}/subject/#{subject_id}/offences/#{offence.id}", params: laa_reference_params, headers:)
+        end
 
         it "returns an accepted status" do
-          post("/prosecutionCases/representationOrder/application/#{application_id}/subject/#{subject_id}/offences/#{offence.id}", params: laa_reference_params, headers:)
           expect(response).to have_http_status(:accepted)
+        end
+
+        it "updates the reference" do
+          expect(laa_reference.reload).to have_attributes(
+            applicationReference: application_reference,
+            statusCode: status_code,
+            statusDate: Date.parse(status_date),
+            effectiveStartDate: Date.parse(effective_start_date),
+            effectiveEndDate: Date.parse(effective_end_date),
+          )
         end
       end
 
       context "when the LaaReference is new" do
+        before do
+          post("/prosecutionCases/representationOrder/applications/#{application_id}/subject/#{subject_id}/offences/#{offence.id}", params: laa_reference_params, headers:)
+        end
+
         it "returns an accepted status" do
-          post("/prosecutionCases/representationOrder/application/#{application_id}/subject/#{subject_id}/offences/#{offence.id}", params: laa_reference_params, headers:)
           expect(response).to have_http_status(:accepted)
+        end
+
+        it "creates a new reference" do
+          expect(LaaReference.find_by(offence_id: offence.id)).to have_attributes(
+            applicationReference: application_reference,
+            statusCode: status_code,
+            statusDate: Date.parse(status_date),
+            effectiveStartDate: Date.parse(effective_start_date),
+            effectiveEndDate: Date.parse(effective_end_date),
+          )
         end
       end
     end

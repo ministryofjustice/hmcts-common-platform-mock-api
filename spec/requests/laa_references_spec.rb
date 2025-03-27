@@ -71,7 +71,7 @@ RSpec.describe "LaaReferences", type: :request do
 
     context "when the auth header is incorrect" do
       it "returns a response with an unauthorised status" do
-        post("/prosecutionCases/laaReference/application/#{court_application.id}/subject/#{defendant.id}/offences/#{offence.id}", params:)
+        post("/prosecutionCases/laaReference/applications/#{court_application.id}/subject/#{defendant.id}/offences/#{offence.id}", params:)
         expect(response).to have_http_status(:unauthorized)
       end
     end
@@ -82,7 +82,7 @@ RSpec.describe "LaaReferences", type: :request do
       context "when the LaaReference exists" do
         before do
           laa_reference.save!
-          post "/prosecutionCases/laaReference/application/#{court_application.id}/subject/#{defendant.id}/offences/#{offence.id}", params:, headers:
+          post "/prosecutionCases/laaReference/applications/#{court_application.id}/subject/#{defendant.id}/offences/#{offence.id}", params:, headers:
         end
 
         it "returns an accepted status" do
@@ -100,7 +100,7 @@ RSpec.describe "LaaReferences", type: :request do
 
       context "when the LaaReference is new" do
         before do
-          post "/prosecutionCases/laaReference/application/#{court_application.id}/subject/#{defendant.id}/offences/#{offence.id}", params:, headers:
+          post "/prosecutionCases/laaReference/applications/#{court_application.id}/subject/#{defendant.id}/offences/#{offence.id}", params:, headers:
         end
 
         it "returns an accepted status" do

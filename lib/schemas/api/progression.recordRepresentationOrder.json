@@ -8,8 +8,16 @@
             "description": "The identifier of the prosecution case",
             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
+        "applicationId": {
+            "description": "The identifier of the appeal case",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
         "defendantId": {
             "description": "The identifier of the defendant",
+            "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+        },
+        "subjectId": {
+            "description": "The identifier of the appeal subject",
             "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
         },
         "offenceId": {
@@ -42,7 +50,7 @@
         }
     },
     "required": [
-        "prosecutionCaseId", "defendantId", "offenceId", "statusCode", "applicationReference", "statusDate", "effectiveStartDate", "defenceOrganisation"
+        "offenceId", "statusCode", "applicationReference", "statusDate", "effectiveStartDate", "defenceOrganisation"
     ],
     "additionalProperties": false
 }

@@ -27,7 +27,7 @@ class CourtApplicationDefendantSummary
       defendant_summary.proceedingsConcluded proceedings_concluded?
       defendant_summary.masterDefendantId defendant.masterDefendantId
       defendant_summary.subjectId defendant_id
-      defendant_summary.offenceSummary defendant.offences
+      defendant_summary.offenceSummary offence_summary
     end
   end
 
@@ -55,5 +55,9 @@ private
 
   def defendant_organisation_name
     defendant.defendable.organisation.name
+  end
+
+  def offence_summary
+    defendant.offences.map { |offence| offence.to_builder.attributes! }
   end
 end

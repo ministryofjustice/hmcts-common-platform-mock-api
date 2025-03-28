@@ -52,6 +52,10 @@ Rails.application.routes.draw do
     "/cases/:prosecutionCaseId" \
     "/defendants/:defendantId" \
     "/offences/:offenceId" => "representation_orders#create", as: :representation_order
+  post "/prosecutionCases/representationOrder" \
+    "/applications/:applicationId" \
+    "/subject/:subjectId" \
+    "/offences/:offenceId" => "representation_orders#create"
   get "/hearing/results" => "hearings#show", as: :hearing
   get "/hearing/hearingLog" => "hearing_logs#show", as: :hearing_log
   get "/applications/:applicationId" => "court_application#index", as: :applications

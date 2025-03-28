@@ -13,7 +13,7 @@ class LaaRepresentationOrderRecorder < ApplicationService
 
     offence = Offence.find(params[:offenceId])
 
-    defendant = Defendant.find(params[:defendantId])
+    defendant = offence.defendant
 
     offence.build_laa_reference if offence.laa_reference.blank?
     defendant.build_defence_organisation if defendant.defence_organisation.blank?

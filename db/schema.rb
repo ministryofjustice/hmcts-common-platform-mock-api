@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_28_053143) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_28_091423) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
-  enable_extension "plpgsql"
 
   create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "address1", null: false
@@ -333,6 +333,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_28_053143) do
     t.uuid "hearing_id"
     t.uuid "court_application_type_id"
     t.uuid "defendant_id"
+    t.string "result_code"
     t.index ["court_application_outcome_id"], name: "index_court_applications_on_court_application_outcome_id"
     t.index ["court_application_party_id"], name: "index_court_applications_on_court_application_party_id"
     t.index ["court_application_payment_id"], name: "index_court_applications_on_court_application_payment_id"

@@ -9,6 +9,20 @@
 </ul>
 
 <%= link_to 'Edit', edit_admin_court_application_path(@court_application) %>
+
+<h3>Conclusion options</h3>
+<%= select_tag :environment_select, options_for_select(@env_options, @default_env) %>
+<br><br>
+<% @env_options.each do |option| %>
+  <%=
+    button_to "Conclude and Publish to #{option[0]}",
+              admin_application_conclusions_path(@court_application.id, option[1]),
+              :id => "publish-application-#{option[1]}",
+              :target_env => option[1],
+              :button_group => "environment_based",
+              :style => (option[1] == @default_env ? "display: block;" : "display: none;")
+  %>
+<% end %>
 <h2>Court Application Type</h2>
 
 <ul>
@@ -55,3 +69,16 @@
   <%= link_to 'Back to Hearing', admin_hearing_path(@court_application.hearing) %>
 <% end %>
 </div>
+
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    const selectBox = document.getElementById('environment_select');
+
+    selectBox.addEventListener('change', function() {
+      document.querySelectorAll('[button_group="environment_based"]').forEach((element) => {
+        element.style.display = element.attributes.target_env.value == selectBox.value ? "block" : "none"
+      });
+    });
+  });
+</script>

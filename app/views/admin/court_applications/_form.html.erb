@@ -53,12 +53,18 @@
     <%= f.label :breachedOrder, 'Breached Order' %>
     <%= f.text_field :breachedOrder %>
   </div>
+  <div class="field">
+    <%= f.label :result_code, 'Result code' %>
+    <%= f.select :result_code,
+                 options_for_select(CourtApplication::RESULT_CODES, @court_application.result_code),
+                 prompt: "Select a result code" %>
+  </div>
   <% if @defendants.present? %>
     <div class="field">
       <%= f.label :defendant_id, "Select Defendant" %>
-      <%= f.select :defendant_id, options_for_select(@defendants.all.collect { |defendant| 
+      <%= f.select :defendant_id, options_for_select(@defendants.all.collect { |defendant|
                     [ "#{defendant.defendable.person.first_name} #{defendant.defendable.person.middle_name} #{defendant.defendable.person.last_name}",
-                    defendant.id] }, @court_application.defendant_id), 
+                    defendant.id] }, @court_application.defendant_id),
                     prompt: "Select a user" %>
     </div>
   <% end %>
@@ -66,7 +72,7 @@
       <div class="field">
         <p><strong>So that the existing api endpoint work as expected</strong></p>
       <%= f.label :hearing_id, "Select Main Hearing" %>
-      <%= f.select :hearing_id, options_for_select(@hearings.all.collect { |hearing| 
+      <%= f.select :hearing_id, options_for_select(@hearings.all.collect { |hearing|
                     [ hearing.id,
                     hearing.id] }, @court_application.hearing_id),
                     prompt: "Select a hearing"%>

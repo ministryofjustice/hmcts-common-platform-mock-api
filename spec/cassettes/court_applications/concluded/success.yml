@@ -1,0 +1,109 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<LAA_DEV_API_URL>/oauth/token"
+    body:
+      encoding: UTF-8
+      string: client_id=<LAA_DEV_CLIENT_ID>&client_secret=<LAA_DEV_CLIENT_SECRET>&grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v1.8.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 13 Jan 2022 18:50:58 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      cache-control:
+      - no-store
+      pragma:
+      - no-cache
+      vary:
+      - Accept
+      etag:
+      - W/"14ee28c5a201dd8398c0c88904cfb880"
+      x-request-id:
+      - ed2198809a6e650cce1e999c0377aa62
+      x-runtime:
+      - '0.063362'
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"<ACCESS_TOKEN>","token_type":"Bearer","expires_in":300,"created_at":1642099858}'
+  recorded_at: Thu, 13 Jan 2022 18:50:58 GMT
+- request:
+    method: post
+    uri: "<LAA_DEV_API_URL>/api/external/v1/prosecution_conclusions"
+    body:
+      encoding: UTF-8
+      string: '{"prosecutionConcluded":[{"applicationConcluded":{"applicationId=":"f0b9662f-5fb8-4d6c-b7c5-40b0c067b943","subjectId=":"a4371876-7c52-4f18-86bb-f0589adc5bf5"},"isConcluded":true,"hearingIdWhereChangeOccurred":"f5979f49-6292-4bcb-bce9-d855f15849f1","offenceSummary":[{"offenceId":"87ce10f7-228f-4ca9-8e3e-9cd9cc92ef2a","offenceCode":"PT00011","proceedingsConcluded":false,"proceedingsConcludedChangedDate":"2021-12-17"}]}]}'
+    headers:
+      User-Agent:
+      - Faraday v1.8.0
+      Authorization:
+      - "<BEARER_TOKEN>"
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      date:
+      - Thu, 13 Jan 2022 18:50:58 GMT
+      content-type:
+      - text/html
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      laa-transaction-id:
+      - 828e9701e216dfef0e01bfb4e339b76a
+      cache-control:
+      - no-cache
+      x-request-id:
+      - 828e9701e216dfef0e01bfb4e339b76a
+      x-runtime:
+      - '0.032515'
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 13 Jan 2022 18:50:58 GMT
+recorded_with: VCR 6.3.1

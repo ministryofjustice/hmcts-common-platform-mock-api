@@ -2,9 +2,9 @@ RSpec.describe ApplicationReferenceRecorder do
   subject(:record_reference) { described_class.call(params) }
 
   let(:params) { ActionController::Parameters.new(params_hash) }
-  let(:defendant) { FactoryBot.create(:defendant) }
+  let(:defendant) { FactoryBot.create(:defendant, offences: [offence]) }
   let(:application_id) { SecureRandom.uuid }
-  let(:offence) { defendant.offences.first }
+  let(:offence) { FactoryBot.create(:offence) }
   let(:status_code) { "STATUS CODE 999" }
   let(:application_reference) { "APPLICATION REFERENCE 998" }
   let(:status_date) { "2019-12-12" }
@@ -55,11 +55,13 @@ RSpec.describe ApplicationReferenceRecorder do
 
       it "updates the LaaReference" do
         record_reference
-        laa_reference.reload
-        expect(laa_reference.applicationReference).to eq(application_reference)
-        expect(laa_reference.statusCode).to eq(status_code)
-        expect(laa_reference.statusDate).to eq(status_date)
-        expect(laa_reference.statusDescription).to eq("FAKE NEWS")
+
+        expect(laa_reference.reload).to have_attributes(
+          applicationReference: application_reference,
+          statusCode: status_code,
+          statusDate: status_date.to_time,
+          statusDescription: "FAKE NEWS",
+        )
       end
 
       it { is_expected.to eq laa_reference }

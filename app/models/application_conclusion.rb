@@ -28,9 +28,9 @@ private
 
   def conclusion_summary
     Jbuilder.new do |conclusion_summary|
-      conclusion_summary.applicationId = court_application.id
-      conclusion_summary.applicationResultCode = court_application.result_code
-      conclusion_summary.subjectId = defendant.id
+      conclusion_summary.applicationId court_application.id
+      conclusion_summary.applicationResultCode court_application.result_code
+      conclusion_summary.subjectId defendant.id
     end
   end
 end

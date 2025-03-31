@@ -22,4 +22,12 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import "@kollegorna/cocoon-vanilla-js";
 
-console.log('Hello World from Webpacker')
+document.addEventListener('DOMContentLoaded', function() {
+  const selectBox = document.getElementById('environment_select');
+
+  selectBox?.addEventListener('change', function() {
+    document.querySelectorAll('[button_group="environment_based"]').forEach((element) => {
+      element.style.display = element.attributes.target_env.value == selectBox.value ? "block" : "none"
+    });
+  });
+});

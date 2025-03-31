@@ -58,6 +58,6 @@ private
   end
 
   def offence_summary
-    defendant.offences.map { |offence| offence.to_builder.attributes! }
+    defendant.offences.map { |offence| OffenceSummary.new(offence_id: offence.id).to_builder.attributes! }
   end
 end

@@ -4,6 +4,10 @@ class CourtApplication < ApplicationRecord
   include BuilderMappable
   include CourtCentreRelatable
 
+  RESULT_CODES = [
+    "G /STDEC", "RFSD", "WDRN", "D", "G / ROPENED", "RFSD", "WDRN"
+  ].freeze
+
   belongs_to :court_application_party
   belongs_to :court_application_payment, optional: true
   belongs_to :court_application_type
@@ -26,6 +30,7 @@ class CourtApplication < ApplicationRecord
   validates :applicationReceivedDate, presence: true
   validates :court_application_party, presence: true
   validates :applicationStatus, presence: true, inclusion: %w[DRAFT LISTED FINALISED]
+  validates :result_code, inclusion: { in: RESULT_CODES, allow_blank: true }
 
   def to_builder
     Jbuilder.new do |court_application|
@@ -44,5 +49,11 @@ class CourtApplication < ApplicationRecord
       court_application.subject court_application_party.to_builder
       court_application.respondents array_builder(respondents)
     end
+  end
+
+  def conclusion_payload
+    application_conclusion = ApplicationConclusion.new(court_application: self).to_builder.attributes!
+
+    { prosecutionConcluded: [application_conclusion] }.to_json
   end
 end

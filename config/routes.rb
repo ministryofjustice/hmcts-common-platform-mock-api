@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     post "prosecution_conclusions/:id(/:publish_to)" => "prosecution_conclusions#create", as: :prosecution_conclusions
     post "application_conclusions/:id(/:publish_to)" => "application_conclusions#create", as: :application_conclusions
     get "court_applications" => "court_applications#index"
+    post "court_application/:court_application_id/hearing/:hearing_id" => "court_application_hearing#create", as: :court_application_hearing_create
+    delete "court_application/:court_application_id/hearing/:hearing_id" => "court_application_hearing#destroy", as: :court_application_hearing_destroy
 
     resources :prosecution_cases, shallow: true do
       member do

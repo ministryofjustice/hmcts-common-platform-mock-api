@@ -16,8 +16,8 @@ class CourtApplication < ApplicationRecord
 
   has_many :judicial_results, dependent: :destroy
   has_many :respondents, class_name: "CourtApplicationParty", dependent: :destroy
-  # only used for application enpoint
 
+  # only used for application enpoint
   has_many :court_application_prosecution_case, dependent: :destroy
   has_many :prosecution_case, through: :court_application_prosecution_case
 

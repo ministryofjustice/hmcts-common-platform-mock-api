@@ -19,11 +19,15 @@ private
   attr_reader :params, :schema
 
   def hearing_day
-    HearingDay.find_by!(sittingDay: params[:date].to_date.all_day, hearing_id: params[:hearingId])
+    HearingDay.find_by!(sittingDay: params[:date].to_date.all_day, hearing_id: internal_hearing_id)
   end
 
   def permitted_params
     params.permit(:hearingId, :date)
+  end
+
+  def internal_hearing_id
+    Hearing.find_by!(hearing_id: params[:hearingId]).id
   end
 
   def register_dependant_schemas!

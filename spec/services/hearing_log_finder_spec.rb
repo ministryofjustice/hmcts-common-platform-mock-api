@@ -22,7 +22,7 @@ RSpec.describe HearingLogFinder do
     let(:hearing_event) { FactoryBot.create(:hearing_event, hearing_day: hearing.hearing_days.first) }
 
     let(:params_hash) do
-      { hearingId: hearing.id, date: "2019-10-23" }
+      { hearingId: hearing.hearing_id, date: "2019-10-23" }
     end
 
     it { is_expected.to eq([hearing_event]) }

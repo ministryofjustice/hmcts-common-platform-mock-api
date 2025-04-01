@@ -12,7 +12,7 @@ class HearingFinder < ApplicationService
     raise Errors::InvalidParams, errors if errors.present?
 
     if params[:sittingDay]
-      Hearing.find_by(hearing_id: params[:hearingId], sitting_day: params[:sittingDay], resulted: true)
+      Hearing.where("sitting_day::date = ?", params[:sittingDay]).find_by(hearing_id: params[:hearingId], resulted: true)
     else
       Hearing.where(hearing_id: params[:hearingId], resulted: true).order("sitting_day").last
     end

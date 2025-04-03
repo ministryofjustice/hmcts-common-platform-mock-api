@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get "court_applications" => "court_applications#index"
     post "court_application/:court_application_id/hearing/:hearing_id" => "court_application_hearing#create", as: :court_application_hearing_create
     delete "court_application/:court_application_id/hearing/:hearing_id" => "court_application_hearing#destroy", as: :court_application_hearing_destroy
+    post "court_application/:id/result/:hearing_id/:publish_to" => "court_applications#result", as: :court_application_result_hearing
 
     resources :prosecution_cases, shallow: true do
       member do

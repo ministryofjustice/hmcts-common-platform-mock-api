@@ -70,6 +70,15 @@ module Admin
       redirect_to admin_hearing_url(court_application.hearing_id), notice: "Court application was successfully deleted."
     end
 
+    def result
+      notice = if HearingResulter.call(hearing_id: params[:hearing_id], publish_to: params[:publish_to])
+                 "Hearing was successfully resulted"
+               else
+                 "Hearing could not be resulted"
+               end
+      redirect_to(admin_court_application_path(params[:id]), notice:)
+    end
+
   private
 
     def court_application_params

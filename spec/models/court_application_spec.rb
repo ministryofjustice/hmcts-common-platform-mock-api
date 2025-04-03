@@ -32,4 +32,9 @@ RSpec.describe CourtApplication, type: :model do
 
     it_has_behaviour "conforming to valid schema"
   end
+
+  it "generates a valid short ID on creation" do
+    expect(court_application.short_code.length).to eq 12
+    expect(court_application.short_code).to start_with("A")
+  end
 end

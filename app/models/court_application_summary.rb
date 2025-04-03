@@ -15,6 +15,7 @@ class CourtApplicationSummary
   def to_builder
     Jbuilder.new do |application_case_summary|
       application_case_summary.applicationId court_application_id
+      application_case_summary.applicationShortId court_application.short_code
       application_case_summary.applicationReference court_application.applicationReference
       application_case_summary.applicationStatus court_application.applicationStatus
       application_case_summary.applicationTitle court_application.court_application_type.type

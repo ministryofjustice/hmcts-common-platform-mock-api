@@ -25,6 +25,8 @@ class CourtApplication < ApplicationRecord
   has_many :court_application_hearing, dependent: :destroy
   has_many :court_hearings, through: :court_application_hearing, source: :hearing
 
+  attribute :short_code, :string, default: -> { generate_short_code }
+
   accepts_nested_attributes_for :court_application_type
 
   validates :applicationReceivedDate, presence: true
@@ -55,5 +57,9 @@ class CourtApplication < ApplicationRecord
     application_conclusion = ApplicationConclusion.new(court_application: self).to_builder.attributes!
 
     { prosecutionConcluded: [application_conclusion] }.to_json
+  end
+
+  def self.generate_short_code
+    "A#{Time.zone.today.strftime('%y')}#{SecureRandom.base36(9).upcase}"
   end
 end

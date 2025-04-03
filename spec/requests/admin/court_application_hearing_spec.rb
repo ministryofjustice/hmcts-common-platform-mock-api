@@ -25,7 +25,6 @@ RSpec.describe "/admin/court_application_hearing", type: :request do
 
     it "delete court_application" do
       expect(CourtApplicationHearing).to exist(court_application_hearing.id)
-      # binding.pry
       expect {
         delete(admin_court_application_hearing_destroy_url(court_application_id: court_application_hearing.court_application_id, hearing_id: court_application_hearing.hearing_id), headers:)
       }.to change(CourtApplicationHearing, :count).by(-1)

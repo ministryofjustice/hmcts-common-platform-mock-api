@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_28_091423) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_03_105947) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -334,6 +334,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_28_091423) do
     t.uuid "court_application_type_id"
     t.uuid "defendant_id"
     t.string "result_code"
+    t.string "short_code"
     t.index ["court_application_outcome_id"], name: "index_court_applications_on_court_application_outcome_id"
     t.index ["court_application_party_id"], name: "index_court_applications_on_court_application_party_id"
     t.index ["court_application_payment_id"], name: "index_court_applications_on_court_application_payment_id"

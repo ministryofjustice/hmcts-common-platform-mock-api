@@ -59,7 +59,11 @@ class CourtApplication < ApplicationRecord
     { prosecutionConcluded: [application_conclusion] }.to_json
   end
 
-  def self.generate_short_code
-    "A#{Time.zone.today.strftime('%y')}#{SecureRandom.base36(9).upcase}"
+  class << self
+  private
+
+    def generate_short_code
+      "A#{Time.zone.today.strftime('%y')}#{SecureRandom.base36(9).upcase}"
+    end
   end
 end

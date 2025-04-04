@@ -9,7 +9,7 @@ RSpec.describe "POST /admin/court_application/:id/result/:hearing_id/:publish_to
 
   before do
     allow(HearingResulter).to receive(:call).with(hearing_id: hearing.id, publish_to:).and_return(outcome)
-    post(admin_court_application_result_hearing_path(court_application, hearing, publish_to), headers:)
+    post("/admin/court_application/#{court_application.id}/result/#{hearing.id}/#{publish_to}", headers:)
   end
 
   context "when hearing publishing is successful" do

@@ -103,7 +103,7 @@ RSpec.describe "/admin/court_application", type: :request do
 
       it "redirects the edit template" do
         put(admin_court_application_path(court_application), params: { id: court_application.id, court_application: invalid_attributes }, headers:)
-        expect(response).to render_template(:edit)
+        expect(response).to redirect_to(admin_court_application_path(court_application))
       end
     end
 

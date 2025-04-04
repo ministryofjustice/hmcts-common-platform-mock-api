@@ -41,7 +41,9 @@ private
   end
 
   def hearings_builder
-    [HearingSummary.new(hearing_id: court_application.hearing.hearing_id, sitting_day: court_application.hearing.sitting_day).to_builder.attributes!]
+    court_application.court_hearings.map do |hearing|
+      HearingSummary.new(hearing_id: hearing.hearing_id, sitting_day: hearing.sitting_day).to_builder.attributes!
+    end
   end
 
   def defendants_builder

@@ -8,21 +8,28 @@
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_admin_court_application_path(@court_application) %>
 
-<h3>Conclusion options</h3>
-<%= select_tag :environment_select, options_for_select(@env_options, @default_env) %>
-<br><br>
-<% @env_options.each do |option| %>
-  <%=
-    button_to "Conclude and Publish to #{option[0]}",
-              admin_application_conclusions_path(@court_application.id, option[1]),
-              :id => "publish-application-#{option[1]}",
-              :target_env => option[1],
-              :button_group => "environment_based",
-              :style => (option[1] == @default_env ? "display: block;" : "display: none;")
-  %>
+<%= link_to 'Edit', edit_admin_court_application_path(@court_application) %>
+<% if  @court_application.defendant.present? %>
+  <h3>Conclusion options</h3>
+  <%= select_tag :environment_select, options_for_select(@env_options, @default_env) %>
+  <br><br>
+  <% @env_options.each do |option| %>
+    <%=
+      button_to "Conclude and Publish to #{option[0]}",
+                admin_application_conclusions_path(@court_application.id, option[1]),
+                :id => "publish-application-#{option[1]}",
+                :target_env => option[1],
+                :button_group => "environment_based",
+                :style => (option[1] == @default_env ? "display: block;" : "display: none;")
+    %>
+  <% end %>
 <% end %>
+
+<% if  @court_application.defendant.present? %>
+  <%= render 'hearings' %>
+<% end %>
+
 <h2>Court Application Type</h2>
 
 <ul>

@@ -3,6 +3,16 @@
   <% @court_application_hearings.each_with_index do |hearing, index| %>
   <li>
     <strong><%= hearing.id %></strong>
+    <% @env_options.each do |option| %>
+      <%=
+        button_to "Result and Publish to #{option[0]}",
+                  admin_court_application_result_hearing_path(@court_application, hearing.id, option[1]),
+                  :id => "result-hearing-#{option[1]}",
+                  :target_env => option[1],
+                  :button_group => "environment_based",
+                  :style => (option[1] == @default_env ? "display: block;" : "display: none;")
+      %>
+    <% end %>
     <%= link_to'remove', admin_court_application_hearing_destroy_url(court_application_id: @court_application.id, hearing_id: hearing.id), method: :delete  %>
   </li>
   <% end %>

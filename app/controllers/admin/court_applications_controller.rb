@@ -36,7 +36,7 @@ module Admin
       @court_application_hearings = @court_application.court_hearings
 
       if @court_application.prosecution_case.present?
-        @prosecution_case = ProsecutionCase.find(@court_application.prosecution_case)
+        @prosecution_case = @court_application.prosecution_case.first
         @prosecution_case_hearings = @prosecution_case.hearings
       end
     end

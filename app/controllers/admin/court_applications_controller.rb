@@ -45,7 +45,7 @@ module Admin
       @court_application = CourtApplication.find(params[:id])
       # checks for existing court applications for prosecution_case as this is a new link table used only for appeals work.
       if @court_application.prosecution_case.present?
-        @prosecution_case = ProsecutionCase.find(@court_application.prosecution_case)
+        @prosecution_case = @court_application.prosecution_case.first
         @defendants = @prosecution_case.defendants
         @hearings = @prosecution_case.hearings
       end

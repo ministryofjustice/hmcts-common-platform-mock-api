@@ -21,6 +21,7 @@ class CourtApplicationSummary
       application_case_summary.applicationTitle court_application.court_application_type.type
       application_case_summary.applicationType court_application.court_application_type.code
       application_case_summary.receivedDate court_application.applicationReceivedDate.to_date
+      application_case_summary.applicationResult court_application.result_code
       application_case_summary.caseSummary prosecution_cases_builder if @court_application.prosecution_case.present?
       application_case_summary.hearingSummary hearings_builder if @court_application.hearing.present?
       application_case_summary.judicialResults court_application.judicial_results if @court_application.judicial_results.present?

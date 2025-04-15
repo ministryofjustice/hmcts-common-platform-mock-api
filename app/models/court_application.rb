@@ -5,7 +5,7 @@ class CourtApplication < ApplicationRecord
   include CourtCentreRelatable
 
   RESULT_CODES = [
-    "G /STDEC", "RFSD", "WDRN", "D", "G / ROPENED", "RFSD", "WDRN"
+    "G /STDEC", "RFSD", "WDRN", "D", "G / ROPENED", "RFSD", "WDRN", "APA", "AW", "AACD", "ASV", "AACA", "AASD", "AASD & SV", "AASA", "ACSD", "AACD & AASA"
   ].freeze
 
   belongs_to :court_application_party

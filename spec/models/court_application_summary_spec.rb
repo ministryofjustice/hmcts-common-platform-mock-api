@@ -13,6 +13,7 @@ RSpec.describe CourtApplicationSummary, type: :model do
         "applicationTitle" => court_application.court_application_type.type,
         "applicationType" => court_application.court_application_type.code,
         "receivedDate" => court_application.applicationReceivedDate.to_date,
+        "applicationResult" => court_application.result_code,
       )
     end
   end

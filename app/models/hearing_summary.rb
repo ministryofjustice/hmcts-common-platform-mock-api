@@ -19,7 +19,7 @@ class HearingSummary
       hearing_summary.hearingType hearing.hearing_type.to_builder
       hearing_summary.defendantIds defendants_builder
       hearing_summary.hearingDays hearing_days_builder
-      hearing_summary.defenceCounsel hearing.defence_counsels.map(&:to_builder)
+      hearing_summary.defenceCounsel hearing.defence_counsels.map(&:to_builder).map(&:attributes!)
     end
   end
 

@@ -11,6 +11,7 @@ FactoryBot.define do
     applicationDecisionSoughtByDate { "2019-10-25 16:18:43" }
     applicationStatus { %w[DRAFT LISTED FINALISED].sample }
     outOfTimeReasons { "MyString" }
+    result_code { "APA" }
 
     association :court_application_type
     association :court_application_party

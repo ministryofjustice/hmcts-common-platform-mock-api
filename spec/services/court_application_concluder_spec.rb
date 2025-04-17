@@ -17,4 +17,11 @@ RSpec.describe CourtApplicationConcluder do
     publish
     expect(court_application.defendant.prosecution_case.reload.concluded).to be(true)
   end
+
+  it "marks the offences as disposed" do
+    offence = court_application.defendant.offences.first
+    expect(offence).not_to be_isDisposed
+    publish
+    expect(offence.reload).to be_isDisposed
+  end
 end

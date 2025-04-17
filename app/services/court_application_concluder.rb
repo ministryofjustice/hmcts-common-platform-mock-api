@@ -8,6 +8,7 @@ class CourtApplicationConcluder < ApplicationService
 
   def call
     court_application.defendant.prosecution_case.update!(concluded: true)
+    court_application.defendant.offences.update_all(isDisposed: true)
     ApplicationConclusionPublisher.call(court_application:, type: publish_to) if publish_to.present?
   end
 

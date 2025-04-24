@@ -25,7 +25,7 @@ class CourtApplicationDefendantSummary
       end
       defendant_summary.dateOfNextHearing date_of_next_hearing
       defendant_summary.proceedingsConcluded proceedings_concluded?
-      defendant_summary.masterDefendantId defendant.masterDefendantId
+      defendant_summary.masterDefendantId defendant_id
       defendant_summary.subjectId defendant_id
       defendant_summary.offenceSummary offence_summary
     end

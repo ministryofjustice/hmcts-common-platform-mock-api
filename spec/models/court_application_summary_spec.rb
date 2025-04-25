@@ -6,7 +6,7 @@ RSpec.describe CourtApplicationSummary, type: :model do
   describe "to_builder" do
     it "outputs a valid payload" do
       expect(summary.to_builder.attributes!).to include(
-        "applicationShortId" => court_application.short_code,
+        "laaApplicationShortId" => court_application.short_code,
         "applicationId" => court_application.id,
         "applicationReference" => court_application.applicationReference,
         "applicationStatus" => court_application.applicationStatus,

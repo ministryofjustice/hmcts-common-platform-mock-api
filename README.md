@@ -102,17 +102,8 @@ bundle exec rails 'publish:hearing[HEARING_ID]'
 This will trigger a publish to the LAA Adaptor service defined by the environment variable `LAA_DEV_API_URL`
 
 
-### Decrypting secrets for deployment
-
-**NOTE:** **git-crypt** is required to store secrets needed for all environments.
-To be able to modify those secrets, **git-crypt** needs to be set up according to the following
-[guide](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/other-topics/git-crypt-setup.html#git-crypt).
-
-This requires your gpg key to have been added to git-crypt.  Liaise with another developer to action the steps in [git-crypt.md](docs/git-crypt.md)
-
-Once the pull request has been merged, pull master and run
-
-```
-git-crypt unlock
-```
+### Secrets
+**NOTE:** All secrets are stored in AWS Secret Manager, in a secret with the description "hmcts-mock-api-dev aws-secrets".
+It is accessible to anyone who is part of our Github team. For more details,
+[see this documentation](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/deploying-an-app/add-secrets-to-deployment.html#configuring-secrets-using-aws-secrets-manager).
 

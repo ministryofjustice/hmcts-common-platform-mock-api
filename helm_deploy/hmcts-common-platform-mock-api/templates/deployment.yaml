@@ -52,37 +52,67 @@ spec:
                   name: rds-instance-output
                   key: url
             - name: SHARED_SECRET_KEY
-              value: {{ .Values.common_platform_secret_key }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: common_platform_secret_key
             - name: ADMIN_USERNAME
-              value: {{ .Values.admin_username }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: admin_username
             - name: ADMIN_PASSWORD
-              value: {{ .Values.admin_password }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: admin_password
             - name: SECRET_KEY_BASE
-              value: {{ .Values.rails.secret_key_base }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: secret_key_base
             - name: LAA_DEV_API_URL
               value: {{ .Values.laa.dev_api_url }}
             - name: LAA_DEV_OAUTH_URL
               value: {{ .Values.laa.dev_oauth_url }}
             - name: LAA_DEV_CLIENT_ID
-              value: {{ .Values.laa.dev_client_id }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: dev_client_id
             - name: LAA_DEV_CLIENT_SECRET
-              value: {{ .Values.laa.dev_client_secret }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: dev_client_secret
             - name: LAA_TEST_API_URL
               value: {{ .Values.laa.test_api_url }}
             - name: LAA_TEST_OAUTH_URL
               value: {{ .Values.laa.test_oauth_url }}
             - name: LAA_TEST_CLIENT_ID
-              value: {{ .Values.laa.test_client_id }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: test_client_id
             - name: LAA_TEST_CLIENT_SECRET
-              value: {{ .Values.laa.test_client_secret }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: test_client_secret
             - name: LAA_STAGE_API_URL
               value: {{ .Values.laa.stage_api_url }}
             - name: LAA_STAGE_OAUTH_URL
               value: {{ .Values.laa.stage_oauth_url }}
             - name: LAA_STAGE_CLIENT_ID
-              value: {{ .Values.laa.stage_client_id }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: stage_client_id
             - name: LAA_STAGE_CLIENT_SECRET
-              value: {{ .Values.laa.stage_client_secret }}
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: stage_client_secret
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

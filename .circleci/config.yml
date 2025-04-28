@@ -14,9 +14,6 @@ commands:
     steps:
       - checkout
       - run: sudo apt-get update
-      - run: sudo apt-get install git-crypt
-      - run: echo "${GIT_CRYPT_KEY}" | base64 -d > git-crypt.key
-      - run: git-crypt unlock git-crypt.key
 
 jobs:
   test:
@@ -129,7 +126,7 @@ jobs:
           update-repositories: false
           chart: ./helm_deploy/hmcts-common-platform-mock-api
           release-name: hmcts-common-platform-mock-api
-          values: ./helm_deploy/hmcts-common-platform-mock-api/live/values.yaml
+          values: ./helm_deploy/hmcts-common-platform-mock-api/values.yaml
           values-to-override: image.tag=$CIRCLE_SHA1
 
 workflows:

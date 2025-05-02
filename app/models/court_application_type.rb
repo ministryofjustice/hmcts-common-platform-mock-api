@@ -32,14 +32,11 @@ class CourtApplicationType < ApplicationRecord
       court_application_type.code code
       court_application_type.legislation legislation
       court_application_type.validFrom valid_from
-      court_application_type.validTo valid_to
       court_application_type.listingNotifTemplate listing_notif_template
       court_application_type.boxworkNotifTemplate boxwork_notif_template
       court_application_type.typeWelsh type_welsh
       court_application_type.legislationWelsh legislation_welsh
       court_application_type.hearingCode hearing_code
-      court_application_type.resentencingActivationCode resentencing_activation_code
-      court_application_type.prefix prefix
       court_application_type.linkType linkType
       court_application_type.summonsTemplateType summons_template_type
       court_application_type.type type

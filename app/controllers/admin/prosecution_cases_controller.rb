@@ -13,7 +13,9 @@ module Admin
                            end
     end
 
-    def show; end
+    def show
+      add_breadcrumb(@prosecution_case.prosecution_case_identifier.caseURN)
+    end
 
     def new
       @prosecution_case = FactoryBot.build(:realistic_prosecution_case)

@@ -5,7 +5,11 @@ module Admin
     before_action :set_prosecution_case, only: %i[new create]
     before_action :set_hearing, only: %i[show edit update destroy]
 
-    def show; end
+    def show
+      add_breadcrumb(@prosecution_case.prosecution_case_identifier.caseURN,
+                     admin_prosecution_case_path(@prosecution_case))
+      add_breadcrumb("Hearing #{@hearing.hearing_id.truncate(8)}")
+    end
 
     def new
       @hearing = FactoryBot.build(:realistic_hearing)

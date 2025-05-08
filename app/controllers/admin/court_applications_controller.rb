@@ -38,7 +38,20 @@ module Admin
       if @court_application.prosecution_case.present?
         @prosecution_case = @court_application.prosecution_case.first
         @prosecution_case_hearings = @prosecution_case.hearings
+
+        add_breadcrumb(@prosecution_case.prosecution_case_identifier.caseURN,
+                       admin_prosecution_case_path(@prosecution_case))
       end
+
+      if @court_application.defendant
+        add_breadcrumb(@court_application.defendant.name,
+                       admin_defendant_path(@court_application.defendant))
+      elsif @court_application.hearing
+        add_breadcrumb("Hearing #{@court_application.hearing.hearing_id.truncate(8)}",
+                       admin_hearing_path(@court_application.hearing))
+      end
+
+      add_breadcrumb("Court application: #{@court_application.id.truncate(8)}")
     end
 
     def edit

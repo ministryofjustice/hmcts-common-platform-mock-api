@@ -4,7 +4,11 @@ module Admin
   class DefendantsController < Admin::ApplicationController
     before_action :set_defendant, only: %i[show edit update destroy]
 
-    def show; end
+    def show
+      add_breadcrumb(@defendant.prosecution_case.prosecution_case_identifier.caseURN,
+                     admin_prosecution_case_path(@defendant.prosecution_case))
+      add_breadcrumb(@defendant.name)
+    end
 
     def edit; end
 

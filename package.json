@@ -4,7 +4,7 @@
     "@rails/ujs": "^7.1.501",
     "@rails/webpacker": "5.4.4",
     "cocoon-js-vanilla": "^1.5.1",
-    "govuk-frontend": "^5.9.0"
+    "govuk-frontend": "^5.10.0"
   },
   "devDependencies": {
     "sass": "^1.87.0",

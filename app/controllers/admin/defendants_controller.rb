@@ -3,6 +3,7 @@
 module Admin
   class DefendantsController < Admin::ApplicationController
     before_action :set_defendant, only: %i[show edit update destroy]
+    before_action :add_breadcrumbs, only: :show
 
     def show; end
 
@@ -161,6 +162,12 @@ module Admin
         approvedDate
         category
       ]
+    end
+
+    def add_breadcrumbs
+      breadcrumbs.add(@defendant.prosecution_case.prosecution_case_identifier.caseURN,
+                      admin_prosecution_case_path(@defendant.prosecution_case))
+      breadcrumbs.add(@defendant.name)
     end
   end
 end

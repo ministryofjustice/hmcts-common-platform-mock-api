@@ -10,5 +10,9 @@ module Admin
       @env_options = [%w[Development dev], %w[Test test], %w[Stage stage]]
       @default_env = "dev"
     end
+
+    def breadcrumbs
+      @breadcrumbs ||= BreadcrumbList.new
+    end
   end
 end

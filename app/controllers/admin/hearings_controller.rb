@@ -4,12 +4,9 @@ module Admin
   class HearingsController < Admin::ApplicationController
     before_action :set_prosecution_case, only: %i[new create]
     before_action :set_hearing, only: %i[show edit update destroy]
+    before_action :add_breadcrumbs, only: :show
 
-    def show
-      add_breadcrumb(@prosecution_case.prosecution_case_identifier.caseURN,
-                     admin_prosecution_case_path(@prosecution_case))
-      add_breadcrumb("Hearing #{@hearing.hearing_id.truncate(8)}")
-    end
+    def show; end
 
     def new
       @hearing = FactoryBot.build(:realistic_hearing)
@@ -140,6 +137,12 @@ module Admin
             _destroy
           ] },
       ]
+    end
+
+    def add_breadcrumbs
+      breadcrumbs.add(@prosecution_case.prosecution_case_identifier.caseURN,
+                      admin_prosecution_case_path(@prosecution_case))
+      breadcrumbs.add("Hearing #{@hearing.hearing_id.truncate(8)}")
     end
   end
 end

@@ -4,6 +4,7 @@ module Admin
   class ProsecutionCasesController < Admin::ApplicationController
     before_action :set_prosecution_case, only: %i[show edit update destroy result]
     before_action :set_env_list
+    before_action :add_breadcrumbs, only: :show
 
     def index
       @prosecution_cases = if params[:query].present?
@@ -13,9 +14,7 @@ module Admin
                            end
     end
 
-    def show
-      add_breadcrumb(@prosecution_case.prosecution_case_identifier.caseURN)
-    end
+    def show; end
 
     def new
       @prosecution_case = FactoryBot.build(:realistic_prosecution_case)
@@ -194,6 +193,10 @@ module Admin
          pendingCBPW
          civilOffence
          _destroy]
+    end
+
+    def add_breadcrumbs
+      breadcrumbs.add(@prosecution_case.prosecution_case_identifier.caseURN)
     end
   end
 end

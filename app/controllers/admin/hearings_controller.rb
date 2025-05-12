@@ -4,6 +4,7 @@ module Admin
   class HearingsController < Admin::ApplicationController
     before_action :set_prosecution_case, only: %i[new create]
     before_action :set_hearing, only: %i[show edit update destroy]
+    before_action :add_breadcrumbs, only: :show
 
     def show; end
 
@@ -136,6 +137,12 @@ module Admin
             _destroy
           ] },
       ]
+    end
+
+    def add_breadcrumbs
+      breadcrumbs.add(@prosecution_case.prosecution_case_identifier.caseURN,
+                      admin_prosecution_case_path(@prosecution_case))
+      breadcrumbs.add("Hearing #{@hearing.hearing_id.truncate(8)}")
     end
   end
 end

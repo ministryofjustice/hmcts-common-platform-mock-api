@@ -1,6 +1,8 @@
 module Admin
   class CourtApplicationsController < Admin::ApplicationController
     before_action :set_env_list, only: :show
+    before_action :set_application_and_case, only: :show
+    before_action :add_breadcrumbs, only: :show
 
     def index
       scope = CourtApplication.order(created_at: :desc)
@@ -31,15 +33,7 @@ module Admin
       redirect_to admin_hearing_url(hearing), notice: "Court application was successfully created."
     end
 
-    def show
-      @court_application = CourtApplication.find(params[:id])
-      @court_application_hearings = @court_application.court_hearings
-
-      if @court_application.prosecution_case.present?
-        @prosecution_case = @court_application.prosecution_case.first
-        @prosecution_case_hearings = @prosecution_case.hearings
-      end
-    end
+    def show; end
 
     def edit
       @court_application = CourtApplication.find(params[:id])
@@ -97,6 +91,33 @@ module Admin
                                                 :defendant_id,
                                                 :court_application_type_id,
                                                 :result_code)
+    end
+
+    def set_application_and_case
+      @court_application = CourtApplication.find(params[:id])
+      @court_application_hearings = @court_application.court_hearings
+
+      if @court_application.prosecution_case.present?
+        @prosecution_case = @court_application.prosecution_case.first
+        @prosecution_case_hearings = @prosecution_case.hearings
+      end
+    end
+
+    def add_breadcrumbs
+      if @court_application.prosecution_case.present?
+        breadcrumbs.add(@prosecution_case.prosecution_case_identifier.caseURN,
+                        admin_prosecution_case_path(@prosecution_case))
+      end
+
+      if @court_application.defendant
+        breadcrumbs.add(@court_application.defendant.name,
+                        admin_defendant_path(@court_application.defendant))
+      elsif @court_application.hearing
+        breadcrumbs.add("Hearing #{@court_application.hearing.hearing_id.truncate(8)}",
+                        admin_hearing_path(@court_application.hearing))
+      end
+
+      breadcrumbs.add("Court application: #{@court_application.id.truncate(8)}")
     end
   end
 end

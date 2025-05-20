@@ -1,0 +1,9 @@
+// Entry point for your Sass build
+$govuk-assets-path: "~govuk-frontend/dist/govuk/assets/";
+@import "govuk-frontend/dist/govuk/index";
+@import "admin/prosecution_cases.scss";
+
+.field_with_errors {
+  display: inline-block;
+  color: red;
+}

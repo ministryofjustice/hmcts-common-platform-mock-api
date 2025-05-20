@@ -14,13 +14,12 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+require("govuk-frontend/dist/govuk/all").initAll()
+require.context('govuk-frontend/dist/govuk/assets/images', true)
+
 import Rails from '@rails/ujs';
 
 Rails.start();
-
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
-import "@kollegorna/cocoon-vanilla-js";
 
 document.addEventListener('DOMContentLoaded', function() {
   const selectBox = document.getElementById('environment_select');

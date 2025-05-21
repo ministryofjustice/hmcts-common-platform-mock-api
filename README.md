@@ -101,6 +101,13 @@ bundle exec rails 'publish:hearing[HEARING_ID]'
 
 This will trigger a publish to the LAA Adaptor service defined by the environment variable `LAA_DEV_API_URL`
 
+## Pre-commit hooks
+
+We have gitleaks set up on this repo. To make it harder to accidentally leak a secret, have it run as a pre-commit hook:
+```
+pip install pre-commit
+pre-commit install
+```
 
 ### Secrets
 **NOTE:** All secrets are stored in AWS Secret Manager, in a secret with the description "hmcts-mock-api-dev aws-secrets".

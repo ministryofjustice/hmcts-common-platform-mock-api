@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :prosecution_cases, shallow: true do
       member do
         post "result/:hearing_id(/:publish_to)" => "prosecution_cases#result", as: :result_hearing
+        post "associate_court_application/:court_application_id" => "prosecution_cases#associate_court_application",
+             as: :associate_court_application
       end
 
       resources :defendants do

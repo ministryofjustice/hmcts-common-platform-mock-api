@@ -38,8 +38,8 @@ module Admin
     def edit
       @court_application = CourtApplication.find(params[:id])
       # checks for existing court applications for prosecution_case as this is a new link table used only for appeals work.
-      if @court_application.prosecution_case.present?
-        @prosecution_case = @court_application.prosecution_case.first
+      if @court_application.prosecution_cases.present?
+        @prosecution_case = @court_application.prosecution_cases.first
         @defendants = @prosecution_case.defendants
         @hearings = @prosecution_case.hearings
       end
@@ -97,16 +97,23 @@ module Admin
       @court_application = CourtApplication.find(params[:id])
       @court_application_hearings = @court_application.court_hearings
 
-      if @court_application.prosecution_case.present?
-        @prosecution_case = @court_application.prosecution_case.first
-        @prosecution_case_hearings = @prosecution_case.hearings
+      if @court_application.prosecution_cases.any?
+        prosecution_cases = @court_application.prosecution_cases
+        @prosecution_case_hearings = prosecution_cases.flat_map(&:hearings)
+      end
+
+      if @court_application.defendant
+        @available_cases = ProsecutionCase.joins(:defendants)
+                                          .where(defendants: { masterDefendantId: @court_application.defendant.masterDefendantId })
+                                          .where.not(id: @court_application.prosecution_cases.ids)
       end
     end
 
     def add_breadcrumbs
-      if @court_application.prosecution_case.present?
-        breadcrumbs.add(@prosecution_case.prosecution_case_identifier.caseURN,
-                        admin_prosecution_case_path(@prosecution_case))
+      if @court_application.prosecution_cases.any?
+        p_case = @court_application.prosecution_cases.first
+        breadcrumbs.add(p_case.prosecution_case_identifier.caseURN,
+                        admin_prosecution_case_path(p_case))
       end
 
       if @court_application.defendant

@@ -18,6 +18,12 @@ module Admin
 
     def new
       @prosecution_case = FactoryBot.build(:realistic_prosecution_case)
+
+      if params[:defendant_id]
+        defendant = Defendant.find(params[:defendant_id])
+        @prosecution_case.defendants.first.masterDefendantId = defendant.masterDefendantId
+        @prosecution_case.defendants.first.defendable.person = defendant.defendable.person.dup
+      end
     end
 
     def edit; end
@@ -51,6 +57,13 @@ module Admin
       else
         render :edit
       end
+    end
+
+    def associate_court_application
+      p_case = ProsecutionCase.find(params[:id])
+      court_application = CourtApplication.find(params[:court_application_id])
+      court_application.prosecution_cases << p_case
+      redirect_to admin_court_application_path(court_application), flash: { notice: "Case associated" }
     end
 
   private

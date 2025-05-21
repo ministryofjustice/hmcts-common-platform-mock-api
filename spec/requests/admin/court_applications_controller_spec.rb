@@ -59,12 +59,12 @@ RSpec.describe "/admin/court_application", type: :request do
     end
 
     it "assigns @defendants from prosecution_case" do
-      prosecution_case = ProsecutionCase.find(court_application.prosecution_case)
+      prosecution_case = court_application.prosecution_cases.first.reload
       expect(assigns(:defendants)).to eq(prosecution_case.defendants)
     end
 
     it "assigns @hearings from prosecution_case" do
-      prosecution_case = ProsecutionCase.find(court_application.prosecution_case)
+      prosecution_case = court_application.prosecution_cases.first.reload
       expect(assigns(:hearings)).to eq(prosecution_case.hearings)
     end
   end

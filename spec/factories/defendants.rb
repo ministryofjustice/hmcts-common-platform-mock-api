@@ -56,6 +56,7 @@ FactoryBot.define do
     croNumber { Faker::Code.asin }
     pncId { Faker::Code.rut }
     mergedProsecutionCaseReference { Faker::Lorem.word }
+    masterDefendantId { SecureRandom.uuid }
 
     association :defendable, factory: :realistic_person_defendant
     trait :with_legal_entity_defendant do

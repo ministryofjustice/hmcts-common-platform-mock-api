@@ -63,6 +63,27 @@
   </ul>
 <% end %>
 
+
+<h2>Prosecution cases</h2>
+<ul>
+  <% @court_application.prosecution_cases.each do |prosecution_case| %>
+    <li>
+      <%= link_to prosecution_case.prosecution_case_identifier.caseURN, admin_prosecution_case_path(prosecution_case) %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @available_cases&.any? %>
+  <h3>Available prosecution cases</h3>
+  <ul>
+    <% @available_cases.each do |prosecution_case| %>
+      <li>
+        <%= prosecution_case.prosecution_case_identifier.caseURN %>
+        <%= button_to "Associate", associate_court_application_admin_prosecution_case_path(prosecution_case, @court_application) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 <hr>
 
 

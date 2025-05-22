@@ -9,10 +9,9 @@ ruby "3.3.0"
 gem "rails", "~> 8.0"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 1.4.5", "< 2.0"
+gem "propshaft"
 # Use Puma as the app server
 gem "puma", "~> 6.6.0"
-# Use SCSS for stylesheets
-gem "sass-rails", ">= 6"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.13"
 # Use Active Model has_secure_password
@@ -36,7 +35,6 @@ gem "json-schema", git: "https://github.com/voxpupuli/json-schema", branch: "mas
 gem "kaminari"
 gem "oauth2", "~> 2.0.10"
 gem "pg_search"
-gem "webpacker"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
@@ -68,3 +66,7 @@ group :test do
   gem "simplecov"
   gem "webdrivers"
 end
+
+gem "cssbundling-rails", "~> 1.4"
+
+gem "jsbundling-rails", "~> 1.3"

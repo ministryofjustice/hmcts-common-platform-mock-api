@@ -96,11 +96,7 @@ module Admin
     def set_application_and_case
       @court_application = CourtApplication.find(params[:id])
       @court_application_hearings = @court_application.court_hearings
-
-      if @court_application.prosecution_cases.any?
-        prosecution_cases = @court_application.prosecution_cases
-        @prosecution_case_hearings = prosecution_cases.flat_map(&:hearings)
-      end
+      @prosecution_case_hearings = @court_application.prosecution_cases.flat_map(&:hearings)
 
       if @court_application.defendant
         @available_cases = ProsecutionCase.joins(:defendants)

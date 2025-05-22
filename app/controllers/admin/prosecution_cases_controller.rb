@@ -60,10 +60,8 @@ module Admin
     end
 
     def associate_court_application
-      p_case = ProsecutionCase.find(params[:id])
-      court_application = CourtApplication.find(params[:court_application_id])
-      court_application.prosecution_cases << p_case
-      redirect_to admin_court_application_path(court_application), flash: { notice: "Case associated" }
+      create_court_application_association
+      redirect_to admin_court_application_path(params[:court_application_id]), flash: { notice: "Case associated" }
     end
 
   private
@@ -210,6 +208,12 @@ module Admin
 
     def add_breadcrumbs
       breadcrumbs.add(@prosecution_case.prosecution_case_identifier.caseURN)
+    end
+
+    def create_court_application_association
+      p_case = ProsecutionCase.find(params[:id])
+      court_application = CourtApplication.find(params[:court_application_id])
+      court_application.prosecution_cases << p_case
     end
   end
 end

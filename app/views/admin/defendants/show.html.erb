@@ -42,5 +42,7 @@
 <div class="links">
   <%= link_to 'Add court application', admin_defendant_defendants_court_applications_path(@defendant), method: :post %>
 </div>
+
 <%= link_to 'Edit', edit_admin_defendant_path(@defendant) %> |
+  <%= link_to 'Add prosecution case', new_admin_prosecution_case_path(defendant_id: @defendant.id) %> |
 <%= link_to 'Back', admin_prosecution_case_path(@defendant.prosecution_case) %>

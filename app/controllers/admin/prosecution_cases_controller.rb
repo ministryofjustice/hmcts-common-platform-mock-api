@@ -18,6 +18,12 @@ module Admin
 
     def new
       @prosecution_case = FactoryBot.build(:realistic_prosecution_case)
+
+      if params[:defendant_id]
+        defendant = Defendant.find(params[:defendant_id])
+        @prosecution_case.defendants.first.masterDefendantId = defendant.masterDefendantId
+        @prosecution_case.defendants.first.defendable.person = defendant.defendable.person.dup
+      end
     end
 
     def edit; end
@@ -51,6 +57,11 @@ module Admin
       else
         render :edit
       end
+    end
+
+    def associate_court_application
+      create_court_application_association
+      redirect_to admin_court_application_path(params[:court_application_id]), flash: { notice: "Case associated" }
     end
 
   private
@@ -197,6 +208,12 @@ module Admin
 
     def add_breadcrumbs
       breadcrumbs.add(@prosecution_case.prosecution_case_identifier.caseURN)
+    end
+
+    def create_court_application_association
+      p_case = ProsecutionCase.find(params[:id])
+      court_application = CourtApplication.find(params[:court_application_id])
+      court_application.prosecution_cases << p_case
     end
   end
 end

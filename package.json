@@ -2,7 +2,7 @@
   "name": "app",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.27.1",
+    "@babel/core": "^7.27.3",
     "@babel/preset-env": "^7.27.2",
     "@rails/ujs": "^7.1.501",
     "babel-loader": "^10.0.0",
@@ -16,7 +16,7 @@
     "sass-loader": "^16.0.5",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
-    "webpack-remove-empty-scripts": "^1.0.4"
+    "webpack-remove-empty-scripts": "^1.1.1"
   },
   "version": "0.1.0",
   "scripts": {

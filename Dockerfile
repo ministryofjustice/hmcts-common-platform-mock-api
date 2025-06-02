@@ -1,4 +1,4 @@
-FROM node:24.0-alpine AS node
+FROM node:24.1-alpine AS node
 FROM ruby:3.3.6-alpine3.19
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Access Court Data"

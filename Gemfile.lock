@@ -120,6 +120,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
+    csv (3.3.5)
     date (3.4.1)
     diff-lcs (1.6.2)
     docile (1.4.1)
@@ -498,6 +499,7 @@ DEPENDENCIES
   cocoon
   colorize
   cssbundling-rails (~> 1.4)
+  csv
   dotenv-rails
   dry-validation
   factory_bot_rails
@@ -532,7 +534,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 3.3.6
+   ruby 3.4.4
 
 BUNDLED WITH
    2.4.22

@@ -19,7 +19,7 @@ services:
     ports:
       - '3000:3000'
   postgres:
-    image: cimg/postgres:14.11
+    image: cimg/postgres:17.4
     ports:
       - '5432:5432'
     environment:

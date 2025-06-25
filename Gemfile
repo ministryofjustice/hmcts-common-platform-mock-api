@@ -47,7 +47,7 @@ group :development, :test do
   gem "json-schema-rspec", "~> 0.0.4"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 8.0.0"
+  gem "rspec-rails", "~> 8.0.1"
   gem "rubocop-govuk", "~> 5.1"
   gem "rubocop-performance", require: false
   gem "sinatra"

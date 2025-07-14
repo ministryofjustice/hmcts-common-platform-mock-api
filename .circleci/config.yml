@@ -8,6 +8,7 @@ orbs:
   helm: circleci/helm@1.2.0
   browser-tools: circleci/browser-tools@1.2.3
   node: circleci/node@7.1.0
+  snyk: snyk/snyk@2.2.0
 
 commands:
   checkout_and_decrypt:
@@ -132,6 +133,42 @@ jobs:
           values: ./helm_deploy/hmcts-common-platform-mock-api/values.yaml
           values-to-override: image.tag=$CIRCLE_SHA1
 
+  scan-docker-image:
+    executor: test-executor
+    parallelism: 1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - build-temp-image
+      - snyk/scan:
+          token-variable: SNYK_TOKEN
+          docker-image-name: mock:scan
+          target-file: ./Dockerfile
+          organization: "legal-aid-agency"
+          severity-threshold: "critical"
+          fail-on-issues: true
+          no-output-timeout: 20m
+          monitor-on-build: false
+
+  scan-and-monitor-docker-image:
+    executor: test-executor
+    parallelism: 1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - build-temp-image
+      - snyk/scan:
+          token-variable: SNYK_TOKEN
+          docker-image-name: mock:scan
+          target-file: ./Dockerfile
+          organization: "legal-aid-agency"
+          severity-threshold: "critical"
+          fail-on-issues: true
+          no-output-timeout: 20m
+          monitor-on-build: true
+
 workflows:
   version: 2
   test_and_build_master:
@@ -142,6 +179,9 @@ workflows:
               only:
                 - master
       - build-and-push-app:
+          requires:
+            - test
+      - scan-and-monitor-docker-image:
           requires:
             - test
       - install_on_live_cluster:
@@ -155,6 +195,9 @@ workflows:
             branches:
               ignore:
                 - master
+      - scan-docker-image:
+          requires:
+            - test
       - build-and-push-app:
           requires:
             - test

@@ -10,6 +10,21 @@ orbs:
   node: circleci/node@7.1.0
   snyk: snyk/snyk@2.2.0
 
+executors:
+  test-executor:
+    working_directory: ~/repo
+    docker:
+      - image: cimg/ruby:3.4.4-browsers
+        environment:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/hmcts_mock
+          TZ: Europe/London
+      - image: cimg/postgres:17.4
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: "circleci"
+          POSTGRES_DB: hmcts_mock
+
 commands:
   checkout_and_decrypt:
     steps:

@@ -11,7 +11,7 @@ orbs:
   snyk: snyk/snyk@2.2.0
 
 executors:
-  test-executor:
+  snyk-executor:
     working_directory: ~/repo
     docker:
       - image: cimg/ruby:3.4.4-browsers
@@ -163,7 +163,7 @@ jobs:
           values-to-override: image.tag=$CIRCLE_SHA1
 
   scan-docker-image:
-    executor: test-executor
+    executor: snyk-executor
     parallelism: 1
     steps:
       - checkout
@@ -181,7 +181,7 @@ jobs:
           monitor-on-build: false
 
   scan-and-monitor-docker-image:
-    executor: test-executor
+    executor: snyk-executor
     parallelism: 1
     steps:
       - checkout

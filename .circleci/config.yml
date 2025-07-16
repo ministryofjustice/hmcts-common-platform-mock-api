@@ -196,6 +196,7 @@ workflows:
           requires:
             - test
       - scan-docker-image:
+          name: scan-and-monitor-docker-image
           monitor: true
           requires:
             - test
@@ -211,6 +212,7 @@ workflows:
               ignore:
                 - master
       - scan-docker-image:
+          name: scan-docker-image
           monitor: false
           requires:
             - test

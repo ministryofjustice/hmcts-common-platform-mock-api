@@ -26,7 +26,6 @@ RUN apk --no-cache add --virtual build-dependencies \
                     build-base \
                     yarn \
                     postgresql-dev \
-                    postgresql-client \
                     tzdata \
                     git \
                     yaml-dev \

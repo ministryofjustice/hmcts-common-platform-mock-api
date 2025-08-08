@@ -11,7 +11,7 @@ gem "rails", "~> 8.0"
 gem "pg", ">= 1.4.5", "< 2.0"
 gem "propshaft"
 # Use Puma as the app server
-gem "puma", "~> 6.6.0"
+gem "puma", "~> 6.6.1"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.13"
 # Use Active Model has_secure_password

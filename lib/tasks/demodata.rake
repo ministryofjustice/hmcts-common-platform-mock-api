@@ -82,7 +82,7 @@ end
 
 def create_defendant_for(prosecution_case:, person:)
   print "[CREATE][DEFENDANT] on #{prosecution_case.prosecution_case_identifier.caseURN}"
-  person_defendant = FactoryBot.create(:realistic_person_defendant, person:)
+  person_defendant = FactoryBot.create(:realistic_person_defendant, person:, arrestSummonsNumber: "912ZWN690MMK")
   defendant = FactoryBot.create(:realistic_defendant, defendable: person_defendant, prosecution_case:)
   puts " #{ICONS[:success]}"
   defendant

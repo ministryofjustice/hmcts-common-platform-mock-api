@@ -206,13 +206,13 @@ jobs:
 
 workflows:
   version: 2
-  test_and_build_master:
+  test_and_build_main:
     jobs:
       - test:
           filters:
             branches:
               only:
-                - master
+                - main
       - build-and-push-app:
           requires:
             - test
@@ -234,7 +234,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - master
+                - main
       - scan-docker-image:
           name: scan-docker-image
           monitor: false

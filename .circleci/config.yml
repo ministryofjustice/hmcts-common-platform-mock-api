@@ -9,6 +9,7 @@ orbs:
   browser-tools: circleci/browser-tools@1.2.3
   node: circleci/node@7.1.0
   snyk: snyk/snyk@2.2.0
+  court-data-end-to-end-tests: ministryofjustice/court-data-end-to-end-tests@volatile
 
 executors:
   snyk-executor:
@@ -190,6 +191,19 @@ jobs:
           no-output-timeout: 20m
           monitor-on-build: << parameters.monitor >>
 
+  e2e-test-branch:
+    executor: court-data-end-to-end-tests/e2e-test-executor
+    steps:
+      - court-data-end-to-end-tests/run-e2e-tests:
+          e2e_current_image_var: MOCK_IMAGE
+          e2e_current_image: ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api:${CIRCLE_SHA1}
+          e2e_branch: main # Change this to work against a fixed e2e test repo branch if needed (e.g. a seed data change)
+
+  e2e-test-main:
+    executor: court-data-end-to-end-tests/e2e-test-executor
+    steps:
+      - court-data-end-to-end-tests/run-e2e-tests
+
 workflows:
   version: 2
   test_and_build_master:
@@ -207,6 +221,9 @@ workflows:
           monitor: true
           requires:
             - test
+      - e2e-test-main:
+          requires:
+            - build-and-push-app
       - install_on_live_cluster:
           requires:
           - build-and-push-app
@@ -226,6 +243,10 @@ workflows:
       - build-and-push-app:
           requires:
             - test
+      - e2e-test-branch:
+          context: laa-court-data-e2e-tests
+          requires:
+            - build-and-push-app
       - hold_install_on_live:
           type: approval
           requires:

@@ -13,7 +13,7 @@ gem "propshaft"
 # Use Puma as the app server
 gem "puma", "~> 6.6.1"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "~> 2.13"
+gem "jbuilder", "~> 2.14"
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem "actionpack", "~> 8.0"
@@ -47,7 +47,7 @@ group :development, :test do
   gem "json-schema-rspec", "~> 0.0.4"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 8.0.1"
+  gem "rspec-rails", "~> 8.0.2"
   gem "rubocop-govuk", "~> 5.1"
   gem "rubocop-performance", require: false
   gem "sinatra"

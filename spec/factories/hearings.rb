@@ -14,7 +14,7 @@ FactoryBot.define do
       end
     end
 
-    hearing_id { "0304d126-d773-41fd-af01-83e017cecd80" }
+    hearing_id { SecureRandom.uuid }
     sitting_day { "2019-10-23 16:19:15" }
     jurisdictionType { "CROWN" }
     reportingRestrictionReason { "reporting restriction because..." }

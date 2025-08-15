@@ -29,7 +29,7 @@ private
   end
 
   def hearings_builder
-    prosecution_case.hearings.map { |hearing| HearingSummary.new(hearing_id: hearing.hearing_id, sitting_day: hearing.sitting_day).to_builder.attributes! }
+    prosecution_case.hearings.map { |hearing| HearingSummary.new(hearing: hearing).to_builder.attributes! }
   end
 
   def defendants_builder

@@ -3,17 +3,11 @@
 class HearingSummary
   include ActiveModel::Model
 
-  attr_reader :hearing
-  attr_accessor :hearing_id, :sitting_day
-
-  def initialize(attributes = {})
-    super
-    @hearing ||= Hearing.find_by(hearing_id: attributes[:hearing_id], sitting_day: attributes[:sitting_day])
-  end
+  attr_accessor :hearing
 
   def to_builder
     Jbuilder.new do |hearing_summary|
-      hearing_summary.hearingId hearing_id
+      hearing_summary.hearingId hearing.hearing_id
       hearing_summary.jurisdictionType hearing.jurisdictionType
       hearing_summary.courtCentre hearing.court_centre.to_builder
       hearing_summary.hearingType hearing.hearing_type.to_builder

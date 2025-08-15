@@ -123,7 +123,9 @@ def create_hearings_for(prosecution_case:, defendant:)
 
   print "[CREATE][HEARINGS] for #{urn}"
   prosecution_case.hearings.reload.destroy_all
-  prosecution_case.hearings << FactoryBot.create_list(:hearing, 3)
+  prosecution_case.hearings << FactoryBot.create(:hearing, hearing_type: FactoryBot.create(:hearing_type, description: "Plea and Trial Preparation (PTP)"))
+  prosecution_case.hearings << FactoryBot.create(:hearing, hearing_type: FactoryBot.create(:hearing_type, description: "Pre-Trial Review (PTR)"))
+  prosecution_case.hearings << FactoryBot.create(:hearing, hearing_type: FactoryBot.create(:hearing_type, description: "Trial (TRL)"))
   puts " #{ICONS[:success]}"
 
   print "[CREATE][DEFENCE_COUNSELS] for #{urn}"

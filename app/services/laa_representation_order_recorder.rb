@@ -11,16 +11,16 @@ class LaaRepresentationOrderRecorder < ApplicationService
     errors = JSON::Validator.fully_validate(schema, permitted_params.to_json)
     raise Errors::InvalidParams, errors if errors.present?
 
-    offence = Offence.find(params[:offenceId])
+    reference_holder = find_reference_holder
 
-    defendant = offence.defendant
+    defendant = reference_holder.defendant
 
-    offence.build_laa_reference if offence.laa_reference.blank?
+    reference_holder.build_laa_reference if reference_holder.laa_reference.blank?
     defendant.build_defence_organisation if defendant.defence_organisation.blank?
 
-    offence.laa_reference.update!(laa_reference_params)
+    reference_holder.laa_reference.update!(laa_reference_params)
     defendant.defence_organisation.update!(defence_organisation_params)
-    offence.laa_reference
+    reference_holder.laa_reference
   end
 
 private
@@ -82,5 +82,9 @@ private
     contact = JSON.parse(File.open(Rails.root.join("lib/schemas/global/apiContactNumber.json")).read)
     contact["id"] = "http://justice.gov.uk/core/courts/external/apiContactNumber.json"
     JSON::Validator.add_schema(JSON::Schema.new(contact, Addressable::URI.parse(contact["id"])))
+  end
+
+  def find_reference_holder
+    Offence.find_by(id: params[:offenceId]) || CourtApplication.find_by(id: params[:offenceId])
   end
 end

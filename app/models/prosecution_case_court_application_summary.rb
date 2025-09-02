@@ -30,6 +30,6 @@ private
   end
 
   def defendants_builder
-    CourtApplicationDefendantSummary.new(defendant_id: @court_application.defendant.id).to_builder.attributes!
+    CourtApplicationDefendantSummary.new(court_application: @court_application).to_builder.attributes!
   end
 end

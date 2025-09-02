@@ -3,12 +3,11 @@
 class CourtApplicationDefendantSummary
   include ActiveModel::Model
 
-  attr_reader :defendant
-  attr_accessor :defendant_id
+  attr_accessor :defendant, :court_application
 
   def initialize(attributes = {})
     super
-    @defendant ||= Defendant.find(attributes[:defendant_id])
+    @defendant ||= court_application.defendant
   end
 
   def to_builder
@@ -26,8 +25,11 @@ class CourtApplicationDefendantSummary
       defendant_summary.dateOfNextHearing date_of_next_hearing
       defendant_summary.proceedingsConcluded proceedings_concluded?
       defendant_summary.masterDefendantId defendant.masterDefendantId
-      defendant_summary.subjectId defendant_id
-      defendant_summary.offenceSummary offence_summary
+      defendant_summary.subjectId defendant.id
+
+      if has_offences?
+        defendant_summary.offenceSummary offence_summary
+      end
     end
   end
 
@@ -59,5 +61,9 @@ private
 
   def offence_summary
     defendant.offences.map { |offence| OffenceSummary.new(offence_id: offence.id).to_builder.attributes! }
+  end
+
+  def has_offences?
+    @court_application.court_application_type.has_offences
   end
 end

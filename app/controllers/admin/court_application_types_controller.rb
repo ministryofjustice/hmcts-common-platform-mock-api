@@ -18,7 +18,7 @@ module Admin
   private
 
     def court_application_type_params
-      params.require(:court_application_type).permit(:code, :type, :legislation)
+      params.require(:court_application_type).permit(:code, :type, :legislation, :has_offences)
     end
   end
 end

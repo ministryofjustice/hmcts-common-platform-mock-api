@@ -2,6 +2,7 @@
 
 class LaaReference < ApplicationRecord
   belongs_to :offence, inverse_of: :laa_reference, optional: true
+  belongs_to :court_application, inverse_of: :laa_reference, optional: true
 
   validates :applicationReference, presence: true
   validates :statusId, presence: true

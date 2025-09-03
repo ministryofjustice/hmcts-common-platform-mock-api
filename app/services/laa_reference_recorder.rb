@@ -12,12 +12,12 @@ class LaaReferenceRecorder < ApplicationService
 
     raise Errors::InvalidParams, errors if errors.present?
 
-    offence = Offence.find(params[:offenceId])
+    reference_holder = find_reference_holder
 
-    offence.build_laa_reference if offence.laa_reference.blank?
+    reference_holder.build_laa_reference if reference_holder.laa_reference.blank?
 
-    offence.laa_reference.update!(laa_reference_params)
-    offence.laa_reference
+    reference_holder.laa_reference.update!(laa_reference_params)
+    reference_holder.laa_reference
   end
 
 private
@@ -41,5 +41,9 @@ private
     courts_definitions = JSON.parse(File.open(Rails.root.join("lib/schemas/global/apiCourtsDefinitions.json")).read)
     courts_definitions["id"] = "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json"
     JSON::Validator.add_schema(JSON::Schema.new(courts_definitions, Addressable::URI.parse(courts_definitions["id"])))
+  end
+
+  def find_reference_holder
+    Offence.find_by(id: params[:offenceId]) || CourtApplication.find_by(id: params[:offenceId])
   end
 end

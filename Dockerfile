@@ -29,7 +29,8 @@ RUN apk --no-cache add --virtual build-dependencies \
                     tzdata \
                     git \
                     yaml-dev \
-                    libffi-dev
+                    libffi-dev \
+                    gcompat
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \

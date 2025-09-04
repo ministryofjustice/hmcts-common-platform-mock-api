@@ -14,7 +14,9 @@ class ApplicationConclusion
       application_conclusion.applicationConcluded conclusion_summary.attributes!
       application_conclusion.isConcluded true
       application_conclusion.hearingIdWhereChangeOccurred defendant.prosecution_case.hearings.last.id
-      application_conclusion.offenceSummary offence_summary_builder
+      if has_offences?
+        application_conclusion.offenceSummary offence_summary_builder
+      end
     end
   end
 
@@ -32,5 +34,9 @@ private
       conclusion_summary.applicationResultCode court_application.result_code
       conclusion_summary.subjectId defendant.id
     end
+  end
+
+  def has_offences?
+    court_application.court_application_type.has_offences
   end
 end

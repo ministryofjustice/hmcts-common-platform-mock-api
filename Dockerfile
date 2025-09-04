@@ -26,11 +26,11 @@ RUN apk --no-cache add --virtual build-dependencies \
                     build-base \
                     yarn \
                     postgresql-dev \
-                    postgresql-client \
                     tzdata \
                     git \
                     yaml-dev \
-                    libffi-dev
+                    libffi-dev \
+                    gcompat
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \

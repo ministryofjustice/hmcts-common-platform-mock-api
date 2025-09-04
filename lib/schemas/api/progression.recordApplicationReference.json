@@ -30,9 +30,6 @@
     }
   },
   "required": [
-    "applicationId",
-    "subjectId",
-    "offenceId",
     "statusCode",
     "applicationReference",
     "statusDate"

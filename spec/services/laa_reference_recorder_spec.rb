@@ -71,9 +71,7 @@ RSpec.describe LaaReferenceRecorder do
   context "with valid params linking to a court application" do
     let(:params_hash) do
       {
-        prosecutionCaseId: defendant.prosecution_case.id,
-        defendantId: defendant.id,
-        offenceId: court_application.id,
+        applicationId: court_application.id,
         statusCode: status_code,
         applicationReference: application_reference,
         statusDate: status_date,

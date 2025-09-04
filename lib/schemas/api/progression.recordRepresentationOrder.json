@@ -50,7 +50,7 @@
         }
     },
     "required": [
-        "offenceId", "statusCode", "applicationReference", "statusDate", "effectiveStartDate", "defenceOrganisation"
+        "statusCode", "applicationReference", "statusDate", "effectiveStartDate", "defenceOrganisation"
     ],
     "additionalProperties": false
 }

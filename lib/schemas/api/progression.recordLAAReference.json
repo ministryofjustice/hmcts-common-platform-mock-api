@@ -8,6 +8,10 @@
       "description": "The identifier of the prosecution case",
       "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
     },
+    "applicationId": {
+      "description": "The identifier of the court application",
+      "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
+    },
     "defendantId": {
       "description": "The identifier of the defendant",
       "$ref": "http://justice.gov.uk/core/courts/external/apiCourtsDefinitions.json#/definitions/uuid"
@@ -30,9 +34,6 @@
     }
   },
   "required": [
-    "prosecutionCaseId",
-    "defendantId",
-    "offenceId",
     "statusCode",
     "applicationReference",
     "statusDate"

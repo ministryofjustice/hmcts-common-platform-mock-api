@@ -58,6 +58,8 @@ Rails.application.routes.draw do
     "/applications/:applicationId" \
     "/subject/:subjectId" \
     "/offences/:offenceId" => "application_references#create", as: :application_reference
+  post "/prosecutionCases/laaReference" \
+    "/applications/:applicationId" => "application_references#create", as: :no_offence_application_reference
   post "/prosecutionCases/representationOrder" \
     "/cases/:prosecutionCaseId" \
     "/defendants/:defendantId" \
@@ -66,6 +68,8 @@ Rails.application.routes.draw do
     "/applications/:applicationId" \
     "/subject/:subjectId" \
     "/offences/:offenceId" => "representation_orders#create"
+  post "/prosecutionCases/representationOrder" \
+    "/applications/:applicationId" => "representation_orders#create"
   get "/hearing/results" => "hearings#show", as: :hearing
   get "/hearing/hearingLog" => "hearing_logs#show", as: :hearing_log
   get "/applications/:applicationId" => "court_application#index", as: :applications

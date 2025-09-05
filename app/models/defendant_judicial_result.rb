@@ -7,7 +7,7 @@ class DefendantJudicialResult < ApplicationRecord
   def to_builder
     Jbuilder.new do |defendant_judicial_result|
       defendant_judicial_result.masterDefendantId master_defendant_id
-      defendant_judicial_result.judicialResult judicial_result.to_builder
+      defendant_judicial_result.judicialResult judicial_result.to_builder.attributes!
     end
   end
 end

@@ -25,7 +25,7 @@ private
   attr_reader :params, :schema
 
   def permitted_params
-    params.permit(:prosecutionCaseId, :defendantId, :offenceId, :statusCode, :applicationReference, :statusDate)
+    params.permit(:applicationId, :offenceId, :statusCode, :applicationReference, :statusDate)
   end
 
   def laa_reference_params
@@ -44,6 +44,10 @@ private
   end
 
   def find_reference_holder
-    Offence.find_by(id: params[:offenceId]) || CourtApplication.find_by(id: params[:offenceId])
+    if params[:offenceId]
+      Offence.find(params[:offenceId])
+    else
+      CourtApplication.find(params[:applicationId])
+    end
   end
 end

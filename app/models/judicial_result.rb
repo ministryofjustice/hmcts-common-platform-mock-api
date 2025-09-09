@@ -62,4 +62,11 @@ class JudicialResult < ApplicationRecord
       judicial_result.judicialResultPrompts array_builder(judicial_result_prompts)
     end
   end
+
+  def defendant_judicial_result
+    @defendant_judicial_result ||= DefendantJudicialResult.new(
+      master_defendant_id: defendant&.masterDefendantId,
+      judicial_result: self,
+    )
+  end
 end

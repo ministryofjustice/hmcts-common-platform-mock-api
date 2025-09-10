@@ -19,6 +19,7 @@ class Hearing < ApplicationRecord
   has_many :referral_reasons
   has_many :hearing_case_notes
   has_many :hearing_days, inverse_of: :hearing, dependent: :destroy
+  has_many :judicial_results, dependent: :destroy
   has_many :judicial_roles
   has_many :applicant_counsels
   has_many :respondent_counsels
@@ -65,6 +66,7 @@ class Hearing < ApplicationRecord
       hearing.defendantAttendance array_builder(defendant_attendances)
       hearing.defendantHearingYouthMarkers array_builder(defendant_hearing_youth_markers)
       hearing.courtApplicationPartyAttendance array_builder(court_application_party_attendances)
+      hearing.defendantJudicialResults array_builder(judicial_results.map(&:defendant_judicial_result))
     end
   end
 

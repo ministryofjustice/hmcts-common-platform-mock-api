@@ -34,8 +34,8 @@ RSpec.describe "Demo data tasks", type: :rake do
       loader
     end
 
-    it "creates 2 cases" do
-      expect { loader }.to change(ProsecutionCase, :count).by(2)
+    it "creates 3 cases" do
+      expect { loader }.to change(ProsecutionCase, :count).by(3)
     end
 
     it "creates 1 allocation_decision" do

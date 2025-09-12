@@ -101,8 +101,10 @@ RSpec.describe "Demo data tasks", type: :rake do
     context "when demo data exists" do
       before { loader }
 
-      it "destroys 2 cases" do
-        expect { unloader }.to change(ProsecutionCase, :count).by(-2)
+      it "destroys all the prosecution cases" do
+        unloader
+
+        expect(ProsecutionCase.count).to be 0
       end
     end
 

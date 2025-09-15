@@ -8,18 +8,23 @@ namespace :mock do
     desc "create existing demo data"
     task load: :environment do
       create_prosecution_cases
+
+      create_court_applications_with_appeal
     end
 
     desc "remove existing demo data"
     task unload: :environment do
       destroy_prosecution_case(CASE1[:URN])
       destroy_prosecution_case(CASE2[:URN])
+      destroy_prosecution_case(CASE_WITH_APPEAL[:URN])
     end
   end
 end
 
 CASE1 = { URN: "TEST12345" }.freeze
 CASE2 = { URN: "TEST54321" }.freeze
+CASE_WITH_APPEAL = { URN: "TESTAP123" }.freeze
+
 ICONS = {
   success: "\u{2705}",
   failure: "\u{274E}",
@@ -31,6 +36,61 @@ ICONS = {
 # querying via UI and covering possible search
 # scenarios.
 #
+def create_court_applications_with_appeal
+  prosecution_case = create_case_and_defendants(urn: CASE_WITH_APPEAL[:URN], additional_defendant_count: 1)
+
+  court_application_party = FactoryBot.create(:court_application_party)
+
+  # Create a CourtApplicationType flagged as an appeal
+  court_application_type = FactoryBot.create(:court_application_type, :with_appeal_flag,
+                                             code: "MC80801",
+                                             category_code: "appeal",
+                                             type: "Appeal against conviction and sentence by a Magistrates' Court to the Crown Court")
+
+  defendant = prosecution_case.defendants.first
+
+  court_application = FactoryBot.create(:court_application,
+                                        court_application_party:,
+                                        court_application_type:,
+                                        defendant:,
+                                        applicationReceivedDate: Time.zone.now,
+                                        applicationStatus: "FINALISED")
+
+  # Link the court application to the prosecution case
+  court_application.prosecution_cases << prosecution_case
+
+  # Create a Hearing (with suitable hearing_type) for the appeal.
+
+  hearing_type = FactoryBot.create(:hearing_type,
+                                   description: "appeal")
+
+  hearing = FactoryBot.create(:hearing,
+                              hearing_type:,
+                              resulted: true,
+                              prosecution_cases: [prosecution_case])
+
+  # Link the Hearing to the CourtApplication via CourtApplicationHearing
+  court_application.hearing = hearing
+
+  court_application.court_hearings << hearing
+
+  court_application.save!
+
+  # Add JudicialResult
+  offence = defendant.offences.first
+  offence.judicial_results << FactoryBot.create(:judicial_result)
+  offence.save!
+
+  # Add applicant counsel
+  applicant_counsel = FactoryBot.create_list(:applicant_counsel, 1)
+
+  # Add applicant counsel to hearing
+  hearing.applicant_counsels << applicant_counsel
+  hearing.save!
+
+  puts " #{ICONS[:success]}"
+end
+
 def create_prosecution_cases
   # create person 'Jammy Dodger'
   person = create_person

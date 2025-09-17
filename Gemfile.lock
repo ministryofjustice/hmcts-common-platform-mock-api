@@ -231,7 +231,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.0.4)
+    marcel (1.1.0)
     matrix (0.4.3)
     method_source (1.1.0)
     mini_mime (1.1.5)
@@ -254,23 +254,23 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.9)
+    nokogiri (1.18.10)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.18.9-aarch64-linux-gnu)
+    nokogiri (1.18.10-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.9-arm64-darwin)
+    nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-linux-gnu)
+    nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
-    oauth2 (2.0.15)
+    oauth2 (2.0.17)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
       logger (~> 1.2)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0, >= 2.0.3)
-      version_gem (~> 1.1, >= 1.1.8)
+      version_gem (~> 1.1, >= 1.1.9)
     parallel (1.27.0)
     parser (3.3.9.0)
       ast (~> 2.4.1)
@@ -285,7 +285,7 @@ GEM
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.4.0)
+    prism (1.5.1)
     propshaft (1.2.1)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -302,7 +302,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (7.0.2)
+    puma (7.0.3)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.1)
@@ -358,10 +358,10 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
-    regexp_parser (2.11.2)
+    regexp_parser (2.11.3)
     reline (0.6.2)
       io-console (~> 0.5)
-    rexml (3.4.3)
+    rexml (3.4.4)
     rspec (3.13.1)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -382,7 +382,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.5)
+    rspec-support (3.13.6)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (1.79.2)
@@ -514,13 +514,13 @@ DEPENDENCIES
   json-schema-rspec (~> 0.0.4)
   kaminari
   listen (>= 3.0.5, < 3.10)
-  oauth2 (~> 2.0.15)
+  oauth2 (~> 2.0.17)
   pg (>= 1.4.5, < 2.0)
   pg_search
   propshaft
   pry-byebug
   pry-rails
-  puma (~> 7.0.2)
+  puma (~> 7.0.3)
   rails (~> 8.0)
   rails-controller-testing
   railties (~> 8.0)

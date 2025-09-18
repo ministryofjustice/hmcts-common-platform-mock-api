@@ -54,42 +54,46 @@ RSpec.describe "/admin/court_application", type: :request do
       expect(response).to be_successful
     end
 
-    it "assigns @court_application" do
-      expect(assigns(:court_application)).to eq(court_application)
+    it "loads court application details" do
+      expect(response.body).to include(court_application.id)
     end
 
-    it "assigns @defendants from prosecution_case" do
+    it "loads defendant details" do
       prosecution_case = court_application.prosecution_cases.first.reload
-      expect(assigns(:defendants)).to eq(prosecution_case.defendants)
+      prosecution_case.defendants.each do |defendant|
+        expect(response.body).to include(defendant.id).and include(defendant.defendable.person.first_name)
+      end
     end
 
-    it "assigns @hearings from prosecution_case" do
+    it "loads hearing details" do
       prosecution_case = court_application.prosecution_cases.first.reload
-      expect(assigns(:hearings)).to eq(prosecution_case.hearings)
+      prosecution_case.hearings.each do |hearing|
+        expect(response.body).to include(hearing.id)
+      end
     end
   end
 
   describe "GET #new" do
-    it "Creates court_application object" do
+    it "renders the court application form" do
       get(new_admin_hearing_court_application_path(hearing.id), headers:)
       expect(response).to have_http_status(:ok)
-      expect(assigns(:court_application)).to respond_to(:id)
-      expect(assigns(:court_application)).to respond_to(:applicationStatus)
+      expect(response.body).to include("<h2>Court Application</h2>")
     end
   end
 
   describe "GET #index" do
-    it "assigns @court_applications" do
+    it "shows details of existing court applications" do
       get(admin_court_applications_path, headers:)
-      expect(assigns(:court_applications)).to be_a(ActiveRecord::Relation)
+      expect(response.body).to include(court_application.id)
       expect(response).to have_http_status(:ok)
     end
   end
 
   describe "PUT #update" do
-    it "assigns @court_application" do
+    it "renders the form" do
       get(edit_admin_court_application_path(court_application), headers:)
-      expect(assigns(:court_application)).to eq(court_application)
+      expect(response.body).to include(court_application.id)
+      expect(response.body).to include("<h2>Court Application</h2>")
       expect(response).to have_http_status(:ok)
     end
 

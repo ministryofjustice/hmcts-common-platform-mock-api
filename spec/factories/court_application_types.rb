@@ -30,4 +30,9 @@ FactoryBot.define do
     spi_out_applicable_flag { true }
     offence_active_order { "OFFENCE" }
   end
+
+  trait :with_appeal_flag do
+    appeal_flag { true }
+    applicant_appellant_flag { true }
+  end
 end

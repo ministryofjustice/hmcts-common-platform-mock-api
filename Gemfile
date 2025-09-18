@@ -11,7 +11,7 @@ gem "rails", "~> 8.0"
 gem "pg", ">= 1.4.5", "< 2.0"
 gem "propshaft"
 # Use Puma as the app server
-gem "puma", "~> 7.0.2"
+gem "puma", "~> 7.0.3"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.14"
 # Use Active Model has_secure_password
@@ -33,7 +33,7 @@ gem "faraday", "~> 2.13.4"
 gem "hmcts_common_platform", github: "ministryofjustice/hmcts_common_platform", tag: "v0.2.0"
 gem "json-schema", git: "https://github.com/voxpupuli/json-schema", branch: "master", ref: "081dfc3"
 gem "kaminari"
-gem "oauth2", "~> 2.0.15"
+gem "oauth2", "~> 2.0.17"
 gem "pg_search"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible

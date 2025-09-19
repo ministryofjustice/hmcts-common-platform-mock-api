@@ -75,7 +75,7 @@
   <h3>Cracked Ineffective Trial</h3>
 
   <div class="field">
-    <%= form.select(:cracked_ineffective_trial_id, CrackedIneffectiveTrial.all.collect { |cit| [cit.description, cit.id] }, include_blank: true) %>
+    <%= form.select(:cracked_ineffective_trial_id, CrackedIneffectiveTrial.pluck(Arel.sql("DISTINCT ON (description) description, id")), include_blank: true) %>
   </div>
 
   <% if hearing.persisted? %>

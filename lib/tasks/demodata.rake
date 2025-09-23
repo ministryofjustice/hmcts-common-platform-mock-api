@@ -8,8 +8,8 @@ namespace :mock do
     desc "create existing demo data"
     task load: :environment do
       create_prosecution_cases
-
       create_court_applications_with_appeal
+      create_court_application_with_breaches
     end
 
     desc "remove existing demo data"
@@ -17,6 +17,7 @@ namespace :mock do
       destroy_prosecution_case(CASE1[:URN])
       destroy_prosecution_case(CASE2[:URN])
       destroy_prosecution_case(CASE_WITH_APPEAL[:URN])
+      destroy_prosecution_case(CASE_WITH_BREACH[:URN])
     end
   end
 end
@@ -24,6 +25,7 @@ end
 CASE1 = { URN: "TEST12345" }.freeze
 CASE2 = { URN: "TEST54321" }.freeze
 CASE_WITH_APPEAL = { URN: "TESTAP123" }.freeze
+CASE_WITH_BREACH = { URN: "TESTBR111" }.freeze
 
 ICONS = {
   success: "\u{2705}",
@@ -88,6 +90,64 @@ def create_court_applications_with_appeal
   hearing.applicant_counsels << applicant_counsel
   hearing.save!
 
+  puts " #{ICONS[:success]}"
+end
+
+def create_court_application_with_breaches
+  prosecution_case = create_case_and_defendants(urn: CASE_WITH_BREACH[:URN])
+
+  defendant = prosecution_case.defendants.first
+
+  puts("Created prosecution case #{prosecution_case.prosecution_case_identifier.caseURN} #{ICONS[:success]}")
+
+  court_application_type = FactoryBot.create(:court_application_type,
+                                             has_offences: false,
+                                             code: "CJ03506",
+                                             category_code: "breach",
+                                             type: "Failing to comply with the community requirements of a suspended sentence order",
+                                             breach_type: "GENERIC_BREACH")
+  puts("Created court application type #{court_application_type.code} #{ICONS[:success]}")
+
+  court_application_party = FactoryBot.create(
+    :court_application_party,
+  )
+
+  court_application = FactoryBot.create(:court_application,
+                                        court_application_type:,
+                                        court_application_party:,
+                                        defendant:,
+                                        applicationReceivedDate: Time.zone.now,
+                                        applicationStatus: "LISTED")
+
+  # Link the court application to the prosecution case
+  court_application.prosecution_cases << prosecution_case
+  court_application.save!
+
+  hearing_type = FactoryBot.create(:hearing_type,
+                                   description: "Breach of Order")
+
+  hearing = FactoryBot.create(:hearing,
+                              hearing_type:,
+                              resulted: true,
+                              prosecution_cases: [prosecution_case])
+
+  FactoryBot.create(:prosecution_case_hearing, prosecution_case: prosecution_case, hearing: hearing)
+
+  puts("Created hearing #{hearing.id} #{ICONS[:success]}")
+
+  # Link the Hearing to the CourtApplication via CourtApplicationHearing
+  court_application.hearing = hearing
+  court_application.court_hearings << hearing
+  court_application.save!
+  puts("Linked hearing to court application #{court_application.id} #{ICONS[:success]}")
+
+  FactoryBot.create(
+    :judicial_result,
+    court_application: court_application,
+    hearing: hearing,
+    defendant: defendant,
+  )
+  puts("Created judicial result for court application #{court_application.id} #{ICONS[:success]}")
   puts " #{ICONS[:success]}"
 end
 

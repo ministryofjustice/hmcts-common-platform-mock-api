@@ -6,6 +6,8 @@ class CourtApplicationType < ApplicationRecord
   RECIPIENT_TYPES = %w[APPLICANT RESPONDENT].freeze
   TEMPLATE_TYPES = %w[GENERIC_SUMMONS].freeze
 
+  # This disables STI to allow us to use the column name 'type'.
+  # In this model 'type' is synonymous with 'application type'.
   self.inheritance_column = nil
 
   has_one :court_application, inverse_of: :court_application_type

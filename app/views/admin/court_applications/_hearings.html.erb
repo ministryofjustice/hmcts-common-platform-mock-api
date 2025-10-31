@@ -22,7 +22,7 @@
 <ul class="hearing-listings">
   <% @prosecution_case_hearings.reject { |hearing| @court_application_hearings.map(&:id).include?(hearing.id) }.each_with_index do |hearing, index| %>
   <li>
-    <strong><%= hearing.id %></strong>
+    <strong><%= hearing.hearing_id %></strong>
     <%= link_to'Add', admin_court_application_hearing_create_url(court_application_id: @court_application.id, hearing_id: hearing.id), method: :post  %>
   </li>
   <% end %>

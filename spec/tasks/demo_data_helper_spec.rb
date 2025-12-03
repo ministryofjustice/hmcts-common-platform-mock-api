@@ -16,7 +16,7 @@ RSpec.describe DemoDataHelper, type: :helper do
   describe "#prosecution_cases_by_reference" do
     subject(:results) { instance.prosecution_cases_by_reference(urn) }
 
-    let(:urn) { "TESTURN123" }
+    let(:urn) { "TESTURN1234" }
 
     before do
       create(
@@ -31,7 +31,7 @@ RSpec.describe DemoDataHelper, type: :helper do
     end
 
     it "returns matching prosecution cases" do
-      expect(results.map { |pc| pc.prosecution_case_identifier.caseURN }).to be_present.and be_all(eql("TESTURN123"))
+      expect(results.map { |pc| pc.prosecution_case_identifier.caseURN }).to be_present.and be_all(eql("TESTURN1234"))
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.describe DemoDataHelper, type: :helper do
 
     before do
       pc = create(:realistic_prosecution_case,
-                  prosecution_case_identifier: create(:realistic_prosecution_case_identifier, caseURN: "TESTURN321"))
+                  prosecution_case_identifier: create(:realistic_prosecution_case_identifier, caseURN: "TESTURN4321"))
       pc.defendants.first.defendable.person.update!(nationalInsuranceNumber: nino)
     end
 
@@ -51,7 +51,7 @@ RSpec.describe DemoDataHelper, type: :helper do
     end
 
     it "returns matching prosecution cases" do
-      expect(results.map { |pc| pc.prosecution_case_identifier.caseURN }).to be_present.and be_all(eql("TESTURN321"))
+      expect(results.map { |pc| pc.prosecution_case_identifier.caseURN }).to be_present.and be_all(eql("TESTURN4321"))
     end
   end
 
@@ -81,10 +81,10 @@ RSpec.describe DemoDataHelper, type: :helper do
       let(:prosecution_case) do
         create(:realistic_prosecution_case,
                prosecution_case_identifier: create(:realistic_prosecution_case_identifier,
-                                                   caseURN: "URN54321", prosecutionAuthorityReference: nil))
+                                                   caseURN: "URN87654321", prosecutionAuthorityReference: nil))
       end
 
-      it { is_expected.to eql("URN54321") }
+      it { is_expected.to eql("URN87654321") }
     end
 
     context "with prosecution authority reference" do
@@ -102,7 +102,7 @@ RSpec.describe DemoDataHelper, type: :helper do
   describe "#case_details_hash" do
     subject(:results) { instance.case_details_hash(urn) }
 
-    let(:urn) { "TESTURN123" }
+    let(:urn) { "TESTURN1234" }
     let(:attributes) do
       %i[defendant_id defendant_name offence_id offence_desc mode_of_trial mot_reasons plea_sentences cracked_ineffective_trial_sentences]
     end

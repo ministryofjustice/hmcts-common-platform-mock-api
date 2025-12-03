@@ -22,10 +22,10 @@ namespace :mock do
   end
 end
 
-CASE1 = { URN: "TEST12345" }.freeze
-CASE2 = { URN: "TEST54321" }.freeze
-CASE_WITH_APPEAL = { URN: "TESTAP123" }.freeze
-CASE_WITH_BREACH = { URN: "TESTBR111" }.freeze
+CASE1 = { URN: "TEST1234567" }.freeze
+CASE2 = { URN: "TEST7654321" }.freeze
+CASE_WITH_APPEAL = { URN: "TESTAP12345" }.freeze
+CASE_WITH_BREACH = { URN: "TESTBR11111" }.freeze
 
 ICONS = {
   success: "\u{2705}",

@@ -32,7 +32,7 @@ RSpec.describe ProsecutionCaseSearch do
 
     before do
       cases.first.prosecution_case_identifier = build(:prosecution_case_identifier,
-                                                      caseURN: "xxyyzz")
+                                                      caseURN: "xxxxyyyyxzz")
       cases.second.prosecution_case_identifier = build(:prosecution_case_identifier_with_reference,
                                                        prosecutionAuthorityReference: "XXYYZZ")
       cases.map(&:save!)

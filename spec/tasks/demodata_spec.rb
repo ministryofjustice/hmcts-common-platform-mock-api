@@ -53,7 +53,7 @@ RSpec.describe "Demo data tasks", type: :rake do
     context "and for case 1" do
       before { loader }
 
-      let(:case1) { prosecution_cases_by_reference("TEST12345").first }
+      let(:case1) { prosecution_cases_by_reference("TEST1234567").first }
 
       it "adds 4 defendants" do
         expect(case1.defendants.count).to be 4
@@ -85,7 +85,7 @@ RSpec.describe "Demo data tasks", type: :rake do
     context "and for case 2" do
       before { loader }
 
-      let(:case2) { prosecution_cases_by_reference("TEST54321").first }
+      let(:case2) { prosecution_cases_by_reference("TEST7654321").first }
 
       it "adds 3 defendants" do
         expect(case2.defendants.count).to be 3

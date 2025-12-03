@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_02_080512) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -551,14 +551,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "feature_flags", force: :cascade do |t|
-    t.string "name"
-    t.boolean "enabled"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_feature_flags_on_name", unique: true
-  end
-
   create_table "future_summons_hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "jurisdiction_type"
     t.string "earliest_start_date_time"
@@ -596,15 +588,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
     t.index ["hearing_id"], name: "index_hearing_days_on_hearing_id"
   end
 
-  create_table "hearing_event_recordings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "hearing_id"
-    t.date "hearing_date"
-    t.jsonb "body", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["hearing_id"], name: "index_hearing_event_recordings_on_hearing_id"
-  end
-
   create_table "hearing_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "hearingEventDefinitionId"
     t.string "recordedLabel"
@@ -615,11 +598,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
     t.uuid "hearing_day_id", null: false
     t.string "note"
     t.index ["hearing_day_id"], name: "index_hearing_events_on_hearing_day_id"
-  end
-
-  create_table "hearing_repull_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "hearing_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -647,15 +625,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
     t.index ["court_centre_id"], name: "index_hearings_on_court_centre_id"
     t.index ["cracked_ineffective_trial_id"], name: "index_hearings_on_cracked_ineffective_trial_id"
     t.index ["hearing_type_id"], name: "index_hearings_on_hearing_type_id"
-  end
-
-  create_table "incoming_payloads", force: :cascade do |t|
-    t.jsonb "body"
-    t.string "request_id"
-    t.string "payload_type"
-    t.string "identifier"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "indicated_pleas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -940,51 +909,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
     t.index ["offence_id"], name: "index_notified_pleas_on_offence_id"
   end
 
-  create_table "oauth_access_grants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "resource_owner_id", null: false
-    t.uuid "application_id", null: false
-    t.string "token", null: false
-    t.integer "expires_in", null: false
-    t.text "redirect_uri", null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "revoked_at", precision: nil
-    t.string "scopes", default: "", null: false
-    t.index ["application_id"], name: "index_oauth_access_grants_on_application_id"
-    t.index ["resource_owner_id"], name: "index_oauth_access_grants_on_resource_owner_id"
-    t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
-  end
-
-  create_table "oauth_access_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "resource_owner_id"
-    t.uuid "application_id", null: false
-    t.string "token", null: false
-    t.string "refresh_token"
-    t.integer "expires_in"
-    t.datetime "revoked_at", precision: nil
-    t.datetime "created_at", precision: nil, null: false
-    t.string "scopes"
-    t.string "previous_refresh_token", default: "", null: false
-    t.index ["application_id"], name: "index_oauth_access_tokens_on_application_id"
-    t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
-    t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
-    t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
-  end
-
-  create_table "oauth_applications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", null: false
-    t.string "uid", null: false
-    t.string "secret", null: false
-    t.text "redirect_uri"
-    t.string "scopes", default: "", null: false
-    t.boolean "confidential", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "contact_email"
-    t.string "requester_email"
-    t.string "requestee_email"
-    t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
-  end
-
   create_table "offence_facts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "vehicleRegistration"
     t.integer "alcoholReadingAmount"
@@ -1161,26 +1085,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
     t.index ["contact_id"], name: "index_prosecuting_authorities_on_contact_id"
   end
 
-  create_table "prosecution_case_defendant_offences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "prosecution_case_id", null: false
-    t.uuid "defendant_id", null: false
-    t.uuid "offence_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "deprecated_maat_reference"
-    t.boolean "deprecated_dummy_maat_reference", default: false, null: false
-    t.string "rep_order_status"
-    t.integer "response_status"
-    t.json "response_body"
-    t.datetime "status_date", precision: nil
-    t.datetime "effective_start_date", precision: nil
-    t.datetime "effective_end_date", precision: nil
-    t.json "defence_organisation"
-    t.index ["defendant_id"], name: "index_prosecution_case_defendant_offences_on_defendant_id"
-    t.index ["offence_id"], name: "index_prosecution_case_defendant_offences_on_offence_id"
-    t.index ["prosecution_case_id"], name: "index_case_defendant_offences_on_prosecution_case"
-  end
-
   create_table "prosecution_case_hearing_case_notes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "prosecution_case_id", null: false
     t.uuid "hearing_case_note_id", null: false
@@ -1188,18 +1092,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
     t.datetime "updated_at", null: false
     t.index ["hearing_case_note_id"], name: "prosecution_case_hearing_case_notes_on_hearing_case_note_id"
     t.index ["prosecution_case_id"], name: "prosecution_case_hearing_case_notes_on_prosecution_case_id"
-  end
-
-  create_table "prosecution_case_hearing_repulls", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "hearing_repull_batch_id"
-    t.uuid "prosecution_case_id"
-    t.string "status", default: "pending"
-    t.string "maat_ids"
-    t.string "urn"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["hearing_repull_batch_id"], name: "idx_on_hearing_repull_batch_id_61b4f3e760"
-    t.index ["prosecution_case_id"], name: "index_prosecution_case_hearing_repulls_on_prosecution_case_id"
   end
 
   create_table "prosecution_case_hearings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1329,16 +1221,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
     t.index ["prosecution_case_id"], name: "index_split_prosecutor_case_references_on_prosecution_case_id"
   end
 
-  create_table "unlink_reasons", force: :cascade do |t|
-    t.integer "code", null: false
-    t.string "description", null: false
-    t.boolean "text_required", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_unlink_reasons_on_code", unique: true
-    t.index ["description"], name: "index_unlink_reasons_on_description", unique: true
-  end
-
   create_table "user_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "group"
     t.datetime "created_at", null: false
@@ -1347,34 +1229,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
     t.uuid "judicial_result_id"
     t.index ["judicial_result_id"], name: "index_user_groups_on_judicial_result_id"
     t.index ["judicial_result_prompt_id"], name: "index_user_groups_on_judicial_result_prompt_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.datetime "remember_created_at", precision: nil
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at", precision: nil
-    t.datetime "last_sign_in_at", precision: nil
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
-    t.integer "failed_attempts", default: 0, null: false
-    t.string "unlock_token"
-    t.datetime "locked_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "roles", default: ["caseworker"], array: true
-    t.string "username", null: false
-    t.string "feature_flags", default: [], array: true
-    t.string "entra_id"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "verdict_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1500,8 +1354,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
   add_foreign_key "next_hearing_prosecution_cases", "next_hearings"
   add_foreign_key "next_hearings", "hearing_types"
   add_foreign_key "notified_pleas", "offences"
-  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
-  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "offences", "custody_time_limits"
   add_foreign_key "offences", "defendants"
   add_foreign_key "offences", "offence_facts", column: "offence_facts_id"
@@ -1525,7 +1377,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_160419) do
   add_foreign_key "prosecuting_authorities", "contact_numbers", column: "contact_id"
   add_foreign_key "prosecution_case_hearing_case_notes", "hearing_case_notes"
   add_foreign_key "prosecution_case_hearing_case_notes", "prosecution_cases"
-  add_foreign_key "prosecution_case_hearing_repulls", "hearing_repull_batches"
   add_foreign_key "prosecution_case_hearings", "hearings"
   add_foreign_key "prosecution_case_hearings", "prosecution_cases"
   add_foreign_key "prosecution_case_identifiers", "addresses"

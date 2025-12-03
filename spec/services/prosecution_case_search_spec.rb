@@ -27,14 +27,14 @@ RSpec.describe ProsecutionCaseSearch do
   context "when searching by prosecutionCaseReference" do
     let(:cases) { build_list(:prosecution_case, 3) }
     let(:params_hash) do
-      { prosecutionCaseReference: "XXYYZZ" }
+      { prosecutionCaseReference: "XXXXYYYYZZZ" }
     end
 
     before do
       cases.first.prosecution_case_identifier = build(:prosecution_case_identifier,
-                                                      caseURN: "xxxxyyyyxzz")
+                                                      caseURN: "xxxxyyyyzzz")
       cases.second.prosecution_case_identifier = build(:prosecution_case_identifier_with_reference,
-                                                       prosecutionAuthorityReference: "XXYYZZ")
+                                                       prosecutionAuthorityReference: "XXXXYYYYZZZ")
       cases.map(&:save!)
     end
 

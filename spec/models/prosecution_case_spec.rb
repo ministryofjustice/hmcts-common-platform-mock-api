@@ -46,7 +46,7 @@ RSpec.describe ProsecutionCase, type: :model do
     let(:prosecution_case_1) { FactoryBot.create(:prosecution_case) }
     let(:prosecution_case_2) do
       FactoryBot.create(:prosecution_case,
-                        prosecution_case_identifier: FactoryBot.create(:prosecution_case_identifier, caseURN: "TEST1"))
+                        prosecution_case_identifier: FactoryBot.create(:prosecution_case_identifier, caseURN: "TEST1234567"))
     end
 
     let(:parameters) { "TEST" }

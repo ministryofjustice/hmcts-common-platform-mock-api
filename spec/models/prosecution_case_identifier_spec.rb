@@ -9,12 +9,14 @@ RSpec.describe ProsecutionCaseIdentifier, type: :model do
   describe "validations" do
     it { is_expected.to validate_presence_of(:prosecutionAuthorityId) }
     it { is_expected.to validate_presence_of(:prosecutionAuthorityCode) }
+    it { is_expected.to allow_values("foobarFooba", "buz12345678", "lengthNoBig").for(:caseURN) }
+    it { is_expected.not_to allow_values("foo  bar", "buz+-", "lengthTooBig").for(:caseURN) }
   end
 
   describe ".by_reference" do
     subject { described_class.by_reference(search_term) }
 
-    let(:search_term) { "INHRBICZKQ" }
+    let(:search_term) { "INHRBICZKQA" }
 
     before { prosecution_case_identifier.save! }
 
@@ -27,7 +29,7 @@ RSpec.describe ProsecutionCaseIdentifier, type: :model do
     end
 
     context "with lowercase searches" do
-      let(:search_term) { "inhrbiczkq" }
+      let(:search_term) { "inhrbiczkqa" }
 
       it { is_expected.to eq([prosecution_case_identifier]) }
     end

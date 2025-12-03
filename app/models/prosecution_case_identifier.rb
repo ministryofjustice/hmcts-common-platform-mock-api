@@ -7,7 +7,8 @@ class ProsecutionCaseIdentifier < ApplicationRecord
   validates :prosecutionAuthorityId, presence: true
   validates :prosecutionAuthorityCode, presence: true
   validates :prosecutionAuthorityReference, presence: true, if: -> { caseURN.blank? }
-  validates :caseURN, presence: true, if: -> { prosecutionAuthorityReference.blank? }
+  validates :caseURN, presence: true, if: -> { prosecutionAuthorityReference.blank? },
+                      length: { is: 11 }, format: { with: /\A[a-zA-Z0-9]*\z/, message: "Only allows alphanumeric letters" }
 
   scope :by_reference, lambda { |reference|
     where('LOWER("caseURN") = :reference OR LOWER("prosecution_case_identifiers"."prosecutionAuthorityReference") = :reference',

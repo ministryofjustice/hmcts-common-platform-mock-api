@@ -1,6 +1,6 @@
 # HMCTS Common Platform Mock API
 
-## Set up
+## Setup
 
 This is a standard 6 Rails API application which requires:
 

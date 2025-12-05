@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :prosecution_case_identifier do
-    caseURN { "INHRBICZKQ" }
+    caseURN { "INHRBICZKQA" }
     prosecutionAuthorityId { "91c0e6c7-4a4f-415b-a3e1-aea9883f6065" }
     prosecutionAuthorityCode { "S5589083J" }
     prosecution_authority_name { "MyString" }
@@ -18,7 +18,7 @@ FactoryBot.define do
     factory :realistic_prosecution_case_identifier do
       prosecutionAuthorityId { SecureRandom.uuid }
       prosecutionAuthorityCode { Faker::Alphanumeric.alpha(number: 10).upcase }
-      caseURN { Faker::Alphanumeric.alpha(number: 10).upcase }
+      caseURN { Faker::Alphanumeric.alpha(number: 11).upcase }
       prosecutionAuthorityReference { nil }
       prosecution_authority_name { Faker::Lorem.word }
       prosecution_authority_oucode { Faker::Number.number(digits: 4) }

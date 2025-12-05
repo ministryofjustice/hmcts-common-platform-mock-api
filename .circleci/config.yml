@@ -74,7 +74,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            bundle check --path vendor/bundle || bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle check || bundle install --jobs=4 --retry=3
 
       - run:
           name: Precompile Assets
@@ -197,7 +197,7 @@ jobs:
       - court-data-end-to-end-tests/run-e2e-tests:
           e2e_current_image_var: MOCK_IMAGE
           e2e_current_image: ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api:${CIRCLE_SHA1}
-          e2e_branch: main # Change this to work against a fixed e2e test repo branch if needed (e.g. a seed data change)
+          e2e_branch: ACD-1099-11-urn # Change this to work against a fixed e2e test repo branch if needed (e.g. a seed data change)
 
   e2e-test-main:
     executor: court-data-end-to-end-tests/e2e-test-executor

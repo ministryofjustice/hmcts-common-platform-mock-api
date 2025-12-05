@@ -54,6 +54,7 @@ def create_court_applications_with_appeal
   court_application = FactoryBot.create(:court_application,
                                         court_application_party:,
                                         court_application_type:,
+                                        applicationReference: CASE_WITH_APPEAL[:URN],
                                         defendant:,
                                         applicationReceivedDate: Time.zone.now,
                                         applicationStatus: "FINALISED")
@@ -115,6 +116,7 @@ def create_court_application_with_breaches
   court_application = FactoryBot.create(:court_application,
                                         court_application_type:,
                                         court_application_party:,
+                                        applicationReference: CASE_WITH_BREACH[:URN],
                                         defendant:,
                                         applicationReceivedDate: Time.zone.now,
                                         applicationStatus: "LISTED")

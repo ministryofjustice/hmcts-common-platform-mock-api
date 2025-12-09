@@ -1,6 +1,6 @@
 <div class="nested-fields">
   <div class="field">
-    <%= f.label :code, 'Code' %>
+    <%= f.label :code, 'Code and Title' %>
     <%= f.select :code,
                  options_for_select(@codes_and_titles, @court_application_type.code),
                  include_blank: "Select an application type" %>

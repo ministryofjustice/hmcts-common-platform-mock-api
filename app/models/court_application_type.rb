@@ -32,13 +32,6 @@ class CourtApplicationType < ApplicationRecord
   validates :spi_out_applicable_flag, presence: true
   validates :offence_active_order, presence: true
 
-  before_save do
-    unless code.nil?
-      self.category_code = COURT_APPLICATION_TYPES[code]&.fetch("category", nil)
-      self.type = COURT_APPLICATION_TYPES[code]&.fetch("title", nil)
-    end
-  end
-
   def to_builder
     Jbuilder.new do |court_application_type|
       court_application_type.id id

@@ -3,6 +3,9 @@ module Admin
     def edit
       court_application = CourtApplication.find(params[:court_application_id])
       @court_application_type = court_application.court_application_type
+      @codes_and_titles = CourtApplicationType::COURT_APPLICATION_TYPES.map do |code, attrs|
+        ["#{code} - #{attrs['category'].capitalize} – #{attrs['title']}", code] # [label, value]
+      end
     end
 
     def update

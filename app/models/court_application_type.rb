@@ -6,6 +6,10 @@ class CourtApplicationType < ApplicationRecord
   RECIPIENT_TYPES = %w[APPLICANT RESPONDENT].freeze
   TEMPLATE_TYPES = %w[GENERIC_SUMMONS].freeze
 
+  COURT_APPLICATION_TYPES = YAML.load_file(
+    Rails.root.join("lib/data/supported_court_application_types.yml"),
+  ).freeze
+
   # This disables STI to allow us to use the column name 'type'.
   # In this model 'type' is synonymous with 'application type'.
   self.inheritance_column = nil
@@ -27,6 +31,13 @@ class CourtApplicationType < ApplicationRecord
   validates :prosecutor_third_party_flag, presence: true
   validates :spi_out_applicable_flag, presence: true
   validates :offence_active_order, presence: true
+
+  before_save do
+    unless code.nil?
+      self.category_code = COURT_APPLICATION_TYPES[code]&.fetch("category", nil)
+      self.type = COURT_APPLICATION_TYPES[code]&.fetch("title", nil)
+    end
+  end
 
   def to_builder
     Jbuilder.new do |court_application_type|

@@ -1,14 +1,10 @@
 <div class="nested-fields">
   <div class="field">
     <%= f.label :code, 'Code' %>
-    <%= f.text_field :code %>
+    <%= f.select :code,
+                 options_for_select(@codes_and_titles, @court_application_type.code),
+                 include_blank: "Select an application type" %>
   </div>
-
-  <div class="field">
-    <%= f.label :type, 'Type'%>
-    <%= f.text_field :type %>
-  </div>
-
   <div class="field">
     <%= f.label :legislation, 'Legislation' %>
     <%= f.text_field :legislation %>

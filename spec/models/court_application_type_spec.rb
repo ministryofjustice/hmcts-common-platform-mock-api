@@ -29,5 +29,13 @@ RSpec.describe CourtApplicationType, type: :model do
       .in_array(%w[STANDALONE LINKED NEITHER])
   end
 
+  describe "before save callback" do
+    it "updates category and type based on code" do
+      court_application_type.save!
+      expect(court_application_type.category_code).to eq("appeal")
+      expect(court_application_type.type).to eq("Appeal against conviction and sentence by a Magistrates' Court to the Crown Court")
+    end
+  end
+
   it_has_behaviour "conforming to valid schema"
 end

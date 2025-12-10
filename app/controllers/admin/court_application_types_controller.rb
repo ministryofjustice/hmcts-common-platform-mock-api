@@ -10,9 +10,9 @@ module Admin
 
     def update
       court_application = CourtApplication.find(params[:court_application_id])
-      unless court_application.court_application_type.code.nil?
-        court_application.court_application_type.category_code = CourtApplicationType::COURT_APPLICATION_TYPES[court_application.court_application_type.code]&.fetch("category", nil)
-        court_application.court_application_type.type = CourtApplicationType::COURT_APPLICATION_TYPES[court_application.court_application_type.code]&.fetch("title", nil)
+      if params[:court_application_type][:code].present?
+        court_application.court_application_type.category_code = CourtApplicationType::COURT_APPLICATION_TYPES[params[:court_application_type][:code]]&.fetch("category", nil)
+        court_application.court_application_type.type = CourtApplicationType::COURT_APPLICATION_TYPES[params[:court_application_type][:code]]&.fetch("title", nil)
       end
       if court_application.court_application_type.update(court_application_type_params)
         redirect_to admin_court_application_url(court_application), notice: "Court application type was successfully updated."

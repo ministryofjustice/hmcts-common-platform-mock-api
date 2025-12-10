@@ -3,7 +3,7 @@
     <%= f.label :code, 'Code and Title' %>
     <%= f.select :code,
                  options_for_select(@codes_and_titles, @court_application_type.code),
-                 include_blank: "Select an application type" %>
+                 include_blank: "Select an application type" , :required => true%>
   </div>
   <div class="field">
     <%= f.label :legislation, 'Legislation' %>

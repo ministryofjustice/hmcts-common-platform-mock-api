@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :court_application_type do
     id { SecureRandom.uuid }
-    code { "String" }
+    code { "MC80801" }
     legislation { "string" }
     valid_from { "2021-04-01" }
     valid_to { "2021-04-30" }

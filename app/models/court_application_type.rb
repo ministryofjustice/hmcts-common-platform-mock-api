@@ -6,6 +6,10 @@ class CourtApplicationType < ApplicationRecord
   RECIPIENT_TYPES = %w[APPLICANT RESPONDENT].freeze
   TEMPLATE_TYPES = %w[GENERIC_SUMMONS].freeze
 
+  COURT_APPLICATION_TYPES = YAML.load_file(
+    Rails.root.join("lib/data/supported_court_application_types.yml"),
+  ).freeze
+
   # This disables STI to allow us to use the column name 'type'.
   # In this model 'type' is synonymous with 'application type'.
   self.inheritance_column = nil

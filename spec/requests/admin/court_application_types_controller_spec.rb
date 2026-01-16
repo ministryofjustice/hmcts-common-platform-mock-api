@@ -18,7 +18,7 @@ RSpec.describe "/admin/court_application_type", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) { { code: "code", type: "type", legislation: "legislation" } }
+      let(:new_attributes) { { code: "MC80801", legislation: "legislation" } }
 
       it "updates the requested court_application_type" do
         patch(admin_court_application_court_application_type_url(court_application), params: { court_application_type: new_attributes }, headers:)

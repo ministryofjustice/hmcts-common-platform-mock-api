@@ -24,7 +24,7 @@ gem "activesupport", "~> 8.0"
 gem "railties", "~> 8.0"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.4.2", require: false
+gem "bootsnap", ">= 1.19.0", require: false
 gem "csv"
 gem "dry-validation"
 gem "factory_bot_rails"

@@ -60,7 +60,7 @@ jobs:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: '20.19'
+          node-version: "20.19"
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -151,7 +151,7 @@ jobs:
       - checkout_and_decrypt
       - kubernetes/install-kubectl
       - helm/install-helm-client:
-          version: 'v3.2.4'
+          version: "v3.2.4"
       - run:
           name: Authenticate to LIVE cluster
           command: |
@@ -194,6 +194,9 @@ jobs:
   e2e-test-branch:
     executor: court-data-end-to-end-tests/e2e-test-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:OCSIf+A2nCp3N9mw/3RINx6RJB4UrhIBo1cSf2gqrDg"
       - court-data-end-to-end-tests/run-e2e-tests:
           e2e_current_image_var: MOCK_IMAGE
           e2e_current_image: ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api:${CIRCLE_SHA1}
@@ -202,6 +205,9 @@ jobs:
   e2e-test-main:
     executor: court-data-end-to-end-tests/e2e-test-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:OCSIf+A2nCp3N9mw/3RINx6RJB4UrhIBo1cSf2gqrDg"
       - court-data-end-to-end-tests/run-e2e-tests
 
 workflows:
@@ -226,7 +232,7 @@ workflows:
             - build-and-push-app
       - install_on_live_cluster:
           requires:
-          - build-and-push-app
+            - build-and-push-app
 
   test_and_build_branch:
     jobs:
@@ -253,4 +259,4 @@ workflows:
             - build-and-push-app
       - install_on_live_cluster:
           requires:
-          - hold_install_on_live
+            - hold_install_on_live

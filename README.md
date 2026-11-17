@@ -62,6 +62,9 @@ You can verify your setup by sending a request to an endpoint and checking for a
 curl -u admin:password --head http://localhost:3000/admin/prosecution_cases
 ```
 
+Both a Case URN and a Prosecution Authority Reference are required when creating or
+updating a prosecution case in any context.
+
 ### Running the App using docker compose
 
 The application and associated database can be started up using the following docker compose command. By default the base `.env` file will be used however

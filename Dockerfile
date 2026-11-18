@@ -1,5 +1,5 @@
-FROM node:24.8-alpine AS node
-FROM ruby:3.4.4-alpine3.20
+FROM node:24.22-alpine AS node
+FROM ruby:3.4.9-alpine3.24
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Access Court Data"
 LABEL Contact="<access-court-data-team@digital.justice.gov.uk>"
@@ -13,6 +13,9 @@ COPY --from=node /usr/local/share /usr/local/share
 COPY --from=node /usr/local/lib /usr/local/lib
 COPY --from=node /usr/local/include /usr/local/include
 COPY --from=node /usr/local/bin /usr/local/bin
+
+# npm is not used (yarn is) and its bundled node-gyp > undici has a critical vulnerability
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx
 
 # build dependencies:
 # - virtual: create virtual package for later deletion
@@ -47,7 +50,7 @@ WORKDIR /usr/src/app
 
 COPY Gemfile* ./
 
-RUN gem install bundler -v 2.4.22
+RUN gem install bundler -v 2.6.9
 RUN bundle config set --local deployment 'true' without 'development:test' && bundle install --jobs 4
 
 ####################

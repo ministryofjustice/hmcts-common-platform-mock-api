@@ -81,18 +81,18 @@ RSpec.describe DemoDataHelper, type: :helper do
       let(:prosecution_case) do
         create(:realistic_prosecution_case,
                prosecution_case_identifier: create(:realistic_prosecution_case_identifier,
-                                                   caseURN: "URN87654321", prosecutionAuthorityReference: nil))
+                                                   caseURN: "URN87654321"))
       end
 
       it { is_expected.to eql("URN87654321") }
     end
 
-    context "with prosecution authority reference" do
+    context "with a legacy reference-only identifier" do
       let(:prosecution_case) do
-        create(:realistic_prosecution_case,
-               prosecution_case_identifier: create(:realistic_prosecution_case_identifier,
-                                                   prosecutionAuthorityReference: "PAR54321",
-                                                   caseURN: nil))
+        build(:realistic_prosecution_case,
+              prosecution_case_identifier: build(:realistic_prosecution_case_identifier,
+                                                 prosecutionAuthorityReference: "PAR54321",
+                                                 caseURN: nil))
       end
 
       it { is_expected.to eql("PAR54321") }

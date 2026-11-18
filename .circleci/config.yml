@@ -15,12 +15,12 @@ executors:
   snyk-executor:
     working_directory: ~/repo
     docker:
-      - image: cimg/ruby:3.4.4-browsers
+      - image: cimg/ruby:3.4.9-browsers
         environment:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/hmcts_mock
           TZ: Europe/London
-      - image: cimg/postgres:17.4
+      - image: cimg/postgres:17.11
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: "circleci"
@@ -49,18 +49,18 @@ commands:
 jobs:
   test:
     docker:
-      - image: cimg/ruby:3.4.4-browsers
+      - image: cimg/ruby:3.4.9-browsers
         environment:
           DATABASE_URL: postgres://postgres@localhost/hmcts_common_platform_api_test
           RAILS_ENV: test
-      - image: cimg/postgres:17.4
+      - image: cimg/postgres:17.11
         environment:
           POSTGRES_DB: hmcts_common_platform_api_test
     steps:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: "20.19"
+          node-version: "24.22"
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}

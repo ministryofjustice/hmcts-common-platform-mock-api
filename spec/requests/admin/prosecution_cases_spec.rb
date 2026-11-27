@@ -65,6 +65,39 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
   end
 
   describe "POST /create" do
+    context "with a valid case URN and a blank prosecution authority reference" do
+      it "does not create a case and displays the reference validation error" do
+        valid_attributes[:prosecution_case_identifier_attributes][:prosecutionAuthorityReference] = "   "
+
+        expect {
+          post admin_prosecution_cases_url, params: { prosecution_case: valid_attributes }, headers:
+        }.not_to change(ProsecutionCase, :count)
+
+        expect(response).to be_successful
+        expect(response.body).to include("Prosecution case identifier prosecutionauthorityreference can&#39;t be blank")
+      end
+    end
+
+    ["ABC123", "ABC123!@#"].each do |reference|
+      context "with a blank case URN and prosecution authority reference #{reference}" do
+        ["", "   "].each do |case_urn|
+          it "does not create a case and displays the case URN validation error for #{case_urn.inspect}" do
+            valid_attributes[:prosecution_case_identifier_attributes].merge!(
+              caseURN: case_urn,
+              prosecutionAuthorityReference: reference,
+            )
+
+            expect {
+              post admin_prosecution_cases_url, params: { prosecution_case: valid_attributes }, headers:
+            }.not_to change(ProsecutionCase, :count)
+
+            expect(response).to be_successful
+            expect(response.body).to include("Prosecution case identifier caseurn can&#39;t be blank")
+          end
+        end
+      end
+    end
+
     context "with valid parameters" do
       it "creates a new ProsecutionCase" do
         expect {
@@ -93,6 +126,27 @@ RSpec.describe "/admin/prosecution_cases", type: :request do
   end
 
   describe "PATCH /update" do
+    context "with a blank case URN and a prosecution authority reference" do
+      it "keeps the existing case URN and displays the validation error" do
+        identifier = prosecution_case.prosecution_case_identifier
+        original_case_urn = identifier.caseURN
+
+        patch(admin_prosecution_case_url(prosecution_case),
+              params: { prosecution_case: {
+                prosecution_case_identifier_attributes: {
+                  id: identifier.id,
+                  caseURN: "",
+                  prosecutionAuthorityReference: "ABC123!@#",
+                },
+              } },
+              headers:)
+
+        expect(identifier.reload.caseURN).to eq(original_case_urn)
+        expect(response).to be_successful
+        expect(response.body).to include("Prosecution case identifier caseurn can&#39;t be blank")
+      end
+    end
+
     context "with valid parameters" do
       let(:new_attributes) { FactoryBot.attributes_for(:realistic_prosecution_case) }
 
